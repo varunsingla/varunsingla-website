@@ -1,0 +1,8 @@
+# robots.txt — varunsingla.com
+# Allow all crawlers full access
+
+User-agent: *
+Allow: /
+
+# Primary sitemap
+Sitemap: https://varunsingla.com/sitemap.xml
