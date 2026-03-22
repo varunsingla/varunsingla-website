@@ -237,7 +237,244 @@
       "display_date": "March 20, 2026",
       "title": "Your 5-Minute AI Brief -- Powered by Real-Time Research",
       "focus_intro": "",
-      "sections": [],
+      "sections": [
+        {
+          "title": "01 -- What is Agentic AI?",
+          "paragraphs": [
+            "Agentic AI refers to artificial intelligence systems that can perceive their environment, plan multi-step actions, use tools, and autonomously execute tasks to achieve a goal -- without requiring step-by-step human instructions. Unlike a traditional chatbot that simply responds to queries, an AI agent can browse the web, write and run code, send emails, manage files, and coordinate with other",
+            "Responds to one prompt at a time Plans & executes multi-step tasks No memory between sessions Persistent memory & context Passive -- waits for instructions Proactive -- takes initiative Uses language only Uses tools: web, code, APIs, files Single model output Orchestrates multiple specialised agents"
+          ],
+          "table": {
+            "headers": [
+              "01 What is Agentic AI?"
+            ],
+            "rows": [
+              [
+                "02 Key Market Stats -- March 2026"
+              ],
+              [
+                "03 Multi-Agent Systems Explained"
+              ],
+              [
+                "04 Top Breakthroughs This Week"
+              ],
+              [
+                "05 Real-World Use Cases"
+              ],
+              [
+                "06 Challenges & What to Watch"
+              ],
+              [
+                "07 Glossary of Key Terms"
+              ],
+              [
+                "08 Your Action Points"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "02 -- Key Market Stats -- March 2026",
+          "paragraphs": [
+            "Enterprise Apps With AI Surge in Multi-Agent Market Size Today Projected by 2034 Annual Growth Rate"
+          ],
+          "table": {
+            "headers": [
+              "Traditional AI (LLMs)",
+              "Agentic AI"
+            ],
+            "rows": [
+              [
+                "Responds to one prompt at a time",
+                "Plans & executes multi-step tasks"
+              ],
+              [
+                "No memory between sessions",
+                "Persistent memory & context"
+              ],
+              [
+                "Passive -- waits for instructions",
+                "Proactive -- takes initiative"
+              ],
+              [
+                "Uses language only",
+                "Uses tools: web, code, APIs, files"
+              ],
+              [
+                "Single model output",
+                "Orchestrates multiple specialised agents"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "03 -- Multi-Agent Systems Explained",
+          "paragraphs": [
+            "The hottest architectural trend in AI right now is Multi-Agent Systems (MAS) -- networks of specialised AI agents working together like a well-run team. Think of it as the \"microservices revolution\" applied to AI: instead of one giant model doing everything, you have orchestrated squads of agents --",
+            "The 'manager' that receives the high-level goal, decomposes it into sub-tasks, and assigns them to specialist agents. It tracks progress and reassembles results.",
+            "Searches the web, reads documents, and retrieves real-time information to feed into the pipeline. Uses tools like web search and document readers.",
+            "Writes, debugs, and executes code. Can run scripts, query databases, call APIs, and return structured results. Examples: Cursor AI, GitHub Copilot Workspace.",
+            "Handles outbound actions -- sending emails, posting to Slack, updating CRMs. Bridges AI reasoning with real-world system integrations.",
+            "Monitors all agent actions against policy rules. Flags or blocks actions that violate compliance, budget, or safety constraints. Increasingly mandatory in enterprises."
+          ],
+          "bullets": [
+            "Orchestrator Agent",
+            "Research Agent",
+            "Code Agent",
+            "Communication Agent",
+            "Guardian / Governance Agent"
+          ],
+          "table": {
+            "headers": [
+              "Industry",
+              "Agent Task",
+              "Impact"
+            ],
+            "rows": [
+              [
+                "Software Engineering",
+                "Auto-generate, test & deploy code from a ticket descrip",
+                "tio1n0x faster sprint cycles"
+              ],
+              [
+                "Finance / Banking",
+                "Ingest earnings reports, model scenarios, draft investm",
+                "enAtn maleymstso sreclaim 4hrs/day"
+              ],
+              [
+                "Healthcare",
+                "Cross-reference patient history, suggest diagnoses, fla",
+                "g 3d0ru%g fiansteterar cctliionnicsal decisions"
+              ],
+              [
+                "Customer Service",
+                "Resolve Tier-1/Tier-2 tickets autonomously, escalate e",
+                "dg6e0 %ca stiecsket deflection"
+              ],
+              [
+                "Legal",
+                "Review contracts, flag clauses, summarise case law",
+                "90% reduction in review time"
+              ],
+              [
+                "Sales / CRM",
+                "Research prospects, personalise outreach, update CR",
+                "M 3axu ptoipmealitnicea vlleylocity"
+              ],
+              [
+                "Scientific Research",
+                "Run literature reviews, simulate experiments, write firs",
+                "t-dMraoftn pthasp oefr sresearch in hours"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "04 -- Top AI Breakthroughs This Week",
+          "paragraphs": [
+            "OpenAI's newest model handles up to 1,000,000 tokens in context -- enabling it to read entire codebases, legal documents, or research libraries in a single prompt. Scored 83% on GDPVal -- a benchmark measuring performance on tasks with real economic value.",
+            "The Meta AI Chief Scientist left to found AMI Labs, betting on 'World Models' -- AI that understands physical laws and causality rather than just text patterns. Backed by Nvidia and Bezos Expeditions. This is the biggest bet against pure LLM architectures ever made.",
+            "iOS 26.4 will debut a completely rebuilt Siri powered by Google's 1.2 trillion parameter Gemini model, running on Apple's Private Cloud for privacy. Siri will gain full on-screen awareness and seamless cross-app integration -- finally becoming a true AI agent.",
+            "Five major Chinese AI models launched this week from Tencent, Alibaba, Baidu, ByteDance, and MiniMax. Alibaba's Qwen 3.5 can autonomously handle agentic multi-step tasks and analyse videos up to 2 hours long. MiniMax M2.5 rivals Claude Opus 4.6 at a fraction of the cost.",
+            "Galileo's 'Agent Control' is the first universal open-source framework to standardise how AI agents behave -- adding auditability, explainability, and guardrails. This is a landmark moment for"
+          ],
+          "bullets": [
+            "OpenAI GPT-5.4 Released (Mar 5, 2026)",
+            "Yann LeCun's AMI Labs Raises $1.03B",
+            "Apple Reimagines Siri with Gemini",
+            "China's AI Race Intensifies",
+            "Galileo Launches Open-Source AI Governance Layer"
+          ],
+          "table": {
+            "headers": [
+              "Agentic AI",
+              "AI systems that can plan, use tools, and take multi-step autonomous actions toward a goal."
+            ],
+            "rows": [
+              [
+                "Orchestrator",
+                "A controller agent that decomposes goals and coordinates specialist sub-agents."
+              ],
+              [
+                "Multi-Agent System (MAS)",
+                "A network of AI agents collaborating on a shared task, each with a defined role."
+              ],
+              [
+                "Tool Use",
+                "The ability of an AI agent to call external functions -- web search, code execution, APIs, databases."
+              ],
+              [
+                "AgentOps",
+                "The infrastructure (monitoring, security, governance) required to manage fleets of AI agents in production."
+              ],
+              [
+                "Prompt Injection",
+                "An attack where malicious content in an agent's environment hijacks its instructions."
+              ],
+              [
+                "World Models",
+                "AI architectures that learn by modelling physical laws and causality -- not just text patterns (LeCun's approach)."
+              ],
+              [
+                "HITL (Human-in-the-Loop)",
+                "A design pattern where humans review or approve specific agent decisions at defined checkpoints."
+              ],
+              [
+                "Context Window",
+                "The amount of text/data a model can 'see' at once. GPT-5.4 supports 1,000,000 tokens -- ~750,000 words."
+              ],
+              [
+                "GDPVal",
+                "A new benchmark (2025-26) measuring AI performance on economically valuable, real-world tasks."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "05 -- Real-World Agentic AI Use Cases",
+          "paragraphs": [
+            "Software Engineering Auto-generate, test & deploy code from a ticket descriptio1n0x faster sprint cycles Finance / Banking Ingest earnings reports, model scenarios, draft investmenAtn maleymstso sreclaim 4hrs/day Healthcare Cross-reference patient history, suggest diagnoses, flag 3d0ru%g fiansteterar cctliionnicsal decisions Customer Service Resolve Tier-1/Tier-2 tickets autonomously, escalate edg6e0 %ca stiecsket deflection Legal Review contracts, flag clauses, summarise case law 90% reduction in review time Sales / CRM Research prospects, personalise outreach, update CRM 3axu ptoipmealitnicea vlleylocity Scientific Research Run literature reviews, simulate experiments, write first-dMraoftn pthasp oefr sresearch in hours"
+          ]
+        },
+        {
+          "title": "06 -- Challenges & What to Watch",
+          "paragraphs": [
+            "Agentic AI is not without serious challenges. Understanding these will help you separate genuine progress from hype when you encounter it at work.",
+            "Unlike a chatbot that hallucinates text, an agentic AI that hallucinates may delete the wrong file, send a badly-worded email, or make a wrong API call. The consequences are real-world, not just",
+            "Malicious content in the agent's environment (e.g., a webpage it reads) can 'hijack' its instructions -- a growing attack vector called prompt injection. Galileo's governance layer is a direct response",
+            "Only 11% of organisations have agentic AI actually running in production. The gap between impressive demos and reliable, scalable enterprise deployment remains the central challenge of",
+            "Gartner predicts agents will hit the 'Trough of Disillusionment' in 2026 -- a natural phase where early hype gives way to hard lessons. Expect a wave of 'agentic AI failed for us' stories alongside",
+            "The smartest organisations are not asking 'how do we remove humans?' but 'at which exact decision points do humans add the most value?' Hybrid designs outperform both full automation"
+          ],
+          "bullets": [
+            "Hallucination in Action",
+            "Prompt Injection & Security",
+            "The 'Production Gap'",
+            "Gartner Trough of Disillusionment",
+            "Human-in-the-Loop Design"
+          ]
+        },
+        {
+          "title": "07 -- Glossary of Key Terms",
+          "paragraphs": [
+            "Agentic AI AI systems that can plan, use tools, and take multi-step autonomous actions",
+            "Orchestrator A controller agent that decomposes goals and coordinates specialist sub-agents. Multi-Agent System A network of AI agents collaborating on a shared task, each with a defined role. Tool Use The ability of an AI agent to call external functions -- web search, code",
+            "AgentOps The infrastructure (monitoring, security, governance) required to manage fleets",
+            "Prompt Injection An attack where malicious content in an agent's environment hijacks its",
+            "World Models AI architectures that learn by modelling physical laws and causality -- not just",
+            "HITL A design pattern where humans review or approve specific agent decisions at",
+            "Context Window The amount of text/data a model can 'see' at once. GPT-5.4 supports 1,000,000",
+            "GDPVal A new benchmark (2025-26) measuring AI performance on economically"
+          ]
+        },
+        {
+          "title": "08 -- Your Action Points for Today",
+          "paragraphs": [
+            "Open Claude, ChatGPT, or Cursor and give it a multi-step task (e.g., 'Research the top 3 CRMs, compare their pricing, and draft a recommendation email'). Notice how it plans and uses tools -- that IS agentic AI in action. Scan the Google Cloud AI Agent Trends 2026 report (free PDF). Focus on the section on multi-agent architectures and enterprise readiness criteria. Search YouTube for 'Andrew Ng Agentic AI 2025' -- his 20-minute talk is the clearest conceptual explanation of agentic design patterns available. Think about one repetitive task in your own work. Could an agent do it? What tools would it need? What decision points would still require you? Write down 3 bullet points. This is how",
+            "Newsletter (AI editions), and the Anthropic / OpenAI research blogs. of Analytics, IBM Think, devFlokers, InfoWorld, MIT Sloan Review, eWeek, UiPath"
+          ]
+        }
+      ],
       "key_stats": [
         "02 -- Key Market Stats -- March 2026 40% 1,445% $9",
         "1/Tier-2 tickets autonomously, escalate edg6e0 %ca stiecsket deflection Legal Review con"
