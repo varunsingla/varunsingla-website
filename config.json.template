@@ -1,6 +1,0 @@
-{
-  "github_token":  "ghp_YOUR_PERSONAL_ACCESS_TOKEN_HERE",
-  "github_user":   "YOUR_GITHUB_USERNAME",
-  "github_repo":   "YOUR_REPO_NAME",
-  "github_branch": "main"
-}

@@ -159,9 +159,13 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 22px;
-      padding: 32px;
-      margin-bottom: 20px;
+      padding: 28px 32px;
+      margin-bottom: 16px;
       transition: border-color .25s, transform .2s, box-shadow .25s;
+    }
+
+    .card:not(.latest) {
+      cursor: pointer;
     }
 
     .card:hover {
@@ -183,10 +187,18 @@
       background: linear-gradient(90deg, #7c3aed, #2563eb, #06b6d4);
     }
 
-    /* Card top row */
-    .card-top {
+    /* Card header row — always visible */
+    .card-header {
       display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 8px; flex-wrap: wrap; gap: 8px;
+      gap: 12px; cursor: pointer; user-select: none;
+    }
+
+    .card-header-left { flex: 1; min-width: 0; }
+
+    /* Card top row (date + badge) */
+    .card-top {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 5px; flex-wrap: wrap;
     }
 
     .card-date {
@@ -202,8 +214,37 @@
     }
 
     .card-title {
-      font-size: 21px; font-weight: 750; letter-spacing: -.02em;
-      color: var(--text); margin-bottom: 20px; line-height: 1.3;
+      font-size: 20px; font-weight: 750; letter-spacing: -.02em;
+      color: var(--text); line-height: 1.3;
+    }
+
+    /* Chevron */
+    .card-chevron {
+      flex-shrink: 0;
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.05);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; color: var(--dim);
+      transition: transform .25s ease, background .2s, color .2s;
+    }
+
+    .card.open .card-chevron {
+      transform: rotate(180deg);
+      background: rgba(124,58,237,.12);
+      color: #a78bfa;
+      border-color: rgba(124,58,237,.25);
+    }
+
+    /* Card body — collapsible */
+    .card-body {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .card-body.open {
+      display: block;
     }
 
     /* ── Viral App pill ──────────────────────────── */
@@ -255,6 +296,11 @@
     }
 
     .topics-list.open { display: block; }
+
+    /* Divider between collapsed cards */
+    .card:not(.latest):not(.open) .card-header {
+      padding-bottom: 0;
+    }
 
     .topics-list li {
       font-size: 14px; color: var(--muted);
@@ -375,7 +421,7 @@
   <!-- ── Footer ───────────────────────────────────── -->
   <footer>
     <div class="footer-logo">VS</div>
-    <p>Updated daily by AI · <a href="mailto:varun.singla@outlook.com">varun.singla@outlook.com</a></p>
+    <p>Updated daily by AI</p>
     <p style="margin-top:6px;font-size:11px;color:var(--dim)">varunsingla.com</p>
   </footer>
 
@@ -427,15 +473,21 @@
       learnings.forEach((l, i) => {
         const isLatest = i === 0;
         const card = document.createElement('article');
-        card.className = 'card' + (isLatest ? ' latest' : '');
+        card.className = 'card' + (isLatest ? ' latest open' : '');
         card.innerHTML = buildCard(l, isLatest);
+        // clicking collapsed cards toggles them open
+        if (!isLatest) {
+          card.addEventListener('click', function(e) {
+            // don't re-toggle if clicking the inner topics-toggle button
+            if (e.target.closest('.topics-toggle')) return;
+            toggleCard(this);
+          });
+        }
         feed.appendChild(card);
       });
     }
 
     function buildCard(l, isLatest) {
-      const topicsOpen = isLatest ? ' open' : '';
-
       const viralHtml = l.viral_app ? `
         <div class="viral-block">
           <span class="viral-fire">🔥</span>
@@ -461,23 +513,44 @@
            </div>`
         : '';
 
+      const chevron = isLatest ? '' : `<span class="card-chevron">▾</span>`;
+
       return `
-        <div class="card-top">
-          <span class="card-date">${esc(l.display_date)}</span>
-          ${isLatest ? '<span class="tag-latest">✨ Latest</span>' : ''}
+        <div class="card-header">
+          <div class="card-header-left">
+            <div class="card-top">
+              <span class="card-date">${esc(l.display_date)}</span>
+              ${isLatest ? '<span class="tag-latest">✨ Latest</span>' : ''}
+            </div>
+            <div class="card-title">${esc(l.title)}</div>
+          </div>
+          ${chevron}
         </div>
-        <div class="card-title">${esc(l.title)}</div>
-        ${viralHtml}
-        <button class="topics-toggle${isLatest ? ' open' : ''}" onclick="toggle(this)">
-          <span class="toggle-arrow">▶</span>
-          ${(l.topics || []).length} Topics Covered
-        </button>
-        <ul class="topics-list${topicsOpen}">${topicsHtml}</ul>
-        ${chipsHtml}
-        ${nextHtml}
+        <div class="card-body${isLatest ? ' open' : ''}">
+          ${viralHtml}
+          <button class="topics-toggle open" onclick="toggleTopics(event, this)">
+            <span class="toggle-arrow">▶</span>
+            ${(l.topics || []).length} Topics Covered
+          </button>
+          <ul class="topics-list open">${topicsHtml}</ul>
+          ${chipsHtml}
+          ${nextHtml}
+        </div>
       `;
     }
 
+    function toggleCard(card) {
+      card.classList.toggle('open');
+      card.querySelector('.card-body').classList.toggle('open');
+    }
+
+    function toggleTopics(e, btn) {
+      e.stopPropagation(); // don't bubble up to card click
+      btn.classList.toggle('open');
+      btn.nextElementSibling.classList.toggle('open');
+    }
+
+    // keep old toggle for backward compat (not used now)
     function toggle(btn) {
       btn.classList.toggle('open');
       btn.nextElementSibling.classList.toggle('open');
