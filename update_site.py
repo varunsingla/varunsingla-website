@@ -113,16 +113,20 @@ def clean(text: str) -> str:
     """Strip extra whitespace and common PDF artifacts."""
     text = re.sub(r"\s+", " ", text).strip()
     # Fix common PDF encoding issues
-    text = text.replace("â€™", "'").replace("â€"", "—").replace("â€œ", '"').replace("â€", '"')
-    text = text.replace("â–¢", "•").replace("â–", "•").replace("\u2019", "'")
-    text = text.replace("\u2014", "—").replace("\u2013", "–").replace("\u2022", "•")
+    text = text.replace("\u2019", "'").replace("\u2018", "'")
+    text = text.replace("\u2014", "--").replace("\u2013", "-").replace("\u2022", "*")
+    text = text.replace("\u201c", '"').replace("\u201d", '"')
     return text
 
 
 def is_section_heading(line: str) -> bool:
     """Detect a major section heading (numbered or known keywords)."""
     line = line.strip()
+    # "1. Title" style
     if re.match(r"^\d+\.\s+\S", line):
+        return True
+    # "01 — Title" or "01 - Title" or "01 -- Title" style
+    if re.match(r"^\d{1,2}\s*[-—–]{1,2}\s+\S", line):
         return True
     headings = [
         "today's focus", "today's topic", "what's inside", "key announcements",
@@ -132,6 +136,7 @@ def is_section_heading(line: str) -> bool:
         "sources", "further reading", "what are ", "why exploding",
         "real-world", "challenges", "learning roadmap", "key vocabulary",
         "application examples", "deep dive", "use cases", "agent communication",
+        "glossary", "action points", "your action",
     ]
     low = line.lower()
     for h in headings:
@@ -141,11 +146,19 @@ def is_section_heading(line: str) -> bool:
 
 
 def is_bullet(line: str) -> bool:
-    return bool(re.match(r"^[•\-\*▸▶◆●▪]\s", line) or re.match(r"^\d+\.\s", line))
+    # Standard bullets + the 'n ' / ')n ' / 'nn ' PDF artifact bullets
+    return bool(
+        re.match(r"^[•\-\*▸▶◆●▪]\s", line)
+        or re.match(r"^\d+\.\s", line)
+        or re.match(r"^[n\)]+n?\s+[A-Z]", line)   # PDF artifact: 'n Title', ')n Title', 'nn Title'
+    )
 
 
 def extract_bullet_text(line: str) -> str:
-    return re.sub(r"^[•\-\*▸▶◆●▪\d\.]+\s+", "", line).strip()
+    # Remove leading bullet chars, PDF artifact 'n'/'nn'/etc.
+    line = re.sub(r"^[•\-\*▸▶◆●▪\d\.]+\s+", "", line)
+    line = re.sub(r"^[n\)]+n?\s+", "", line)
+    return line.strip()
 
 
 def parse_date_from_text(text: str) -> tuple[str, str, int | None]:
@@ -257,10 +270,10 @@ def parse_pdf(pdf_path: Path) -> dict:
             while j < len(all_lines):
                 next_line = all_lines[j]
 
-                # Stop at next major section heading (but allow subsections)
+                # Stop at next major section heading (numbered = new top section)
                 if (is_section_heading(next_line)
                         and not skip_headings.search(next_line)
-                        and re.match(r"^\d+\.\s", next_line)   # numbered = new top section
+                        and (re.match(r"^\d+\.\s", next_line) or re.match(r"^\d{1,2}\s*[-—–]{1,2}\s+\S", next_line))
                         and j != i + 1):
                     break
 
