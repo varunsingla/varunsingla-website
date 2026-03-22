@@ -247,14 +247,6 @@
       display: block;
     }
 
-    /* ── Focus intro ─────────────────────────────── */
-    .focus-intro {
-      font-size: 15px; color: var(--muted); line-height: 1.7;
-      border-left: 3px solid rgba(124,58,237,.4);
-      padding-left: 16px; margin-bottom: 24px;
-      font-style: italic;
-    }
-
     /* ── Viral App pill ──────────────────────────── */
     .viral-block {
       display: flex; align-items: flex-start; gap: 14px;
@@ -262,7 +254,7 @@
       border: 1px solid rgba(245,158,11,.20);
       border-radius: 14px;
       padding: 14px 18px;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
 
     .viral-fire { font-size: 22px; flex-shrink: 0; line-height: 1; margin-top: 2px; }
@@ -280,86 +272,49 @@
       font-size: 13px; color: var(--muted); line-height: 1.5;
     }
 
-    /* ── Sections ────────────────────────────────── */
-    .section {
-      margin-bottom: 28px;
-      padding-bottom: 24px;
-      border-bottom: 1px solid var(--border);
-    }
-    .section:last-of-type { border-bottom: none; }
-
-    .section-heading {
-      font-size: 16px; font-weight: 750;
-      color: var(--text); letter-spacing: -.01em;
-      margin-bottom: 12px;
-      display: flex; align-items: center; gap: 8px;
+    /* ── Topics accordion ────────────────────────── */
+    .topics-toggle {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 13px; font-weight: 650; color: #a78bfa;
+      cursor: pointer; border: none; background: none;
+      padding: 0; margin-bottom: 14px;
+      transition: color .2s;
     }
 
-    .section-heading::before {
-      content: '';
-      display: inline-block; width: 3px; height: 16px;
-      background: linear-gradient(180deg, var(--p1), var(--p2));
-      border-radius: 2px; flex-shrink: 0;
+    .topics-toggle:hover { color: #c4b5fd; }
+
+    .toggle-arrow {
+      display: inline-block; font-size: 10px;
+      transition: transform .22s ease;
     }
 
-    .section-para {
+    .topics-toggle.open .toggle-arrow { transform: rotate(90deg); }
+
+    .topics-list {
+      display: none; list-style: none;
+      margin-bottom: 18px;
+    }
+
+    .topics-list.open { display: block; }
+
+    /* Divider between collapsed cards */
+    .card:not(.latest):not(.open) .card-header {
+      padding-bottom: 0;
+    }
+
+    .topics-list li {
       font-size: 14px; color: var(--muted);
-      line-height: 1.72; margin-bottom: 10px;
+      padding: 9px 0 9px 18px;
+      border-left: 2px solid rgba(124,58,237,.28);
+      margin-bottom: 6px;
+      line-height: 1.55;
     }
 
-    .section-bullets {
-      list-style: none; margin: 10px 0 12px;
-    }
-
-    .section-bullets li {
-      font-size: 14px; color: var(--muted);
-      padding: 7px 0 7px 16px;
-      border-left: 2px solid rgba(124,58,237,.25);
-      margin-bottom: 5px;
-      line-height: 1.6;
-    }
-
-    .section-bullets li strong { color: #d4c0ff; font-weight: 700; }
-
-    /* ── Data tables ─────────────────────────────── */
-    .data-table {
-      width: 100%; border-collapse: collapse;
-      margin: 12px 0 16px; font-size: 13px;
-      border-radius: 10px; overflow: hidden;
-    }
-
-    .data-table th {
-      background: rgba(124,58,237,.15);
-      color: #c4b5fd; font-weight: 700;
-      padding: 10px 14px; text-align: left;
-      font-size: 12px; letter-spacing: .04em;
-      text-transform: uppercase;
-    }
-
-    .data-table td {
-      padding: 10px 14px;
-      color: var(--muted);
-      border-bottom: 1px solid var(--border);
-      vertical-align: top; line-height: 1.5;
-    }
-
-    .data-table tr:last-child td { border-bottom: none; }
-    .data-table tr:nth-child(even) td { background: rgba(255,255,255,.02); }
-
-    /* ── Section highlight ───────────────────────── */
-    .section-highlight {
-      background: rgba(124,58,237,.08);
-      border: 1px solid rgba(124,58,237,.2);
-      border-radius: 10px;
-      padding: 12px 16px;
-      font-size: 13.5px; color: #c4b5fd;
-      font-style: italic; line-height: 1.6;
-      margin-top: 12px;
-    }
+    .topics-list li strong { color: #d4c0ff; font-weight: 650; }
 
     /* ── Key stats chips ─────────────────────────── */
     .chips {
-      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;
+      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px;
     }
 
     .chip {
@@ -371,58 +326,22 @@
       line-height: 1.4;
     }
 
-    /* ── Market signal ───────────────────────────── */
-    .market-signal {
-      background: rgba(239,68,68,.06);
-      border: 1px solid rgba(239,68,68,.18);
-      border-radius: 11px;
-      padding: 14px 18px;
-      font-size: 13.5px; color: #fca5a5;
-      line-height: 1.65; margin-bottom: 18px;
-      font-weight: 500;
-    }
-
-    .market-signal-label {
-      font-size: 10px; font-weight: 800; color: #ef4444;
-      text-transform: uppercase; letter-spacing: .09em;
-      margin-bottom: 4px;
-    }
-
-    /* ── Practical takeaway ──────────────────────── */
-    .takeaway {
-      background: rgba(16,185,129,.07);
-      border: 1px solid rgba(16,185,129,.18);
-      border-radius: 11px;
-      padding: 14px 18px;
-      font-size: 14px; color: #6ee7b7;
-      line-height: 1.65; margin-bottom: 18px;
-    }
-
-    .takeaway-label {
-      font-size: 10px; font-weight: 800; color: #10b981;
-      text-transform: uppercase; letter-spacing: .09em;
-      margin-bottom: 4px;
-    }
-
     /* ── Tomorrow preview ────────────────────────── */
     .next-up {
       display: flex; align-items: flex-start; gap: 10px;
-      background: rgba(37,99,235,.07);
-      border: 1px solid rgba(37,99,235,.18);
+      background: rgba(16,185,129,.06);
+      border: 1px solid rgba(16,185,129,.16);
       border-radius: 11px;
       padding: 12px 16px;
       font-size: 13.5px;
     }
 
     .next-label {
-      color: #60a5fa; font-weight: 750;
+      color: #10b981; font-weight: 750;
       white-space: nowrap; margin-top: 1px;
     }
 
     .next-text { color: var(--muted); line-height: 1.5; }
-
-    /* Divider between collapsed cards */
-    .card:not(.latest):not(.open) .card-header { padding-bottom: 0; }
 
     /* ── Empty state ─────────────────────────────── */
     .empty {
@@ -484,7 +403,7 @@
       </div>
       <div class="stat-item">
         <div class="stat-num" id="s-topics">—</div>
-        <div class="stat-label">Sections Covered</div>
+        <div class="stat-label">Topics Covered</div>
       </div>
       <div class="stat-item">
         <div class="stat-num" id="s-apps">—</div>
@@ -535,10 +454,10 @@
     }
 
     function renderStats(learnings) {
-      const sections = learnings.reduce((n, l) => n + (l.sections || []).length, 0);
-      const apps     = learnings.filter(l => l.viral_app).length;
+      const topics = learnings.reduce((n, l) => n + (l.topics || []).length, 0);
+      const apps   = learnings.filter(l => l.viral_app).length;
       countUp('s-days',   learnings.length);
-      countUp('s-topics', sections);
+      countUp('s-topics', topics);
       countUp('s-apps',   apps);
     }
 
@@ -569,13 +488,6 @@
     }
 
     function buildCard(l, isLatest) {
-      const chevron = isLatest ? '' : `<span class="card-chevron">▾</span>`;
-
-      // Focus intro
-      const introHtml = l.focus_intro
-        ? `<p class="focus-intro">${esc(l.focus_intro)}</p>` : '';
-
-      // Viral app
       const viralHtml = l.viral_app ? `
         <div class="viral-block">
           <span class="viral-fire">🔥</span>
@@ -586,60 +498,22 @@
           </div>
         </div>` : '';
 
-      // Sections
-      const sectionsHtml = (l.sections || []).map(s => {
-        const parasHtml = (s.paragraphs || []).map(p =>
-          `<p class="section-para">${esc(p)}</p>`
-        ).join('');
+      const topicsHtml = (l.topics || []).map(t =>
+        `<li>${esc(t).replace(/^([^:]+:)/, '<strong>$1</strong>')}</li>`
+      ).join('');
 
-        const bulletsHtml = (s.bullets || []).length
-          ? `<ul class="section-bullets">${
-              s.bullets.map(b => `<li>${esc(b).replace(/^([^:—–-]+[:—–])/, '<strong>$1</strong>')}</li>`).join('')
-            }</ul>` : '';
-
-        const tableHtml = s.table && s.table.headers && s.table.rows
-          ? `<table class="data-table">
-              <thead><tr>${s.table.headers.map(h => `<th>${esc(h)}</th>`).join('')}</tr></thead>
-              <tbody>${s.table.rows.map(row =>
-                `<tr>${row.map(cell => `<td>${esc(cell)}</td>`).join('')}</tr>`
-              ).join('')}</tbody>
-             </table>` : '';
-
-        const highlightHtml = s.highlight
-          ? `<div class="section-highlight">💡 ${esc(s.highlight)}</div>` : '';
-
-        return `
-          <div class="section">
-            <div class="section-heading">${esc(s.title)}</div>
-            ${parasHtml}${bulletsHtml}${tableHtml}${highlightHtml}
-          </div>`;
-      }).join('');
-
-      // Key stats chips
       const chipsHtml = (l.key_stats || []).length
         ? `<div class="chips">${l.key_stats.map(s => `<span class="chip">📊 ${esc(s)}</span>`).join('')}</div>`
         : '';
 
-      // Market signal
-      const marketHtml = l.market_signal
-        ? `<div class="market-signal">
-            <div class="market-signal-label">📈 Market Signal</div>
-            ${esc(l.market_signal)}
-           </div>` : '';
-
-      // Practical takeaway
-      const takeawayHtml = l.practical_takeaway
-        ? `<div class="takeaway">
-            <div class="takeaway-label">🎯 Key Takeaway</div>
-            ${esc(l.practical_takeaway)}
-           </div>` : '';
-
-      // Tomorrow preview
       const nextHtml = l.tomorrow_preview
         ? `<div class="next-up">
             <span class="next-label">Next →</span>
             <span class="next-text">${esc(l.tomorrow_preview)}</span>
-           </div>` : '';
+           </div>`
+        : '';
+
+      const chevron = isLatest ? '' : `<span class="card-chevron">▾</span>`;
 
       return `
         <div class="card-header">
@@ -647,19 +521,19 @@
             <div class="card-top">
               <span class="card-date">${esc(l.display_date)}</span>
               ${isLatest ? '<span class="tag-latest">✨ Latest</span>' : ''}
-              ${l.issue ? `<span style="font-size:11px;color:var(--dim);font-weight:600">Issue #${l.issue}</span>` : ''}
             </div>
             <div class="card-title">${esc(l.title)}</div>
           </div>
           ${chevron}
         </div>
         <div class="card-body${isLatest ? ' open' : ''}">
-          ${introHtml}
           ${viralHtml}
-          ${sectionsHtml}
+          <button class="topics-toggle open" onclick="toggleTopics(event, this)">
+            <span class="toggle-arrow">▶</span>
+            ${(l.topics || []).length} Topics Covered
+          </button>
+          <ul class="topics-list open">${topicsHtml}</ul>
           ${chipsHtml}
-          ${marketHtml}
-          ${takeawayHtml}
           ${nextHtml}
         </div>
       `;
@@ -668,6 +542,18 @@
     function toggleCard(card) {
       card.classList.toggle('open');
       card.querySelector('.card-body').classList.toggle('open');
+    }
+
+    function toggleTopics(e, btn) {
+      e.stopPropagation(); // don't bubble up to card click
+      btn.classList.toggle('open');
+      btn.nextElementSibling.classList.toggle('open');
+    }
+
+    // keep old toggle for backward compat (not used now)
+    function toggle(btn) {
+      btn.classList.toggle('open');
+      btn.nextElementSibling.classList.toggle('open');
     }
 
     function esc(str) {

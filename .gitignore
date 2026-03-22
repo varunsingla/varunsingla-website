@@ -1,0 +1,12 @@
+# GitHub token — NEVER commit this
+config.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+
+# OS
+.DS_Store
+Thumbs.db
