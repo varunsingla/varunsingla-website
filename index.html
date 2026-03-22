@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Varun Singla · AI Learning Journal</title>
+  <meta name="description" content="Daily AI breakthroughs, insights & trends tracked by Varun Singla — learning fast, staying ahead." />
+  <meta property="og:title" content="Varun Singla · AI Learning Journal" />
+  <meta property="og:description" content="Daily AI breakthroughs, insights & trends — tracked one day at a time." />
+  <meta property="og:url" content="https://varunsingla.com" />
+  <style>
+    /* ── Reset & Base ─────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #07070f;
+      --surface:   #0d0d1c;
+      --surface2:  #111127;
+      --border:    rgba(255,255,255,0.07);
+      --border-h:  rgba(124,58,237,0.35);
+      --p1: #7c3aed;
+      --p2: #2563eb;
+      --p3: #06b6d4;
+      --text:      #eeeeff;
+      --muted:     #8888aa;
+      --dim:       #44445a;
+      --green:     #10b981;
+      --yellow:    #f59e0b;
+      --red:       #ef4444;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* ── Ambient background glow ─────────────────── */
+    .ambient {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 15% 10%, rgba(124,58,237,.10) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 60% at 85% 85%, rgba(37,99,235,.10) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 50% 50%, rgba(6,182,212,.04) 0%, transparent 70%);
+    }
+
+    /* ── Scrollbar ───────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--p1); border-radius: 3px; }
+
+    /* ── Wrapper ─────────────────────────────────── */
+    .wrap { max-width: 860px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+    /* ── Header ──────────────────────────────────── */
+    header {
+      padding: 72px 24px 48px;
+      text-align: center;
+      position: relative; z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .live-badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(124,58,237,.12);
+      border: 1px solid rgba(124,58,237,.30);
+      color: #b39dff;
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 11.5px; font-weight: 700;
+      letter-spacing: .07em; text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .live-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #7c3aed;
+      animation: blink 2s ease-in-out infinite;
+    }
+
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.25} }
+
+    h1 {
+      font-size: clamp(30px, 5.5vw, 58px);
+      font-weight: 800;
+      letter-spacing: -.035em;
+      line-height: 1.1;
+      background: linear-gradient(130deg, #f0f0ff 0%, #c4b5fd 40%, #93c5fd 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 14px;
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 40px;
+    }
+
+    /* ── Stats bar ───────────────────────────────── */
+    .stats-bar {
+      display: flex; justify-content: center; gap: 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      max-width: 640px;
+      margin: 0 auto 72px;
+      overflow: hidden;
+    }
+
+    .stat-item {
+      flex: 1;
+      text-align: center;
+      padding: 20px 16px;
+      border-right: 1px solid var(--border);
+    }
+    .stat-item:last-child { border-right: none; }
+
+    .stat-num {
+      font-size: 30px; font-weight: 800;
+      background: linear-gradient(135deg, var(--p1), var(--p2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 11px; color: var(--dim);
+      text-transform: uppercase; letter-spacing: .07em;
+      font-weight: 600;
+    }
+
+    /* ── Section label ───────────────────────────── */
+    .section-label {
+      font-size: 11px; font-weight: 700;
+      color: var(--dim);
+      text-transform: uppercase; letter-spacing: .12em;
+      margin-bottom: 28px;
+      display: flex; align-items: center; gap: 14px;
+    }
+
+    .section-label::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+
+    /* ── Learning cards ──────────────────────────── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 32px;
+      margin-bottom: 20px;
+      transition: border-color .25s, transform .2s, box-shadow .25s;
+    }
+
+    .card:hover {
+      border-color: var(--border-h);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 40px rgba(124,58,237,.08);
+    }
+
+    /* Latest card highlight */
+    .card.latest {
+      background: linear-gradient(145deg, rgba(124,58,237,.09) 0%, rgba(37,99,235,.05) 100%);
+      border-color: rgba(124,58,237,.22);
+      position: relative; overflow: hidden;
+    }
+
+    .card.latest::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, #7c3aed, #2563eb, #06b6d4);
+    }
+
+    /* Card top row */
+    .card-top {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 8px; flex-wrap: wrap; gap: 8px;
+    }
+
+    .card-date {
+      font-size: 11.5px; font-weight: 700;
+      color: var(--dim); letter-spacing: .07em; text-transform: uppercase;
+    }
+
+    .tag-latest {
+      background: linear-gradient(135deg, #7c3aed, #2563eb);
+      color: white; font-size: 10px; font-weight: 700;
+      padding: 3px 10px; border-radius: 100px;
+      letter-spacing: .06em; text-transform: uppercase;
+    }
+
+    .card-title {
+      font-size: 21px; font-weight: 750; letter-spacing: -.02em;
+      color: var(--text); margin-bottom: 20px; line-height: 1.3;
+    }
+
+    /* ── Viral App pill ──────────────────────────── */
+    .viral-block {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: rgba(245,158,11,.07);
+      border: 1px solid rgba(245,158,11,.20);
+      border-radius: 14px;
+      padding: 14px 18px;
+      margin-bottom: 22px;
+    }
+
+    .viral-fire { font-size: 22px; flex-shrink: 0; line-height: 1; margin-top: 2px; }
+
+    .viral-tag {
+      font-size: 10px; font-weight: 800; color: #f59e0b;
+      text-transform: uppercase; letter-spacing: .09em; margin-bottom: 2px;
+    }
+
+    .viral-name {
+      font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 3px;
+    }
+
+    .viral-desc {
+      font-size: 13px; color: var(--muted); line-height: 1.5;
+    }
+
+    /* ── Topics accordion ────────────────────────── */
+    .topics-toggle {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 13px; font-weight: 650; color: #a78bfa;
+      cursor: pointer; border: none; background: none;
+      padding: 0; margin-bottom: 14px;
+      transition: color .2s;
+    }
+
+    .topics-toggle:hover { color: #c4b5fd; }
+
+    .toggle-arrow {
+      display: inline-block; font-size: 10px;
+      transition: transform .22s ease;
+    }
+
+    .topics-toggle.open .toggle-arrow { transform: rotate(90deg); }
+
+    .topics-list {
+      display: none; list-style: none;
+      margin-bottom: 18px;
+    }
+
+    .topics-list.open { display: block; }
+
+    .topics-list li {
+      font-size: 14px; color: var(--muted);
+      padding: 9px 0 9px 18px;
+      border-left: 2px solid rgba(124,58,237,.28);
+      margin-bottom: 6px;
+      line-height: 1.55;
+    }
+
+    .topics-list li strong { color: #d4c0ff; font-weight: 650; }
+
+    /* ── Key stats chips ─────────────────────────── */
+    .chips {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px;
+    }
+
+    .chip {
+      background: rgba(6,182,212,.08);
+      border: 1px solid rgba(6,182,212,.18);
+      color: #67e8f9;
+      font-size: 12px; font-weight: 500;
+      padding: 6px 12px; border-radius: 8px;
+      line-height: 1.4;
+    }
+
+    /* ── Tomorrow preview ────────────────────────── */
+    .next-up {
+      display: flex; align-items: flex-start; gap: 10px;
+      background: rgba(16,185,129,.06);
+      border: 1px solid rgba(16,185,129,.16);
+      border-radius: 11px;
+      padding: 12px 16px;
+      font-size: 13.5px;
+    }
+
+    .next-label {
+      color: #10b981; font-weight: 750;
+      white-space: nowrap; margin-top: 1px;
+    }
+
+    .next-text { color: var(--muted); line-height: 1.5; }
+
+    /* ── Empty state ─────────────────────────────── */
+    .empty {
+      text-align: center; padding: 80px 24px;
+      color: var(--dim);
+    }
+
+    /* ── Footer ──────────────────────────────────── */
+    footer {
+      position: relative; z-index: 1;
+      text-align: center;
+      padding: 40px 24px 60px;
+      border-top: 1px solid var(--border);
+      color: var(--dim);
+      font-size: 13px;
+    }
+
+    footer a { color: var(--p1); text-decoration: none; }
+    footer a:hover { color: #a78bfa; }
+
+    .footer-logo {
+      font-size: 20px; font-weight: 800;
+      background: linear-gradient(130deg, var(--p1), var(--p2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+      letter-spacing: -.02em;
+    }
+
+    /* ── Responsive ──────────────────────────────── */
+    @media (max-width: 580px) {
+      header { padding: 48px 16px 36px; }
+      .stats-bar { flex-direction: column; }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .stat-item:last-child { border-bottom: none; }
+      .card { padding: 22px; }
+      .card-title { font-size: 18px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="ambient"></div>
+
+  <!-- ── Header ──────────────────────────────────── -->
+  <header>
+    <div class="live-badge">
+      <span class="live-dot"></span>
+      Live · Updated Daily
+    </div>
+    <h1>Varun's AI Learning Journal</h1>
+    <p class="hero-sub">Daily AI breakthroughs, insights &amp; trends — tracked one day at a time.</p>
+
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-num" id="s-days">—</div>
+        <div class="stat-label">Days Learning</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" id="s-topics">—</div>
+        <div class="stat-label">Topics Covered</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" id="s-apps">—</div>
+        <div class="stat-label">Viral Apps Tracked</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Main feed ────────────────────────────────── -->
+  <main class="wrap">
+    <div class="section-label">Learning History</div>
+    <div id="feed"><div class="empty">Loading…</div></div>
+  </main>
+
+  <!-- ── Footer ───────────────────────────────────── -->
+  <footer>
+    <div class="footer-logo">VS</div>
+    <p>Updated daily by AI · <a href="mailto:varun.singla@outlook.com">varun.singla@outlook.com</a></p>
+    <p style="margin-top:6px;font-size:11px;color:var(--dim)">varunsingla.com</p>
+  </footer>
+
+  <!-- ── JS ────────────────────────────────────────── -->
+  <script>
+    async function init() {
+      let data;
+      try {
+        const res = await fetch('learnings.json?v=' + Date.now());
+        data = await res.json();
+      } catch (e) {
+        document.getElementById('feed').innerHTML =
+          '<div class="empty">⚠️ Could not load learnings. Please check back soon.</div>';
+        return;
+      }
+      renderStats(data.learnings);
+      renderFeed(data.learnings);
+    }
+
+    /* ── Animated counter ── */
+    function countUp(id, target) {
+      const el = document.getElementById(id);
+      let v = 0;
+      const step = Math.max(1, Math.round(target / 25));
+      const t = setInterval(() => {
+        v = Math.min(v + step, target);
+        el.textContent = v;
+        if (v >= target) clearInterval(t);
+      }, 45);
+    }
+
+    function renderStats(learnings) {
+      const topics = learnings.reduce((n, l) => n + (l.topics || []).length, 0);
+      const apps   = learnings.filter(l => l.viral_app).length;
+      countUp('s-days',   learnings.length);
+      countUp('s-topics', topics);
+      countUp('s-apps',   apps);
+    }
+
+    function renderFeed(learnings) {
+      const feed = document.getElementById('feed');
+      feed.innerHTML = '';
+
+      if (!learnings.length) {
+        feed.innerHTML = '<div class="empty">No entries yet.</div>';
+        return;
+      }
+
+      learnings.forEach((l, i) => {
+        const isLatest = i === 0;
+        const card = document.createElement('article');
+        card.className = 'card' + (isLatest ? ' latest' : '');
+        card.innerHTML = buildCard(l, isLatest);
+        feed.appendChild(card);
+      });
+    }
+
+    function buildCard(l, isLatest) {
+      const topicsOpen = isLatest ? ' open' : '';
+
+      const viralHtml = l.viral_app ? `
+        <div class="viral-block">
+          <span class="viral-fire">🔥</span>
+          <div>
+            <div class="viral-tag">Viral App of the Day</div>
+            <div class="viral-name">${esc(l.viral_app.name)}</div>
+            <div class="viral-desc">${esc(l.viral_app.description)}</div>
+          </div>
+        </div>` : '';
+
+      const topicsHtml = (l.topics || []).map(t =>
+        `<li>${esc(t).replace(/^([^:]+:)/, '<strong>$1</strong>')}</li>`
+      ).join('');
+
+      const chipsHtml = (l.key_stats || []).length
+        ? `<div class="chips">${l.key_stats.map(s => `<span class="chip">📊 ${esc(s)}</span>`).join('')}</div>`
+        : '';
+
+      const nextHtml = l.tomorrow_preview
+        ? `<div class="next-up">
+            <span class="next-label">Next →</span>
+            <span class="next-text">${esc(l.tomorrow_preview)}</span>
+           </div>`
+        : '';
+
+      return `
+        <div class="card-top">
+          <span class="card-date">${esc(l.display_date)}</span>
+          ${isLatest ? '<span class="tag-latest">✨ Latest</span>' : ''}
+        </div>
+        <div class="card-title">${esc(l.title)}</div>
+        ${viralHtml}
+        <button class="topics-toggle${isLatest ? ' open' : ''}" onclick="toggle(this)">
+          <span class="toggle-arrow">▶</span>
+          ${(l.topics || []).length} Topics Covered
+        </button>
+        <ul class="topics-list${topicsOpen}">${topicsHtml}</ul>
+        ${chipsHtml}
+        ${nextHtml}
+      `;
+    }
+
+    function toggle(btn) {
+      btn.classList.toggle('open');
+      btn.nextElementSibling.classList.toggle('open');
+    }
+
+    function esc(str) {
+      if (!str) return '';
+      return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    init();
+  </script>
+</body>
+</html>
