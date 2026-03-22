@@ -372,6 +372,117 @@
       letter-spacing: -.02em;
     }
 
+    /* ── Focus intro ─────────────────────────────── */
+    .focus-intro {
+      font-size: 14.5px; color: var(--muted); line-height: 1.65;
+      margin-bottom: 22px;
+      padding: 14px 18px;
+      background: rgba(124,58,237,.06);
+      border-left: 3px solid rgba(124,58,237,.35);
+      border-radius: 0 10px 10px 0;
+    }
+
+    /* ── Rich sections ───────────────────────────── */
+    .section {
+      margin-bottom: 22px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section:last-of-type { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+    .section-heading {
+      font-size: 13.5px; font-weight: 750; color: #c4b5fd;
+      letter-spacing: .02em; margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .section-para {
+      font-size: 14px; color: var(--muted); line-height: 1.65;
+      margin-bottom: 10px;
+    }
+
+    .section-bullets {
+      list-style: none; margin-bottom: 10px;
+    }
+
+    .section-bullets li {
+      font-size: 13.5px; color: var(--muted); line-height: 1.6;
+      padding: 5px 0 5px 18px;
+      position: relative;
+    }
+
+    .section-bullets li::before {
+      content: '›';
+      position: absolute; left: 4px; top: 5px;
+      color: var(--p1); font-size: 13px; font-weight: 700;
+    }
+
+    .section-highlight {
+      font-size: 13px; color: #fbbf24; font-style: italic;
+      background: rgba(245,158,11,.06);
+      border: 1px solid rgba(245,158,11,.14);
+      border-radius: 8px; padding: 10px 14px;
+      margin-top: 10px; line-height: 1.55;
+    }
+
+    /* ── Data table ──────────────────────────────── */
+    .table-wrap { overflow-x: auto; margin: 10px 0; }
+
+    .data-table {
+      width: 100%; border-collapse: collapse;
+      font-size: 12.5px;
+    }
+
+    .data-table th {
+      background: rgba(124,58,237,.12);
+      color: #c4b5fd;
+      padding: 8px 12px; text-align: left;
+      font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+      font-size: 11px;
+      border-bottom: 1px solid rgba(124,58,237,.20);
+    }
+
+    .data-table td {
+      padding: 8px 12px; color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      vertical-align: top; line-height: 1.5;
+    }
+
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: rgba(255,255,255,.02); }
+
+    /* ── Market signal ───────────────────────────── */
+    .market-signal {
+      display: flex; align-items: flex-start; gap: 12px;
+      background: rgba(37,99,235,.07);
+      border: 1px solid rgba(37,99,235,.18);
+      border-radius: 12px;
+      padding: 14px 16px; margin-bottom: 18px;
+      font-size: 13.5px; color: var(--muted); line-height: 1.55;
+    }
+
+    .market-signal-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+    .market-signal-label {
+      font-size: 10px; font-weight: 800; color: #60a5fa;
+      text-transform: uppercase; letter-spacing: .09em; margin-bottom: 3px;
+    }
+
+    /* ── Practical takeaway ──────────────────────── */
+    .takeaway {
+      display: flex; align-items: flex-start; gap: 12px;
+      background: rgba(16,185,129,.06);
+      border: 1px solid rgba(16,185,129,.16);
+      border-radius: 12px;
+      padding: 14px 16px; margin-bottom: 18px;
+      font-size: 13.5px; color: var(--muted); line-height: 1.55;
+    }
+
+    .takeaway-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+    .takeaway-label {
+      font-size: 10px; font-weight: 800; color: #34d399;
+      text-transform: uppercase; letter-spacing: .09em; margin-bottom: 3px;
+    }
+
     /* ── Responsive ──────────────────────────────── */
     @media (max-width: 580px) {
       header { padding: 48px 16px 36px; }
@@ -403,7 +514,7 @@
       </div>
       <div class="stat-item">
         <div class="stat-num" id="s-topics">—</div>
-        <div class="stat-label">Topics Covered</div>
+        <div class="stat-label">Sections Covered</div>
       </div>
       <div class="stat-item">
         <div class="stat-num" id="s-apps">—</div>
@@ -454,10 +565,10 @@
     }
 
     function renderStats(learnings) {
-      const topics = learnings.reduce((n, l) => n + (l.topics || []).length, 0);
-      const apps   = learnings.filter(l => l.viral_app).length;
+      const sections = learnings.reduce((n, l) => n + (l.sections || []).length, 0);
+      const apps     = learnings.filter(l => l.viral_app).length;
       countUp('s-days',   learnings.length);
-      countUp('s-topics', topics);
+      countUp('s-topics', sections);
       countUp('s-apps',   apps);
     }
 
@@ -487,6 +598,33 @@
       });
     }
 
+    function buildSection(sec) {
+      const heading = `<div class="section-heading">${esc(sec.title)}</div>`;
+
+      const paras = (sec.paragraphs || []).map(p =>
+        `<p class="section-para">${esc(p)}</p>`
+      ).join('');
+
+      const bullets = (sec.bullets || []).length
+        ? `<ul class="section-bullets">${(sec.bullets).map(b => `<li>${esc(b)}</li>`).join('')}</ul>`
+        : '';
+
+      let tableHtml = '';
+      if (sec.table && sec.table.headers && sec.table.rows) {
+        const ths = sec.table.headers.map(h => `<th>${esc(h)}</th>`).join('');
+        const trs = sec.table.rows.map(row =>
+          `<tr>${row.map(cell => `<td>${esc(cell)}</td>`).join('')}</tr>`
+        ).join('');
+        tableHtml = `<div class="table-wrap"><table class="data-table"><thead><tr>${ths}</tr></thead><tbody>${trs}</tbody></table></div>`;
+      }
+
+      const highlight = sec.highlight
+        ? `<div class="section-highlight">💡 ${esc(sec.highlight)}</div>`
+        : '';
+
+      return `<div class="section">${heading}${paras}${bullets}${tableHtml}${highlight}</div>`;
+    }
+
     function buildCard(l, isLatest) {
       const viralHtml = l.viral_app ? `
         <div class="viral-block">
@@ -498,9 +636,29 @@
           </div>
         </div>` : '';
 
-      const topicsHtml = (l.topics || []).map(t =>
-        `<li>${esc(t).replace(/^([^:]+:)/, '<strong>$1</strong>')}</li>`
-      ).join('');
+      const focusHtml = l.focus_intro
+        ? `<div class="focus-intro">${esc(l.focus_intro)}</div>`
+        : '';
+
+      const sectionsHtml = (l.sections || []).map(buildSection).join('');
+
+      const marketHtml = l.market_signal ? `
+        <div class="market-signal">
+          <span class="market-signal-icon">📈</span>
+          <div>
+            <div class="market-signal-label">Market Signal</div>
+            ${esc(l.market_signal)}
+          </div>
+        </div>` : '';
+
+      const takeawayHtml = l.practical_takeaway ? `
+        <div class="takeaway">
+          <span class="takeaway-icon">🎯</span>
+          <div>
+            <div class="takeaway-label">Practical Takeaway</div>
+            ${esc(l.practical_takeaway)}
+          </div>
+        </div>` : '';
 
       const chipsHtml = (l.key_stats || []).length
         ? `<div class="chips">${l.key_stats.map(s => `<span class="chip">📊 ${esc(s)}</span>`).join('')}</div>`
@@ -515,25 +673,30 @@
 
       const chevron = isLatest ? '' : `<span class="card-chevron">▾</span>`;
 
+      const sectionCount = (l.sections || []).length;
+      const sectionCountBadge = sectionCount
+        ? `<span style="font-size:11px;color:var(--dim);font-weight:600;">${sectionCount} sections</span>`
+        : '';
+
       return `
         <div class="card-header">
           <div class="card-header-left">
             <div class="card-top">
               <span class="card-date">${esc(l.display_date)}</span>
               ${isLatest ? '<span class="tag-latest">✨ Latest</span>' : ''}
+              ${!isLatest ? sectionCountBadge : ''}
             </div>
-            <div class="card-title">${esc(l.title)}</div>
+            <div class="card-title">${esc(l.title || 'Daily AI Learning')}</div>
           </div>
           ${chevron}
         </div>
         <div class="card-body${isLatest ? ' open' : ''}">
           ${viralHtml}
-          <button class="topics-toggle open" onclick="toggleTopics(event, this)">
-            <span class="toggle-arrow">▶</span>
-            ${(l.topics || []).length} Topics Covered
-          </button>
-          <ul class="topics-list open">${topicsHtml}</ul>
+          ${focusHtml}
+          ${sectionsHtml}
           ${chipsHtml}
+          ${marketHtml}
+          ${takeawayHtml}
           ${nextHtml}
         </div>
       `;
