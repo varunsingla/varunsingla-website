@@ -3,11 +3,37 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Varun Singla · AI Learning Journal</title>
-  <meta name="description" content="Daily AI breakthroughs, insights & trends tracked by Varun Singla — learning fast, staying ahead." />
-  <meta property="og:title" content="Varun Singla · AI Learning Journal" />
-  <meta property="og:description" content="Daily AI breakthroughs, insights & trends — tracked one day at a time." />
-  <meta property="og:url" content="https://varunsingla.com" />
+
+  <!-- ── Primary SEO ───────────────────────────────── -->
+  <title>Varun Singla | AI Learning Journal — Daily Agentic AI Breakthroughs & Trends</title>
+  <meta name="description" content="Varun Singla's daily AI learning journal. Every day: deep dives into agentic AI, LLMs, MCP, multi-agent systems, viral AI apps and emerging tech trends. Learning fast, staying ahead." />
+  <meta name="keywords" content="Varun Singla, AI learning journal, agentic AI, daily AI breakthroughs, LLM trends, MCP protocol, multi-agent systems, AI blog, artificial intelligence 2026" />
+  <meta name="author" content="Varun Singla" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <link rel="canonical" href="https://varunsingla.com/" />
+
+  <!-- ── Open Graph (Facebook / LinkedIn) ─────────── -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Varun Singla · AI Learning Journal" />
+  <meta property="og:title" content="Varun Singla | AI Learning Journal — Daily AI Breakthroughs" />
+  <meta property="og:description" content="Deep dives into agentic AI, MCP, multi-agent systems and the most viral AI tools — tracked daily by Varun Singla." />
+  <meta property="og:url" content="https://varunsingla.com/" />
+  <meta property="og:image" content="https://varunsingla.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Varun Singla — AI Learning Journal" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- ── Twitter / X Card ─────────────────────────── -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Varun Singla | AI Learning Journal" />
+  <meta name="twitter:description" content="Daily deep dives into agentic AI, MCP, multi-agent systems and the most viral AI apps — updated every evening." />
+  <meta name="twitter:image" content="https://varunsingla.com/og-image.png" />
+  <meta name="twitter:image:alt" content="Varun Singla — AI Learning Journal" />
+
+  <!-- ── Performance hints ─────────────────────────── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="dns-prefetch" href="https://varunsingla.com" />
   <style>
     /* ── Reset & Base ─────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -550,6 +576,7 @@
       }
       renderStats(data.learnings);
       renderFeed(data.learnings);
+      injectBlogPostingSchema(data.learnings);
     }
 
     /* ── Animated counter ── */
@@ -725,6 +752,79 @@
     }
 
     init();
+  </script>
+
+  <!-- ── JSON-LD Structured Data ───────────────────────────────────────────── -->
+  <!-- Static: Person + Blog (always present for Google E-E-A-T) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://varunsingla.com/#varun",
+        "name": "Varun Singla",
+        "url": "https://varunsingla.com",
+        "email": "varun.singla@outlook.com",
+        "description": "Technology professional learning about Agentic AI, LLMs, and emerging tech — documenting daily breakthroughs and insights.",
+        "knowsAbout": ["Agentic AI", "Large Language Models", "Multi-Agent Systems", "MCP Protocol", "Artificial Intelligence", "Machine Learning"]
+      },
+      {
+        "@type": "Blog",
+        "@id": "https://varunsingla.com/#blog",
+        "name": "Varun Singla · AI Learning Journal",
+        "url": "https://varunsingla.com",
+        "description": "Daily AI breakthroughs, deep dives and trends — tracked one day at a time by Varun Singla.",
+        "author": { "@id": "https://varunsingla.com/#varun" },
+        "inLanguage": "en-US",
+        "publisher": { "@id": "https://varunsingla.com/#varun" },
+        "about": {
+          "@type": "Thing",
+          "name": "Artificial Intelligence",
+          "sameAs": "https://en.wikipedia.org/wiki/Artificial_intelligence"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://varunsingla.com/#website",
+        "name": "Varun Singla · AI Learning Journal",
+        "url": "https://varunsingla.com",
+        "publisher": { "@id": "https://varunsingla.com/#varun" },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://varunsingla.com/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Dynamic: BlogPosting for each learning entry (injected by JS after load) -->
+  <script id="ld-blogpostings" type="application/ld+json">[]</script>
+
+  <script>
+  // Called from init() after learnings are loaded — injects BlogPosting schema per entry
+  function injectBlogPostingSchema(learnings) {
+    const posts = learnings.map(l => ({
+      "@type": "BlogPosting",
+      "@context": "https://schema.org",
+      "headline": l.title || ("AI Learning — " + l.display_date),
+      "description": l.focus_intro || l.title || "Daily AI learning entry by Varun Singla.",
+      "datePublished": l.date + "T21:00:00+08:00",
+      "dateModified":  l.date + "T21:00:00+08:00",
+      "author": { "@id": "https://varunsingla.com/#varun" },
+      "publisher": { "@id": "https://varunsingla.com/#varun" },
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://varunsingla.com/#" + l.date },
+      "url": "https://varunsingla.com/#" + l.date,
+      "isPartOf": { "@id": "https://varunsingla.com/#blog" },
+      "keywords": (l.sections || []).map(s => s.title).join(", "),
+      "articleBody": [l.focus_intro, ...(l.sections || []).map(s =>
+        [s.title, ...(s.paragraphs || []), ...(s.bullets || [])].join(" ")
+      )].join(" ").slice(0, 2000)
+    }));
+    document.getElementById("ld-blogpostings").textContent = JSON.stringify(posts);
+  }
   </script>
 </body>
 </html>
