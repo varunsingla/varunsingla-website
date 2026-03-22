@@ -522,8 +522,35 @@ def merge_entry(data: dict, entry: dict) -> tuple[dict, str]:
 
 # ── GitHub API push ───────────────────────────────────────────────────────────
 
+def _push_file(api_base: str, headers: dict, filename: str, content_bytes: bytes, message: str) -> bool:
+    """Push a single file to GitHub via REST API."""
+    import urllib.error
+    import urllib.request
+    b64 = base64.b64encode(content_bytes).decode()
+    api_url = f"{api_base}/{filename}"
+    sha = None
+    try:
+        req = urllib.request.Request(api_url, headers=headers)
+        with urllib.request.urlopen(req) as resp:
+            sha = json.loads(resp.read())["sha"]
+    except Exception:
+        pass
+    payload: dict = {"message": message, "content": b64}
+    if sha:
+        payload["sha"] = sha
+    try:
+        req = urllib.request.Request(
+            api_url, data=json.dumps(payload).encode(), headers=headers, method="PUT"
+        )
+        with urllib.request.urlopen(req):
+            return True
+    except Exception as e:
+        print(f"   ⚠️  Could not push {filename}: {e}")
+        return False
+
+
 def github_push(config: dict, data: dict) -> bool:
-    """Push learnings.json to GitHub via REST API — no git required."""
+    """Push learnings.json (and sitemap.xml if present) to GitHub via REST API."""
     import urllib.error
     import urllib.request
 
@@ -536,52 +563,30 @@ def github_push(config: dict, data: dict) -> bool:
         print("       Set github_token, github_user, github_repo in config.json")
         return False
 
-    api_url = f"https://api.github.com/repos/{user}/{repo}/contents/learnings.json"
+    api_base = f"https://api.github.com/repos/{user}/{repo}/contents"
     headers = {
         "Authorization": f"token {token}",
         "Accept":        "application/vnd.github.v3+json",
         "Content-Type":  "application/json",
     }
+    today = datetime.now().strftime("%Y-%m-%d")
 
-    # Get current SHA (required for update)
-    sha = None
-    try:
-        req = urllib.request.Request(api_url, headers=headers)
-        with urllib.request.urlopen(req) as resp:
-            sha = json.loads(resp.read())["sha"]
-    except urllib.error.HTTPError as e:
-        if e.code != 404:
-            print(f"   ⚠️  Could not fetch current file SHA: {e}")
+    # Push learnings.json
+    content_str = json.dumps(data, indent=2, ensure_ascii=False)
+    ok = _push_file(api_base, headers, "learnings.json",
+                    content_str.encode(), f"Daily update: {today}")
+    if ok:
+        print(f"   ✅  Pushed to github.com/{user}/{repo}")
+        print(f"       Live at: https://varunsingla.com")
 
-    # Encode content
-    content_str  = json.dumps(data, indent=2, ensure_ascii=False)
-    content_b64  = base64.b64encode(content_str.encode()).decode()
-    today        = datetime.now().strftime("%Y-%m-%d")
+    # Push sitemap.xml (keeps lastmod fresh for Google)
+    sitemap_path = SCRIPT_DIR / "sitemap.xml"
+    if sitemap_path.exists():
+        _push_file(api_base, headers, "sitemap.xml",
+                   sitemap_path.read_bytes(), f"SEO: update sitemap lastmod {today}")
+        print(f"   ✅  sitemap.xml updated")
 
-    payload = {"message": f"Daily update: {today}", "content": content_b64}
-    if sha:
-        payload["sha"] = sha
-
-    try:
-        req = urllib.request.Request(
-            api_url,
-            data=json.dumps(payload).encode(),
-            headers=headers,
-            method="PUT",
-        )
-        with urllib.request.urlopen(req) as resp:
-            result = json.loads(resp.read())
-            html_url = result.get("content", {}).get("html_url", "")
-            print(f"   ✅  Pushed to github.com/{user}/{repo}")
-            print(f"       Live at: https://varunsingla.com")
-            return True
-    except urllib.error.HTTPError as e:
-        body = e.read().decode(errors="replace")
-        print(f"   ❌  GitHub API error {e.code}: {body[:200]}")
-        return False
-    except Exception as e:
-        print(f"   ❌  Push failed: {e}")
-        return False
+    return ok
 
 
 # ── Main ──────────────────────────────────────────────────────────────────────
@@ -631,6 +636,14 @@ def main():
     data, action = merge_entry(data, entry)
     LEARNINGS_JSON.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"   ✅  Entry {action} ({len(data['learnings'])} total days)")
+
+    # ── Update sitemap.xml with today's date ──────────────────────────────────
+    sitemap_path = SCRIPT_DIR / "sitemap.xml"
+    if sitemap_path.exists():
+        sitemap = sitemap_path.read_text(encoding="utf-8")
+        today = datetime.now().strftime("%Y-%m-%d")
+        sitemap = re.sub(r"<lastmod>[^<]+</lastmod>", f"<lastmod>{today}</lastmod>", sitemap)
+        sitemap_path.write_text(sitemap, encoding="utf-8")
 
     # ── Push to GitHub ────────────────────────────────────────────────────────
     print("🚀  Pushing to GitHub …")
