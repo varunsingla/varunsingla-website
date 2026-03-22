@@ -233,34 +233,54 @@ def parse_pdf(pdf_path: Path) -> dict:
     # "Today's Focus/Topic", or the first substantive non-metadata line.
     _title_skip = re.compile(
         r"(ai daily|daily ai|varun singla|issue|your daily dose|curated|"
-        r"page \d|what.s inside|what.s shaping|breakthroughs|trends|"
-        r"january|february|march|april|may|june|july|august|september|"
-        r"october|november|december|monday|tuesday|wednesday|thursday|friday|saturday|sunday)",
+        r"page \d|what.s inside|what.s shaping|breakthroughs & trends|"
+        r"(monday|tuesday|wednesday|thursday|friday|saturday|sunday)[,\s])",
         re.I,
     )
+
+    def _strip_trailing_date(s: str) -> str:
+        """Remove trailing '. March 2026' or '· March 2026' date artifacts."""
+        return re.sub(
+            r"[.·,\s]+(jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|"
+            r"jul(?:y)?|aug(?:ust)?|sep(?:tember)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)"
+            r"\s+\d{4}\s*$", "", s, flags=re.I
+        ).strip()
+
     title = ""
     for i, line in enumerate(all_lines[:20]):
         low = line.lower()
-        # "Today's Focus/Topic" line — the NEXT substantive line is often the title
+        # "Today's Focus/Topic" line — look at the NEXT lines for the actual topic title
         if re.search(r"today.s (focus|topic)", low):
-            for j in range(i + 1, min(i + 6, len(all_lines))):
+            for j in range(i + 1, min(i + 8, len(all_lines))):
                 cand = all_lines[j]
+                # Skip mid-sentence continuations
+                if re.match(r"^[a-z]|^(becoming|that|which|where|and |or |but )", cand):
+                    continue
                 if (20 < len(cand) < 130
                         and not _title_skip.search(cand)
                         and not re.search(r"^(today we|this edition|in this|if you)", cand, re.I)
                         and not re.match(r"^\d+\.", cand)):
-                    title = cand
+                    title = _strip_trailing_date(cand)
                     break
             break
         if re.search(r"what.s inside", low):
             break
         if len(line) > 20 and not _title_skip.search(line):
-            title = line
+            title = _strip_trailing_date(line)
             break
-    # Fallback: derive a short title from focus_intro first sentence
+    # Fallback 1: first item from "What's Inside" TOC
     if not title:
-        # Will be set after focus_intro is parsed below; placeholder for now
-        pass
+        for i, line in enumerate(all_lines[:25]):
+            if re.search(r"what.s inside|in this edition", line, re.I):
+                for j in range(i + 1, min(i + 10, len(all_lines))):
+                    cand = all_lines[j]
+                    m = re.match(r"^\d+[.:\s]+(.+)", cand)
+                    if m and len(m[1]) > 10:
+                        title = _strip_trailing_date(m[1].strip()[:90])
+                        break
+                break
+    # Fallback 2: derive a short title from focus_intro first sentence
+    # (will be set after focus_intro is parsed below — see the block after it)
 
     # ── Today's Focus / Topic ─────────────────────────────────────────────────
     focus_intro = ""
@@ -277,14 +297,14 @@ def parse_pdf(pdf_path: Path) -> dict:
             focus_intro = " ".join(intro_parts)
             break
 
-    # Title fallback: first sentence of focus_intro (up to 100 chars)
+    # Title fallback 3: first sentence of focus_intro — but skip "Today we..." lead-ins
     if not title and focus_intro:
-        # Take up to the first sentence break or 90 chars
-        m = re.match(r"(.{30,90}?[.!?])\s", focus_intro)
+        fi = re.sub(r"^(Today we[^.!?]+[.!?]\s*|This edition[^.!?]+[.!?]\s*)", "", focus_intro, flags=re.I).strip()
+        m = re.match(r"(.{20,90}?[.!?])\s", fi)
         if m:
             title = m[1]
-        else:
-            title = focus_intro[:90].rstrip()
+        elif fi:
+            title = fi[:90].rstrip()
 
     # ── Sections ──────────────────────────────────────────────────────────────
     sections = []
