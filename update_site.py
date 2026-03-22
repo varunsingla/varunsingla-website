@@ -433,30 +433,48 @@ def parse_pdf(pdf_path: Path) -> dict:
     if m:
         tomorrow_preview = clean(m[1])
 
-    # ── Remove boilerplate sections ────────────────────────────────────────────
+    # ── Remove boilerplate + sub-step sections ─────────────────────────────────
     sections = [
         s for s in sections
         if not re.search(r"(sources|further reading|what.s inside)", s.get("title", ""), re.I)
         and (s.get("paragraphs") or s.get("bullets") or s.get("table"))
+        # Sub-steps have long titles like "1. Host Starts Up: When you open Claude..."
+        # (numbered + colon + description). Real section headings are concise (< 56 chars).
+        and not (re.match(r"^\d+\.", s.get("title", "")) and len(s.get("title", "")) > 55)
     ]
 
     # ── Deduplicate sections (TOC entries vs actual content) ───────────────────
-    # When a PDF has a "What's Inside" table of contents, those items get parsed
-    # as sections too. Deduplicate by title, keeping the most content-rich copy.
-    seen: dict[str, tuple[int, int]] = {}   # title → (index_in_deduped, score)
+    # PDFs with a "What's Inside" TOC create shallow duplicate sections.
+    # Keep the version with the most narrative content (paragraphs win over tables).
+    # Scoring: paragraphs are worth 3x bullets, tables only 1 point (tables get
+    # attached greedily and can inflate TOC entries artificially).
+    seen: dict[str, int] = {}   # title_key → index in deduped
     deduped: list[dict] = []
     for sec in sections:
         key = sec.get("title", "").strip().lower()
-        score = len(sec.get("paragraphs", [])) + len(sec.get("bullets", [])) + (2 if sec.get("table") else 0)
+        score = len(sec.get("paragraphs", [])) * 3 + len(sec.get("bullets", [])) * 2 + (1 if sec.get("table") else 0)
         if key in seen:
-            old_idx, old_score = seen[key]
+            old_score = (len(deduped[seen[key]].get("paragraphs", [])) * 3
+                         + len(deduped[seen[key]].get("bullets", [])) * 2
+                         + (1 if deduped[seen[key]].get("table") else 0))
             if score > old_score:
-                deduped[old_idx] = sec
-                seen[key] = (old_idx, score)
-            # else keep the existing (more content-rich) copy
+                # Replace with better content — but keep the table from whichever had it
+                better = dict(sec)
+                if not better.get("table") and deduped[seen[key]].get("table"):
+                    better["table"] = deduped[seen[key]]["table"]
+                deduped[seen[key]] = better
         else:
-            seen[key] = (len(deduped), score)
+            seen[key] = len(deduped)
             deduped.append(sec)
+
+    # ── Sort sections by numeric prefix so they appear in document order ───────
+    # e.g. "1. MCP" → "2. Nvidia GTC" → "3. OpenAI" regardless of which appeared
+    # first in the parser (TOC vs body).
+    def _sec_sort_key(s: dict) -> tuple:
+        m = re.match(r"^(\d+)", s.get("title", ""))
+        return (int(m[1]), s.get("title", "")) if m else (999, s.get("title", ""))
+
+    deduped.sort(key=_sec_sort_key)
     sections = deduped
 
     return {
