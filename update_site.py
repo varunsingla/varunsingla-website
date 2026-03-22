@@ -229,16 +229,38 @@ def parse_pdf(pdf_path: Path) -> dict:
         date_str, display_date, issue = parse_date_from_text(full_text[:500])
 
     # ── Title ─────────────────────────────────────────────────────────────────
-    # Usually the first substantive line after "AI Daily Learning"
+    # Strategy: look for the topic title, which is often the line right AFTER
+    # "Today's Focus/Topic", or the first substantive non-metadata line.
+    _title_skip = re.compile(
+        r"(ai daily|daily ai|varun singla|issue|your daily dose|curated|"
+        r"page \d|what.s inside|what.s shaping|breakthroughs|trends|"
+        r"january|february|march|april|may|june|july|august|september|"
+        r"october|november|december|monday|tuesday|wednesday|thursday|friday|saturday|sunday)",
+        re.I,
+    )
     title = ""
-    for i, line in enumerate(all_lines[:15]):
-        if re.search(r"(today.s (focus|topic)|what.s inside)", line, re.I):
+    for i, line in enumerate(all_lines[:20]):
+        low = line.lower()
+        # "Today's Focus/Topic" line — the NEXT substantive line is often the title
+        if re.search(r"today.s (focus|topic)", low):
+            for j in range(i + 1, min(i + 6, len(all_lines))):
+                cand = all_lines[j]
+                if (20 < len(cand) < 130
+                        and not _title_skip.search(cand)
+                        and not re.search(r"^(today we|this edition|in this|if you)", cand, re.I)
+                        and not re.match(r"^\d+\.", cand)):
+                    title = cand
+                    break
             break
-        if len(line) > 20 and not re.search(
-            r"(ai daily|varun singla|issue|your daily|curated|page \d|march|april|may)", line, re.I
-        ):
+        if re.search(r"what.s inside", low):
+            break
+        if len(line) > 20 and not _title_skip.search(line):
             title = line
             break
+    # Fallback: derive a short title from focus_intro first sentence
+    if not title:
+        # Will be set after focus_intro is parsed below; placeholder for now
+        pass
 
     # ── Today's Focus / Topic ─────────────────────────────────────────────────
     focus_intro = ""
@@ -254,6 +276,15 @@ def parse_pdf(pdf_path: Path) -> dict:
                     intro_parts.append(l)
             focus_intro = " ".join(intro_parts)
             break
+
+    # Title fallback: first sentence of focus_intro (up to 100 chars)
+    if not title and focus_intro:
+        # Take up to the first sentence break or 90 chars
+        m = re.match(r"(.{30,90}?[.!?])\s", focus_intro)
+        if m:
+            title = m[1]
+        else:
+            title = focus_intro[:90].rstrip()
 
     # ── Sections ──────────────────────────────────────────────────────────────
     sections = []
@@ -388,6 +419,25 @@ def parse_pdf(pdf_path: Path) -> dict:
         if not re.search(r"(sources|further reading|what.s inside)", s.get("title", ""), re.I)
         and (s.get("paragraphs") or s.get("bullets") or s.get("table"))
     ]
+
+    # ── Deduplicate sections (TOC entries vs actual content) ───────────────────
+    # When a PDF has a "What's Inside" table of contents, those items get parsed
+    # as sections too. Deduplicate by title, keeping the most content-rich copy.
+    seen: dict[str, tuple[int, int]] = {}   # title → (index_in_deduped, score)
+    deduped: list[dict] = []
+    for sec in sections:
+        key = sec.get("title", "").strip().lower()
+        score = len(sec.get("paragraphs", [])) + len(sec.get("bullets", [])) + (2 if sec.get("table") else 0)
+        if key in seen:
+            old_idx, old_score = seen[key]
+            if score > old_score:
+                deduped[old_idx] = sec
+                seen[key] = (old_idx, score)
+            # else keep the existing (more content-rich) copy
+        else:
+            seen[key] = (len(deduped), score)
+            deduped.append(sec)
+    sections = deduped
 
     return {
         "date":               date_str,
