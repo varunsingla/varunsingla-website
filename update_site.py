@@ -82,18 +82,24 @@ def extract_date_from_filename(name: str) -> datetime | None:
 
 
 def find_daily_pdfs() -> list[tuple[datetime, Path]]:
-    """Return list of (date, path) for all AI learning PDFs, newest first."""
-    patterns = ["*daily*learning*", "*ai*learning*", "*ai*trends*daily*"]
+    """Return list of (date, path) for all AI learning PDFs, newest first.
+    Case-insensitive: scans all PDFs and filters by name keywords."""
+    keywords = ["daily", "learning", "ai", "trends"]
     seen = set()
     results = []
-    for pattern in patterns:
-        for p in WORKSPACE_DIR.glob(f"**/{pattern}"):
-            if p.suffix.lower() != ".pdf" or p in seen:
-                continue
-            seen.add(p)
-            dt = extract_date_from_filename(p.stem)
-            if dt:
-                results.append((dt, p))
+    for p in WORKSPACE_DIR.glob("**/*.pdf"):
+        if p in seen:
+            continue
+        name_lower = p.stem.lower()
+        # Must contain at least 2 of the keywords to be a learning PDF
+        # (avoids telco docs, playbooks, etc.)
+        matches = sum(1 for k in keywords if k in name_lower)
+        if matches < 2:
+            continue
+        seen.add(p)
+        dt = extract_date_from_filename(p.stem)
+        if dt:
+            results.append((dt, p))
     results.sort(key=lambda x: x[0], reverse=True)
     return results
 
