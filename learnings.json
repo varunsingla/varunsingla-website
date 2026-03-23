@@ -8,77 +8,19 @@
     {
       "date": "2026-03-23",
       "display_date": "March 23, 2026",
-      "title": "Yesterday's Recap (Mar 22): MCP Deep Dive (HostfiClientfiServer, JSON-RPC primitives), Nvidia GTC 2026 Agent",
-      "focus_intro": "Yesterday's Recap (Mar 22): MCP Deep Dive (HostfiClientfiServer, JSON-RPC primitives), Nvidia GTC 2026 Agent Toolkit (NemoClaw + AI-Q), OpenAI Superapp (ChatGPT+Codex+Atlas), Model releases: Gemini 3.1 Pro, GPT-5.3 Garlic, Qwen 3.5. Today we go deeper into A2A -- the companion standard to MCP that handles agent-to-agent",
+      "issue": 3,
+      "title": "Deep Dive: Agent-to-Agent (A2A) Protocol",
+      "focus_intro": "Today we take a deep dive into the Agent-to-Agent (A2A) Protocol -- the open standard created by Google that gives AI agents a universal language to discover each other, delegate tasks, and collaborate across vendors and frameworks. We also cover Apple's AI-powered Siri relaunch with Gemini, Mistral Small 4's unified model architecture, Samsung's $73B AI chip bet, and the viral Moltbot personal AI assistant.",
+      "viral_app": {
+        "name": "Moltbot (fka ClawdBot)",
+        "description": "The open-source personal AI assistant that went viral in January 2026 with 80K+ GitHub stars in 3 weeks -- runs locally, works across messaging apps, uses MCP + A2A natively."
+      },
       "sections": [
         {
-          "title": "2. Task Lifecycle",
+          "title": "1. What Is A2A?",
           "paragraphs": [
-            "and the executing agent (server) stay in sync on progress, supporting everything",
-            "from instant responses to multi-day deep research with human-in-the-loop",
-            "A2A is built on familiar web standards: HTTP for requests, Server-Sent Events"
-          ],
-          "table": {
-            "headers": [
-              "12% Job tasks automated by AI (McKinsey 2026)",
-              "",
-              ""
-            ],
-            "rows": [
-              [
-                "",
-                "$57B AI advertising market 2026 (+63% YoY)",
-                "80K+ Moltbot GitHub stars in 3 weeks"
-              ]
-            ]
-          }
-        },
-        {
-          "title": "4. Enterprise Security",
-          "paragraphs": [
-            "cryptographically verifiable identities -- so enterprises know they're talking to the right agent and not a rogue impersonator.",
-            "(cid:127) gRPC Support: Added alongside HTTP+SSE for high-performance enterprise workloads needing lower (cid:127) Signed Agent Cards: Cryptographic signatures on Agent Cards prevent impersonation -- critical for security. (cid:127) Extended Python SDK: Client-side SDK improvements make A2A integration far easier for developers. (cid:127) Stable Interface: v0.3 is the first 'build against me' stable release, marking enterprise readiness. Who's Using A2A? (Enterprise Adoption -- 150+ Orgs)",
-            "Tyson Foods & Gordon Food Real-time A2A channel between their agents for shared product data and leads Service -- cutting supply chain friction. Distributed content-creation agents collaborate across Google Cloud's Adobe ecosystem via A2A -- automating multi-system workflows. Adopted A2A as the standard inter-agent communication protocol across their S&P; Global Market Intelligence entire analytics agent ecosystem. Partnership with Google Cloud to make Zoom AI agents interoperable with",
-            "All major cloud providers (AWS, Azure, GCP) now support A2A in their agent",
-            "A2A connects your agents to each other. Together they form the full infrastructure for multi-agent",
-            "Moltbot (originally launched as ClawdBot) is the open-source personal AI assistant that went viral in January 2026 -- racking up 80K+ GitHub stars in its first 3 weeks. Unlike chatbots that only explain things, Moltbot actually does things. Its tagline: 'The AI that takes action.'",
-            "All your data stays on your device. No Works across WhatsApp, Telegram, Remembers context across weeks cloud storage, no vendor lock-in -- iMessage, Discord -- picks up your and months, stored in local text files true sovereign AI. conversation wherever you left it. you can inspect and edit.",
-            "Sends traffic-aware reminders, Runs shell commands, manages Git ClawdHub: 200+ modular plugins for monitors wearable health data, repos, edits files, controls smart home web search, browser automation, delivers personalised morning devices (Philips Hue, etc.). email, calendar, GitHub and more. Why It Matters for Agentic AI Learners: Moltbot is the consumer face of everything you've been learning. It uses MCP servers for tool connections, supports A2A for multi-agent delegation, and demonstrates how personal AI can move from cloud-dependent chatbot to a sovereign, always-on agent running on your own hardware. The ClawdHub marketplace mirrors what app stores did for smartphones -- but for agent capabilities.",
-            "Apple is relaunching Siri as a fully AI-powered context-aware assistant with on-screen awareness and cross-app integration -- powered by Google's 1.2",
-            "trillion parameter Gemini model running on Apple's Private Cloud Compute for",
-            "privacy. Debuting with iOS 26.4 in March 2026. This is the biggest Siri overhaul in 15 Mistral launched Small 4 with 119B parameters (MoE architecture), merging",
-            "Model to Rule Them All single unified model. Configurable reasoning effort means it can be fast and cheap,",
-            "Samsung announced a $73 billion investment in 2026 for next-generation AI",
-            "on AI Chips AI compute -- especially for running agentic workloads locally -- is nowhere near its The US government passed the AI Accountability Act in March 2026, requiring",
-            "Act Passes justice) to conduct and publish regular bias audits. This is the first major federal AI",
-            "Organisations adopting A2A Samsung AI chip investment 2026 Mistral Small 4 parameters (MoE)",
-            "2026) AI advertising market 2026 (+63% YoY) Moltbot GitHub stars in 3 weeks",
-            "7 breakthroughs, MCP intro, A2A intro, FinOps for Agents, OpenClaw",
-            "MCP architecture (Host/Client/Server), 3 primitives, Nvidia NemoClaw,",
-            "A2A architecture, 4 mechanisms, v0.3 updates, enterprise adoption,",
-            "NEXT: Multi-Agent How to design systems where multiple agents collaborate: patterns, Orchestration anti-patterns, real architectures",
-            "Now that you know MCP (agents « tools) and A2A (agents « agents), we'll explore how to design and architect multi-agent systems: orchestrator vs. worker patterns, parallel vs. sequential agent pipelines, how to prevent agent loops, and real production architectures from Google, Microsoft, and startups."
-          ],
-          "bullets": [
-            "KEY INSIGHT: MCP + A2A = The Complete Agentic Stack. MCP connects your agents to tools and data.",
-            "VIRAL APP OF THE DAY -- Moltbot (fka ClawdBot)",
-            "Local-First Privacy n Universal Messaging n Persistent Memory",
-            "Proactive Mode n System Control n Skills Marketplace",
-            "INDUSTRY FLASH -- 4 Stories You Can't Miss",
-            "Apple Reimagines Siri",
-            "Mistral Small 4 -- One capabilities of Magistral (reasoning), Pixtral (vision), and Devstral (coding) into a",
-            "Samsung Bets $73B semiconductor manufacturing. This signals the industry's confidence that demand for",
-            "US AI Accountability companies deploying AI in high-stakes decisions (hiring, lending, healthcare, criminal",
-            "KEY STATS -- Numbers That Tell the Story",
-            "YOUR AGENTIC AI LEARNING MAP",
-            "Tomorrow's Preview (Mar 24): Multi-Agent Orchestration Patterns"
-          ]
-        },
-        {
-          "title": "What Is A2A?",
-          "paragraphs": [
-            "The Agent2Agent (A2A) Protocol is an open standard created by Google in April 2025 and now governed by the Linux Foundation. It gives AI agents a universal language to discover each other, delegate tasks, and collaborate -- even when built on completely different frameworks by different vendors. Think of it as HTTP for AI agents: just as HTTP allowed any browser to talk to any web server, A2A allows any agent to talk to any other agent. Why Does A2A Exist? (The Problem It Solves) Before A2A, agents were siloed. A Salesforce agent couldn't hand off a task to a SAP agent without custom point-to-point integrations. As enterprises deploy dozens -- and soon hundreds -- of specialised agents, you need a standardised handshake. A2A provides exactly that: a common protocol so agents from Adobe, SAP, Zoom, and thousands of vendors can collaborate out of the box. A2A vs MCP -- The Two Pillars of Agentic AI Dimension MCP (Anthropic) A2A (Google / Linux Fdn) Purpose Connect agents to tools & data Connect agents to other agents Analogy USB-C for peripherals HTTP for agent networks Direction Agent « Resource/Tool Agent « Agent Transport JSON-RPC over stdio / HTTP HTTP + SSE + (new) gRPC Governance Anthropic / Linux Foundation Linux Foundation",
-            "Every A2A-compatible agent publishes a JSON 'Agent Card' at a well-known URL (e.g., /.well-known/agent.json). Like a business card, it advertises the agent's"
+            "The Agent2Agent (A2A) Protocol is an open standard created by Google in April 2025 and now governed by the Linux Foundation. It gives AI agents a universal language to discover each other, delegate tasks, and collaborate -- even when built on completely different frameworks by different vendors. Think of it as HTTP for AI agents: just as HTTP allowed any browser to talk to any web server, A2A allows any agent to talk to any other agent.",
+            "Before A2A, agents were siloed. A Salesforce agent couldn't hand off a task to a SAP agent without custom point-to-point integrations. As enterprises deploy dozens -- and soon hundreds -- of specialised agents, you need a standardised handshake. A2A provides exactly that: a common protocol so agents from Adobe, SAP, Zoom, and thousands of vendors can collaborate out of the box."
           ],
           "table": {
             "headers": [
@@ -114,13 +56,120 @@
               ]
             ]
           }
+        },
+        {
+          "title": "2. How A2A Works -- 4 Core Mechanisms",
+          "paragraphs": [
+            "Every A2A-compatible agent publishes a JSON 'Agent Card' at a well-known URL (e.g., /.well-known/agent.json). Like a business card, it advertises the agent's name, description, version, service endpoint, supported input/output modalities, skills, and authentication requirements. Any agent can fetch this card to learn how to work with it.",
+            "Work is framed as Tasks with a defined state machine: submitted → working → input-required → completed (or failed/cancelled). Both the calling agent (client) and the executing agent (server) stay in sync on progress, supporting everything from instant responses to multi-day deep research with human-in-the-loop checkpoints.",
+            "A2A is built on familiar web standards: HTTP for requests, Server-Sent Events (SSE) for streaming real-time updates, and JSON-RPC for the messaging format. Version 0.3 adds gRPC support for high-throughput, low-latency enterprise workloads. No proprietary protocols.",
+            "A2A supports OpenAPI-equivalent authentication schemes (OAuth 2.0, API keys, mTLS) from day one. Version 0.3 adds signed Agent Cards -- cryptographically verifiable identities -- so enterprises know they're talking to the right agent and not a rogue impersonator."
+          ],
+          "table": {
+            "headers": [
+              "Mechanism",
+              "What It Does",
+              "Key Detail"
+            ],
+            "rows": [
+              [
+                "1. Agent Card (Discovery)",
+                "Agent publishes capabilities at /.well-known/agent.json",
+                "Name, skills, auth requirements, endpoints"
+              ],
+              [
+                "2. Task Lifecycle (Coordination)",
+                "Tasks flow: submitted → working → completed",
+                "Supports multi-day deep research with human-in-the-loop"
+              ],
+              [
+                "3. Transport Layer (HTTP + SSE + gRPC)",
+                "HTTP for requests, SSE for streaming, gRPC for high-throughput",
+                "No proprietary protocols -- familiar web standards"
+              ],
+              [
+                "4. Enterprise Security",
+                "OAuth 2.0, API keys, mTLS; v0.3 adds signed Agent Cards",
+                "Cryptographically verifiable agent identities"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3. A2A v0.3 -- What's New (March 2026)",
+          "paragraphs": [
+            "Version 0.3 marks the first 'build against me' stable release of A2A, signalling enterprise readiness. Four major additions make A2A production-grade for the 150+ organisations already adopting it."
+          ],
+          "bullets": [
+            "gRPC Support: Added alongside HTTP+SSE for high-performance enterprise workloads needing lower latency.",
+            "Signed Agent Cards: Cryptographic signatures on Agent Cards prevent impersonation -- critical for enterprise security.",
+            "Extended Python SDK: Client-side SDK improvements make A2A integration far easier for developers.",
+            "Stable Interface: v0.3 is the first stable release -- enterprises can now build confidently against it."
+          ]
+        },
+        {
+          "title": "4. Enterprise Adoption -- Who's Using A2A?",
+          "paragraphs": [
+            "150+ organisations have adopted A2A since its Linux Foundation transfer. From food supply chains to financial analytics, A2A is enabling real-time agent-to-agent collaboration at enterprise scale. All major cloud providers (AWS, Azure, GCP) now support A2A in their agent orchestration platforms."
+          ],
+          "table": {
+            "headers": [
+              "Organisation",
+              "Use Case"
+            ],
+            "rows": [
+              [
+                "Tyson Foods & Gordon Food Service",
+                "Real-time A2A channel between agents for shared product data -- cutting supply chain friction."
+              ],
+              [
+                "Adobe",
+                "Distributed content-creation agents collaborate across Google Cloud's ecosystem via A2A -- automating multi-system workflows."
+              ],
+              [
+                "S&P Global Market Intelligence",
+                "Adopted A2A as the standard inter-agent communication protocol across their entire analytics ecosystem."
+              ],
+              [
+                "Zoom",
+                "Partnership with Google Cloud to make Zoom AI agents interoperable with Google's agent ecosystem."
+              ],
+              [
+                "Hyperscalers (AWS, Azure, GCP)",
+                "All major cloud providers now support A2A in their agent orchestration platforms."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "5. Viral App Spotlight -- Moltbot + Industry Flash",
+          "paragraphs": [
+            "Moltbot (originally launched as ClawdBot) is the open-source personal AI assistant that went viral in January 2026 -- racking up 80K+ GitHub stars in its first 3 weeks. Unlike chatbots that only explain things, Moltbot actually does things. Its tagline: 'The AI that takes action.'",
+            "Why It Matters for Agentic AI Learners: Moltbot is the consumer face of everything you've been learning. It uses MCP servers for tool connections, supports A2A for multi-agent delegation, and demonstrates how personal AI can move from cloud-dependent chatbot to a sovereign, always-on agent running on your own hardware. The ClawdHub marketplace mirrors what app stores did for smartphones -- but for agent capabilities.",
+            "Apple Reimagines Siri with Gemini: Apple is relaunching Siri as a fully AI-powered context-aware assistant with on-screen awareness and cross-app integration -- powered by Google's 1.2 trillion parameter Gemini model running on Apple's Private Cloud Compute for privacy. Debuting with iOS 26.4 in March 2026. This is the biggest Siri overhaul in 15 years.",
+            "Mistral Small 4 -- One Model to Rule Them All: Mistral launched Small 4 with 119B parameters (MoE architecture), merging capabilities of Magistral (reasoning), Pixtral (vision), and Devstral (coding) into a single unified model. Configurable reasoning effort means it can be fast and cheap, or slow and thorough, on demand.",
+            "Samsung Bets $73B on AI Chips: Samsung announced a $73 billion investment in 2026 for next-generation AI semiconductor manufacturing -- signalling the industry's confidence that demand for AI compute, especially for running agentic workloads locally, is nowhere near its peak.",
+            "US AI Accountability Act Passes: The US government passed the AI Accountability Act in March 2026, requiring companies deploying AI in high-stakes decisions (hiring, lending, healthcare, criminal justice) to conduct and publish regular bias audits. This is the first major federal AI regulation in the US."
+          ],
+          "bullets": [
+            "Local-First Privacy: All data stays on device. No cloud storage, no vendor lock-in -- true sovereign AI.",
+            "Universal Messaging: Works across WhatsApp, Telegram, iMessage, Discord -- picks up conversation wherever you left it.",
+            "Persistent Memory: Remembers context across weeks and months, stored in local text files you can inspect and edit.",
+            "Proactive Mode: Sends traffic-aware reminders, monitors wearable health data, delivers personalised morning briefings.",
+            "System Control: Runs shell commands, manages Git repos, edits files, controls smart home devices (Philips Hue, etc.).",
+            "Skills Marketplace: ClawdHub with 200+ modular plugins for web search, browser automation, email, calendar, GitHub and more."
+          ]
         }
       ],
       "key_stats": [
-        "2026 -- racking up 80K+ GitHub stars in its first 3 weeks",
-        "2026 Mistral Small 4 parameters (MoE) 12% $57B 80K+ Job tasks automated by AI (McKinsey 202",
-        "6) AI advertising market 2026 (+63% YoY) Moltbot GitHub stars in 3 weeks nn YOUR AGENTIC AI LEARNING"
-      ]
+        "150+ Organisations adopting A2A",
+        "$73B Samsung AI chip investment 2026",
+        "119B Mistral Small 4 parameters (MoE architecture)",
+        "12% Job tasks automated by AI (McKinsey 2026)",
+        "$57B AI advertising market 2026 (+63% YoY)",
+        "80K+ Moltbot GitHub stars in 3 weeks"
+      ],
+      "practical_takeaway": "MCP + A2A = The Complete Agentic Stack. MCP connects your agents to tools and data. A2A connects your agents to each other. Together they form the full infrastructure for multi-agent enterprise systems. A2A v0.3 is enterprise-ready -- with signed Agent Cards, gRPC support, and a stable interface, it's production infrastructure for the 150+ organisations already using it. Personal AI is going sovereign -- Moltbot proves that the MCP + A2A architecture you've been learning isn't just for enterprises, it's powering a new generation of local-first, privacy-preserving personal agents. The regulatory era has arrived -- the US AI Accountability Act signals that AI governance is now a compliance requirement, not just a best practice. Tomorrow's Preview (Mar 24): Multi-Agent Orchestration Patterns -- how to design systems where multiple agents collaborate, including orchestrator vs. worker patterns, parallel vs. sequential pipelines, and real production architectures from Google, Microsoft, and startups."
     },
     {
       "date": "2026-03-22",
