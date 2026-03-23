@@ -116,13 +116,71 @@ def find_unprocessed_pdf(learnings: list[dict]) -> tuple[datetime, Path] | None:
 # ── PDF parsing ───────────────────────────────────────────────────────────────
 
 def clean(text: str) -> str:
-    """Strip extra whitespace and common PDF artifacts."""
+    """Strip extra whitespace and ALL known PDF encoding artifacts.
+
+    Handles artifacts produced by pdfplumber's font-decoding failures:
+      • â(x)¢   — UTF-8 bullet U+2022 mis-decoded as Latin-1
+      • (cid:N) — unresolved glyph IDs from embedded font tables
+      • ﬁ ﬂ ﬀ ﬃ ﬄ — OpenType ligatures that should be plain ASCII
+      • fi used as → — fi-ligature glyph slot repurposed as an arrow
+      • nn / n  — stray bullet-character artifacts at line start
+    """
+    # ── OpenType / Latin ligature normalisation ───────────────────────────────
+    _LIGATURES = {
+        '\ufb00': 'ff', '\ufb01': 'fi', '\ufb02': 'fl',
+        '\ufb03': 'ffi', '\ufb04': 'ffl', '\ufb05': 'st', '\ufb06': 'st',
+    }
+    for lig, rep in _LIGATURES.items():
+        text = text.replace(lig, rep)
+
+    # ── fi-ligature used as → between state-machine words ────────────────────
+    # e.g. "submitted fi working fi completed" → "submitted → working → completed"
+    # Pattern: fi surrounded by spaces between lowercase/hyphenated words
+    text = re.sub(r'(?<=[a-z\-])\s+fi\s+(?=[a-z])', ' → ', text)
+
+    # ── fi-ligature used as / between CamelCase words (table separators) ──────
+    # e.g. "HostfiClientfiServer" → "Host/Client/Server"
+    text = re.sub(r'([A-Z][a-z]+)fi([A-Z])', r'\1/\2', text)
+
+    # ── Garbled bullet: â(any 0-1 char)¢  →  •  ─────────────────────────────
+    # UTF-8 bullet (U+2022) = \xe2\x80\xa2; when decoded as Latin-1:
+    #   \xe2 → â (U+00E2)
+    #   \x80 → control char / 'n' / euro sign (pdfplumber variability)
+    #   \xa2 → ¢ (U+00A2)
+    text = re.sub(r'\u00e2.?\u00a2', '• ', text)
+
+    # ── (cid:N) unresolved glyph IDs ─────────────────────────────────────────
+    # cid:127 is typically • (middle dot / bullet); others are unknown → drop
+    text = re.sub(r'\(cid:127\)', '• ', text)
+    text = re.sub(r'\(cid:\d+\)', '', text)
+
+    # ── Whitespace normalisation ──────────────────────────────────────────────
     text = re.sub(r"\s+", " ", text).strip()
-    # Fix common PDF encoding issues
+
+    # ── Unicode smart punctuation → consistent ASCII-friendly equivalents ─────
     text = text.replace("\u2019", "'").replace("\u2018", "'")
-    text = text.replace("\u2014", "--").replace("\u2013", "-").replace("\u2022", "*")
+    text = text.replace("\u2014", "--").replace("\u2013", "-")
+    text = text.replace("\u2022", "•")          # actual bullet → bullet
     text = text.replace("\u201c", '"').replace("\u201d", '"')
-    return text
+
+    # ── Stray leading artifact chars (nn / n at line start) ──────────────────
+    # These are bullet artifacts that survived the â¢ pass above
+    text = re.sub(r'^n{1,2}\s+', '• ', text)
+
+    # ── Collapse duplicate bullet markers ────────────────────────────────────
+    text = re.sub(r'(•\s*){2,}', '• ', text)
+
+    return text.strip()
+
+
+def clean_table_cell(cell) -> str:
+    """Clean a single table cell (may be None or multi-line)."""
+    if cell is None:
+        return ""
+    text = str(cell)
+    # Normalise internal newlines to spaces before clean()
+    text = text.replace("\n", " ")
+    return clean(text)
 
 
 def is_section_heading(line: str) -> bool:
@@ -143,6 +201,7 @@ def is_section_heading(line: str) -> bool:
         "real-world", "challenges", "learning roadmap", "key vocabulary",
         "application examples", "deep dive", "use cases", "agent communication",
         "glossary", "action points", "your action",
+        "main topic", "industry flash",
     ]
     low = line.lower()
     for h in headings:
@@ -152,26 +211,25 @@ def is_section_heading(line: str) -> bool:
 
 
 def is_bullet(line: str) -> bool:
-    # Standard bullets + the 'n ' / ')n ' / 'nn ' PDF artifact bullets
+    """Detect bullet lines — including cleaned artifact bullets."""
     return bool(
         re.match(r"^[•\-\*▸▶◆●▪]\s", line)
         or re.match(r"^\d+\.\s", line)
-        or re.match(r"^[n\)]+n?\s+[A-Z]", line)   # PDF artifact: 'n Title', ')n Title', 'nn Title'
     )
 
 
 def extract_bullet_text(line: str) -> str:
-    # Remove leading bullet chars, PDF artifact 'n'/'nn'/etc.
-    line = re.sub(r"^[•\-\*▸▶◆●▪\d\.]+\s+", "", line)
-    line = re.sub(r"^[n\)]+n?\s+", "", line)
+    """Strip leading bullet marker."""
+    line = re.sub(r"^[•\-\*▸▶◆●▪]\s+", "", line)
+    line = re.sub(r"^\d+\.\s+", "", line)
     return line.strip()
 
 
 def parse_date_from_text(text: str) -> tuple[str, str, int | None]:
     """Extract date_str, display_date, issue_number from PDF header text."""
-    # Issue number
+    # Issue / Edition number  — handles both "Issue #2" and "Edition #3"
     issue = None
-    m = re.search(r"issue\s*#?(\d+)", text, re.IGNORECASE)
+    m = re.search(r"(?:issue|edition)\s*#?(\d+)", text, re.IGNORECASE)
     if m:
         issue = int(m[1])
 
@@ -195,25 +253,104 @@ def parse_date_from_text(text: str) -> tuple[str, str, int | None]:
     return "", "", issue
 
 
+def _extract_text_outside_tables(page) -> str:
+    """Extract text from a pdfplumber page, EXCLUDING table regions.
+
+    This prevents table cell content from bleeding into the paragraph text
+    (the primary source of garbled content in previous parser versions).
+    """
+    found_tables = page.find_tables()
+    if not found_tables:
+        return page.extract_text(x_tolerance=3, y_tolerance=3) or ""
+
+    table_bboxes = [t.bbox for t in found_tables]
+
+    def _not_in_any_table(obj):
+        ox0 = obj.get('x0', 9999)
+        ox1 = obj.get('x1', 0)
+        ot  = obj.get('top', 9999)
+        ob  = obj.get('bottom', 0)
+        for (tx0, tt, tx1, tb) in table_bboxes:
+            # Allow 2pt tolerance on all edges
+            if ox0 >= tx0 - 2 and ox1 <= tx1 + 2 and ot >= tt - 2 and ob <= tb + 2:
+                return False
+        return True
+
+    return page.filter(_not_in_any_table).extract_text(x_tolerance=3, y_tolerance=3) or ""
+
+
+def _is_toc_table(table: list[list]) -> bool:
+    """Return True if this looks like a navigation/TOC table (not content).
+    TOC tables are single-column lists of numbered items or 'What's Inside' headers."""
+    if not table:
+        return False
+    # All rows have ≤ 1 column → likely a single-column nav list
+    if all(len(row) <= 1 for row in table):
+        return True
+    # First cell contains a known navigation header
+    first_cell = str(table[0][0] or "").strip() if table and table[0] else ""
+    if re.search(r"what.s inside|table of contents|contents", first_cell, re.I):
+        return True
+    return False
+
+
+def _extract_stat_box_tables(raw_tables: list[list]) -> list[str]:
+    """Pull key-stats from 'stat box' tables — single-row or two-row tables
+    where cells contain a big number + label (e.g. '150+\\nOrganisations…')."""
+    stats = []
+    for table in raw_tables:
+        if not table:
+            continue
+        # Flatten — stat box tables typically have 1-3 rows, 2-4 cols
+        all_cells = []
+        for row in table:
+            for cell in row:
+                if cell and str(cell).strip():
+                    all_cells.append(clean_table_cell(cell))
+        for cell_text in all_cells:
+            # Matches e.g. "150+ Organisations adopting A2A" or "$73B Samsung AI chip"
+            if re.match(r'^[\$]?\d[\d,\.]+[%+KMBkTx]*\b', cell_text) and 5 < len(cell_text) < 120:
+                # Compact to one clean line
+                stats.append(re.sub(r'\s+', ' ', cell_text).strip())
+    return stats
+
+
 def parse_pdf(pdf_path: Path) -> dict:
-    """Parse a daily AI learning PDF into a rich structured dict."""
+    """Parse a daily AI learning PDF into a rich structured dict.
+
+    Key improvements over v1:
+      1. Table content is EXCLUDED from text extraction to prevent garbling.
+      2. comprehensive clean() handles all known PDF encoding artifacts.
+      3. Issue number also matched from 'Edition #N' header format.
+      4. Title handles 'Today's Focus: ...' inline format.
+      5. Viral app name extracted from section content when not in title.
+      6. Stat-box tables are parsed for key_stats.
+      7. Validation warns on missing required fields.
+    """
     print(f"   📄 Parsing: {pdf_path.name}")
 
-    all_lines = []
-    page_tables = []
+    all_lines: list[str] = []
+    raw_tables: list[list] = []     # all tables (raw, for stat extraction)
+    section_tables: list[list] = [] # tables suitable for section attachment
 
     with pdfplumber.open(pdf_path) as pdf:
         for page in pdf.pages:
-            # Extract tables
-            tables = page.extract_tables() or []
-            for t in tables:
-                if t and len(t) > 1:
-                    page_tables.append(t)
-            # Extract text
-            text = page.extract_text(x_tolerance=3, y_tolerance=3) or ""
+            # ── Extract tables (raw, before cleaning) ────────────────────────
+            page_found = page.find_tables()
+            for ft in page_found:
+                extracted = ft.extract()
+                if extracted:
+                    raw_tables.append(extracted)
+                    # Only attach to sections if it has ≥ 2 rows (header + data)
+                    # and is NOT a TOC/navigation table
+                    if len(extracted) >= 2 and not _is_toc_table(extracted):
+                        section_tables.append(extracted)
+
+            # ── Extract text OUTSIDE table bounding boxes ─────────────────────
+            text = _extract_text_outside_tables(page)
             for line in text.split("\n"):
                 line = clean(line)
-                if line:
+                if line and len(line) > 1:   # skip single-char stray artifacts
                     all_lines.append(line)
 
     if not all_lines:
@@ -226,13 +363,11 @@ def parse_pdf(pdf_path: Path) -> dict:
     header_text = " ".join(all_lines[:10])
     date_str, display_date, issue = parse_date_from_text(header_text)
     if not date_str:
-        date_str, display_date, issue = parse_date_from_text(full_text[:500])
+        date_str, display_date, issue = parse_date_from_text(full_text[:600])
 
-    # ── Title ─────────────────────────────────────────────────────────────────
-    # Strategy: look for the topic title, which is often the line right AFTER
-    # "Today's Focus/Topic", or the first substantive non-metadata line.
+    # ── Helpers ───────────────────────────────────────────────────────────────
     _title_skip = re.compile(
-        r"(ai daily|daily ai|varun singla|issue|your daily dose|curated|"
+        r"(ai daily|daily ai|daily brief|varun singla|issue|edition|your daily dose|curated|"
         r"page \d|what.s inside|what.s shaping|breakthroughs & trends|"
         r"(monday|tuesday|wednesday|thursday|friday|saturday|sunday)[,\s])",
         re.I,
@@ -246,29 +381,70 @@ def parse_pdf(pdf_path: Path) -> dict:
             r"\s+\d{4}\s*$", "", s, flags=re.I
         ).strip()
 
+    # ── Title ─────────────────────────────────────────────────────────────────
+    # Strategy 1: "Today's Focus: <title> [+ secondary topics]" inline
+    # Strategy 2: The line AFTER "Today's Focus/Topic"
+    # Fallback A: first numbered item from TOC table
+    # Fallback B: first item from "What's Inside" text TOC
+    # Fallback C: first sentence of focus_intro
     title = ""
-    for i, line in enumerate(all_lines[:20]):
+    for i, line in enumerate(all_lines[:25]):
         low = line.lower()
-        # "Today's Focus/Topic" line — look at the NEXT lines for the actual topic title
-        if re.search(r"today.s (focus|topic)", low):
+
+        # "Today's Focus: Deep Dive: A2A Protocol + Apple's AI Siri …"
+        # Take only the FIRST topic (before the first " + ")
+        if re.search(r"today.s (focus|topic)\s*:", low):
+            m = re.match(r"today.s (?:focus|topic)\s*:\s*(.+)", line, re.I)
+            if m:
+                raw = m[1].strip()
+                # Split on " + " — the primary topic is the first segment
+                parts = re.split(r'\s*\+\s*', raw)
+                first = parts[0].strip()
+                # If very short (e.g. just "AI") fall back to the full string
+                if len(first) < 12 and len(parts) > 1:
+                    first = raw
+                candidate = _strip_trailing_date(first[:120])
+                if len(candidate) > 15:
+                    title = candidate
+            break
+
+        # "Today's Focus" on its own line — title is on following lines
+        if re.search(r"today.s (focus|topic)$", low):
             for j in range(i + 1, min(i + 8, len(all_lines))):
                 cand = all_lines[j]
-                # Skip mid-sentence continuations
+                # Stop at numbered section headings — avoid picking up body text
+                if re.match(r"^\d+\.\s", cand):
+                    break
                 if re.match(r"^[a-z]|^(becoming|that|which|where|and |or |but )", cand):
                     continue
                 if (20 < len(cand) < 130
                         and not _title_skip.search(cand)
-                        and not re.search(r"^(today we|this edition|in this|if you)", cand, re.I)
-                        and not re.match(r"^\d+\.", cand)):
+                        and not re.search(r"^(today we|this edition|in this|if you)", cand, re.I)):
                     title = _strip_trailing_date(cand)
                     break
             break
+
         if re.search(r"what.s inside", low):
             break
         if len(line) > 20 and not _title_skip.search(line):
             title = _strip_trailing_date(line)
             break
-    # Fallback 1: first item from "What's Inside" TOC
+
+    # Fallback A: look for TOC in single-column raw tables (e.g. "What's Inside" table)
+    if not title and raw_tables:
+        for tbl in raw_tables[:4]:
+            if tbl and all(len(row) <= 1 for row in tbl):
+                for row in tbl:
+                    if row and row[0]:
+                        cell = clean_table_cell(row[0])
+                        m = re.match(r'^\d+\.\s+(.{10,80})', cell)
+                        if m:
+                            title = _strip_trailing_date(m[1].strip())
+                            break
+                if title:
+                    break
+
+    # Fallback B: first item from "What's Inside" text TOC
     if not title:
         for i, line in enumerate(all_lines[:25]):
             if re.search(r"what.s inside|in this edition", line, re.I):
@@ -279,25 +455,61 @@ def parse_pdf(pdf_path: Path) -> dict:
                         title = _strip_trailing_date(m[1].strip()[:90])
                         break
                 break
-    # Fallback 2: derive a short title from focus_intro first sentence
-    # (will be set after focus_intro is parsed below — see the block after it)
 
-    # ── Today's Focus / Topic ─────────────────────────────────────────────────
+    # ── Today's Focus / Topic intro paragraph ─────────────────────────────────
     focus_intro = ""
     for i, line in enumerate(all_lines):
-        if re.search(r"today.s (focus|topic)", line, re.I):
-            # Collect the next 1-3 lines as the intro paragraph
-            intro_parts = []
-            for j in range(i + 1, min(i + 6, len(all_lines))):
-                l = all_lines[j]
-                if is_section_heading(l) or re.search(r"what.s inside", l, re.I):
-                    break
-                if len(l) > 30:
-                    intro_parts.append(l)
-            focus_intro = " ".join(intro_parts)
+        low = line.lower()
+        if re.search(r"today.s (focus|topic)", low):
+            inline_m = re.match(r"today.s (?:focus|topic)\s*:\s*(.+)", line, re.I)
+            if inline_m:
+                # For inline "Today's Focus: ..." format, build the intro by:
+                # 1. Looking for a "Today we [go deeper into / deep dive into] X" sentence
+                #    that may be buried inside a "Yesterday's Recap" continued line
+                # 2. Otherwise collecting the next standalone narrative lines
+                intro_parts = []
+                in_yesterday = False
+                for j in range(i + 1, min(i + 14, len(all_lines))):
+                    l = all_lines[j]
+                    if is_section_heading(l) or re.search(r"what.s inside", l, re.I):
+                        break
+                    if re.search(r"yesterday.s recap", l, re.I):
+                        in_yesterday = True
+                    if re.match(r"^\+\s*(viral app|industry|also)", l, re.I):
+                        continue
+                    # Stop at ALL-CAPS bullet section markers: "• MAIN TOPIC --" or "• INDUSTRY FLASH"
+                    if re.match(r'^[•*]\s+[A-Z][A-Z\s]{4,}(?:--|—|-|\Z)', l):
+                        break
+                    if in_yesterday:
+                        # Extract "Today we …" sentence from within recap continuation
+                        # (may not end with sentence terminator on the same line — that's OK)
+                        today_m = re.search(r'(?:^|\.)\s*(Today\s+we\s+.{15,})', l, re.I)
+                        if today_m:
+                            intro_parts.append(today_m[1].strip())
+                            in_yesterday = False
+                        continue
+                    if len(l) > 40:
+                        intro_parts.append(l)
+                    if len(intro_parts) >= 3:
+                        break
+                if intro_parts:
+                    focus_intro = " ".join(intro_parts)
+                else:
+                    # Fall back to the topic title as the intro hint
+                    focus_intro = inline_m[1].strip()
+            else:
+                # Standalone "Today's Focus" — collect next substantial lines
+                intro_parts = []
+                for j in range(i + 1, min(i + 6, len(all_lines))):
+                    l = all_lines[j]
+                    if is_section_heading(l) or re.search(r"what.s inside", l, re.I):
+                        break
+                    if len(l) > 30:
+                        intro_parts.append(l)
+                focus_intro = " ".join(intro_parts)
             break
 
-    # Title fallback 3: first sentence of focus_intro — but skip "Today we..." lead-ins
+    # Title fallback 2: first sentence of focus_intro — skip "Today we…" lead-ins
     if not title and focus_intro:
         fi = re.sub(r"^(Today we[^.!?]+[.!?]\s*|This edition[^.!?]+[.!?]\s*)", "", focus_intro, flags=re.I).strip()
         m = re.match(r"(.{20,90}?[.!?])\s", fi)
@@ -307,10 +519,11 @@ def parse_pdf(pdf_path: Path) -> dict:
             title = fi[:90].rstrip()
 
     # ── Sections ──────────────────────────────────────────────────────────────
-    sections = []
+    sections: list[dict] = []
     skip_headings = re.compile(
-        r"(today.s (focus|topic)|what.s inside|ai daily learning|your daily dose"
-        r"|sources|further reading|page \d|varun singla)", re.I
+        r"(today.s (focus|topic)|what.s inside|ai daily learning|daily ai learning|"
+        r"your daily dose|daily brief|sources|further reading|page \d|varun singla"
+        r"|yesterday.s recap|generated by)", re.I
     )
 
     i = 0
@@ -319,20 +532,25 @@ def parse_pdf(pdf_path: Path) -> dict:
 
         if is_section_heading(line) and not skip_headings.search(line):
             sec_title = line
-            paragraphs = []
-            bullets = []
-            current_para = []
+            paragraphs: list[str] = []
+            bullets: list[str] = []
+            current_para: list[str] = []
 
             j = i + 1
             while j < len(all_lines):
                 next_line = all_lines[j]
 
-                # Stop at next major section heading (numbered = new top section)
+                # Stop at the next numbered top-level section heading
                 if (is_section_heading(next_line)
                         and not skip_headings.search(next_line)
                         and (re.match(r"^\d+\.\s", next_line) or re.match(r"^\d{1,2}\s*[-—–]{1,2}\s+\S", next_line))
                         and j != i + 1):
                     break
+
+                # Also stop at "Tomorrow's Preview" and footer boilerplate
+                if re.match(r"(tomorrow.s? preview|ai daily learning|generated by)", next_line, re.I):
+                    j += 1
+                    continue
 
                 if skip_headings.search(next_line):
                     j += 1
@@ -344,9 +562,16 @@ def parse_pdf(pdf_path: Path) -> dict:
                         current_para = []
                     bullets.append(extract_bullet_text(next_line))
                 elif len(next_line) > 40:
-                    current_para.append(next_line)
+                    # If this line is a lowercase continuation of the previous bullet,
+                    # append it to the last bullet instead of starting a new paragraph
+                    if (bullets and not current_para
+                            and (next_line[0].islower()
+                                 or re.match(r'^(and|but|or|to|of|for|that|which|however|road)\b',
+                                             next_line, re.I))):
+                        bullets[-1] = bullets[-1] + " " + next_line
+                    else:
+                        current_para.append(next_line)
                 elif len(next_line) > 10:
-                    # Could be a sub-heading — flush para and treat as next heading
                     if current_para:
                         paragraphs.append(" ".join(current_para))
                         current_para = []
@@ -356,18 +581,19 @@ def parse_pdf(pdf_path: Path) -> dict:
             if current_para:
                 paragraphs.append(" ".join(current_para))
 
-            sec = {"title": sec_title}
+            sec: dict = {"title": sec_title}
             if paragraphs:
                 sec["paragraphs"] = paragraphs
             if bullets:
                 sec["bullets"] = bullets
 
-            # Attach any table that seems to belong to this section
-            # (simple heuristic: use tables in order of occurrence)
-            if page_tables:
-                t = page_tables.pop(0)
-                clean_t = [[clean(str(cell or "")) for cell in row] for row in t]
-                if len(clean_t) > 1 and any(any(c for c in row) for row in clean_t):
+            # Attach the next available section table (greedy — ordered by document position)
+            if section_tables:
+                raw_t = section_tables.pop(0)
+                clean_t = [[clean_table_cell(cell) for cell in row] for row in raw_t]
+                # Filter out fully-empty rows
+                clean_t = [row for row in clean_t if any(c for c in row)]
+                if len(clean_t) >= 2:
                     headers = clean_t[0]
                     rows = clean_t[1:]
                     sec["table"] = {"headers": headers, "rows": rows}
@@ -379,39 +605,135 @@ def parse_pdf(pdf_path: Path) -> dict:
 
     # ── Viral app ──────────────────────────────────────────────────────────────
     viral_app = None
-    for sec in sections:
+    for sec in sections[:]:
         if re.search(r"viral app", sec.get("title", ""), re.I):
-            name = re.sub(r"^[\d\.\s]*viral app spotlight[:\s]*", "", sec["title"], flags=re.I).strip()
-            desc = " ".join(sec.get("paragraphs", []) + sec.get("bullets", []))
-            viral_app = {"name": name or "See details below", "description": desc[:400]}
+            # Try to get app name from section title (e.g. "5. Viral App Spotlight — Moltbot")
+            name = re.sub(
+                r"^[\d\.\s]*viral app spotlight\s*[:\-—–]*\s*", "",
+                sec["title"], flags=re.I
+            ).strip()
+
+            paras = sec.get("paragraphs", [])
+            buls  = sec.get("bullets", [])
+
+            # If name not in title, the first paragraph line is usually the app name
+            if not name and paras:
+                first_para = paras[0]
+                # App name: typically a short capitalised line at the very start
+                # (before "Status:", "Why It's", etc.)
+                name_m = re.match(r'^([A-Z][^\.\n]{5,70})(?:\s+(?:Status|Why|What|How)|$)', first_para)
+                if name_m:
+                    name = name_m[1].strip()
+                    # Remove the extracted name from the first paragraph
+                    rest = first_para[len(name):].strip()
+                    paras = ([rest] if rest else []) + paras[1:]
+
+            # Also look at section table (e.g. a 1-column table with the app name)
+            if not name and sec.get("table"):
+                first_header = sec["table"]["headers"][0] if sec["table"].get("headers") else ""
+                if first_header and re.match(r'^[A-Z]', first_header) and len(first_header) < 80:
+                    name = first_header
+
+            desc = " ".join(paras[:3] + buls[:4])
+            viral_app = {
+                "name": name or "See details below",
+                "description": desc[:500],
+            }
             sections.remove(sec)
             break
 
+    # Fallback 1: "Viral App: X" in Today's Focus header line (e.g. Mar 23 style)
     if not viral_app:
-        m = re.search(
-            r"viral app[:\s]+([^\n\.]{5,60})[.\n]([^\n]{10,200})", full_text, re.I
-        )
+        m = re.search(r"\+\s*Viral\s+App[:\s]+([A-Z][^\s\+\n,]{2,50}(?:\s+\([^)]+\))?)", full_text, re.I)
         if m:
-            viral_app = {"name": clean(m[1]), "description": clean(m[2])}
+            vname = clean(m[1].strip())
+            # Prefer a description from body text ("Moltbot is the consumer face of…")
+            desc_m = re.search(
+                re.escape(vname) + r'\s+(?:is|was|went|launched|racked).{5,400}', full_text, re.I
+            )
+            if not desc_m:
+                # Look for "Why It Matters" or "What Makes" sentence
+                desc_m = re.search(r'Why It Matters.{5,300}', full_text, re.I)
+            viral_app = {
+                "name": vname,
+                "description": clean(desc_m[0][:400]) if desc_m else "",
+            }
+
+    # Fallback 2: update name-only if viral_app was set but name is "See details below"
+    # — look in single-column raw tables for the actual app name
+    if viral_app and viral_app.get("name") == "See details below":
+        for tbl in raw_tables:
+            if not tbl:
+                continue
+            first_cell = clean_table_cell(tbl[0][0] if tbl[0] else "")
+            if (len(tbl[0]) == 1
+                    and re.match(r'^[A-Z]', first_cell)
+                    and 5 < len(first_cell) < 80
+                    and not re.search(
+                        r"(what.s inside|issue|edition|today|component|model|dimension|"
+                        r"organisation|organisation|date|topic|what is|how it)", first_cell, re.I
+                    )):
+                viral_app["name"] = first_cell
+                break
+
+    # Fallback 3: generic full-text pattern
+    if not viral_app:
+        m = re.search(r"viral app[:\s]+([A-Z][^\n\.+]{5,60})", full_text, re.I)
+        if m:
+            viral_app = {"name": clean(m[1].strip()), "description": ""}
 
     # ── Market signal ──────────────────────────────────────────────────────────
     market_signal = ""
-    m = re.search(r"market signal[:\s]+(.{30,400}?)(?:\n\n|\Z)", full_text, re.I | re.S)
+    # Match everything from "Market Signal:" to end-of-paragraph / next section
+    m = re.search(
+        r"Market Signal[:\s]+(.+?)(?=\s*\d+\.\s+[A-Z]|Generated by|Tomorrow|$)",
+        full_text, re.I | re.S
+    )
     if m:
-        market_signal = clean(m[1])
+        ms_raw = m[1].strip()
+        # Trim to at most 2 sentences for readability
+        sentences = re.split(r'(?<=[.!?])\s+', ms_raw)
+        market_signal = clean(" ".join(sentences[:3]))
 
     # ── Practical takeaway ─────────────────────────────────────────────────────
     practical_takeaway = ""
     for sec in sections[:]:
         if re.search(r"(practical takeaway|key takeaway)", sec.get("title", ""), re.I):
-            practical_takeaway = " ".join(
-                sec.get("paragraphs", []) + sec.get("bullets", [])
-            )
+            parts = sec.get("paragraphs", []) + sec.get("bullets", [])
+            practical_takeaway = " ".join(parts)
             sections.remove(sec)
             break
 
+    # Fallback: look for "Key Takeaways" / "Your Action" in raw tables
+    if not practical_takeaway:
+        for tbl in raw_tables:
+            if not tbl:
+                continue
+            first_cell = clean_table_cell(tbl[0][0] if tbl[0] else "")
+            if re.search(r"(key takeaway|practical takeaway|your action|action point)", first_cell, re.I):
+                # 2-column table where first col = topic, second = content
+                parts = []
+                for row in tbl[1:]:
+                    if row and len(row) >= 2:
+                        parts.append(clean_table_cell(row[1]) or clean_table_cell(row[0]))
+                    elif row:
+                        parts.append(clean_table_cell(row[0]))
+                practical_takeaway = " ".join(p for p in parts if p)
+                if practical_takeaway:
+                    break
+
+    # Fallback: extract from the last section if it looks like a summary
+    if not practical_takeaway and sections:
+        last = sections[-1]
+        if re.search(r"(takeaway|summary|conclusion|what.s next|final)", last.get("title", ""), re.I):
+            parts = last.get("paragraphs", []) + last.get("bullets", [])
+            practical_takeaway = " ".join(parts)
+            sections.remove(last)
+
     # ── Key stats ──────────────────────────────────────────────────────────────
-    key_stats = []
+    key_stats: list[str] = []
+
+    # Priority 1: dedicated "Numbers Worth Knowing" section
     for sec in sections[:]:
         if re.search(r"numbers worth|key stats|key figures", sec.get("title", ""), re.I):
             if sec.get("table"):
@@ -422,60 +744,100 @@ def parse_pdf(pdf_path: Path) -> dict:
             sections.remove(sec)
             break
 
+    # Priority 2: stat-box tables (single/double row with big numbers)
     if not key_stats:
-        # Pull numbers from full text as fallback
-        nums = re.findall(r"[\$\d][^\n\.]{5,60}(?:billion|million|%|K\+|stars)[^\n\.]{0,40}", full_text)
-        key_stats = [clean(n) for n in nums[:6]]
+        key_stats = _extract_stat_box_tables(raw_tables)
+
+    # Priority 3: pull numeric references from full text
+    if not key_stats:
+        nums = re.findall(
+            r'[\$£€]?\d[\d,]*(?:\.\d+)?[%KMBTx+]*\b[^.]{0,60}'
+            r'(?:billion|million|trillion|%|K\+|stars|organisations|organizations|companies|countries)',
+            full_text, re.I
+        )
+        key_stats = [clean(n.strip()) for n in nums[:6] if len(n.strip()) > 8]
 
     # ── Tomorrow preview ───────────────────────────────────────────────────────
     tomorrow_preview = ""
-    m = re.search(r"tomorrow.s? preview[:\s]+(.{10,200}?)(?:\n|\Z)", full_text, re.I)
+    m = re.search(r"tomorrow.s? preview[:\s]+(.{10,300}?)(?:\.|$)", full_text, re.I)
     if m:
         tomorrow_preview = clean(m[1])
 
     # ── Remove boilerplate + sub-step sections ─────────────────────────────────
     sections = [
         s for s in sections
-        if not re.search(r"(sources|further reading|what.s inside)", s.get("title", ""), re.I)
+        if not re.search(r"(sources|further reading|what.s inside|your agentic ai learning map|learning map)", s.get("title", ""), re.I)
         and (s.get("paragraphs") or s.get("bullets") or s.get("table"))
-        # Sub-steps have long titles like "1. Host Starts Up: When you open Claude..."
-        # (numbered + colon + description). Real section headings are concise (< 56 chars).
+        # Sub-steps: numbered + colon + long description → real headings are concise (< 56 chars)
         and not (re.match(r"^\d+\.", s.get("title", "")) and len(s.get("title", "")) > 55)
     ]
 
-    # ── Deduplicate sections (TOC entries vs actual content) ───────────────────
-    # PDFs with a "What's Inside" TOC create shallow duplicate sections.
-    # Keep the version with the most narrative content (paragraphs win over tables).
-    # Scoring: paragraphs are worth 3x bullets, tables only 1 point (tables get
-    # attached greedily and can inflate TOC entries artificially).
-    seen: dict[str, int] = {}   # title_key → index in deduped
+    # ── Deduplicate sections (TOC entries vs actual body content) ──────────────
+    # Keep the version with the most narrative content.
+    # Scoring: paragraphs 3×, bullets 2×, table 1 point
+    seen_titles: dict[str, int] = {}
     deduped: list[dict] = []
     for sec in sections:
         key = sec.get("title", "").strip().lower()
-        score = len(sec.get("paragraphs", [])) * 3 + len(sec.get("bullets", [])) * 2 + (1 if sec.get("table") else 0)
-        if key in seen:
-            old_score = (len(deduped[seen[key]].get("paragraphs", [])) * 3
-                         + len(deduped[seen[key]].get("bullets", [])) * 2
-                         + (1 if deduped[seen[key]].get("table") else 0))
+        score = (len(sec.get("paragraphs", [])) * 3
+                 + len(sec.get("bullets", [])) * 2
+                 + (1 if sec.get("table") else 0))
+        if key in seen_titles:
+            old_idx = seen_titles[key]
+            old_score = (len(deduped[old_idx].get("paragraphs", [])) * 3
+                         + len(deduped[old_idx].get("bullets", [])) * 2
+                         + (1 if deduped[old_idx].get("table") else 0))
             if score > old_score:
-                # Replace with better content — but keep the table from whichever had it
                 better = dict(sec)
-                if not better.get("table") and deduped[seen[key]].get("table"):
-                    better["table"] = deduped[seen[key]]["table"]
-                deduped[seen[key]] = better
+                # Preserve table from whichever had it
+                if not better.get("table") and deduped[old_idx].get("table"):
+                    better["table"] = deduped[old_idx]["table"]
+                deduped[old_idx] = better
         else:
-            seen[key] = len(deduped)
+            seen_titles[key] = len(deduped)
             deduped.append(sec)
 
-    # ── Sort sections by numeric prefix so they appear in document order ───────
-    # e.g. "1. MCP" → "2. Nvidia GTC" → "3. OpenAI" regardless of which appeared
-    # first in the parser (TOC vs body).
+    # ── Sort sections by numeric prefix (document order) ──────────────────────
     def _sec_sort_key(s: dict) -> tuple:
         m = re.match(r"^(\d+)", s.get("title", ""))
         return (int(m[1]), s.get("title", "")) if m else (999, s.get("title", ""))
 
     deduped.sort(key=_sec_sort_key)
     sections = deduped
+
+    # ── focus_intro post-processing ───────────────────────────────────────────
+    # If focus_intro still looks like a topic title list (has " + " secondary topics),
+    # has a dangling section header, or is an incomplete sentence (no terminal punctuation),
+    # fall back to the first paragraph of the first section as a proper narrative intro.
+    _intro_needs_replacement = (
+        focus_intro and (
+            re.search(r'\+\s*(?:Viral App|Industry|Apple|Mistral|Samsung|OpenAI|Google)', focus_intro, re.I)
+            or re.search(r'MAIN TOPIC|INDUSTRY FLASH', focus_intro)
+            or not re.search(r'[.!?]$', focus_intro.rstrip())
+        )
+    )
+    if _intro_needs_replacement:
+        for sec in sections:
+            if sec.get("paragraphs"):
+                focus_intro = sec["paragraphs"][0]
+                break
+
+    # ── Validation ────────────────────────────────────────────────────────────
+    warnings = []
+    if not issue:
+        warnings.append("'issue' number not found — check PDF header for 'Issue #N' or 'Edition #N'")
+    if not viral_app:
+        warnings.append("'viral_app' not found — check for a 'Viral App Spotlight' section")
+    if not practical_takeaway:
+        warnings.append("'practical_takeaway' not found — check for 'Key Takeaways' or 'Practical Takeaway' section")
+    if not sections:
+        warnings.append("No content sections found — PDF structure may have changed")
+    if warnings:
+        print(f"   ⚠️  Validation warnings for {pdf_path.name}:")
+        for w in warnings:
+            print(f"      • {w}")
+    else:
+        print(f"   ✅  Validation passed — all required fields present")
 
     return {
         "date":               date_str,
@@ -627,9 +989,12 @@ def main():
         entry["display_date"] = dt.strftime("%B %-d, %Y")
 
     print(f"   Date:     {entry['display_date']}")
+    print(f"   Issue:    #{entry.get('issue', '?')}")
     print(f"   Title:    {entry.get('title', '(untitled)')[:60]}")
     print(f"   Sections: {len(entry.get('sections', []))}")
     print(f"   Viral:    {entry.get('viral_app', {}).get('name', 'none')}")
+    print(f"   Stats:    {len(entry.get('key_stats', []))} entries")
+    print(f"   Takeaway: {'✅' if entry.get('practical_takeaway') else '❌ missing'}")
 
     # ── Merge into JSON ───────────────────────────────────────────────────────
     print("📝  Updating learnings.json …")
