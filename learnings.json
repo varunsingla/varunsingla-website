@@ -8,16 +8,125 @@
     {
       "date": "2026-03-28",
       "display_date": "March 28, 2026",
-      "title": "• 90%+ of assigned IT cases resolved by the AI without escalation.",
-      "focus_intro": "",
+      "issue": "#8",
+      "title": "AGENTIC AI IN PRODUCTION + THE AGENT ECONOMY",
+      "focus_intro": "After years of pilots, enterprise agentic AI has crossed the production threshold. And the same week agents are resolving 90%+ of IT tickets autonomously, Stripe launches the Machine Payments Protocol — so those agents can now pay for the tools they need, without human approval.",
       "viral_app": {
-        "name": "• Shopify Agentic Storefronts Merchants can now sell product",
-        "description": ""
+        "name": "Shopify Agentic Storefronts",
+        "description": "Merchants can now sell products directly inside ChatGPT, Google AI Mode, Microsoft Copilot, and the Gemini app — without the customer ever leaving the AI chat interface. Powered by MCP + MPP. Merchants report 3x higher conversion vs. traditional search-based discovery."
       },
-      "sections": [],
+      "sections": [
+        {
+          "title": "1. Agentic AI in Production — 3 Case Studies",
+          "paragraphs": [
+            "Gartner now projects 80% of enterprise applications will embed AI agents by end of 2026. Three deployments define what 'production-ready' actually looks like.",
+            "Case Study 1 — Salesforce Agentforce: Launched in late 2024, Agentforce has become the fastest-growing organic product in Salesforce's 25-year history. By Q3 FY2026: 18,500 total customers (9,500+ on paid plans), 330% YoY ARR growth with combined Agentforce + Data 360 ARR hitting ~$1.4B, 70% quarter-over-quarter growth in accounts running Agentforce in production, and 50%+ of bookings from existing customers upgrading — validating real ROI. Key Insight: The enterprise is no longer asking 'should we use agents?' — they're asking 'how fast can we expand?'",
+            "Case Study 2 — ServiceNow Autonomous Workforce: Following its $2.85B acquisition of Moveworks, ServiceNow launched a suite of AI specialists that think and act end-to-end. The Level 1 Service Desk AI Specialist resolves IT tickets (password resets, software provisioning, network troubleshooting) autonomously — no human in the loop. Results: 90%+ of assigned IT cases resolved without escalation, 99% faster resolution vs. human handling. Key Insight: Start with high-volume, rule-bound workflows where failure risk is low and ROI is immediate. L1 IT support is the template — L2, HR, and Finance agents are next.",
+            "Case Study 3 — JP Morgan AI for Financial Workflows: JP Morgan applies agents to high-volume, repetitive financial workflows at scale. COiN reviews 12,000 commercial credit agreements in seconds — work that previously took 360,000 human-hours per year. LOXM is an AI agent for equity trading that learns from billions of historical trades. DocLLM is an in-house LLM fine-tuned for financial documents. 70,000+ employees now have access to LLM Suite. Key Insight: JP Morgan's COiN is the canonical 'AI ROI proof point' — find your highest-volume repetitive knowledge task and build an agent for it first."
+          ],
+          "bullets": [
+            "Start with high-volume, rule-bound tasks — L1 IT support, contract review, data extraction. Failure risk is contained; ROI is immediate.",
+            "Human-on-the-loop, not out-of-the-loop — agents escalate edge cases; humans approve exceptions. Trust is built incrementally.",
+            "Instrument everything — every agent decision is logged with prompt + model version + tool calls. You cannot govern what you cannot trace.",
+            "Measure in business units, not AI metrics — not accuracy%, but hours saved, tickets resolved, contracts reviewed.",
+            "Expand from the base — ServiceNow's 70% QoQ growth comes from landing with one agent, proving value, then expanding to adjacent workflows."
+          ],
+          "table": {
+            "headers": [
+              "Stat",
+              "Value",
+              "Source"
+            ],
+            "rows": [
+              [
+                "Enterprise apps with AI agents by EOY 2026",
+                "80%",
+                "Gartner"
+              ],
+              [
+                "Salesforce Agentforce customers",
+                "18,500",
+                "Salesforce Q3 FY2026"
+              ],
+              [
+                "IT tickets resolved autonomously",
+                "90%+",
+                "ServiceNow"
+              ],
+              [
+                "JP Morgan hours saved annually (COiN)",
+                "360,000 hrs → seconds",
+                "JP Morgan"
+              ],
+              [
+                "Projected agentic economy GDP by 2030",
+                "$3–5T",
+                "Industry estimate"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "2. The Agent Economy — AI Agents Start Spending Money",
+          "paragraphs": [
+            "Until now, AI agents could think, plan, and act — but they couldn't pay. That changed on March 18, 2026, when Stripe and Tempo launched the Machine Payments Protocol (MPP): an open standard (Apache 2.0) that gives AI agents a native way to transact autonomously, from micropayments to multi-service orchestration. Think of it as HTTP for money.",
+            "MPP lets agents request, authorise, and settle payments programmatically with any service, API, MCP server, or HTTP endpoint. Shared Payment Tokens (SPTs) give agents a delegated payment credential scoped to specific limits (merchant, amount, time window) — no private keys exposed. Multi-rail support covers stablecoins (Tempo L1), fiat cards (Visa), and Bitcoin Lightning (Lightspark) under one protocol. 100+ services were in the MPP directory at launch. Major partners include Anthropic, OpenAI, Visa, Mastercard, DoorDash, Shopify, Ramp, Revolut, and Standard Chartered.",
+            "Related March 2026 developments: Nevermined enabled 140M autonomous agent payments in 2025 via delegated credit cards. MoonPay's Open Wallet Standard (Mar 23) lets agents hold value and sign transactions across every major blockchain. Circle Nanopayments enables machine-to-machine payments as small as fractions of a cent. Visa 'Agentic Ready' Programme rolled out across Europe. ChatGPT Instant Checkout bridges consumer AI and agent commerce.",
+            "Why this matters: MPP completes the agentic stack. Agents can now autonomously pay for API calls, compute, data, and services — within human-set limits. This unlocks agent-to-agent commerce: Agent A (orchestrator) pays Agent B (specialist) for a task, which pays Agent C for data — all without human intervention."
+          ],
+          "table": {
+            "headers": [
+              "New Business Model",
+              "How It Works",
+              "Example"
+            ],
+            "rows": [
+              [
+                "Pay-per-call APIs",
+                "Agent pays per API call instead of monthly subscription",
+                "Agent pays $0.001/query to a legal DB"
+              ],
+              [
+                "Agent-to-Agent Commerce",
+                "Orchestrator agents pay specialist agents for tasks",
+                "Research agent pays a 'math solver' agent"
+              ],
+              [
+                "Autonomous SaaS",
+                "Agents subscribe, renew, and cancel SaaS tools automatically",
+                "Agent manages its own Perplexity subscription"
+              ],
+              [
+                "Micro-content markets",
+                "Agents pay by the second for streamed data",
+                "Agent pays per-second for live market data"
+              ],
+              [
+                "Machine workforce billing",
+                "Businesses charge per-task completed, not per-seat",
+                "ServiceNow bills per IT ticket resolved"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3. Connecting the Dots — The Full Agentic Stack is Now Complete",
+          "paragraphs": [
+            "Today's two topics are deeply connected. The same week Salesforce reports 18,500 Agentforce customers in production and ServiceNow's agents resolve 90%+ of IT tickets autonomously, Stripe launches MPP so those same agents can pay for the tools they need — without a human approving each transaction.",
+            "MCP (Mar 22) gives agents tools and data. A2A (Mar 23) enables agent-to-agent communication. Multi-Agent Patterns (Mar 24) define orchestration — and MPP adds the economic layer: Orchestrator agents now pay Worker agents via MPP/SPTs. Safety + Governance (Mar 27) trust boundaries map directly to SPTs: humans set payment limits, agents operate within them automatically. Observability (Mar 25) OTEL tracing now covers payments — every agent transaction is traced (who paid, why, how much).",
+            "MCP (tools) + A2A (inter-agent comms) + MPP (payments) + AG-UI (human interface) = a fully autonomous agent can discover, communicate, transact, and report — all autonomously. The full agentic stack is complete."
+          ]
+        }
+      ],
       "key_stats": [
-        "18,500"
-      ]
+        "18,500 Salesforce Agentforce customers (330% YoY ARR growth)",
+        "90%+ IT tickets resolved autonomously by ServiceNow",
+        "360,000 human-hours/year → seconds (JP Morgan COiN)",
+        "140M agent payments completed in 2025 ($0.31 avg transaction)",
+        "100+ services in MPP directory at launch",
+        "$3–5T projected agentic economy GDP by 2030"
+      ],
+      "practical_takeaway": "The production playbook is proven: start with high-volume, rule-bound tasks (L1 IT, contract review), instrument everything, and measure in business units not AI metrics. Agents now have wallets via MPP + SPTs — the machine economy is no longer theoretical. The full agentic stack (MCP + A2A + MPP + AG-UI) is complete."
     },
     {
       "date": "2026-03-27",
@@ -193,6 +302,31 @@
         "3.1 Pro -- 1M Token Context The 1 million",
         "38,000+ GitHub Stars"
       ]
+    },
+    {
+      "date": "2026-03-25",
+      "display_date": "MARCH 25, 2026",
+      "title": "Production Multi-Agent",
+      "focus_intro": "",
+      "viral_app": {
+        "name": "OF THE DAY TRENDING · MARCH 2026 Genspark AI Workspace 3",
+        "description": ""
+      },
+      "sections": [],
+      "key_stats": [
+        "40% Enterprise apps with AI agents by EOY 2026 (Gartner)",
+        "15% Overhead from deep-trace tools (Langfuse vs LangSmith)",
+        "21K+ GitHub stars for Langfuse open-source observability",
+        "25-35%",
+        "20-30%",
+        "10-20%",
+        "$1.6B Valuation",
+        "$200M ARR (11 months)",
+        "631+ App integrations",
+        "$545M Total funding",
+        "$300M Series B Raised earlier in 2026; $200M ARR reached in just 11 months -- fastest in AI SaaS history"
+      ],
+      "tomorrow_preview": "Agentic AI Safety & Governance -- Trust boundaries between agents, prompt injection attacks, sandboxing strategies, and how enterprises are building compliance frameworks for autonomous agent fleets"
     },
     {
       "date": "2026-03-24",
