@@ -6,6 +6,54 @@
   },
   "learnings": [
     {
+      "date": "2026-03-29",
+      "display_date": "MARCH 29, 2026",
+      "title": "Building Your First AI Agent",
+      "focus_intro": "",
+      "viral_app": {
+        "name": "OF THE DAY MiroFish GitHub Trending #1 · Simulated Worlds wit",
+        "description": ""
+      },
+      "sections": [
+        {
+          "title": "MAIN TOPIC",
+          "paragraphs": [
+            "Building Your First AI Agent: Step-by-Step You've learned the theory -- orchestration patterns, memory architecture, safety, payments. Today we wire it all together into a real, working agent. We'll use a practical example: a Research Agent that can search the web, read documents, remember past sessions, and report findings -- the kind of agent you could actually ship.",
+            "Framework choice is the most consequential early decision. Get it wrong and you'll fight your tool for months. Here's the honest comparison across the top 6 in production today: Varun's Recommendation: Start with LangGraph for maximum production readiness and control, or CrewAI if you want something working in under an hour. LangGraph has steeper initial learning curve but pays back in",
+            "Connecting Tools via Model Context Protocol MCP is the USB-C of AI agents -- a standard plug that lets any agent use any tool without custom integration code.",
+            "Minimal LangGraph + MCP wiring (pseudocode concept): from langchain_mcp import MCPClient from langgraph.graph import StateGraph mcp = MCPClient('brave-search') # connects to MCP server tools = mcp.get_tools() # discovers available tools graph = StateGraph(AgentState) graph.add_node('agent', llm.bind_tools(tools)) graph.add_node('tools', ToolNode(tools)) graph.add_conditional_edges('agent', route_to_tools_or_end) agent = graph.compile(checkpointer=MemorySaver())",
+            "Memory is what separates a stateless chatbot from a true agent. Here's how to implement each layer progressively:",
+            "Agents that act in the world can cause real harm if misconfigured. Ship every agent with these protections:",
+            "Here's how all the layers you've learned over the past 14 days fit together into one coherent production agent:",
+            "MiroFish GitHub Trending #1 · Simulated Worlds with AI Agents What it is: Feed MiroFish real-world information -- a news article, a policy draft, a financial signal -- and it spins up a simulated world populated by thousands of AI agents, each with their own personality, long-term memory, and behavioural logic. The agents interact with each other and with the world, surfacing emergent dynamics you wouldn't",
+            "Why it's going viral: It's the most tangible demo of multi-agent simulation at scale. Policy researchers are using it to model how a regulation change might ripple through a market. Game designers are using it to generate living NPC ecosystems. Economists are using it to simulate consumer behaviour. The GitHub repo went from zero to trending #1",
+            "Building an agent is additive: Start minimal -- LLM + 1 tool + working memory. Add layers only when you hit a real constraint. Premature complexity is the #1 agent failure mode. Framework choice is sticky: LangGraph gives you control; CrewAI gives you speed. For your first agent, use CrewAI. For your second, consider LangGraph. MCP is the great equaliser: With MCP, a solo developer can wire 50+ tools in a day. Without it, that's",
+            "Memory = agent identity: An agent without cross-session memory is a stateless chatbot. Redis + vector DB gives your agent a sense of 'knowing you'. Guardrails are not optional: The NASA Mars deployment works because every action is bounded. Your 5 agent will run unsupervised -- budget caps, loop detection, and kill switches are not features, they're the The full stack is now real: MCP + A2A + MPP + AG-UI = complete autonomous agent. Santander's payment + NASA's rover navigation are proof it's production-grade, not research.",
+            "Days 1-3: LLM foundations, multimodal AI, vibe coding (Codex, Lovable, Replit) Days 4-6: MCP architecture (Host/Client/Server, JSON-RPC, primitives, 2026 roadmap) Day 7: A2A Protocol (Agent Card, Task Lifecycle, Transport, Security) + A2A vs MCP Day 8: Apple Siri AI relaunch, Mistral Small 4, Samsung $73B, US AI Accountability Act Day 9: Multi-Agent Orchestration (Sequential, Parallel, Orchestrator-Worker, Hierarchical) Day 10: GPT-5.4 vs DeepSeek V4, AMI Labs $1.03B (Yann LeCun), OpenAI Codex App (2M users) Day 11: Production Multi-Agent Design -- failure handling, observability, shared memory, cost optimisation Day 12: Genspark AI Workspace 3.0 (MoA, $1.6B, $200M ARR), 5 agent communication protocols Day 13: Agentic AI Safety & Governance -- prompt injection, trust boundaries, sandboxing, EU AI Act Day 14: Agentic AI in Production (Agentforce, ServiceNow, JP Morgan COiN) + Agent Economy (MPP, SPTs, Shopify) Day 15 (Today): Building Your First Agent + Mythos leak + NASA Mars Claude + Europe's first AI payment Tomorrow: Advanced Agent Patterns -- Tool Use Optimisation, Agentic RAG, Multi-Modal Agents, and Real-World Agent Keep up the momentum, Varun. You're now in the top 1% of professionals who understand how to actually build production agentic"
+          ],
+          "table": {
+            "headers": [
+              "6",
+              "5",
+              "3",
+              "#1"
+            ],
+            "rows": [
+              [
+                "Frameworks Compared",
+                "Agent Stack Layers",
+                "Breaking Milestones",
+                "Viral App Today"
+              ]
+            ]
+          }
+        }
+      ],
+      "key_stats": [
+        "100% Enterprise Expansion Intent"
+      ]
+    },
+    {
       "date": "2026-03-28",
       "display_date": "March 28, 2026",
       "issue": "#8",
