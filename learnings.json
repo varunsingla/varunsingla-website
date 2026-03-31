@@ -6,6 +6,96 @@
   },
   "learnings": [
     {
+      "date": "2026-03-30",
+      "display_date": "March 30, 2026",
+      "title": "Advanced Agent Patterns: Agentic RAG, Tool Optimisation, Multi-Modal Agents &",
+      "focus_intro": "MCP SDK Downloads MCP Servers MCP Growth (16mo) GitLab Duo Users",
+      "viral_app": {
+        "name": "OF THE DAY: DEALSEEK 7 KEY TAKEAWAYS & WHAT'S NEXT • Agentic",
+        "description": ""
+      },
+      "sections": [
+        {
+          "title": "Real-World Debugging",
+          "paragraphs": [
+            "MCP SDK Downloads MCP Servers MCP Growth (16mo) GitLab Duo Users",
+            "that separate toy demos from real-world systems. You will learn: (1) Agentic RAG - how agents now control their own retrieval, (2) Tool Use Optimisation - making agents faster and cheaper, (3) Multi-Modal Agents - vision + audio + text in one loop, and (4) Real-World Agent Debugging - tracing failures in non-deterministic systems. Plus: Samsung's agentic browser, GitLab's 7-agent DevOps platform, and",
+            "1 AGENTIC RAG: AGENTS THAT CONTROL THEIR OWN Traditional RAG (Retrieval-Augmented Generation) follows a rigid pipeline: embed the query, retrieve top-k chunks, stuff them into a prompt, and generate. It works for simple questions but collapses on multi-hop by putting an AI agent in control of the entire retrieval process. The Core Shift: From Pipeline to Agent Loop In Agentic RAG, the LLM is no longer a passive consumer of retrieved chunks. Instead, it becomes an active decision-maker that plans what to retrieve, evaluates results, and iterates until it has enough grounded evidence to answer. Think of it as giving the agent an 'open-book exam' where it decides which books to open, which pages to read, and when it has studied enough. A-RAG: The Breakthrough Framework (Feb 2026) A-RAG (published February 2026) is the first framework to achieve true agentic autonomy in retrieval by satisfying three principles simultaneously: Key Insight: Information in a corpus is inherently multi-granular - from fine-grained keyword signals to coarser sentence-level and chunk-level representations. A-RAG exposes all three granularities as tools, letting the agent adaptively choose the right level for each sub-question. 2 TOOL USE OPTIMISATION: MAKING AGENTS FASTER The biggest cost and latency driver in production agents is not the LLM itself - it is unnecessary, redundant, or poorly structured tool calls. Tool use optimisation is the discipline of minimising tool invocations while maximising task completion quality.",
+            "Real-World Pattern: The \"Tool Budget\" Guardrail Production systems now implement tool budgets alongside token budgets. For each agent task, you define: max tool calls per turn (e.g., 5), max total tool calls per task (e.g., 20), max cost per tool invocation (e.g., $0.01), and a total tool-cost ceiling. If the agent exceeds its tool budget, it must either complete with current information or escalate to a human. This prevents runaway costs from agent loops while maintaining 3 MULTI-MODAL AGENTS: VISION + AUDIO + TEXT IN Multi-modal agents can perceive and act across multiple data types - text, images, audio, video, and structured data - within a single reasoning loop. This is not just about 'understanding images'; it is about agents that can watch a video, listen to a call, read a document, and take coordinated action across all",
+            "Browser for Windows. Understands page context, searches across tabs, finds moments inside videos, and takes action (e.g., 'create a 4-day Seoul trip plan from this page'). Available in US and South",
+            "4 REAL-WORLD AGENT DEBUGGING: TRACING THE",
+            "Agent debugging is fundamentally different from traditional software debugging. Agents are non-deterministic: the same input can produce different tool call sequences, different reasoning chains, and different outputs. There are no stack traces for 'the agent hallucinated a customer ID' or 'the agent called the wrong API because it misunderstood context'. The 5 Agent Failure Modes You Must Detect",
+            "Pro Tip: OpenTelemetry (OTEL) is emerging as the standard telemetry layer for agents. Instrument your agent with OTEL spans for each LLM call, tool invocation, and memory access. This gives you distributed tracing across multi-agent systems, regardless of which",
+            "The Model Context Protocol has reached 97 million monthly SDK downloads (TypeScript + Python), up from 2 million at launch in Nov 2024 - a staggering 4,750% growth in 16 months. The ecosystem now includes 5,800+ community and enterprise servers. Every major AI provider ships MCP-compatible tooling. MCP was donated to the Linux Foundation's Agentic AI Foundation in Dec 2025, making it",
+            "Samsung Agentic Browser Launches on Windows Samsung Browser for Windows exits beta (Mar 26) with a Perplexity-powered AI assistant that understands page context, searches across tabs, finds video moments, and takes agentic action. This is the first major browser to embed agentic AI natively rather than as an extension. Currently available in US",
+            "GitLab Duo Agent Platform Goes GA (v18.8) GitLab 18.8 brings 7 AI agents for DevOps automation: Planner, Security Analyst, Code Reviewer, and more. Agents chain together in 'Flows' for complex automation (e.g., issue-to-merge-request). 1.5M+ developers using Duo agents report 30% CI/CD time reduction. Usage-based billing via GitLab Credits",
+            "Gartner: 1,445% Surge in Multi-Agent System Inquiries Gartner reports a 1,445% increase in enterprise inquiries about multi-agent AI systems from Q1 2024 to Q2 2025, signalling massive enterprise interest. The transition from 'intelligence to agency' - from models that know things to systems that change things - defines the 2025-to-2026 leap.",
+            "GitLab's Duo platform all demonstrate agents that perceive and act across multiple modalities in",
+            "With 5,800+ servers and vendor-neutral governance under the Linux Foundation, MCP is the TCP/IP of"
+          ],
+          "bullets": [
+            "Samsung Agentic Browser (launched Mar 26): Perplexity-powered AI assistant built into Samsung",
+            "Anthropic Computer Use: Claude can now grab your mouse - pointing, clicking, scrolling, and navigating your screen to finish tasks when no direct API integration exists. True multi-modal agency: sees the screen, reasons about UI, acts physically.",
+            "GitLab Duo Agent Platform (v18.8, GA): Seven AI agents automate DevOps from planning to security. The Planner Agent structures tasks via RICE/MoSCoW; the Security Analyst triages vulnerabilities in natural language. 1.5M+ developers now using Duo, reporting 30% CI/CD time",
+            "Audio-Aware Customer Service: Agents trained to detect vocal intonation, stress levels, and hesitation in real-time calls. Visual agents analyse facial micro-expressions in video support. Enables",
+            "Agentic RAG is the new standard - Traditional RAG is being replaced by agent-controlled retrieval that dynamically chooses strategies, iterates, and self-corrects. A-RAG's hierarchical tools (keyword +",
+            "Tool optimisation is a first-class discipline - Description engineering, caching, batching, routing, and fallback chains can cut agent costs by 50-70% while improving quality. Implement tool budgets",
+            "Multi-modal agents have arrived - Samsung's agentic browser, Anthropic's Computer Use, and",
+            "Agent debugging requires new tooling - Non-deterministic systems need specialised observability: trace-level analysis, tool call auditing, and simulation-based testing. OpenTelemetry is the emerging",
+            "MCP at 97M downloads is infrastructure - The Model Context Protocol is no longer experimental. beyond accuracy (task completion rate, cost efficiency, latency budgets, safety scores), the emerging agent leaderboards, and how enterprises are A/B testing agent versions in production."
+          ],
+          "table": {
+            "headers": [
+              "Dimension",
+              "Traditional RAG",
+              "Agentic RAG"
+            ],
+            "rows": [
+              [
+                "Retrieval Strategy",
+                "Fixed: embed query, top-k similarity",
+                "Dynamic: agent chooses keyword, semantic, or chunk-level"
+              ],
+              [
+                "Iteration",
+                "Single-shot (one retrieval pass)",
+                "Multi-turn loop until answer is grounded"
+              ],
+              [
+                "Tool Use",
+                "None (pipeline only)",
+                "Agent calls search, SQL, APIs, calculators"
+              ],
+              [
+                "Multi-Source",
+                "Single vector store",
+                "Orchestrates across DBs, APIs, docs, web"
+              ],
+              [
+                "Self-Correction",
+                "No (garbage in, garbage out)",
+                "Yes: evaluates, re-queries, filters noise"
+              ],
+              [
+                "Cost",
+                "Low (1 LLM call)",
+                "Higher (multiple calls, but far more accurate)"
+              ]
+            ]
+          }
+        }
+      ],
+      "key_stats": [
+        "30-50% reduction in wrong-tool calls",
+        "40-60% fewer redundant API calls",
+        "20-40% token savings",
+        "90%+ tool success rate",
+        "2026 State of Art",
+        "600% download surge in March 2026, climbed to #5 on App Store"
+      ],
+      "tomorrow_preview": "(Day 11): Agent Evaluation & Benchmarking - How to measure agent quality beyond accuracy (task completion rate, cost efficiency, latency budgets, safety scores), the emerging agent leaderboards, and how enterprises are A/B testing agent versions in production"
+    },
+    {
       "date": "2026-03-29",
       "display_date": "MARCH 29, 2026",
       "title": "Building Your First AI Agent",
