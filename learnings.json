@@ -6,6 +6,103 @@
   },
   "learnings": [
     {
+      "date": "2026-04-01",
+      "display_date": "April 1, 2026",
+      "issue": 11,
+      "title": "Enterprise Agentic AI -- CoE Strategy, Shadow IT & ROI",
+      "focus_intro": "shadow IT risks, and TCO/ROI measurement for AI agents. This is where AI theory meets board-level",
+      "viral_app": {
+        "name": "Spotlight: AlphaEvolve by Google DeepMind What Makes AlphaEvo",
+        "description": ""
+      },
+      "sections": [
+        {
+          "title": "Deep Dive: Agentic AI in the Enterprise",
+          "paragraphs": [
+            "shadow IT risks, and TCO/ROI measurement for AI agents. This is where AI theory meets board-level",
+            "1 · Why Enterprise AI Agent Deployment Is Different Consumer AI agents fail safely -- worst case is a bad response. Enterprise agents fail expensively: misrouted payments, leaked IP, compliance violations, cascading system outages. The enterprise context adds four hard constraints that consumer products ignore:",
+            "2 · The AI Center of Excellence (CoE) Blueprint A CoE is the organisational unit that governs, enables, and scales AI agents across the enterprise. Without it, 70%+ of agentic pilots fail to reach production (Gartner 2026). Here is the proven five-layer deployment",
+            "3 · Shadow AI -- The #1 Enterprise Risk of 2026 Shadow AI = employees using personal GenAI tools outside IT governance. Just as shadow IT created unmanaged cloud sprawl in the 2010s, shadow AI is creating unmanaged agent sprawl right now. The",
+            "ROI is where agentic AI projects live or die at the board level. The 2026 benchmark: buy/configure = 8-18 month payback; custom build = 18-36 months. Here is the full measurement framework:",
+            "(up from <5% at start of year). Organisations deploying with strong governance and clear",
+            "Viral App Spotlight: AlphaEvolve by Google DeepMind What Makes AlphaEvolve Significant for Agentic AI",
+            "Model Watch: Frontier AI Landscape -- April 2026 Key Insight: No Single Model Wins Everything The 2026 frontier is multi-polar. Smart enterprises use model routing: nano models for classification, mid-tier for generation, frontier (Mythos/GPT-5.4/Gemini 3.1) only for complex reasoning. This 50-70% cost reduction principle is now table stakes for any production agentic system. Key Takeaways for Varun -- Today's 5 Things Claude Mythos is real and imminent -- a 'step change' agent with unprecedented cybersecurity capability. Anthropic is expanding API access now. This is the model anchoring",
+            "AlphaEvolve shows that AI agents can now advance hard science autonomously -- not just automate tasks. 'Discovery agents' are the next frontier after 'task agents'. Watch this Enterprise AI ROI is real but requires a CoE + governance + change management trio. Skip any of the three and you'll be below target. Buy/configure beats custom build for speed: 8-18",
+            "Shadow AI is the #1 enterprise risk of 2026. Only 24.4% of orgs see their agent-agent traffic. Namespace isolation at infra level (not app level) is the correct defence -- not policy Oracle ($50B infra), Snowflake × OpenAI ($200M), neuromorphic chips -- the infrastructure layer for the agentic AI economy is being built right now. The next 18 months will determine which platforms become foundational and which become obsolete."
+          ],
+          "bullets": [
+            "Governance -- who authorised this agent? what can it touch?",
+            "Auditability -- every action must be traceable for compliance (EU AI Act Aug 2026)",
+            "Integration complexity -- agents must connect to legacy ERPs, CRMs, databases",
+            "Change management -- humans must trust and adopt agents or they sit idle",
+            "Microsoft RSAC 2026: 'Agent 365' gives IT, security, and business teams full visibility into agent-agent communications. Pair it with namespace isolation at infra level (not app",
+            "Do This n Think This Way",
+            "Appoint AI Champions in each business n Business leaders OWN the AI strategy",
+            "Run 'Agent Fluency' workshops -- not just n IT/Security are enablers, not gatekeepers",
+            "Show quick wins: automate 1 painful task n Use a 'safe experimentation' sandbox per",
+            "Celebrate agent-human collaboration n Tie agent KPIs to business outcomes, not",
+            "Create a feedback loop: employees flag n Conduct quarterly agent audits -- retire",
+            "Task automation rate -- % of target tasks handled without human intervention (target >60%)",
+            "Time-to-resolution -- baseline vs agent-assisted (ServiceNow: 99% faster for IT tickets)",
+            "Cost per transaction -- human cost vs agent cost (JP Morgan COiN: 360K hrs → seconds)",
+            "Error / escalation rate -- hallucinations, failed tasks, human escalations per 1,000 runs",
+            "Employee NPS -- are staff actually using agents or routing around them (shadow AI proxy)?",
+            "Agent utilisation -- % of agent capacity consumed (idle agents = wasted TCO)",
+            "Gartner 2026: 40% of enterprise apps will embed task-specific AI agents by end of 2026",
+            "It is not just a chatbot -- it evaluates and evolves its own outputs using automated verifiers",
+            "Combines LLM creativity (Gemini) with evolutionary search -- a genuinely new agent architecture",
+            "Operates in a human-out-of-the-loop mode for well-defined optimisation problems",
+            "Demonstrates that agents can advance hard science and mathematics, not just automate",
+            "Sets the template for 'discovery agents' -- the next category after 'task agents'",
+            "Tomorrow's Suggested Topic: Agent Evaluation & Benchmarking -- How to measure whether your AI agents are actually getting smarter. Covers LMSYS, ARC-AGI-2, custom evals, regression testing, and the emerging standard of continuous agent evaluation in"
+          ],
+          "table": {
+            "headers": [
+              "",
+              "• Top Stories",
+              "5 major breaking developments"
+            ],
+            "rows": [
+              [
+                "• Viral App Spotlight",
+                "",
+                "AlphaEvolve (Google DeepMind)"
+              ],
+              [
+                "• Deep Dive",
+                "",
+                ""
+              ],
+              [
+                "",
+                "",
+                "Enterprise AI: CoE, Shadow IT & ROI"
+              ],
+              [
+                "• Model Watch",
+                "",
+                "Claude Mythos -- 'step-change' incoming"
+              ],
+              [
+                "• Market Signal",
+                "",
+                "Gartner: 40% enterprise apps embed agents by end 2026"
+              ]
+            ]
+          }
+        }
+      ],
+      "key_stats": [
+        "2026 Benchmarks",
+        "$0.002-$0.06 per 1K tokens",
+        "$50K-$500K one-time",
+        "$20K-$100K/year",
+        "18-month horizon",
+        "$200K-$2M depending on scope",
+        "397B MoE on MacBook Pro 48GB, multimodal"
+      ]
+    },
+    {
       "date": "2026-03-30",
       "display_date": "March 30, 2026",
       "title": "Advanced Agent Patterns: Agentic RAG, Tool Optimisation, Multi-Modal Agents &",
