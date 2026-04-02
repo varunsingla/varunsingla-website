@@ -6,6 +6,292 @@
   },
   "learnings": [
     {
+      "date": "2026-04-02",
+      "display_date": "April 2, 2026",
+      "title": "April 2, 2026 | Day 12",
+      "focus_intro": "",
+      "sections": [
+        {
+          "title": "1. Why Agent Evaluation Is Now Mission-Critical",
+          "paragraphs": [
+            "According to LangChain's 2026 State of AI Agents report, 57% of organisations now have agents in production, yet quality is cited as the #1 barrier by 32% of teams. Shipping without evals means flying blind: agents degrade silently, hallucinate on edge cases, and drift from business goals with no early-warning system. Think of agent evals as the equivalent of unit tests + integration tests + load tests -- but for intelligence. The Three Hard Problems of Agent Evaluation:"
+          ],
+          "bullets": [
+            "Non-determinism -- same input, different outputs every run. Traditional assert-based tests break.",
+            "Long horizon tasks -- a single agent run may involve 30+ tool calls; where exactly did it go wrong?",
+            "Emergent failures -- context drift, memory poisoning, and silent tool hallucination are invisible without"
+          ],
+          "table": {
+            "headers": [
+              "Eval Type",
+              "When",
+              "What It Checks",
+              "Tool"
+            ],
+            "rows": [
+              [
+                "Offline / Dev Evals",
+                "Before deploy",
+                "Accuracy, task completion, regression",
+                "DeepEval, Braintrust"
+              ],
+              [
+                "CI/CD Evals",
+                "On every PR",
+                "No regressions vs. golden dataset",
+                "Braintrust GitHub Action"
+              ],
+              [
+                "Online / Prod Evals",
+                "Live traffic",
+                "Real-world drift, quality decay",
+                "Langfuse, LangSmith, Arize"
+              ],
+              [
+                "Human Evals",
+                "High-stakes",
+                "Tone, trust, contextual appropriateness",
+                "LangSmith annotation queues"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "2. The Agent Eval Taxonomy",
+          "paragraphs": [
+            "Leading platforms like DeepEval and Maxim AI evaluate agents across three distinct layers simultaneously:"
+          ],
+          "bullets": [
+            "Multi-Layer Evaluation Architecture",
+            "Benchmark multiple LLM backends (GPT-5.4, Claude Mythos, Gemini 3.1) side-by-side",
+            "Measure latency, cost/token, accuracy per task type",
+            "Guides model routing: cheap nano for classification, frontier only for complex reasoning",
+            "Intent detection accuracy (does it understand the request?)",
+            "Tool selection precision -- does it pick the right tool? Correct arguments?",
+            "Memory retrieval fidelity -- does episodic/semantic memory return relevant context?",
+            "Multi-turn coherence -- does context hold across 10+ turns?",
+            "Task completion rate -- did the agent actually finish the job?",
+            "Faithfulness (RAG) -- are claims grounded in retrieved context?",
+            "Hallucination detection -- 50+ built-in metrics in DeepEval",
+            "Business KPI alignment -- cost per transaction, time-to-resolution"
+          ],
+          "table": {
+            "headers": [
+              "0.37%",
+              "0.26%",
+              "0.25%",
+              "100%",
+              "$2M"
+            ],
+            "rows": [
+              [
+                "Gemini 3.1 Pro (best AI score)",
+                "GPT-5.4",
+                "Claude Opus 4.6",
+                "Untrained Humans",
+                "Prize Pool"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "4. Benchmark Landscape 2026",
+          "paragraphs": [
+            "On March 25, 2026, the ARC Prize Foundation released ARC-AGI-3, the most ambitious AI benchmark ever created. Unlike static puzzle benchmarks, ARC-AGI-3 is fully interactive -- agents must explore video-game-like worlds with no instructions, no rules, no stated goals. They must figure out how each world works purely from",
+            "The sub-1% performance is not a bug in the benchmark -- it reveals a fundamental architectural gap. Current LLMs trained on vast static datasets cannot adapt to genuinely novel environments the way a human with zero prior context can. ARC Prize 2026 runs on Kaggle through November, with a $700K grand prize."
+          ],
+          "bullets": [
+            "BREAKING: ARC-AGI-3 Released -- Every Frontier Model Scores Below 1%"
+          ],
+          "table": {
+            "headers": [
+              "Benchmark",
+              "Focus",
+              "Human Baseline",
+              "Best AI (2026)"
+            ],
+            "rows": [
+              [
+                "ARC-AGI-3",
+                "Interactive novel reasoning",
+                "100%",
+                "0.37% (Gemini 3.1 Pro)"
+              ],
+              [
+                "LMSYS Arena",
+                "Human-preference (Elo)",
+                "~1500 Elo",
+                "Claude 4.6 / GPT-5.2 tied #1"
+              ],
+              [
+                "SWE-Bench V3",
+                "Real GitHub issue resolution",
+                "~90%",
+                "~72% (GPT-5.4)"
+              ],
+              [
+                "MMLU Pro",
+                "Academic knowledge",
+                "~89%",
+                "~91% (frontier models)"
+              ],
+              [
+                "AgentBench",
+                "Multi-task agent execution",
+                "~85%",
+                "~79% (Claude Mythos)"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "5. Eval Tooling -- The 2026 Stack",
+          "paragraphs": [
+            "Evaluating only the final answer misses how the agent got there. Trajectory eval scores every step in an agent's"
+          ],
+          "bullets": [
+            "Production Eval Patterns You Must Know",
+            "Curate ~200-500 representative input/output pairs from production logs",
+            "Run every PR through this dataset; block merges that degrade accuracy >2%",
+            "Amazon's teams built synthetic golden datasets from historical API invocation logs",
+            "Rule: any production failure becomes a permanent golden dataset entry",
+            "Use a frontier model (GPT-5.4 / Claude) to score outputs at scale -- 53.3% of teams use this",
+            "Write a scoring rubric prompt: 'Score on faithfulness 1-5. Output JSON {score, reasoning}'",
+            "Calibrate against human labels first -- LLM judges have political bias and length bias",
+            "G-Eval (DeepEval) and Braintrust's online scorer automate this in production",
+            "Was the right tool called with correct arguments?",
+            "Did the agent unnecessarily loop or retry?",
+            "Was cost/token budget respected at each decision point?",
+            "Was memory retrieved from the right tier (working vs. episodic vs. semantic)?"
+          ],
+          "table": {
+            "headers": [
+              "Tool",
+              "Type",
+              "Standout Feature",
+              "Best For"
+            ],
+            "rows": [
+              [
+                "DeepEval",
+                "OSS / pytest",
+                "50+ built-in metrics, CI-native",
+                "Dev teams who want pytest-style evals"
+              ],
+              [
+                "Braintrust",
+                "SaaS",
+                "$80M raise Feb 2026; full lifecycle platform",
+                "End-to-end: dataset → prod monitoring"
+              ],
+              [
+                "LangSmith",
+                "SaaS / OSS",
+                "Native LangGraph tracing, ~0% overhead",
+                "LangGraph / LangChain users"
+              ],
+              [
+                "Langfuse",
+                "OSS (MIT)",
+                "21K+ stars, OpenTelemetry-native",
+                "Self-hosted, GDPR compliance"
+              ],
+              [
+                "Maxim AI",
+                "SaaS",
+                "Simulation: test 100s of personas pre-launch",
+                "Enterprise product teams"
+              ],
+              [
+                "AWS AgentCore Eva",
+                "lsManaged",
+                "GA March 31 2026; continuous prod eval",
+                "AWS Bedrock / cloud-native stacks"
+              ],
+              [
+                "Arize Phoenix",
+                "OSS / SaaS",
+                "$70M Series C; LLM-as-judge at scale",
+                "ML teams with existing Arize infra"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "7. Eval-Driven Development: The New Workflow",
+          "paragraphs": [
+            "Claude Mythos (Opus 5) Now in API Expansion Anthropic's Claude Mythos has officially moved to broader API access. Described as a 'step-change' in cybersecurity and reasoning capabilities, it scores 0.25% on ARC-AGI-3 (top 3 frontier models) -- yet that's <1% vs. human 100%, underscoring the ARC-AGI-3 finding. Mythos is the anchor for Anthropic's planned Oct 2026 AWS AgentCore Evaluations -- Generally Available As of March 31, 2026, Amazon Bedrock AgentCore Evaluations hit GA. Provides automated continuous evaluation of production agent traffic -- no code required for Bedrock users. Signals that eval is graduating from developer",
+            "Braintrust Raises $80M at $800M Valuation (Feb 2026) The eval platform consolidating dataset management, scoring, experiment tracking, and CI enforcement raised an $80M Series B. Signals that the market is placing high value on agent reliability infrastructure.",
+            "ARC-AGI-3 (arcprize.org/arc-agi/3) -- The Benchmark That Broke Every AI While not an 'app' in the consumer sense, ARC-AGI-3 is the most viral AI event of the week. The benchmark's interactive video-game-like environments are public and playable -- humans scoring 100% while every billion-dollar AI model scores under 0.5% has sparked massive conversation across Twitter/X, HackerNews, and the AI research community. The Kaggle competition opened today with $2M in prizes. Expect the GitHub leaderboard to explode with agent submissions over the next month. ARC-AGI-3 $2M Prize Interactive Reasoning Kaggle Competition Public Leaderboard",
+            "Next up: Agent Governance & Compliance -- EU AI Act Aug 2026 Deep Dive"
+          ],
+          "bullets": [
+            "Today's Breaking AI News",
+            "Viral AI App of the Day",
+            "Key Takeaways for Varun",
+            "Eval is no longer optional -- 57% of orgs have agents in production; quality = #1 failure mode.",
+            "Multi-layer evals (model + component + output) are the industry standard in 2026.",
+            "ARC-AGI-3's <1% frontier scores prove current AI cannot generalise to genuinely novel tasks -- a massive",
+            "Braintrust (full lifecycle) + DeepEval (OSS pytest-style) + Langfuse (OSS prod monitoring) = recommended",
+            "Golden datasets + LLM-as-judge + trajectory evaluation = the three patterns every agent team needs.",
+            "AWS AgentCore Evals going GA means eval is now infrastructure, not just dev tooling.",
+            "Your 12-Day Learning Streak"
+          ],
+          "table": {
+            "headers": [
+              "Step",
+              "Action",
+              "Tool"
+            ],
+            "rows": [
+              [
+                "1. Spec",
+                "Write task descriptions + success criteria",
+                "LangSmith prompt hub"
+              ],
+              [
+                "2. Dataset",
+                "Curate golden inputs from real/synthetic logs",
+                "Braintrust datasets"
+              ],
+              [
+                "3. Dev Eva",
+                "lRun offline metrics on every change",
+                "DeepEval CI plugin"
+              ],
+              [
+                "4. CI Gate",
+                "Block PR if golden dataset score drops",
+                "Braintrust GitHub Action"
+              ],
+              [
+                "5. Shadow",
+                "Run new agent alongside old in shadow mode",
+                "Langfuse A/B experiments"
+              ],
+              [
+                "6. Prod",
+                "Score live traffic; alert on drift &gt;threshold",
+                "AWS AgentCore / Arize"
+              ],
+              [
+                "7. Close L",
+                "ooFpailed prod cases → new golden dataset entries",
+                "Maxim AI + Braintrust"
+              ]
+            ]
+          }
+        }
+      ],
+      "key_stats": [
+        "0.37% (Gemini 3.1 Pro)",
+        "50+ built-in metrics, CI-native",
+        "$80M raise Feb 2026; full lifecycle platform",
+        "21K+ stars, OpenTelemetry-native",
+        "$70M Series C; LLM-as-judge at scale"
+      ]
+    },
+    {
       "date": "2026-04-01",
       "display_date": "April 1, 2026",
       "issue": 11,
