@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frontier Model Team Evaluator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root, [data-theme="light"] {
+      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+      --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+      --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem; --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem; --space-12: 3rem; --space-16: 4rem;
+      --color-bg: #f7f6f2; --color-surface: #f9f8f5; --color-surface-2: #fbfbf9; --color-surface-offset: #f3f0ec; --color-border: #d4d1ca; --color-divider: #dcd9d5;
+      --color-text: #28251d; --color-text-muted: #696760; --color-text-faint: #9a9892; --color-text-inverse: #f9f8f4;
+      --color-primary: #01696f; --color-primary-hover: #0c4e54; --color-blue: #006494; --color-purple: #7a39bb; --color-success: #437a22; --color-warning: #964219; --color-error: #a12c7b;
+      --radius-sm: 0.375rem; --radius-md: 0.5rem; --radius-lg: 0.75rem; --radius-xl: 1rem; --radius-full: 9999px;
+      --shadow-sm: 0 1px 2px rgba(34,29,10,.05); --shadow-md: 0 10px 30px rgba(34,29,10,.08); --shadow-lg: 0 18px 48px rgba(34,29,10,.13);
+      --transition: 180ms cubic-bezier(0.16,1,0.3,1);
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-body: 'Inter', Arial, sans-serif;
+    }
+    [data-theme="dark"] {
+      --color-bg: #171614; --color-surface: #1c1b19; --color-surface-2: #201f1d; --color-surface-offset: #23211f; --color-border: #393836; --color-divider: #262523;
+      --color-text: #ece8df; --color-text-muted: #b0aaa0; --color-text-faint: #7b756d; --color-text-inverse: #171614;
+      --color-primary: #4f98a3; --color-primary-hover: #69b4bf; --color-blue: #74a9d4; --color-purple: #bb93e5; --color-success: #89c967; --color-warning: #d28a62; --color-error: #d77fb1;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,.2); --shadow-md: 0 10px 30px rgba(0,0,0,.32); --shadow-lg: 0 18px 48px rgba(0,0,0,.45);
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:var(--font-body);font-size:var(--text-base);line-height:1.6;background:var(--color-bg);color:var(--color-text)}
+    a,button,input,select,textarea{font:inherit}
+    button{cursor:pointer;border:none}
+    .skip-link{position:absolute;left:-9999px;top:auto}.skip-link:focus{left:1rem;top:1rem;background:var(--color-primary);color:var(--color-text-inverse);padding:.75rem 1rem;border-radius:var(--radius-md);z-index:1000}
+    .container{width:min(1200px, calc(100% - 2rem));margin:0 auto}
+    header{position:sticky;top:0;z-index:100;background:color-mix(in srgb, var(--color-bg) 88%, transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--color-divider)}
+    .nav{display:flex;justify-content:space-between;align-items:center;padding:var(--space-4) 0;gap:var(--space-4)}
+    .brand{display:flex;align-items:center;gap:.9rem;font-weight:700}
+    .brand svg{width:2rem;height:2rem;color:var(--color-primary)}
+    .nav-links{display:flex;gap:var(--space-4);flex-wrap:wrap}
+    .nav-links a{color:var(--color-text-muted);text-decoration:none}
+    .nav-actions{display:flex;gap:.75rem;align-items:center}
+    .theme-toggle,.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;border-radius:var(--radius-full);padding:.8rem 1.15rem;transition:all var(--transition)}
+    .theme-toggle{background:var(--color-surface);border:1px solid var(--color-border);color:var(--color-text)}
+    .btn-primary{background:var(--color-primary);color:var(--color-text-inverse)}
+    .btn-primary:hover{background:var(--color-primary-hover)}
+    .btn-secondary{background:var(--color-surface);color:var(--color-text);border:1px solid var(--color-border)}
+    .hero{padding:clamp(3rem, 5vw, 6rem) 0 var(--space-12)}
+    .eyebrow{display:inline-flex;gap:.5rem;align-items:center;padding:.45rem .8rem;border-radius:var(--radius-full);border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text-muted);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.08em}
+    h1{font-family:var(--font-display);font-size:clamp(2.8rem, 8vw, 5.5rem);line-height:.95;letter-spacing:-.03em;max-width:12ch;margin:1rem 0}
+    .hero-grid{display:grid;grid-template-columns:1.25fr .9fr;gap:var(--space-8);align-items:end}
+    .lede{max-width:64ch;color:var(--color-text-muted);margin-bottom:var(--space-6)}
+    .hero-card,.panel,.spec-card,.runner,.metric-card,.task-card,.router-card,.note{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);box-shadow:var(--shadow-sm)}
+    .hero-card{padding:var(--space-6);display:grid;gap:var(--space-4)}
+    .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-3)}
+    .stat{padding:var(--space-4);border-radius:var(--radius-lg);background:var(--color-surface-offset)}
+    .stat strong{display:block;font-size:var(--text-lg)}
+    main section{padding:var(--space-10) 0}
+    h2{font-size:var(--text-xl);line-height:1.05;margin:0 0 .8rem}
+    h3{font-size:var(--text-lg);margin:0 0 .65rem}
+    p{margin:.2rem 0 0}
+    .section-top{display:flex;justify-content:space-between;align-items:end;gap:var(--space-4);margin-bottom:var(--space-6)}
+    .section-top p{max-width:68ch;color:var(--color-text-muted)}
+    .spec-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-4)}
+    .spec-card{padding:var(--space-5)}
+    .chip{display:inline-flex;align-items:center;padding:.3rem .65rem;border-radius:var(--radius-full);font-size:var(--text-xs);background:var(--color-surface-offset);color:var(--color-text-muted);border:1px solid var(--color-border)}
+    .table-wrap{overflow:auto;border-radius:var(--radius-xl);border:1px solid var(--color-border);background:var(--color-surface)}
+    table{width:100%;border-collapse:collapse;min-width:980px}
+    th,td{padding:1rem;border-bottom:1px solid var(--color-divider);vertical-align:top;text-align:left}
+    th{font-size:var(--text-sm);color:var(--color-text-muted);background:var(--color-surface-offset);position:sticky;top:0}
+    td small{display:block;color:var(--color-text-muted);margin-top:.25rem}
+    .badge-good,.badge-watch,.badge-risk{display:inline-flex;align-items:center;border-radius:var(--radius-full);padding:.25rem .6rem;font-size:var(--text-xs)}
+    .badge-good{background:color-mix(in srgb, var(--color-success) 14%, transparent);color:var(--color-success)}
+    .badge-watch{background:color-mix(in srgb, var(--color-warning) 16%, transparent);color:var(--color-warning)}
+    .badge-risk{background:color-mix(in srgb, var(--color-error) 16%, transparent);color:var(--color-error)}
+    .tools-list{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.65rem}
+    .app-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:var(--space-6)}
+    .panel{padding:var(--space-6)}
+    label{display:block;font-size:var(--text-sm);font-weight:600;margin-bottom:.45rem}
+    textarea,input,select{width:100%;background:var(--color-surface-2);border:1px solid var(--color-border);border-radius:var(--radius-lg);color:var(--color-text);padding:.9rem 1rem}
+    textarea{min-height:140px;resize:vertical}
+    .form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-4)}
+    .stack{display:grid;gap:var(--space-4)}
+    .result-list{display:grid;gap:var(--space-4)}
+    .result-item,.scorecard,.route-step,.prompt-pane{padding:var(--space-4);border-radius:var(--radius-lg);background:var(--color-surface-offset);border:1px solid color-mix(in srgb,var(--color-border) 75%, transparent)}
+    .score{font-size:1.85rem;font-weight:800;line-height:1}
+    .muted{color:var(--color-text-muted)}
+    .runners{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4)}
+    .runner textarea{min-height:220px}
+    .scorecards{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4)}
+    .score-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin-top:var(--space-3)}
+    .score-pill{padding:.75rem;border-radius:var(--radius-md);background:var(--color-surface-2);text-align:center}
+    .route-list{display:grid;gap:var(--space-3)}
+    .footer{padding:var(--space-10) 0 var(--space-16);color:var(--color-text-muted)}
+    .tiny{font-size:var(--text-xs)}
+    .source-list a{color:var(--color-primary)}
+    @media (max-width: 1100px){.hero-grid,.app-grid,.spec-grid,.runners,.scorecards{grid-template-columns:1fr}.stat-row,.form-grid,.score-grid{grid-template-columns:1fr 1fr}}
+    @media (max-width: 640px){.container{width:min(100% - 1rem, 1200px)}.nav{align-items:flex-start;flex-direction:column}.nav-links{gap:.85rem}.stat-row,.form-grid,.score-grid{grid-template-columns:1fr}h1{max-width:unset}}
+    :focus-visible{outline:2px solid var(--color-primary);outline-offset:3px}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <svg viewBox="0 0 64 64" fill="none" aria-label="Frontier model evaluator logo">
+          <path d="M10 46L32 14L54 46" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M20 46H44" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+          <circle cx="32" cy="31" r="5" fill="currentColor"/>
+        </svg>
+        <div>
+          <div>Frontier Model Team Evaluator</div>
+          <div class="tiny muted">Model chooser, scorecards, and task router</div>
+        </div>
+      </div>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="/">← varunsingla.com</a>
+        <a href="#models">Model facts</a>
+        <a href="#evaluator">Evaluator</a>
+        <a href="#runners">Prompt runners</a>
+        <a href="#router">Model team</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme">◐</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Official-page based evaluator</span>
+          <h1>Paste your real work. Get the right model mix.</h1>
+          <p class="lede">This site consolidates official product pages for GPT-5.4, Claude Opus 4.6, Gemini 3.1 Pro, and Gemini 3.1 Flash Live, then turns those specs into a practical recommendation engine for coding, research, spreadsheets, live voice, and long-context work.</p>
+          <div class="nav-actions">
+            <a class="btn btn-primary" href="#evaluator">Start evaluating</a>
+            <a class="btn btn-secondary" href="#models">Inspect model data</a>
+          </div>
+        </div>
+        <aside class="hero-card" aria-label="Highlights">
+          <div>
+            <div class="tiny muted">What it includes</div>
+            <h3>Hands-on comparison workspace</h3>
+          </div>
+          <div class="stat-row">
+            <div class="stat"><span class="tiny muted">Prompt runners</span><strong>3-up</strong></div>
+            <div class="stat"><span class="tiny muted">Scoring axes</span><strong>4</strong></div>
+            <div class="stat"><span class="tiny muted">Task lanes</span><strong>5</strong></div>
+          </div>
+          <div class="tiny muted">Recommendation logic weights cost, latency, context fit, benchmark alignment, and probable failure modes, rather than raw benchmark claims alone.</div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="models">
+      <div class="container">
+        <div class="section-top">
+          <div>
+            <h2>Model facts</h2>
+            <p>Use this as the evidence layer before you trust the evaluator. The table separates official claims from product-fit notes so you can challenge the defaults.</p>
+          </div>
+        </div>
+        <div class="spec-grid" aria-hidden="true">
+          <article class="spec-card"><span class="chip">Coding</span><h3>Strongest coding focus</h3><p class="muted">GPT-5.4 and Claude Opus 4.6 both position coding and agentic workflows as primary strengths.</p></article>
+          <article class="spec-card"><span class="chip">Long context</span><h3>1M-token class</h3><p class="muted">GPT-5.4, Claude Opus 4.6 beta, and Gemini 3.1 Pro all advertise 1M-token context availability.</p></article>
+          <article class="spec-card"><span class="chip">Live voice</span><h3>Realtime-native lane</h3><p class="muted">Gemini Flash Live is the dedicated live interaction choice in this set.</p></article>
+          <article class="spec-card"><span class="chip">Enterprise work</span><h3>Spreadsheet-aware</h3><p class="muted">GPT-5.4 and Claude Opus 4.6 explicitly market spreadsheet and document workflows.</p></article>
+        </div>
+        <div class="table-wrap" style="margin-top:1rem">
+          <table>
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>Official page highlights</th>
+                <th>Pricing</th>
+                <th>Context / limits</th>
+                <th>Benchmark claims</th>
+                <th>Tool / live capabilities</th>
+                <th>Likely failure modes</th>
+              </tr>
+            </thead>
+            <tbody id="modelTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="evaluator">
+      <div class="container app-grid">
+        <div class="panel stack">
+          <div>
+            <h2>Task evaluator</h2>
+            <p class="muted">Paste a real task, choose the dominant work type, and tune cost, speed, and context sensitivity. The engine recommends one primary model and one backup.</p>
+          </div>
+          <div>
+            <label for="taskInput">Your task</label>
+            <textarea id="taskInput" placeholder="Example: Analyze a 300-page due-diligence pack, extract key risks, compare against our target operating model, produce a board-ready memo, then propose follow-up research prompts."></textarea>
+          </div>
+          <div class="form-grid">
+            <div>
+              <label for="taskType">Primary task type</label>
+              <select id="taskType">
+                <option value="coding">Coding / software delivery</option>
+                <option value="research">Research / synthesis</option>
+                <option value="spreadsheet">Spreadsheet / modeling</option>
+                <option value="live">Voice / live interaction</option>
+                <option value="longcontext">Long-context analysis</option>
+              </select>
+            </div>
+            <div>
+              <label for="taskScale">Approximate input size</label>
+              <select id="taskScale">
+                <option value="small">Small: under 25K tokens</option>
+                <option value="medium">Medium: 25K-200K</option>
+                <option value="large">Large: 200K-1M</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div>
+              <label for="costWeight">Cost sensitivity</label>
+              <input id="costWeight" type="range" min="1" max="5" step="1" value="3" />
+            </div>
+            <div>
+              <label for="latencyWeight">Latency sensitivity</label>
+              <input id="latencyWeight" type="range" min="1" max="5" step="1" value="3" />
+            </div>
+          </div>
+          <div class="form-grid">
+            <div>
+              <label for="contextWeight">Context importance</label>
+              <input id="contextWeight" type="range" min="1" max="5" step="1" value="4" />
+            </div>
+            <div>
+              <label for="toolWeight">Tool-use importance</label>
+              <input id="toolWeight" type="range" min="1" max="5" step="1" value="4" />
+            </div>
+          </div>
+          <button class="btn btn-primary" id="evaluateBtn" type="button">Evaluate task</button>
+        </div>
+        <div class="panel stack">
+          <div>
+            <h2>Recommendation</h2>
+            <p class="muted">The engine scores fit on a 100-point scale. It also exposes the tradeoff behind the recommendation so you can override it fast.</p>
+          </div>
+          <div id="evaluationResults" class="result-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="runners">
+      <div class="container stack">
+        <div class="section-top">
+          <div>
+            <h2>Side-by-side prompt runners</h2>
+            <p>These panes generate model-specific starter prompts and evaluation checklists. Paste them into your own playgrounds or vendor consoles, then score outputs consistently.</p>
+          </div>
+        </div>
+        <div class="runners" id="runnerGrid"></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container stack">
+        <div class="section-top">
+          <div>
+            <h2>Scorecards</h2>
+            <p>Use a repeatable rubric after each run. The default scorecards balance observed delivery quality with operational fit.</p>
+          </div>
+        </div>
+        <div class="scorecards" id="scorecards"></div>
+      </div>
+    </section>
+
+    <section id="router">
+      <div class="container app-grid">
+        <div class="panel stack">
+          <div>
+            <h2>Best team of models</h2>
+            <p class="muted">This router splits a workflow into subtasks and assigns each to the model most likely to perform well for that slice of work.</p>
+          </div>
+          <div>
+            <label for="routerInput">Multi-step workflow</label>
+            <textarea id="routerInput" placeholder="Example: 1) Inspect product requirements and repo, 2) draft architecture options, 3) implement code, 4) run spreadsheet-based commercial sensitivity checks, 5) present live demo and answer follow-up questions."></textarea>
+          </div>
+          <button class="btn btn-primary" id="routeBtn" type="button">Build team plan</button>
+        </div>
+        <div class="panel stack">
+          <div>
+            <h2>Routed plan</h2>
+            <p class="muted">The router is opinionated by default: use specialized models for their strongest lane, then hand off to a synthesizer if needed.</p>
+          </div>
+          <div id="routeOutput" class="route-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container note" style="padding:1.25rem 1.25rem 1.4rem">
+        <h3>How to use this in practice</h3>
+        <p class="muted">Start with the evaluator for a quick pick. Use prompt runners when you want a fair shootout on the same task. Use the router for compound workflows where no single model should own everything.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container stack">
+      <div>
+        <h3>Source links</h3>
+        <div class="source-list tiny" id="sourceList"></div>
+      </div>
+      <div class="tiny">This website embeds official source summaries and a local heuristic scorer. Recheck vendor pages before major buying or architecture decisions because pricing, limits, and preview status can change quickly.</div>
+    </div>
+  </footer>
+
+  <script>
+    const sources = [
+      {label:'OpenAI — Introducing GPT-5.4', url:'https://openai.com/index/introducing-gpt-5-4/'},
+      {label:'OpenAI API — GPT-5.4 model docs', url:'https://developers.openai.com/api/docs/models/gpt-5.4'},
+      {label:'OpenAI API — Using GPT-5.4', url:'https://developers.openai.com/api/docs/guides/latest-model/'},
+      {label:'Anthropic — Claude Opus 4.6', url:'https://www.anthropic.com/claude/opus'},
+      {label:'Anthropic — Claude pricing', url:'https://platform.claude.com/docs/en/about-claude/pricing'},
+      {label:'Google AI Dev — Gemini API pricing', url:'https://ai.google.dev/gemini-api/docs/pricing'},
+      {label:'Google blog — Gemini 3.1 Pro', url:'https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro?utm_source=openai'}
+    ];
+
+    const models = [
+      {
+        id:'gpt54',
+        name:'GPT-5.4',
+        family:'OpenAI',
+        priceIn:2.5,
+        priceOut:15,
+        cachedIn:0.25,
+        context:'1M via API/Codex, standard 272K before 2x usage in Codex overage settings',
+        latency:'Medium',
+        live:false,
+        strengths:['Coding','Tool use','Computer use','Professional docs/spreadsheets','Web research'],
+        benchmarks:['GDPval 83.0%','SWE-Bench Pro 57.7%','OSWorld-Verified 75.0%','BrowseComp 82.7%','Toolathlon 54.6%'],
+        tools:'Native computer tool, tool search, improved tool calling, custom tools, allowed-tools controls',
+        notes:'Best single-model default when coding and tool orchestration matter together.',
+        failures:['Cost rises for very large context workloads beyond standard windows','Live voice is not the standout lane in this trio','May be overkill for cheap bulk analysis'],
+        ratings:{coding:97,research:88,spreadsheet:93,live:62,longcontext:90,cost:70,latency:76,context:94,tool:97}
+      },
+      {
+        id:'claude46',
+        name:'Claude Opus 4.6',
+        family:'Anthropic',
+        priceIn:5,
+        priceOut:25,
+        cachedIn:6.25,
+        context:'200K standard, 1M context beta on Claude Platform only',
+        latency:'Medium-slow',
+        live:false,
+        strengths:['Advanced coding','Long-running agents','Enterprise documents','Spreadsheet-heavy analysis','High-stakes reasoning'],
+        benchmarks:['Terminal-Bench 2.0 65.4%','OSWorld 72.7%','BigLaw Bench 90.2%'],
+        tools:'Hybrid reasoning, effort controls, strong tool use and agentic planning, available across Claude Platform and major clouds',
+        notes:'Strong choice for careful reasoning, enterprise artifacts, and persistent multi-step coding work.',
+        failures:['More expensive than GPT-5.4 and likely slower for some loops','1M context still beta and platform-limited','No dedicated live voice positioning here'],
+        ratings:{coding:96,research:94,spreadsheet:95,live:58,longcontext:92,cost:52,latency:64,context:90,tool:92}
+      },
+      {
+        id:'gemini31pro',
+        name:'Gemini 3.1 Pro',
+        family:'Google',
+        priceIn:0.25,
+        priceOut:1.5,
+        cachedIn:0.025,
+        context:'1M context class on Gemini API pricing page / Pro preview references',
+        latency:'Fast-medium',
+        live:false,
+        strengths:['Low-cost long context','Grounding with Google Search','Multimodal API economics','Good fit for broad analysis at scale'],
+        benchmarks:['Official blog page supplied by user should be checked for current claims','Pricing page emphasizes search grounding and tools rather than benchmark leaderboard text'],
+        tools:'Custom Tools endpoint references, Google Search grounding, Gemini API multimodal pricing',
+        notes:'Best cost-performance option when you need very cheap long context or grounded analysis and do not need the strongest coding agent.',
+        failures:['Official benchmark specifics may move between preview docs and blog posts','Tooling semantics differ from OpenAI/Anthropic runners','Less obvious first choice for top-end coding autonomy'],
+        ratings:{coding:78,research:86,spreadsheet:80,live:60,longcontext:94,cost:98,latency:84,context:96,tool:82}
+      },
+      {
+        id:'flashlive',
+        name:'Gemini 3.1 Flash Live',
+        family:'Google',
+        priceIn:0.75,
+        priceOut:4.5,
+        cachedIn:0,
+        context:'Live API preview; exact quotas shift via AI Studio / Live API controls',
+        latency:'Fastest',
+        live:true,
+        strengths:['Realtime voice','Low-latency multimodal interaction','Audio-native sessions','Customer support and demo copilot flows'],
+        benchmarks:['Live model is usually positioned by responsiveness and multimodal interaction rather than classic coding benchmarks'],
+        tools:'Gemini Live API, text/audio/image-video token pricing, browser-safe ephemeral token patterns',
+        notes:'Use for voice agents, live demos, meeting copilots, and fast multimodal turn-taking.',
+        failures:['Not your primary choice for deepest coding or document-heavy reasoning','Preview quotas and pricing can evolve quickly','Long-context and spreadsheet work are weaker fit than Pro or Opus'],
+        ratings:{coding:52,research:66,spreadsheet:54,live:98,longcontext:55,cost:88,latency:97,context:58,tool:74}
+      }
+    ];
+
+    function renderSources(){
+      document.getElementById('sourceList').innerHTML = sources.map(s => `<div><a href="${s.url}" target="_blank" rel="noopener noreferrer">${s.label}</a></div>`).join('');
+    }
+
+    function renderTable(){
+      const tbody = document.getElementById('modelTableBody');
+      tbody.innerHTML = models.map(m => `
+        <tr>
+          <td><strong>${m.name}</strong><small>${m.family}</small></td>
+          <td>${m.notes}<small>Primary strengths: ${m.strengths.join(', ')}</small></td>
+          <td>$${m.priceIn}/M input<br>$${m.priceOut}/M output<small>${m.cachedIn ? `Cached / special input reference: $${m.cachedIn}/M` : 'Preview / live pricing can vary by modality'}</small></td>
+          <td>${m.context}<small>Latency profile: ${m.latency}</small></td>
+          <td>${m.benchmarks.join('<br>')}</td>
+          <td>${m.tools}<div class="tools-list">${m.strengths.slice(0,4).map(t=>`<span class="chip">${t}</span>`).join('')}</div></td>
+          <td>${m.failures.map((f,i)=>`<div class="${i===0?'badge-watch':'badge-risk'}" style="margin:0 0 .35rem 0">${f}</div>`).join('')}</td>
+        </tr>
+      `).join('');
+    }
+
+    function keywordAdjustments(task){
+      const t = task.toLowerCase();
+      return models.map(m => {
+        let adj = 0;
+        if(/code|repo|debug|typescript|python|agent|api|playwright|refactor/.test(t)) adj += m.ratings.coding * 0.08;
+        if(/research|sources|memo|synthesis|analysis|compare|market|legal|due diligence/.test(t)) adj += m.ratings.research * 0.08;
+        if(/excel|spreadsheet|model|financial|table|csv/.test(t)) adj += m.ratings.spreadsheet * 0.08;
+        if(/voice|call|live|realtime|meeting|demo|agent assist|audio/.test(t)) adj += m.ratings.live * 0.10;
+        if(/long|100k|200k|300k|1m|entire codebase|whole corpus|full document set/.test(t)) adj += m.ratings.longcontext * 0.09;
+        return {id:m.id, adj};
+      });
+    }
+
+    function evaluateTask(){
+      const task = document.getElementById('taskInput').value.trim();
+      const type = document.getElementById('taskType').value;
+      const scale = document.getElementById('taskScale').value;
+      const cw = Number(document.getElementById('costWeight').value);
+      const lw = Number(document.getElementById('latencyWeight').value);
+      const xw = Number(document.getElementById('contextWeight').value);
+      const tw = Number(document.getElementById('toolWeight').value);
+      const kw = keywordAdjustments(task);
+
+      const results = models.map(m => {
+        const baseType = m.ratings[type];
+        const costScore = m.ratings.cost * (cw/5);
+        const latencyScore = m.ratings.latency * (lw/5);
+        const contextScore = m.ratings.context * (xw/5) + (scale === 'large' ? m.ratings.longcontext * 0.8 : scale === 'medium' ? m.ratings.longcontext * 0.4 : 0);
+        const toolScore = m.ratings.tool * (tw/5);
+        const keyAdj = kw.find(k => k.id === m.id)?.adj || 0;
+        const total = Math.round(baseType * 0.38 + costScore * 0.16 + latencyScore * 0.14 + contextScore * 0.18 + toolScore * 0.14 + keyAdj);
+        return {...m, total};
+      }).sort((a,b) => b.total - a.total);
+
+      const [best, backup] = results;
+      const summary = `Best fit: ${best.name}. Backup: ${backup.name}.`;
+      const explanation = explainChoice(best, type, scale, cw, lw, xw, tw);
+      document.getElementById('evaluationResults').innerHTML = `
+        <article class="result-item">
+          <div class="score">${best.total}</div>
+          <h3>${summary}</h3>
+          <p class="muted">${explanation}</p>
+        </article>
+        ${results.map(m => `
+          <article class="result-item">
+            <div style="display:flex;justify-content:space-between;gap:1rem;align-items:start">
+              <div>
+                <h3>${m.name}</h3>
+                <div class="muted">${m.notes}</div>
+              </div>
+              <span class="chip">Score ${m.total}</span>
+            </div>
+            <div class="score-grid">
+              <div class="score-pill"><div class="tiny muted">Task fit</div><strong>${m.ratings[type]}</strong></div>
+              <div class="score-pill"><div class="tiny muted">Cost</div><strong>${m.ratings.cost}</strong></div>
+              <div class="score-pill"><div class="tiny muted">Latency</div><strong>${m.ratings.latency}</strong></div>
+              <div class="score-pill"><div class="tiny muted">Tools</div><strong>${m.ratings.tool}</strong></div>
+            </div>
+            <small class="muted">Watch-outs: ${m.failures.join(' • ')}</small>
+          </article>`).join('')}
+      `;
+      buildRunners(task, type);
+      buildScorecards(results);
+    }
+
+    function explainChoice(best, type, scale, cw, lw, xw, tw){
+      const reasons = [];
+      if(type === 'coding') reasons.push('coding capability is weighted heavily');
+      if(type === 'research') reasons.push('research synthesis and evidence handling dominate the score');
+      if(type === 'spreadsheet') reasons.push('artifact quality for tables, models, and structured analysis matters most');
+      if(type === 'live') reasons.push('realtime responsiveness is the deciding factor');
+      if(type === 'longcontext') reasons.push('context retention and large-input handling matter most');
+      if(scale === 'large') reasons.push('your workload likely exceeds standard short-context comfort zones');
+      if(cw >= 4) reasons.push('cost sensitivity materially penalizes expensive models');
+      if(lw >= 4) reasons.push('latency sensitivity rewards faster responders');
+      if(xw >= 4) reasons.push('context fit has strong weight');
+      if(tw >= 4) reasons.push('tool-use capability is treated as core, not optional');
+      return `${best.name} comes out ahead because ${reasons.slice(0,4).join(', ')}.`;
+    }
+
+    function buildRunners(task, type){
+      const starter = task || 'Replace this with your real task.';
+      const templates = models.slice(0,3).map(m => {
+        const prompt = `SYSTEM: You are being evaluated for ${type} work. Be explicit about tradeoffs, assumptions, missing information, and likely failure modes.\n\nTASK:\n${starter}\n\nREQUIRED OUTPUT:\n1. Short plan\n2. Final answer or artifact outline\n3. Confidence and risks\n4. What tools or extra data you would request\n5. If this task should be handed to another model, say why.`;
+        return `<article class="runner panel stack"><div><h3>${m.name}</h3><p class="muted">Use this starter prompt, then compare completeness, speed, and error rate.</p></div><div class="prompt-pane"><textarea aria-label="${m.name} prompt runner">${prompt}</textarea></div><button class="btn btn-secondary" type="button" data-copy="${encodeURIComponent(prompt)}">Copy prompt</button></article>`;
+      });
+      document.getElementById('runnerGrid').innerHTML = templates.join('');
+      document.querySelectorAll('[data-copy]').forEach(btn => btn.onclick = async () => {
+        const text = decodeURIComponent(btn.getAttribute('data-copy'));
+        try { await navigator.clipboard.writeText(text); btn.textContent = 'Copied'; setTimeout(()=>btn.textContent='Copy prompt',1200); } catch(e) { btn.textContent = 'Copy failed'; }
+      });
+    }
+
+    function buildScorecards(results){
+      document.getElementById('scorecards').innerHTML = results.slice(0,3).map(m => `
+        <article class="scorecard">
+          <h3>${m.name}</h3>
+          <p class="muted">Score each run from 1-5, then average.</p>
+          <div class="score-grid">
+            <div class="score-pill"><div class="tiny muted">Accuracy</div><strong>1-5</strong></div>
+            <div class="score-pill"><div class="tiny muted">Latency</div><strong>1-5</strong></div>
+            <div class="score-pill"><div class="tiny muted">Cost efficiency</div><strong>1-5</strong></div>
+            <div class="score-pill"><div class="tiny muted">Tool discipline</div><strong>1-5</strong></div>
+          </div>
+          <small class="muted">Observed risk profile: ${m.failures.join(' • ')}</small>
+        </article>
+      `).join('');
+    }
+
+    function splitWorkflow(text){
+      return text.split(/\n|\d+\)|•|\-/).map(s=>s.trim()).filter(Boolean).slice(0,8);
+    }
+
+    function pickModelForStep(step){
+      const t = step.toLowerCase();
+      if(/voice|call|demo|meeting|live|audio|realtime/.test(t)) return {model:'Gemini 3.1 Flash Live', why:'best aligned to low-latency live interaction'};
+      if(/spreadsheet|excel|financial|sensitivity|table|csv|model/.test(t)) return {model:'Claude Opus 4.6', why:'strong enterprise spreadsheet and structured-analysis positioning'};
+      if(/implement|code|debug|repo|agent|tool|browser|playwright|computer/.test(t)) return {model:'GPT-5.4', why:'best blend of coding, tool search, and computer-use claims'};
+      if(/analyze large|entire corpus|long context|full codebase|full document|1m/.test(t)) return {model:'Gemini 3.1 Pro', why:'strong low-cost long-context and grounded-analysis fit'};
+      if(/research|memo|compare|synthesis|legal|diligence/.test(t)) return {model:'Claude Opus 4.6', why:'strong careful reasoning for high-stakes research and document work'};
+      return {model:'GPT-5.4', why:'best generalist default for mixed professional subtasks'};
+    }
+
+    function buildRoute(){
+      const text = document.getElementById('routerInput').value.trim();
+      const steps = splitWorkflow(text || 'Inspect requirements; implement code; analyze spreadsheet outputs; run live demo');
+      const routed = steps.map((step, idx) => ({step, ...pickModelForStep(step), idx: idx+1}));
+      const synthesizer = routed.some(r => r.model !== 'GPT-5.4') ? 'Use GPT-5.4 or Claude Opus 4.6 as final synthesizer depending on whether the final package is code-heavy or document-heavy.' : 'One primary model is enough; add Flash Live only if you need interactive demos.';
+      document.getElementById('routeOutput').innerHTML = routed.map(r => `
+        <article class="route-step">
+          <div class="chip">Step ${r.idx}</div>
+          <h3>${r.step}</h3>
+          <p><strong>${r.model}</strong> — ${r.why}</p>
+        </article>
+      `).join('') + `<article class="route-step"><div class="chip">Final handoff</div><h3>Synthesis layer</h3><p>${synthesizer}</p></article>`;
+    }
+
+    (function initTheme(){
+      const root = document.documentElement;
+      let mode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      root.setAttribute('data-theme', mode);
+      const btn = document.querySelector('[data-theme-toggle]');
+      btn.addEventListener('click', ()=>{
+        mode = mode === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', mode);
+        btn.textContent = mode === 'dark' ? '☼' : '◐';
+      });
+    })();
+
+    document.getElementById('evaluateBtn').addEventListener('click', evaluateTask);
+    document.getElementById('routeBtn').addEventListener('click', buildRoute);
+    renderSources();
+    renderTable();
+    evaluateTask();
+    buildRoute();
+  </script>
+</body>
+</html>
