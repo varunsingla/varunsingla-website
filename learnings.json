@@ -6,6 +6,125 @@
   },
   "learnings": [
     {
+      "date": "2026-04-03",
+      "display_date": "APRIL 3, 2026",
+      "title": "DAY 14 • AGENTIC AI SERIES • APRIL 3, 2026",
+      "focus_intro": "",
+      "sections": [
+        {
+          "title": "1. EU AI Act -- The August 2, 2026 Deadline",
+          "paragraphs": [
+            "The EU AI Act is the world's first comprehensive AI regulation. Its most critical enforcement milestone -- covering high-risk AI systems -- takes effect on August 2, 2026, just four months away. Non-compliance carries fines up to €15 million or 3% of global annual turnover, whichever is higher.",
+            "Under Annex III, high-risk systems include AI used in: biometric identification, critical infrastructure, employment decisions, access to essential services (credit, insurance), law enforcement, migration & border control, and administration of justice. Most agentic systems that take autonomous real-world actions qualify. 1.2 Five Things You Must Do Before August 2, 2026",
+            "The March 2026 EU Digital Omnibus proposed amendments to some AI Act timelines, but the August 2 deadline for Annex III high-risk systems remains firm. The Omnibus primarily affects GPAI model providers. Do not use it as an"
+          ],
+          "table": {
+            "headers": [
+              "#",
+              "Action Item",
+              "Status"
+            ],
+            "rows": [
+              [
+                "1",
+                "Inventory ALL AI systems -- classify as prohibited, high-risk, limited-risk, or minimal-risk",
+                "• Most firms missing this"
+              ],
+              [
+                "2",
+                "Complete conformity assessments + technical documentation for each high-risk system",
+                "• Needs 6-8 weeks"
+              ],
+              [
+                "3",
+                "Implement human oversight with real intervention capability -- not just monitoring",
+                "• Only 37-40% have this"
+              ],
+              [
+                "4",
+                "Establish QMS covering data governance, version control, incident response",
+                "• Adapt existing QMS"
+              ],
+              [
+                "5",
+                "Register high-risk systems in EU AI Act database + affix CE marking",
+                "• Portal now live"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "5. Enterprise Agent Governance Stack",
+          "paragraphs": [
+            "Bringing together EU AI Act, NIST CAISI, and the liability frameworks, here is the recommended governance architecture for enterprise agentic AI deployments: 90-Day Compliance Roadmap to August 2, 2026",
+            "On March 31, 2026, security researcher Chaofan Shou discovered that Anthropic's Claude Code CLI had accidentally published its complete source code to npm via a 59.8 MB JavaScript source map file. Within hours, developer Sigrid Jin began a clean-room rewrite of the agent harness architecture, and Claw Code was born.",
+            "Building Production-Grade Agent Memory Systems: connecting Mem0, pgvector, and Redis into a compliant agent memory stack -- including GDPR-safe deletion patterns, namespace isolation, and memory versioning strategies satisfying both NIST CAISI and EU AI Act audit requirements.",
+            "Agentic AI Foundations fi MCP fi A2A fi Multi-Agent Orchestration fi Production Failure Handling fi Observability fi Safety & Governance fi Agentic AI in Production fi Agent Economy fi Building Your First Agent fi Advanced Agent Patterns fi Agent Memory & Personalisation fi Enterprise Agentic AI fi Agent Evaluation & Benchmarking fi Agent Governance & Compliance (today) secureprivacy.ai, kennedyslaw.com, claw-code.codes, Berkeley Agentic AI Profile, Stanford CodeX, legalnodes.com, pillsburylaw.com"
+          ],
+          "bullets": [
+            "Today's Viral AI App -- Claw Code been largely proprietary until now. Claw Code makes it transparent and auditable.",
+            "Directly relevant to EU AI Act audit trail compliance -- enterprises can now inspect how the harness layer makes decisions, enabling the reconstructable reasoning logs that regulators require.",
+            "Rust rewrite in progress -- targeting memory-safe, high-performance runtime; aligns with NIST CAISI's",
+            "72K stars in days = massive developer appetite for open-source alternatives to proprietary agent runtimes.",
+            "Not just a chatbot wrapper -- laser-focused on the harness: tool orchestration, file system access, task",
+            "Key Stats to Remember",
+            "Today's 5 Key Takeaways",
+            "Tomorrow's Preview -- Day 15",
+            "Learning Journey -- 14 Days Strong"
+          ],
+          "table": {
+            "headers": [
+              "Layer",
+              "Components",
+              "Key Tools 2026"
+            ],
+            "rows": [
+              [
+                "1. Identity & AuthZ",
+                "Agent identity certs, scoped credentials, per-task token issuance",
+                "HashiCorp Vault, AWS IAM for agents, SPIFFE/SPIRE"
+              ],
+              [
+                "2. Orchestration",
+                "Supervisor with policy enforcement, A2A signed Agent Cards, intent verification before delegation",
+                "LangGraph, Kaji, Microsoft Agent 365"
+              ],
+              [
+                "3. Runtime Monitor",
+                "Real-time action logging, anomaly detection, budget tracking, loop detection (>3× same call = alert)",
+                "Langfuse, LangSmith, Arize Phoenix, OTEL"
+              ],
+              [
+                "4. Kill Switch",
+                "T1-T4 layered shutdown (app + network + infra + memory), <1s response time target",
+                "K8s PodDisruptionBudget + network policies + custom runbook"
+              ],
+              [
+                "5. Audit & Compliance",
+                "Immutable audit logs (reasoning + actions), retention policies, GDPR erasure support",
+                "OpenTelemetry + immutable object storage + compliance dashboard"
+              ],
+              [
+                "6. Human Oversight",
+                "HITL gates for high-stakes actions, HOTL monitoring for standard ops, escalation protocol",
+                "Slack/Teams approval workflows + orchestrator HITL hooks"
+              ]
+            ]
+          }
+        }
+      ],
+      "key_stats": [
+        "50%+ enterprises lack AI inventory",
+        "122 days to Aug 2 deadline",
+        "81% agents lack full security approval",
+        "58% can monitor; only 37-40% can actually STOP agents when something goes wrong",
+        "72,000+ in just days (one of the fastest-growing AI tooling repos ever)",
+        "37-40%",
+        "20-32pp"
+      ],
+      "tomorrow_preview": "-- Day 15 Building Production-Grade Agent Memory Systems: connecting Mem0, pgvector, and Redis into a compliant agent memory stack -- including GDPR-safe deletion patterns, namespace isolation, and memory versioning strategies satisfying both NIST CAISI and EU AI Act audit requirements"
+    },
+    {
       "date": "2026-04-02",
       "display_date": "April 2, 2026",
       "title": "April 2, 2026 | Day 12",
