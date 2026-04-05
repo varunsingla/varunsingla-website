@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -524,11 +524,95 @@
       .card { padding: 22px; }
       .card-title { font-size: 18px; }
     }
+
+    /* ── Light mode ─────────────────────────────── */
+    [data-theme="light"] {
+      --bg:        #f4f4ff;
+      --surface:   #eaeaf8;
+      --surface2:  #e2e2f4;
+      --border:    rgba(0,0,0,0.09);
+      --border-h:  rgba(109,40,217,0.35);
+      --p1: #6d28d9;
+      --p2: #1d4ed8;
+      --p3: #0891b2;
+      --text:      #0e0e1c;
+      --muted:     #4a4a70;
+      --dim:       #9090b8;
+      --green:     #059669;
+      --yellow:    #d97706;
+      --red:       #dc2626;
+    }
+    [data-theme="light"] body {
+      background: var(--bg);
+      color: var(--text);
+    }
+    [data-theme="light"] .ambient { opacity: 0.25; }
+
+    /* ── Theme toggle button ─────────────────────── */
+    .theme-toggle-btn {
+      position: fixed;
+      top: 14px;
+      right: 18px;
+      z-index: 200;
+      width: 34px; height: 34px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(13,13,28,0.75);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #8888aa;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: color 0.15s, background 0.15s, border-color 0.15s;
+    }
+    [data-theme="light"] .theme-toggle-btn {
+      background: rgba(240,240,255,0.85);
+      border-color: rgba(0,0,0,0.12);
+      color: #4a4a70;
+    }
+    .theme-toggle-btn:hover {
+      color: #eeeeff;
+      background: rgba(124,58,237,0.25);
+      border-color: rgba(124,58,237,0.4);
+    }
+    [data-theme="light"] .theme-toggle-btn:hover {
+      color: #0e0e1c;
+      background: rgba(109,40,217,0.12);
+    }
+
+    /* ── Light mode overrides for main content ─── */
+    [data-theme="light"] .live-badge {
+      background: rgba(109,40,217,0.08);
+      border-color: rgba(109,40,217,0.25);
+      color: #6d28d9;
+    }
+    [data-theme="light"] .live-dot { background: #6d28d9; }
+    [data-theme="light"] .stats-bar { border-color: rgba(0,0,0,0.09); }
+    [data-theme="light"] .stat-item { border-color: rgba(0,0,0,0.09); }
+    [data-theme="light"] .stat-num { color: var(--p1); }
+    [data-theme="light"] .card {
+      background: var(--surface);
+      border-color: var(--border);
+    }
+    [data-theme="light"] .card:hover { border-color: var(--border-h); }
+    [data-theme="light"] .tag { background: rgba(109,40,217,0.08); color: var(--p1); }
+    [data-theme="light"] .section-label { color: var(--p1); }
+    [data-theme="light"] footer { border-color: var(--border); }
+    [data-theme="light"] .footer-logo {
+      background: linear-gradient(135deg, var(--p1), var(--p2));
+    }
+    [data-theme="light"] ::-webkit-scrollbar-track { background: var(--bg); }
+    [data-theme="light"] ::-webkit-scrollbar-thumb { background: var(--p1); }
   </style>
 </head>
 
 <body>
   <div class="ambient"></div>
+
+  <!-- ── Theme Toggle ───────────────────────────── -->
+  <button class="theme-toggle-btn" id="themeToggle" aria-label="Switch to light mode" title="Light mode">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+  </button>
 
   <!-- ── Header ──────────────────────────────────── -->
   <header>

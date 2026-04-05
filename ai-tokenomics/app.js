@@ -1,16 +1,20 @@
 /* ─── THEME TOGGLE ─── */
 (function () {
   const html = document.documentElement;
-  const stored = null; // no localStorage in sandboxed iframes
-  let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  // Use localStorage so preference persists across pages on varunsingla.com
+  let stored = null;
+  try { stored = localStorage.getItem('vs-theme'); } catch(e) {}
+  let theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
   html.setAttribute('data-theme', theme);
+
+  const MOON = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
+  const SUN  = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>`;
 
   function updateBtn(btn, t) {
     if (!btn) return;
-    btn.setAttribute('aria-label', `Switch to ${t === 'dark' ? 'light' : 'dark'} mode`);
-    btn.innerHTML = t === 'dark'
-      ? `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>`
-      : `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
+    btn.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    btn.innerHTML = t === 'dark' ? SUN : MOON;
+    btn.title = t === 'dark' ? 'Light mode' : 'Dark mode';
   }
 
   document.querySelectorAll('[data-theme-toggle]').forEach(btn => {
@@ -18,7 +22,8 @@
     btn.addEventListener('click', () => {
       theme = theme === 'dark' ? 'light' : 'dark';
       html.setAttribute('data-theme', theme);
-      updateBtn(btn, theme);
+      try { localStorage.setItem('vs-theme', theme); } catch(e) {}
+      document.querySelectorAll('[data-theme-toggle]').forEach(b => updateBtn(b, theme));
     });
   });
 })();
