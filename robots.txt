@@ -1,4 +1,23 @@
 User-agent: *
 Allow: /
+Disallow: /config.json.template
+
+# Allow all major crawlers explicitly
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
 
 Sitemap: https://www.varunsingla.com/sitemap.xml

@@ -4,20 +4,44 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
                             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
-  <!-- Main page — updated daily -->
+  <!-- Homepage — daily AI learning journal, updated every day -->
   <url>
-    <loc>https://varunsingla.com/</loc>
+    <loc>https://www.varunsingla.com/</loc>
     <lastmod>2026-04-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- Tokenizer tool page -->
+  <!-- About page — E-E-A-T author identity -->
   <url>
-    <loc>https://varunsingla.com/tokenizer.html</loc>
+    <loc>https://www.varunsingla.com/about/</loc>
     <lastmod>2026-04-05</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- AI Tokenomics guide -->
+  <url>
+    <loc>https://www.varunsingla.com/ai-tokenomics/</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- AI Tokenizer tool -->
+  <url>
+    <loc>https://www.varunsingla.com/tokenizer.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Model Team Evaluator tool -->
+  <url>
+    <loc>https://www.varunsingla.com/tools/model-team-evaluator.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 
 </urlset>
