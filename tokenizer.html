@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Tokenomics — Understand & Optimise Token Spend</title>
+  <meta name="description" content="A practical guide to AI token cost models, 2026 pricing across major providers, and the key levers to cut your token spend by 40–80%." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#top" class="logo" aria-label="AI Tokenomics home">
+        <svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="var(--color-primary)"/>
+          <circle cx="16" cy="16" r="6" stroke="white" stroke-width="1.5"/>
+          <path d="M16 10V7M16 25V22M10 16H7M25 16H22" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="16" cy="16" r="2" fill="white"/>
+        </svg>
+        <span class="logo-text">AI Tokenomics</span>
+      </a>
+      <div class="nav-links">
+        <a href="#fundamentals">Fundamentals</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#levers">Optimise</a>
+        <a href="#advanced">Advanced</a>
+        <a href="#hosting">Hosting</a>
+        <a href="#finops">FinOps</a>
+        <a href="#calculator">Calculator</a>
+      </div>
+      <button class="theme-toggle" data-theme-toggle aria-label="Switch to light mode">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-bg">
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+      <div class="hero-grid"></div>
+    </div>
+    <div class="container hero-content">
+      <div class="hero-badge">AI FinOps · Precision Economics · 2026 Data</div>
+      <h1 class="hero-heading">The New Currency<br/><em>of Enterprise AI</em></h1>
+      <p class="hero-sub">Every AI interaction costs tokens. Every token carries a price. This guide breaks down how token economics work — and gives you the exact levers to cut spend by 40–80% without sacrificing quality.</p>
+      <div class="hero-cta">
+        <a href="#fundamentals" class="btn btn-primary">Understand Tokens</a>
+        <a href="#calculator" class="btn btn-ghost">Try the Calculator ↓</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num">70–80%</span>
+          <span class="stat-label">Realistic cost savings with combined optimisation levers</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">98%</span>
+          <span class="stat-label">of enterprises now using FinOps for AI spend (FinOps Foundation 2026)</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">$0.04→$0.01</span>
+          <span class="stat-label">Projected inference cost per MTok drop by 2030 (Deloitte)</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">80%</span>
+          <span class="stat-label">of companies miss AI infrastructure cost forecasts by &gt;25% (Finout 2026)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAT STRIP -->
+  <div class="stat-strip">
+    <div class="container" style="display:flex;flex-wrap:wrap;gap:var(--space-10);justify-content:space-around;">
+      <div class="strip-stat"><span class="strip-num">130×</span><span class="strip-label">Google token volume growth in one year</span></div>
+      <div class="strip-stat"><span class="strip-num">90%</span><span class="strip-label">Input cost reduction via prompt caching</span></div>
+      <div class="strip-stat"><span class="strip-num">84B</span><span class="strip-label">Annual tokens where AI factory beats API (Deloitte TCO)</span></div>
+      <div class="strip-stat"><span class="strip-num">56%</span><span class="strip-label">CEOs report no AI revenue or cost benefit yet (PwC 2026)</span></div>
+    </div>
+  </div>
+
+  <!-- 01 FUNDAMENTALS -->
+  <section class="section" id="fundamentals">
+    <div class="container">
+      <div class="section-label">01 — Fundamentals</div>
+      <h2 class="section-heading">What is a Token?</h2>
+      <p class="section-intro">Tokens are the atomic unit of AI computation — not characters, not words, but sub-word fragments that every LLM uses to read input and write output. Understanding them is understanding the bill.</p>
+
+      <div class="explainer-grid">
+        <div class="explainer-card primary-card">
+          <div class="token-demo" id="tokenDemo">
+            <div class="token-input">
+              <label>Type to see live tokenisation:</label>
+              <input type="text" id="tokenInput" value="Generative AI transforms enterprise economics" placeholder="Type anything..." />
+            </div>
+            <div class="token-output" id="tokenOutput"></div>
+            <div class="token-count">≈ <span id="tokenCount">0</span> tokens &nbsp;·&nbsp; <span id="charCount">0</span> chars &nbsp;·&nbsp; ratio: <span id="tokenRatio">0</span> chars/token</div>
+          </div>
+        </div>
+
+        <div class="explainer-facts">
+          <div class="fact-item">
+            <div class="fact-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <div>
+              <strong>1 token ≈ ¾ of an English word</strong>
+              <p>Common words are 1 token. Complex or rare words split into multiple tokens. Code is densest — often 1 token per character.</p>
+            </div>
+          </div>
+          <div class="fact-item">
+            <div class="fact-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </div>
+            <div>
+              <strong>Output tokens cost 4–10× more</strong>
+              <p>GPT-5: $1.25 input vs $10.00 output per MTok. A model that writes a lot costs far more than one that reads a lot.</p>
+            </div>
+          </div>
+          <div class="fact-item">
+            <div class="fact-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <div>
+              <strong>Reasoning models have hidden token cost</strong>
+              <p>Models like o1 or Claude Extended Thinking generate internal chain-of-thought tokens that are billed but never shown to you.</p>
+            </div>
+          </div>
+          <div class="fact-item">
+            <div class="fact-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            </div>
+            <div>
+              <strong>The full conversation is resent every call</strong>
+              <p>All prior messages + system prompt + new message are sent on every API call. A 40-turn chat can carry 25,000+ input tokens silently.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Token Flow -->
+      <div class="flow-section">
+        <h3 class="subsection-heading">How One API Call Consumes Tokens</h3>
+        <div class="token-flow">
+          <div class="flow-step">
+            <div class="flow-num">1</div>
+            <span class="flow-badge input">INPUT</span>
+            <div class="flow-content">
+              <strong>System Prompt</strong>
+              <p>Your instructions to the model. 200–2,000 tokens. Sent on every single call — prime candidate for prompt caching.</p>
+            </div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">
+            <div class="flow-num">2</div>
+            <span class="flow-badge input">INPUT</span>
+            <div class="flow-content">
+              <strong>Chat History</strong>
+              <p>All prior messages in the conversation. Grows every turn. The silent multiplier — often the largest input cost driver.</p>
+            </div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">
+            <div class="flow-num">3</div>
+            <span class="flow-badge input">INPUT</span>
+            <div class="flow-content">
+              <strong>User Message + Context</strong>
+              <p>The actual query plus any retrieved documents (RAG). Usually the smallest component but grows with retrieval.</p>
+            </div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step highlight-step">
+            <div class="flow-num">4</div>
+            <span class="flow-badge output">OUTPUT 4–10×</span>
+            <div class="flow-content">
+              <strong>Model Response</strong>
+              <p>What the model writes back. Billed at 4–10× the input rate. Longer responses = exponentially higher cost. The most expensive component per token.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Three ways to buy -->
+      <h3 class="subsection-heading" style="margin-top:var(--space-16)">Three Ways to Buy AI Tokens</h3>
+      <div class="buying-grid">
+        <div class="buying-card">
+          <div class="buying-icon">📦</div>
+          <h4>Packaged SaaS</h4>
+          <p>Per-seat subscription (e.g. Microsoft Copilot ~$30/user/mo). Tokens are invisible — bundled into the vendor's price. Low control, high simplicity. Risk: you cannot optimise what you cannot see.</p>
+          <div class="buying-tag">Low visibility · Predictable cost</div>
+        </div>
+        <div class="buying-card">
+          <div class="buying-icon">🔌</div>
+          <h4>API Access</h4>
+          <p>Pay per token, metered in real time. Full visibility, full volatility. Costs scale with every prompt length decision and model choice you make. Best for builders who want control.</p>
+          <div class="buying-tag active-tag">Full transparency · Variable cost</div>
+        </div>
+        <div class="buying-card">
+          <div class="buying-icon">🏭</div>
+          <h4>AI Factory (Self-hosted)</h4>
+          <p>Own or co-locate the GPUs. Tokens emerge from capex decisions. Maximum sovereignty, lowest per-token cost at scale (84B+ tokens/year). Requires MLOps capability and significant upfront investment.</p>
+          <div class="buying-tag">Maximum control · High capex</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 PRICING -->
+  <section class="section section-alt" id="pricing">
+    <div class="container">
+      <div class="section-label">02 — Market Pricing</div>
+      <h2 class="section-heading">Token Prices Across Providers</h2>
+      <p class="section-intro">USD per million tokens (MTok) — April 2026. Output tokens cost significantly more than input. Always model the input:output ratio for your specific workload before comparing.</p>
+
+      <div class="filter-row">
+        <button class="filter-btn active" data-filter="all">All Models</button>
+        <button class="filter-btn" data-filter="flagship">Flagship</button>
+        <button class="filter-btn" data-filter="mid">Mid-Tier</button>
+        <button class="filter-btn" data-filter="fast">Fast &amp; Cheap</button>
+        <button class="filter-btn" data-filter="reasoning">Reasoning</button>
+        <button class="filter-btn" data-filter="opensource">Open Source</button>
+      </div>
+
+      <div class="pricing-table-wrap">
+        <table class="pricing-table" id="pricingTable">
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th>Provider</th>
+              <th>Tier</th>
+              <th>Input $/MTok</th>
+              <th>Output $/MTok</th>
+              <th>Cached Input</th>
+              <th>Context</th>
+              <th>Best For</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Flagship -->
+            <tr data-tier="flagship">
+              <td><span class="model-name">GPT-5.2 Pro</span></td>
+              <td><span class="provider openai">OpenAI</span></td>
+              <td><span class="tier-badge flagship">Flagship</span></td>
+              <td class="price high">$21.00</td>
+              <td class="price high">$168.00</td>
+              <td class="price">$2.10</td>
+              <td>200K</td>
+              <td>Hardest reasoning, executive tasks</td>
+            </tr>
+            <tr data-tier="flagship">
+              <td><span class="model-name">Claude Opus 4.6</span></td>
+              <td><span class="provider anthropic">Anthropic</span></td>
+              <td><span class="tier-badge flagship">Flagship</span></td>
+              <td class="price high">$5.00</td>
+              <td class="price high">$25.00</td>
+              <td class="price">$0.30</td>
+              <td>200K</td>
+              <td>Risk reviews, high-stakes analysis</td>
+            </tr>
+            <!-- Reasoning -->
+            <tr data-tier="reasoning">
+              <td><span class="model-name">o1</span></td>
+              <td><span class="provider openai">OpenAI</span></td>
+              <td><span class="tier-badge reasoning">Reasoning</span></td>
+              <td class="price high">$15.00</td>
+              <td class="price high">$60.00</td>
+              <td class="price">$7.50</td>
+              <td>200K</td>
+              <td>Complex multi-step logic, planning</td>
+            </tr>
+            <!-- Mid-tier -->
+            <tr data-tier="mid">
+              <td><span class="model-name">GPT-5.2</span></td>
+              <td><span class="provider openai">OpenAI</span></td>
+              <td><span class="tier-badge mid">Mid-Tier</span></td>
+              <td class="price">$1.75</td>
+              <td class="price">$14.00</td>
+              <td class="price">$0.175</td>
+              <td>200K</td>
+              <td>Coding, agentic workflows</td>
+            </tr>
+            <tr data-tier="mid">
+              <td><span class="model-name">GPT-5</span></td>
+              <td><span class="provider openai">OpenAI</span></td>
+              <td><span class="tier-badge mid">Mid-Tier</span></td>
+              <td class="price">$1.25</td>
+              <td class="price">$10.00</td>
+              <td class="price">$0.125</td>
+              <td>128K</td>
+              <td>General flagship, copilots</td>
+            </tr>
+            <tr data-tier="mid">
+              <td><span class="model-name">Claude Sonnet 4.6</span></td>
+              <td><span class="provider anthropic">Anthropic</span></td>
+              <td><span class="tier-badge mid">Mid-Tier</span></td>
+              <td class="price">$3.00</td>
+              <td class="price">$15.00</td>
+              <td class="price">$0.30</td>
+              <td>1M</td>
+              <td>Enterprise copilots, knowledge workflows</td>
+            </tr>
+            <tr data-tier="mid">
+              <td><span class="model-name">Gemini 2.5 Pro</span></td>
+              <td><span class="provider google">Google</span></td>
+              <td><span class="tier-badge mid">Mid-Tier</span></td>
+              <td class="price">$1.25</td>
+              <td class="price">$10.00</td>
+              <td class="price">$0.31</td>
+              <td>1M</td>
+              <td>Multimodal, long-context analysis</td>
+            </tr>
+            <tr data-tier="mid">
+              <td><span class="model-name">GPT-4.1</span></td>
+              <td><span class="provider openai">OpenAI</span></td>
+              <td><span class="tier-badge mid">Mid-Tier</span></td>
+              <td class="price">$2.00</td>
+              <td class="price">$8.00</td>
+              <td class="price">$0.20</td>
+              <td>1M</td>
+              <td>Product UIs, multi-turn workflows</td>
+            </tr>
+            <!-- Fast & Cheap -->
+            <tr data-tier="fast">
+              <td><span class="model-name">GPT-5 Mini</span></td>
+              <td><span class="provider openai">OpenAI</span></td>
+              <td><span class="tier-badge fast">Fast &amp; Cheap</span></td>
+              <td class="price good">$0.25</td>
+              <td class="price good">$2.00</td>
+              <td class="price">$0.025</td>
+              <td>200K</td>
+              <td>Automation, high-volume batch</td>
+            </tr>
+            <tr data-tier="fast">
+              <td><span class="model-name">Claude Haiku 4.5</span></td>
+              <td><span class="provider anthropic">Anthropic</span></td>
+              <td><span class="tier-badge fast">Fast &amp; Cheap</span></td>
+              <td class="price good">$0.80</td>
+              <td class="price good">$4.00</td>
+              <td class="price">$0.08</td>
+              <td>200K</td>
+              <td>Realtime copilots, support bots</td>
+            </tr>
+            <tr data-tier="fast">
+              <td><span class="model-name">Gemini 2.5 Flash</span></td>
+              <td><span class="provider google">Google</span></td>
+              <td><span class="tier-badge fast">Fast &amp; Cheap</span></td>
+              <td class="price good">$0.30</td>
+              <td class="price good">$2.50</td>
+              <td class="price">$0.03</td>
+              <td>1M</td>
+              <td>High-volume summarisation, triggered automations</td>
+            </tr>
+            <tr data-tier="fast">
+              <td><span class="model-name">DeepSeek V3.2</span></td>
+              <td><span class="provider deepseek">DeepSeek</span></td>
+              <td><span class="tier-badge fast">Fast &amp; Cheap</span></td>
+              <td class="price good">$0.28</td>
+              <td class="price good">$0.42</td>
+              <td class="price">$0.028</td>
+              <td>128K</td>
+              <td>Best value per token, 90% cache discounts</td>
+            </tr>
+            <tr data-tier="fast">
+              <td><span class="model-name">Gemini 2.0 Flash-Lite</span></td>
+              <td><span class="provider google">Google</span></td>
+              <td><span class="tier-badge fast">Fast &amp; Cheap</span></td>
+              <td class="price good">$0.075</td>
+              <td class="price good">$0.30</td>
+              <td class="price">—</td>
+              <td>1M</td>
+              <td>Cheapest mainstream option, simple tasks</td>
+            </tr>
+            <!-- Open Source (via API providers) -->
+            <tr data-tier="opensource">
+              <td><span class="model-name">Llama 4 Maverick</span></td>
+              <td><span class="provider meta">Meta</span></td>
+              <td><span class="tier-badge opensource">Open Source</span></td>
+              <td class="price good">$0.15</td>
+              <td class="price good">$0.60</td>
+              <td class="price">—</td>
+              <td>1M</td>
+              <td>Open weights, fine-tuning, sovereignty</td>
+            </tr>
+            <tr data-tier="opensource">
+              <td><span class="model-name">Llama 3.3 70B</span></td>
+              <td><span class="provider meta">Meta</span></td>
+              <td><span class="tier-badge opensource">Open Source</span></td>
+              <td class="price good">$0.10</td>
+              <td class="price good">$0.32</td>
+              <td class="price">—</td>
+              <td>131K</td>
+              <td>5–14× cheaper than GPT-4o at comparable quality</td>
+            </tr>
+            <tr data-tier="opensource">
+              <td><span class="model-name">Mistral Small 3.2</span></td>
+              <td><span class="provider mistral">Mistral</span></td>
+              <td><span class="tier-badge opensource">Open Source</span></td>
+              <td class="price good">$0.07</td>
+              <td class="price good">$0.20</td>
+              <td class="price">—</td>
+              <td>128K</td>
+              <td>Ultra-low cost European open model</td>
+            </tr>
+            <tr data-tier="opensource">
+              <td><span class="model-name">Mistral Nemo</span></td>
+              <td><span class="provider mistral">Mistral</span></td>
+              <td><span class="tier-badge opensource">Open Source</span></td>
+              <td class="price good">$0.02</td>
+              <td class="price good">$0.04</td>
+              <td class="price">—</td>
+              <td>131K</td>
+              <td>Absolute lowest API cost, simple extraction tasks</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pricing-note">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        Prices from <a href="https://www.tldl.io/resources/llm-api-pricing-2026" target="_blank">TLDL LLM Pricing 2026</a>, <a href="https://intuitionlabs.ai/pdfs/llm-api-pricing-comparison-2025-openai-gemini-claude.pdf" target="_blank">IntuitionLabs Comparison</a>, <a href="https://pricepertoken.com/compare/provider/meta-llama-vs-mistral-ai" target="_blank">PricePerToken.com</a>. Prices change frequently — verify directly with each provider before budgeting.
+      </div>
+
+      <!-- Cost scenarios -->
+      <h3 class="subsection-heading" style="margin-top:var(--space-16)">Real-World Cost Scenarios</h3>
+      <div class="scenario-grid">
+        <div class="scenario-card">
+          <div class="scenario-label">Chatbot — 800 in / 400 out tokens/turn · 10K users · 20 turns/day</div>
+          <div class="scenario-rows">
+            <div class="scenario-row"><span>Gemini 2.0 Flash</span><strong>$14/mo</strong></div>
+            <div class="scenario-row"><span>DeepSeek V3.2</span><strong>$23/mo</strong></div>
+            <div class="scenario-row"><span>GPT-5 Mini</span><strong>$60/mo</strong></div>
+            <div class="scenario-row"><span>Claude Haiku 4.5</span><strong>$168/mo</strong></div>
+            <div class="scenario-row"><span>Claude Sonnet 4.6</span><strong>$504/mo</strong></div>
+          </div>
+        </div>
+        <div class="scenario-card">
+          <div class="scenario-label">RAG Pipeline — 8,000 in / 800 out per query · 50K queries/month</div>
+          <div class="scenario-rows">
+            <div class="scenario-row"><span>DeepSeek V3.2</span><strong>$128/mo</strong></div>
+            <div class="scenario-row"><span>Gemini 2.5 Flash</span><strong>$220/mo</strong></div>
+            <div class="scenario-row"><span>GPT-5 Mini</span><strong>$180/mo</strong></div>
+            <div class="scenario-row"><span>Gemini 2.5 Pro</span><strong>$900/mo</strong></div>
+            <div class="scenario-row"><span>Claude Sonnet 4.6</span><strong>$1,800/mo</strong></div>
+          </div>
+        </div>
+        <div class="scenario-card">
+          <div class="scenario-label">Code Generation — 2,000 in / 1,500 out per request · 500 req/day</div>
+          <div class="scenario-rows">
+            <div class="scenario-row"><span>Llama 3.3 70B</span><strong>~$20/mo</strong></div>
+            <div class="scenario-row"><span>DeepSeek V3.2</span><strong>$18/mo</strong></div>
+            <div class="scenario-row"><span>GPT-5.2</span><strong>$367/mo</strong></div>
+            <div class="scenario-row"><span>Claude Sonnet 4.6</span><strong>$427/mo</strong></div>
+            <div class="scenario-row"><span>Claude Opus 4.6</span><strong>$712/mo</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 OPTIMISATION LEVERS -->
+  <section class="section" id="levers">
+    <div class="container">
+      <div class="section-label">03 — Core Optimisation</div>
+      <h2 class="section-heading">10 Levers to Cut Token Spend</h2>
+      <p class="section-intro">These are proven, production-tested techniques. Combined, organisations routinely achieve 40–80% cost reduction. Start with the high-impact ones — they require minimal engineering effort.</p>
+
+      <div class="levers-grid">
+
+        <div class="lever-card">
+          <div class="lever-header">
+            <div class="lever-num">01</div>
+            <div class="impact-badge impact-high">Biggest Lever</div>
+          </div>
+          <h3>Prompt Caching (KV Cache)</h3>
+          <p>Providers cache the key-value matrices of repeated prompt prefixes. This is the single highest-impact optimisation — up to 90% cheaper on cached input tokens with minimal code changes.</p>
+          <div class="lever-example">
+            <div class="example-label">2026 Provider Cache Pricing</div>
+            <ul>
+              <li>Anthropic (Claude): $3.00 write → <strong>$0.30/MTok cached (90% off)</strong></li>
+              <li>OpenAI (auto-caching): 50% off input tokens, no code change needed</li>
+              <li>AWS Bedrock: Up to 90% cost reduction, 85% latency reduction</li>
+              <li>Minimum 1,024 tokens needed; TTL ~5 minutes standard</li>
+              <li>Break-even at just 1.4 cache reads per cached prefix</li>
+            </ul>
+          </div>
+          <div class="lever-tip">
+            <strong>Implementation:</strong> Place stable content first — system prompt, docs, tool definitions. Place dynamic content last — user queries, session data. Anthropic: use <code>cache_control</code> parameter for explicit breakpoints. Target 70%+ cache hit rate. Rate limits don't count against cached reads (Claude 3.7+).
+          </div>
+          <div class="lever-savings">Up to <strong>90% off input tokens</strong></div>
+        </div>
+
+        <div class="lever-card">
+          <div class="lever-header">
+            <div class="lever-num">02</div>
+            <div class="impact-badge impact-high">High Impact</div>
+          </div>
+          <h3>Right-Size Model Selection (Routing)</h3>
+          <p>Route tasks to the cheapest model that meets the quality bar. A cascade strategy sends simple tasks to Flash/Haiku/Mini and escalates to Sonnet/GPT-5 only when required. FAQ bots do not need frontier models.</p>
+          <div class="lever-example">
+            <div class="example-label">Routing framework</div>
+            <ul>
+              <li><strong>Classifier layer</strong> (cheap model) assesses query complexity</li>
+              <li><strong>Simple</strong> (FAQ, classification, extraction) → Haiku / Flash-Lite</li>
+              <li><strong>Standard</strong> (summarisation, drafting) → Sonnet / GPT-5 Mini</li>
+              <li><strong>Complex</strong> (analysis, reasoning, code) → GPT-5 / Claude Opus</li>
+            </ul>
+          </div>
+          <div class="lever-tip">
+            <strong>Implementation:</strong> Tools like Portkey and LiteLLM support rule-based and ML-based routing with millisecond overhead. Llama 3.3 70B is 5–14× cheaper than GPT-4o at comparable quality for most tasks. Open-source models via Groq or Together AI at $0.10/MTok deliver near-zero marginal cost at scale.
+          </div>
+          <div class="lever-savings">Up to <strong>60–80% reduction</strong> with smart routing</div>
+        </div>
+
+        <div class="lever-card">
+          <div class="lever-header">
+            <div class="lever-num">03</div>
+            <div class="impact-badge impact-high">High Impact</div>
+          </div>
+          <h3>Truncate &amp; Summarise Conversation History</h3>
+          <p>Every message in a multi-turn chat is resent on every call. A 40-turn conversation carries 25,000+ input tokens — the largest invisible cost driver. Sliding window truncation + summarisation eliminates this.</p>
+          <div class="lever-example">
+            <div class="example-label">Implementation patterns</div>
+            <ul>
+              <li><strong>Sliding window:</strong> Keep only last N turns</li>
+              <li><strong>Summarisation:</strong> After 10 turns, compress older history to 1 paragraph</li>
+              <li><strong>Structured state:</strong> Extract facts into a key-value store, not raw chat</li>
+              <li><strong>Topic clear:</strong> Reset context on new user intent/topic</li>
+              <li><strong>Max messages limit:</strong> Hard-cap turns per session in agent platforms</li>
+            </ul>
+          </div>
+          <div class="lever-tip">
+            <strong>Implementation:</strong> Use a cheap model (Haiku, Flash-Lite) to summarise older context before the main call. The summarisation cost is negligible vs the savings. Context engines with this pattern achieve 40–60% input reduction.
+          </div>
+          <div class="lever-savings">40–70% <strong>context token reduction</strong></div>
+        </div>
+
+        <div class="lever-card">
+          <div class="lever-header">
+            <div class="lever-num">04</div>
+            <div class="impact-badge impact-high">High Impact</div>
+          </div>
+          <h3>Semantic Caching</h3>
+          <p>Instead of caching exact strings, semantic caching uses vector embeddings to serve cached responses when queries are semantically similar (≥0.85–0.95 cosine similarity). Avoids the API call entirely for repetitive queries.</p>
+          <div class="lever-example">
+            <div class="example-label">2026 production benchmarks</div>
+            <ul>
+              <li>Cache hit rates: <strong>60–85%</strong> in support/FAQ workloads</li>
+              <li>API call reduction: up to <strong>68.8%</strong> fewer calls</li>
+              <li>Latency: 1.67s → <strong>0.052s</strong> per cache hit (96.9% faster)</li>
+              <li>Cost reduction: up to <strong>73%</strong> on conversational workloads</li>
+              <li>31% of LLM queries show semantic similarity — often untapped</li>
+            </ul>
+          </div>
+          <div class="lever-tip">
+            <strong>Implementation:</strong> Redis with LangCache, Portkey, Helicone, or Bifrost all support semantic caching in 2026 via one-line gateway integration. Namespace by model + provider to avoid cross-contamination. Skip caching for conversations exceeding ~10 turns to reduce false positives.
+          </div>
+          <div class="lever-savings">50–73% on <strong>semantically repetitive</strong> workloads</div>
+        </div>
+
+        <div class="lever-card">
+          <div class="lever-header">
+            <div class="lever-num">05</div>
+            <div class="impact-badge impact-medium">Medium Impact</div>
+          </div>
+          <h3>Concise Prompt Engineering</h3>
+          <p>Verbose prompts don't produce better outputs — they just cost more. Filler phrases like "You are a helpful, professional, knowledgeable assistant" add tokens with zero information gain. Telling a model to "be concise" reduces output tokens by 57–59%.</p>
+          <div class="lever-example">
+            <div class="example-label">Before → After</div>
+            <div class="code-block">
+              <div class="code-before">You are a helpful, knowledgeable, friendly, professional customer support agent who always responds in a polite and courteous manner and ensures customer satisfaction...</div>
+              <div class="code-arrow">↓ 55% fewer tokens, same output quality</div>
+              <div class="code-after">You are a customer support agent. Be concise and accurate.</div>
+            </div>
+          </div>
+          <div class="lever-tip">
+            <strong>Implementation:</strong> Audit every system prompt. Remove filler, pleasantries, and redundant instructions. LLMLingua prompt compression achieves 20× token reduction with only 1.5% quality loss — available as a plug-and-play LangChain/LlamaIndex integration.
+          </div>
+          <div class="lever-savings">30–55% <strong>prompt size reduction</strong></div>
+        </div>
+
+        <div class="lever-card">
+          <div class="lever-header">
+            <div class="lever-num">06</div>
+            <div class="impact-badge impact-medium">Medium Impact</div>
+          </div>
+          <h3>Constrain Output Length &amp; Format</h3>
+          <p>Output tokens cost 4–10× more than input. Setting <code>max_tokens</code> limits and requesting structured JSON instead of prose cuts the most expensive part of every call.</p>
+          <div class="lever-example">
+            <div class="example-label">Control techniques</div>
+            <ul>
+              <li>Set explicit <code>max_tokens</code> parameter per call type</li>
+              <li>Request JSON/structured output schemas: ~15% token reduction vs prose</li>
+              <li>Use stop sequences to prevent unnecessary continuation</li>
+              <li>Request bullet responses: "Answer in 3 bullet points"</li>
+              <li>Use "be concise" instruction: 57–59% output reduction (OPSDC research)</li>
+            </ul>
+          </div>
+          <div class="lever-tip">
+            <strong>Implementation:</strong> Map output length requirements to use-case type. FAQ = 1–2 sentences. Summary = 3–5 bullets. Analysis = structured JSON. Set <code>max_tokens</code> as a hard upper bound for each use-case tier.
+          </div>
+          <div class="lever-savings">15–60% <strong>output token reduction</strong></div>
+        </div>
+
+        <div class="lever-card">
+          <div class="lever-header">
+            <div class="lever-num">07</div>
+            <div class="impact-badge impact-medium">Medium Impact</div>
+          </div>
+          <h3>RAG Context Compression</h3>
+          <p>RAG pipelines often dump entire document chunks into context — including sentences irrelevant to the query. Pre-filtering retrieved chunks to only query-relevant sentences cuts RAG input tokens by 50–80% with maintained accuracy.</p>
+          <div class="lever-example">
+            <div class="example-label">Optimised RAG pipeline</div>
+            <ul>
+              <li>Retrieve top-K chunks (e.g. 10 chunks)</li>
+              <li>Score each sentence for query relevance (cheap model)</li>
+              <li>Pass only high-relevance sentences (~20% of retrieved text)</li>
+              <li>Reduce Top-K from 10 to 3–5 via hybrid search</li>
+              <li>Result: same answer quality, 50–80% fewer tokens</li>
+            </ul>
+          </div>
+          <div class="lever-tip">
+            <strong>Implementation:</strong> Use a small model (Flash-Lite, Haiku) or a BM25/reranker to score and filter context before passing to the main LLM. One production case study: cost per contract dropped from expensive to $0.91, with 40% latency reduction.
+          </div>
+          <div class="lever-savings">25–80% <strong>RAG context reduction</strong></div>
+        </div>
+
+        <div class="lever-card">
+          <div class="lever-header">
+            <div class="lever-num">08</div>
+            <div class="impact-badge impact-medium">Medium Impact</div>
+          </div>
+          <h3>Batch Processing</h3>
+          <p>Most providers offer 50% discounts for asynchronous batch API calls. Non-real-time workloads — nightly reports, document analysis, bulk classification — are ideal candidates with zero quality trade-off.</p>
+          <div class="lever-example">
+            <div class="example-label">Batch API discount (2026)</div>
+            <ul>
+              <li>OpenAI Batch API: <strong>50% off</strong> all token costs</li>
+              <li>Anthropic Message Batches: <strong>50% off</strong> standard pricing</li>
+              <li>Use cases: doc processing, bulk tagging, analytics, embeddings</li>
+              <li>Processing time: minutes to 24 hours (vs milliseconds sync)</li>
+            </ul>
+          </div>
+          <div class="lever-tip">
+            <strong>Implementation:</strong> Audit all AI calls for real-time necessity. Most analytics, classification, and reporting workflows can be shifted to batch. No engineering complexity — just use the batch endpoint.
+          </div>
+          <div class="lever-savings"><strong>50% off</strong> all eligible non-real-time workloads</div>
+        </div>
+
+        <div class="lever-card">
+          <div class="lever-header">
+            <div class="lever-num">09</div>
+            <div class="impact-badge impact-medium">Targeted Impact</div>
+          </div>
+          <h3>Avoid Reasoning Models for Simple Tasks</h3>
+          <p>Reasoning models (o1, Claude Extended Thinking) generate internal chain-of-thought tokens before responding — billed but invisible. For a FAQ bot or classifier, you may be paying 5–20× more than necessary.</p>
+          <div class="lever-example">
+            <div class="example-label">When to use reasoning models</div>
+            <ul>
+              <li>✓ Multi-step mathematical/logical deduction</li>
+              <li>✓ Code debugging with complex dependency chains</li>
+              <li>✓ Long-horizon agentic planning</li>
+              <li>✓ Legal/financial analysis requiring step-by-step reasoning</li>
+              <li>✗ Summarisation, classification, translation, FAQ</li>
+            </ul>
+          </div>
+          <div class="lever-tip">
+            <strong>Implementation:</strong> Implement a reasoning-model gate: only route to o1/extended-thinking when a classifier scores the task as requiring multi-step inference. Default to standard models.
+          </div>
+          <div class="lever-savings">5–20× <strong>cost reduction vs always-on reasoning</strong></div>
+        </div>
+
+        <div class="lever-card">
+          <div class="lever-header">
+            <div class="lever-num">10</div>
+            <div class="impact-badge impact-low">Enabler</div>
+          </div>
+          <h3>Fine-Tuning for Repetitive High-Volume Tasks</h3>
+          <p>Fine-tuning embeds task knowledge directly into the model, eliminating the need for lengthy few-shot examples in every prompt. For stable, high-volume tasks, fine-tuned smaller models can outperform generic larger ones at a fraction of the cost.</p>
+          <div class="lever-example">
+            <div class="example-label">Economics (2026)</div>
+            <ul>
+              <li>GPT-4.1 fine-tuning: $25/MTok training tokens</li>
+              <li>Inference savings: <strong>40–60% fewer tokens per call</strong></li>
+              <li>Self-hosted Llama fine-tuned: savings reach 20–25× vs proprietary API</li>
+              <li>Break-even: typically ~1M calls on the specific task</li>
+              <li>Only viable for stable tasks with 10K+ calls/month</li>
+            </ul>
+          </div>
+          <div class="lever-tip">
+            <strong>Implementation:</strong> Only invest in fine-tuning for tasks where: (1) instructions are stable, (2) volume is high, (3) few-shot examples are large and repetitive. Avoid for evolving tasks or low-volume use cases.
+          </div>
+          <div class="lever-savings">40–75% <strong>long-term inference reduction</strong></div>
+        </div>
+
+      </div>
+
+      <!-- Savings bar chart -->
+      <div class="savings-summary">
+        <h3 class="subsection-heading">Combined Optimisation Potential</h3>
+        <div class="savings-bar-chart">
+          <div class="savings-bar-row">
+            <div class="savings-bar-label">Prompt caching (KV cache)</div>
+            <div class="savings-bar-track"><div class="savings-bar-fill" style="width:90%">90%</div></div>
+          </div>
+          <div class="savings-bar-row">
+            <div class="savings-bar-label">Semantic caching</div>
+            <div class="savings-bar-track"><div class="savings-bar-fill" style="width:73%">73%</div></div>
+          </div>
+          <div class="savings-bar-row">
+            <div class="savings-bar-label">Model routing / right-sizing</div>
+            <div class="savings-bar-track"><div class="savings-bar-fill" style="width:80%">60–80%</div></div>
+          </div>
+          <div class="savings-bar-row">
+            <div class="savings-bar-label">History truncation &amp; summarisation</div>
+            <div class="savings-bar-track"><div class="savings-bar-fill" style="width:65%">40–70%</div></div>
+          </div>
+          <div class="savings-bar-row">
+            <div class="savings-bar-label">Concise prompt engineering</div>
+            <div class="savings-bar-track"><div class="savings-bar-fill" style="width:55%">30–55%</div></div>
+          </div>
+          <div class="savings-bar-row">
+            <div class="savings-bar-label">RAG context compression</div>
+            <div class="savings-bar-track"><div class="savings-bar-fill" style="width:80%">25–80%</div></div>
+          </div>
+          <div class="savings-bar-row">
+            <div class="savings-bar-label">Batch processing</div>
+            <div class="savings-bar-track"><div class="savings-bar-fill" style="width:50%">50%</div></div>
+          </div>
+          <div class="savings-bar-row">
+            <div class="savings-bar-label">Output length constraints</div>
+            <div class="savings-bar-track"><div class="savings-bar-fill" style="width:60%">15–60%</div></div>
+          </div>
+        </div>
+        <p class="savings-note">* Savings are on applicable token spend per technique — not additive across all calls. Most production systems achieve 70–80% total spend reduction by combining prompt caching + model routing + context management. Source: <a href="https://www.obviousworks.ch/en/token-optimization-saves-up-to-80-percent-llm-costs/" target="_blank">Obvious Works 2026</a>, <a href="https://redis.io/blog/large-language-model-operations-guide/" target="_blank">Redis LLMOps Guide</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 ADVANCED TECHNIQUES -->
+  <section class="section section-alt" id="advanced">
+    <div class="container">
+      <div class="section-label">04 — Advanced Techniques</div>
+      <h2 class="section-heading">Infrastructure-Level Optimisation</h2>
+      <p class="section-intro">Beyond prompt-level changes, these infrastructure techniques address token costs at the compute layer — particularly relevant for self-hosted deployments and high-scale agentic systems.</p>
+
+      <div class="levers-grid">
+
+        <div class="lever-card">
+          <div class="lever-header">
+            <div class="lever-num">A</div>
+            <div class="impact-badge impact-high">Self-Hosted</div>
+          </div>
+          <h3>KV Cache Compression</h3>
+          <p>For self-hosted deployments, the KV (key-value) cache is the dominant memory bottleneck. Recent research shows 70–90% memory reduction is achievable with minimal accuracy loss — enabling longer contexts on the same hardware.</p>
+          <div class="lever-example">
+            <div class="example-label">2026 state-of-the-art (ICLR 2026)</div>
+            <ul>
+              <li><strong>Google TurboQuant:</strong> 6× memory reduction, zero accuracy loss, no calibration</li>
+              <li><strong>NVIDIA KVTC:</strong> Up to 20× compression via PCA + entropy coding</li>
+              <li><strong>FastKV:</strong> 1.82× faster prefill + 2.87× faster decoding vs baseline</li>
+              <li><strong>FP8/INT4 quantisation:</strong> 2–4× memory reduction, supported in vLLM natively</li>
+            </ul>
+          </div>
+          <div class="lever-tip">
+            <strong>Implementation:</strong> Use vLLM with PagedAttention for 14–24× higher throughput vs naive implementations. Apply FP8 KV quantisation on NVIDIA Hopper/Blackwell GPUs. For cutting-edge: TurboQuant/KVTC land at ICLR April 2026.
+          </div>
+          <div class="lever-savings">6–20× <strong>memory reduction → lower hardware cost</strong></div>
+        </div>
+
+        <div class="lever-card">
+          <div class="lever-header">
+            <div class="lever-num">B</div>
+            <div class="impact-badge impact-medium">Self-Hosted</div>
+          </div>
+          <h3>Speculative Decoding</h3>
+          <p>Pair the target model with a lightweight draft model that proposes multiple tokens simultaneously. The target model verifies the batch in a single forward pass — achieving 2–5× faster generation with identical output quality.</p>
+          <div class="lever-example">
+            <div class="example-label">2026 benchmarks</div>
+            <ul>
+              <li>Standard speculative decoding: <strong>2–4× faster inference</strong></li>
+              <li>Speculative Speculative Decoding (Saguaro): <strong>5× vs autoregressive</strong></li>
+              <li>14–17% throughput gain on Oracle OCI with A100 GPUs</li>
+              <li>Zero accuracy degradation — output is mathematically equivalent</li>
+            </ul>
+          </div>
+          <div class="lever-tip">
+            <strong>Implementation:</strong> Supported natively in vLLM, SGLang, and TRT-LLM. DeepSeek uses Multi-Token Prediction (MTP) heads as a draft mechanism. EAGLE/EAGLE-2 are the most widely deployed speculative decoding variants as of 2026.
+          </div>
+          <div class="lever-savings">2–5× <strong>throughput increase → lower GPU hours per token</strong></div>
+        </div>
+
+        <div class="lever-card">
+          <div class="lever-header">
+            <div class="lever-num">C</div>
+            <div class="impact-badge impact-medium">Agentic Systems</div>
+          </div>
+          <h3>Agentic Workflow Optimisation</h3>
+          <p>Multi-agent systems can consume 4–15× more tokens than single-agent calls if not carefully orchestrated. Parallel execution, tool fusion, and model tiering within agent graphs dramatically reduce token overhead.</p>
+          <div class="lever-example">
+            <div class="example-label">Key agentic cost patterns</div>
+            <ul>
+              <li><strong>DAG-based topologies:</strong> Parallel instead of sequential tool calls</li>
+              <li><strong>Tool fusion:</strong> Combine related tool calls → 12–40% token reduction</li>
+              <li><strong>Model tiering:</strong> Haiku for sub-tasks, Sonnet for orchestration, Opus for core reasoning</li>
+              <li><strong>Agent cost pre-estimation:</strong> Use LLM to evaluate plan cost before execution</li>
+              <li><strong>Token quotas:</strong> Hard-cap tokens per agent per session to prevent runaway costs</li>
+            </ul>
+          </div>
+          <div class="lever-tip">
+            <strong>Implementation:</strong> Set monthly quota limits ($) in agent platforms. Set execution limits per minute to prevent runaway loops. Set time limits per conversation. Track cost per agent per task. Source: <a href="https://blog.tonic3.com/guide-to-smart-ai-agent-budget-token-consumption" target="_blank">Tonic3 Agentic Budget Framework 2025</a>.
+          </div>
+          <div class="lever-savings">12–40% <strong>token reduction in multi-agent systems</strong></div>
+        </div>
+
+        <div class="lever-card">
+          <div class="lever-header">
+            <div class="lever-num">D</div>
+            <div class="impact-badge impact-medium">Infrastructure</div>
+          </div>
+          <h3>Model Quantisation (Self-hosted)</h3>
+          <p>Quantisation reduces model weight precision from FP16 to INT8 or INT4, cutting memory requirements by 2–4× with minimal quality loss. Enables running larger models on cheaper hardware.</p>
+          <div class="lever-example">
+            <div class="example-label">Quantisation options</div>
+            <ul>
+              <li><strong>FP8 (8-bit):</strong> 2× memory savings, near-zero quality loss</li>
+              <li><strong>INT4 (4-bit):</strong> 4× memory savings, &lt;5% accuracy delta on most tasks</li>
+              <li>Llama 70B at INT4: runs on 2× A100 80GB vs 4× in FP16</li>
+              <li>Libraries: bitsandbytes, AutoGPTQ, GGUF (llama.cpp)</li>
+              <li>H100 GPUs: 80% more cost-efficient per token vs older hardware</li>
+            </ul>
+          </div>
+          <div class="lever-tip">
+            <strong>Implementation:</strong> Use INT8 for production serving as the conservative default. Use INT4 for less critical inference workloads where you've tested quality. Always benchmark quality on your specific task before deploying quantised models.
+          </div>
+          <div class="lever-savings">2–4× <strong>memory reduction → lower infrastructure cost</strong></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 HOSTING -->
+  <section class="section" id="hosting">
+    <div class="container">
+      <div class="section-label">05 — Infrastructure Decision</div>
+      <h2 class="section-heading">Build vs Buy: The Hosting Decision</h2>
+      <p class="section-intro">Where your model runs shapes per-token economics as much as which model you choose. At low volumes, API access wins. At scale, the economics flip decisively. Two-thirds of enterprises are now repatriating AI workloads on-premise (Finout 2026).</p>
+
+      <div class="hosting-grid">
+        <div class="hosting-card">
+          <div class="hosting-header"><span class="hosting-icon">☁️</span><h3>API Access</h3></div>
+          <div class="hosting-meta"><span class="meta-tag">Pure Opex</span><span class="meta-tag">Instant setup</span></div>
+          <ul class="hosting-pros">
+            <li>✓ No upfront investment</li>
+            <li>✓ Instant start, infinite scale</li>
+            <li>✓ Latest models available immediately</li>
+            <li>✓ Best for spiky / exploratory workloads</li>
+          </ul>
+          <ul class="hosting-cons">
+            <li>✗ Highest per-token cost</li>
+            <li>✗ Costs scale linearly, unpredictably</li>
+            <li>✗ No data sovereignty control</li>
+            <li>✗ Vendor lock-in risk</li>
+          </ul>
+          <div class="hosting-price">$0.075–$168 per MTok output</div>
+          <div class="hosting-verdict">Best below <strong>~7B tokens/month</strong></div>
+        </div>
+        <div class="hosting-card">
+          <div class="hosting-header"><span class="hosting-icon">⚡</span><h3>Neocloud (NCP)</h3></div>
+          <div class="hosting-meta"><span class="meta-tag">Pure Opex</span><span class="meta-tag">Instant</span></div>
+          <ul class="hosting-pros">
+            <li>✓ Purpose-built for AI workloads</li>
+            <li>✓ Lower latency than hyperscalers</li>
+            <li>✓ Dynamic GPU provisioning</li>
+            <li>✓ Good mid-point before full ownership</li>
+          </ul>
+          <ul class="hosting-cons">
+            <li>✗ No control over physical layer</li>
+            <li>✗ High on-demand price variability</li>
+            <li>✗ External data residency risk</li>
+          </ul>
+          <div class="hosting-price">~$1–$4/GPU hour</div>
+          <div class="hosting-verdict">Cheaper than API at <strong>49B+ tokens/year</strong></div>
+        </div>
+        <div class="hosting-card hosting-highlight">
+          <div class="hosting-header"><span class="hosting-icon">🏭</span><h3>AI Factory (On-Prem)</h3></div>
+          <div class="hosting-meta"><span class="meta-tag">Capex Model</span><span class="meta-tag">High control</span></div>
+          <ul class="hosting-pros">
+            <li>✓ Lowest per-token cost at scale</li>
+            <li>✓ Full data sovereignty</li>
+            <li>✓ Open-source models (free inference)</li>
+            <li>✓ Custom fine-tuning, no vendor lock-in</li>
+          </ul>
+          <ul class="hosting-cons">
+            <li>✗ Large upfront capex</li>
+            <li>✗ Multi-month procurement</li>
+            <li>✗ MLOps expertise required</li>
+            <li>✗ GPU obsolescence risk (annual release cycles)</li>
+          </ul>
+          <div class="hosting-price">~$1–$2/GPU hour amortised</div>
+          <div class="hosting-verdict">Wins decisively at <strong>84B+ tokens/year</strong></div>
+        </div>
+      </div>
+
+      <!-- TCO Inflection Points -->
+      <div class="tco-section">
+        <h3 class="subsection-heading">TCO Inflection Points (Deloitte Simulation)</h3>
+        <div class="tco-cards">
+          <div class="tco-card">
+            <div class="tco-threshold">49B tokens/yr</div>
+            <p>NCP becomes cheaper per-token than API access</p>
+          </div>
+          <div class="tco-card">
+            <div class="tco-threshold">67B tokens/yr</div>
+            <p>AI factory per-token cost drops below API access</p>
+          </div>
+          <div class="tco-card tco-highlight">
+            <div class="tco-threshold">84B tokens/yr</div>
+            <p>AI factory beats both API and NCP on per-token TCO</p>
+          </div>
+          <div class="tco-card">
+            <div class="tco-threshold">3-year horizon</div>
+            <p>AI factory delivers <strong>50%+ savings</strong> vs API at equivalent token volumes</p>
+          </div>
+        </div>
+
+        <div class="tco-visual">
+          <div class="tco-bar-chart">
+            <div class="tco-year">
+              <div class="tco-year-label">Year 1<br/><small>10B tokens</small></div>
+              <div class="tco-bars">
+                <div class="tco-bar api" style="height:106px"><span>API $1.06M</span></div>
+                <div class="tco-bar ncp" style="height:97px"><span>NCP $0.97M</span></div>
+                <div class="tco-bar factory" style="height:49px"><span>Factory $0.49M</span></div>
+              </div>
+            </div>
+            <div class="tco-year">
+              <div class="tco-year-label">Year 2<br/><small>300B tokens</small></div>
+              <div class="tco-bars">
+                <div class="tco-bar api" style="height:350px"><span>API $3.50M</span></div>
+                <div class="tco-bar ncp" style="height:272px"><span>NCP $2.72M</span></div>
+                <div class="tco-bar factory" style="height:145px"><span>Factory $1.45M</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="tco-legend">
+            <span class="legend-dot api-dot"></span>API &nbsp;&nbsp;
+            <span class="legend-dot ncp-dot"></span>Neocloud &nbsp;&nbsp;
+            <span class="legend-dot factory-dot"></span>AI Factory
+          </div>
+          <p class="tco-source">Source: <a href="https://www2.deloitte.com/us/en/insights/industry/technology/economics-of-ai-tokenomics.html" target="_blank">Deloitte "The Pivot to Tokenomics" — AI Economics Report 2025</a></p>
+        </div>
+      </div>
+
+      <!-- Stack breakdown donut -->
+      <div class="stack-section">
+        <h3 class="subsection-heading">AI Factory TCO Breakdown (10B tokens/year = $1.45M)</h3>
+        <div class="stack-donut-wrap">
+          <div class="stack-donut">
+            <svg viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="AI Factory cost breakdown donut chart">
+              <circle cx="100" cy="100" r="70" fill="none" stroke="var(--color-primary)" stroke-width="40" stroke-dasharray="219.9 415.5" stroke-dashoffset="0" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="70" fill="none" stroke="var(--color-blue)" stroke-width="40" stroke-dasharray="70.7 564.7" stroke-dashoffset="-219.9" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="70" fill="none" stroke="var(--color-orange)" stroke-width="40" stroke-dasharray="70.7 564.7" stroke-dashoffset="-290.6" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="70" fill="none" stroke="var(--color-gold)" stroke-width="40" stroke-dasharray="54.1 581.3" stroke-dashoffset="-361.3" transform="rotate(-90 100 100)"/>
+              <text x="100" y="96" text-anchor="middle" font-family="DM Serif Display, serif" font-size="18" font-weight="700" fill="var(--color-text)">$1.45M</text>
+              <text x="100" y="112" text-anchor="middle" font-size="9" fill="var(--color-text-muted)" font-family="DM Sans, sans-serif">Annual TCO</text>
+            </svg>
+          </div>
+          <div class="stack-legend">
+            <div class="stack-legend-item">
+              <div class="stack-dot" style="background:var(--color-primary)"></div>
+              <div>
+                <strong>Compute (GPUs)</strong>
+                <span>53% · $125,080</span>
+                <p>Largest direct cost. NVIDIA HGX B200 GPUs, high-bandwidth memory, accelerators. Dominant cost at 10B token scale.</p>
+              </div>
+            </div>
+            <div class="stack-legend-item">
+              <div class="stack-dot" style="background:var(--color-blue)"></div>
+              <div>
+                <strong>Facilities, Power &amp; Cooling</strong>
+                <span>17% · $40,670</span>
+                <p>AI GPU racks draw 250–300kW vs 10–15kW for standard servers. Liquid cooling required at scale.</p>
+              </div>
+            </div>
+            <div class="stack-legend-item">
+              <div class="stack-dot" style="background:var(--color-orange)"></div>
+              <div>
+                <strong>Software &amp; Licensing</strong>
+                <span>17% · $39,646</span>
+                <p>AI frameworks, orchestration tools, MLOps platforms, compliance tooling, enterprise support.</p>
+              </div>
+            </div>
+            <div class="stack-legend-item">
+              <div class="stack-dot" style="background:var(--color-gold)"></div>
+              <div>
+                <strong>Networking</strong>
+                <span>13% · $31,302</span>
+                <p>InfiniBand/NVLink GPU interconnects. High-bandwidth switches. Contributes 10–20% of TCO typically.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 AI FINOPS -->
+  <section class="section section-alt" id="finops">
+    <div class="container">
+      <div class="section-label">06 — AI FinOps</div>
+      <h2 class="section-heading">Token Governance &amp; FinOps</h2>
+      <p class="section-intro">You cannot optimise what you cannot see. AI FinOps is the emerging practice of applying cloud financial governance discipline to token-based spending — and it's now the #1 priority for FinOps teams in 2026.</p>
+
+      <div style="background:var(--color-primary-light);border:1px solid color-mix(in oklch, var(--color-primary) 30%, transparent);border-radius:var(--radius-xl);padding:var(--space-6);margin-bottom:var(--space-10);">
+        <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin:0;">
+          <strong style="color:var(--color-primary)">State of FinOps 2026 (FinOps Foundation):</strong>
+          98% of respondents now use FinOps to manage AI spend (up from 31% in 2024). 58% cite AI cost management as their most desired skill addition. 33% named FinOps for AI as their top current or future priority — ahead of all others. Yet 80% of companies still miss AI infrastructure cost forecasts by more than 25%.
+        </p>
+      </div>
+
+      <h3 class="subsection-heading">FinOps Maturity Model for Token Spend</h3>
+      <div class="maturity-grid">
+        <div class="maturity-card">
+          <div class="maturity-step">Level 1 — Inform</div>
+          <h4>Observability</h4>
+          <ul>
+            <li>Log input + output tokens per API call</li>
+            <li>Tag every request with model name, team, use-case</li>
+            <li>Build dashboards: tokens/user, cost/app, cost/department</li>
+            <li>Set monthly budget alerts by business unit</li>
+            <li>Surface prompt efficiency metrics</li>
+          </ul>
+        </div>
+        <div class="maturity-card">
+          <div class="maturity-step">Level 2 — Optimise</div>
+          <h4>Cost Reduction</h4>
+          <ul>
+            <li>Activate prompt caching on all eligible system prompts</li>
+            <li>Implement model routing rules per use-case type</li>
+            <li>Apply concise prompt engineering across all templates</li>
+            <li>Shift non-real-time workloads to batch endpoints</li>
+            <li>Compress RAG context before sending to LLM</li>
+          </ul>
+        </div>
+        <div class="maturity-card">
+          <div class="maturity-step">Level 3 — Operate</div>
+          <h4>Governance</h4>
+          <ul>
+            <li>Track cost-per-unit-of-value (cost per resolved ticket, etc.)</li>
+            <li>Monthly review: top 10 token-consuming call types</li>
+            <li>Set hard quotas: $ per agent/month, calls/minute throttling</li>
+            <li>Establish model tier policies per use-case type</li>
+            <li>Auto-routing layer for least-cost capable model selection</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Monitoring tools -->
+      <h3 class="subsection-heading" style="margin-top:var(--space-16)">Monitoring &amp; Observability Tools (2026)</h3>
+      <div class="tools-grid">
+        <div class="tool-card">
+          <div class="tool-name">Langfuse</div>
+          <div class="tool-type">Open-source tracing · Self-hostable</div>
+          <div class="tool-feature">Token cost dashboards, prompt versioning, multi-framework support. Best general-purpose LLM observability.</div>
+        </div>
+        <div class="tool-card">
+          <div class="tool-name">Helicone</div>
+          <div class="tool-type">AI Gateway · Open-source (Apache 2.0)</div>
+          <div class="tool-feature">1-line integration (swap base URL). 300+ models. Intelligent caching + auto failover. 1T+ tokens/day processed across 24K+ orgs.</div>
+        </div>
+        <div class="tool-card">
+          <div class="tool-name">Portkey</div>
+          <div class="tool-type">AI Gateway · Routing + Fallback</div>
+          <div class="tool-feature">Intelligent routing, load balancing, fallbacks. MCP Gateway for enterprise agent governance. Best for multi-provider reliability.</div>
+        </div>
+        <div class="tool-card">
+          <div class="tool-name">LangSmith</div>
+          <div class="tool-type">LangChain-native observability</div>
+          <div class="tool-feature">Deep LangChain integration, trace capture, cost attribution. Best for LangChain-based pipelines.</div>
+        </div>
+        <div class="tool-card">
+          <div class="tool-name">AgentOps</div>
+          <div class="tool-type">AI Agent monitoring · Open-source</div>
+          <div class="tool-feature">Session replay, agent-level tracing, cost per agent per task. Best for agentic systems.</div>
+        </div>
+        <div class="tool-card">
+          <div class="tool-name">Surveil / Finout</div>
+          <div class="tool-type">Enterprise AI FinOps</div>
+          <div class="tool-feature">Token-level attribution, virtual tagging, anomaly detection, chargeback/showback by BU. Enterprise-grade cost governance.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 CALCULATOR -->
+  <section class="section" id="calculator">
+    <div class="container">
+      <div class="section-label">07 — Calculator</div>
+      <h2 class="section-heading">Token Cost Calculator</h2>
+      <p class="section-intro">Estimate your monthly API spend and see how the optimisation levers reduce it in real time. Toggle each lever to build your optimisation roadmap.</p>
+
+      <div class="calculator-wrap">
+        <div class="calc-inputs">
+          <h3>Your Workload</h3>
+          <div class="calc-group">
+            <label for="calcModel">Model</label>
+            <select id="calcModel">
+              <option value="gpt52pro" data-in="21" data-out="168">GPT-5.2 Pro ($21/$168 per MTok)</option>
+              <option value="o1" data-in="15" data-out="60">o1 ($15/$60 per MTok)</option>
+              <option value="claudeopus" data-in="5" data-out="25">Claude Opus 4.6 ($5/$25 per MTok)</option>
+              <option value="gpt52" data-in="1.75" data-out="14">GPT-5.2 ($1.75/$14 per MTok)</option>
+              <option value="gpt5" data-in="1.25" data-out="10" selected>GPT-5 ($1.25/$10 per MTok)</option>
+              <option value="sonnet" data-in="3" data-out="15">Claude Sonnet 4.6 ($3/$15 per MTok)</option>
+              <option value="gemini25pro" data-in="1.25" data-out="10">Gemini 2.5 Pro ($1.25/$10 per MTok)</option>
+              <option value="gpt41" data-in="2" data-out="8">GPT-4.1 ($2/$8 per MTok)</option>
+              <option value="gpt5mini" data-in="0.25" data-out="2">GPT-5 Mini ($0.25/$2 per MTok)</option>
+              <option value="haiku" data-in="0.80" data-out="4">Claude Haiku 4.5 ($0.80/$4 per MTok)</option>
+              <option value="flash" data-in="0.30" data-out="2.50">Gemini 2.5 Flash ($0.30/$2.50 per MTok)</option>
+              <option value="deepseek" data-in="0.28" data-out="0.42">DeepSeek V3.2 ($0.28/$0.42 per MTok)</option>
+              <option value="flashlite" data-in="0.075" data-out="0.30">Gemini 2.0 Flash-Lite ($0.075/$0.30 per MTok)</option>
+              <option value="llama33" data-in="0.10" data-out="0.32">Llama 3.3 70B ($0.10/$0.32 per MTok)</option>
+              <option value="mistral" data-in="0.07" data-out="0.20">Mistral Small 3.2 ($0.07/$0.20 per MTok)</option>
+            </select>
+          </div>
+          <div class="calc-group">
+            <label for="calcCalls">API Calls per Day</label>
+            <input type="number" id="calcCalls" value="1000" min="1" />
+          </div>
+          <div class="calc-group">
+            <label for="calcInputTokens">Avg Input Tokens per Call <small>(prompt + context)</small></label>
+            <input type="number" id="calcInputTokens" value="2000" min="1" />
+          </div>
+          <div class="calc-group">
+            <label for="calcOutputTokens">Avg Output Tokens per Call</label>
+            <input type="number" id="calcOutputTokens" value="500" min="1" />
+          </div>
+
+          <h3 style="margin-top:var(--space-8)">Apply Optimisation Levers</h3>
+          <div class="calc-optimisations">
+            <label class="opt-toggle">
+              <input type="checkbox" id="optCache" />
+              <span class="toggle-track"></span>
+              <span>Prompt caching (90% off input)</span>
+              <span class="opt-impact">−70% input</span>
+            </label>
+            <label class="opt-toggle">
+              <input type="checkbox" id="optSemantic" />
+              <span class="toggle-track"></span>
+              <span>Semantic caching (60% cache hit rate)</span>
+              <span class="opt-impact">−60% total</span>
+            </label>
+            <label class="opt-toggle">
+              <input type="checkbox" id="optModelSwitch" />
+              <span class="toggle-track"></span>
+              <span>Model routing (route 70% to cheaper model)</span>
+              <span class="opt-impact">−60% total</span>
+            </label>
+            <label class="opt-toggle">
+              <input type="checkbox" id="optTruncate" />
+              <span class="toggle-track"></span>
+              <span>Truncate conversation history</span>
+              <span class="opt-impact">−40% input</span>
+            </label>
+            <label class="opt-toggle">
+              <input type="checkbox" id="optPrompt" />
+              <span class="toggle-track"></span>
+              <span>Concise prompt engineering</span>
+              <span class="opt-impact">−30% input</span>
+            </label>
+            <label class="opt-toggle">
+              <input type="checkbox" id="optOutput" />
+              <span class="toggle-track"></span>
+              <span>Constrain output length</span>
+              <span class="opt-impact">−30% output</span>
+            </label>
+            <label class="opt-toggle">
+              <input type="checkbox" id="optBatch" />
+              <span class="toggle-track"></span>
+              <span>Batch processing (50% off)</span>
+              <span class="opt-impact">−50% total</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="calc-results">
+          <div class="calc-result-primary">
+            <div class="result-label">Monthly Cost (Baseline)</div>
+            <div class="result-value" id="costBefore">$0</div>
+          </div>
+          <div class="calc-arrow-down">↓</div>
+          <div class="calc-result-primary optimised">
+            <div class="result-label">Monthly Cost (Optimised)</div>
+            <div class="result-value" id="costAfter">$0</div>
+          </div>
+          <div class="savings-callout" id="savingsCallout">
+            <span id="savingsPct">0%</span>
+            <span id="savingsAmt">saved per month</span>
+          </div>
+
+          <div class="calc-breakdown">
+            <div class="breakdown-row">
+              <span>Daily input tokens</span>
+              <span id="brkDailyInput">—</span>
+            </div>
+            <div class="breakdown-row">
+              <span>Daily output tokens</span>
+              <span id="brkDailyOutput">—</span>
+            </div>
+            <div class="breakdown-row">
+              <span>Monthly total tokens</span>
+              <span id="brkMonthlyTotal">—</span>
+            </div>
+            <div class="breakdown-row divider-row">
+              <span>Monthly input cost</span>
+              <span id="brkInputCost">—</span>
+            </div>
+            <div class="breakdown-row">
+              <span>Monthly output cost</span>
+              <span id="brkOutputCost">—</span>
+            </div>
+            <div class="breakdown-row total-row">
+              <span>Annual projection</span>
+              <span id="brkAnnual">—</span>
+            </div>
+          </div>
+          <div class="calc-note">Estimates are illustrative. Real costs depend on actual token counts, cache hit rates, and provider-specific pricing rules. Always prototype and measure before budgeting.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-logo">
+        <svg width="22" height="22" viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="8" fill="var(--color-primary)"/>
+          <circle cx="16" cy="16" r="6" stroke="white" stroke-width="1.5"/>
+          <path d="M16 10V7M16 25V22M10 16H7M25 16H22" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="16" cy="16" r="2" fill="white"/>
+        </svg>
+        <span>AI Tokenomics</span>
+      </div>
+      <div class="footer-links">
+        <a href="https://www2.deloitte.com/us/en/insights/industry/technology/economics-of-ai-tokenomics.html" target="_blank">Deloitte: Pivot to Tokenomics</a>
+        <a href="https://www.tldl.io/resources/llm-api-pricing-2026" target="_blank">LLM API Pricing 2026</a>
+        <a href="https://www.obviousworks.ch/en/token-optimization-saves-up-to-80-percent-llm-costs/" target="_blank">Token Optimisation 2026</a>
+        <a href="https://redis.io/blog/large-language-model-operations-guide/" target="_blank">Redis LLMOps Guide</a>
+        <a href="https://www.techtarget.com/searchenterpriseai/feature/FinOps-can-manage-AI-computing-costs-experts-say" target="_blank">FinOps Foundation 2026</a>
+        <a href="https://introl.com/blog/prompt-caching-infrastructure-llm-cost-latency-reduction-guide-2025" target="_blank">Prompt Caching Infrastructure</a>
+      </div>
+      <p class="footer-note">Built from Deloitte's "The Pivot to Tokenomics" (2025), FinOps Foundation State of FinOps 2026, and current provider pricing data. For reference only — verify pricing with providers before committing budgets.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+<script data-pplx-inline-edit>
+(function(){
+  if(window===window.top)return;
+  function inlineAll(orig,clone){
+    if(orig.nodeType!==1)return;
+    try{
+      var cs=getComputedStyle(orig);
+      var t='';
+      for(var i=0;i<cs.length;i++){t+=cs[i]+':'+cs.getPropertyValue(cs[i])+';';}
+      clone.style.cssText=t;
+    }catch(e){}
+    var oc=orig.children,cc=clone.children;
+    for(var j=0;j<oc.length&&j<cc.length;j++){inlineAll(oc[j],cc[j]);}
+  }
+  function stripExternal(clone){
+    var imgs=clone.querySelectorAll('img');
+    for(var i=0;i<imgs.length;i++){
+      var s=imgs[i].getAttribute('src');
+      if(s&&!s.startsWith('data:'))imgs[i].removeAttribute('src');
+    }
+    var all=clone.querySelectorAll('*');
+    for(var i=0;i<all.length;i++){
+      var st=all[i].style.cssText;
+      if(st&&st.indexOf('url(')>=0){
+        all[i].style.cssText=st.replace(/url\(["']?(?!data:)[^)"']*["']?\)/gi,'none');
+      }
+    }
+  }
+  window.addEventListener('message',function(e){
+    if(!e.data||e.data.type!=='INLINE_EDIT_CAPTURE_REQUEST')return;
+    var scrollX=window.scrollX||window.pageXOffset||0;
+    var scrollY=window.scrollY||window.pageYOffset||0;
+    var w=window.innerWidth,h=window.innerHeight;
+    try{
+      var clone=document.documentElement.cloneNode(true);
+      var rm=clone.querySelectorAll('script,link[rel="stylesheet"],style');
+      for(var i=0;i<rm.length;i++){rm[i].remove();}
+      inlineAll(document.documentElement,clone);
+      stripExternal(clone);
+      var html=new XMLSerializer().serializeToString(clone);
+      var svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+h+'">'
+        +'<foreignObject width="100%" height="100%">'
+        +'<div xmlns="http://www.w3.org/1999/xhtml" style="width:'+w+'px;height:'+h+'px;overflow:hidden">'
+        +'<div style="transform:translate(-'+scrollX+'px,-'+scrollY+'px);transform-origin:top left">'
+        +html+'</div></div></foreignObject></svg>';
+      var svgUrl='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
+      var img=new Image();
+      img.onload=function(){
+        var c=document.createElement('canvas');c.width=w;c.height=h;
+        c.getContext('2d').drawImage(img,0,0);
+        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:c.toDataURL('image/png'),scrollX:scrollX,scrollY:scrollY},'*');
+      };
+      img.onerror=function(){
+        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
+      };
+      img.src=svgUrl;
+    }catch(err){
+      window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
+    }
+  });
+})();
+</script></body>
+</html>
