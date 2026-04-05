@@ -6,82 +6,61 @@
   },
   "learnings": [
     {
-      "date": "2026-08-02",
-      "display_date": "August 2, 2026",
-      "title": "Days Learning Mem0 GitHub Stars MCP Installs Gemma 4 Dense Params",
-      "focus_intro": "",
-      "viral_app": {
-        "name": "OF THE DAY MemOS is the first framework treating memory as a",
-        "description": ""
-      },
-      "sections": [
-        {
-          "title": "1. The Production Memory Stack",
-          "paragraphs": [
-            "A compliant production agent memory system has three physical layers working in concert. Think of them as the CPU cache fi RAM fi disk analogy for your agent's brain: pgvector (L2) Episodic / Semantic Embeddings of past conversations + facts. Postgres-native: no extra infra.",
-            "Mem0 (L3) Unified API Layer Wraps both Redis + pgvector. Handles write-aside, graph edges, GDPR-safe",
-            "Graph DB (L4) Semantic Entity relationships, user preferences over time. Zep/Graphiti for"
-          ],
-          "table": {
-            "headers": [
-              "EU AI Act Data Residency",
-              "Self-host pgvector on-prem or in your jurisdiction's cloud region. Avoid managed hosted vector DBs unless they contractually guarantee data residency. Pinecone and Weaviate Cloud both offer EU-only clusters; verify SLA before Aug 2."
-            ],
-            "rows": [
-              [
-                "NIST CAISI Audit Trail",
-                "Every memory write must log: agent ID, timestamp, data fingerprint (hash), purpose of storage, and retention policy. Use PostgreSQL's audit extension (pgaudit) or append to your existing OTEL trace. Memory reads must also be logged."
-              ],
-              [
-                "Namespace Isolation",
-                "Multi-tenant agents MUST isolate memory at the infrastructure level -- not just the application level. In pgvector: separate schemas per tenant. In Redis: keyspace prefixes enforced via ACL rules. Mem0: set user_id scoping on every operation."
-              ],
-              [
-                "Memory Versioning",
-                "Implement git-like versioning for memory snapshots: store a version_id with each memory record. On agent updates or model changes, tag a new 'branch'. This satisfies NIST CAISI's auditability requirement and allows rollback if an agent starts hallucinating from poisoned memory."
-              ]
-            ]
-          }
-        },
-        {
-          "title": "2. Wiring It Together: The Write-Aside Pattern",
-          "paragraphs": [
-            "The Write-Aside pattern is the gold standard for agent memory writes because it keeps agent latency low while"
-          ],
-          "bullets": [
-            "Step 1 -- Synchronous Redis write: On every agent turn, write task state + tool outputs to Redis. Target: <50ms",
-            "Step 2 -- Background flush: A worker process flushes completed turns to Postgres/pgvector asynchronously.",
-            "Step 3 -- Embedding generation: The worker calls your embedding model (e.g. text-embedding-3-small) and stores vectors via pgvector's hnsw index.",
-            "Step 4 -- Mem0 abstraction: Mem0's API wraps steps 1-3 behind a single `mem0.add()` call, handles deduplication, and generates Memory IDs needed for GDPR erasure.",
-            "Step 5 -- Tiered retrieval: On next agent turn, query L1 (Redis) first, then L2 (pgvector cosine search), then L4"
-          ]
-        },
-        {
-          "title": "3. GDPR-Safe Deletion & EU AI Act Compliance",
-          "paragraphs": [
-            "MemOS is the first framework treating memory as a first-class OS-level primitive for AI agents. Rather than bolting memory onto an LLM as an afterthought, MemOS provides a full 'Memory OS' with a MemCube modular Why it's going viral: The framing resonates -- developers are tired of treating memory as a config option. MemOS architecture, Memory-Augmented Generation (MAG), and persistent skill evolution -- agents don't just remember • Skill memory: agents accumulate procedural knowledge across tasks -- like a developer who gets better at • MemRL paper: companion research shows agents self-improve via episodic RL without base model retraining • OpenClaw Plugin: official MemOS Cloud plugin gives 72% token reduction and multi-agent memory sharing positions memory as core infrastructure, which is exactly where the industry is heading as agents move from demo MemOS by MemTensor GitHub: github.com/MemTensor/MemOS | Stars: Rapidly trending | License: OSS facts, they remember how to do things better. Why it matters to you: • Outperforms Mem0, Zep, Memobase across all published benchmarks in 2026. • GDPR-ready: 100% on-device SQLite option means no data ever leaves your machine. debugging with each bug fixed. -- this is a step toward truly self-improving agents. for OpenClaw workflows. to production.",
-            "Here's the skeleton of a production-ready, GDPR-compliant agent memory setup using Mem0 + Redis + pgvector. Every write generates a Memory ID; deletion cascades across all layers. from mem0 import MemoryClient # Mem0 unified client",
-            "# pgvector via SQLAlchemy # L2 episodic storage client = MemoryClient(api_key=os.environ['MEM0_API_KEY']) r = redis.Redis(host='localhost', decode_responses=True)",
-            "# L2+L3: Mem0 write-aside (async underneath)",
-            "# Also purge Redis keys for this agent/user if needed",
-            "Zep / Graphiti Growing Temporal Best for time-aware context",
-            "MemOS Trending n Memory OS Best for skill persistence",
-            "Cognee Niche Graph-first, Best for structured KGs",
-            "Hindsight Consumer Profile-centric, Best for consumer apps",
-            "Agent Orchestration Frameworks Deep Dive 2026: Benchmarking LangGraph vs CrewAI vs OpenAI Agents SDK vs Google ADK in production -- real latency numbers, failure rates, cost per task, and which framework wins for which workload. Plus: how Gemma 4 changes the local-agent equation."
-          ],
-          "bullets": [
-            "BREAKING: AI Headlines -- April 4, 2026",
-            "VIRAL APP OF THE DAY",
-            "PRACTICAL: Minimal Compliant Memory Stack (Python) def remember(user_id, agent_id, content): r.setex(f'agent:{agent_id}:turn', 86400, content) # TTL 24h messages=[{'role':'assistant','content':content}], return result['id'] # Memory ID -- store for GDPR erasure client.delete(memory_id) # cascades to pgvector + graph return client.search(query, user_id=user_id, limit=top_k)",
-            "TODAY'S KEY TAKEAWAYS",
-            "TOMORROW'S PLANNED TOPIC"
-          ]
-        }
+      "date": "2026-04-05",
+      "issue": 15,
+      "title": "Agent Orchestration Frameworks Deep Dive 2026",
+      "subtitle": "LangGraph vs CrewAI vs OpenAI SDK vs Google ADK — Real Benchmarks, Failure Rates & the Gemma 4 Local Agent Revolution",
+      "topics": [
+        "Real 2026 benchmarks: AutoAgents/Rust winner (5,714ms avg, 4.97rps, 1,046MB)",
+        "LangGraph: most production-mature, checkpointing, LangSmith observability",
+        "CrewAI: 44% failure rate under load — prototype yes, production caution",
+        "OpenAI Agents SDK: fastest onboarding (2–3 days), OpenAI-only",
+        "Google ADK: Gemini/A2A native, best with Gemma 4 + Android",
+        "Architecture improvements outperform model upgrades (42%→78% score lift)",
+        "Rust vs Python: 5× less memory, 14× faster cold start, 84% more throughput",
+        "Model routing for 50–70% cost reduction"
       ],
-      "key_stats": [
-        "14 48K+ 97M 31B Days Learning Mem0 GitHub Stars"
-      ]
+      "viral_app": {
+        "name": "ElevenMusic by ElevenLabs",
+        "description": "ElevenLabs launched ElevenMusic on April 1 2026 — an iOS app for text-to-song, remix & community discovery. Free 7 songs/day. Voice AI giant entering full audio stack. Expect MCP tool integration so agents can generate music programmatically. Competes with Suno/Udio with key edge: already inside thousands of enterprise agent pipelines via ElevenLabs voice API.",
+        "url": "https://elevenlabs.io/music"
+      },
+      "breaking_news": [
+        "Claude Mythos API expanding to more customers",
+        "MemOS v1.0.0 GA — first AI Memory OS, beats Mem0/Zep",
+        "MemRL confirmed: agents self-improve via episodic RL, no retraining",
+        "MolmoWeb: screenshot-based browser agent beats proprietary models on 4 benchmarks",
+        "SpendHQ × Sligo AI agentic procurement goes live"
+      ],
+      "key_takeaway": "Pick your framework before your model. Architecture choices drive 2× more performance lift than model upgrades. LangGraph for production stateful agents, Google ADK + Gemma 4 for local/on-device. Avoid CrewAI in production until its 44% failure rate under load is resolved."
+    },
+    {
+      "date": "2026-04-04",
+      "issue": 14,
+      "title": "Production-Grade Agent Memory Systems",
+      "subtitle": "Wiring Mem0, pgvector & Redis into a Compliant Production Memory Stack",
+      "topics": [
+        "Production Memory Stack (Redis L1 → pgvector L2 → Mem0 L3 → Graph L4)",
+        "Write-Aside Pattern for low-latency agent memory writes",
+        "GDPR Memory IDs + hard-delete cascade",
+        "Namespace isolation at infra level (Postgres schemas + Redis ACLs)",
+        "Memory versioning (version_id + snapshot tagging)",
+        "NIST CAISI audit trail requirements",
+        "EU AI Act data residency — self-host pgvector"
+      ],
+      "viral_app": {
+        "name": "MemOS by MemTensor",
+        "description": "MemOS is the first framework treating memory as a first-class OS-level primitive for AI agents. MemCube modular architecture, persistent skill evolution, 100% on-device SQLite option, 72% token reduction via OpenClaw plugin, outperforms Mem0/Zep/Memobase.",
+        "url": "https://github.com/MemTensor/MemOS"
+      },
+      "breaking_news": [
+        "Google Gemma 4 released (31B Dense #3 globally, Apache 2.0, agentic-native)",
+        "MolmoWeb (Allen AI): open-weight web agent beats proprietary models on 4 benchmarks",
+        "MemOS v1.0.0 trending — first AI Memory OS with MemRL self-improvement",
+        "MemRL: agents self-improve via episodic RL without base model retraining",
+        "SpendHQ × Sligo AI — agentic enterprise procurement"
+      ],
+      "key_takeaway": "Memory is now infrastructure. You can't build a production agent without a memory layer — and in 2026, that layer must be GDPR-safe, audit-trail-ready, and namespace-isolated at the infra level."
     },
     {
       "date": "2026-04-03",
@@ -2019,5 +1998,7 @@
         "5% in 2025) Orgs planning to increase AI budgets 86% Practical Takeaway The most valuable me"
       ]
     }
-  ]
+  ],
+  "last_updated": "2026-04-05",
+  "total_days": 20
 }
