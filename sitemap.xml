@@ -12,4 +12,12 @@
     <priority>1.0</priority>
   </url>
 
+  <!-- Tokenizer tool page -->
+  <url>
+    <loc>https://varunsingla.com/tokenizer.html</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
