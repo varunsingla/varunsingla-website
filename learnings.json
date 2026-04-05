@@ -7,60 +7,185 @@
   "learnings": [
     {
       "date": "2026-04-05",
-      "issue": 15,
+      "display_date": "APRIL 5, 2026",
       "title": "Agent Orchestration Frameworks Deep Dive 2026",
-      "subtitle": "LangGraph vs CrewAI vs OpenAI SDK vs Google ADK — Real Benchmarks, Failure Rates & the Gemma 4 Local Agent Revolution",
-      "topics": [
-        "Real 2026 benchmarks: AutoAgents/Rust winner (5,714ms avg, 4.97rps, 1,046MB)",
-        "LangGraph: most production-mature, checkpointing, LangSmith observability",
-        "CrewAI: 44% failure rate under load — prototype yes, production caution",
-        "OpenAI Agents SDK: fastest onboarding (2–3 days), OpenAI-only",
-        "Google ADK: Gemini/A2A native, best with Gemma 4 + Android",
-        "Architecture improvements outperform model upgrades (42%→78% score lift)",
-        "Rust vs Python: 5× less memory, 14× faster cold start, 84% more throughput",
-        "Model routing for 50–70% cost reduction"
+      "focus_intro": "Day 15: Real benchmark numbers — no marketing fluff. LangGraph vs CrewAI vs OpenAI Agents SDK vs Google ADK vs Rust challengers. The most surprising finding: architecture choices outperform model upgrades by 2×. Plus, Gemma 4 changes the local agent equation entirely.",
+      "key_stats": [
+        "44% CrewAI failure rate under load",
+        "5× Rust vs Python memory advantage",
+        "42%→78% score lift from better architecture",
+        "4 major frameworks benchmarked",
+        "$12–18/day LangGraph optimised (1K tasks)"
+      ],
+      "sections": [
+        {
+          "title": "1. The Benchmark Numbers — No Marketing Fluff",
+          "paragraphs": [
+            "Real 2026 benchmark on a single-tool ReAct task (GPT-4o pricing assumed):",
+            "AutoAgents (Rust): 5,714ms avg, 9,652ms P95, 4.97 rps, 1,046MB peak — Category winner. Rig (Rust): 6,065ms avg, 10,131ms P95, 4.44 rps, 1,019MB — Best CPU efficiency. LangChain (Python): 6,046ms avg, 5,706MB peak — High ecosystem value. PydanticAI (Python): 6,592ms avg, 4,875MB — Type-safe, strict. LlamaIndex (Python): 6,990ms avg — Best for RAG hybrid. LangGraph (Python): 10,155ms avg — Slowest but most production-mature. CrewAI: Excluded — 44% failure rate under load.",
+            "Key insight: Rust frameworks use 5× less memory than Python on identical tasks. Cold start: 4ms (Rust) vs 54–63ms (Python). At high-concurrency agent workloads, the language choice alone can slash your infrastructure bill."
+          ],
+          "table": {
+            "headers": [
+              "Framework",
+              "Avg Latency",
+              "Throughput",
+              "Peak Mem",
+              "Production Readiness"
+            ],
+            "rows": [
+              [
+                "AutoAgents (Rust)",
+                "5,714 ms",
+                "4.97 rps",
+                "1,046 MB",
+                "★★★☆ Early"
+              ],
+              [
+                "Rig (Rust)",
+                "6,065 ms",
+                "4.44 rps",
+                "1,019 MB",
+                "★★★☆ Early"
+              ],
+              [
+                "LangChain",
+                "6,046 ms",
+                "4.26 rps",
+                "5,706 MB",
+                "★★★★ High"
+              ],
+              [
+                "LangGraph",
+                "10,155 ms",
+                "2.70 rps",
+                "5,570 MB",
+                "★★★★★ Highest"
+              ],
+              [
+                "CrewAI",
+                "N/A",
+                "N/A",
+                "N/A",
+                "★★☆☆ Caution (44% fail)"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "2. Framework Decision Matrix — Choose Your Weapon",
+          "paragraphs": [
+            "LangGraph: Best for complex conditional graph workflows, regulated industries needing state rollback, multi-model orchestration (Claude + GPT + custom), and long-running tasks with human-in-the-loop gates.",
+            "CrewAI: Best for rapid prototyping with role-based agent teams, MCP integration as a top priority, and teams wanting readable role/goal configs. The 100K+ certified developer community is a real asset. Do NOT use in production without load testing.",
+            "OpenAI Agents SDK: Best when fully committed to OpenAI models, linear handoff chains under 100 lines of code, minimal infrastructure overhead. Fastest onboarding: working in 2–3 days.",
+            "Google ADK: Best for Gemini-native multi-modal pipelines, A2A protocol as core architecture, Android/on-device deployment with Gemma 4, and Google Cloud Vertex AI ecosystem."
+          ]
+        },
+        {
+          "title": "3. The CrewAI Warning: Popularity ≠ Reliability",
+          "paragraphs": [
+            "CrewAI is the most popular agent framework by GitHub stars (44,600+) and certified developers (100,000+). But the 2026 benchmarks delivered a stark warning: 44% task failure rate under production load — the only framework excluded from the primary benchmark suite due to instability.",
+            "Root cause: CrewAI's multi-step verification approach uses chat-heavy 'consensus building' between agents. Each agent re-reads the full conversation history, causing context drift and token explosion at scale. This results in nearly 2× token usage and 3× longer task completion vs LangGraph for equivalent tasks.",
+            "When it's OK: Small teams, quick prototyping, under 5 agents, non-critical workloads. CrewAI's role-based DSL is genuinely developer-friendly for greenfield projects."
+          ]
+        },
+        {
+          "title": "4. Cost Per Task — Production Numbers",
+          "paragraphs": [
+            "Assuming GPT-4o pricing ($2.50/M input, $10.00/M output) at 1,000 tasks/day: LangGraph optimised: ~4,800 tokens/task = $12–18/day. OpenAI Agents SDK: ~5,200 tokens/task = $13–20/day. LangChain/PydanticAI: ~6,000 tokens/task = $15–22/day. CrewAI (when stable): ~9,500 tokens/task = $24–36/day. AutoAgents (Rust): ~4,500 tokens/task = $11–16/day.",
+            "The single biggest cost lever isn't framework choice — it's model routing. Using a nano/small model for classification, a mid-tier model for generation, and frontier models only for complex reasoning can cut total token spend by 50–70% regardless of which framework you use."
+          ]
+        },
+        {
+          "title": "5. Gemma 4 Changes the Local Agent Equation",
+          "paragraphs": [
+            "Google's Gemma 4 (reviewed in Day 14) has a direct impact on which framework to choose for local or on-device deployment.",
+            "What changed: Native function-calling and structured JSON output built into all 4 sizes (E2B, E4B, 26B MoE, 31B Dense). Day-0 support in llama.cpp, Ollama, MLX, Transformers, and mistral.rs. On Android: next-gen Gemini Nano (Gemma 4-based) is 4× faster, 60% less battery. 31B Dense = #3 open model globally on Arena AI leaderboard (Apache 2.0).",
+            "Framework implications: Google ADK is now the obvious choice for Android or local Gemma 4 deployment — native integration from day one. LangGraph users: Gemma 4 drops in via HuggingFace transformers, no changes needed. Rust frameworks (AutoAgents/Rig): Gemma 4 + Rust = lowest possible total infrastructure cost. Gemma 4 + Google ADK is the new default recommendation for on-device agents."
+          ]
+        },
+        {
+          "title": "6. Breaking: AI Headlines — April 5, 2026",
+          "paragraphs": [
+            "Claude Mythos API Expanding: Anthropic confirms Mythos (Opus 5) is now in expanded API access. Step-change in cybersecurity and reasoning. Extremely compute-heavy. Expected to anchor the Oct 2026 IPO narrative.",
+            "MemOS v1.0.0 GA: MemTensor's MemOS hits v1.0.0. First framework treating memory as OS-level primitive. MemCube modular architecture, 100% on-device SQLite option, outperforms Mem0/Zep/Memobase. OpenClaw plugin delivers 72% token reduction.",
+            "MemRL — Self-Improving Agents: Companion paper to MemOS — agents self-improve via runtime reinforcement learning on their own episodic memory, no base model retraining. The beginning of truly self-evolving production agents.",
+            "MolmoWeb: Allen AI's open-weight web agent (4B + 8B) navigates browsers via screenshots — not HTML — and beats proprietary model agents on 4 benchmarks. Released with MolmoWebMix training dataset.",
+            "SpendHQ × Sligo AI: Agentic AI enters enterprise procurement with autonomous spend analysis, contract review, and supplier negotiation. B2B SaaS signal that the agent economy is hitting back-office workflows."
+          ]
+        }
       ],
       "viral_app": {
         "name": "ElevenMusic by ElevenLabs",
-        "description": "ElevenLabs launched ElevenMusic on April 1 2026 — an iOS app for text-to-song, remix & community discovery. Free 7 songs/day. Voice AI giant entering full audio stack. Expect MCP tool integration so agents can generate music programmatically. Competes with Suno/Udio with key edge: already inside thousands of enterprise agent pipelines via ElevenLabs voice API.",
+        "description": "ElevenLabs launches ElevenMusic (iOS, April 1 2026) — text-to-song with full vocals and instrumentation, remix AI-generated tracks, browse community creations. Free 7 songs/day. Key agentic angle: ElevenLabs voice API is already embedded in thousands of agent pipelines — ElevenMusic is the consumer front-end to infrastructure agent builders already depend on. Expect an MCP tool within weeks, enabling agents to generate music, audio summaries, and personalised audio content programmatically.",
         "url": "https://elevenlabs.io/music"
       },
-      "breaking_news": [
-        "Claude Mythos API expanding to more customers",
-        "MemOS v1.0.0 GA — first AI Memory OS, beats Mem0/Zep",
-        "MemRL confirmed: agents self-improve via episodic RL, no retraining",
-        "MolmoWeb: screenshot-based browser agent beats proprietary models on 4 benchmarks",
-        "SpendHQ × Sligo AI agentic procurement goes live"
-      ],
-      "key_takeaway": "Pick your framework before your model. Architecture choices drive 2× more performance lift than model upgrades. LangGraph for production stateful agents, Google ADK + Gemma 4 for local/on-device. Avoid CrewAI in production until its 44% failure rate under load is resolved."
+      "practical_takeaway": "5 takeaways: (1) Don't use CrewAI in production without load testing — 44% failure rate is a red flag. (2) LangGraph is the production king, not the speed king — optimise your graph structure. (3) Architecture beats model upgrades: the 42%→78% improvement from scaffolding changes is the most important finding of the year. (4) Watch Rust frameworks (AutoAgents, Rig) — 5× memory efficiency and 14× faster cold starts will be impossible to ignore at scale. (5) Gemma 4 + Google ADK = the new default local agent stack — Apache 2.0, agentic-native, 60% less battery on Android."
     },
     {
       "date": "2026-04-04",
-      "issue": 14,
+      "display_date": "APRIL 4, 2026",
       "title": "Production-Grade Agent Memory Systems",
-      "subtitle": "Wiring Mem0, pgvector & Redis into a Compliant Production Memory Stack",
-      "topics": [
-        "Production Memory Stack (Redis L1 → pgvector L2 → Mem0 L3 → Graph L4)",
-        "Write-Aside Pattern for low-latency agent memory writes",
-        "GDPR Memory IDs + hard-delete cascade",
-        "Namespace isolation at infra level (Postgres schemas + Redis ACLs)",
-        "Memory versioning (version_id + snapshot tagging)",
-        "NIST CAISI audit trail requirements",
-        "EU AI Act data residency — self-host pgvector"
+      "focus_intro": "Day 14 deep dive: how to wire Mem0, pgvector, and Redis into a production-grade memory stack — with GDPR-safe deletion, namespace isolation, and memory versioning that satisfies NIST CAISI and EU AI Act audit requirements.",
+      "key_stats": [
+        "48K+ Mem0 GitHub Stars",
+        "97M MCP Installs",
+        "31B Gemma 4 Dense Params",
+        "471 QPS pgvector on standard hardware"
+      ],
+      "sections": [
+        {
+          "title": "1. The Production Memory Stack",
+          "paragraphs": [
+            "A compliant production agent memory system has three physical layers working in concert. Think of them as the CPU cache → RAM → disk analogy for your agent's brain.",
+            "Redis (L1) handles Working Memory: active task state, tool outputs, last 10 messages. Sub-50ms p99, TTL 24h. pgvector (L2) stores Episodic/Semantic memory: embeddings of past conversations and facts, Postgres-native, 471 QPS on standard hardware. Mem0 (L3) acts as the Unified API Layer, wrapping Redis + pgvector and handling write-aside, graph edges, and GDPR-safe deletion via Memory IDs. Graph DB (L4) stores Semantic Relationships — entity relationships and user preferences over time, using Zep/Graphiti for temporal-aware queries."
+          ]
+        },
+        {
+          "title": "2. Wiring It Together: The Write-Aside Pattern",
+          "paragraphs": [
+            "The Write-Aside pattern is the gold standard for agent memory writes because it keeps agent latency low while ensuring persistence.",
+            "Step 1 — Synchronous Redis write: On every agent turn, write task state and tool outputs to Redis. Target: <50ms p99. Step 2 — Background flush: A worker process flushes completed turns to Postgres/pgvector asynchronously — this doesn't block the agent. Step 3 — Embedding generation: The worker calls your embedding model (e.g. text-embedding-3-small) and stores vectors via pgvector's hnsw index. Step 4 — Mem0 abstraction: Mem0's API wraps steps 1–3 behind a single mem0.add() call, handles deduplication, and generates Memory IDs for GDPR erasure. Step 5 — Tiered retrieval: On next agent turn, query L1 (Redis) first, then L2 (pgvector cosine search), then L4 (graph) only if needed."
+          ]
+        },
+        {
+          "title": "3. GDPR, EU AI Act & NIST CAISI Compliance",
+          "paragraphs": [
+            "GDPR Right to Erasure: Mem0 assigns every memory a unique Memory ID at write time. Hard-delete via mem0.delete(memory_id). Cascade removes from Redis keyspace, pgvector row, and graph node in a single transaction. Never use soft-delete only — GDPR requires provable hard deletion.",
+            "EU AI Act Data Residency: Self-host pgvector on-prem or in your jurisdiction's cloud region. Avoid managed hosted vector DBs unless they contractually guarantee data residency. Pinecone and Weaviate Cloud both offer EU-only clusters — verify SLA before August 2, 2026.",
+            "NIST CAISI Audit Trail: Every memory write must log: agent ID, timestamp, data fingerprint (hash), purpose of storage, and retention policy. Use PostgreSQL's pgaudit extension or append to your OTEL trace. Memory reads must also be logged.",
+            "Namespace Isolation: Multi-tenant agents MUST isolate memory at the infrastructure level — not just the application level. In pgvector: separate schemas per tenant. In Redis: keyspace prefixes enforced via ACL rules. Mem0: set user_id scoping on every operation.",
+            "Memory Versioning: Implement git-like versioning for memory snapshots — store a version_id with each memory record. On agent updates or model changes, tag a new 'branch'. This satisfies NIST CAISI's auditability requirement and allows rollback if an agent starts hallucinating from poisoned memory."
+          ]
+        },
+        {
+          "title": "4. Breaking: AI Headlines — April 4, 2026",
+          "paragraphs": [
+            "Google Gemma 4 Launched: Four model sizes — E2B, E4B, 26B MoE, 31B Dense. The 31B Dense ranks #3 globally on the Arena AI text leaderboard. Apache 2.0 license. Purpose-built for reasoning and agentic workflows. On-device and local-first inference supported.",
+            "MolmoWeb (Allen AI): Open-weight web agent (4B + 8B) that navigates browsers using screenshots — not HTML. Beats proprietary model-based agents on 4 major web-agent benchmarks. Comes with the MolmoWebMix training dataset.",
+            "MemOS Goes Viral: MemTensor's MemOS (AI Memory OS for agents) is trending on GitHub. v1.0.0 features 100% on-device memory (SQLite + hybrid FTS5/vector search), skill evolution, multi-agent memory sharing, and 72% lower token usage vs baseline. Outperforms Mem0, Zep, Memobase in benchmarks.",
+            "MemRL — Self-Evolving Agents: New paper and OSS release — agents that improve via runtime reinforcement learning on their own episodic memory. Agents literally learn from their own mistakes between tasks without retraining the base model. A step toward truly self-improving agents.",
+            "SpendHQ × Sligo AI: SpendHQ acquires Sligo AI to bring agentic AI into enterprise procurement — autonomous spend analysis, contract review, and supplier negotiation agents. Signals broad enterprise adoption in back-office functions."
+          ]
+        },
+        {
+          "title": "5. Memory Framework Comparison 2026",
+          "paragraphs": [
+            "Mem0 (48K+ stars): Vector+Graph hybrid, 21 integrations, GDPR Memory IDs, best personalisation. Best overall for production.",
+            "Zep / Graphiti: Temporal knowledge graph, time-aware queries. Best for time-aware context where recency and sequence of events matters.",
+            "Cognee: Graph-first, enterprise knowledge graph builder. Best for complex enterprise entity relationships.",
+            "MemOS (MemTensor): AI Memory OS — treats memory as OS-level primitive. MemCube modular architecture, 100% on-device SQLite, skill evolution, outperforms all above in 2026 benchmarks.",
+            "Hindsight: Profile-centric, consumer-focused. Best for personal AI assistants with deep user preference modelling.",
+            "Memvid: Video-encoded memory archiving, cost-efficient for long-term storage of agent history."
+          ]
+        }
       ],
       "viral_app": {
         "name": "MemOS by MemTensor",
-        "description": "MemOS is the first framework treating memory as a first-class OS-level primitive for AI agents. MemCube modular architecture, persistent skill evolution, 100% on-device SQLite option, 72% token reduction via OpenClaw plugin, outperforms Mem0/Zep/Memobase.",
+        "description": "The first framework treating memory as a first-class OS-level primitive for AI agents. MemCube modular architecture, Memory-Augmented Generation (MAG), persistent skill evolution — agents don't just remember facts, they remember how to do things better. 100% on-device SQLite option (GDPR-ready), 72% token reduction via OpenClaw plugin, outperforms Mem0/Zep/Memobase across all 2026 benchmarks. Companion MemRL paper shows agents can self-improve via episodic RL without retraining the base model.",
         "url": "https://github.com/MemTensor/MemOS"
       },
-      "breaking_news": [
-        "Google Gemma 4 released (31B Dense #3 globally, Apache 2.0, agentic-native)",
-        "MolmoWeb (Allen AI): open-weight web agent beats proprietary models on 4 benchmarks",
-        "MemOS v1.0.0 trending — first AI Memory OS with MemRL self-improvement",
-        "MemRL: agents self-improve via episodic RL without base model retraining",
-        "SpendHQ × Sligo AI — agentic enterprise procurement"
-      ],
-      "key_takeaway": "Memory is now infrastructure. You can't build a production agent without a memory layer — and in 2026, that layer must be GDPR-safe, audit-trail-ready, and namespace-isolated at the infra level."
+      "practical_takeaway": "Memory is now infrastructure. Just like you wouldn't build a web app without a database, you can't build a production agent without a memory layer. In 2026, that layer must be GDPR-safe (hard-delete cascade, Memory IDs), audit-trail-ready (NIST CAISI: every read/write logged with agent ID, timestamp, purpose), and namespace-isolated at the infra level — not just the application level."
     },
     {
       "date": "2026-04-03",
