@@ -8,74 +8,67 @@
     {
       "date": "2026-04-06",
       "display_date": "APRIL 6, 2026",
-      "issue": "16",
-      "title": "Advanced Prompt Engineering for Agents",
-      "subtitle": "Chain-of-Thought · ReAct · Tree-of-Thought · Structured Outputs · Prompt Injection Defences · Real-World Debugging",
-      "source_pdf": "ai_learning_day16_apr06.pdf",
-      "stats": [
-        {
-          "value": "78.7%",
-          "label": "CoT accuracy lift on GSM8K"
-        },
-        {
-          "value": "73%",
-          "label": "Prod deployments with prompt injection risk"
-        },
-        {
-          "value": "5×",
-          "label": "ToT speedup vs brute-force search"
-        },
-        {
-          "value": "<2%",
-          "label": "Attack success with StruQ"
-        }
-      ],
+      "title": "DAY 16 · APRIL 6, 2026",
+      "focus_intro": "",
+      "viral_app": {
+        "name": "OF THE DAY Attie by Bluesky The first agentic AI app to go vi",
+        "description": ""
+      },
       "sections": [
         {
-          "heading": "Prompting Techniques: CoT vs ReAct vs ToT",
+          "title": "What Is Attie?",
+          "paragraphs": [
+            "Attie is an AI assistant built by the Bluesky team that lets any user design their own social feed algorithm using plain natural language -- no code required. Type \"Show me posts about AI agents from people I follow, ranked by engagement, excluding reposts\" and Attie generates and deploys the algorithm as a live feed. It's powered by Anthropic's Claude and built on ATProto (the AT Protocol underlying Bluesky).",
+            "The Controversy: Why 125,000 Users Blocked It Attie's virality is a masterclass in product-market fit tension. Bluesky's users migrated from Twitter/X specifically to escape algorithmic manipulation and AI-driven feeds. The platform's core value proposition was human-curated simplicity. Attie's launch -- even though it gives users more control -- felt like a betrayal to a community that valued AI-free spaces. Key lesson for agent builders: even well-intentioned agentic features require user trust architecture -- explicit opt-in, transparency about what the agent does, and an easily accessible off-switch. This maps directly to the NIST CAISI Kill Switch T1 (app-level)."
+          ],
           "bullets": [
-            "Chain-of-Thought (CoT): Zero-shot 'Let's think step by step' lifts GSM8K from 17.7% to 78.7%; few-shot CoT adds further 30–50% error reduction",
-            "ReAct (Thought→Action→Observation): backbone of LangGraph, OpenAI SDK, CrewAI — use for ALL tool-use tasks",
-            "Tree-of-Thought (ToT): BFS/DFS branch exploration, 10–50× token cost — use offline only; self-consistency@5 gives 80% of ToT benefit at 10% cost",
-            "Negative examples are 40% more effective than positive examples for reducing errors",
-            "6-step prompt debugging: reproduce minimal → classify bug → add anchors+negatives → structured output → A/B test golden dataset → ship with OTEL"
-          ]
-        },
-        {
-          "heading": "Structured Output Enforcement",
-          "bullets": [
-            "Constrained Decoding via Outlines/Guidance: 100% schema compliance, 2ms overhead — gold standard",
-            "StruQ: separate prompt/data channels, <2% injection attack success vs 60–80% naive",
-            "JSON schema enforcement prevents tool hallucination and silent failures",
-            "Always validate structured outputs server-side — LLMs can still produce schema-valid but semantically wrong responses",
-            "Combine structured outputs with trajectory evaluation: score each tool call, not just final answer"
-          ]
-        },
-        {
-          "heading": "Prompt Injection Defences in Multi-Agent Systems",
-          "bullets": [
-            "73% of production deployments vulnerable to prompt injection — single-agent defences don't transfer to multi-agent",
-            "5-layer defence stack: Input sanitisation → 4-Zone Trust Boundaries → Coordinator+Guard pipeline → Memory Provenance tracking → Multimodal sanitisation",
-            "Direct injection: attacker controls input; Indirect: via tool/web content; Second-order: via stored memory; Memory poisoning: corrupts episodic/semantic store",
-            "Guard agent pattern: dedicated LLM reviewing all tool outputs before passing to orchestrator",
-            "Policy immutability: system prompt changes require human approval — prevent memory poisoning of governance rules"
-          ]
+            "Breaking News This Week",
+            "Key Takeaways -- Day 16"
+          ],
+          "table": {
+            "headers": [
+              "Step",
+              "Agent State",
+              "Example"
+            ],
+            "rows": [
+              [
+                "THOUGHT",
+                "Internal reasoning",
+                "\"I need to find the latest CrewAI benchmark. I'll search the web.\""
+              ],
+              [
+                "ACTION",
+                "Tool call",
+                "web_search(\"CrewAI 2026 benchmark failure rate\")"
+              ],
+              [
+                "OBSERVATI ON",
+                "Tool result",
+                "\"CrewAI shows 44% failure rate under sustained load...\""
+              ],
+              [
+                "THOUGHT",
+                "Update reasoning",
+                "\"High failure rate confirmed. I should include this in my report.\""
+              ],
+              [
+                "ANSWER",
+                "Final output",
+                "Structured report with cited evidence."
+              ]
+            ]
+          }
         }
       ],
-      "viral_app": {
-        "name": "Attie by Bluesky",
-        "description": "First agentic consumer social app — natural-language feed algorithm builder powered by Anthropic Claude + ATProto. 125K+ users blocked it (#2 most-blocked account on Bluesky), exposing the trust architecture lesson: opt-in + transparency + kill switch are MANDATORY for consumer agentic products. AG-UI pattern in a consumer app. Future: vibe-code your social feed algorithm.",
-        "url": "https://bsky.app",
-        "stars": "125K+ blocks"
-      },
-      "breaking_news": [
-        "Gemini 3.1 Pro leads 13/16 major benchmarks — new frontier model leader",
-        "Q1 2026 VC funding hits $267.2B — 2× previous record, AI investment acceleration continues",
-        "Macy's AI agent delivers 4.75× spend lift — enterprise agentic ROI now measurable at scale",
-        "Google Veo 3.1 Lite: <50% cost vs Fast tier — video generation becoming commodity",
-        "MIT Tech Review: vibe coding named 2026 breakthrough technology; TurboQuant reduces KV cache at ICLR 2026"
-      ],
-      "practical_takeaway": "Use ReAct for all tool-use agent tasks (it's the backbone of every production framework). Add self-consistency@5 instead of full ToT for 80% of the benefit at 10% the cost. Enforce structured outputs via Constrained Decoding (Outlines/Guidance) for 100% compliance. And implement the 5-layer injection defence stack — 73% of prod deployments are currently vulnerable."
+      "key_stats": [
+        "78.7% CoT accuracy lift on GSM8K",
+        "73% Prod deployments with prompt injection",
+        "10-50×",
+        "125K+ users blocked Attie on Bluesky",
+        "100% Natural language algorithm building",
+        "$267B VC Record Q1 2026"
+      ]
     },
     {
       "date": "2026-04-05",
