@@ -6,6 +6,216 @@
   },
   "learnings": [
     {
+      "date": "2026-04-08",
+      "display_date": "APRIL 8, 2026",
+      "title": "Multi-Agent Communication",
+      "focus_intro": "",
+      "viral_app": {
+        "name": "of the Day oh-my-codex (OMX) github",
+        "description": ""
+      },
+      "sections": [
+        {
+          "title": "1. AG-UI is now infrastructure, not experiment",
+          "paragraphs": [
+            "AWS Bedrock, AG2, CopilotKit, Microsoft, Oracle are all in production with AG-UI. Its 16 event types are the \"HTTP status codes\" of agent-UI communication. Learn the event model -- you'll encounter it in every frontend agent integration from"
+          ],
+          "table": {
+            "headers": [
+              "Dimension",
+              "ACP -- Agent Communication Protocol",
+              "ANP -- Agent Network Protocol"
+            ],
+            "rows": [
+              [
+                "Led by",
+                "IBM / BeeAI",
+                "agent-network-protocol.com (OSS community)"
+              ],
+              [
+                "Philosophy",
+                "Federated enterprise network, structured messaging",
+                "Fully decentralised open internet, no central authority"
+              ],
+              [
+                "Transport",
+                "RESTful HTTP, MIME multipart, sync + async",
+                "HTTPS + DNS reuse (did:wba), JSON-LD graphs"
+              ],
+              [
+                "Identity",
+                "Enterprise PKI / OAuth 2.1 tokens",
+                "W3C DID (Decentralised Identifiers) -- self-sovereign"
+              ],
+              [
+                "Message style",
+                "Performative verbs: inform, request, propose, accept",
+                "Agent Metadata Cards (JSON-LD), capability descriptions"
+              ],
+              [
+                "Discovery",
+                "Internal registry / enterprise service mesh",
+                "Like search engines -- crawlable public agent pages"
+              ],
+              [
+                "Security",
+                "Enterprise-grade, centrally managed",
+                "Cryptographic proof, but revocation harder than centralised"
+              ],
+              [
+                "Best for",
+                "B2B agent-to-agent, enterprise cross-department",
+                "\"Internet of AI Agents\" -- anyone can publish & discover"
+              ],
+              [
+                "Maturity",
+                "IBM enterprise pilots, production use cases emerging",
+                "Vision / early OSS -- future infrastructure play"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3. Agent Identity is the missing governance layer",
+          "paragraphs": [
+            "SPIFFE/SPIRE (dynamic workload identity) is the 2026 best practice. Static API keys = security debt. Dynamic identity (seconds-to-minutes lifetime, bound to agent+task+context) is what NIST CAISI and EU AI Act compliance demands. Add identity-aware secrets to your agent architecture checklist immediately."
+          ],
+          "table": {
+            "headers": [
+              "OAuth 2.1 + JWT",
+              "Federation model -- agent presents signed JWT scoped to task; tokens expire in seconds-to-minutes",
+              "ACP enterprise deployments, Vault Agent Injector"
+            ],
+            "rows": [
+              [
+                "W3C DID (did:wba)",
+                "Self-sovereign identity -- agent has cryptographic keypair, publishes DID Document to DNS/HTTPS, cryptographic proof on every message",
+                "ANP protocol, open-internet agent marketplaces"
+              ],
+              [
+                "Agent Card (A2A)",
+                "JSON card published at /.well-known/agent.json describing capabilities, skills, auth methods; signed in v0.3",
+                "A2A v0.3, Google ADK, LangGraph A2A integrations"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "4. Protocol interoperability > protocol loyalty",
+          "paragraphs": [
+            "The winning architecture combines all five protocols: MCP (tools) + A2A (agent handoff) + ACP or ANP (cross-boundary) + AG-UI (human interface). No single protocol wins. Design systems that are protocol-composable, not protocol-locked."
+          ],
+          "table": {
+            "headers": [
+              "Day",
+              "Topic",
+              "Viral App"
+            ],
+            "rows": [
+              [
+                "15",
+                "Advanced Prompt Engineering for Agents (CoT, ReAct, ToT, injection defence)",
+                "Attie (Bluesky agentic feed)"
+              ],
+              [
+                "16",
+                "Agent Deployment & DevOps (Docker, KEDA, APM, Blue/Green, Canary, Secrets)",
+                "APM by Microsoft (npm for agents)"
+              ],
+              [
+                "17",
+                "Agent Orchestration Frameworks Deep Dive 2026 (LangGraph, CrewAI, Rust, ADK)",
+                "ElevenMusic by ElevenLabs"
+              ],
+              [
+                "18 ‹ TODAY",
+                "Multi-Agent Protocols 2.0: AG-UI production, ACP vs ANP, Agent Identity Layer, Interoperability",
+                "oh-my-codex (OMX)"
+              ],
+              [
+                "19 fi NEXT",
+                "Agent Monetisation & The Agent Economy 2.0: MPP deep dive, SPTs in production, agent-to-agent commerce case studies",
+                "TBD"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "5. A2UI is the next wave to watch",
+          "paragraphs": [
+            "AG-UI solved agentfihuman streaming. A2UI extends this to agentfiagent UI composition -- one agent rendering its interface inside another agent's UI. This is early 2026 but will define the next generation of compound agentic applications."
+          ],
+          "bullets": [
+            "Your Learning Journey -- 18 Days Strong"
+          ]
+        },
+        {
+          "title": "What is it?",
+          "paragraphs": [
+            "OMX is an orchestration layer for OpenAI Codex CLI -- described as \"oh-my-zsh but for AI coding agents\". It transforms the raw Codex CLI into a multi-agent development environment with structured workflows, persistent state, and parallel",
+            "‹ Claw Code connection -- OMX was used to orchestrate Claw Code's creation when Sigrid Jin used it to spawn 3 parallel agents (code writer + reviewer + verifier) in git worktree isolation, rewriting Claude Code's architecture from scratch",
+            "› Solves the #1 dev agent pain point -- multiple coding agents stepping on each other's files. OMX's git worktree isolation gives each agent its own sandbox. fi Async delegation -- delegate long tasks to Claude Code without timeouts blocking the main Codex session. True async multi-agent coding is now a CLI command away.",
+            "OMX is a real-world example of Day 5's Orchestrator-Worker pattern in a developer tool. It also demonstrates AG-UI concepts in a terminal context (HUD = terminal-native AG-UI), and shows how the Claw Code / APM ecosystem from Day 17 is compounding. The \"hook system\" maps directly to Agent DevOps CI/CD hooks you studied yesterday. If you want hands-on agentic AI experience: clone OMX, run a TDD workflow, and watch three agents collaborate in real time. This is"
+          ],
+          "bullets": [
+            "Multi-agent teams -- spawn 3+ agents simultaneously in dedicated worktrees",
+            "Hooks system -- pre/post hooks on file changes, test runs, PR opens",
+            "HUD interface -- heads-up display showing all agent status in terminal",
+            "Structured workflows -- autopilot, TDD mode, code review mode, planning mode",
+            "Persistent memory -- agents remember context across sessions",
+            "Claude Code delegation -- async handoff to Claude Code, no timeouts",
+            "Key Takeaways -- Day 18"
+          ],
+          "table": {
+            "headers": [
+              "Protocol",
+              "Layer",
+              "Purpose",
+              "Status 2026"
+            ],
+            "rows": [
+              [
+                "MCP",
+                "Tool",
+                "Connect LLMs to tools/data via JSON-RPC",
+                "• 97M installs -- de facto standard"
+              ],
+              [
+                "A2A",
+                "Agent«Agent",
+                "HTTP-based task handoff between agents",
+                "• 150+ org adoption, v0.3 gRPC"
+              ],
+              [
+                "ACP",
+                "Enterprise",
+                "Federated REST, MIME multipart, performative verbs",
+                "• IBM-led, enterprise pilots"
+              ],
+              [
+                "ANP",
+                "Open Internet",
+                "Decentralised DID-based agent marketplace",
+                "• Vision stage, W3C DID did:wba"
+              ],
+              [
+                "AG-UI",
+                "Human«Agent",
+                "Event-based streaming from agent to frontend",
+                "• AWS Bedrock, AG2, CopilotKit GA"
+              ]
+            ]
+          }
+        }
+      ],
+      "key_stats": [
+        "97M+ MCP INSTALLS",
+        "40% ENTERPRISE LLM SHARE (ANTHROPIC)",
+        "18 ‹ TODAY",
+        "19 fi NEXT"
+      ]
+    },
+    {
       "date": "2026-04-06",
       "display_date": "APRIL 6, 2026",
       "title": "DAY 16 · APRIL 6, 2026",
