@@ -6,6 +6,221 @@
   },
   "learnings": [
     {
+      "date": "2026-04-09",
+      "display_date": "APRIL 9, 2026",
+      "title": "The Agent Economy 2.0",
+      "focus_intro": "",
+      "viral_app": {
+        "name": "of the day: Shopify isn't just building an AI feature -- it's",
+        "description": ""
+      },
+      "sections": [
+        {
+          "title": "1. The Infrastructure Layer is Complete",
+          "paragraphs": [
+            "MPP + SPTs + MoonPay Wallets + Visa/Mastercard rails = the full payment stack for agents is now live in production. This is not a future vision -- real money is moving through these systems today."
+          ],
+          "table": {
+            "headers": [
+              "Date",
+              "Event",
+              "Detail"
+            ],
+            "rows": [
+              [
+                "Feb 2026",
+                "MoonPay Agents",
+                "Non-custodial software wallet layer + CLI; agent-native key management"
+              ],
+              [
+                "Mar 17",
+                "Visa Agentic Ready",
+                "Global programme launch; 16+ banking partners; Europe first phase"
+              ],
+              [
+                "Mar 18",
+                "MPP Launch",
+                "Stripe + Tempo; 100+ services; Visa, Lightspark extensions live on day 1"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "2. Agents are Becoming Economic Actors",
+          "paragraphs": [
+            "The paradigm shift: AI moves from 'doing tasks' to 'spending money.' An agent can now decide what"
+          ],
+          "table": {
+            "headers": [
+              "Mar 23",
+              "MoonPay Open Wallet",
+              "Open-source standard; 8 chain families; backed by PayPal, Ripple, Solana, Circle"
+            ],
+            "rows": [
+              [
+                "Mar 2026",
+                "SPT Expansion",
+                "Klarna + Affirm integrate SPTs; Mastercard Agent Pay live; Visa Intelligent Commerce"
+              ],
+              [
+                "Mar 2026",
+                "Santander + Mastercard",
+                "Europe's first live end-to-end agent payment on regulated banking rails"
+              ],
+              [
+                "Mar 2026",
+                "Shopify Storefronts",
+                "3x conversion lift; agents sell in ChatGPT, Google AI Mode, Copilot via MCP + MPP"
+              ],
+              [
+                "2026 H2",
+                "Circle Nanopayments",
+                "Gas-free USDC; $0.000001 minimum; x402 standard; mainnet target H2 2026"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3. New Business Models Need New Governance",
+          "paragraphs": [
+            "Every agent that can spend money is a liability. Your kill switch architecture (T1-T4), NIST CAISI audit trails, and spending limits aren't just compliance -- they're risk management. Budget caps per agent are"
+          ],
+          "table": {
+            "headers": [
+              "Model",
+              "How it works",
+              "Live examples"
+            ],
+            "rows": [
+              [
+                "Pay-per-API-call",
+                "Agents pay micro-fees to access premium APIs, data, or compute -- priced per call, not subscription",
+                "Alchemy, Dune Analytics on MPP; Circle Nanopayments for <$0.001 calls"
+              ],
+              [
+                "Monetised MCP Servers",
+                "Any MCP server can gate access behind a payment -- agent pays to use the tool, revenue flows to the server owner",
+                "97M MCP installs; first monetised servers live Q1 2026 on MPP rails"
+              ],
+              [
+                "Agent-to-Agent Commerce",
+                "Orchestrator agents spawn sub-agents and pay them per task completed -- autonomous contractor economy",
+                "Shopify agentic checkout; JP Morgan LOXM sub-agent payments; Genspark MoA internal billing"
+              ],
+              [
+                "Autonomous SaaS Management",
+                "Agents negotiate, purchase, and cancel SaaS subscriptions on behalf of enterprises -- replacing procurement workflows",
+                "SpendHQ x Sligo AI agentic procurement live; J.P. Morgan Mirakl partnership announced"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "4. The Open vs Closed Battle",
+          "paragraphs": [
+            "MPP (Stripe, open) vs proprietary agent checkout (Amazon, Apple) is the defining commercial battle of"
+          ],
+          "table": {
+            "headers": [
+              "Layer",
+              "Protocol",
+              "Role",
+              "Status"
+            ],
+            "rows": [
+              [
+                "Tools",
+                "MCP",
+                "Agent accesses APIs, data, compute tools",
+                "97M installs -- foundational"
+              ],
+              [
+                "Communication",
+                "A2A",
+                "Agent-to-agent task delegation and coordination",
+                "150+ org adoption, production"
+              ],
+              [
+                "Payments",
+                "MPP + SPTs",
+                "Agent pays for resources, services, sub-agents",
+                "Live: Stripe, Visa, Mastercard, Circle"
+              ],
+              [
+                "User Interface",
+                "AG-UI",
+                "Human oversight, approval gates, state snapshots",
+                "GA: AWS Bedrock, AG2, CopilotKit"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "5. Practical Action",
+          "paragraphs": [
+            "If you're building agents: add MPP client libraries to your stack today. If you're buying SaaS: ask your vendors about agent payment APIs. If you're in enterprise: set spending limits in your agent governance",
+            "Day 19 of 30 · Varun's Daily AI Briefing · April 9, 2026 | Topics covered: 19 days · Next: Agent Security & Identity in the Economy 2.0"
+          ]
+        },
+        {
+          "title": "What is the Agent Economy 2.0?",
+          "paragraphs": [
+            "The Agent Economy 1.0 was about AI doing tasks -- summarising emails, writing code, answering questions. The Agent Economy 2.0 is about AI spending money. In 2026, agents are becoming first-class economic participants: they hold wallets, initiate payments, buy APIs, and transact with other agents -- autonomously, at sub-second speed, for fractions of a cent. Three foundational layers make this possible: payment protocols (MPP, SPTs), wallet standards (MoonPay Open Wallet), and network rails (Visa, Mastercard, Stripe, Circle). Machine Payments Protocol (MPP) -- Now in Production Launched March 18, 2026 by Stripe + Tempo, MPP is the open standard that allows AI agents to coordinate and execute payments programmatically -- with no human decision point between resource request and payment execution. It's essentially the HTTP of agent payments. Shared Payment Tokens (SPTs) -- How Agents Pay Without",
+            "SPTs solve a critical trust problem: how can an agent pay on your behalf without ever seeing your actual card number or bank credentials? The answer: a tokenised delegation system where you authorise the agent once, and the agent uses a short-lived token tied to your identity and spending limits. This is live in",
+            "Wallet Standards: MoonPay Open Wallet + Circle",
+            "Visa Agentic Ready Programme -- Banking Goes Agent-Native Launched March 17, 2026, Visa's Agentic Ready Programme gives banks a structured validation pathway for accepting agent-initiated transactions. This is the 'compliance stamp' that lets conservative financial institutions say yes to agentic payments without rewriting their risk frameworks. Key partners include: Barclays, HSBC UK, Nationwide, Revolut, Banco Santander, Commerzbank, Erste Bank, Raiffeisen Bank International, Nexi Group, and 10+ more across Europe, Middle East, and Latin America. Trust layer: Tokenisation + biometric auth ensures every agentic transaction is tied to a",
+            "Agent Economy 2.0: Key Milestones Timeline",
+            "The agent payment stack unlocks business models that were impossible 12 months ago. Here are the four",
+            "Just as the web stack (HTTP + HTML + CSS + JS) enabled the consumer internet, the agentic commerce stack is consolidating around four interoperable layers:",
+            "Anthropic's step-change model (93.9% SWE-bench, 94.6% GPQA Diamond) continues rolling out to enterprise customers. Described as 'step change in cybersecurity + reasoning.' Positioned to anchor",
+            "Gemini 3.1 Ultra -- 2M Token Context Native Multimodal Google's latest leads 13/16 major benchmarks. Handles text, image, audio, video in one model. New sandboxed Code Execution tool enables safer agentic deployments. Grok 4.20 -- 78% Non-Hallucination Record xAI's Grok 4.20 introduces 4 reasoning modes (Auto/Fast/Expert/Heavy), 2M token context, 60% cheaper than Grok 3. Built-in multi-agent orchestration.",
+            "All-time record quarter. OpenAI raised $122B. Anthropic closed $30B Series G. xAI acquired by SpaceX for $250B. AI is absorbing an unprecedented share of global venture capital. Gemma 4 Ecosystem: 400M Downloads, 100K+ Variants Google's open-source Gemma 4 (Apache 2.0) has 400M downloads and 100K+ community fine-tuned variants. 31B Dense model ranks #3 globally on Arena AI leaderboard. Purpose-built for agentic",
+            "Selling inside AI -- 3x conversion lift, powering the MPP + MCP commerce stack Shopify's Agentic Storefronts represent the most commercially validated implementation of the Agent Economy 2.0 stack. Rather than directing users to shopify.com, merchants using Agentic Storefronts can sell directly inside AI assistants -- ChatGPT, Google AI Mode, Microsoft Copilot, and Gemini. Shopify co-developed the Universal Commerce Protocol (UCP) with Google to standardise how agents browse catalogs, compare products, and complete transactions. Why this is the viral app of the day: Shopify isn't just building an AI feature -- it's building the first large-scale consumer-facing proof point that the agent commerce stack (MCP + MPP + A2A) works in the real world at scale. Every merchant using Shopify is now one configuration away from having an AI agent sell their products autonomously inside the apps 1 billion users already open every day."
+          ],
+          "table": {
+            "headers": [
+              "Feature",
+              "Detail"
+            ],
+            "rows": [
+              [
+                "Token Lifecycle",
+                "Issued per-session, short-lived (seconds to minutes), bound to agent identity + spending limit + merchant category"
+              ],
+              [
+                "Klarna + Affirm",
+                "Both BNPL giants integrated SPTs in March 2026 -- agents can now 'buy now, pay later' on your behalf within predefined limits"
+              ],
+              [
+                "Mastercard Agent Pay",
+                "Mastercard's implementation of SPTs -- powers the Santander live agent payment (Europe's first)"
+              ],
+              [
+                "Visa Intelligent Commerce",
+                "Tokenisation + biometric auth ensuring every agentic transaction is tied to a real, consenting human"
+              ],
+              [
+                "Security Model",
+                "Agents never see actual payment credentials. Full audit trail. Human can revoke at any time. GDPR-compliant by design."
+              ]
+            ]
+          }
+        }
+      ],
+      "key_stats": [
+        "140M+ Agent Payments in 2025",
+        "$0.31 Avg agent transaction",
+        "16+ Visa banking partners",
+        "100+ MPP-integrated services",
+        "16+ Banking partners signed",
+        "2026 H2",
+        "97M MCP installs; first monetised servers live Q1 2026 on MPP rails",
+        "97M installs -- foundational",
+        "150+ org adoption, production",
+        "15x AI-driven order growth YoY (2025)"
+      ]
+    },
+    {
       "date": "2026-04-08",
       "display_date": "APRIL 8, 2026",
       "title": "Multi-Agent Communication",
