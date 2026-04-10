@@ -1,48 +1,34 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- ── Primary SEO ───────────────────────────────── -->
   <title>Varun Singla | AI Learning Journal — Daily Agentic AI Breakthroughs & Trends</title>
-  <meta name="description" content="Varun Singla — technology consultant and agentic AI researcher based in Singapore. Daily research journal covering agentic AI, LLMs, MCP protocol, multi-agent orchestration, AI FinOps, and enterprise AI transformation. 20+ topics since March 2026." />
-  <meta name="keywords" content="Varun Singla, Varun Singla Singapore, agentic AI research, AI learning journal 2026, LLM cost optimisation, MCP protocol, multi-agent systems, AI FinOps, enterprise AI transformation, agent orchestration frameworks, Salesforce Communications Cloud, AI tokenomics, technology consultant Singapore" />
+  <meta name="description" content="Varun Singla's daily AI learning journal. Every day: deep dives into agentic AI, LLMs, MCP, multi-agent systems, viral AI apps and emerging tech trends. Learning fast, staying ahead." />
+  <meta name="keywords" content="Varun Singla, AI learning journal, agentic AI, daily AI breakthroughs, LLM trends, MCP protocol, multi-agent systems, AI blog, artificial intelligence 2026" />
   <meta name="author" content="Varun Singla" />
-  <meta name="geo.region" content="SG" />
-  <meta name="geo.placename" content="Singapore" />
-  <meta name="geo.position" content="1.3521;103.8198" />
-  <meta name="ICBM" content="1.3521, 103.8198" />
-  <meta name="revisit-after" content="1 day" />
-  <meta name="rating" content="general" />
-  <meta name="language" content="en" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-  <link rel="canonical" href="https://www.varunsingla.com/" />
-  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
-  <link rel="author" href="https://www.varunsingla.com/about/" />
-  <meta name="theme-color" content="#7c3aed" />
+  <link rel="canonical" href="https://varunsingla.com/" />
 
-  <!-- ── Open Graph ───────────────────────────────── -->
+  <!-- ── Open Graph (Facebook / LinkedIn) ─────────── -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Varun Singla · AI Learning Journal" />
-  <meta property="og:title" content="Varun Singla — Agentic AI Researcher &amp; Technology Consultant | Singapore" />
-  <meta property="og:description" content="Varun Singla, technology consultant and agentic AI researcher in Singapore. Daily research journal on agentic AI, LLMs, MCP, multi-agent orchestration, AI FinOps and enterprise AI transformation." />
-  <meta property="og:url" content="https://www.varunsingla.com/" />
-  <meta property="og:image" content="https://www.varunsingla.com/og-image.png" />
+  <meta property="og:title" content="Varun Singla | AI Learning Journal — Daily AI Breakthroughs" />
+  <meta property="og:description" content="Deep dives into agentic AI, MCP, multi-agent systems and the most viral AI tools — tracked daily by Varun Singla." />
+  <meta property="og:url" content="https://varunsingla.com/" />
+  <meta property="og:image" content="https://varunsingla.com/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Varun Singla AI Learning Journal — Daily Agentic AI Breakthroughs" />
+  <meta property="og:image:alt" content="Varun Singla — AI Learning Journal" />
   <meta property="og:locale" content="en_US" />
-  <meta property="article:author" content="https://www.varunsingla.com/" />
-  <meta property="article:publisher" content="https://www.varunsingla.com/" />
 
   <!-- ── Twitter / X Card ─────────────────────────── -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@varunsingla" />
-  <meta name="twitter:creator" content="@varunsingla" />
-  <meta name="twitter:title" content="Varun Singla — Agentic AI Researcher &amp; Technology Consultant" />
-  <meta name="twitter:description" content="Technology consultant and agentic AI researcher, Singapore. Daily research on agentic AI, LLMs, MCP, multi-agent systems, and enterprise AI transformation." />
-  <meta name="twitter:image" content="https://www.varunsingla.com/og-image.png" />
+  <meta name="twitter:title" content="Varun Singla | AI Learning Journal" />
+  <meta name="twitter:description" content="Daily deep dives into agentic AI, MCP, multi-agent systems and the most viral AI apps — updated every evening." />
+  <meta name="twitter:image" content="https://varunsingla.com/og-image.png" />
   <meta name="twitter:image:alt" content="Varun Singla — AI Learning Journal" />
 
   <!-- ── Performance hints ─────────────────────────── -->
@@ -366,6 +352,26 @@
       line-height: 1.4;
     }
 
+    /* ── Takeaway items (new schema) ────────────── */
+    .takeaway-item {
+      margin-bottom: 8px; font-size: 13.5px; color: var(--muted); line-height: 1.5;
+    }
+    .takeaway-item:last-child { margin-bottom: 0; }
+
+    /* ── Viral app stat mini-chips ───────────────── */
+    .viral-stats {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;
+    }
+    .viral-stat {
+      background: rgba(251,191,36,.08);
+      border: 1px solid rgba(251,191,36,.2);
+      color: #fbbf24;
+      font-size: 11px; text-align: center;
+      padding: 6px 12px; border-radius: 8px;
+      line-height: 1.4;
+    }
+    .viral-stat strong { font-size: 14px; display: block; }
+
     /* ── Tomorrow preview ────────────────────────── */
     .next-up {
       display: flex; align-items: flex-start; gap: 10px;
@@ -532,95 +538,11 @@
       .card { padding: 22px; }
       .card-title { font-size: 18px; }
     }
-
-    /* ── Light mode ─────────────────────────────── */
-    [data-theme="light"] {
-      --bg:        #f4f4ff;
-      --surface:   #eaeaf8;
-      --surface2:  #e2e2f4;
-      --border:    rgba(0,0,0,0.09);
-      --border-h:  rgba(109,40,217,0.35);
-      --p1: #6d28d9;
-      --p2: #1d4ed8;
-      --p3: #0891b2;
-      --text:      #0e0e1c;
-      --muted:     #4a4a70;
-      --dim:       #9090b8;
-      --green:     #059669;
-      --yellow:    #d97706;
-      --red:       #dc2626;
-    }
-    [data-theme="light"] body {
-      background: var(--bg);
-      color: var(--text);
-    }
-    [data-theme="light"] .ambient { opacity: 0.25; }
-
-    /* ── Theme toggle button ─────────────────────── */
-    .theme-toggle-btn {
-      position: fixed;
-      top: 14px;
-      right: 18px;
-      z-index: 200;
-      width: 34px; height: 34px;
-      border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      background: rgba(13,13,28,0.75);
-      border: 1px solid rgba(255,255,255,0.1);
-      color: #8888aa;
-      cursor: pointer;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      transition: color 0.15s, background 0.15s, border-color 0.15s;
-    }
-    [data-theme="light"] .theme-toggle-btn {
-      background: rgba(240,240,255,0.85);
-      border-color: rgba(0,0,0,0.12);
-      color: #4a4a70;
-    }
-    .theme-toggle-btn:hover {
-      color: #eeeeff;
-      background: rgba(124,58,237,0.25);
-      border-color: rgba(124,58,237,0.4);
-    }
-    [data-theme="light"] .theme-toggle-btn:hover {
-      color: #0e0e1c;
-      background: rgba(109,40,217,0.12);
-    }
-
-    /* ── Light mode overrides for main content ─── */
-    [data-theme="light"] .live-badge {
-      background: rgba(109,40,217,0.08);
-      border-color: rgba(109,40,217,0.25);
-      color: #6d28d9;
-    }
-    [data-theme="light"] .live-dot { background: #6d28d9; }
-    [data-theme="light"] .stats-bar { border-color: rgba(0,0,0,0.09); }
-    [data-theme="light"] .stat-item { border-color: rgba(0,0,0,0.09); }
-    [data-theme="light"] .stat-num { color: var(--p1); }
-    [data-theme="light"] .card {
-      background: var(--surface);
-      border-color: var(--border);
-    }
-    [data-theme="light"] .card:hover { border-color: var(--border-h); }
-    [data-theme="light"] .tag { background: rgba(109,40,217,0.08); color: var(--p1); }
-    [data-theme="light"] .section-label { color: var(--p1); }
-    [data-theme="light"] footer { border-color: var(--border); }
-    [data-theme="light"] .footer-logo {
-      background: linear-gradient(135deg, var(--p1), var(--p2));
-    }
-    [data-theme="light"] ::-webkit-scrollbar-track { background: var(--bg); }
-    [data-theme="light"] ::-webkit-scrollbar-thumb { background: var(--p1); }
   </style>
 </head>
 
 <body>
   <div class="ambient"></div>
-
-  <!-- ── Theme Toggle ───────────────────────────── -->
-  <button class="theme-toggle-btn" id="themeToggle" aria-label="Switch to light mode" title="Light mode">
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-  </button>
 
   <!-- ── Header ──────────────────────────────────── -->
   <header>
@@ -630,13 +552,6 @@
     </div>
     <h1>Varun's AI Learning Journal</h1>
     <p class="hero-sub">Daily AI breakthroughs, insights &amp; trends — tracked one day at a time.</p>
-    <p style="margin-top:0.75rem;font-size:0.85rem;color:var(--muted)">
-      <a href="/tools/model-team-evaluator.html" style="color:var(--p3);text-decoration:none;border:1px solid rgba(6,182,212,0.3);padding:0.3rem 0.75rem;border-radius:9999px;">⚡ Model Team Evaluator →</a>
-      &nbsp;
-      <a href="/ai-tokenomics/" style="color:var(--yellow);text-decoration:none;border:1px solid rgba(245,158,11,0.3);padding:0.3rem 0.75rem;border-radius:9999px;">💰 AI Tokenomics →</a>
-      &nbsp;
-      <a href="/about/" style="color:var(--muted);text-decoration:none;border:1px solid rgba(255,255,255,0.1);padding:0.3rem 0.75rem;border-radius:9999px;">👤 About →</a>
-    </p>
 
     <div class="stats-bar">
       <div class="stat-item">
@@ -658,70 +573,13 @@
   <main class="wrap">
     <div class="section-label">Learning History</div>
     <div id="feed"><div class="empty">Loading…</div></div>
-
-    <!-- Static fallback for search engine crawlers (hidden visually, indexable) -->
-    <noscript>
-      <section aria-label="AI Learning Journal Topics">
-        <h2>Topics Covered</h2>
-        <p>Varun Singla's daily AI learning journal covers the most important breakthroughs in Agentic AI. Below is a summary of topics explored:</p>
-        <ul>
-          <li><strong>Agent Governance &amp; Compliance</strong> — EU AI Act Aug 2026 enforcement, NIST CAISI 4-element framework, Kill Switch T1–T4 architecture, audit trail requirements, California AB 316, Colorado AI Act, 90-day compliance roadmap.</li>
-          <li><strong>Agent Evaluation &amp; Benchmarking</strong> — ARC-AGI-3 launch, DeepEval, Braintrust, LangSmith, Langfuse, AWS AgentCore Evals, LLM-as-Judge, Trajectory Evaluation, Eval-Driven Development workflow.</li>
-          <li><strong>Agent Memory &amp; Personalisation</strong> — 6 memory types (Working/Session/Episodic/Semantic/Procedural/Profile), Mem0, Zep/Graphiti, Cognee, pgvector, Qdrant, Weaviate, Pinecone, GDPR erasure patterns.</li>
-          <li><strong>Enterprise Agentic AI</strong> — CoE 5-layer architecture, Shadow AI risks, TCO/ROI framework, change management, Salesforce Agentforce, ServiceNow Autonomous Workforce, JP Morgan COiN.</li>
-          <li><strong>Multi-Agent Orchestration</strong> — Sequential, Parallel, Orchestrator-Worker, Hierarchical patterns, LangGraph, CrewAI, OpenAI Agents SDK, Google ADK, loop prevention, autonomy spectrum.</li>
-          <li><strong>MCP Protocol Deep Dive</strong> — Host/Client/Server architecture, JSON-RPC, 97M installs milestone, enterprise readiness, governance, transport scalability.</li>
-          <li><strong>A2A Protocol</strong> — Agent Card, Task Lifecycle, Transport, Security, gRPC, signed cards, Python SDK, 150+ org adoption.</li>
-          <li><strong>Agentic RAG</strong> — ReAct loop, CRAG, Hierarchical RAG, Speculative RAG, MMA-RAG, tool use optimisation, multi-modal agents.</li>
-          <li><strong>Agentic AI Safety</strong> — Prompt injection types, Trust Boundary 4-Zone Model, sandboxing (Firecracker/Kata/gVisor), enterprise compliance stack.</li>
-          <li><strong>Agent Economy</strong> — Machine Payments Protocol (MPP), Shared Payment Tokens, 140M agent payments in 2025, Circle Nanopayments, Visa Agentic Ready.</li>
-          <li><strong>Building Your First Agent</strong> — Framework showdown 2026, MCP wiring, memory layers, guardrails checklist, full agentic stack walkthrough.</li>
-          <li><strong>Viral AI Apps Tracked</strong> — Claw Code, ARC-AGI-3, AlphaEvolve, deer-flow, Hark, MiroFish, Kortix Suna, Genspark AI Workspace 3.0, Shopify Agentic Storefronts, OpenAI Codex App.</li>
-        </ul>
-      </section>
-    </noscript>
-
-    <!-- ── Static content for search engine crawlers ── -->
-    <!-- Googlebot reads this even when JS is disabled   -->
-    <section id="seo-content" aria-label="About Varun Singla" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" tabindex="-1">
-      <h2>About Varun Singla</h2>
-      <p>Varun Singla is a technology consultant and agentic AI researcher based in Singapore, specialising in agentic AI, enterprise AI transformation, Salesforce Communications Cloud, and telecommunications. He documents daily AI research covering LLMs, MCP protocol, multi-agent orchestration, and AI FinOps since March 2026.</p>
-
-      <h2>Varun Singla's AI Research Topics</h2>
-      <ul>
-        <li><strong>Agent Orchestration Frameworks 2026</strong> — LangGraph, CrewAI, AutoGen, OpenAI Agents SDK, Google ADK comparison and selection guide for enterprise agentic AI.</li>
-        <li><strong>Production-Grade Agent Memory Systems</strong> — 6 memory types (Working, Session, Episodic, Semantic, Procedural, Profile), Mem0, Zep/Graphiti, Cognee, pgvector, Qdrant, GDPR erasure patterns.</li>
-        <li><strong>Enterprise Agentic AI — CoE Strategy</strong> — Shadow AI risks, TCO/ROI framework, Salesforce Agentforce, ServiceNow Autonomous Workforce, change management at scale.</li>
-        <li><strong>Agent Governance &amp; EU AI Act</strong> — EU AI Act August 2026 enforcement, NIST CAISI framework, Kill Switch T1–T4 architecture, 90-day compliance roadmap.</li>
-        <li><strong>AI FinOps &amp; Token Cost Optimisation</strong> — Prompt caching (90% reduction), semantic caching (73% reduction), model routing, RAG compression, batch processing, AI factory TCO.</li>
-        <li><strong>MCP Protocol Deep Dive</strong> — Host/Client/Server architecture, JSON-RPC, 97M installs, enterprise governance, transport scalability.</li>
-        <li><strong>A2A Protocol</strong> — Agent Card, Task Lifecycle, Transport, Security, gRPC, 150+ org adoption.</li>
-        <li><strong>Agentic RAG</strong> — ReAct loop, CRAG, Hierarchical RAG, Speculative RAG, multi-modal agents.</li>
-        <li><strong>Agentic AI Safety</strong> — Prompt injection, Trust Boundary 4-Zone Model, sandboxing (Firecracker/Kata/gVisor).</li>
-        <li><strong>Agent Economy</strong> — Machine Payments Protocol (MPP), Shared Payment Tokens, Circle Nanopayments, Visa Agentic Ready.</li>
-      </ul>
-
-      <h2>About This Site</h2>
-      <p>varunsingla.com is the personal research journal of Varun Singla, an agentic AI researcher and technology consultant in Singapore. Updated daily with deep dives into agentic AI, LLMs, enterprise AI transformation, token economics, MCP and A2A protocols, and Salesforce AI.</p>
-
-      <h2>Tools Built by Varun Singla</h2>
-      <ul>
-        <li><a href="/ai-tokenomics/">AI Tokenomics Guide</a> — Understand AI token cost models, 2026 pricing across 17 models, and 10 optimisation levers to cut spend by 40–80%.</li>
-        <li><a href="/tools/model-team-evaluator.html">Model Team Evaluator</a> — Evaluate and compare AI model teams for enterprise agentic deployments.</li>
-        <li><a href="/tokenizer.html">AI Tokenizer</a> — Visualise how LLMs tokenise text and estimate token counts.</li>
-      </ul>
-    </section>
   </main>
 
   <!-- ── Footer ───────────────────────────────────── -->
   <footer>
     <div class="footer-logo">VS</div>
-    <p>Daily AI research by <a href="https://www.varunsingla.com/" rel="author">Varun Singla</a></p>
-    <p style="margin-top:6px;font-size:11px;color:var(--dim)">
-      <a href="https://www.varunsingla.com/" rel="home">varunsingla.com</a>
-      &nbsp;·&nbsp;
-      <a href=
-    </p>
+    <p>Updated daily by AI</p>
+    <p style="margin-top:6px;font-size:11px;color:var(--dim)">varunsingla.com</p>
   </footer>
 
   <!-- ── JS ────────────────────────────────────────── -->
@@ -755,7 +613,7 @@
 
     function renderStats(learnings) {
       const sections = learnings.reduce((n, l) => n + (l.sections || []).length, 0);
-      const apps     = learnings.filter(l => l.viral_app).length;
+      const apps     = learnings.filter(l => l.viral_app && l.viral_app.name).length;
       countUp('s-days',   learnings.length);
       countUp('s-topics', sections);
       countUp('s-apps',   apps);
@@ -815,15 +673,24 @@
     }
 
     function buildCard(l, isLatest) {
-      const viralHtml = l.viral_app ? `
+      let viralHtml = '';
+      if (l.viral_app && l.viral_app.name) {
+        const vStats = Array.isArray(l.viral_app.stats) && l.viral_app.stats.length
+          ? `<div class="viral-stats">${l.viral_app.stats.map(s =>
+              `<span class="viral-stat"><strong>${esc(s.stat)}</strong><br>${esc(s.label)}</span>`
+            ).join('')}</div>`
+          : '';
+        viralHtml = `
         <div class="viral-block">
           <span class="viral-fire">🔥</span>
-          <div>
+          <div style="flex:1">
             <div class="viral-tag">Viral App of the Day</div>
             <div class="viral-name">${esc(l.viral_app.name)}</div>
-            <div class="viral-desc">${esc(l.viral_app.description)}</div>
+            ${l.viral_app.description ? `<div class="viral-desc">${esc(l.viral_app.description)}</div>` : ''}
+            ${vStats}
           </div>
-        </div>` : '';
+        </div>`;
+      }
 
       const focusHtml = l.focus_intro
         ? `<div class="focus-intro">${esc(l.focus_intro)}</div>`
@@ -840,18 +707,36 @@
           </div>
         </div>` : '';
 
-      const takeawayHtml = l.practical_takeaway ? `
+      // practical_takeaway can be a string (old schema) or array of {title, body} (new schema)
+      let takeawayHtml = '';
+      if (l.practical_takeaway) {
+        let tkContent = '';
+        if (Array.isArray(l.practical_takeaway)) {
+          tkContent = l.practical_takeaway.map(tk =>
+            `<div class="takeaway-item"><strong>${esc(tk.title)}</strong>${tk.body && tk.body !== tk.title ? ' — ' + esc(tk.body) : ''}</div>`
+          ).join('');
+        } else {
+          tkContent = esc(l.practical_takeaway);
+        }
+        takeawayHtml = `
         <div class="takeaway">
           <span class="takeaway-icon">🎯</span>
           <div>
-            <div class="takeaway-label">Practical Takeaway</div>
-            ${esc(l.practical_takeaway)}
+            <div class="takeaway-label">Practical Takeaways</div>
+            ${tkContent}
           </div>
-        </div>` : '';
+        </div>`;
+      }
 
-      const chipsHtml = (l.key_stats || []).length
-        ? `<div class="chips">${l.key_stats.map(s => `<span class="chip">📊 ${esc(s)}</span>`).join('')}</div>`
-        : '';
+      // Support both old key_stats (string array) and new stats ({stat, label} array)
+      let chipsHtml = '';
+      if (Array.isArray(l.stats) && l.stats.length) {
+        chipsHtml = `<div class="chips">${l.stats.map(s =>
+          `<span class="chip">📊 <strong>${esc(s.stat)}</strong> ${esc(s.label)}</span>`
+        ).join('')}</div>`;
+      } else if (Array.isArray(l.key_stats) && l.key_stats.length) {
+        chipsHtml = `<div class="chips">${l.key_stats.map(s => `<span class="chip">📊 ${esc(s)}</span>`).join('')}</div>`;
+      }
 
       const nextHtml = l.tomorrow_preview
         ? `<div class="next-up">
@@ -917,117 +802,46 @@
   </script>
 
   <!-- ── JSON-LD Structured Data ───────────────────────────────────────────── -->
-  <!-- Static: Rich structured data for Google E-E-A-T -->
+  <!-- Static: Person + Blog (always present for Google E-E-A-T) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "Person",
-        "@id": "https://www.varunsingla.com/#varun",
+        "@id": "https://varunsingla.com/#varun",
         "name": "Varun Singla",
-        "givenName": "Varun",
-        "familyName": "Singla",
-        "url": "https://www.varunsingla.com",
-        "jobTitle": "Technology Consultant & Agentic AI Researcher",
-        "description": "Varun Singla is a technology consultant and agentic AI researcher based in Singapore. He documents daily breakthroughs in LLMs, MCP protocol, multi-agent orchestration, AI FinOps, and agent governance.",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Singapore",
-          "addressCountry": "SG"
-        },
-        "sameAs": [
-          "https://www.varunsingla.com/about/"
-        ],
-        "knowsAbout": [
-          "Agentic AI",
-          "Large Language Models",
-          "Multi-Agent Systems",
-          "MCP Protocol",
-          "A2A Protocol",
-          "Artificial Intelligence",
-          "AI FinOps",
-          "Token Cost Optimisation",
-          "Agent Governance",
-          "Agent Evaluation",
-          "Multi-Agent Orchestration",
-          "Salesforce Communications Cloud",
-          "Enterprise AI Transformation",
-          "Telecommunications",
-          "Digital Transformation",
-          "LangGraph",
-          "CrewAI",
-          "AutoGen"
-        ],
-        "hasCredential": [
-          {
-            "@type": "EducationalOccupationalCredential",
-            "name": "AI FinOps Certification"
-          }
-        ]
+        "url": "https://varunsingla.com",
+        "email": "varun.singla@outlook.com",
+        "description": "Technology professional learning about Agentic AI, LLMs, and emerging tech — documenting daily breakthroughs and insights.",
+        "knowsAbout": ["Agentic AI", "Large Language Models", "Multi-Agent Systems", "MCP Protocol", "Artificial Intelligence", "Machine Learning"]
       },
       {
         "@type": "Blog",
-        "@id": "https://www.varunsingla.com/#blog",
-        "name": "Varun Singla · AI Research Journal",
-        "url": "https://www.varunsingla.com",
-        "description": "Daily deep dives into agentic AI, LLMs, MCP protocol, multi-agent orchestration, AI FinOps, and enterprise AI transformation — by Varun Singla, technology consultant and AI researcher in Singapore.",
-        "author": { "@id": "https://www.varunsingla.com/#varun" },
+        "@id": "https://varunsingla.com/#blog",
+        "name": "Varun Singla · AI Learning Journal",
+        "url": "https://varunsingla.com",
+        "description": "Daily AI breakthroughs, deep dives and trends — tracked one day at a time by Varun Singla.",
+        "author": { "@id": "https://varunsingla.com/#varun" },
         "inLanguage": "en-US",
-        "publisher": { "@id": "https://www.varunsingla.com/#varun" },
-        "dateModified": "2026-04-05",
-        "about": [
-          { "@type": "Thing", "name": "Agentic AI", "sameAs": "https://en.wikipedia.org/wiki/Autonomous_agent" },
-          { "@type": "Thing", "name": "Large Language Models", "sameAs": "https://en.wikipedia.org/wiki/Large_language_model" },
-          { "@type": "Thing", "name": "Artificial Intelligence", "sameAs": "https://en.wikipedia.org/wiki/Artificial_intelligence" }
-        ]
+        "publisher": { "@id": "https://varunsingla.com/#varun" },
+        "about": {
+          "@type": "Thing",
+          "name": "Artificial Intelligence",
+          "sameAs": "https://en.wikipedia.org/wiki/Artificial_intelligence"
+        }
       },
       {
         "@type": "WebSite",
-        "@id": "https://www.varunsingla.com/#website",
-        "name": "Varun Singla — Agentic AI Researcher & Technology Consultant",
-        "url": "https://www.varunsingla.com",
-        "publisher": { "@id": "https://www.varunsingla.com/#varun" },
+        "@id": "https://varunsingla.com/#website",
+        "name": "Varun Singla · AI Learning Journal",
+        "url": "https://varunsingla.com",
+        "publisher": { "@id": "https://varunsingla.com/#varun" },
         "potentialAction": {
           "@type": "SearchAction",
-          "target": "https://www.varunsingla.com/?q={search_term_string}",
+          "target": "https://varunsingla.com/?q={search_term_string}",
           "query-input": "required name=search_term_string"
         }
-      },
-      {
-        "@type": "WebPage",
-        "@id": "https://www.varunsingla.com/#webpage",
-        "url": "https://www.varunsingla.com/",
-        "name": "Varun Singla — Agentic AI Researcher & Technology Consultant | Singapore",
-        "description": "Daily agentic AI research by Varun Singla, technology consultant and AI researcher in Singapore. Covers LLMs, MCP, multi-agent systems, AI FinOps, agent governance, and enterprise AI.",
-        "isPartOf": { "@id": "https://www.varunsingla.com/#website" },
-        "about": { "@id": "https://www.varunsingla.com/#varun" },
-        "author": { "@id": "https://www.varunsingla.com/#varun" },
-        "dateModified": "2026-04-05",
-        "inLanguage": "en-US",
-        "breadcrumb": {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.varunsingla.com/" }
-          ]
-        }
-      },
-      {
-        "@type": "ItemList",
-        "name": "AI Research Topics by Varun Singla",
-        "description": "Topics covered in Varun Singla's daily AI research journal",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Agentic AI & Multi-Agent Systems" },
-          { "@type": "ListItem", "position": 2, "name": "MCP Protocol Deep Dive" },
-          { "@type": "ListItem", "position": 3, "name": "AI FinOps & Token Cost Optimisation" },
-          { "@type": "ListItem", "position": 4, "name": "Agent Governance & EU AI Act" },
-          { "@type": "ListItem", "position": 5, "name": "Agent Memory Architecture" },
-          { "@type": "ListItem", "position": 6, "name": "LangGraph, CrewAI, AutoGen Frameworks" },
-          { "@type": "ListItem", "position": 7, "name": "A2A Protocol & Agent Economy" },
-          { "@type": "ListItem", "position": 8, "name": "Enterprise AI Transformation" },
-          { "@type": "ListItem", "position": 9, "name": "Salesforce Agentforce & Communications Cloud" },
-          { "@type": "ListItem", "position": 10, "name": "Production Agentic RAG Systems" }
-        ]
       }
     ]
   }
@@ -1046,11 +860,11 @@
       "description": l.focus_intro || l.title || "Daily AI learning entry by Varun Singla.",
       "datePublished": l.date + "T21:00:00+08:00",
       "dateModified":  l.date + "T21:00:00+08:00",
-      "author": { "@id": "https://www.varunsingla.com/#varun" },
-      "publisher": { "@id": "https://www.varunsingla.com/#varun" },
-      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.varunsingla.com/#" + l.date },
-      "url": "https://www.varunsingla.com/#" + l.date,
-      "isPartOf": { "@id": "https://www.varunsingla.com/#blog" },
+      "author": { "@id": "https://varunsingla.com/#varun" },
+      "publisher": { "@id": "https://varunsingla.com/#varun" },
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://varunsingla.com/#" + l.date },
+      "url": "https://varunsingla.com/#" + l.date,
+      "isPartOf": { "@id": "https://varunsingla.com/#blog" },
       "keywords": (l.sections || []).map(s => s.title).join(", "),
       "articleBody": [l.focus_intro, ...(l.sections || []).map(s =>
         [s.title, ...(s.paragraphs || []), ...(s.bullets || [])].join(" ")
