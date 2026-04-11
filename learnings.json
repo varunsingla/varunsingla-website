@@ -6,6 +6,36 @@
   },
   "learnings": [
     {
+      "date": "2026-04-11",
+      "display_date": "APRIL 11, 2026",
+      "issue": 22,
+      "title": "Advanced Agent Testing &",
+      "focus_intro": "Day 21 of your Agentic AI learning journey dives into the red team. As agents proliferate in production --",
+      "viral_app": {
+        "name": "",
+        "description": "Straiker is the world's first AI-native red teaming platform built exclusively for agentic applications. Unlike legacy scanners retrofitted for LLMs, Ascend AI deploys purpose-built offensive agent models that think and plan like real attackers -- running continuous adversarial campaigns against your deployed agents, simulating prompt injection, tool call hijacking, delegation chain exploitation, and wallet drain scenarios 24/7. The companion product Defend AI provides runtime protection, creating a dual attack-and-defend flywheel. In under 12 months Straiker went from founding to securing fro",
+        "stats": []
+      },
+      "stats": [
+        {
+          "stat": "73%",
+          "label": "prod agents vulnerable to injection"
+        },
+        {
+          "stat": "90+",
+          "label": "orgs hit by prompt injection (CrowdStrike)"
+        },
+        {
+          "stat": "17%",
+          "label": "avg sandbox escape defense rate"
+        }
+      ],
+      "sections": [],
+      "market_signal": "The emergence of 'Guardian Agents' as a Gartner category is the clearest signal yet that agentic AI security is no longer a feature -- it's a market. Enterprises will soon have dedicated AI agents whose sole job is to attack, test, and protect their other AI agents. Security-as-an-agent is the next platform shift.",
+      "practical_takeaway": [],
+      "tomorrow_preview": "Day 22 -- Agent Observability at Scale: Building production-grade OTEL dashboards for agents, alerting on anomalous tool call patterns, and using LangSmith + Arize Phoenix to catch drift before it becomes an incident. Plus: the emerging 'Agent SRE' role. Varun's Daily AI Intelligence · Issue #22 · April 11, 2026 · varunsingla.com"
+    },
+    {
       "date": "2026-04-10",
       "display_date": "April 10, 2026",
       "issue": 20,
