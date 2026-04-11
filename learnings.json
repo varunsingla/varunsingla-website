@@ -7,15 +7,10 @@
   "learnings": [
     {
       "date": "2026-04-11",
-      "display_date": "APRIL 11, 2026",
+      "display_date": "April 11, 2026",
       "issue": 22,
-      "title": "Advanced Agent Testing &",
-      "focus_intro": "Day 21 of your Agentic AI learning journey dives into the red team. As agents proliferate in production --",
-      "viral_app": {
-        "name": "",
-        "description": "Straiker is the world's first AI-native red teaming platform built exclusively for agentic applications. Unlike legacy scanners retrofitted for LLMs, Ascend AI deploys purpose-built offensive agent models that think and plan like real attackers -- running continuous adversarial campaigns against your deployed agents, simulating prompt injection, tool call hijacking, delegation chain exploitation, and wallet drain scenarios 24/7. The companion product Defend AI provides runtime protection, creating a dual attack-and-defend flywheel. In under 12 months Straiker went from founding to securing fro",
-        "stats": []
-      },
+      "title": "Advanced Agent Testing & Red Teaming",
+      "focus_intro": "Day 21 of your Agentic AI learning journey dives into the red team. As agents proliferate in production — handling payments, browsing the web, writing code, and managing enterprise workflows — attackers are already probing them. Today you will learn how to think like an attacker: the taxonomy of agent-specific attacks, the tools the industry uses to automate adversarial testing, and the concrete techniques for simulating wallet drains, privilege escalation, and delegation chain poisoning before they happen in the real world.",
       "stats": [
         {
           "stat": "73%",
@@ -26,14 +21,107 @@
           "label": "orgs hit by prompt injection (CrowdStrike)"
         },
         {
+          "stat": "#1",
+          "label": "OWASP Agentic Top 10: injection"
+        },
+        {
           "stat": "17%",
           "label": "avg sandbox escape defense rate"
         }
       ],
-      "sections": [],
-      "market_signal": "The emergence of 'Guardian Agents' as a Gartner category is the clearest signal yet that agentic AI security is no longer a feature -- it's a market. Enterprises will soon have dedicated AI agents whose sole job is to attack, test, and protect their other AI agents. Security-as-an-agent is the next platform shift.",
-      "practical_takeaway": [],
-      "tomorrow_preview": "Day 22 -- Agent Observability at Scale: Building production-grade OTEL dashboards for agents, alerting on anomalous tool call patterns, and using LangSmith + Arize Phoenix to catch drift before it becomes an incident. Plus: the emerging 'Agent SRE' role. Varun's Daily AI Intelligence · Issue #22 · April 11, 2026 · varunsingla.com"
+      "viral_app": {
+        "name": "Straiker Ascend AI",
+        "description": "The world's first AI-native red teaming platform built exclusively for agentic applications. Unlike legacy scanners retrofitted for LLMs, Ascend AI deploys purpose-built offensive agent models that think and plan like real attackers — running continuous adversarial campaigns against your deployed agents, simulating prompt injection, tool call hijacking, delegation chain exploitation, and wallet drain scenarios 24/7. The companion product Defend AI provides runtime protection, creating a dual attack-and-defend flywheel. In under 12 months Straiker went from founding to securing frontier AI labs and global enterprises with seven-figure deals, and was named a Gartner Representative Vendor in the Guardian Agents category.",
+        "stats": [
+          {
+            "stat": "<12mo",
+            "label": "zero → enterprise"
+          },
+          {
+            "stat": "7-fig",
+            "label": "deals in finserv + health"
+          },
+          {
+            "stat": "#1",
+            "label": "Gartner Guardian Agent"
+          },
+          {
+            "stat": "24/7",
+            "label": "continuous red teaming"
+          }
+        ]
+      },
+      "sections": [
+        {
+          "title": "Why Agent Red Teaming Is Different",
+          "paragraphs": [
+            "Traditional application pen-testing targets deterministic systems: you send a payload, you get a predictable response. AI agents are fundamentally non-deterministic — they reason, plan, and decide which tools to call next. A single malicious instruction buried in a retrieved document can redirect the agent's entire action plan. This is the core insight: the attack surface is no longer just the API endpoint — it's every piece of text the agent ever reads.",
+            "The Cloud Security Alliance's Agentic AI Red Teaming Guide (2025) identifies 12 threat categories unique to agents: Permission Escalation, Knowledge Base Poisoning, Memory & Context Manipulation, Multi-Agent Orchestration Exploitation, Supply Chain attacks via MCP server poisoning, and more. OWASP Agentic Top 10 (Dec 2025) and MITRE ATLAS now converge on a shared offensive methodology — red teaming agents requires dedicated playbooks, not just traditional pentest checklists."
+          ]
+        },
+        {
+          "title": "The Agentic Attack Taxonomy: 6 Attack Classes You Must Know",
+          "paragraphs": [
+            "1. Indirect Prompt Injection (IPI): The agent reads a malicious document from an external source (email, web page, database record) that contains embedded instructions. Unit 42 documented 22 distinct IPI techniques now actively weaponised in production. Unlike direct injection through the user turn, IPI bypasses most input sanitisation layers because the payload arrives via tool output, not user input.",
+            "2. Context Window Poisoning: Attackers embed adversarial instructions deep within large documents — taking advantage of the 128K+ token context windows agents now operate in. Instructions buried at position 60K tokens have a statistically higher chance of escaping attention and altering the agent's behaviour without triggering surface-level filters.",
+            "3. MCP Server & Tool Poisoning: A compromised or malicious MCP tool server injects manipulated tool results, steering the agent to call unintended APIs, exfiltrate data, or escalate privileges. Cross-server privilege escalation — where one agent's MCP server manipulates another agent's trust scope — is the most dangerous variant.",
+            "4. Delegation Chain Fuzzing: In multi-agent systems, orchestrators delegate tasks to sub-agents. Fuzzing the delegation handoff can cause a sub-agent to receive an expanded permission scope not intended by the orchestrator. This is the agentic equivalent of SQL injection via stored procedures.",
+            "5. Wallet Drain / Denial-of-Wallet: Spending agents (using MPP / SPTs) can be manipulated via token exhaustion attacks that force repeated expensive API calls, or via scope creep injection that causes the agent to authorise payments beyond its OAuth scope. CrowdStrike documented agents being exploited to steal credentials and cryptocurrency across 90+ organisations.",
+            "6. Memory Poisoning: By injecting malicious content into an agent's episodic or semantic memory, an attacker can persistently corrupt the agent's future reasoning — even across session boundaries. NIST CAISI calls this a Tier 1 threat because it survives restarts and context resets if the memory store is not isolated and audited."
+          ]
+        },
+        {
+          "title": "The Red Team Toolkit: Tools Every Agent Builder Should Know",
+          "paragraphs": [
+            "Garak (NVIDIA): Open-source LLM vulnerability scanner. Garak runs automated probe sequences across dozens of attack categories and produces structured findings reports. Think of it as nmap for language models — fast, broad, and systematic. Best for: baseline scanning before any agent ships.",
+            "PyRIT (Microsoft): Python Risk Identification Toolkit. PyRIT enables custom adversarial conversation loops, multi-turn jailbreak sequences, automated output scoring, and integration into CI/CD pipelines. Best for: building bespoke red team pipelines.",
+            "Promptfoo (adversarial mode): Integrates with your CI/CD gate — block if attack success rate exceeds threshold. Best for: Eval-Driven Development teams who want continuous adversarial regression testing.",
+            "Straiker Ascend AI: Enterprise-grade purpose-built offensive agent that continuously red teams your deployed agentic applications using AI-powered attack models. Named a Gartner Representative Vendor in Guardian Agents.",
+            "Repello ARTEMIS: Focused on the OWASP Agentic Top 10 — tool-call hijacking, MCP server poisoning, cross-agent injection, and privilege escalation through chained tool calls. Best for: deep-dive pentesting of complex multi-agent pipelines."
+          ]
+        },
+        {
+          "title": "The 5-Stage Agentic Red Team Methodology",
+          "paragraphs": [
+            "Stage 1 — Threat Model the Agent: Map the agent's trust zones (System Prompt / Human / Tool / External), list every external data source it reads, every tool it can call, and every payment or API action it can take. The threat model is your attack surface map.",
+            "Stage 2 — Static Analysis: Audit the system prompt for injection anchors, over-broad tool scopes, and missing negative examples. Use Promptfoo in CI to enforce a 'prompts as code' gate — any system prompt change that increases attack success rate by >2% on the golden dataset blocks the PR.",
+            "Stage 3 — Automated Scanning: Run Garak for broad baseline coverage, PyRIT for custom multi-turn attack sequences, and Promptfoo adversarial mode for regression tracking. For spending agents, simulate wallet drain scenarios: token exhaustion, scope creep injection, nonce replay against x402 endpoints.",
+            "Stage 4 — Delegation Chain Attacks: In multi-agent systems, run man-in-the-middle simulations on agent-to-agent communication. Fuzz the task handoff payload — can you convince a sub-agent it has been granted elevated permissions? Can you break the SVID attestation chain?",
+            "Stage 5 — Memory & Persistence Testing: Inject adversarial content into each memory tier (Redis session, vector episodic, graph semantic) and verify it does not survive to the next session. Test the GDPR hard-delete cascade. Run the Berkeley Agentic AI Profile's shutdown resistance test."
+          ]
+        },
+        {
+          "title": "Breaking AI News (April 11, 2026)",
+          "paragraphs": [
+            "Adversa AI wins RSA 2026 Most Innovative Agentic AI Security — formal industry recognition that continuous agentic red teaming is now a required enterprise practice.",
+            "CSA + NIST converging on shared agent red team standards — NIST NCCoE + CAISI now reference the CSA Agentic Red Teaming Guide as the baseline methodology for high-risk agent deployments under the EU AI Act (Aug 2 deadline).",
+            "Straiker named Gartner Representative Vendor in Guardian Agents — the Guardian Agent category emerges: autonomous agents whose job is to monitor, test, and protect other agents.",
+            "CrowdStrike documents 90+ enterprises hit by agentic prompt injection — agents exploited to steal credentials and cryptocurrency; confirms threat has moved from theoretical to actively weaponised.",
+            "Google Lyria 3 Pro goes live — AI music generation expands from 30-second clips to 3-minute tracks; full SynthID watermarking; text-to-song now inside Gemini app for all users.",
+            "EU AI Act August 2 deadline approaching — 90-day countdown begins; 50%+ enterprises still not compliant; red teaming documentation now required as evidence for Annex III high-risk system audits."
+          ]
+        }
+      ],
+      "market_signal": "The emergence of 'Guardian Agents' as a Gartner category is the clearest signal yet that agentic AI security is no longer a feature — it's a market. Enterprises will soon have dedicated AI agents whose sole job is to attack, test, and protect their other AI agents. Security-as-an-agent is the next platform shift.",
+      "practical_takeaway": [
+        {
+          "title": "Run Garak on every agent before it ships",
+          "body": "Add Garak to your CI pipeline as a pre-deploy gate. It takes under 5 minutes to scan for the top 20 attack categories. If attack success rate exceeds your threshold, block the deploy. This is the minimum viable agentic security posture."
+        },
+        {
+          "title": "Threat-model your delegation chains",
+          "body": "In any multi-agent system, draw the full delegation graph and mark every trust boundary. At each boundary, ask: what happens if the message arriving here was crafted by an attacker? SVID attestation and signed A2A cards are your primary defences."
+        },
+        {
+          "title": "Simulate wallet drain before going live with MPP",
+          "body": "If your agent can spend money, run a wallet drain simulation using PyRIT with a mock MPP endpoint. Test scope creep, nonce replay (is x402 nonce validation enforced?), and token exhaustion. Fix all three before production."
+        },
+        {
+          "title": "Memory poison testing is non-negotiable",
+          "body": "For every memory tier your agent uses, write a test that injects adversarial content and verifies it does not persist across session boundaries. Pair this with GDPR hard-delete cascade tests. Required for EU AI Act Annex III compliance."
+        }
+      ],
+      "tomorrow_preview": "Day 22 — Agent Observability at Scale: Building production-grade OTEL dashboards for agents, alerting on anomalous tool call patterns, and using LangSmith + Arize Phoenix to catch drift before it becomes an incident. Plus: the emerging Agent SRE role."
     },
     {
       "date": "2026-04-10",
@@ -2854,6 +2942,6 @@
       ]
     }
   ],
-  "last_updated": "2026-04-06",
+  "last_updated": "2026-04-11",
   "total_days": 21
 }
