@@ -6,6 +6,272 @@
   },
   "learnings": [
     {
+      "date": "2026-04-12",
+      "display_date": "APRIL 12, 2026",
+      "issue": 22,
+      "title": "Agent Observability at Scale",
+      "focus_intro": "Building Production-Grade OTEL Dashboards · Drift Detection · The Agent SRE",
+      "viral_app": {
+        "name": "",
+        "description": "",
+        "stats": []
+      },
+      "stats": [
+        {
+          "stat": "$6.8B",
+          "label": "LLM Observability market by 2029"
+        },
+        {
+          "stat": "36.5%",
+          "label": "CAGR for AI observability tools"
+        },
+        {
+          "stat": "40+",
+          "label": "OTEL providers auto-instrumented"
+        },
+        {
+          "stat": "57%",
+          "label": "Orgs with agents in production"
+        }
+      ],
+      "sections": [
+        {
+          "title": "1. Why Agent Observability Differs from Traditional APM",
+          "paragraphs": [
+            "Traditional Application Performance Monitoring (APM) tracks deterministic systems: HTTP latency, database query time, error rates. Agents break these assumptions in three critical ways:",
+            "\"wrong output\" -- you need to track reasoning trajectories.",
+            "tree can be 6 levels deep with conditional branches.",
+            "SLOs break down when P99 = \"still running\".",
+            "expensive. Budget exhaustion is a production incident.",
+            "yesterday. Stateful drift has no APM analogue."
+          ],
+          "bullets": [
+            "Non-determinism: The same prompt can produce wildly different \"wrong output\" -- you need to track reasoning trajectories.",
+            "Multi-hop execution: A single user request may spawn 10+ tree can be 6 levels deep with conditional branches.",
+            "Temporal unboundedness: Agents can run for minutes or SLOs break down when P99 = \"still running\".",
+            "Cost as a first-class SLO: Token spend is a reliability metric. expensive. Budget exhaustion is a production incident.",
+            "Memory & state drift: An agent's behaviour today depends yesterday. Stateful drift has no APM analogue."
+          ],
+          "table": {
+            "headers": [
+              "OTEL Concept",
+              "Agent Meaning",
+              "Example"
+            ],
+            "rows": [
+              [
+                "Trace",
+                "One end-to-end agent run",
+                "User asks → agent plans fi 4 tools → response"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "2. OpenTelemetry (OTEL) as the Agent Observability Standard",
+          "paragraphs": [
+            "OpenTelemetry has emerged as the lingua franca of agent observability in 2026. Every major platform -- Langfuse, LangSmith, Arize Phoenix, Braintrust -- now accepts OTEL spans on their OTLP endpoints. This vendor-neutrality is critical: you instrument once and fan out to multiple backends. OpenInference (the open semantic convention for AI spans) extends OTEL with agent-specific attributes: llm.token_count.prompt, llm.model_name, tool.name, retrieval.documents. Arize Phoenix, Langfuse, and LangSmith all support OpenInference, giving you a consistent schema whether you're using LangGraph,"
+          ],
+          "table": {
+            "headers": [
+              "OTEL Concept",
+              "Agent Meaning",
+              "Example"
+            ],
+            "rows": [
+              [
+                "Trace",
+                "One end-to-end agent run",
+                "User asks → agent plans fi 4 tools → response"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3. Observability Platform Comparison 2026",
+          "bullets": [
+            "Active agent count, trace volume/min, error rate by agent type",
+            "P50/P95/P99 task duration (separate by short-task vs long-running",
+            "Budget burn rate: tokens/hour, $/hour, projected daily spend",
+            "Kill switch status: are all T1-T4 layers armed and responding?"
+          ],
+          "table": {
+            "headers": [
+              "Span",
+              "Single operation within a trace",
+              "LLM call, tool execution, memory read/write"
+            ],
+            "rows": [
+              [
+                "Attribute",
+                "Key metadata on each span",
+                "model, tokens_used, tool_name, agent_id"
+              ],
+              [
+                "Event",
+                "Point-in-time occurrence",
+                "Tool timeout, memory cache miss, loop detected"
+              ],
+              [
+                "Baggage",
+                "Context propagated across spans",
+                "user_id, session_id, SVID, task_budget"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "4. Production OTEL Dashboard Design for Agents",
+          "paragraphs": [
+            "A production agent dashboard needs 5 layers of visibility, each answering a different question:"
+          ],
+          "bullets": [
+            "Active agent count, trace volume/min, error rate by agent type",
+            "P50/P95/P99 task duration (separate by short-task vs long-running",
+            "Budget burn rate: tokens/hour, $/hour, projected daily spend",
+            "Kill switch status: are all T1-T4 layers armed and responding?"
+          ],
+          "table": {
+            "headers": [
+              "Span",
+              "Single operation within a trace",
+              "LLM call, tool execution, memory read/write"
+            ],
+            "rows": [
+              [
+                "Attribute",
+                "Key metadata on each span",
+                "model, tokens_used, tool_name, agent_id"
+              ],
+              [
+                "Event",
+                "Point-in-time occurrence",
+                "Tool timeout, memory cache miss, loop detected"
+              ],
+              [
+                "Baggage",
+                "Context propagated across spans",
+                "user_id, session_id, SVID, task_budget"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "5. Alerting on Anomalous Tool Call Patterns",
+          "paragraphs": [
+            "Static threshold alerts don't work for agents. Instead, use dynamic baselines and trajectory-aware",
+            "Meta Muse Spark -- launched April 8, 2026 -- is the first model from Meta's Superintelligence Labs (under Alexandr Wang's leadership) and represents Meta's most capable AI to date. It's natively multimodal (voice, text, image inputs), supports tool-use and visual chain-of-thought, and introduces Contemplating Mode: a multi-agent orchestration feature that spawns parallel sub-agents for complex tasks -- like one agent drafting a trip itinerary while another compares destinations and a third finds",
+            "Rolling out to WhatsApp, Instagram, Facebook, Messenger, and AI glasses -- Muse Spark puts multi-agent AI directly in the hands of billions of users. Its Shopping Mode uses visual reasoning to help decorate rooms or find clothes from photos. For agentic AI learners: this is the clearest consumer proof-point yet that multi-agent orchestration is leaving the developer stack and entering everyday life."
+          ],
+          "table": {
+            "headers": [
+              "Alert Type",
+              "Trigger Condition",
+              "Response"
+            ],
+            "rows": [
+              [
+                "Loop Detection",
+                "Same tool called >3× with identical args within one trace",
+                "Inject loop-break signal → escalate to human if persistent"
+              ],
+              [
+                "Budget Breach",
+                "Token spend >2× P95 for task category in rolling 1hr window",
+                "Auto-throttle model tier → switch nano → alert on-call"
+              ],
+              [
+                "Tool Cascade Failure",
+                "‡3 tool errors within single trace or error rate >5% in 5min",
+                "Circuit breaker opens → fallback chain activates"
+              ],
+              [
+                "Context Drift",
+                "Output semantic similarity to expected <0.7 (cosine) for same intent class",
+                "Flag for human review → trigger eval pipeline re-run"
+              ],
+              [
+                "Memory Poisoning",
+                "Memory write from untrusted source (unverified SVID) detected",
+                "Block write → namespace isolation check fi NIST audit log"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "6. The Emerging Agent SRE Role",
+          "paragraphs": [
+            "The Agent Site Reliability Engineer (SRE) is 2026's newest job category. Unlike traditional SREs who manage server fleets, Agent SREs manage fleets of autonomous agents -- ensuring they're reliable, cost-efficient, safe, and compliant. The role blends classical SRE principles with agentic AI expertise: The Conf42 SRE 2026 keynote framed the shift as: \"We moved from 'alerts to alerts' to 'alerts to answers' -- AI now closes the loop between detection and remediation.\" In hybrid workflows (2026 baseline): AI recommends, humans approve, systems execute -- every step logged and explainable for EU AI Act"
+          ],
+          "table": {
+            "headers": [
+              "3B+",
+              "Contemplati ng Mode",
+              "Apr 8, 2026",
+              "MSL"
+            ],
+            "rows": [
+              [
+                "Meta users reached across all platforms",
+                "Multi-agent parallel orchestration",
+                "Launch date (Alexandr Wang era)",
+                "Meta Superintelligence Labs origin"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "7. Breaking: This Week in AI",
+          "paragraphs": [
+            "Wang. Multimodal, tool-use, Contemplating Mode (multi-agent parallel orchestration). Rolling out to 3B+",
+            "(auto-instruments 40+ providers) joins ServiceNow's autonomous workforce stack. Open-source repo",
+            "desktop productivity tasks -- a first for autonomous task completion on actual software environments.",
+            "and Markets). Agent SRE tooling is the fastest-growing subcategory.",
+            "40+ security partners active under Project Glasswing; Oct 2026 IPO on track.",
+            "spanning AI infra, cybersecurity, and workforce development."
+          ],
+          "bullets": [
+            "Meta Muse Spark launched (Apr 8): First model from Meta Wang. Multimodal, tool-use, Contemplating Mode (multi-agent users across all Meta platforms.",
+            "OpenLLMetry acquired by ServiceNow (March 2026): The (auto-instruments 40+ providers) joins ServiceNow's autonomous continues under Apache 2.0.",
+            "GPT-5.4 scoring 75% on OSWorld-V: OpenAI's latest model desktop productivity tasks -- a first for autonomous task completion",
+            "LLM Observability market hits $1.97B: Projected to reach and Markets). Agent SRE tooling is the fastest-growing subcategory.",
+            "Anthropic Claude Mythos API expanding: More enterprise 40+ security partners active under Project Glasswing; Oct",
+            "Microsoft $10B Japan AI investment: Largest single Western spanning AI infra, cybersecurity, and workforce development."
+          ]
+        }
+      ],
+      "practical_takeaway": [
+        {
+          "title": "3 Instrument with OTEL first, choose backend second Add open",
+          "body": "3 Instrument with OTEL first, choose backend second Add opentelemetry-sdk to your agent stack today. Pick Langfuse (OSS, self-hosted) or Arize Phoenix as your primary backend. The data flows the same -- you can switch backends without re-instrumenting."
+        },
+        {
+          "title": "Health fi Tool Intelligence fi LLM Spans fi Memory/Retrieval",
+          "body": "Health fi Tool Intelligence fi LLM Spans fi Memory/Retrieval fi Drift & Anomaly. Don't try to pack everything into one graph. Use separate dashboard panels with linked drill-down traces."
+        },
+        {
+          "title": "Set up Promptfoo adversarial checks as a CI gate. Add OTEL s",
+          "body": "Set up Promptfoo adversarial checks as a CI gate. Add OTEL span-based loop detection (>3 identical tool calls). Use LLM-as-Judge score trend as a leading indicator of prompt drift."
+        },
+        {
+          "title": "Treat your agents like a fleet of autonomous workers. Define",
+          "body": "Treat your agents like a fleet of autonomous workers. Define SLOs for task success rate, output quality, and cost/task -- not just uptime. On-call runbooks should cover agent behaviour failures, not just"
+        },
+        {
+          "title": "Set up a $/task budget alert that fires when spend exceeds 2",
+          "body": "Set up a $/task budget alert that fires when spend exceeds 2× 7-day P95. Integrate this alert into your existing PagerDuty/Opsgenie runbook alongside latency and error rate alerts."
+        },
+        {
+          "title": "fi MCP tool wiring → memory stack fi OTEL instrumentation fi",
+          "body": "fi MCP tool wiring → memory stack fi OTEL instrumentation fi CI/CD pipeline → canary deploy. A complete hands-on walkthrough of the full agentic stack you've been learning for 22 days. Varun's AI Learning Series · Issue #22 · April 12, 2026 varun.singla@outlook.com"
+        },
+        {
+          "title": "Tomorrow -- Day 23: Building Your First Production Agent (En",
+          "body": "Tomorrow -- Day 23: Building Your First Production Agent (End-to-End): From LangGraph scaffold"
+        }
+      ]
+    },
+    {
       "date": "2026-04-11",
       "display_date": "April 11, 2026",
       "issue": 22,
