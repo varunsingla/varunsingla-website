@@ -6,6 +6,200 @@
   },
   "learnings": [
     {
+      "date": "2026-04-13",
+      "display_date": "APRIL 13, 2026",
+      "issue": 23,
+      "title": "Building Your First Production Agent",
+      "focus_intro": "Day 23: End-to-End Walkthrough -- LangGraph Scaffold fi Memory Stack fi OTEL",
+      "viral_app": {
+        "name": "HeyGen Avatar V -- The 15-Second Digital Twin",
+        "description": "HeyGen launched Avatar V on April 8 to 472,000 views on X in 48 hours. The breakthrough: build a photorealistic, multilingual digital twin of your face, voice, and gestures from a single 15-second webcam recording -- no studio, no crew, no camera setup required. Previous AI avatars suffered from identity drift -- the avatar looked vaguely like you but lost your micro-expressions and lip geometry over time. Avatar V solves this with a new neural architecture that locks your unique facial silhouette and natural movement pattern, maintaining identity across every generated video regardless of length, angle, outfit, or scene. Why This Matters for Agentic AI Avatar V is more than a video tool -- ",
+        "stats": [
+          {
+            "stat": "15s",
+            "label": "recording to digital twin"
+          },
+          {
+            "stat": "175",
+            "label": "languages with auto lip-sync"
+          },
+          {
+            "stat": "472K",
+            "label": "X views in 48 hours"
+          },
+          {
+            "stat": "0",
+            "label": "studio gear required"
+          }
+        ]
+      },
+      "stats": [
+        {
+          "stat": "57%",
+          "label": "orgs running agents in prod"
+        },
+        {
+          "stat": "1B+",
+          "label": "LangGraph cumulative DLs"
+        },
+        {
+          "stat": "40%",
+          "label": "enterprise apps have agents by EOY"
+        },
+        {
+          "stat": "3",
+          "label": "agents in Anthropic harness"
+        }
+      ],
+      "sections": [
+        {
+          "title": "1. Scaffold Your First LangGraph Agent Today",
+          "paragraphs": [
+            "Use the 6-step pattern: StateDict → node functions → conditional edges fi PostgresCheckpointer fi MCP tool wiring → compile. Start with a simple 3-node graph (plan → execute → evaluate) before adding complexity. Run it against 20 test cases before touching memory or observability."
+          ]
+        },
+        {
+          "title": "1. The Full Agentic Stack -- What We're Building Today",
+          "paragraphs": [
+            "A production agent is not a single LLM call wrapped in a loop -- it is a layered system where each component has a clear responsibility. The five layers below are the mental model you need before writing a single line of"
+          ],
+          "bullets": [
+            "LLM Brain n Tool The reasoning engine. Use model routing: nano for MCP-connected classification, mid-tier for generation, frontier only for sandbox, complex reasoning. 50-70% cost reduction vs support. always-using GPT-5.",
+            "Memory Stack n Orchestrator → fi 5 layers: Working (context) Session (Redis) LangGraph Episodic (pgvector) fi Semantic (graph DB) fi node Procedural (system prompts). Write-Aside pattern super-step keeps p99 < 50ms. debug.",
+            "Step 1 -- State Schema: Define a TypedDict with all fields the memory_refs, budget_remaining, iteration_count)."
+          ],
+          "table": {
+            "headers": [
+              "• LLM Brain The reasoning engine. Use model routing: nano for classification, mid-tier for generation, frontier only for complex reasoning. 50-70% cost reduction vs always-using GPT-5.",
+              "• Tool Belt MCP-connected tools. Each tool has an allowlisted sandbox, circuit breaker, and parallel execution support. Discovered via tools/list at startup."
+            ],
+            "rows": [
+              [
+                "• Memory Stack 5 layers: Working (context) fi Session (Redis) fi Episodic (pgvector) fi Semantic (graph DB) fi Procedural (system prompts). Write-Aside pattern keeps p99 < 50ms.",
+                "• Orchestrator LangGraph 2.0 state machine with typed StateDict, node functions, and conditional edges. Checkpoints at super-step boundaries enable resumption + time-travel debug."
+              ],
+              [
+                "• Guardrails Budget caps, loop detection (>3× same call), NIST CAISI 4-element (Permission/Approval/Audit/Kill Switch), output validation, human escalation path.",
+                "• Observability OTEL traces/spans + OpenInference semantic conventions fi Langfuse (OSS) or LangSmith. 5-layer dashboard: Health / Tool Intelligence / LLM Spans / Memory / Drift."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "2. Instrument Before You Deploy",
+          "paragraphs": [
+            "Add OTEL spans to all 5 layers before your agent sees production traffic. Set up Langfuse (free, self-hostable, MIT license) as your observability backend. Configure the 6 alert types: loop detection, budget breach, tool cascade, context drift, memory poisoning, delegation escalation. Agents you can't observe are agents you can't trust."
+          ]
+        },
+        {
+          "title": "2. LangGraph 2.0 Scaffold -- The 6-Step Pattern",
+          "paragraphs": [
+            "LangGraph 2.0 (released Feb 2026) codifies three years of production patterns. The framework's key insight: agents need a graph, not a chain -- they must retry, loop back for clarification, pause for human approval, and recover from failures. The 6-step scaffold pattern below applies to any agent type.",
+            "memory_refs, budget_remaining, iteration_count).",
+            "evaluate_output). Each takes State, returns State delta.",
+            "escalate_human), budget gates (if cost > cap → stop), and quality gates.",
+            "what enables resumption after failure and time-travel debugging.",
+            "(max 3 retries, exponential backoff). Never expose raw tool calls.",
+            "golden dataset (200+ pairs), assert < 2% regression before shipping."
+          ],
+          "bullets": [
+            "Step 1 -- State Schema: Define a TypedDict with all fields the memory_refs, budget_remaining, iteration_count)."
+          ],
+          "table": {
+            "headers": [
+              "• LLM Brain The reasoning engine. Use model routing: nano for classification, mid-tier for generation, frontier only for complex reasoning. 50-70% cost reduction vs always-using GPT-5.",
+              "• Tool Belt MCP-connected tools. Each tool has an allowlisted sandbox, circuit breaker, and parallel execution support. Discovered via tools/list at startup."
+            ],
+            "rows": [
+              [
+                "• Memory Stack 5 layers: Working (context) fi Session (Redis) fi Episodic (pgvector) fi Semantic (graph DB) fi Procedural (system prompts). Write-Aside pattern keeps p99 < 50ms.",
+                "• Orchestrator LangGraph 2.0 state machine with typed StateDict, node functions, and conditional edges. Checkpoints at super-step boundaries enable resumption + time-travel debug."
+              ],
+              [
+                "• Guardrails Budget caps, loop detection (>3× same call), NIST CAISI 4-element (Permission/Approval/Audit/Kill Switch), output validation, human escalation path.",
+                "• Observability OTEL traces/spans + OpenInference semantic conventions fi Langfuse (OSS) or LangSmith. 5-layer dashboard: Health / Tool Intelligence / LLM Spans / Memory / Drift."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3. Study Anthropic's Three-Agent Harness",
+          "paragraphs": [
+            "Read Anthropic's engineering blog post on harness-design-long-running-apps. The Planner fi Generator fi Evaluator pattern with context resets is the production template for any task that spans more than a single context window. Implement structured handoff artifacts (JSON spec + progress file) for your own multi-step agents -- this alone will cut your silent failure rate by > 50%.",
+            "57% of organisations now run agents in production (up from 51% last year). Quality remains the #1 barrier (32%). LangGraph + LangSmith surpass 1B cumulative downloads -- the agent framework war is largely over at the orchestration layer. The next battle: which memory framework (Mem0 vs MemOS vs Oracle 26ai) becomes the default persistence layer. Gartner: 40% of enterprise apps will embed task-specific agents by EOY 2026, up from < 5% at start of year. The LLM Observability market hits $1.97B in 2026, on track for $6.8B by 2029 (36.5% CAGR) -- Agent SRE is the fastest-growing role in platform engineering.",
+            "ISSUE #24 automatic context reset triggers, and the emerging pattern of 'meta-agents' that monitor and restart failed sub-agents. Plus: first look at Anthropic Claude Mythos API",
+            "Varun's AI Learning Brief • Issue #23 • April 13, 2026 • varun.singla@outlook.com • Day 23 of Agentic AI Mastery Series"
+          ],
+          "bullets": [
+            "Market Signal",
+            "TOMORROW -- Advanced Agent Patterns: Self-Healing Agents -- circuit breakers, state recovery,"
+          ]
+        },
+        {
+          "title": "4. Memory Stack Wiring -- Write-Aside Pattern in Practice",
+          "paragraphs": [
+            "Memory is what separates a stateless LLM call from a true agent. The Write-Aside pattern (Redis L1 sync fi pgvector L2 async flush fi Mem0 L3 unified API) keeps your agent fast while maintaining full persistence. Here is the production implementation in four concrete steps:",
+            "decision writes to Redis with a Memory ID. p99 write latency < 5ms.",
+            "10). Embeddings use text-embedding-3-small. Retrieval: cosine top-5.",
+            "graph-enhanced retrieval (48K+ stars) gives 3-5× better personalisation than naive vector search.",
+            "erasure request. Namespace isolation (Postgres schemas + Redis ACLs) prevents multi-tenant leakage.",
+            "Stored in append-only WORM storage for EU AI Act Annex III compliance."
+          ],
+          "bullets": [
+            "L1 -- Working Memory (Redis, TTL 24h): Every tool call result, decision writes to Redis with a Memory ID. p99 write latency",
+            "L2 -- Episodic Memory (pgvector async): An async worker flushes 10). Embeddings use text-embedding-3-small. Retrieval: cosine",
+            "L3 -- Unified API (Mem0): Mem0 sits above both stores and graph-enhanced retrieval (48K+ stars) gives 3-5× better personalisation",
+            "GDPR Compliance: Every memory write logs a Memory ID. erasure request. Namespace isolation (Postgres schemas +",
+            "NIST CAISI Audit Trail: Every read AND write is logged with Stored in append-only WORM storage for EU AI Act Annex III"
+          ],
+          "table": {
+            "headers": [
+              "• PLANNER",
+              "• GENERATOR",
+              "• EVALUATOR"
+            ],
+            "rows": [
+              [
+                "Decomposes the full spec into discrete, tractable chunks. Each chunk has enough context for a fresh agent to execute cold -- no prior context needed.",
+                "Builds code within one context window per task. Produces structured handoff artifacts: JSON feature spec, commit-by-commit progress, claude-progress.txt for next session.",
+                "Grades output against 4 criteria: design quality, originality, craft (typography/spacing/colour), and functionality. Uses Playwright MCP to navigate live pages and provide specific critiques."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "5. OTEL Instrumentation -- What to Instrument and Why",
+          "paragraphs": [
+            "OpenTelemetry (OTEL) is the lingua franca of agent observability. Every span you emit flows to your chosen backend (Langfuse, LangSmith, Arize) without vendor lock-in. The key is the OpenInference semantic conventions -- standardised attribute names for LLM spans that make dashboards interoperable. Instrument",
+            "enforce model routing -- mid-tier should handle > 70% of calls."
+          ],
+          "bullets": [
+            "Agent Health span: active_agent_count, trace_volume, budget_burn_rate, kill_switch_status. Alert if burn",
+            "Tool Call span: tool_name, call_frequency, failure_rate, latency_p99, parallel_ratio. Alert on > 3 consecutive",
+            "LLM span: model_tier, token_usage (prompt+completion), model_errors, cache_hit_rate. Use this to",
+            "Memory span: vector_db_latency, cache_hit_rate, nist_audit_compliance_pct, memory_write_count. Alert if",
+            "Drift span: input_distribution_drift (alert > 15%), llm_judge_score_trend, tool_call_sequence_anomaly,"
+          ],
+          "table": {
+            "headers": [
+              "• PLANNER",
+              "• GENERATOR",
+              "• EVALUATOR"
+            ],
+            "rows": [
+              [
+                "Decomposes the full spec into discrete, tractable chunks. Each chunk has enough context for a fresh agent to execute cold -- no prior context needed.",
+                "Builds code within one context window per task. Produces structured handoff artifacts: JSON feature spec, commit-by-commit progress, claude-progress.txt for next session.",
+                "Grades output against 4 criteria: design quality, originality, craft (typography/spacing/colour), and functionality. Uses Playwright MCP to navigate live pages and provide specific critiques."
+              ]
+            ]
+          }
+        }
+      ],
+      "market_signal": "57% of organisations now run agents in production (up from 51% last year). Quality remains the #1 barrier (32%). LangGraph + LangSmith surpass 1B cumulative downloads -- the agent framework war is largely over at the orchestration layer.",
+      "practical_takeaway": []
+    },
+    {
       "date": "2026-04-12",
       "display_date": "APRIL 12, 2026",
       "issue": 22,
