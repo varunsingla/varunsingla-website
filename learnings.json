@@ -6,6 +6,92 @@
   },
   "learnings": [
     {
+      "date": "2026-04-15",
+      "display_date": "APRIL 15, 2026",
+      "title": "After 24 days covering agentic AI theory, frameworks, safety, and infrastructure, today we ground it all in",
+      "focus_intro": "reality. What does agentic AI actually look like when it ships to millions of users and processes real",
+      "viral_app": {
+        "name": "",
+        "description": "MiniMax M2.7 The First Self-Evolving Open-Source Agent Model -- 229B MoE, Self-Improving in 100+ Autonomous Rounds MiniMax M2.7, open-sourced on April 12, 2026, is a 229-billion-parameter Mixture-of-Experts model with a capability no frontier model has publicly claimed: it participated in its own development. Before release, M2.7 ran over 100 autonomous rounds of scaffold optimisation -- analysing its own failure trajectories, planning code changes to its agent harness, executing those changes, running evals, comparing results, and deciding whether to keep or revert. The result: a 30% self-gen",
+        "stats": []
+      },
+      "stats": [
+        {
+          "stat": "57%",
+          "label": "enterprises running agents in production 2026"
+        },
+        {
+          "stat": "330%",
+          "label": "Salesforce Agentforce ARR growth YoY"
+        },
+        {
+          "stat": "80%",
+          "label": "AMD HR inquiry resolution time reduction"
+        },
+        {
+          "stat": "22%",
+          "label": "Walmart e-commerce lift from inventory agents"
+        }
+      ],
+      "sections": [
+        {
+          "title": "How it works: AlphaEvolve runs an evolutionary loop -- generate candidate algorithm → evaluate",
+          "paragraphs": [
+            "correctness mathematically → score against performance benchmark → use best performers as seeds for next generation. It's the ReAct loop applied to scientific hypothesis generation. The Early Access programme for academia opened in April 2026, and the first external users are applying it to protein folding energy minimization and materials science. Section 3: The 4 Production Architecture Patterns Across all six case studies, four orchestration patterns dominate. The right pattern depends on whether your tasks are sequential and dependent (one output feeds the next) or parallel and independent (multiple",
+            "Section 4: The 8 Properties of Successful Production Agents After studying every major production deployment in 2026, a consistent checklist emerges. Agents that succeed in production share all eight of these properties. Those that fail are almost always missing at least",
+            "LangGraph 2.0 built-in support; triggers at 5 consecutive failures or 25% error rate over 30s",
+            "Cosine similarity <0.7 between goal and recent actions triggers fresh context from checkpoint",
+            "PostgresCheckpointer or equivalent; enables rollback and resume without losing work",
+            "Per-agent token and API-spend limits enforced at the runtime layer, not application code",
+            "Rolling hash of last N tool calls; halt if >3 identical sequences detected",
+            "Watches heartbeat, goal alignment, and budget burn; graduated L1fiL4 response",
+            "App revoke fi Network block fi Infra teardown fi Memory freeze; <1s target",
+            "Every agent action logged: what, why, alternatives considered, data accessed, SVID, timestamp",
+            "Alibaba's Qwen3.6-Plus (April 2, 2026) achieves 78.8% on SWE-bench Verified and 61.6 on Terminal-Bench 2.0 -- beating Claude 4.5 Opus on the latter. With a 1M token context window and agentic-native architecture, it's the new default recommendation for teams that want frontier-class agentic",
+            "Anthropic is finalising a major Claude Code update (codename 'Epitaxy') featuring coordinator mode for parallel sub-agents, multi-repo support, and an enhanced terminal UI. Epitaxy brings the Anthropic Three-Agent Harness (Planner fi Generator fi Evaluator) into the core product, making the context-reset",
+            "OpenAI is restructuring Codex into two product tiers, adding app previews, a scratchpad for multi-step reasoning, and a Pull Requests section for async code review by agents. The split mirrors how OpenAI is positioning Codex as both a developer tool (Advanced) and a business productivity feature (Basic).",
+            "OpenAI acquired Hiro Finance, a personal AI CFO startup. The acquisition is an acqui-hire; the service shuts down April 20 with data deletion May 13. This signals OpenAI's intent to build agent-native personal finance capabilities into ChatGPT or a new vertical product.",
+            "RealClaw launched on Telegram as a free AI agent with financial capabilities -- users earn from agent actions they initiate. An early-access signal for the emerging pay-per-agent-task economy where end users share in the value agents generate.",
+            "NVIDIA hosted Quantum Day focusing on AI-accelerated quantum error correction and hybrid quantum-GPU supercomputing. Near-term implication for agentic AI: quantum error correction agents that autonomously tune qubit fidelity without human intervention."
+          ],
+          "bullets": [
+            "Qwen3.6-Plus Tops Open-Source Benchmarks",
+            "Anthropic Claude Code 'Epitaxy' Overhaul",
+            "OpenAI Codex Splits into Basic and Advanced Tiers",
+            "OpenAI Acquires Hiro Finance",
+            "RealClaw: AI Agent with Built-in Earning on Telegram",
+            "NVIDIA Quantum Day (April 14)"
+          ]
+        }
+      ],
+      "practical_takeaway": [
+        {
+          "title": "Before you deploy any agent -- even a weekend side project -",
+          "body": "Before you deploy any agent -- even a weekend side project -- run through the 8 production properties above. Circuit breakers and loop detection take 30 minutes to add with LangGraph 2.0; skipping them is"
+        },
+        {
+          "title": "The Sequential Pipeline is Your First Pattern JP Morgan COiN",
+          "body": "The Sequential Pipeline is Your First Pattern JP Morgan COiN shows that sequential pipelines (Agent 1 fi Agent 2 fi Agent 3 fi Human Review) are the safest and most auditable architecture. Start here before attempting parallel or hierarchical patterns. Use MiniMax M2.7 for Local Self-Improving Agents If you're building an agent that needs to improve itself over time without retraining the base model, M2.7 is now the open-source baseline. Run it locally via SGLang + NVIDIA NIM. The Agent Teams feature gives you the Planner-Generator-Evaluator pattern out of the box."
+        },
+        {
+          "title": "Walmart's success came from OTEL instrumentation before go-l",
+          "body": "Walmart's success came from OTEL instrumentation before go-live. The moment you have a working agent, add OpenTelemetry traces with OpenInference semantic conventions. Budget burn rate and context drift are the two alerts to configure first."
+        },
+        {
+          "title": "ServiceNow's 90%+ automation with human review toggles -- no",
+          "body": "ServiceNow's 90%+ automation with human review toggles -- not human-in-the-loop or human-out-of-the-loop -- is the pattern the EU AI Act implicitly requires for high-risk deployments. Design for agents to recommend and humans to approve on exceptions."
+        },
+        {
+          "title": "model-by-model breakdown of capability, cost, and the benchm",
+          "body": "model-by-model breakdown of capability, cost, and the benchmark that exposes the fundamental"
+        },
+        {
+          "title": "Tomorrow -- Day 26: The Frontier Race -- Claude Mythos vs GP",
+          "body": "Tomorrow -- Day 26: The Frontier Race -- Claude Mythos vs GPT-5.4 vs Gemini 3.1 Ultra. A"
+        }
+      ]
+    },
+    {
       "date": "2026-04-14",
       "display_date": "APRIL 14, 2026",
       "issue": 24,
