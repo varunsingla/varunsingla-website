@@ -6,6 +6,43 @@
   },
   "learnings": [
     {
+      "date": "2026-04-16",
+      "display_date": "APRIL 16, 2026",
+      "issue": 26,
+      "title": "Day 26 -- The Frontier Race",
+      "focus_intro": "The frontier AI race has never been tighter. Three models -- Claude Mythos (Anthropic's restricted",
+      "viral_app": {
+        "name": "XChat by xAI",
+        "description": "",
+        "stats": [
+          {
+            "stat": "0 phone #",
+            "label": "No phone number needed (X login)"
+          }
+        ]
+      },
+      "stats": [
+        {
+          "stat": "94.5%",
+          "label": "Mythos GPQA Diamond"
+        },
+        {
+          "stat": "0.37%",
+          "label": "Best AI on ARC-AGI-3"
+        },
+        {
+          "stat": "2.7%",
+          "label": "US lead over China models"
+        },
+        {
+          "stat": "78.8%",
+          "label": "Qwen3.6-Plus SWE-bench"
+        }
+      ],
+      "sections": [],
+      "practical_takeaway": []
+    },
+    {
       "date": "2026-04-15",
       "display_date": "April 15, 2026",
       "title": "Agentic AI in the Real World: Production Case Studies 2026",
