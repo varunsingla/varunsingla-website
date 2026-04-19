@@ -6,6 +6,201 @@
   },
   "learnings": [
     {
+      "date": "2026-04-19",
+      "display_date": "APRIL 19, 2026",
+      "issue": 29,
+      "title": "Day 28 -- The Agent Economy in Practice",
+      "focus_intro": "Today we go hands-on with the Agent Economy. After 27 days of understanding protocols, architectures,",
+      "viral_app": {
+        "name": "Hermes Agent -- The Self-Improving AI Agent (65K+ GitHub",
+        "description": "Hermes Agent is an open-source, self-improving AI agent built by Nous Research that runs on your own infrastructure, remembers everything it learns across sessions, and becomes measurably more capable the longer you use it. Launched in February 2026, it hit 65,000+ GitHub stars by mid-April -- driven by its v0.8.0 release on April 8 which added Browser Use integration, remote backend support (runs on a $5 VPS), and worktree parallelism for multi-agent teams. The core breakthrough: after completing any complex task (5+ tool calls), Hermes autonomously generates a \"skill\" -- a structured document capturing the procedure, known pitfalls, and verification steps. On the next similar task, it load",
+        "stats": [
+          {
+            "stat": "65K+",
+            "label": "GitHub stars by Apr 13"
+          },
+          {
+            "stat": "40%",
+            "label": "task time reduction"
+          }
+        ]
+      },
+      "stats": [
+        {
+          "stat": "$3-5T",
+          "label": "McKinsey agent commerce by 2030"
+        },
+        {
+          "stat": "131K",
+          "label": "daily x402 transactions (Mar 2026)"
+        },
+        {
+          "stat": "$600M+",
+          "label": "x402 active agent wallets"
+        },
+        {
+          "stat": "40%",
+          "label": "CAGR agentic market to 2034"
+        }
+      ],
+      "sections": [
+        {
+          "title": "1. Define pricing",
+          "paragraphs": [
+            "Set a price per tool call (e.g. $0.001 for search, $0.005 for generate). Start 10× lower than you think -- agent"
+          ],
+          "bullets": [
+            "Example: Exa earns from GPT-5.4, Claude, and Gemini agents simultaneously"
+          ]
+        },
+        {
+          "title": "1. The x402 Protocol -- How Agents Pay",
+          "paragraphs": [
+            "x402 is an open, internet-native payment standard built on HTTP's long-forgotten 402 \"Payment Required\" status code. Developed by the Coinbase Developer Platform team and now stewarded by the Linux Foundation, it enables an AI agent to autonomously pay for API access, data, or computation with stablecoins (USDC on Base) -- in a single HTTP round-trip, with no human approval required."
+          ],
+          "bullets": [
+            "No registration required -- any agent with a funded wallet",
+            "Nonce replay protection -- prevents the same payment being security requirement).",
+            "Sessions primitive -- MPP extends x402 by letting agents then stream micropayments continuously without per-transaction",
+            "USDT expansion -- Utexo joined the Linux Foundation in USDC.",
+            "Stellar integration -- Stellar blockchain now supports x402, 7-second finality and near-zero fees."
+          ]
+        },
+        {
+          "title": "2. Add 402 middleware",
+          "paragraphs": [
+            "Use Zuplo or the x402-mcp-server library to inject payment gates. Configuration is a JSON price map: { \"tool_name\": { \"price\": 0.001, \"currency\": \"USDC\" } }."
+          ],
+          "bullets": [
+            "Example: Exa earns from GPT-5.4, Claude, and Gemini agents simultaneously"
+          ]
+        },
+        {
+          "title": "2. x402 vs Stripe MPP -- Choosing Your Payment Rail",
+          "paragraphs": [
+            "Two protocols now dominate agent payments: x402 (crypto-native, permissionless, Linux Foundation) and MPP by Stripe + Tempo (fiat-friendly, enterprise-grade, launched March 18 2026). They solve different problems and often coexist in the same production stack. Production pattern: use x402 for open-internet data APIs and agent-to-agent sub-task payments; use MPP for enterprise B2B invoicing, regulated financial services, and anywhere fiat rails are required. Many stacks run both."
+          ],
+          "table": {
+            "headers": [
+              "Service",
+              "What they monetise",
+              "Price model"
+            ],
+            "rows": [
+              [
+                "Nansen",
+                "Blockchain wallet analytics & intelligence",
+                "Per-query USDC"
+              ],
+              [
+                "Exa",
+                "AI-native web search API",
+                "Per-search USDC"
+              ],
+              [
+                "Circuit & Chisel ATXP",
+                "Agentic commerce orchestration",
+                "Per-task commission"
+              ],
+              [
+                "Fluora",
+                "MonetizedMCP marketplace (agent app store)",
+                "Rev-share"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3. Building a Minimal Monetised MCP Server",
+          "paragraphs": [
+            "MCP crossed 97M installs in March 2026 and the first wave of monetised MCP servers went live in Q1"
+          ],
+          "bullets": [
+            "Standard MCP server -- your tools remain exactly the same",
+            "x402 middleware layer -- wraps each tool call with a 402 fi execute tool → return result.",
+            "Coinbase CDP wallet -- your server holds a custodial wallet Alternatively, use the x402-mcp-server OSS library (github.com/mogami-tech/x402-mcp-server) drop-in.",
+            "SPIFFE SVID for identity -- optionally require calling agents verifiable agent identities for NIST CAISI compliance. The 5-step monetisation checklist:",
+            "Example: Exa earns from GPT-5.4, Claude, and Gemini agents simultaneously"
+          ]
+        },
+        {
+          "title": "3. Fund a receiving wallet",
+          "paragraphs": [
+            "Create a Coinbase CDP wallet. Paste the address into your x402 config. All micropayments accumulate here."
+          ],
+          "bullets": [
+            "Example: Exa earns from GPT-5.4, Claude, and Gemini agents simultaneously"
+          ]
+        },
+        {
+          "title": "4. First Autonomous Agent Businesses Generating Revenue",
+          "paragraphs": [
+            "The agent economy has crossed from theory to practice. Here are the business models generating real revenue in 2026 with minimal or zero human involvement in the transaction loop.",
+            "Nansen, Exa, and dozens of analytics platforms now earn from AI agents directly. Agents running research workflows call these APIs thousands of times per day at $0.001-$0.01 per call. No sales team. No invoicing.",
+            "Polystrat (launched Feb 2026 on Polymarket) is an AI agent that trades prediction markets on behalf of users 24/7. Users self-custody the agent and take profits. The agent itself earns a performance fee, paid in USDC via x402, with no human needed to trigger payments.",
+            "Agent-to-Agent Commerce (Sub-task Billing) Orchestrator agents now hire and pay sub-agents. Circuit & Chisel's ATXP platform sits at #1 on the x402 leaderboard by facilitating orchestratorfiworker agent payments. An orchestrator decomposes a task, sends sub-tasks to specialised agents (SEO agent, image agent, code agent), and pays per completed sub-task.",
+            "SpendHQ × Sligo AI agents autonomously analyse enterprise spend, flag inefficiencies, renegotiate supplier contracts, and process invoices -- with humans only reviewing exceptions. The agents charge per managed contract event via MPP. BridgeWise's portfolio management agent handles personalised investment analysis"
+          ],
+          "bullets": [
+            "Example: Exa earns from GPT-5.4, Claude, and Gemini agents simultaneously"
+          ]
+        },
+        {
+          "title": "4. Publish to Fluora",
+          "paragraphs": [
+            "Submit your MCP server URL and pricing to Fluora's MonetizedMCP marketplace. Agents discover your server via MCP tool listings with payment metadata."
+          ],
+          "bullets": [
+            "Example: Exa earns from GPT-5.4, Claude, and Gemini agents simultaneously"
+          ]
+        },
+        {
+          "title": "5. Add NIST audit trail",
+          "paragraphs": [
+            "Log every payment: agent_id (SVID), tool_name, amount, nonce, timestamp. Store in WORM-append DB for",
+            "Real example: Nansen wired x402 into their existing analytics API in 3 days. Within 2 weeks, 40% of API traffic was coming from autonomous AI agents -- zero human sign-ups, zero Stripe invoices."
+          ],
+          "bullets": [
+            "Example: Exa earns from GPT-5.4, Claude, and Gemini agents simultaneously"
+          ]
+        },
+        {
+          "title": "5. Safety, Compliance & the FinCEN Warning",
+          "paragraphs": [
+            "Autonomous agent payments are entering regulatory crosshairs. Here's what you need to know before deploying a monetised agent stack in 2026.",
+            "stablecoin transactions. Platforms facilitating >$10K/day in agent payments will require KYA (Know",
+            "payment exemption. SCA must now be anchored to a human principal, not just an agent SVID.",
+            "(merchant category + max spend + time window), timestamp. Store in WORM-append DB.",
+            "chain break, nonce replay. Real-time sub-100ms detection before payment settles.",
+            "freeze) fi Network (egress block) fi Infra (container down + SVID revoke) fi Memory (DB freeze +",
+            "Hermes Agent -- The Self-Improving AI Agent (65K+ GitHub Hermes Agent is an open-source, self-improving AI agent built by Nous Research that runs on your own infrastructure, remembers everything it learns across sessions, and becomes measurably more capable the longer you use it. Launched in February 2026, it hit 65,000+ GitHub stars by mid-April -- driven by its v0.8.0 release on April 8 which added Browser Use integration, remote backend support (runs on a $5 VPS), and worktree parallelism for multi-agent teams. The core breakthrough: after completing any complex task (5+ tool calls), Hermes autonomously generates a \"skill\" -- a structured document capturing the procedure, known pitfalls, and verification steps. On the next similar task, it loads that skill from memory instead of reasoning from scratch. TokenMix benchmarks show self-created skills cut research task time by 40% vs a fresh agent. Browser Use integration means Hermes can now autonomously browse the web, fill forms, and extract data -- making it a direct Manus / OpenClaw competitor at $0 cost. Critical for the agent economy: Hermes's multi-platform deployment (Telegram, Discord, Slack, WhatsApp, Signal, CLI) and LLM-agnostic design (OpenRouter 200+ models, OpenAI, Nous Portal) mean it can act as an orchestrator agent that hires specialist sub-agents and pays them via x402 -- a fully autonomous,",
+            "Also Trending: MemPalace (22K Stars in 48 Hours) MemPalace (launched April 5 by Milla Jovovich) is a free, fully local AI memory system using ChromaDB + SQLite -- no API calls, no data leaves your machine. It organises memory into Wings (projects/people), Rooms (sub-topics), and Halls (shared corridors) and retrieves memories using semantic search. It claims 96.6% recall on LongMemEval. With 29 MCP tools and a temporal knowledge graph, it's directly pluggable into any LangGraph or CrewAI agent as a drop-in memory backend -- especially relevant for the agent economy where persistent, auditable agent memory is a regulatory requirement.",
+            "McKinsey's April 2026 projection: agent-mediated commerce will reach $3-5 trillion by 2030. The US B2C retail market alone sees up to $1 trillion in AI-orchestrated revenue. x402's 131,000 daily transactions in March 2026 is still tiny -- but it's the same kind of \"tiny\" Stripe was in 2012 when they processed their first $1M. The compounding factor: once an agent stack is wired for x402, every tool it calls can be monetised without any additional human sales or billing infrastructure. The marginal cost of adding a new paying",
+            "Visit x402.org/ecosystem and review the live leaderboard. Look at Circuit & Chisel ATXP (the current #1) to understand what a production monetised agent stack looks like.",
+            "Clone github.com/mogami-tech/x402-mcp-server. Fund a Coinbase CDP testnet wallet with test USDC. Set a price of $0.0001 per tool call. Call it from a Claude or GPT-5.4 agent. Watch autonomous micropayments",
+            "Visit github.com/NousResearch/Hermes-Agent. This is the most practical self-hosting alternative to managed agents like Manus and ChatGPT. Run it locally against OpenRouter's free tier to test",
+            "For any agent making payments: log agent_id (SPIFFE SVID), amount, nonce, scope, and merchant category on every transaction. Flag: scope creep, SVID mismatch, nonce replay, >3× normal spend rate. This is both a FinCEN AML requirement (Q3 2026) and a NIST CAISI requirement already.",
+            "If you're building on MCP: what would you charge per tool call? What would make your server worth $0.001 to an autonomous agent? The Fluora marketplace is accepting server submissions now.",
+            "significantly expanding stablecoin rails for agent payments.",
+            "that orchestrator-level agentic commerce is production-viable.",
+            "transactions, Q3 2026 enforcement expected.",
+            "rise of the \"Agent SRE\" and \"AI Product Manager\" roles, workforce restructuring data (Atlassian -10%, Block -40%), and what skills remain irreplaceably human in a world where 40% of enterprise apps embed"
+          ],
+          "bullets": [
+            "Pricing model: $0.50-$2.00 per resolved action. 1,000 contracts/day",
+            "FinCEN AML rules Q3 2026 -- US FinCEN is finalising AML stablecoin transactions. Platforms facilitating >$10K/day in Your Agent) monitoring.",
+            "EU PSD3 agent exemption tightening -- The Nov 2025 EU payment exemption. SCA must now be anchored to a human",
+            "California AB 316 -- No \"autonomous AI\" defence in payment erroneous payment, you are liable.",
+            "NIST CAISI audit trail -- Every payment must log: agent_id (merchant category + max spend + time window), timestamp.",
+            "KYA behavioural ML -- Detect anomalous agent spending: chain break, nonce replay. Real-time sub-100ms detection",
+            "Kill switch T1-T4 -- Your spending agent must support the freeze) fi Network (egress block) fi Infra (container down + SVID state snapshot). Target: <1 second."
+          ]
+        }
+      ],
+      "market_signal": "McKinsey's April 2026 projection: agent-mediated commerce will reach $3-5 trillion by",
+      "practical_takeaway": []
+    },
+    {
       "date": "2026-04-17",
       "display_date": "April 17, 2026",
       "issue": 27,
