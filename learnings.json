@@ -6,6 +6,74 @@
   },
   "learnings": [
     {
+      "date": "2026-04-20",
+      "display_date": "APRIL 20, 2026",
+      "issue": 29,
+      "title": "The Future of Work in an Agentic",
+      "focus_intro": "How AI agents are restructuring jobs, new roles emerging, skills that remain",
+      "viral_app": {
+        "name": "Meta AI App -- #5 US App Store (April 2026) Meta's AI app went from US App Store rank #57 to #5 in a single day after the launch of Muse Spark",
+        "description": "-- their first model from the new Meta Superintelligence Labs. Muse Spark is natively multimodal (voice, text, images), features Contemplating Mode that spawns parallel sub-agents simultaneously (one plans, one compares, one sources), and is rolling to WhatsApp, Instagram, Facebook, and Messenger -- reaching 3 billion+ users. Why it matters: This is the clearest proof that agentic AI is leaving the developer stack and entering everyday life. When a casual WhatsApp user unknowingly triggers a multi-agent orchestration to book a restaurant -- agentic AI has crossed the mainstream chasm. McKinsey projects agent-driven commerce will reach $3-5 trillion by 2030, with US B2C retail alone at $1T AI",
+        "stats": []
+      },
+      "stats": [
+        {
+          "stat": "78M",
+          "label": "net new jobs by 2030 (WEF)"
+        },
+        {
+          "stat": "40%",
+          "label": "knowledge-worker tasks automatable today"
+        },
+        {
+          "stat": "14%",
+          "label": "enterprises truly production-ready (Deloitte)"
+        },
+        {
+          "stat": "45K",
+          "label": "tech layoffs in March 2026 alone"
+        }
+      ],
+      "sections": [
+        {
+          "title": "1. Run an 'automation audit' on your own role",
+          "paragraphs": [
+            "List the top 10 tasks you do weekly. Which are pattern-matching (automatable)? Which require judgment/empathy/creativity? The ratio tells you your urgency level."
+          ]
+        },
+        {
+          "title": "2. Learn one agent framework hands-on",
+          "paragraphs": [
+            "LangGraph or OpenAI Agents SDK -- 2-3 days to first working agent. You cannot manage what you"
+          ]
+        },
+        {
+          "title": "3. Study the EU AI Act Annex III list",
+          "paragraphs": [
+            "Know which AI applications are classified 'high-risk' (hiring, credit, education, safety). If your company touches any of these, the Aug 2, 2026 enforcement deadline is non-negotiable."
+          ]
+        },
+        {
+          "title": "4. Build a 'golden dataset' for your domain",
+          "paragraphs": [
+            "200-500 input/output pairs where you know the right answer. This is the raw material for evaluating any AI that enters your workflow -- and your leverage over vendors."
+          ]
+        },
+        {
+          "title": "5. Follow the Agent SRE role",
+          "paragraphs": [
+            "Even if it's not your job title yet, adopting an Agent SRE mindset -- SLOs on task quality, cost/task, and agent health -- will differentiate you as the person who makes AI actually work in production.",
+            "The Open-Source Agent Revolution -- How Hermes Agent, Claw Code, MemOS, MiniMax M2.7, and the rising OSS ecosystem are democratising agentic AI, and what that means for builders, enterprises, and the future of AI control."
+          ],
+          "bullets": [
+            "TOMORROW -- Day 30:"
+          ]
+        }
+      ],
+      "market_signal": "McKinsey projects agent-driven commerce will reach $3-5 trillion by 2030, with US B2C retail alone at $1T AI-orchestrated. Q1 2026 saw a record $267.2B in VC investment -- OpenAI raised $122B, Anthropic closed a $30B Series G. Meanwhile Stanford AI Index 2026 reveals China is now within 2.7% of US frontier model performance.",
+      "practical_takeaway": []
+    },
+    {
       "date": "2026-04-19",
       "display_date": "APRIL 19, 2026",
       "issue": 29,
