@@ -6,6 +6,189 @@
   },
   "learnings": [
     {
+      "date": "2026-04-21",
+      "display_date": "APRIL 21, 2026",
+      "issue": 30,
+      "title": "The Open-Source Agent",
+      "focus_intro": "How Hermes Agent, Claw Code, MemOS, MiniMax M2.7, and the rising",
+      "viral_app": {
+        "name": "OpenHands v1.6 by All-Hands-AI -- The World's Most Popular",
+        "description": "70K+ GitHub stars, MIT licence, $18.8M Series A. OpenHands v1.6.0 (Mar 30, 2026) shipped Kubernetes support + Planning Mode beta. It resolves 53%+ of real GitHub issues autonomously on SWE-bench Verified when paired with Claude 4.5. Connects to any LLM via OpenRouter, direct API, or local Ollama. The new OpenHands SDK lets developers embed autonomous coding agents in their own products. This is not a toy: 490+ contributors and enterprise deployments confirm production-grade quality. A fully autonomous, self-hostable software engineer is now MIT-licensed and free. Every enterprise that has not evaluated this is leaving significant developer productivity on the 1. Pick Your OSS Stack This Week",
+        "stats": [
+          {
+            "stat": "70K+",
+            "label": "GitHub stars"
+          },
+          {
+            "stat": "53%+",
+            "label": "SWE-bench resolve rate"
+          },
+          {
+            "stat": "490+",
+            "label": "contributors"
+          }
+        ]
+      },
+      "stats": [
+        {
+          "stat": "340%",
+          "label": "OSS AI market YoY growth"
+        },
+        {
+          "stat": "67%",
+          "label": "enterprises using open weights in prod"
+        },
+        {
+          "stat": "70K+",
+          "label": "OpenHands GitHub stars (MIT)"
+        },
+        {
+          "stat": "104%",
+          "label": "app store new launches up YoY"
+        }
+      ],
+      "sections": [
+        {
+          "title": "1. Pick Your OSS Stack This Week",
+          "paragraphs": [
+            "Hermes Agent (self-improving, multi-platform) + MemOS (persistent memory) + OpenHands (coding tasks) covers 80% of agentic use cases. All MIT-licensed, self-hostable, and EU AI Act-compliant when"
+          ]
+        },
+        {
+          "title": "2. Add Governance Before Going to Production",
+          "paragraphs": [
+            "Install Microsoft's Agent Governance Toolkit alongside any OSS agent. Sub-millisecond policy enforcement with zero code changes via framework hooks. Not optional for EU-bound deployments --"
+          ]
+        },
+        {
+          "title": "2. Open Source vs Proprietary: The Battle Lines in 2026",
+          "paragraphs": [
+            "The gap between OSS and proprietary agents is narrowing fast. Here is where each side wins today:"
+          ]
+        },
+        {
+          "title": "3. The Governance Gap -- OSS Power Without OSS Safety?",
+          "paragraphs": [
+            "The biggest risk of the OSS agent revolution: the infrastructure to govern autonomous agent behaviour has not kept pace with the ease of building agents. OWASP's Top 10 for Agentic Applications (Dec 2025) identified 10 risk classes specific to autonomous agents -- goal hijacking, tool misuse, identity abuse, memory poisoning, cascading failures, and rogue agents among them. The response is itself open-source. Microsoft released the Agent Governance Toolkit (MIT licence, Apr 2, 2026) -- the first project to address all 10 OWASP agentic risks with deterministic sub-millisecond policy",
+            "Agent OS (stateless policy engine): Intercepts every agent action before execution. p99 latency < 0.1ms. Framework-agnostic hooks: LangChain callbacks, CrewAI decorators, Google ADK plugins, Microsoft Agent Framework middleware. Available in Python, TypeScript, Rust, Go, .NET. Agent Marketplace: Plugin lifecycle management with Ed25519 signing, trust-tiered capability gating, and supply-chain security. Prevents malicious plugin injection -- one of the top OWASP risks. Agent Lightning: RL training governance with policy-enforced runners and reward shaping. Prevents models from optimising past their intended scope during fine-tuning. Agent Compliance: Automated governance verification graded against EU AI Act, HIPAA, SOC2, and OWASP Agentic Top 10. Generates Annex III audit evidence automatically -- critical for the Aug 2,"
+          ],
+          "table": {
+            "headers": [
+              "Cost",
+              "Near-zero inference (Ollama, self-host)",
+              "$2-$25/M tokens managed"
+            ],
+            "rows": [
+              [
+                "Customisation",
+                "Full fine-tuning, forks, custom memory",
+                "Limited via system prompts"
+              ],
+              [
+                "Security auditing",
+                "Full source auditability (Claw Code)",
+                "Black-box, trust required"
+              ],
+              [
+                "EU AI Act compliance",
+                "Self-host = data residency solved",
+                "Managed clouds = data residency risk"
+              ],
+              [
+                "Frontier performance",
+                "Qwen3.6-Plus, M2.7 catching up fast",
+                "Claude Mythos, GPT-5.4 still ahead"
+              ],
+              [
+                "Enterprise support & SLAs",
+                "Community-dependent",
+                "Enterprise contracts, 24/7 support"
+              ],
+              [
+                "Self-improvement",
+                "MemRL + MiniMax M2.7 pioneering this",
+                "Unknown / undisclosed"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3. Watch the MemRL Frontier Closely",
+          "paragraphs": [
+            "MiniMax M2.7 and Meta HyperAgents prove self-improving OSS agents are no longer theoretical. Design your memory architecture with version IDs and rollback from day one -- you will need them when the first MemRL production deployments launch."
+          ]
+        },
+        {
+          "title": "4. The Self-Improvement Loop -- When Agents Build Themselves",
+          "paragraphs": [
+            "The most profound development in the OSS ecosystem is not raw capability -- it is the emergence of agents that improve their own code and skills without human intervention. Two patterns are converging in",
+            "Agents accumulate episodic memories of their own failures and successes, then apply RL to extract procedural knowledge -- without retraining the base model. MiniMax M2.7 is the first production model to demonstrate this at scale: 100+ autonomous optimisation rounds, 30% self-generated performance lift, independently inventing loop detection and multi-stage verification. Hermes Agent implements a lighter version: skill documents auto-generated post-task, cutting future task time by Darwin-Godel Machines -- Self-Modifying Agents A more radical variant: agents that modify their own source code. Meta's HyperAgents OSS release (Apr 14, 2026) showed paper-review scores climbing from 0.0 to 0.71 autonomously -- the agent independently invented memory systems, multi-stage verification, and loop detection. This is early, fragile, and potentially dangerous without governance guardrails. But the direction is clear: the next generation of open-source agents will write their own improvement patches. Deploy MemOS + Microsoft Governance Toolkit before experimenting with this."
+          ],
+          "table": {
+            "headers": [
+              "Cost",
+              "Near-zero inference (Ollama, self-host)",
+              "$2-$25/M tokens managed"
+            ],
+            "rows": [
+              [
+                "Customisation",
+                "Full fine-tuning, forks, custom memory",
+                "Limited via system prompts"
+              ],
+              [
+                "Security auditing",
+                "Full source auditability (Claw Code)",
+                "Black-box, trust required"
+              ],
+              [
+                "EU AI Act compliance",
+                "Self-host = data residency solved",
+                "Managed clouds = data residency risk"
+              ],
+              [
+                "Frontier performance",
+                "Qwen3.6-Plus, M2.7 catching up fast",
+                "Claude Mythos, GPT-5.4 still ahead"
+              ],
+              [
+                "Enterprise support & SLAs",
+                "Community-dependent",
+                "Enterprise contracts, 24/7 support"
+              ],
+              [
+                "Self-improvement",
+                "MemRL + MiniMax M2.7 pioneering this",
+                "Unknown / undisclosed"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "4. Treat OSS Licences as Infrastructure Risk",
+          "paragraphs": [
+            "MiniMax M2.7 changed from MIT to commercial post-IPO. OpenClaw moved to a foundation post-acquisition. Track the licence status of every OSS dependency in your agentic stack the way you track CVEs -- because it has the same impact on your production system.",
+            "Agentic AI Meets the Enterprise Board: How CFOs, CIOs, and Legal Teams are thinking about AI agents in 2026 -- ROI frameworks, liability exposure, the EU AI Act countdown (T-103 days to Aug 2, 2026), and what the C-suite actually needs to hear about autonomous AI. Varun's Daily AI Briefing · Day 30 · April 21, 2026 | Topics: OSS Agent Revolution, Hermes Agent, Claw Code, MemOS v1.0, MiniMax M2.7, OpenHands v1.6, Microsoft Agent Governance Toolkit, MemRL, Darwin-Godel Machines"
+          ]
+        },
+        {
+          "title": "MARKET SIGNAL",
+          "paragraphs": [
+            "The open-source AI market grew 340% YoY in 2026. Enterprises deploying open-weights models in production jumped from 23% to 67%. The a16z Top 100 Gen AI Apps 6th Edition (Mar 2026) confirmed Claude paid subscribers grew 200%+ YoY while app store launches are up 104% -- driven partly by AI-assisted vibe coding tools. App Store new releases doubled year-over-year, with productivity apps entering the top 5 for the first time. The OSS agent revolution is not just a developer story -- it is the infrastructure layer of a new, democratised app economy."
+          ]
+        },
+        {
+          "title": "VIRAL APP OF THE DAY",
+          "paragraphs": [
+            "OpenHands v1.6 by All-Hands-AI -- The World's Most Popular",
+            "70K+ GitHub stars, MIT licence, $18.8M Series A. OpenHands v1.6.0 (Mar 30, 2026) shipped Kubernetes support + Planning Mode beta. It resolves 53%+ of real GitHub issues autonomously on SWE-bench Verified when paired with Claude 4.5. Connects to any LLM via OpenRouter, direct API, or local Ollama. The new OpenHands SDK lets developers embed autonomous coding agents in their own products. This is not a toy: 490+ contributors and enterprise deployments confirm production-grade quality. A fully autonomous, self-hostable software engineer is now MIT-licensed and free. Every enterprise that has not evaluated this is leaving significant developer productivity on the"
+          ]
+        }
+      ],
+      "market_signal": "The open-source AI market grew 340% YoY in",
+      "practical_takeaway": []
+    },
+    {
       "date": "2026-04-20",
       "display_date": "APRIL 20, 2026",
       "issue": 29,
