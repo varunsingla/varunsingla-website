@@ -6,6 +6,71 @@
   },
   "learnings": [
     {
+      "date": "2026-04-22",
+      "display_date": "APRIL 22, 2026",
+      "issue": 31,
+      "title": "How CFOs, CIOs & Legal Teams Think About Autonomous AI",
+      "focus_intro": "T-102 days to the EU AI Act enforcement deadline. Boards are no longer asking 'should we use AI",
+      "viral_app": {
+        "name": "Perplexity Comet -- The AI-Native Browser That Went #3 on the App Store",
+        "description": "Perplexity's Comet browser launched publicly on iOS in March 2026 and hit #3 Overall on the US App Store within 48 hours -- over 430,000 global downloads in its first week. What makes Comet different from Chrome or Safari is that it's an agentic browser: the AI knows what page you're on, can autonomously book flights, manage email, fill forms, and execute multi-step tasks without switching apps. By April 2026, Comet Enterprise is live, powered by Claude Opus 4.6, and handling research, summarisation, and autonomous multi-step workflows for enterprise teams. Why it matters for enterprise: Comet is the first mass-market proof point that an agentic browser -- ot just a chat interface -- can go ",
+        "stats": [
+          {
+            "stat": "430K+",
+            "label": "downloads week 1"
+          },
+          {
+            "stat": "$200/mo",
+            "label": "original price (now free on iOS)"
+          },
+          {
+            "stat": "48hrs",
+            "label": "to viral App Store peak"
+          }
+        ]
+      },
+      "stats": [
+        {
+          "stat": "91%",
+          "label": "of CXOs increasing agentic AI budgets"
+        },
+        {
+          "stat": "5-10×",
+          "label": "ROI per dollar in finance agent ops"
+        },
+        {
+          "stat": "36%",
+          "label": "of boards have an AI governance framework"
+        }
+      ],
+      "sections": [
+        {
+          "title": "Viral App of the Day",
+          "paragraphs": [
+            "Perplexity Comet -- The AI-Native Browser That Went #3 on the App Store Perplexity's Comet browser launched publicly on iOS in March 2026 and hit #3 Overall on the US App Store within 48 hours -- over 430,000 global downloads in its first week. What makes Comet different from Chrome or Safari is that it's an agentic browser: the AI knows what page you're on, can autonomously book flights, manage email, fill forms, and execute multi-step tasks without switching apps. By April 2026, Comet Enterprise is live, powered by Claude Opus 4.6, and handling research, summarisation, and autonomous multi-step workflows for enterprise teams.",
+            "not just a chat interface -- can go viral. 430,000 downloads in a week shows consumer appetite for AI that does things, not just answers questions.",
+            "launch, researchers found prompt injection vulnerabilities exploitable via calendar invites (CVE-level), and the Straiker team demonstrated an agent silently erasing Google Drive files. Amazon won a court ban on Comet's shopping agent. Security issues plummeted it from #3 to unranked.",
+            "that makes Comet powerful -- autonomous action, cross-app access, persistent memory -- is also an attack surface. This is exactly why SPIFFE identity, scoped OAuth, NIST audit trails, and T1-T4 kill",
+            "browser becomes the universal agent interface -- replacing dashboards, forms, and portals with natural-language autonomous workflows. Every enterprise SaaS vendor needs an MCP server to",
+            "Perplexity Billion Dollar Build: 8-week startup competition: $1M seed + $1M compute + $1M upside for founders building a unicorn-path startup exclusively using Perplexity Computer. Registration opened April 14. Finale June 9, Gartner: AI Governance Market $492M fi $1B+: Global AI regulations are fuelling a dedicated AI governance platform market, projected to surpass $1B by 2030. AI governance has officially become a standalone enterprise",
+            "Stanford AI Index 2026: Agents jumped from 12% to 66% success on real computer tasks in one year. AI governance outranks cybersecurity as emerging board priority. China within 2.7% of US frontier leaders. Cadence ChipStack AI Super Agent: Cadence launched with Nvidia and Google a chip design AI super agent featuring a 'Mental Model' that prevents hallucinations by maintaining design intent consistency -- the first domain-specific multi-agent system for hardware engineering. Lovable hits $6.6B valuation: The AI app builder crossed $300M ARR and 8M users in under a year after its $330M Series B led by Benchmark. No-code AI-native app development is now a mainstream enterprise procurement"
+          ],
+          "bullets": [
+            "Why it matters for enterprise: Comet is the first mass-market not just a chat interface -- can go viral. 430,000 downloads that does things, not just answers questions.",
+            "The agentic trust challenge: Comet's security saga is a launch, researchers found prompt injection vulnerabilities and the Straiker team demonstrated an agent silently erasing ban on Comet's shopping agent. Security issues plummeted",
+            "The lesson for enterprise AI: Speed-to-viral is not the same that makes Comet powerful -- autonomous action, cross-app attack surface. This is exactly why SPIFFE identity, scoped switches exist.",
+            "The agent browser as next platform: If Comet (or its successors) browser becomes the universal agent interface -- replacing natural-language autonomous workflows. Every enterprise participate."
+          ]
+        }
+      ],
+      "practical_takeaway": [
+        {
+          "title": "Tomorrow -- Day 32: Agent-Augmented Software Engineering -- ",
+          "body": "Tomorrow -- Day 32: Agent-Augmented Software Engineering -- How agentic coding tools (Claude Code Epitaxy, OpenHands v1.6, Qwen3.6-Plus, oh-my-codex) are reshaping the developer workflow. We'll explore the Anthropic Three-Agent Harness in depth, the OpenHands SDK, and what 'vibe coding'"
+        }
+      ]
+    },
+    {
       "date": "2026-04-21",
       "display_date": "APRIL 21, 2026",
       "issue": 30,
