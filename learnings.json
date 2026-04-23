@@ -6,6 +6,35 @@
   },
   "learnings": [
     {
+      "date": "2026-04-23",
+      "display_date": "APRIL 23, 2026",
+      "issue": 32,
+      "title": "Agent-Augmented Software",
+      "focus_intro": "Software engineering is undergoing its most profound transformation since the invention of the",
+      "viral_app": {
+        "name": "Kiro is the most-discussed new coding tool of the week. Unlike chat-style assistants, Kiro turns a natural",
+        "description": "language prompt into a detailed specification first -- then generates code, docs, and tests that match the",
+        "stats": []
+      },
+      "stats": [
+        {
+          "stat": "84%",
+          "label": "developers use AI coding tools"
+        },
+        {
+          "stat": "41%",
+          "label": "of all code written by AI"
+        },
+        {
+          "stat": "87.6%",
+          "label": "Claude Opus 4.7 SWE-bench Verified"
+        }
+      ],
+      "sections": [],
+      "market_signal": "The app store is booming because of AI coding tools. New app launches are up 104% YoY on iOS. AI is enabling people who have never coded before to build and ship mobile apps -- a direct result of tools like Claude Code, Replit, and Lovable lowering the floor to near-zero.",
+      "practical_takeaway": []
+    },
+    {
       "date": "2026-04-22",
       "display_date": "APRIL 22, 2026",
       "issue": 31,
