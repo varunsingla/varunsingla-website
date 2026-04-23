@@ -7,15 +7,10 @@
   "learnings": [
     {
       "date": "2026-04-23",
-      "display_date": "APRIL 23, 2026",
+      "display_date": "April 23, 2026",
       "issue": 32,
-      "title": "Agent-Augmented Software",
-      "focus_intro": "Software engineering is undergoing its most profound transformation since the invention of the",
-      "viral_app": {
-        "name": "Kiro is the most-discussed new coding tool of the week. Unlike chat-style assistants, Kiro turns a natural",
-        "description": "language prompt into a detailed specification first -- then generates code, docs, and tests that match the",
-        "stats": []
-      },
+      "title": "Agent-Augmented Software Engineering",
+      "focus_intro": "Software engineering is undergoing its most profound transformation since the invention of the IDE. In 2026, 84% of developers use AI tools that now write 41% of all code — yet a productivity paradox is emerging. Developer throughput soars, but review overhead explodes, bugs increase, and PR sizes balloon. This issue maps the full landscape: what the new agentic coding tools can do, where the real gains and gotchas live, and how enterprises are (or aren't) governing the wave.",
       "stats": [
         {
           "stat": "84%",
@@ -28,11 +23,95 @@
         {
           "stat": "87.6%",
           "label": "Claude Opus 4.7 SWE-bench Verified"
+        },
+        {
+          "stat": "+104%",
+          "label": "new app launches YoY (Apr 2026)"
         }
       ],
-      "sections": [],
-      "market_signal": "The app store is booming because of AI coding tools. New app launches are up 104% YoY on iOS. AI is enabling people who have never coded before to build and ship mobile apps -- a direct result of tools like Claude Code, Replit, and Lovable lowering the floor to near-zero.",
-      "practical_takeaway": []
+      "viral_app": {
+        "name": "Kiro by Amazon AWS",
+        "description": "Kiro is the most-discussed new coding tool of the week. Unlike chat-style assistants, Kiro turns a natural language prompt into a detailed specification first — then generates code, docs, and tests that match the spec. This 'spec-driven' philosophy makes agent output more predictable, auditable, and enterprise-safe. You log in with GitHub or Google — no AWS account needed. Download kiro.dev, paste a prompt, and watch it scaffold an entire project. Why it matters for enterprise: Spec-driven development naturally produces the artefacts needed for EU AI Act Annex III compliance — the spec document becomes the 'audit trail' of what the agent was instructed to build and why. Kiro + Databricks Unity AI Gateway is emerging as the enterprise-safe agentic coding stack for 2026.",
+        "stats": [
+          {
+            "stat": "Free EA",
+            "label": "Early Access"
+          },
+          {
+            "stat": "Claude Sonnet",
+            "label": "Powered by Anthropic"
+          },
+          {
+            "stat": "kiro.dev",
+            "label": "Download"
+          }
+        ]
+      },
+      "sections": [
+        {
+          "title": "The 2026 Agentic Coding Stack",
+          "paragraphs": [
+            "The coding assistant market has fractured into four distinct categories: IDE Extensions (GitHub Copilot, Cline, Continue, Amazon Q, Gemini Code Assist, Augment Code, Amp), Dedicated AI IDEs (Cursor #1 paid IDE, Windsurf, Zed, Google Antigravity, Kiro by AWS, Qoder), CLI Agents (Claude Code #1 loved tool, Codex CLI, Gemini CLI, Goose, Warp 2.0, oh-my-codex), and Cloud Platforms (Devin, OpenHands v1.6, Jules by Google, Genie, Manus).",
+            "The headline stat: Claude Code became the #1 most-loved developer tool in just eight months — 46% of developers rated it their favourite, ahead of Cursor (19%) and GitHub Copilot (9%). It operates as a true agentic system: reads your entire codebase, executes shell commands, runs tests, fixes failures, and delivers committed code — all without context switching out of the terminal."
+          ]
+        },
+        {
+          "title": "Claude Opus 4.7 — New Coding Frontier",
+          "paragraphs": [
+            "Released April 16, 2026, Claude Opus 4.7 sets new benchmarks: 87.6% SWE-bench Verified (#1), 64.3% SWE-bench Pro (#1), 80.5% SWE-bench Multilingual, and +14% agentic reasoning vs 4.6 with 1/3 fewer tool errors.",
+            "Key new capability: Opus 4.7 is the first Claude model to pass 'implicit-need tests' — tasks where the model must infer what tools or actions are needed, rather than being told explicitly. This is the shift from instruction-following to goal-directed agency."
+          ]
+        },
+        {
+          "title": "OpenHands v1.6 & the Three-Agent Harness Pattern",
+          "paragraphs": [
+            "OpenHands v1.6 (70K+ GitHub stars, MIT licence, $18.8M Series A) resolves 53%+ of real-world GitHub issues on SWE-bench Verified using Claude 4.5, and 77.6% via its own combined harness. New Kubernetes support and Planning Mode beta make it the de-facto open-source alternative to Devin.",
+            "The Anthropic Three-Agent Harness (April 4, 2026): 1. Planner decomposes spec into tractable chunks with JSON feature spec + handoff artifact. 2. Generator builds code in a single context window and writes claude-progress.txt. 3. Evaluator grades on design quality, originality, craft, and functionality via Playwright MCP on live pages. Context resets between agents cut silent failure rate by 50%+."
+          ]
+        },
+        {
+          "title": "The Productivity Paradox",
+          "paragraphs": [
+            "Gains: 31.4% average productivity increase, 3.6 hrs saved per developer per week, teams with high AI adoption merge 98% more PRs, 21% more tasks completed, 10–30% gains for junior developers, app store launches up 104% YoY.",
+            "Costs: PR review time up 91%, 9% more bugs per developer, 154% increase in average PR size, 23.7% more security vulnerabilities in AI code, senior devs slowed 19% due to validation overhead, 1.7× more issues in AI-coauthored PRs (CodeRabbit Dec 2025).",
+            "The key insight: Architecture improvements outperform model upgrades. Teams investing in structured workflows (spec→generate→evaluate), golden test datasets, and automated eval gates see 42%→78% quality score lifts — far exceeding what a better model alone delivers."
+          ]
+        },
+        {
+          "title": "Kiro & the Spec-Driven Development Revolution",
+          "paragraphs": [
+            "Kiro — Amazon's new agentic IDE powered by Claude Sonnet — introduces spec-driven development: rather than prompting an agent to write code directly, Kiro first turns your prompt into a detailed specification, then generates working code, documentation, and tests from that spec.",
+            "The viral AWS incident: An early Kiro user's agent-generated code triggered an unintended infrastructure cascade — 'vibe too hard, brought down AWS.' Databricks Unity AI Gateway responds with fine-grained access control for MCP server calls, end-to-end observability across LLM and tool usage, and managed OAuth for GitHub/Atlassian."
+          ]
+        },
+        {
+          "title": "OpenClaw — 302K Stars & a Security Warning",
+          "paragraphs": [
+            "OpenClaw (evolved from Clawdbot → Moltbot → OpenClaw) has become GitHub's fastest-growing project ever — surpassing React's 10-year star count in 60 days at 302,000+ stars. It runs on the user's machine, executing shell commands, managing files, and automating web tasks via Signal, Telegram, Discord, or WhatsApp.",
+            "Security warning: OpenClaw's permissive local execution model has made it '2026's first major AI security disaster' (The New Stack). Before deploying any local-execution agent framework, apply NIST CAISI audit trail requirements and namespace isolation at the infra level."
+          ]
+        }
+      ],
+      "market_signal": "The app store is booming because of AI coding tools. New app launches are up 104% YoY on iOS. AI is enabling people who have never coded before to build and ship mobile apps — a direct result of tools like Claude Code, Replit, and Lovable lowering the floor to near-zero. Gartner projects that 80% of organisations will evolve large software engineering teams into smaller, AI-augmented teams by 2030.",
+      "practical_takeaway": [
+        {
+          "title": "Try the Three-Agent Harness on your next big task",
+          "body": "Use one agent to break down the spec, a second to build in isolation, and a third to evaluate the output on a live environment. Context resets between agents prevent drift and cut silent failures by 50%+. Claude Code Epitaxy now supports this as a first-class feature."
+        },
+        {
+          "title": "Measure review overhead, not just velocity",
+          "body": "Track PR size, review time, and bug rates alongside throughput. A 98% increase in merged PRs paired with a 91% rise in review time means you need automated eval gates (Promptfoo, DeepEval) before scaling agent usage further."
+        },
+        {
+          "title": "Adopt spec-driven development before you need governance",
+          "body": "Kiro's spec-first philosophy and Databricks Unity AI Gateway's MCP governance layer are not just safety features — they're the productivity multiplier. When agents work from a written spec, their output is easier to review, test, and audit."
+        },
+        {
+          "title": "The Context Engineer role is your next hire",
+          "body": "The biggest bottleneck in agentic coding isn't model capability — it's the quality of information the agent can access. Context Engineers design retrieval pipelines, MCP server configurations, and memory schemas. This role pays $140K–$200K and is growing faster than any other in engineering."
+        }
+      ],
+      "tomorrow_preview": "Day 33: The Rise of AI-Native Databases — Oracle AI Database 26ai, Neon Serverless Postgres, and how agent memory is reshaping the data layer for 2026's autonomous systems."
     },
     {
       "date": "2026-04-22",
