@@ -6,6 +6,201 @@
   },
   "learnings": [
     {
+      "date": "2026-04-24",
+      "display_date": "APRIL 24, 2026",
+      "title": "If the last 32 days taught us how agents think, plan, pay, and protect themselves, today we answer a",
+      "focus_intro": "quieter but equally critical question: where do agents remember? The database has become the new",
+      "viral_app": {
+        "name": "Google Deep Research Max -- Autonomous Research as an API Launched: April 22, 2026 · Platform: Gemini API (developers) + Gemini app (consumers) · Status: n Trending",
+        "description": "Deep Research Max is the most viral developer tool of the week -- not because of its UI, but because it turns research into a composable API primitive. Feed it a question, a PDF corpus, and your company's internal data endpoint, and it returns a fully cited, chart-embedded report in under 20 minutes. For agentic AI builders, this is the 'research sub-agent' that was missing from every Three-Agent Harness The '160 web searches + private data + native charts in one API call' capability is something no other vendor has shipped at this level of integration. Teams are replacing entire internal research workflows (human analyst + Notion + Perplexity + manual charts) with a single Python function c",
+        "stats": []
+      },
+      "stats": [
+        {
+          "stat": "$6.27B",
+          "label": "AI agent memory market in 2026"
+        },
+        {
+          "stat": "80%",
+          "label": "Neon DBs created by AI agents, not humans"
+        },
+        {
+          "stat": "$1.2T",
+          "label": "Market Oracle 26ai targets by 2030"
+        },
+        {
+          "stat": "35%",
+          "label": "CAGR: agent memory market 2026-2030"
+        }
+      ],
+      "sections": [
+        {
+          "title": "1. Why the Database Is Now an Agent Primitive",
+          "paragraphs": [
+            "Through Days 1-32 of this series we covered the 5-layer agentic stack: LLM Brain fi Tool Belt fi Memory fi Orchestrator fi Guardrails. The Memory layer was where the stack touched the database. But for most of 2024-2025, that meant bolting on a separate vector store -- Pinecone, Qdrant, Weaviate -- alongside your existing relational DB. In 2026 this fragmented approach is collapsing. Three converging forces are driving this shift. First, vector support became table stakes in every major database engine -- Oracle, PostgreSQL via pgvector, MongoDB, MySQL 9.0, and streaming databases like RisingWave all ship native vector indexing. Second, agent workloads demand atomic operations across memory types (working, episodic, semantic, graph) that simply cannot be satisfied by five separate systems with their own auth, replication, and consistency guarantees. Third, the EU AI Act Annex III audit trail requirement (enforcement Aug 2, 2026) makes a single governed data plane the only practical option -- NIST CAISI audit logs scattered across Redis, pgvector, Neo4j, and S3 are a compliance"
+          ]
+        },
+        {
+          "title": "2. Oracle AI Database 26ai -- The Convergence Bet",
+          "paragraphs": [
+            "On March 24, 2026, Oracle unveiled its most significant database overhaul since Oracle 12c. Oracle AI Database 26ai converges vector, JSON, graph, and relational data into a single engine, governed by Oracle's row-and-column security model. At the April 15 Oracle Data Deep Dive NYC event, Oracle doubled down with two pivotal announcements: Futurum Research positions 26ai to capture a share of the $1.2 trillion agent infrastructure market by 2030, citing Oracle's unique ability to offer converged vector+graph+relational memory with enterprise-grade security. The key risk: Oracle's licensing model is opaque compared to open-source alternatives, and many AI-native startups are building on PostgreSQL stacks instead."
+          ]
+        },
+        {
+          "title": "3. Neon -- The Serverless Postgres Built for Agent Fleets",
+          "paragraphs": [
+            "While Oracle targets the enterprise, Neon (now a Databricks company after the $1B acquisition in May 2025) has quietly become the default database for AI-native startups and agent orchestration platforms. The headline statistic is striking: over 80% of databases provisioned on Neon are created automatically by AI agents, not by human developers.",
+            "via API call. Coding agents like Specific.dev use this to provision thousands of ephemeral databases",
+            "wakes up. Perfect for bursty agent workloads.",
+            "The practical implication for agentic AI builders: if you're running LangGraph, CrewAI, or OpenHands and need persistent memory + vector search without managing infrastructure, Neon + pgvector is the lowest-friction path in 2026. The Write-Aside pattern (covered in Day 22) maps directly: Redis L1 for hot cache, Neon/pgvector L2 for durable episodic storage."
+          ],
+          "bullets": [
+            "Sub-500ms provisioning -- spin up a fully functional PostgreSQL via API call. Coding agents like Specific.dev use this to provision per day.",
+            "Compute-storage separation -- scales to zero when idle (cost wakes up. Perfect for bursty agent workloads.",
+            "Native pgvector + HNSW -- store embeddings alongside relational separate vector infra needed.",
+            "API-first design -- agents provision, configure, and query databases required, no DevOps overhead.",
+            "Databricks integration -- direct pipeline from Delta Lake fi Neon data-warehouse scale. The practical implication for agentic AI builders: if you're running need persistent memory + vector search without managing lowest-friction path in 2026. The Write-Aside pattern (covered cache, Neon/pgvector L2 for durable episodic storage."
+          ]
+        },
+        {
+          "title": "4. pgvector at Scale -- And the Broader Vector DB Landscape",
+          "paragraphs": [
+            "The 2026 consensus is clear: standalone vector databases are losing ground to extensions on top of proven RDBMS engines. pgvector's benchmarks are reshaping the market. With pgvectorscale's DiskANN index, PostgreSQL achieves 471 QPS at 99% recall on 50M vectors -- compared to Qdrant's 41 QPS in the same benchmark. That 11× throughput gap has sent many teams back to Postgres."
+          ]
+        },
+        {
+          "title": "5. Breaking: Google Deep Research Max -- Autonomous",
+          "paragraphs": [
+            "On April 22, 2026 -- just two days ago -- Google launched Deep Research and Deep Research Max, two autonomous AI research agents built on Gemini 3.1 Pro, accessible directly via the Gemini API. This is arguably the most capable research-as-a-service product released to developers so far in 2026.",
+            "private data streams in a single API call.",
+            "to Claude's 'Extended Thinking' but applied to multi-hop research tasks.",
+            "The agentic implication: Deep Research Max can serve as the research sub-agent in a Three-Agent Harness (Day 23) -- Planner calls it → it returns a grounded, cited knowledge base fi Generator builds on that foundation. This eliminates hallucination at the knowledge-acquisition stage, not just at generation"
+          ],
+          "bullets": [
+            "Up to 160 autonomous web searches per task -- the agent cites without human guidance.",
+            "Private + public data fusion -- for the first time, combine open-web private data streams in a single API call.",
+            "Native chart generation -- outputs inline visualisations (HTML/SVG) removing the post-processing step.",
+            "Deep Research Max uses extended test-time compute for maximum to Claude's 'Extended Thinking' but applied to multi-hop research",
+            "Full report in <20 minutes, with source citations, in-text charts, a single API call. The agentic implication: Deep Research Max can serve as fi Harness (Day 23) -- Planner calls it it returns a grounded, cited that foundation. This eliminates hallucination at the knowledge-acquisition time."
+          ],
+          "table": {
+            "headers": [
+              "Primitive",
+              "Mechanism",
+              "Use Case"
+            ],
+            "rows": [
+              [
+                "Priority Decay Algorithm",
+                "Memory entries decay in salience over time unless reinforced by retrieval. Engine scores = recency × frequency × relevance.",
+                "Keeps episodic memory fresh; prevents context window filling with stale facts."
+              ],
+              [
+                "LRU Eviction Protocol",
+                "Least-Recently-Used entries are evicted from hot-tier (Redis L1) automatically when capacity thresholds are hit.",
+                "Cost control; ensures agent context window is populated with high-signal memories only."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "6. Memory-Aware Retention -- The MaRS Standard Emerges",
+          "paragraphs": [
+            "A critical open question in agent memory has been: how does an agent forget? In 2026, formal forgetting policies are emerging as a new engineering discipline. The Memory-Aware Retention Schema (MaRS)",
+            "The key insight: forgetting is a feature, not a bug. Agents with unbounded episodic memory accumulate noise faster than signal. MaRS, combined with GDPR Memory IDs (Day 22) and the NIST CAISI audit trail, gives enterprises a principled framework for memory lifecycle management -- from write to eviction to"
+          ],
+          "table": {
+            "headers": [
+              "Primitive",
+              "Mechanism",
+              "Use Case"
+            ],
+            "rows": [
+              [
+                "Priority Decay Algorithm",
+                "Memory entries decay in salience over time unless reinforced by retrieval. Engine scores = recency × frequency × relevance.",
+                "Keeps episodic memory fresh; prevents context window filling with stale facts."
+              ],
+              [
+                "LRU Eviction Protocol",
+                "Least-Recently-Used entries are evicted from hot-tier (Redis L1) automatically when capacity thresholds are hit.",
+                "Cost control; ensures agent context window is populated with high-signal memories only."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "Viral App of the Day",
+          "paragraphs": [
+            "Google Deep Research Max -- Autonomous Research as an API Launched: April 22, 2026 · Platform: Gemini API (developers) + Gemini app (consumers) · Status: n Trending Deep Research Max is the most viral developer tool of the week -- not because of its UI, but because it turns research into a composable API primitive. Feed it a question, a PDF corpus, and your company's internal data endpoint, and it returns a fully cited, chart-embedded report in under 20 minutes. For agentic AI builders, this is the 'research sub-agent' that was missing from every Three-Agent Harness",
+            "The '160 web searches + private data + native charts in one API call' capability is something no other vendor has shipped at this level of integration. Teams are replacing entire internal research workflows (human analyst + Notion + Perplexity + manual charts) with a single Python function call. The 'Google Notebooks' companion feature (free, launched April 17) creates a closed feedback loop: Gemini chat personal knowledge management agent for anyone with a Google account.",
+            "better than most hand-rolled retrieval pipelines.",
+            "with other Workspace tools) suggests a Deep Research MCP server is likely in Q2-Q3 2026.",
+            "handling agreements cover cross-boundary data flows. EU AI Act Annex III audit evidence applies here.",
+            "(2030) at 35% CAGR (Powerdrill AI). For context, the entire traditional database market grew at ~10% CAGR for a decade. The implication: the data layer is the fastest-growing infrastructure category in the agentic era, and every database vendor -- Oracle, Databricks/Neon, MongoDB, Snowflake -- is racing"
+          ],
+          "bullets": [
+            "Replace your RAG retrieval step with a Deep Research call better than most hand-rolled retrieval pipelines.",
+            "Multi-agent harness upgrade -- wire Deep Research Max LangGraph before your Generator node.",
+            "MCP integration coming -- Google's pattern of making Gemini with other Workspace tools) suggests a Deep Research MCP",
+            "Governance note -- when combining private data with web handling agreements cover cross-boundary data flows. EU 160 <20 min",
+            "Practical Takeaways -- What to Do"
+          ]
+        }
+      ],
+      "market_signal": "The AI agent memory market is on a trajectory from $6.27B (2026) fi $28.45B (2030) at 35% CAGR (Powerdrill AI). For context, the entire traditional database market grew at ~10% CAGR for a decade. The implication: the data layer is the fastest-growing infrastructure category in the agentic era, and every database vendor -- Oracle, Databricks/Neon, MongoDB, Snowflake -- is racing to claim it.",
+      "practical_takeaway": [
+        {
+          "title": "Default to PostgreSQL + pgvector (via Neon or Supabase) as y",
+          "body": "Default to PostgreSQL + pgvector (via Neon or Supabase) as your memory store. Skip the standalone vector DB unless you have 500M+ vectors. Use the Write-Aside pattern: Redis L1 (hot cache) fi pgvector L2 (durable store). Neon's sub-500ms provisioning means your agents can spin up fresh databases on"
+        },
+        {
+          "title": "Evaluate Oracle AI Database 26ai seriously if you're already",
+          "body": "Evaluate Oracle AI Database 26ai seriously if you're already an Oracle shop. The Unified Memory Core eliminates the multi-DB integration tax for agent memory. Ensure your data handling agreements cover the Private Agent Factory's EU AI Act compliance auto-generation -- verify it produces valid Annex III"
+        },
+        {
+          "title": "Specifically: use it as the knowledge-acquisition node in yo",
+          "body": "Specifically: use it as the knowledge-acquisition node in your Three-Agent Harness (Planner fi [Deep Research Max] fi Generator fi Evaluator). This cuts hallucinations at the source -- your Generator gets grounded, cited facts rather than relying on the base LLM's parametric knowledge."
+        },
+        {
+          "title": "Apply Priority Decay to your episodic store and LRU eviction",
+          "body": "Apply Priority Decay to your episodic store and LRU eviction on Redis L1. Add a GDPR Memory ID to every write, with a hard-delete cascade endpoint. Log every read and write to your NIST CAISI audit trail. This is now the minimum viable compliance posture for the August 2 EU AI Act deadline."
+        },
+        {
+          "title": "Before committing to a vector database, benchmark pgvector +",
+          "body": "Before committing to a vector database, benchmark pgvector + pgvectorscale against your actual data size and query patterns. The 471 QPS result is compelling but was measured at 50M vectors with HNSW indexing. At 1B+ vectors or with filtering requirements, Milvus or Qdrant may still win on your specific"
+        },
+        {
+          "title": "Outputs. We'll cover how GPT-5.4's 75% OSWorld-V score, HeyG",
+          "body": "Outputs. We'll cover how GPT-5.4's 75% OSWorld-V score, HeyGen Avatar V, Google Veo 3.1, and ElevenLabs MCP server are making multimodal output the next frontier for autonomous agents."
+        },
+        {
+          "title": "If you're starting a new agent project today",
+          "body": "If you're starting a new agent project today"
+        },
+        {
+          "title": "If you're running an enterprise AI programme",
+          "body": "If you're running an enterprise AI programme"
+        },
+        {
+          "title": "Add Google Deep Research Max to your agent harness",
+          "body": "Add Google Deep Research Max to your agent harness"
+        },
+        {
+          "title": "Implement a forgetting policy in your memory architecture",
+          "body": "Implement a forgetting policy in your memory architecture"
+        },
+        {
+          "title": "Run the pgvector benchmark for your use case",
+          "body": "Run the pgvector benchmark for your use case"
+        },
+        {
+          "title": "Tomorrow -- Day 34: The Multimodal Agent Layer -- Vision, Au",
+          "body": "Tomorrow -- Day 34: The Multimodal Agent Layer -- Vision, Audio, and Video as First-Class Agent"
+        }
+      ]
+    },
+    {
       "date": "2026-04-23",
       "display_date": "April 23, 2026",
       "issue": 32,
@@ -51,48 +246,50 @@
         {
           "title": "The 2026 Agentic Coding Stack",
           "paragraphs": [
-            "The coding assistant market has fractured into four distinct categories: IDE Extensions (GitHub Copilot, Cline, Continue, Amazon Q, Gemini Code Assist, Augment Code, Amp), Dedicated AI IDEs (Cursor #1 paid IDE, Windsurf, Zed, Google Antigravity, Kiro by AWS, Qoder), CLI Agents (Claude Code #1 loved tool, Codex CLI, Gemini CLI, Goose, Warp 2.0, oh-my-codex), and Cloud Platforms (Devin, OpenHands v1.6, Jules by Google, Genie, Manus).",
-            "The headline stat: Claude Code became the #1 most-loved developer tool in just eight months — 46% of developers rated it their favourite, ahead of Cursor (19%) and GitHub Copilot (9%). It operates as a true agentic system: reads your entire codebase, executes shell commands, runs tests, fixes failures, and delivers committed code — all without context switching out of the terminal."
+            "The coding assistant market has fractured into four distinct categories, each targeting a different part of the engineering workflow: IDE Extensions (GitHub Copilot, Cline, Continue, Amazon Q, Gemini Code Assist, Augment Code, Amp), Dedicated AI IDEs (Cursor #1 paid IDE, Windsurf, Zed, Google Antigravity, Kiro by AWS, Qoder), CLI Agents (Claude Code #1 loved tool, Codex CLI, Gemini CLI, Goose, Warp 2.0, oh-my-codex), and Cloud Platforms (Devin, OpenHands v1.6, Jules by Google, Genie, Manus).",
+            "The headline stat: Claude Code became the #1 most-loved developer tool in just eight months — 46% of developers rated it their favourite, ahead of Cursor (19%) and GitHub Copilot (9%). The reason? It operates as a true agentic system: it reads your entire codebase, executes shell commands, runs tests, fixes failures, and delivers committed code — all without context switching out of the terminal."
           ]
         },
         {
           "title": "Claude Opus 4.7 — New Coding Frontier",
           "paragraphs": [
-            "Released April 16, 2026, Claude Opus 4.7 sets new benchmarks: 87.6% SWE-bench Verified (#1), 64.3% SWE-bench Pro (#1), 80.5% SWE-bench Multilingual, and +14% agentic reasoning vs 4.6 with 1/3 fewer tool errors.",
+            "Released April 16, 2026, Claude Opus 4.7 sets new benchmarks for autonomous coding agents: 87.6% SWE-bench Verified (#1), 64.3% SWE-bench Pro (#1), 80.5% SWE-bench Multilingual, and +14% agentic reasoning vs 4.6 with 1/3 fewer tool errors versus GPT-5.4 and Gemini 3.1 Pro.",
             "Key new capability: Opus 4.7 is the first Claude model to pass 'implicit-need tests' — tasks where the model must infer what tools or actions are needed, rather than being told explicitly. This is the shift from instruction-following to goal-directed agency."
           ]
         },
         {
           "title": "OpenHands v1.6 & the Three-Agent Harness Pattern",
           "paragraphs": [
-            "OpenHands v1.6 (70K+ GitHub stars, MIT licence, $18.8M Series A) resolves 53%+ of real-world GitHub issues on SWE-bench Verified using Claude 4.5, and 77.6% via its own combined harness. New Kubernetes support and Planning Mode beta make it the de-facto open-source alternative to Devin.",
-            "The Anthropic Three-Agent Harness (April 4, 2026): 1. Planner decomposes spec into tractable chunks with JSON feature spec + handoff artifact. 2. Generator builds code in a single context window and writes claude-progress.txt. 3. Evaluator grades on design quality, originality, craft, and functionality via Playwright MCP on live pages. Context resets between agents cut silent failure rate by 50%+."
+            "OpenHands v1.6 (70K+ GitHub stars, MIT licence, $18.8M Series A) now resolves 53%+ of real-world GitHub issues on SWE-bench Verified using Claude 4.5, and 77.6% via its own combined harness. Its new Kubernetes support and Planning Mode beta make it the de-facto open-source alternative to commercial agents like Devin.",
+            "The Anthropic Three-Agent Harness (published April 4, 2026): 1. Planner — Decomposes spec into tractable chunks, produces JSON feature spec + handoff artifact. 2. Generator — Builds code inside a single context window, commits progress and writes claude-progress.txt. 3. Evaluator — Grades output on design quality, originality, craft, functionality via Playwright MCP on live pages.",
+            "Context resets between agents prevent context drift — the Planner→Generator→Evaluator handoff with structured artifacts cuts silent failure rate by more than 50%. This is now the production template for tasks that exceed a single context window."
           ]
         },
         {
-          "title": "The Productivity Paradox",
+          "title": "The Productivity Paradox — What the Data Actually Shows",
           "paragraphs": [
-            "Gains: 31.4% average productivity increase, 3.6 hrs saved per developer per week, teams with high AI adoption merge 98% more PRs, 21% more tasks completed, 10–30% gains for junior developers, app store launches up 104% YoY.",
-            "Costs: PR review time up 91%, 9% more bugs per developer, 154% increase in average PR size, 23.7% more security vulnerabilities in AI code, senior devs slowed 19% due to validation overhead, 1.7× more issues in AI-coauthored PRs (CodeRabbit Dec 2025).",
-            "The key insight: Architecture improvements outperform model upgrades. Teams investing in structured workflows (spec→generate→evaluate), golden test datasets, and automated eval gates see 42%→78% quality score lifts — far exceeding what a better model alone delivers."
+            "Agentic coding tools deliver real gains — but not uniformly. Gains: 31.4% average productivity increase, 3.6 hrs saved per developer per week, teams with high AI adoption merge 98% more PRs, 21% more tasks completed, 10–30% gains for junior developers, app store launches up 104% YoY.",
+            "The costs: PR review time up 91% (human approval bottleneck), 9% more bugs per developer on average, 154% increase in average PR size, 23.7% more security vulnerabilities in AI code, senior devs slowed by 19% due to validation overhead, 1.7× more issues in AI-coauthored PRs (CodeRabbit Dec 2025).",
+            "The key insight: Architecture improvements outperform model upgrades. Teams that invest in structured workflows (spec→generate→evaluate), golden test datasets, and automated eval gates see 42%→78% quality score lifts — far exceeding what a better model alone delivers."
           ]
         },
         {
           "title": "Kiro & the Spec-Driven Development Revolution",
           "paragraphs": [
-            "Kiro — Amazon's new agentic IDE powered by Claude Sonnet — introduces spec-driven development: rather than prompting an agent to write code directly, Kiro first turns your prompt into a detailed specification, then generates working code, documentation, and tests from that spec.",
-            "The viral AWS incident: An early Kiro user's agent-generated code triggered an unintended infrastructure cascade — 'vibe too hard, brought down AWS.' Databricks Unity AI Gateway responds with fine-grained access control for MCP server calls, end-to-end observability across LLM and tool usage, and managed OAuth for GitHub/Atlassian."
+            "Kiro — Amazon's new agentic IDE (powered by Claude Sonnet) — brings a fundamentally different philosophy to AI coding: spec-driven development. Rather than prompting an agent to write code directly, Kiro first turns your prompt into a detailed specification, then generates working code, documentation, and tests from that spec.",
+            "The viral AWS incident: An early Kiro user's agent-generated code triggered an unintended infrastructure cascade — 'vibe too hard, brought down AWS.' This real-world incident crystallises the central governance challenge of agentic coding: autonomous agents with infrastructure access can cause cascading side effects that no human approved step-by-step.",
+            "Databricks Unity AI Gateway responds directly to this challenge: extends Unity Catalog governance to agentic AI, fine-grained access control for MCP server calls, controls which agents can access which external systems, end-to-end observability across LLM and tool usage, managed OAuth for GitHub/Atlassian, rate limits/guardrails/fallbacks built in."
           ]
         },
         {
           "title": "OpenClaw — 302K Stars & a Security Warning",
           "paragraphs": [
-            "OpenClaw (evolved from Clawdbot → Moltbot → OpenClaw) has become GitHub's fastest-growing project ever — surpassing React's 10-year star count in 60 days at 302,000+ stars. It runs on the user's machine, executing shell commands, managing files, and automating web tasks via Signal, Telegram, Discord, or WhatsApp.",
-            "Security warning: OpenClaw's permissive local execution model has made it '2026's first major AI security disaster' (The New Stack). Before deploying any local-execution agent framework, apply NIST CAISI audit trail requirements and namespace isolation at the infra level."
+            "OpenClaw (evolved from Clawdbot → Moltbot → OpenClaw after trademark issues) has become GitHub's fastest-growing project ever — surpassing React's 10-year star count in 60 days and reaching 302,000+ stars. It runs entirely on the user's machine, executes shell commands, manages files, and automates web tasks via messaging apps like Signal, Telegram, Discord, or WhatsApp.",
+            "Security note: OpenClaw's permissive local execution model has made it '2026's first major AI security disaster' (The New Stack). Before deploying any local-execution agent framework, apply the NIST CAISI audit trail requirements and namespace isolation at the infra level."
           ]
         }
       ],
-      "market_signal": "The app store is booming because of AI coding tools. New app launches are up 104% YoY on iOS. AI is enabling people who have never coded before to build and ship mobile apps — a direct result of tools like Claude Code, Replit, and Lovable lowering the floor to near-zero. Gartner projects that 80% of organisations will evolve large software engineering teams into smaller, AI-augmented teams by 2030.",
+      "market_signal": "The app store is booming because of AI coding tools. New app launches are up 104% YoY on iOS. AI is enabling people who have never coded before to build and ship mobile apps — a direct result of tools like Claude Code, Replit, and Lovable lowering the floor to near-zero. Gartner projects that 80% of organisations will evolve large software engineering teams into smaller, AI-augmented teams by 2030. The implication: being a domain expert who can direct AI agents is more valuable than being a pure code writer.",
       "practical_takeaway": [
         {
           "title": "Try the Three-Agent Harness on your next big task",
@@ -100,7 +297,7 @@
         },
         {
           "title": "Measure review overhead, not just velocity",
-          "body": "Track PR size, review time, and bug rates alongside throughput. A 98% increase in merged PRs paired with a 91% rise in review time means you need automated eval gates (Promptfoo, DeepEval) before scaling agent usage further."
+          "body": "If your team is adopting AI coding tools, track PR size, review time, and bug rates alongside throughput. A 98% increase in merged PRs paired with a 91% rise in review time means you need to invest in automated eval gates (Promptfoo, DeepEval) before scaling agent usage further."
         },
         {
           "title": "Adopt spec-driven development before you need governance",
@@ -108,7 +305,7 @@
         },
         {
           "title": "The Context Engineer role is your next hire",
-          "body": "The biggest bottleneck in agentic coding isn't model capability — it's the quality of information the agent can access. Context Engineers design retrieval pipelines, MCP server configurations, and memory schemas. This role pays $140K–$200K and is growing faster than any other in engineering."
+          "body": "The biggest bottleneck in agentic coding isn't model capability — it's the quality of information the agent can access. Context Engineers design retrieval pipelines, MCP server configurations, and memory schemas that ensure agents always have the right context. This role pays $140K–$200K and is growing faster than any other in engineering."
         }
       ],
       "tomorrow_preview": "Day 33: The Rise of AI-Native Databases — Oracle AI Database 26ai, Neon Serverless Postgres, and how agent memory is reshaping the data layer for 2026's autonomous systems."
