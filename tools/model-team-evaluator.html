@@ -69,6 +69,7 @@
     .spec-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-4)}
     .spec-card{padding:var(--space-5)}
     .chip{display:inline-flex;align-items:center;padding:.3rem .65rem;border-radius:var(--radius-full);font-size:var(--text-xs);background:var(--color-surface-offset);color:var(--color-text-muted);border:1px solid var(--color-border)}
+    .chip-new{background:color-mix(in srgb, var(--color-success) 14%, transparent);color:var(--color-success);border-color:color-mix(in srgb, var(--color-success) 30%, transparent)}
     .table-wrap{overflow:auto;border-radius:var(--radius-xl);border:1px solid var(--color-border);background:var(--color-surface)}
     table{width:100%;border-collapse:collapse;min-width:980px}
     th,td{padding:1rem;border-bottom:1px solid var(--color-divider);vertical-align:top;text-align:left}
@@ -99,6 +100,7 @@
     .footer{padding:var(--space-10) 0 var(--space-16);color:var(--color-text-muted)}
     .tiny{font-size:var(--text-xs)}
     .source-list a{color:var(--color-primary)}
+    .updated-badge{display:inline-flex;gap:.4rem;align-items:center;background:color-mix(in srgb,var(--color-primary) 12%,transparent);color:var(--color-primary);border:1px solid color-mix(in srgb,var(--color-primary) 25%,transparent);padding:.25rem .65rem;border-radius:var(--radius-full);font-size:var(--text-xs);font-weight:600}
     @media (max-width: 1100px){.hero-grid,.app-grid,.spec-grid,.runners,.scorecards{grid-template-columns:1fr}.stat-row,.form-grid,.score-grid{grid-template-columns:1fr 1fr}}
     @media (max-width: 640px){.container{width:min(100% - 1rem, 1200px)}.nav{align-items:flex-start;flex-direction:column}.nav-links{gap:.85rem}.stat-row,.form-grid,.score-grid{grid-template-columns:1fr}h1{max-width:unset}}
     :focus-visible{outline:2px solid var(--color-primary);outline-offset:3px}
@@ -120,9 +122,7 @@
         </div>
       </div>
       <nav class="nav-links" aria-label="Primary">
-        <a href="/">← Home</a>
-        <a href="/ai-tokenomics/">Tokenomics</a>
-        <a href="/about/">About</a>
+        <a href="/">← varunsingla.com</a>
         <a href="#models">Model facts</a>
         <a href="#evaluator">Evaluator</a>
         <a href="#runners">Prompt runners</a>
@@ -138,9 +138,13 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <span class="eyebrow">Official-page based evaluator</span>
+          <span class="eyebrow">Updated April 2026 · 5 frontier models</span>
           <h1>Paste your real work. Get the right model mix.</h1>
-          <p class="lede">This site consolidates official product pages for GPT-5.4, Claude Opus 4.6, Gemini 3.1 Pro, and Gemini 3.1 Flash Live, then turns those specs into a practical recommendation engine for coding, research, spreadsheets, live voice, and long-context work.</p>
+          <p class="lede">This tool consolidates the latest specs for GPT-5.4, Claude Opus 4.7, Gemini 3.1 Pro, Gemini 3.1 Flash Live, and Qwen3.6-Plus — then turns those facts into a practical recommendation engine for coding, research, spreadsheets, live voice, and long-context work.</p>
+          <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:var(--space-6)">
+            <span class="updated-badge">✦ Claude Opus 4.7 — Apr 16, 2026</span>
+            <span class="updated-badge">✦ Qwen3.6-Plus added — OSS frontier</span>
+          </div>
           <div class="nav-actions">
             <a class="btn btn-primary" href="#evaluator">Start evaluating</a>
             <a class="btn btn-secondary" href="#models">Inspect model data</a>
@@ -152,11 +156,11 @@
             <h3>Hands-on comparison workspace</h3>
           </div>
           <div class="stat-row">
-            <div class="stat"><span class="tiny muted">Prompt runners</span><strong>3-up</strong></div>
+            <div class="stat"><span class="tiny muted">Models tracked</span><strong>5</strong></div>
             <div class="stat"><span class="tiny muted">Scoring axes</span><strong>4</strong></div>
             <div class="stat"><span class="tiny muted">Task lanes</span><strong>5</strong></div>
           </div>
-          <div class="tiny muted">Recommendation logic weights cost, latency, context fit, benchmark alignment, and probable failure modes, rather than raw benchmark claims alone.</div>
+          <div class="tiny muted">Recommendation logic weights cost, latency, context fit, benchmark alignment, and probable failure modes — not raw benchmark claims alone.</div>
         </aside>
       </div>
     </section>
@@ -166,14 +170,14 @@
         <div class="section-top">
           <div>
             <h2>Model facts</h2>
-            <p>Use this as the evidence layer before you trust the evaluator. The table separates official claims from product-fit notes so you can challenge the defaults.</p>
+            <p>Use this as the evidence layer before you trust the evaluator. The table separates official claims from product-fit notes so you can challenge the defaults. Last updated April 25, 2026.</p>
           </div>
         </div>
         <div class="spec-grid" aria-hidden="true">
-          <article class="spec-card"><span class="chip">Coding</span><h3>Strongest coding focus</h3><p class="muted">GPT-5.4 and Claude Opus 4.6 both position coding and agentic workflows as primary strengths.</p></article>
-          <article class="spec-card"><span class="chip">Long context</span><h3>1M-token class</h3><p class="muted">GPT-5.4, Claude Opus 4.6 beta, and Gemini 3.1 Pro all advertise 1M-token context availability.</p></article>
-          <article class="spec-card"><span class="chip">Live voice</span><h3>Realtime-native lane</h3><p class="muted">Gemini Flash Live is the dedicated live interaction choice in this set.</p></article>
-          <article class="spec-card"><span class="chip">Enterprise work</span><h3>Spreadsheet-aware</h3><p class="muted">GPT-5.4 and Claude Opus 4.6 explicitly market spreadsheet and document workflows.</p></article>
+          <article class="spec-card"><span class="chip">Coding</span><h3>Strongest coding focus</h3><p class="muted">GPT-5.4 leads OSWorld-V (75%), Claude Opus 4.7 tops SWE-bench Pro at 64.3% — both built for agentic coding workflows.</p></article>
+          <article class="spec-card"><span class="chip">Long context</span><h3>1M-token class</h3><p class="muted">GPT-5.4, Claude Opus 4.7, and Gemini 3.1 Pro all offer 1M-token context. Gemini leads on cost-per-token at this scale.</p></article>
+          <article class="spec-card"><span class="chip">Live voice</span><h3>Realtime-native lane</h3><p class="muted">Gemini Flash Live remains the dedicated live interaction choice — sub-500ms TTFT and audio-native sessions.</p></article>
+          <article class="spec-card"><span class="chip chip-new">OSS frontier</span><h3>Qwen3.6-Plus is live</h3><p class="muted">Free on OpenRouter, beats Claude Opus 4.6 on Terminal-Bench 2.0, 78.8% SWE-bench. Best zero-cost coding option.</p></article>
         </div>
         <div class="table-wrap" style="margin-top:1rem">
           <table>
@@ -297,7 +301,7 @@
         <div class="panel stack">
           <div>
             <h2>Routed plan</h2>
-            <p class="muted">The router is opinionated by default: use specialized models for their strongest lane, then hand off to a synthesizer if needed.</p>
+            <p class="muted">The router is opinionated by default: use specialised models for their strongest lane, then hand off to a synthesiser if needed.</p>
           </div>
           <div id="routeOutput" class="route-list"></div>
         </div>
@@ -307,7 +311,7 @@
     <section>
       <div class="container note" style="padding:1.25rem 1.25rem 1.4rem">
         <h3>How to use this in practice</h3>
-        <p class="muted">Start with the evaluator for a quick pick. Use prompt runners when you want a fair shootout on the same task. Use the router for compound workflows where no single model should own everything.</p>
+        <p class="muted">Start with the evaluator for a quick pick. Use prompt runners when you want a fair shootout on the same task. Use the router for compound workflows where no single model should own everything. For zero-cost experimentation, Qwen3.6-Plus on OpenRouter is now a serious baseline before committing to a paid model.</p>
       </div>
     </section>
   </main>
@@ -318,7 +322,7 @@
         <h3>Source links</h3>
         <div class="source-list tiny" id="sourceList"></div>
       </div>
-      <div class="tiny">This website embeds official source summaries and a local heuristic scorer. Recheck vendor pages before major buying or architecture decisions because pricing, limits, and preview status can change quickly.</div>
+      <div class="tiny">This page embeds official source summaries and a local heuristic scorer. Recheck vendor pages before major buying or architecture decisions — pricing, limits, and preview status change frequently. Last data sync: April 25, 2026.</div>
     </div>
   </footer>
 
@@ -326,11 +330,13 @@
     const sources = [
       {label:'OpenAI — Introducing GPT-5.4', url:'https://openai.com/index/introducing-gpt-5-4/'},
       {label:'OpenAI API — GPT-5.4 model docs', url:'https://developers.openai.com/api/docs/models/gpt-5.4'},
-      {label:'OpenAI API — Using GPT-5.4', url:'https://developers.openai.com/api/docs/guides/latest-model/'},
-      {label:'Anthropic — Claude Opus 4.6', url:'https://www.anthropic.com/claude/opus'},
+      {label:'Anthropic — Claude Opus 4.7', url:'https://www.anthropic.com/claude/opus'},
       {label:'Anthropic — Claude pricing', url:'https://platform.claude.com/docs/en/about-claude/pricing'},
       {label:'Google AI Dev — Gemini API pricing', url:'https://ai.google.dev/gemini-api/docs/pricing'},
-      {label:'Google blog — Gemini 3.1 Pro', url:'https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro?utm_source=openai'}
+      {label:'Google blog — Gemini 3.1 Pro', url:'https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro'},
+      {label:'Qwen3.6-Plus on OpenRouter', url:'https://openrouter.ai/qwen/qwen3.6-plus'},
+      {label:'Stanford AI Index 2026', url:'https://aiindex.stanford.edu/report/'},
+      {label:'ARC-AGI-3 prize page', url:'https://arcprize.org/arc-agi/3'}
     ];
 
     const models = [
@@ -341,49 +347,49 @@
         priceIn:2.5,
         priceOut:15,
         cachedIn:0.25,
-        context:'1M via API/Codex, standard 272K before 2x usage in Codex overage settings',
+        context:'1M via API/Codex Advanced; standard 272K before 2× overage in Codex settings',
         latency:'Medium',
         live:false,
-        strengths:['Coding','Tool use','Computer use','Professional docs/spreadsheets','Web research'],
-        benchmarks:['GDPval 83.0%','SWE-Bench Pro 57.7%','OSWorld-Verified 75.0%','BrowseComp 82.7%','Toolathlon 54.6%'],
-        tools:'Native computer tool, tool search, improved tool calling, custom tools, allowed-tools controls',
-        notes:'Best single-model default when coding and tool orchestration matter together.',
-        failures:['Cost rises for very large context workloads beyond standard windows','Live voice is not the standout lane in this trio','May be overkill for cheap bulk analysis'],
-        ratings:{coding:97,research:88,spreadsheet:93,live:62,longcontext:90,cost:70,latency:76,context:94,tool:97}
+        strengths:['Coding & computer use','Tool orchestration','Professional docs & spreadsheets','Web research grounding','Agentic multi-step tasks'],
+        benchmarks:['OSWorld-Verified 75.0% — first frontier model to beat human baseline (72.4%)','GDPval 83.0%','SWE-Bench Pro 57.7%','BrowseComp 82.7%','Toolathlon 54.6%'],
+        tools:'Native computer-use tool, tool search, improved tool calling, custom tool schemas, allowed-tools controls, Codex Advanced PR review',
+        notes:'Best single-model default when coding, computer use, and tool orchestration matter together. First AI to beat calibrated human baseline on real desktop tasks.',
+        failures:['Premium pricing hurts at scale — $15/M output tokens','Live voice is not a focus lane','Overkill for cheap bulk summarisation'],
+        ratings:{coding:97,research:88,spreadsheet:93,live:62,longcontext:90,cost:66,latency:76,context:94,tool:97}
       },
       {
-        id:'claude46',
-        name:'Claude Opus 4.6',
+        id:'claude47',
+        name:'Claude Opus 4.7',
         family:'Anthropic',
         priceIn:5,
         priceOut:25,
         cachedIn:6.25,
-        context:'200K standard, 1M context beta on Claude Platform only',
+        context:'200K standard; 1M context beta on Claude Platform only',
         latency:'Medium-slow',
         live:false,
-        strengths:['Advanced coding','Long-running agents','Enterprise documents','Spreadsheet-heavy analysis','High-stakes reasoning'],
-        benchmarks:['Terminal-Bench 2.0 65.4%','OSWorld 72.7%','BigLaw Bench 90.2%'],
-        tools:'Hybrid reasoning, effort controls, strong tool use and agentic planning, available across Claude Platform and major clouds',
-        notes:'Strong choice for careful reasoning, enterprise artifacts, and persistent multi-step coding work.',
-        failures:['More expensive than GPT-5.4 and likely slower for some loops','1M context still beta and platform-limited','No dedicated live voice positioning here'],
-        ratings:{coding:96,research:94,spreadsheet:95,live:58,longcontext:92,cost:52,latency:64,context:90,tool:92}
+        strengths:['#1 SWE-bench Pro — goal-directed agency','Enterprise documents & legal work','Spreadsheet-heavy analysis','High-stakes reasoning','Long-running agents'],
+        benchmarks:['SWE-bench Verified 87.6% — new record','SWE-bench Pro 64.3% — #1 across all models (Apr 2026)','Multilingual 80.5%','BigLaw Bench 90.2%','OSWorld 72.7%'],
+        tools:'Hybrid reasoning with effort controls, strong tool use and agentic planning, Three-Agent Harness (Planner/Generator/Evaluator), implicit-need detection for goal-directed tasks. Available on Claude Platform and major clouds.',
+        notes:'Released April 16 2026. New #1 on SWE-bench Pro. Implicit-need tests show genuine goal-directed agency beyond instruction-following. Best for enterprise artifacts, careful reasoning, and multi-step coding agents.',
+        failures:['Most expensive model in the set — $25/M output','1M context still beta and platform-limited','Slower on time-sensitive loops than GPT-5.4'],
+        ratings:{coding:97,research:95,spreadsheet:96,live:58,longcontext:92,cost:48,latency:62,context:90,tool:94}
       },
       {
         id:'gemini31pro',
         name:'Gemini 3.1 Pro',
         family:'Google',
-        priceIn:0.25,
-        priceOut:1.5,
-        cachedIn:0.025,
-        context:'1M context class on Gemini API pricing page / Pro preview references',
+        priceIn:2,
+        priceOut:12,
+        cachedIn:0.5,
+        context:'1M tokens native; best price-per-million-token in this group at this scale',
         latency:'Fast-medium',
         live:false,
-        strengths:['Low-cost long context','Grounding with Google Search','Multimodal API economics','Good fit for broad analysis at scale'],
-        benchmarks:['Official blog page supplied by user should be checked for current claims','Pricing page emphasizes search grounding and tools rather than benchmark leaderboard text'],
-        tools:'Custom Tools endpoint references, Google Search grounding, Gemini API multimodal pricing',
-        notes:'Best cost-performance option when you need very cheap long context or grounded analysis and do not need the strongest coding agent.',
-        failures:['Official benchmark specifics may move between preview docs and blog posts','Tooling semantics differ from OpenAI/Anthropic runners','Less obvious first choice for top-end coding autonomy'],
-        ratings:{coding:78,research:86,spreadsheet:80,live:60,longcontext:94,cost:98,latency:84,context:96,tool:82}
+        strengths:['Price-performance leader','Leads 13/16 major benchmarks','Google Search grounding','Multimodal (video/image/audio native)','Long-context analysis at low cost'],
+        benchmarks:['Leads 13 of 16 major public benchmarks (Apr 2026)','GPQA Diamond 94.3%','Best ARC-AGI-3 score across all frontier models at 0.37%','$2/$12 per M tokens — 55% cheaper than GPT-5.4 input'],
+        tools:'Google Search grounding, native video/audio/image understanding, Deep Research Max (160 autonomous web searches + private data fusion), Google Vids integration, MCP tools endpoint',
+        notes:'Best cost-performance option for April 2026. Leads on raw benchmark count and Deep Research Max (launched Apr 22) makes it the most capable web-grounded research model. Best ARC-AGI-3 performance, though still only 0.37%.',
+        failures:['Not the top choice for deepest agentic coding autonomy','Google-ecosystem tooling may add friction for OpenAI/Anthropic stacks','Benchmark lead may not translate to every real task type'],
+        ratings:{coding:80,research:91,spreadsheet:82,live:62,longcontext:96,cost:96,latency:85,context:97,tool:84}
       },
       {
         id:'flashlive',
@@ -392,15 +398,32 @@
         priceIn:0.75,
         priceOut:4.5,
         cachedIn:0,
-        context:'Live API preview; exact quotas shift via AI Studio / Live API controls',
+        context:'Live API; quotas managed via AI Studio / Live API controls',
         latency:'Fastest',
         live:true,
-        strengths:['Realtime voice','Low-latency multimodal interaction','Audio-native sessions','Customer support and demo copilot flows'],
-        benchmarks:['Live model is usually positioned by responsiveness and multimodal interaction rather than classic coding benchmarks'],
-        tools:'Gemini Live API, text/audio/image-video token pricing, browser-safe ephemeral token patterns',
-        notes:'Use for voice agents, live demos, meeting copilots, and fast multimodal turn-taking.',
-        failures:['Not your primary choice for deepest coding or document-heavy reasoning','Preview quotas and pricing can evolve quickly','Long-context and spreadsheet work are weaker fit than Pro or Opus'],
-        ratings:{coding:52,research:66,spreadsheet:54,live:98,longcontext:55,cost:88,latency:97,context:58,tool:74}
+        strengths:['Realtime voice & audio','Sub-500ms TTFT','Low-latency multimodal turn-taking','Meeting copilots & live demos','Customer support agents'],
+        benchmarks:['Optimised for responsiveness and multimodal interaction, not classic coding benchmarks','Audio-visual sync improved in Flash Live tier','Best latency profile in this group'],
+        tools:'Gemini Live API, text/audio/image-video token pricing, browser-safe ephemeral token patterns, realtime streaming sessions',
+        notes:'The dedicated live-interaction specialist. Use for voice agents, live demos, meeting copilots, and fast multimodal loops where <500ms response matters more than depth.',
+        failures:['Not for deep coding or document-heavy reasoning','Preview quotas and pricing evolve quickly','Long-context and spreadsheet work are weaker lanes than Pro'],
+        ratings:{coding:52,research:66,spreadsheet:54,live:98,longcontext:55,cost:90,latency:98,context:58,tool:74}
+      },
+      {
+        id:'qwen36plus',
+        name:'Qwen3.6-Plus',
+        family:'Alibaba / OSS',
+        priceIn:0,
+        priceOut:0,
+        cachedIn:0,
+        context:'1M context window; free on OpenRouter (usage subject to rate limits)',
+        latency:'Fast',
+        live:false,
+        strengths:['Free on OpenRouter','Best open-source coding benchmark (Apr 2026)','Beats Claude Opus 4.6 on Terminal-Bench 2.0','Strong document parsing (OmniDocBench 91.2)','Zero-cost prototyping and evals baseline'],
+        benchmarks:['SWE-bench 78.8%','Terminal-Bench 2.0: 61.6 — beats Claude Opus 4.6 (Apr 2026 rank)','OmniDocBench 91.2 — #1 document parsing benchmark','1M context window'],
+        tools:'OpenRouter API compatible with standard OpenAI-style tool calling; MCP-compatible via OpenRouter bridge; strong code execution and document analysis',
+        notes:'Significant OSS milestone — now competitive with paid frontier models on coding tasks. Free via OpenRouter. Ideal as a zero-cost baseline before paying for GPT-5.4 or Claude Opus 4.7. Best open-weights option for agentic coding in April 2026.',
+        failures:['Rate limited on free tier — not for high-volume production','Less reliable for nuanced enterprise risk reasoning vs Claude Opus 4.7','Alibaba/commercial licence — check terms for enterprise data-residency needs','No dedicated live voice capability'],
+        ratings:{coding:88,research:79,spreadsheet:78,live:40,longcontext:85,cost:100,latency:82,context:88,tool:80}
       }
     ];
 
@@ -414,7 +437,7 @@
         <tr>
           <td><strong>${m.name}</strong><small>${m.family}</small></td>
           <td>${m.notes}<small>Primary strengths: ${m.strengths.join(', ')}</small></td>
-          <td>$${m.priceIn}/M input<br>$${m.priceOut}/M output<small>${m.cachedIn ? `Cached / special input reference: $${m.cachedIn}/M` : 'Preview / live pricing can vary by modality'}</small></td>
+          <td>${m.priceIn === 0 ? '<strong style="color:var(--color-success)">Free via OpenRouter</strong>' : `$${m.priceIn}/M input<br>$${m.priceOut}/M output`}<small>${m.cachedIn ? `Cached input: $${m.cachedIn}/M` : m.priceIn === 0 ? 'Rate limits apply on free tier' : 'Preview / live pricing varies by modality'}</small></td>
           <td>${m.context}<small>Latency profile: ${m.latency}</small></td>
           <td>${m.benchmarks.join('<br>')}</td>
           <td>${m.tools}<div class="tools-list">${m.strengths.slice(0,4).map(t=>`<span class="chip">${t}</span>`).join('')}</div></td>
@@ -427,11 +450,12 @@
       const t = task.toLowerCase();
       return models.map(m => {
         let adj = 0;
-        if(/code|repo|debug|typescript|python|agent|api|playwright|refactor/.test(t)) adj += m.ratings.coding * 0.08;
+        if(/code|repo|debug|typescript|python|agent|api|playwright|refactor|swe|coding/.test(t)) adj += m.ratings.coding * 0.08;
         if(/research|sources|memo|synthesis|analysis|compare|market|legal|due diligence/.test(t)) adj += m.ratings.research * 0.08;
         if(/excel|spreadsheet|model|financial|table|csv/.test(t)) adj += m.ratings.spreadsheet * 0.08;
         if(/voice|call|live|realtime|meeting|demo|agent assist|audio/.test(t)) adj += m.ratings.live * 0.10;
         if(/long|100k|200k|300k|1m|entire codebase|whole corpus|full document set/.test(t)) adj += m.ratings.longcontext * 0.09;
+        if(/free|cheap|cost|budget|open.?source|openrouter/.test(t)) adj += m.ratings.cost * 0.06;
         return {id:m.id, adj};
       });
     }
@@ -496,7 +520,7 @@
       if(type === 'live') reasons.push('realtime responsiveness is the deciding factor');
       if(type === 'longcontext') reasons.push('context retention and large-input handling matter most');
       if(scale === 'large') reasons.push('your workload likely exceeds standard short-context comfort zones');
-      if(cw >= 4) reasons.push('cost sensitivity materially penalizes expensive models');
+      if(cw >= 4) reasons.push('cost sensitivity materially penalises expensive models — consider Qwen3.6-Plus (free) or Gemini 3.1 Pro for budget-constrained runs');
       if(lw >= 4) reasons.push('latency sensitivity rewards faster responders');
       if(xw >= 4) reasons.push('context fit has strong weight');
       if(tw >= 4) reasons.push('tool-use capability is treated as core, not optional');
@@ -539,10 +563,11 @@
     function pickModelForStep(step){
       const t = step.toLowerCase();
       if(/voice|call|demo|meeting|live|audio|realtime/.test(t)) return {model:'Gemini 3.1 Flash Live', why:'best aligned to low-latency live interaction'};
-      if(/spreadsheet|excel|financial|sensitivity|table|csv|model/.test(t)) return {model:'Claude Opus 4.6', why:'strong enterprise spreadsheet and structured-analysis positioning'};
-      if(/implement|code|debug|repo|agent|tool|browser|playwright|computer/.test(t)) return {model:'GPT-5.4', why:'best blend of coding, tool search, and computer-use claims'};
-      if(/analyze large|entire corpus|long context|full codebase|full document|1m/.test(t)) return {model:'Gemini 3.1 Pro', why:'strong low-cost long-context and grounded-analysis fit'};
-      if(/research|memo|compare|synthesis|legal|diligence/.test(t)) return {model:'Claude Opus 4.6', why:'strong careful reasoning for high-stakes research and document work'};
+      if(/spreadsheet|excel|financial|sensitivity|table|csv|model/.test(t)) return {model:'Claude Opus 4.7', why:'top enterprise spreadsheet and structured-analysis positioning, #1 SWE-bench Pro'};
+      if(/implement|code|debug|repo|agent|tool|browser|playwright|computer/.test(t)) return {model:'GPT-5.4', why:'best blend of coding, tool search, and computer-use — first to beat human baseline on OSWorld-V'};
+      if(/analyze large|entire corpus|long context|full codebase|full document|1m/.test(t)) return {model:'Gemini 3.1 Pro', why:'best cost-per-token at scale, leads 13/16 benchmarks, Deep Research Max for grounded analysis'};
+      if(/research|memo|compare|synthesis|legal|diligence|risk|governance/.test(t)) return {model:'Claude Opus 4.7', why:'strongest careful reasoning for high-stakes research and enterprise document work'};
+      if(/free|prototype|test|experiment|draft|quick/.test(t)) return {model:'Qwen3.6-Plus', why:'free on OpenRouter, competitive with paid models on coding benchmarks — ideal for zero-cost iteration'};
       return {model:'GPT-5.4', why:'best generalist default for mixed professional subtasks'};
     }
 
@@ -550,7 +575,11 @@
       const text = document.getElementById('routerInput').value.trim();
       const steps = splitWorkflow(text || 'Inspect requirements; implement code; analyze spreadsheet outputs; run live demo');
       const routed = steps.map((step, idx) => ({step, ...pickModelForStep(step), idx: idx+1}));
-      const synthesizer = routed.some(r => r.model !== 'GPT-5.4') ? 'Use GPT-5.4 or Claude Opus 4.6 as final synthesizer depending on whether the final package is code-heavy or document-heavy.' : 'One primary model is enough; add Flash Live only if you need interactive demos.';
+      const synthesizer = routed.some(r => r.model === 'Claude Opus 4.7')
+        ? 'Use Claude Opus 4.7 as final synthesiser for document-heavy or legally sensitive outputs. Use GPT-5.4 if the final deliverable is a code artifact or tool orchestration result.'
+        : routed.some(r => r.model !== 'GPT-5.4')
+          ? 'Use GPT-5.4 or Claude Opus 4.7 as final synthesiser depending on whether the final package is code-heavy or document-heavy. Add Qwen3.6-Plus as a zero-cost validator step if budget is constrained.'
+          : 'One primary model is sufficient. Add Flash Live for interactive demos, Qwen3.6-Plus as a free sanity-check layer.';
       document.getElementById('routeOutput').innerHTML = routed.map(r => `
         <article class="route-step">
           <div class="chip">Step ${r.idx}</div>
@@ -581,4 +610,3 @@
   </script>
 </body>
 </html>
-
