@@ -115,8 +115,92 @@
     .tiny{font-size:var(--text-xs)}
     .source-list a{color:var(--color-primary)}
     .updated-badge{display:inline-flex;gap:.4rem;align-items:center;background:color-mix(in srgb,var(--color-primary) 12%,transparent);color:var(--color-primary);border:1px solid color-mix(in srgb,var(--color-primary) 25%,transparent);padding:.25rem .65rem;border-radius:var(--radius-full);font-size:var(--text-xs);font-weight:600}
-    @media(max-width:1100px){.hero-grid,.app-grid,.spec-grid,.runners,.scorecards,.watch-grid{grid-template-columns:1fr}.stat-row,.form-grid,.score-grid{grid-template-columns:1fr 1fr}}
-    @media(max-width:640px){.container{width:min(100% - 1rem,1200px)}.nav{align-items:flex-start;flex-direction:column}.nav-links{gap:.85rem}.stat-row,.form-grid,.score-grid{grid-template-columns:1fr}h1{max-width:unset}}
+    /* === Refresh: model cards, quick picker, comparison drawer === */
+    .whats-new{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-3);margin:var(--space-5) 0 var(--space-4)}
+    .whats-new-item{padding:.85rem 1rem;border-radius:var(--radius-lg);border:1px solid color-mix(in srgb,var(--color-primary) 22%,transparent);background:color-mix(in srgb,var(--color-primary) 6%,var(--color-surface));display:flex;flex-direction:column;gap:.2rem}
+    .whats-new-item .nw-tag{font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--color-primary)}
+    .whats-new-item .nw-title{font-weight:700;font-size:var(--text-sm)}
+    .whats-new-item .nw-desc{font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.45}
+    /* Quick picker */
+    .quick-pick{padding:var(--space-5) var(--space-6);border:1px solid var(--color-border);border-radius:var(--radius-xl);background:linear-gradient(135deg,var(--color-surface) 0%,var(--color-surface-offset) 100%);margin:var(--space-6) 0}
+    .qp-questions{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4);margin-top:var(--space-4)}
+    .qp-question label{font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-muted);margin-bottom:.5rem;display:block}
+    .qp-options{display:flex;flex-wrap:wrap;gap:.4rem}
+    .qp-opt{padding:.5rem .85rem;border-radius:var(--radius-full);border:1px solid var(--color-border);background:var(--color-surface-2);font-size:var(--text-xs);cursor:pointer;color:var(--color-text);transition:all var(--transition)}
+    .qp-opt.active{background:var(--color-primary);color:var(--color-text-inverse);border-color:var(--color-primary)}
+    .qp-result{margin-top:var(--space-5);padding:var(--space-5);border-radius:var(--radius-lg);background:var(--color-surface-2);border:1px dashed var(--color-border);display:flex;justify-content:space-between;align-items:center;gap:var(--space-4);flex-wrap:wrap}
+    .qp-result .qp-pick{display:flex;flex-direction:column;gap:.2rem}
+    .qp-result h3{margin:0;font-size:var(--text-lg)}
+    .qp-result .qp-why{font-size:var(--text-sm);color:var(--color-text-muted);max-width:60ch}
+    /* Sticky filter bar */
+    .filter-toolbar{position:sticky;top:72px;z-index:50;padding:var(--space-3) 0;background:color-mix(in srgb,var(--color-bg) 95%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--color-divider);margin:0 calc(50% - 50vw) var(--space-5);}
+    .filter-toolbar-inner{width:min(1200px,calc(100% - 2rem));margin:0 auto;display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}
+    .filter-toolbar-inner .filter-label{font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-muted);margin-right:.4rem}
+    /* View toggle */
+    .view-toggle{display:inline-flex;border:1px solid var(--color-border);border-radius:var(--radius-full);overflow:hidden;background:var(--color-surface-2);margin-left:auto}
+    .view-toggle button{padding:.45rem .9rem;background:transparent;color:var(--color-text-muted);font-size:var(--text-xs);font-weight:600;border:none;cursor:pointer;transition:all var(--transition)}
+    .view-toggle button.active{background:var(--color-primary);color:var(--color-text-inverse)}
+    /* Model card grid */
+    .model-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:var(--space-4)}
+    .model-card{position:relative;display:flex;flex-direction:column;gap:var(--space-3);padding:var(--space-5);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);box-shadow:var(--shadow-sm);transition:all var(--transition);cursor:pointer}
+    .model-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);border-color:color-mix(in srgb,var(--color-primary) 50%,var(--color-border))}
+    .model-card.expanded{box-shadow:var(--shadow-md)}
+    .mc-tier{position:absolute;top:.85rem;right:.85rem;font-size:var(--text-xs);font-weight:600;padding:.2rem .55rem;border-radius:var(--radius-full)}
+    .mc-tier-frontier{background:color-mix(in srgb,var(--color-primary) 14%,transparent);color:var(--color-primary)}
+    .mc-tier-efficient{background:color-mix(in srgb,var(--color-blue) 14%,transparent);color:var(--color-blue)}
+    .mc-tier-oss{background:color-mix(in srgb,var(--color-purple) 14%,transparent);color:var(--color-purple)}
+    .mc-tier-specialist{background:color-mix(in srgb,var(--color-warning) 14%,transparent);color:var(--color-warning)}
+    .mc-head{display:flex;flex-direction:column;gap:.25rem;padding-right:5rem}
+    .mc-name{font-size:1.15rem;font-weight:700;line-height:1.2}
+    .mc-family{font-size:var(--text-xs);color:var(--color-text-muted);font-weight:500}
+    .mc-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-top:.4rem}
+    .mc-stat{padding:.5rem;background:var(--color-surface-offset);border-radius:var(--radius-md);text-align:center;min-width:0}
+    .mc-stat .mc-stat-label{font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--color-text-muted);display:block}
+    .mc-stat .mc-stat-value{font-size:.82rem;font-weight:700;color:var(--color-text);font-variant-numeric:tabular-nums;display:block;margin-top:.15rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .mc-best-for{font-size:var(--text-sm);color:var(--color-text);line-height:1.5}
+    .mc-bench{display:flex;flex-direction:column;gap:.3rem;font-size:var(--text-xs);color:var(--color-text-muted);padding-top:.5rem;border-top:1px solid var(--color-divider)}
+    .mc-bench-row{display:flex;align-items:center;gap:.4rem}
+    .mc-bench-row::before{content:"▸";color:var(--color-primary);font-size:.7rem}
+    .mc-actions{display:flex;gap:.5rem;margin-top:auto;padding-top:.5rem}
+    .mc-action{flex:1;padding:.5rem .8rem;border-radius:var(--radius-md);border:1px solid var(--color-border);background:var(--color-surface-2);font-size:var(--text-xs);font-weight:600;color:var(--color-text);cursor:pointer;transition:all var(--transition)}
+    .mc-action:hover{border-color:var(--color-primary);color:var(--color-primary)}
+    .mc-action.pinned{background:var(--color-primary);color:var(--color-text-inverse);border-color:var(--color-primary)}
+    .mc-details{display:none;flex-direction:column;gap:.7rem;margin-top:.5rem;padding-top:.7rem;border-top:1px solid var(--color-divider)}
+    .model-card.expanded .mc-details{display:flex}
+    .mc-details h4{font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-muted);margin:0 0 .25rem}
+    .mc-details p,.mc-details ul{font-size:var(--text-sm);color:var(--color-text);margin:0;line-height:1.5}
+    .mc-details ul{padding-left:1.1rem}
+    /* Comparison drawer */
+    .compare-bar{position:fixed;bottom:0;left:0;right:0;background:var(--color-text);color:var(--color-text-inverse);padding:.8rem 1.2rem;display:none;align-items:center;gap:1rem;z-index:200;box-shadow:0 -10px 30px rgba(0,0,0,.2);flex-wrap:wrap}
+    .compare-bar.visible{display:flex}
+    .compare-bar-pinned{display:flex;gap:.5rem;flex-wrap:wrap;flex:1;min-width:0}
+    .compare-bar-chip{display:inline-flex;align-items:center;gap:.4rem;padding:.3rem .7rem;background:color-mix(in srgb,var(--color-text-inverse) 14%,transparent);border-radius:var(--radius-full);font-size:var(--text-xs);font-weight:600}
+    .compare-bar-chip button{background:none;border:none;color:var(--color-text-inverse);opacity:.7;cursor:pointer;font-size:1rem;line-height:1;padding:0}
+    .compare-bar-chip button:hover{opacity:1}
+    .compare-bar .btn{padding:.55rem 1rem;font-size:var(--text-sm)}
+    .compare-modal{position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);z-index:300;display:none;align-items:center;justify-content:center;padding:2rem}
+    .compare-modal.visible{display:flex}
+    .compare-modal-inner{background:var(--color-surface);border-radius:var(--radius-xl);width:min(1100px,100%);max-height:90vh;overflow:auto;padding:var(--space-6);position:relative;border:1px solid var(--color-border)}
+    .compare-close{position:absolute;top:1rem;right:1rem;background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-full);width:2.2rem;height:2.2rem;font-size:1.1rem;color:var(--color-text);cursor:pointer;display:flex;align-items:center;justify-content:center}
+    .compare-grid{display:grid;gap:1rem;margin-top:1rem}
+    .compare-row{display:grid;gap:.5rem;padding:.7rem;border-radius:var(--radius-md);background:var(--color-surface-2)}
+    .compare-row .compare-label{font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-muted)}
+    .compare-row .compare-cells{display:grid;gap:.5rem;font-size:var(--text-sm)}
+    .compare-cell strong{color:var(--color-primary);display:block;margin-bottom:.2rem;font-size:var(--text-xs)}
+    /* Pricing color scale */
+    .price-tag{display:inline-flex;align-items:center;gap:.25rem;padding:.15rem .45rem;border-radius:var(--radius-sm);font-variant-numeric:tabular-nums;font-weight:600;font-size:.75rem}
+    .price-tag.free{background:color-mix(in srgb,var(--color-success) 16%,transparent);color:var(--color-success)}
+    .price-tag.cheap{background:color-mix(in srgb,var(--color-success) 10%,transparent);color:var(--color-success)}
+    .price-tag.mid{background:color-mix(in srgb,var(--color-blue) 10%,transparent);color:var(--color-blue)}
+    .price-tag.high{background:color-mix(in srgb,var(--color-warning) 12%,transparent);color:var(--color-warning)}
+    .price-tag.premium{background:color-mix(in srgb,var(--color-error) 12%,transparent);color:var(--color-error)}
+    /* Helper */
+    .empty-msg{padding:2rem;text-align:center;color:var(--color-text-muted);font-size:var(--text-sm);background:var(--color-surface-offset);border-radius:var(--radius-lg);border:1px dashed var(--color-border)}
+    /* Improved dark-mode chip contrast */
+    [data-theme="dark"] .chip{background:color-mix(in srgb,var(--color-text) 8%,transparent)}
+    [data-theme="dark"] .filter-btn{background:color-mix(in srgb,var(--color-text) 4%,transparent)}
+    @media(max-width:1100px){.hero-grid,.app-grid,.spec-grid,.runners,.scorecards,.watch-grid{grid-template-columns:1fr}.stat-row,.form-grid,.score-grid,.qp-questions,.whats-new{grid-template-columns:1fr 1fr}}
+    @media(max-width:640px){.container{width:min(100% - 1rem,1200px)}.nav{align-items:flex-start;flex-direction:column}.nav-links{gap:.85rem}.stat-row,.form-grid,.score-grid,.qp-questions,.whats-new{grid-template-columns:1fr}h1{max-width:unset}.filter-toolbar{top:auto}.model-grid{grid-template-columns:1fr}.compare-bar{padding:.7rem .9rem}}
     :focus-visible{outline:2px solid var(--color-primary);outline-offset:3px}
   </style>
 </head>
@@ -137,11 +221,11 @@
       </div>
       <nav class="nav-links" aria-label="Primary">
         <a href="/">← varunsingla.com</a>
-        <a href="#models">Model facts</a>
+        <a href="#picker">Quick pick</a>
+        <a href="#models">Models</a>
         <a href="#evaluator">Evaluator</a>
-        <a href="#runners">Prompt runners</a>
-        <a href="#router">Model team</a>
-        <a href="#watch">Ones to watch</a>
+        <a href="#router">Team router</a>
+        <a href="#watch">Watch</a>
       </nav>
       <div class="nav-actions">
         <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme">◐</button>
@@ -153,32 +237,87 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <span class="eyebrow">Holistic view · Updated April 25, 2026</span>
+          <span class="eyebrow">Refreshed April 25, 2026 · 12 models</span>
           <h1>Every frontier model. One place.</h1>
-          <p class="lede">12 models across OpenAI, Anthropic, Google, xAI, Alibaba, Moonshot, Xiaomi, and the open-source frontier — compared on benchmarks, pricing, context, and practical task fit. Built for developers who need to pick the right model mix fast.</p>
-          <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:var(--space-6)">
-            <span class="updated-badge">✦ Grok 4.20 — xAI</span>
-            <span class="updated-badge">✦ Kimi K2 — Moonshot AI</span>
-            <span class="updated-badge">✦ MiMo V2.5 — Xiaomi</span>
-            <span class="updated-badge">✦ MiniMax M2.7 — OSS</span>
+          <p class="lede">Compare 12 production models across OpenAI, Anthropic, Google, xAI, Moonshot, Alibaba, Xiaomi, MiniMax, and DeepMind — on benchmarks, pricing, context, and practical task fit. Pick a model in 30 seconds, or evaluate a real task in two minutes.</p>
+          <div class="nav-actions" style="margin-bottom:var(--space-5)">
+            <a class="btn btn-primary" href="#picker">Pick a model in 30 seconds</a>
+            <a class="btn btn-secondary" href="#models">Browse all models</a>
           </div>
-          <div class="nav-actions">
-            <a class="btn btn-primary" href="#evaluator">Start evaluating</a>
-            <a class="btn btn-secondary" href="#models">All model data</a>
+          <div class="whats-new" aria-label="What's new this week">
+            <div class="whats-new-item">
+              <span class="nw-tag">Apr 22 · Just landed</span>
+              <span class="nw-title">Gemini Deep Research Max</span>
+              <span class="nw-desc">160 autonomous web searches + private data fusion in one API call. Built on Gemini 3.1 Pro.</span>
+            </div>
+            <div class="whats-new-item">
+              <span class="nw-tag">Apr 16 · GA</span>
+              <span class="nw-title">Claude Opus 4.7</span>
+              <span class="nw-desc">SWE-bench Pro 64.3% — new #1 across all models. SWE-bench Verified jumped 80.8% → 87.6%.</span>
+            </div>
+            <div class="whats-new-item">
+              <span class="nw-tag">Apr 22 · OSS</span>
+              <span class="nw-title">Xiaomi MiMo V2.5</span>
+              <span class="nw-desc">All 6 modalities in a single autoregressive backbone — first credible OSS answer to GPT-5.4 multimodal.</span>
+            </div>
           </div>
         </div>
         <aside class="hero-card" aria-label="Highlights">
           <div>
-            <div class="tiny muted">What it includes</div>
-            <h3>Hands-on comparison workspace</h3>
+            <div class="tiny muted">This is a hands-on workspace</div>
+            <h3>Three ways to choose</h3>
           </div>
-          <div class="stat-row">
-            <div class="stat"><span class="tiny muted">Models tracked</span><strong>12</strong></div>
-            <div class="stat"><span class="tiny muted">Scoring axes</span><strong>4</strong></div>
-            <div class="stat"><span class="tiny muted">Task lanes</span><strong>5</strong></div>
+          <div class="stack" style="gap:.6rem">
+            <a href="#picker" class="stat" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:.7rem;padding:.85rem 1rem"><strong style="font-size:1.4rem;color:var(--color-primary)">1</strong><div><div style="font-weight:600">Quick pick</div><div class="tiny muted">3 questions → 1 recommended model</div></div></a>
+            <a href="#evaluator" class="stat" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:.7rem;padding:.85rem 1rem"><strong style="font-size:1.4rem;color:var(--color-blue)">2</strong><div><div style="font-weight:600">Evaluate a real task</div><div class="tiny muted">Paste task, weight cost/latency/context</div></div></a>
+            <a href="#router" class="stat" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:.7rem;padding:.85rem 1rem"><strong style="font-size:1.4rem;color:var(--color-purple)">3</strong><div><div style="font-weight:600">Build a model team</div><div class="tiny muted">Route a multi-step workflow across models</div></div></a>
           </div>
-          <div class="tiny muted">Scores weight cost, latency, context fit, benchmark alignment, and probable failure modes — not raw benchmark claims alone. Use the filter bar to focus on a category.</div>
+          <div class="tiny muted">Scores weight cost, latency, context fit, benchmark alignment, and probable failure modes — not raw benchmark claims alone.</div>
         </aside>
+      </div>
+    </section>
+
+    <!-- Quick Pick: 3-question chooser -->
+    <section id="picker">
+      <div class="container">
+        <div class="section-top">
+          <div>
+            <h2>Quick pick</h2>
+            <p>Three questions — one recommended model. For nuanced tradeoffs, use the full evaluator below.</p>
+          </div>
+        </div>
+        <div class="quick-pick">
+          <div class="qp-questions">
+            <div class="qp-question">
+              <label>1. What's the work?</label>
+              <div class="qp-options" data-qp="work">
+                <button class="qp-opt active" data-val="coding">Coding & agents</button>
+                <button class="qp-opt" data-val="research">Research / docs</button>
+                <button class="qp-opt" data-val="longcontext">Long-context reasoning</button>
+                <button class="qp-opt" data-val="multimodal">Multimodal / image-video</button>
+                <button class="qp-opt" data-val="live">Voice / realtime</button>
+                <button class="qp-opt" data-val="bulk">Bulk classification</button>
+              </div>
+            </div>
+            <div class="qp-question">
+              <label>2. Budget?</label>
+              <div class="qp-options" data-qp="budget">
+                <button class="qp-opt" data-val="free">Free / OSS only</button>
+                <button class="qp-opt active" data-val="value">Best value</button>
+                <button class="qp-opt" data-val="any">No budget cap</button>
+              </div>
+            </div>
+            <div class="qp-question">
+              <label>3. Speed need?</label>
+              <div class="qp-options" data-qp="speed">
+                <button class="qp-opt" data-val="fast">Sub-second matters</button>
+                <button class="qp-opt active" data-val="normal">Standard</button>
+                <button class="qp-opt" data-val="deep">Quality &gt; speed</button>
+              </div>
+            </div>
+          </div>
+          <div class="qp-result" id="qpResult"></div>
+        </div>
       </div>
     </section>
 
@@ -186,30 +325,36 @@
       <div class="container">
         <div class="section-top">
           <div>
-            <h2>Model facts</h2>
-            <p>Filter by category, then drill into the table. Last updated April 25, 2026.</p>
+            <h2>The full lineup</h2>
+            <p>Click any card to see strengths, watch-outs, and tooling. Pin up to 3 to compare side-by-side.</p>
           </div>
         </div>
-        <div class="spec-grid" style="margin-bottom:var(--space-6)">
-          <article class="spec-card"><span class="chip">Coding #1</span><h3>Claude Opus 4.7</h3><p class="muted">SWE-bench Pro 64.3% — #1 across all models. GPT-5.4 first to beat human baseline on real desktop tasks (OSWorld-V 75%).</p></article>
-          <article class="spec-card"><span class="chip">Cheapest frontier</span><h3>Gemini 3.1 Pro</h3><p class="muted">$2/$12 per M tokens, leads 13/16 benchmarks. Gemini Flash goes even lower at $0.075/$0.30.</p></article>
-          <article class="spec-card"><span class="chip chip-oss">Free OSS picks</span><h3>Qwen3.6-Plus & MiniMax M2.7</h3><p class="muted">Qwen3.6-Plus free on OpenRouter. MiniMax M2.7 (229B MoE) ELO 1495 — best open-weights model globally.</p></article>
-          <article class="spec-card"><span class="chip chip-new">New entrants</span><h3>Kimi K2 · Grok 4.20 · MiMo V2.5</h3><p class="muted">Kimi K2 for long-context reasoning. Grok 4.20 at 78% non-hallucination. MiMo V2.5 unifies 6 modalities in one API call.</p></article>
+      </div>
+      <!-- Sticky filter toolbar -->
+      <div class="filter-toolbar">
+        <div class="filter-toolbar-inner">
+          <span class="filter-label">Filter</span>
+          <div class="filter-bar" id="filterBar" style="margin:0">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="frontier">Frontier</button>
+            <button class="filter-btn" data-filter="efficient">Price-performance</button>
+            <button class="filter-btn" data-filter="oss">Open source</button>
+            <button class="filter-btn" data-filter="openai">OpenAI</button>
+            <button class="filter-btn" data-filter="anthropic">Anthropic</button>
+            <button class="filter-btn" data-filter="google">Google</button>
+            <button class="filter-btn" data-filter="china">Chinese labs</button>
+            <button class="filter-btn" data-filter="live">Live / Voice</button>
+            <button class="filter-btn" data-filter="multimodal">Multimodal</button>
+          </div>
+          <div class="view-toggle" role="tablist" aria-label="View">
+            <button class="active" data-view="cards" role="tab">Cards</button>
+            <button data-view="table" role="tab">Table</button>
+          </div>
         </div>
-
-        <!-- Filter bar -->
-        <div class="filter-bar" id="filterBar">
-          <button class="filter-btn active" data-filter="all">All models</button>
-          <button class="filter-btn" data-filter="openai">OpenAI</button>
-          <button class="filter-btn" data-filter="anthropic">Anthropic</button>
-          <button class="filter-btn" data-filter="google">Google</button>
-          <button class="filter-btn" data-filter="oss">Open Source / Free</button>
-          <button class="filter-btn" data-filter="china">Chinese labs</button>
-          <button class="filter-btn" data-filter="live">Live / Voice</button>
-          <button class="filter-btn" data-filter="multimodal">Multimodal</button>
-        </div>
-
-        <div class="table-wrap">
+      </div>
+      <div class="container">
+        <div id="modelGrid" class="model-grid"></div>
+        <div id="modelTableWrap" class="table-wrap" style="display:none">
           <table>
             <thead>
               <tr>
@@ -228,6 +373,21 @@
         </div>
       </div>
     </section>
+
+    <!-- Compare drawer (fixed bottom) -->
+    <div class="compare-bar" id="compareBar" role="region" aria-label="Compare">
+      <div class="compare-bar-pinned" id="compareBarPinned"></div>
+      <button class="btn btn-primary" id="compareOpenBtn" type="button">Compare side-by-side</button>
+      <button class="btn btn-secondary" id="compareClearBtn" type="button" style="background:transparent;color:var(--color-text-inverse);border-color:color-mix(in srgb,var(--color-text-inverse) 30%,transparent)">Clear</button>
+    </div>
+    <div class="compare-modal" id="compareModal" role="dialog" aria-modal="true" aria-label="Side-by-side comparison">
+      <div class="compare-modal-inner">
+        <button class="compare-close" id="compareCloseBtn" aria-label="Close">×</button>
+        <h2 style="margin:0">Side-by-side comparison</h2>
+        <p class="muted" style="margin-bottom:var(--space-3)">Pinned models compared across the dimensions that matter most.</p>
+        <div class="compare-grid" id="compareGrid"></div>
+      </div>
+    </div>
 
     <section id="evaluator">
       <div class="container app-grid">
@@ -490,12 +650,12 @@
       id:'minimax27', name:'MiniMax M2.7', family:'MiniMax / OSS', tier:'oss',
       tags:['oss','china','multimodal'],
       priceIn:0, priceOut:0, cachedIn:0,
-      context:'~200K tokens; open weights on HuggingFace',
+      context:'200K tokens; open weights on HuggingFace (since Apr 11)',
       latency:'Medium (self-hosted)',
-      strengths:['229B MoE — best open-weights ELO 1495 globally','100+ autonomous self-optimisation rounds during training','Independently invented loop detection, memory, verification','Native Agent Teams (open-source Three-Agent Harness)','30% self-generated performance improvement'],
-      benchmarks:['ELO 1495 GDPval-AA — best open-source, trailing only Opus 4.6+Sonnet 4.6+GPT-5.4','SWE-Pro 56.22%','Terminal Bench 2: 57.0%','First MemRL production model'],
+      strengths:['230B sparse MoE / 10B active / 256 experts — best open-weights ELO 1495 globally','100+ autonomous self-optimisation rounds during training','Independently invented loop detection, memory, verification','Native Agent Teams (open-source Three-Agent Harness)','97% skill adherence on 40+ complex multi-step tasks'],
+      benchmarks:['ELO 1495 GDPval-AA — best open-source, trailing only Opus 4.6+Sonnet 4.6+GPT-5.4','SWE-Pro 56.22% — matches GPT-5.3-Codex','Terminal Bench 2: 57.0%','First MemRL production model'],
       tools:'Native Agent Teams = open-source Three-Agent Harness, SGLang/vLLM/Transformers/NVIDIA NIM deployment, MemRL self-improvement',
-      notes:'Landmark OSS release. First model to participate in its own development via 100+ autonomous optimisation rounds. Best open-weights model globally as of Apr 2026. Self-hosts well on NVIDIA NIM. Originally MIT; relicensed post-HK IPO — check licence for commercial use.',
+      notes:'Weights on HuggingFace since April 11 2026. First model to participate in its own development via 100+ autonomous optimisation rounds. Best open-weights model globally as of Apr 2026. Smallest practical quant ~108GB — runs at 15 tok/s on a 128GB Mac Studio. Originally MIT; relicensed post-HK IPO — check licence for commercial use.',
       failures:['Requires significant GPU to self-host (229B MoE)','MIT licence changed post-IPO — verify commercial terms','Context window smaller than frontier cloud models','Latency depends on your infrastructure'],
       ratings:{coding:86,research:82,spreadsheet:78,live:42,longcontext:80,cost:96,latency:60,context:82,tool:80}
     },
@@ -536,9 +696,9 @@
     },
     {
       name:'DeepSeek V4',
-      status:'Not yet released (1T+ params MoE expected)',
-      why:'DeepSeek V3 already competitive with frontier models at a fraction of the cost. V4 rumoured at 1T+ params with MoE routing. If priced like V3 (~$0.14/M), it could undercut every model on this page while matching frontier quality.',
-      eta:'Q2–Q3 2026 expected'
+      status:'Imminent — V4 Lite (200B) released Mar 9; full V4 expected late April 2026',
+      why:'V4 Lite already validated the architecture (NVIDIA GPU shift after Huawei Ascend 910B failure). Full V4 targets ~1T params with Engram conditional memory. Internal benchmarks suggest it surpasses Claude and GPT in code generation. If priced near V3 levels (~$0.14/M), it would undercut every model on this page.',
+      eta:'Mid–late April 2026 (delayed from Feb)'
     },
     {
       name:'Qwen3-VL (Alibaba)',
@@ -570,13 +730,199 @@
     document.getElementById('sourceList').innerHTML = sources.map(s=>`<div><a href="${s.url}" target="_blank" rel="noopener noreferrer">${s.label}</a></div>`).join('');
   }
 
+  // === Pricing tier helpers ===
+  function priceClass(m){
+    if(m.priceIn===0) return 'free';
+    if(m.priceIn<0.5) return 'cheap';
+    if(m.priceIn<3) return 'mid';
+    if(m.priceIn<6) return 'high';
+    return 'premium';
+  }
+  function priceLabel(m){
+    if(m.priceIn===0) return 'Free';
+    return `$${m.priceIn}/$${m.priceOut}`;
+  }
+  function tierLabelShort(t){return ({frontier:'Frontier',efficient:'Efficient',oss:'Open source',specialist:'Specialist'})[t];}
+
+  // === Filter logic shared between cards & table ===
+  function modelMatches(m, filter){
+    if(filter==='all') return true;
+    if(filter==='frontier'||filter==='efficient'||filter==='oss'||filter==='specialist') return m.tier===filter;
+    return m.tags.includes(filter);
+  }
+
+  // === Card rendering ===
+  let pinned = new Set();
+
+  function renderCards(filter='all'){
+    const grid = document.getElementById('modelGrid');
+    const filtered = models.filter(m => modelMatches(m,filter));
+    if(!filtered.length){grid.innerHTML = '<div class="empty-msg">No models match this filter — try “All”.</div>';return;}
+    grid.innerHTML = filtered.map(m => {
+      const isPinned = pinned.has(m.id);
+      const topBench = (m.benchmarks||[]).slice(0,2);
+      return `<article class="model-card${isPinned?' expanded':''}" data-id="${m.id}">
+        <span class="mc-tier mc-tier-${m.tier}">${tierLabelShort(m.tier)}</span>
+        <div class="mc-head">
+          <span class="mc-name">${m.name}</span>
+          <span class="mc-family">${m.family}</span>
+        </div>
+        <div class="mc-stats">
+          <div class="mc-stat" title="Pricing per million tokens (input / output)"><span class="mc-stat-label">Price</span><span class="mc-stat-value"><span class="price-tag ${priceClass(m)}">${priceLabel(m)}</span></span></div>
+          <div class="mc-stat" title="Context window"><span class="mc-stat-label">Context</span><span class="mc-stat-value">${shortenContext(m.context)}</span></div>
+          <div class="mc-stat" title="Latency profile"><span class="mc-stat-label">Latency</span><span class="mc-stat-value">${m.latency}</span></div>
+        </div>
+        <p class="mc-best-for">${m.notes}</p>
+        <div class="mc-bench">${topBench.map(b=>`<div class="mc-bench-row">${b}</div>`).join('')}</div>
+        <div class="mc-details">
+          <div><h4>Strengths</h4><ul>${m.strengths.slice(0,5).map(s=>`<li>${s}</li>`).join('')}</ul></div>
+          <div><h4>Watch-outs</h4><ul>${m.failures.map(f=>`<li>${f}</li>`).join('')}</ul></div>
+          ${m.tools?`<div><h4>Tools & integrations</h4><p>${m.tools}</p></div>`:''}
+        </div>
+        <div class="mc-actions">
+          <button class="mc-action mc-toggle" type="button">${isPinned?'Hide details':'Show details'}</button>
+          <button class="mc-action mc-pin${pinned.has(m.id)?' pinned':''}" type="button" data-pin="${m.id}">${pinned.has(m.id)?'✓ Pinned':'+ Compare'}</button>
+        </div>
+      </article>`;
+    }).join('');
+    bindCardEvents();
+  }
+
+  function shortenContext(c){
+    return c.replace(/tokens?/gi,'').replace(/\s+—.*/,'').replace(/standard.*/i,'std').replace(/native.*/i,'').trim().slice(0,18);
+  }
+
+  function bindCardEvents(){
+    document.querySelectorAll('.model-card').forEach(card=>{
+      const id = card.dataset.id;
+      card.querySelector('.mc-toggle').addEventListener('click',e=>{
+        e.stopPropagation();
+        card.classList.toggle('expanded');
+        e.target.textContent = card.classList.contains('expanded')?'Hide details':'Show details';
+      });
+      const pinBtn = card.querySelector('.mc-pin');
+      pinBtn.addEventListener('click',e=>{
+        e.stopPropagation();
+        togglePin(id);
+      });
+      card.addEventListener('click',()=>{card.classList.toggle('expanded');const t=card.querySelector('.mc-toggle');if(t) t.textContent = card.classList.contains('expanded')?'Hide details':'Show details';});
+    });
+  }
+
+  function togglePin(id){
+    if(pinned.has(id)) pinned.delete(id);
+    else if(pinned.size>=3){
+      // Replace oldest
+      const arr=[...pinned]; pinned.delete(arr[0]); pinned.add(id);
+    } else pinned.add(id);
+    renderCards(currentFilter);
+    renderCompareBar();
+  }
+
+  function renderCompareBar(){
+    const bar = document.getElementById('compareBar');
+    const inner = document.getElementById('compareBarPinned');
+    if(!pinned.size){bar.classList.remove('visible');return;}
+    bar.classList.add('visible');
+    const items = [...pinned].map(id=>models.find(m=>m.id===id)).filter(Boolean);
+    inner.innerHTML = `<span style="font-weight:600;font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.06em;opacity:.75">Pinned (${items.length}/3)</span>` + items.map(m=>`<span class="compare-bar-chip">${m.name}<button data-unpin="${m.id}" aria-label="Unpin">×</button></span>`).join('');
+    inner.querySelectorAll('[data-unpin]').forEach(b=>b.onclick=()=>togglePin(b.dataset.unpin));
+  }
+
+  function openCompareModal(){
+    const items = [...pinned].map(id=>models.find(m=>m.id===id)).filter(Boolean);
+    if(items.length<2){alert('Pin at least 2 models to compare.');return;}
+    const grid = document.getElementById('compareGrid');
+    const rows = [
+      {label:'Tier', cell:m=>tierLabelShort(m.tier)},
+      {label:'Family', cell:m=>m.family},
+      {label:'Pricing (per M tokens)', cell:m=>m.priceIn===0?`<span class="price-tag free">Free (OSS)</span>`:`<span class="price-tag ${priceClass(m)}">$${m.priceIn} in / $${m.priceOut} out</span>${m.cachedIn?` <span class="tiny muted">cached $${m.cachedIn}</span>`:''}`},
+      {label:'Context', cell:m=>m.context},
+      {label:'Latency', cell:m=>m.latency},
+      {label:'Best for', cell:m=>m.notes},
+      {label:'Top benchmarks', cell:m=>`<ul style="padding-left:1rem;margin:0">${m.benchmarks.slice(0,3).map(b=>`<li>${b}</li>`).join('')}</ul>`},
+      {label:'Strengths', cell:m=>`<ul style="padding-left:1rem;margin:0">${m.strengths.slice(0,3).map(s=>`<li>${s}</li>`).join('')}</ul>`},
+      {label:'Watch-outs', cell:m=>`<ul style="padding-left:1rem;margin:0">${m.failures.slice(0,3).map(f=>`<li>${f}</li>`).join('')}</ul>`},
+    ];
+    const cellCols = `repeat(${items.length},1fr)`;
+    grid.innerHTML = rows.map(r=>`<div class="compare-row"><div class="compare-label">${r.label}</div><div class="compare-cells" style="grid-template-columns:${cellCols}">${items.map(m=>`<div class="compare-cell"><strong>${m.name}</strong>${r.cell(m)}</div>`).join('')}</div></div>`).join('');
+    document.getElementById('compareModal').classList.add('visible');
+  }
+
+  // === Quick picker ===
+  const qpState = {work:'coding',budget:'value',speed:'normal'};
+  function recommendQuickPick(){
+    const {work,budget,speed} = qpState;
+    // Decision matrix — hand-tuned for late Apr 2026
+    const map = {
+      coding:{free:'qwen36plus',value:'gemini31pro',any:'claude47'},
+      research:{free:'qwen36plus',value:'gemini31pro',any:'claude47'},
+      longcontext:{free:'qwen36plus',value:'gemini31pro',any:'grok420'},
+      multimodal:{free:'mimov25',value:'gemini31pro',any:'gpt54'},
+      live:{free:'mimov25',value:'flashlive',any:'flashlive'},
+      bulk:{free:'qwen36plus',value:'geminiflash',any:'claude35haiku'},
+    };
+    let id = map[work][budget];
+    // Speed overrides
+    if(speed==='fast'){
+      if(work==='live') id='flashlive';
+      else if(budget!=='any' && work!=='multimodal') id='geminiflash';
+      else if(budget==='any') id='claude35haiku';
+    }
+    if(speed==='deep' && budget==='any' && (work==='coding'||work==='research'||work==='longcontext')) id='claude47';
+    return models.find(m=>m.id===id) || models[0];
+  }
+  function renderQuickPick(){
+    const m = recommendQuickPick();
+    const reasons = [];
+    if(qpState.work==='coding') reasons.push(`top-tier on coding benchmarks`);
+    if(qpState.work==='live') reasons.push(`built for sub-500ms voice & multimodal turn-taking`);
+    if(qpState.work==='longcontext') reasons.push(`large context window (${m.context.split(';')[0].trim()})`);
+    if(qpState.work==='multimodal') reasons.push(`strong multimodal capability`);
+    if(qpState.budget==='free' && m.priceIn===0) reasons.push(`zero-cost via OpenRouter or self-host`);
+    if(qpState.budget==='value') reasons.push(`best value-for-money in this lane`);
+    if(qpState.speed==='fast') reasons.push(`fastest in its tier`);
+    if(qpState.speed==='deep') reasons.push(`prioritises depth & accuracy over speed`);
+    const why = reasons.length? `Picked because it offers ${reasons.slice(0,3).join(', ')}.` : 'Recommended given your inputs.';
+    document.getElementById('qpResult').innerHTML = `
+      <div class="qp-pick">
+        <span class="tiny muted" style="text-transform:uppercase;letter-spacing:.06em;font-weight:700">Recommended</span>
+        <h3>${m.name} <span class="tiny muted" style="font-weight:400">· ${m.family}</span></h3>
+        <p class="qp-why">${why}</p>
+      </div>
+      <div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap">
+        <span class="price-tag ${priceClass(m)}">${m.priceIn===0?'Free':`$${m.priceIn}/$${m.priceOut}`}</span>
+        <span class="chip">${m.context.split(';')[0].trim()}</span>
+        <a class="btn btn-secondary" href="#models" onclick="window.scrollToCard&&window.scrollToCard('${m.id}')">See full details</a>
+      </div>`;
+  }
+  function bindQuickPick(){
+    document.querySelectorAll('.qp-options').forEach(group=>{
+      const key = group.dataset.qp;
+      group.addEventListener('click',e=>{
+        const btn = e.target.closest('.qp-opt');
+        if(!btn) return;
+        group.querySelectorAll('.qp-opt').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        qpState[key] = btn.dataset.val;
+        renderQuickPick();
+      });
+    });
+  }
+  window.scrollToCard = function(id){
+    const card = document.querySelector(`.model-card[data-id="${id}"]`);
+    if(card){card.classList.add('expanded');card.scrollIntoView({behavior:'smooth',block:'center'});card.style.outline='2px solid var(--color-primary)';setTimeout(()=>card.style.outline='',2500);}
+  };
+
+  let currentFilter = 'all';
+
   function renderTable(filter='all'){
     const tbody = document.getElementById('modelTableBody');
     const tierLabels = {frontier:'Tier 1 — Frontier',efficient:'Tier 2 — Efficient / Price-Performance',oss:'Tier 3 — Open Source / Free',specialist:'Specialist'};
     let html = '';
     const tiers = ['frontier','efficient','oss','specialist'];
     tiers.forEach(tier => {
-      const tierModels = models.filter(m => m.tier === tier && (filter==='all' || m.tags.includes(filter)));
+      const tierModels = models.filter(m => m.tier === tier && modelMatches(m,filter));
       if(!tierModels.length) return;
       html += `<tr><td colspan="8" class="tier-header">${tierLabels[tier]}<span>· ${tierModels.length} model${tierModels.length>1?'s':''}</span></td></tr>`;
       tierModels.forEach(m => {
@@ -608,14 +954,33 @@
     `).join('');
   }
 
-  // Filter logic
+  // Filter logic — drives both cards and table
   document.getElementById('filterBar').addEventListener('click', e => {
     const btn = e.target.closest('.filter-btn');
     if(!btn) return;
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    renderTable(btn.dataset.filter);
+    currentFilter = btn.dataset.filter;
+    renderCards(currentFilter);
+    renderTable(currentFilter);
   });
+
+  // View toggle (cards vs table)
+  document.querySelector('.view-toggle').addEventListener('click', e => {
+    const btn = e.target.closest('button[data-view]');
+    if(!btn) return;
+    document.querySelectorAll('.view-toggle button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const isCards = btn.dataset.view === 'cards';
+    document.getElementById('modelGrid').style.display = isCards ? '' : 'none';
+    document.getElementById('modelTableWrap').style.display = isCards ? 'none' : '';
+  });
+
+  // Compare modal events
+  document.getElementById('compareOpenBtn').addEventListener('click', openCompareModal);
+  document.getElementById('compareClearBtn').addEventListener('click', () => { pinned.clear(); renderCards(currentFilter); renderCompareBar(); });
+  document.getElementById('compareCloseBtn').addEventListener('click', () => document.getElementById('compareModal').classList.remove('visible'));
+  document.getElementById('compareModal').addEventListener('click', e => { if(e.target.id==='compareModal') e.currentTarget.classList.remove('visible'); });
 
   // Evaluator — only score production-accessible models (exclude watch/restricted)
   const evalModels = models.filter(m => m.tier !== 'watch');
@@ -777,8 +1142,11 @@
   document.getElementById('evaluateBtn').addEventListener('click',evaluateTask);
   document.getElementById('routeBtn').addEventListener('click',buildRoute);
   renderSources();
+  renderCards();
   renderTable();
   renderWatch();
+  bindQuickPick();
+  renderQuickPick();
   evaluateTask();
   buildRoute();
   </script>
