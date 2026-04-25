@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Frontier Model Team Evaluator</title>
+  <title>Frontier Model Team Evaluator — April 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -15,21 +15,21 @@
       --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
       --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
       --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
-      --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem; --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem; --space-12: 3rem; --space-16: 4rem;
-      --color-bg: #f7f6f2; --color-surface: #f9f8f5; --color-surface-2: #fbfbf9; --color-surface-offset: #f3f0ec; --color-border: #d4d1ca; --color-divider: #dcd9d5;
-      --color-text: #28251d; --color-text-muted: #696760; --color-text-faint: #9a9892; --color-text-inverse: #f9f8f4;
-      --color-primary: #01696f; --color-primary-hover: #0c4e54; --color-blue: #006494; --color-purple: #7a39bb; --color-success: #437a22; --color-warning: #964219; --color-error: #a12c7b;
-      --radius-sm: 0.375rem; --radius-md: 0.5rem; --radius-lg: 0.75rem; --radius-xl: 1rem; --radius-full: 9999px;
-      --shadow-sm: 0 1px 2px rgba(34,29,10,.05); --shadow-md: 0 10px 30px rgba(34,29,10,.08); --shadow-lg: 0 18px 48px rgba(34,29,10,.13);
-      --transition: 180ms cubic-bezier(0.16,1,0.3,1);
-      --font-display: 'Instrument Serif', Georgia, serif;
-      --font-body: 'Inter', Arial, sans-serif;
+      --space-1:.25rem;--space-2:.5rem;--space-3:.75rem;--space-4:1rem;--space-5:1.25rem;--space-6:1.5rem;--space-8:2rem;--space-10:2.5rem;--space-12:3rem;--space-16:4rem;
+      --color-bg:#f7f6f2;--color-surface:#f9f8f5;--color-surface-2:#fbfbf9;--color-surface-offset:#f3f0ec;--color-border:#d4d1ca;--color-divider:#dcd9d5;
+      --color-text:#28251d;--color-text-muted:#696760;--color-text-faint:#9a9892;--color-text-inverse:#f9f8f4;
+      --color-primary:#01696f;--color-primary-hover:#0c4e54;--color-blue:#006494;--color-purple:#7a39bb;--color-success:#437a22;--color-warning:#964219;--color-error:#a12c7b;
+      --radius-sm:.375rem;--radius-md:.5rem;--radius-lg:.75rem;--radius-xl:1rem;--radius-full:9999px;
+      --shadow-sm:0 1px 2px rgba(34,29,10,.05);--shadow-md:0 10px 30px rgba(34,29,10,.08);--shadow-lg:0 18px 48px rgba(34,29,10,.13);
+      --transition:180ms cubic-bezier(0.16,1,0.3,1);
+      --font-display:'Instrument Serif',Georgia,serif;
+      --font-body:'Inter',Arial,sans-serif;
     }
     [data-theme="dark"] {
-      --color-bg: #171614; --color-surface: #1c1b19; --color-surface-2: #201f1d; --color-surface-offset: #23211f; --color-border: #393836; --color-divider: #262523;
-      --color-text: #ece8df; --color-text-muted: #b0aaa0; --color-text-faint: #7b756d; --color-text-inverse: #171614;
-      --color-primary: #4f98a3; --color-primary-hover: #69b4bf; --color-blue: #74a9d4; --color-purple: #bb93e5; --color-success: #89c967; --color-warning: #d28a62; --color-error: #d77fb1;
-      --shadow-sm: 0 1px 2px rgba(0,0,0,.2); --shadow-md: 0 10px 30px rgba(0,0,0,.32); --shadow-lg: 0 18px 48px rgba(0,0,0,.45);
+      --color-bg:#171614;--color-surface:#1c1b19;--color-surface-2:#201f1d;--color-surface-offset:#23211f;--color-border:#393836;--color-divider:#262523;
+      --color-text:#ece8df;--color-text-muted:#b0aaa0;--color-text-faint:#7b756d;--color-text-inverse:#171614;
+      --color-primary:#4f98a3;--color-primary-hover:#69b4bf;--color-blue:#74a9d4;--color-purple:#bb93e5;--color-success:#89c967;--color-warning:#d28a62;--color-error:#d77fb1;
+      --shadow-sm:0 1px 2px rgba(0,0,0,.2);--shadow-md:0 10px 30px rgba(0,0,0,.32);--shadow-lg:0 18px 48px rgba(0,0,0,.45);
     }
     *,*::before,*::after{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -37,8 +37,8 @@
     a,button,input,select,textarea{font:inherit}
     button{cursor:pointer;border:none}
     .skip-link{position:absolute;left:-9999px;top:auto}.skip-link:focus{left:1rem;top:1rem;background:var(--color-primary);color:var(--color-text-inverse);padding:.75rem 1rem;border-radius:var(--radius-md);z-index:1000}
-    .container{width:min(1200px, calc(100% - 2rem));margin:0 auto}
-    header{position:sticky;top:0;z-index:100;background:color-mix(in srgb, var(--color-bg) 88%, transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--color-divider)}
+    .container{width:min(1200px,calc(100% - 2rem));margin:0 auto}
+    header{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--color-bg) 88%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--color-divider)}
     .nav{display:flex;justify-content:space-between;align-items:center;padding:var(--space-4) 0;gap:var(--space-4)}
     .brand{display:flex;align-items:center;gap:.9rem;font-weight:700}
     .brand svg{width:2rem;height:2rem;color:var(--color-primary)}
@@ -50,12 +50,12 @@
     .btn-primary{background:var(--color-primary);color:var(--color-text-inverse)}
     .btn-primary:hover{background:var(--color-primary-hover)}
     .btn-secondary{background:var(--color-surface);color:var(--color-text);border:1px solid var(--color-border)}
-    .hero{padding:clamp(3rem, 5vw, 6rem) 0 var(--space-12)}
+    .hero{padding:clamp(3rem,5vw,6rem) 0 var(--space-12)}
     .eyebrow{display:inline-flex;gap:.5rem;align-items:center;padding:.45rem .8rem;border-radius:var(--radius-full);border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text-muted);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.08em}
-    h1{font-family:var(--font-display);font-size:clamp(2.8rem, 8vw, 5.5rem);line-height:.95;letter-spacing:-.03em;max-width:12ch;margin:1rem 0}
+    h1{font-family:var(--font-display);font-size:clamp(2.8rem,8vw,5.5rem);line-height:.95;letter-spacing:-.03em;max-width:12ch;margin:1rem 0}
     .hero-grid{display:grid;grid-template-columns:1.25fr .9fr;gap:var(--space-8);align-items:end}
     .lede{max-width:64ch;color:var(--color-text-muted);margin-bottom:var(--space-6)}
-    .hero-card,.panel,.spec-card,.runner,.metric-card,.task-card,.router-card,.note{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);box-shadow:var(--shadow-sm)}
+    .hero-card,.panel,.spec-card,.runner,.note{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);box-shadow:var(--shadow-sm)}
     .hero-card{padding:var(--space-6);display:grid;gap:var(--space-4)}
     .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-3)}
     .stat{padding:var(--space-4);border-radius:var(--radius-lg);background:var(--color-surface-offset)}
@@ -66,20 +66,30 @@
     p{margin:.2rem 0 0}
     .section-top{display:flex;justify-content:space-between;align-items:end;gap:var(--space-4);margin-bottom:var(--space-6)}
     .section-top p{max-width:68ch;color:var(--color-text-muted)}
+    /* Filter bar */
+    .filter-bar{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:var(--space-4)}
+    .filter-btn{padding:.4rem .9rem;border-radius:var(--radius-full);border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text-muted);font-size:var(--text-xs);cursor:pointer;transition:all var(--transition)}
+    .filter-btn.active{background:var(--color-primary);color:var(--color-text-inverse);border-color:var(--color-primary)}
+    /* Tier section headers */
+    .tier-header{font-size:var(--text-sm);font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--color-text-muted);padding:.5rem 1rem;background:var(--color-surface-offset);border-bottom:1px solid var(--color-divider)}
+    .tier-header span{margin-left:.5rem;font-weight:400;text-transform:none;letter-spacing:0}
     .spec-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-4)}
     .spec-card{padding:var(--space-5)}
     .chip{display:inline-flex;align-items:center;padding:.3rem .65rem;border-radius:var(--radius-full);font-size:var(--text-xs);background:var(--color-surface-offset);color:var(--color-text-muted);border:1px solid var(--color-border)}
-    .chip-new{background:color-mix(in srgb, var(--color-success) 14%, transparent);color:var(--color-success);border-color:color-mix(in srgb, var(--color-success) 30%, transparent)}
+    .chip-new{background:color-mix(in srgb,var(--color-success) 14%,transparent);color:var(--color-success);border-color:color-mix(in srgb,var(--color-success) 30%,transparent)}
+    .chip-watch{background:color-mix(in srgb,var(--color-warning) 14%,transparent);color:var(--color-warning);border-color:color-mix(in srgb,var(--color-warning) 30%,transparent)}
+    .chip-oss{background:color-mix(in srgb,var(--color-purple) 12%,transparent);color:var(--color-purple);border-color:color-mix(in srgb,var(--color-purple) 25%,transparent)}
     .table-wrap{overflow:auto;border-radius:var(--radius-xl);border:1px solid var(--color-border);background:var(--color-surface)}
-    table{width:100%;border-collapse:collapse;min-width:980px}
-    th,td{padding:1rem;border-bottom:1px solid var(--color-divider);vertical-align:top;text-align:left}
-    th{font-size:var(--text-sm);color:var(--color-text-muted);background:var(--color-surface-offset);position:sticky;top:0}
-    td small{display:block;color:var(--color-text-muted);margin-top:.25rem}
-    .badge-good,.badge-watch,.badge-risk{display:inline-flex;align-items:center;border-radius:var(--radius-full);padding:.25rem .6rem;font-size:var(--text-xs)}
-    .badge-good{background:color-mix(in srgb, var(--color-success) 14%, transparent);color:var(--color-success)}
-    .badge-watch{background:color-mix(in srgb, var(--color-warning) 16%, transparent);color:var(--color-warning)}
-    .badge-risk{background:color-mix(in srgb, var(--color-error) 16%, transparent);color:var(--color-error)}
-    .tools-list{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.65rem}
+    table{width:100%;border-collapse:collapse;min-width:1000px}
+    th,td{padding:.85rem 1rem;border-bottom:1px solid var(--color-divider);vertical-align:top;text-align:left}
+    th{font-size:var(--text-xs);color:var(--color-text-muted);background:var(--color-surface-offset);position:sticky;top:0;white-space:nowrap}
+    td small{display:block;color:var(--color-text-muted);margin-top:.25rem;font-size:var(--text-xs)}
+    tr.hidden-row{display:none}
+    .badge-good,.badge-watch,.badge-risk{display:inline-flex;align-items:center;border-radius:var(--radius-full);padding:.25rem .6rem;font-size:var(--text-xs);margin-bottom:.25rem}
+    .badge-good{background:color-mix(in srgb,var(--color-success) 14%,transparent);color:var(--color-success)}
+    .badge-watch{background:color-mix(in srgb,var(--color-warning) 16%,transparent);color:var(--color-warning)}
+    .badge-risk{background:color-mix(in srgb,var(--color-error) 16%,transparent);color:var(--color-error)}
+    .tools-list{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.55rem}
     .app-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:var(--space-6)}
     .panel{padding:var(--space-6)}
     label{display:block;font-size:var(--text-sm);font-weight:600;margin-bottom:.45rem}
@@ -88,21 +98,25 @@
     .form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-4)}
     .stack{display:grid;gap:var(--space-4)}
     .result-list{display:grid;gap:var(--space-4)}
-    .result-item,.scorecard,.route-step,.prompt-pane{padding:var(--space-4);border-radius:var(--radius-lg);background:var(--color-surface-offset);border:1px solid color-mix(in srgb,var(--color-border) 75%, transparent)}
+    .result-item,.scorecard,.route-step,.prompt-pane{padding:var(--space-4);border-radius:var(--radius-lg);background:var(--color-surface-offset);border:1px solid color-mix(in srgb,var(--color-border) 75%,transparent)}
     .score{font-size:1.85rem;font-weight:800;line-height:1}
     .muted{color:var(--color-text-muted)}
     .runners{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4)}
+    .runner{padding:var(--space-5)}
     .runner textarea{min-height:220px}
     .scorecards{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4)}
     .score-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin-top:var(--space-3)}
     .score-pill{padding:.75rem;border-radius:var(--radius-md);background:var(--color-surface-2);text-align:center}
     .route-list{display:grid;gap:var(--space-3)}
+    /* Watch section */
+    .watch-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4);margin-top:var(--space-4)}
+    .watch-card{padding:var(--space-5);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);box-shadow:var(--shadow-sm)}
     .footer{padding:var(--space-10) 0 var(--space-16);color:var(--color-text-muted)}
     .tiny{font-size:var(--text-xs)}
     .source-list a{color:var(--color-primary)}
     .updated-badge{display:inline-flex;gap:.4rem;align-items:center;background:color-mix(in srgb,var(--color-primary) 12%,transparent);color:var(--color-primary);border:1px solid color-mix(in srgb,var(--color-primary) 25%,transparent);padding:.25rem .65rem;border-radius:var(--radius-full);font-size:var(--text-xs);font-weight:600}
-    @media (max-width: 1100px){.hero-grid,.app-grid,.spec-grid,.runners,.scorecards{grid-template-columns:1fr}.stat-row,.form-grid,.score-grid{grid-template-columns:1fr 1fr}}
-    @media (max-width: 640px){.container{width:min(100% - 1rem, 1200px)}.nav{align-items:flex-start;flex-direction:column}.nav-links{gap:.85rem}.stat-row,.form-grid,.score-grid{grid-template-columns:1fr}h1{max-width:unset}}
+    @media(max-width:1100px){.hero-grid,.app-grid,.spec-grid,.runners,.scorecards,.watch-grid{grid-template-columns:1fr}.stat-row,.form-grid,.score-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:640px){.container{width:min(100% - 1rem,1200px)}.nav{align-items:flex-start;flex-direction:column}.nav-links{gap:.85rem}.stat-row,.form-grid,.score-grid{grid-template-columns:1fr}h1{max-width:unset}}
     :focus-visible{outline:2px solid var(--color-primary);outline-offset:3px}
   </style>
 </head>
@@ -111,14 +125,14 @@
   <header>
     <div class="container nav">
       <div class="brand">
-        <svg viewBox="0 0 64 64" fill="none" aria-label="Frontier model evaluator logo">
+        <svg viewBox="0 0 64 64" fill="none" aria-label="logo">
           <path d="M10 46L32 14L54 46" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M20 46H44" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
           <circle cx="32" cy="31" r="5" fill="currentColor"/>
         </svg>
         <div>
           <div>Frontier Model Team Evaluator</div>
-          <div class="tiny muted">Model chooser, scorecards, and task router</div>
+          <div class="tiny muted">12 models · April 2026</div>
         </div>
       </div>
       <nav class="nav-links" aria-label="Primary">
@@ -127,6 +141,7 @@
         <a href="#evaluator">Evaluator</a>
         <a href="#runners">Prompt runners</a>
         <a href="#router">Model team</a>
+        <a href="#watch">Ones to watch</a>
       </nav>
       <div class="nav-actions">
         <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme">◐</button>
@@ -138,16 +153,18 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <span class="eyebrow">Updated April 2026 · 5 frontier models</span>
-          <h1>Paste your real work. Get the right model mix.</h1>
-          <p class="lede">This tool consolidates the latest specs for GPT-5.4, Claude Opus 4.7, Gemini 3.1 Pro, Gemini 3.1 Flash Live, and Qwen3.6-Plus — then turns those facts into a practical recommendation engine for coding, research, spreadsheets, live voice, and long-context work.</p>
+          <span class="eyebrow">Holistic view · Updated April 25, 2026</span>
+          <h1>Every frontier model. One place.</h1>
+          <p class="lede">12 models across OpenAI, Anthropic, Google, xAI, Alibaba, Moonshot, Xiaomi, and the open-source frontier — compared on benchmarks, pricing, context, and practical task fit. Built for developers who need to pick the right model mix fast.</p>
           <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:var(--space-6)">
-            <span class="updated-badge">✦ Claude Opus 4.7 — Apr 16, 2026</span>
-            <span class="updated-badge">✦ Qwen3.6-Plus added — OSS frontier</span>
+            <span class="updated-badge">✦ Grok 4.20 — xAI</span>
+            <span class="updated-badge">✦ Kimi K2 — Moonshot AI</span>
+            <span class="updated-badge">✦ MiMo V2.5 — Xiaomi</span>
+            <span class="updated-badge">✦ MiniMax M2.7 — OSS</span>
           </div>
           <div class="nav-actions">
             <a class="btn btn-primary" href="#evaluator">Start evaluating</a>
-            <a class="btn btn-secondary" href="#models">Inspect model data</a>
+            <a class="btn btn-secondary" href="#models">All model data</a>
           </div>
         </div>
         <aside class="hero-card" aria-label="Highlights">
@@ -156,11 +173,11 @@
             <h3>Hands-on comparison workspace</h3>
           </div>
           <div class="stat-row">
-            <div class="stat"><span class="tiny muted">Models tracked</span><strong>5</strong></div>
+            <div class="stat"><span class="tiny muted">Models tracked</span><strong>12</strong></div>
             <div class="stat"><span class="tiny muted">Scoring axes</span><strong>4</strong></div>
             <div class="stat"><span class="tiny muted">Task lanes</span><strong>5</strong></div>
           </div>
-          <div class="tiny muted">Recommendation logic weights cost, latency, context fit, benchmark alignment, and probable failure modes — not raw benchmark claims alone.</div>
+          <div class="tiny muted">Scores weight cost, latency, context fit, benchmark alignment, and probable failure modes — not raw benchmark claims alone. Use the filter bar to focus on a category.</div>
         </aside>
       </div>
     </section>
@@ -170,26 +187,40 @@
         <div class="section-top">
           <div>
             <h2>Model facts</h2>
-            <p>Use this as the evidence layer before you trust the evaluator. The table separates official claims from product-fit notes so you can challenge the defaults. Last updated April 25, 2026.</p>
+            <p>Filter by category, then drill into the table. Last updated April 25, 2026.</p>
           </div>
         </div>
-        <div class="spec-grid" aria-hidden="true">
-          <article class="spec-card"><span class="chip">Coding</span><h3>Strongest coding focus</h3><p class="muted">GPT-5.4 leads OSWorld-V (75%), Claude Opus 4.7 tops SWE-bench Pro at 64.3% — both built for agentic coding workflows.</p></article>
-          <article class="spec-card"><span class="chip">Long context</span><h3>1M-token class</h3><p class="muted">GPT-5.4, Claude Opus 4.7, and Gemini 3.1 Pro all offer 1M-token context. Gemini leads on cost-per-token at this scale.</p></article>
-          <article class="spec-card"><span class="chip">Live voice</span><h3>Realtime-native lane</h3><p class="muted">Gemini Flash Live remains the dedicated live interaction choice — sub-500ms TTFT and audio-native sessions.</p></article>
-          <article class="spec-card"><span class="chip chip-new">OSS frontier</span><h3>Qwen3.6-Plus is live</h3><p class="muted">Free on OpenRouter, beats Claude Opus 4.6 on Terminal-Bench 2.0, 78.8% SWE-bench. Best zero-cost coding option.</p></article>
+        <div class="spec-grid" style="margin-bottom:var(--space-6)">
+          <article class="spec-card"><span class="chip">Coding #1</span><h3>Claude Opus 4.7</h3><p class="muted">SWE-bench Pro 64.3% — #1 across all models. GPT-5.4 first to beat human baseline on real desktop tasks (OSWorld-V 75%).</p></article>
+          <article class="spec-card"><span class="chip">Cheapest frontier</span><h3>Gemini 3.1 Pro</h3><p class="muted">$2/$12 per M tokens, leads 13/16 benchmarks. Gemini Flash goes even lower at $0.075/$0.30.</p></article>
+          <article class="spec-card"><span class="chip chip-oss">Free OSS picks</span><h3>Qwen3.6-Plus & MiniMax M2.7</h3><p class="muted">Qwen3.6-Plus free on OpenRouter. MiniMax M2.7 (229B MoE) ELO 1495 — best open-weights model globally.</p></article>
+          <article class="spec-card"><span class="chip chip-new">New entrants</span><h3>Kimi K2 · Grok 4.20 · MiMo V2.5</h3><p class="muted">Kimi K2 for long-context reasoning. Grok 4.20 at 78% non-hallucination. MiMo V2.5 unifies 6 modalities in one API call.</p></article>
         </div>
-        <div class="table-wrap" style="margin-top:1rem">
+
+        <!-- Filter bar -->
+        <div class="filter-bar" id="filterBar">
+          <button class="filter-btn active" data-filter="all">All models</button>
+          <button class="filter-btn" data-filter="openai">OpenAI</button>
+          <button class="filter-btn" data-filter="anthropic">Anthropic</button>
+          <button class="filter-btn" data-filter="google">Google</button>
+          <button class="filter-btn" data-filter="oss">Open Source / Free</button>
+          <button class="filter-btn" data-filter="china">Chinese labs</button>
+          <button class="filter-btn" data-filter="live">Live / Voice</button>
+          <button class="filter-btn" data-filter="multimodal">Multimodal</button>
+        </div>
+
+        <div class="table-wrap">
           <table>
             <thead>
               <tr>
                 <th>Model</th>
-                <th>Official page highlights</th>
-                <th>Pricing</th>
-                <th>Context / limits</th>
-                <th>Benchmark claims</th>
-                <th>Tool / live capabilities</th>
-                <th>Likely failure modes</th>
+                <th>Family / Tier</th>
+                <th>Best for</th>
+                <th>Pricing (per M tokens)</th>
+                <th>Context</th>
+                <th>Key benchmarks</th>
+                <th>Strengths</th>
+                <th>Watch-outs</th>
               </tr>
             </thead>
             <tbody id="modelTableBody"></tbody>
@@ -203,7 +234,7 @@
         <div class="panel stack">
           <div>
             <h2>Task evaluator</h2>
-            <p class="muted">Paste a real task, choose the dominant work type, and tune cost, speed, and context sensitivity. The engine recommends one primary model and one backup.</p>
+            <p class="muted">Paste a real task, choose the dominant work type, and tune cost, speed, and context sensitivity. Scored against all 10 production-ready models.</p>
           </div>
           <div>
             <label for="taskInput">Your task</label>
@@ -224,37 +255,25 @@
               <label for="taskScale">Approximate input size</label>
               <select id="taskScale">
                 <option value="small">Small: under 25K tokens</option>
-                <option value="medium">Medium: 25K-200K</option>
-                <option value="large">Large: 200K-1M</option>
+                <option value="medium">Medium: 25K–200K</option>
+                <option value="large">Large: 200K–1M</option>
               </select>
             </div>
           </div>
           <div class="form-grid">
-            <div>
-              <label for="costWeight">Cost sensitivity</label>
-              <input id="costWeight" type="range" min="1" max="5" step="1" value="3" />
-            </div>
-            <div>
-              <label for="latencyWeight">Latency sensitivity</label>
-              <input id="latencyWeight" type="range" min="1" max="5" step="1" value="3" />
-            </div>
+            <div><label for="costWeight">Cost sensitivity</label><input id="costWeight" type="range" min="1" max="5" step="1" value="3"/></div>
+            <div><label for="latencyWeight">Latency sensitivity</label><input id="latencyWeight" type="range" min="1" max="5" step="1" value="3"/></div>
           </div>
           <div class="form-grid">
-            <div>
-              <label for="contextWeight">Context importance</label>
-              <input id="contextWeight" type="range" min="1" max="5" step="1" value="4" />
-            </div>
-            <div>
-              <label for="toolWeight">Tool-use importance</label>
-              <input id="toolWeight" type="range" min="1" max="5" step="1" value="4" />
-            </div>
+            <div><label for="contextWeight">Context importance</label><input id="contextWeight" type="range" min="1" max="5" step="1" value="4"/></div>
+            <div><label for="toolWeight">Tool-use importance</label><input id="toolWeight" type="range" min="1" max="5" step="1" value="4"/></div>
           </div>
           <button class="btn btn-primary" id="evaluateBtn" type="button">Evaluate task</button>
         </div>
         <div class="panel stack">
           <div>
             <h2>Recommendation</h2>
-            <p class="muted">The engine scores fit on a 100-point scale. It also exposes the tradeoff behind the recommendation so you can override it fast.</p>
+            <p class="muted">Scores fit on a 100-point scale across all production models. Top 5 shown with tradeoff rationale.</p>
           </div>
           <div id="evaluationResults" class="result-list"></div>
         </div>
@@ -266,7 +285,7 @@
         <div class="section-top">
           <div>
             <h2>Side-by-side prompt runners</h2>
-            <p>These panes generate model-specific starter prompts and evaluation checklists. Paste them into your own playgrounds or vendor consoles, then score outputs consistently.</p>
+            <p>Top 3 recommended models get starter prompts. Paste into vendor consoles or OpenRouter and score outputs consistently.</p>
           </div>
         </div>
         <div class="runners" id="runnerGrid"></div>
@@ -275,12 +294,7 @@
 
     <section>
       <div class="container stack">
-        <div class="section-top">
-          <div>
-            <h2>Scorecards</h2>
-            <p>Use a repeatable rubric after each run. The default scorecards balance observed delivery quality with operational fit.</p>
-          </div>
-        </div>
+        <div class="section-top"><div><h2>Scorecards</h2><p>Repeatable rubric for head-to-head runs.</p></div></div>
         <div class="scorecards" id="scorecards"></div>
       </div>
     </section>
@@ -290,7 +304,7 @@
         <div class="panel stack">
           <div>
             <h2>Best team of models</h2>
-            <p class="muted">This router splits a workflow into subtasks and assigns each to the model most likely to perform well for that slice of work.</p>
+            <p class="muted">Splits a workflow into subtasks and assigns the best model for each slice — now routing across the full 12-model set.</p>
           </div>
           <div>
             <label for="routerInput">Multi-step workflow</label>
@@ -299,314 +313,474 @@
           <button class="btn btn-primary" id="routeBtn" type="button">Build team plan</button>
         </div>
         <div class="panel stack">
-          <div>
-            <h2>Routed plan</h2>
-            <p class="muted">The router is opinionated by default: use specialised models for their strongest lane, then hand off to a synthesiser if needed.</p>
-          </div>
+          <div><h2>Routed plan</h2><p class="muted">Opinionated defaults — override freely.</p></div>
           <div id="routeOutput" class="route-list"></div>
         </div>
+      </div>
+    </section>
+
+    <section id="watch">
+      <div class="container">
+        <div class="section-top">
+          <div>
+            <h2>Ones to watch</h2>
+            <p>Models not yet production-stable for international use, or restricted access only — but worth tracking closely.</p>
+          </div>
+        </div>
+        <div class="watch-grid" id="watchGrid"></div>
       </div>
     </section>
 
     <section>
       <div class="container note" style="padding:1.25rem 1.25rem 1.4rem">
         <h3>How to use this in practice</h3>
-        <p class="muted">Start with the evaluator for a quick pick. Use prompt runners when you want a fair shootout on the same task. Use the router for compound workflows where no single model should own everything. For zero-cost experimentation, Qwen3.6-Plus on OpenRouter is now a serious baseline before committing to a paid model.</p>
+        <p class="muted">Start with the evaluator for a quick pick. For zero-cost experimentation, try Qwen3.6-Plus or MiniMax M2.7 on OpenRouter before paying for frontier models. Use the router for compound workflows. Check the "Ones to watch" section for models that may leapfrog the current leaders — Claude Mythos and DeepSeek V4 are both expected to shift rankings significantly when generally available.</p>
       </div>
     </section>
   </main>
 
   <footer class="footer">
     <div class="container stack">
-      <div>
-        <h3>Source links</h3>
-        <div class="source-list tiny" id="sourceList"></div>
-      </div>
-      <div class="tiny">This page embeds official source summaries and a local heuristic scorer. Recheck vendor pages before major buying or architecture decisions — pricing, limits, and preview status change frequently. Last data sync: April 25, 2026.</div>
+      <div><h3>Source links</h3><div class="source-list tiny" id="sourceList"></div></div>
+      <div class="tiny">Local heuristic scorer based on official benchmarks and public pricing. Recheck vendor pages before architecture decisions — limits, pricing, and preview status change frequently. Last sync: April 25, 2026.</div>
     </div>
   </footer>
 
   <script>
-    const sources = [
-      {label:'OpenAI — Introducing GPT-5.4', url:'https://openai.com/index/introducing-gpt-5-4/'},
-      {label:'OpenAI API — GPT-5.4 model docs', url:'https://developers.openai.com/api/docs/models/gpt-5.4'},
-      {label:'Anthropic — Claude Opus 4.7', url:'https://www.anthropic.com/claude/opus'},
-      {label:'Anthropic — Claude pricing', url:'https://platform.claude.com/docs/en/about-claude/pricing'},
-      {label:'Google AI Dev — Gemini API pricing', url:'https://ai.google.dev/gemini-api/docs/pricing'},
-      {label:'Google blog — Gemini 3.1 Pro', url:'https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro'},
-      {label:'Qwen3.6-Plus on OpenRouter', url:'https://openrouter.ai/qwen/qwen3.6-plus'},
-      {label:'Stanford AI Index 2026', url:'https://aiindex.stanford.edu/report/'},
-      {label:'ARC-AGI-3 prize page', url:'https://arcprize.org/arc-agi/3'}
-    ];
+  const sources = [
+    {label:'OpenAI — GPT-5.4 model docs', url:'https://developers.openai.com/api/docs/models/gpt-5.4'},
+    {label:'Anthropic — Claude Opus 4.7', url:'https://www.anthropic.com/claude/opus'},
+    {label:'Anthropic — Claude pricing', url:'https://platform.claude.com/docs/en/about-claude/pricing'},
+    {label:'Google — Gemini 3.1 Pro', url:'https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro'},
+    {label:'Google AI Dev — Gemini API pricing', url:'https://ai.google.dev/gemini-api/docs/pricing'},
+    {label:'xAI — Grok 4.20', url:'https://x.ai/grok'},
+    {label:'Moonshot AI — Kimi K2', url:'https://www.moonshot.cn'},
+    {label:'Alibaba — Qwen3.6-Plus on OpenRouter', url:'https://openrouter.ai/qwen/qwen3.6-plus'},
+    {label:'MiniMax M2.7 — GitHub', url:'https://github.com/MiniMax-AI/MiniMax-M2'},
+    {label:'Xiaomi MiMo V2.5 — HuggingFace', url:'https://huggingface.co/XiaomiMiMo'},
+    {label:'Gemma 4 — Google DeepMind', url:'https://deepmind.google/technologies/gemma/'},
+    {label:'Stanford AI Index 2026', url:'https://aiindex.stanford.edu/report/'},
+    {label:'ARC-AGI-3 prize', url:'https://arcprize.org/arc-agi/3'},
+  ];
 
-    const models = [
-      {
-        id:'gpt54',
-        name:'GPT-5.4',
-        family:'OpenAI',
-        priceIn:2.5,
-        priceOut:15,
-        cachedIn:0.25,
-        context:'1M via API/Codex Advanced; standard 272K before 2× overage in Codex settings',
-        latency:'Medium',
-        live:false,
-        strengths:['Coding & computer use','Tool orchestration','Professional docs & spreadsheets','Web research grounding','Agentic multi-step tasks'],
-        benchmarks:['OSWorld-Verified 75.0% — first frontier model to beat human baseline (72.4%)','GDPval 83.0%','SWE-Bench Pro 57.7%','BrowseComp 82.7%','Toolathlon 54.6%'],
-        tools:'Native computer-use tool, tool search, improved tool calling, custom tool schemas, allowed-tools controls, Codex Advanced PR review',
-        notes:'Best single-model default when coding, computer use, and tool orchestration matter together. First AI to beat calibrated human baseline on real desktop tasks.',
-        failures:['Premium pricing hurts at scale — $15/M output tokens','Live voice is not a focus lane','Overkill for cheap bulk summarisation'],
-        ratings:{coding:97,research:88,spreadsheet:93,live:62,longcontext:90,cost:66,latency:76,context:94,tool:97}
-      },
-      {
-        id:'claude47',
-        name:'Claude Opus 4.7',
-        family:'Anthropic',
-        priceIn:5,
-        priceOut:25,
-        cachedIn:6.25,
-        context:'200K standard; 1M context beta on Claude Platform only',
-        latency:'Medium-slow',
-        live:false,
-        strengths:['#1 SWE-bench Pro — goal-directed agency','Enterprise documents & legal work','Spreadsheet-heavy analysis','High-stakes reasoning','Long-running agents'],
-        benchmarks:['SWE-bench Verified 87.6% — new record','SWE-bench Pro 64.3% — #1 across all models (Apr 2026)','Multilingual 80.5%','BigLaw Bench 90.2%','OSWorld 72.7%'],
-        tools:'Hybrid reasoning with effort controls, strong tool use and agentic planning, Three-Agent Harness (Planner/Generator/Evaluator), implicit-need detection for goal-directed tasks. Available on Claude Platform and major clouds.',
-        notes:'Released April 16 2026. New #1 on SWE-bench Pro. Implicit-need tests show genuine goal-directed agency beyond instruction-following. Best for enterprise artifacts, careful reasoning, and multi-step coding agents.',
-        failures:['Most expensive model in the set — $25/M output','1M context still beta and platform-limited','Slower on time-sensitive loops than GPT-5.4'],
-        ratings:{coding:97,research:95,spreadsheet:96,live:58,longcontext:92,cost:48,latency:62,context:90,tool:94}
-      },
-      {
-        id:'gemini31pro',
-        name:'Gemini 3.1 Pro',
-        family:'Google',
-        priceIn:2,
-        priceOut:12,
-        cachedIn:0.5,
-        context:'1M tokens native; best price-per-million-token in this group at this scale',
-        latency:'Fast-medium',
-        live:false,
-        strengths:['Price-performance leader','Leads 13/16 major benchmarks','Google Search grounding','Multimodal (video/image/audio native)','Long-context analysis at low cost'],
-        benchmarks:['Leads 13 of 16 major public benchmarks (Apr 2026)','GPQA Diamond 94.3%','Best ARC-AGI-3 score across all frontier models at 0.37%','$2/$12 per M tokens — 55% cheaper than GPT-5.4 input'],
-        tools:'Google Search grounding, native video/audio/image understanding, Deep Research Max (160 autonomous web searches + private data fusion), Google Vids integration, MCP tools endpoint',
-        notes:'Best cost-performance option for April 2026. Leads on raw benchmark count and Deep Research Max (launched Apr 22) makes it the most capable web-grounded research model. Best ARC-AGI-3 performance, though still only 0.37%.',
-        failures:['Not the top choice for deepest agentic coding autonomy','Google-ecosystem tooling may add friction for OpenAI/Anthropic stacks','Benchmark lead may not translate to every real task type'],
-        ratings:{coding:80,research:91,spreadsheet:82,live:62,longcontext:96,cost:96,latency:85,context:97,tool:84}
-      },
-      {
-        id:'flashlive',
-        name:'Gemini 3.1 Flash Live',
-        family:'Google',
-        priceIn:0.75,
-        priceOut:4.5,
-        cachedIn:0,
-        context:'Live API; quotas managed via AI Studio / Live API controls',
-        latency:'Fastest',
-        live:true,
-        strengths:['Realtime voice & audio','Sub-500ms TTFT','Low-latency multimodal turn-taking','Meeting copilots & live demos','Customer support agents'],
-        benchmarks:['Optimised for responsiveness and multimodal interaction, not classic coding benchmarks','Audio-visual sync improved in Flash Live tier','Best latency profile in this group'],
-        tools:'Gemini Live API, text/audio/image-video token pricing, browser-safe ephemeral token patterns, realtime streaming sessions',
-        notes:'The dedicated live-interaction specialist. Use for voice agents, live demos, meeting copilots, and fast multimodal loops where <500ms response matters more than depth.',
-        failures:['Not for deep coding or document-heavy reasoning','Preview quotas and pricing evolve quickly','Long-context and spreadsheet work are weaker lanes than Pro'],
-        ratings:{coding:52,research:66,spreadsheet:54,live:98,longcontext:55,cost:90,latency:98,context:58,tool:74}
-      },
-      {
-        id:'qwen36plus',
-        name:'Qwen3.6-Plus',
-        family:'Alibaba / OSS',
-        priceIn:0,
-        priceOut:0,
-        cachedIn:0,
-        context:'1M context window; free on OpenRouter (usage subject to rate limits)',
-        latency:'Fast',
-        live:false,
-        strengths:['Free on OpenRouter','Best open-source coding benchmark (Apr 2026)','Beats Claude Opus 4.6 on Terminal-Bench 2.0','Strong document parsing (OmniDocBench 91.2)','Zero-cost prototyping and evals baseline'],
-        benchmarks:['SWE-bench 78.8%','Terminal-Bench 2.0: 61.6 — beats Claude Opus 4.6 (Apr 2026 rank)','OmniDocBench 91.2 — #1 document parsing benchmark','1M context window'],
-        tools:'OpenRouter API compatible with standard OpenAI-style tool calling; MCP-compatible via OpenRouter bridge; strong code execution and document analysis',
-        notes:'Significant OSS milestone — now competitive with paid frontier models on coding tasks. Free via OpenRouter. Ideal as a zero-cost baseline before paying for GPT-5.4 or Claude Opus 4.7. Best open-weights option for agentic coding in April 2026.',
-        failures:['Rate limited on free tier — not for high-volume production','Less reliable for nuanced enterprise risk reasoning vs Claude Opus 4.7','Alibaba/commercial licence — check terms for enterprise data-residency needs','No dedicated live voice capability'],
-        ratings:{coding:88,research:79,spreadsheet:78,live:40,longcontext:85,cost:100,latency:82,context:88,tool:80}
-      }
-    ];
+  // Tier: 'frontier' | 'efficient' | 'oss' | 'specialist'
+  // Tags for filter: array of strings matching filter-btn data-filter values
+  const models = [
+    // ── TIER 1: FRONTIER CLOSED ──────────────────────────────────────────────
+    {
+      id:'gpt54', name:'GPT-5.4', family:'OpenAI', tier:'frontier',
+      tags:['openai','multimodal'],
+      priceIn:2.5, priceOut:15, cachedIn:0.25,
+      context:'1M (Codex Advanced); 272K standard',
+      latency:'Medium',
+      strengths:['Coding & computer use','Tool orchestration','Professional docs','Web grounding','Agentic tasks'],
+      benchmarks:['OSWorld-V 75% — first to beat human baseline (72.4%)','GDPval 83.0%','SWE-bench Pro 57.7%','BrowseComp 82.7%'],
+      tools:'Computer-use tool, tool search, Codex Advanced PR review, custom tool schemas',
+      notes:'Best all-round default for coding + tool orchestration. First AI to beat calibrated human baseline on real desktop tasks.',
+      failures:['$15/M output — expensive at scale','No live voice lane','Overkill for bulk summarisation'],
+      ratings:{coding:97,research:88,spreadsheet:93,live:62,longcontext:90,cost:66,latency:76,context:94,tool:97}
+    },
+    {
+      id:'claude47', name:'Claude Opus 4.7', family:'Anthropic', tier:'frontier',
+      tags:['anthropic'],
+      priceIn:5, priceOut:25, cachedIn:6.25,
+      context:'200K standard; 1M beta (Claude Platform)',
+      latency:'Medium-slow',
+      strengths:['#1 SWE-bench Pro 64.3%','Enterprise docs & legal','High-stakes reasoning','Long-running agents','Implicit-need / goal-directed tasks'],
+      benchmarks:['SWE-bench Verified 87.6% — record','SWE-bench Pro 64.3% — #1 all models (Apr 2026)','BigLaw Bench 90.2%','Multilingual 80.5%'],
+      tools:'Hybrid reasoning + effort controls, Three-Agent Harness (Planner/Generator/Evaluator), implicit-need detection, strong agentic planning',
+      notes:'Released Apr 16 2026. New #1 on SWE-bench Pro. Goal-directed agency beyond instruction-following. Best for enterprise artifacts and careful multi-step agents.',
+      failures:['$25/M output — most expensive here','1M context still beta','Slower than GPT-5.4 on tight loops'],
+      ratings:{coding:97,research:95,spreadsheet:96,live:58,longcontext:92,cost:48,latency:62,context:90,tool:94}
+    },
+    {
+      id:'grok420', name:'Grok 4.20', family:'xAI', tier:'frontier',
+      tags:['multimodal'],
+      priceIn:3, priceOut:15, cachedIn:0,
+      context:'2M tokens — largest context window in production',
+      latency:'Medium-fast',
+      strengths:['78% non-hallucination (Omniscience record)','2M token context','4 reasoning modes (Auto/Fast/Expert/Heavy)','Multi-agent orchestration built-in','60% cheaper than Grok 3'],
+      benchmarks:['78% non-hallucination — Omniscience benchmark record (Apr 2026)','2M context window — largest production model','Multi-agent orchestration native'],
+      tools:'4 reasoning modes (Auto/Fast/Expert/Heavy), multi-agent orchestration built-in, XChat integration, X/Twitter data grounding',
+      notes:'Strong if you need the largest context window (2M) or X-platform data grounding. 4 reasoning modes let you balance cost vs depth per call. 60% cheaper than Grok 3.',
+      failures:['Limited third-party ecosystem vs OpenAI/Anthropic','X-platform data advantage mainly relevant for social/media tasks','Benchmark breadth thinner than GPT-5.4/Claude'],
+      ratings:{coding:82,research:85,spreadsheet:78,live:65,longcontext:98,cost:72,latency:80,context:99,tool:84}
+    },
+    {
+      id:'kimi2', name:'Kimi K2', family:'Moonshot AI', tier:'frontier',
+      tags:['china','multimodal'],
+      priceIn:1.5, priceOut:8, cachedIn:0,
+      context:'128K standard; long-context variants up to 1M',
+      latency:'Medium',
+      strengths:['Long-context reasoning','Strong Chinese + English bilingual','Competitive pricing vs US frontier','Code generation improving rapidly','Good for document-heavy analysis'],
+      benchmarks:['Competitive on MMLU, HumanEval vs Chinese frontier peers','Strong long-document QA benchmarks','Rapid improvement trajectory — watch Q2 2026'],
+      tools:'Standard tool calling, file upload, code interpreter, improving MCP compatibility',
+      notes:'Moonshot AI\'s strongest model. Best for bilingual (ZH/EN) long-context tasks and document analysis. Pricing undercuts US frontier by 40–60%. Western API access improving.',
+      failures:['Benchmark transparency lower than US labs','Western API reliability still maturing','No dedicated live voice lane','Less ecosystem tooling than OpenAI/Anthropic'],
+      ratings:{coding:78,research:84,spreadsheet:76,live:45,longcontext:88,cost:82,latency:74,context:90,tool:72}
+    },
+    // ── TIER 2: EFFICIENT / PRICE-PERFORMANCE ────────────────────────────────
+    {
+      id:'gemini31pro', name:'Gemini 3.1 Pro', family:'Google', tier:'efficient',
+      tags:['google','multimodal'],
+      priceIn:2, priceOut:12, cachedIn:0.5,
+      context:'1M tokens native',
+      latency:'Fast-medium',
+      strengths:['Leads 13/16 major benchmarks','Price-performance leader','Google Search grounding','Deep Research Max (160 searches/call)','Native video/audio/image'],
+      benchmarks:['Leads 13 of 16 public benchmarks (Apr 2026)','GPQA Diamond 94.3%','Best ARC-AGI-3 at 0.37%','$2/$12 per M — 20% cheaper than GPT-5.4 input'],
+      tools:'Google Search grounding, Deep Research Max, Google Vids integration, native multimodal, MCP tools endpoint, Gemini API',
+      notes:'Best cost-performance pick for April 2026. Deep Research Max (launched Apr 22) = 160 autonomous web searches + private data fusion in one API call. Leads raw benchmark count.',
+      failures:['Not top choice for deep agentic coding autonomy','Google-ecosystem tooling adds friction for OpenAI/Anthropic stacks','ARC-AGI-3 at 0.37% shows fundamental generalisation gap'],
+      ratings:{coding:80,research:91,spreadsheet:82,live:62,longcontext:96,cost:94,latency:85,context:97,tool:84}
+    },
+    {
+      id:'claude35haiku', name:'Claude Haiku 4.5', family:'Anthropic', tier:'efficient',
+      tags:['anthropic'],
+      priceIn:0.25, priceOut:1.25, cachedIn:0.03,
+      context:'200K tokens',
+      latency:'Fastest (Anthropic)',
+      strengths:['Fastest Anthropic model','Lowest cost in Claude family','Good for high-volume classification','Solid tool use for cost-sensitive agents','Strong for structured extraction'],
+      benchmarks:['Best latency in Anthropic lineup','Strong on structured extraction benchmarks','Reliable tool calling at low cost'],
+      tools:'Full tool use, computer use (beta), good MCP compatibility, ideal for cost-sensitive agentic loops',
+      notes:'The budget workhorse of the Anthropic family. Use in agentic pipelines where Opus 4.7 is overkill — classification, routing, structured extraction, first-pass drafts.',
+      failures:['Significantly weaker than Opus 4.7 on complex reasoning','Not for high-stakes legal/financial analysis','May struggle with subtle implicit requirements'],
+      ratings:{coding:72,research:70,spreadsheet:74,live:55,longcontext:78,cost:97,latency:95,context:82,tool:82}
+    },
+    {
+      id:'geminiflash', name:'Gemini 3.1 Flash', family:'Google', tier:'efficient',
+      tags:['google','multimodal'],
+      priceIn:0.075, priceOut:0.30, cachedIn:0.018,
+      context:'1M tokens',
+      latency:'Very fast',
+      strengths:['Lowest cost per token in this set','1M context at near-zero price','Fast multimodal processing','Bulk analysis at scale','Strong for pipelines needing cheap long-context'],
+      benchmarks:['Best cost/token for 1M context workloads','Strong multimodal processing speed','Ideal for batch pipelines'],
+      tools:'Google Search grounding (optional), multimodal, Gemini API, good for cost-optimised agent routing',
+      notes:'$0.075/$0.30 per M — cheapest 1M-context model available. Ideal as the "cheap layer" in model-routing stacks: classify/triage with Flash, escalate to Pro or Claude only when needed.',
+      failures:['Weaker reasoning depth vs Pro or frontier models','Not for nuanced analysis or enterprise artifacts','Benchmark quality gap vs Gemini 3.1 Pro is real'],
+      ratings:{coding:65,research:72,spreadsheet:65,live:58,longcontext:88,cost:99,latency:92,context:94,tool:72}
+    },
+    {
+      id:'flashlive', name:'Gemini 3.1 Flash Live', family:'Google', tier:'specialist',
+      tags:['google','live','multimodal'],
+      priceIn:0.75, priceOut:4.5, cachedIn:0,
+      context:'Live API; quotas via AI Studio',
+      latency:'Fastest',
+      strengths:['Sub-500ms TTFT','Realtime voice & audio','Low-latency multimodal turn-taking','Meeting copilots & live demos','Voice agent sessions'],
+      benchmarks:['Best latency profile in the group','Audio-visual sync improved in Flash Live tier','Purpose-built for <500ms response SLA'],
+      tools:'Gemini Live API, text/audio/image-video token pricing, browser-safe ephemeral tokens, realtime streaming sessions',
+      notes:'Dedicated live-interaction specialist. Use for voice agents, live demos, meeting copilots, and fast multimodal loops where sub-500ms matters more than depth.',
+      failures:['Not for deep coding or document reasoning','Preview quotas evolve quickly','Long-context and spreadsheet work are weak lanes'],
+      ratings:{coding:52,research:66,spreadsheet:54,live:98,longcontext:55,cost:90,latency:98,context:58,tool:74}
+    },
+    // ── TIER 3: OPEN SOURCE / FREE ───────────────────────────────────────────
+    {
+      id:'qwen36plus', name:'Qwen3.6-Plus', family:'Alibaba / OSS', tier:'oss',
+      tags:['oss','china'],
+      priceIn:0, priceOut:0, cachedIn:0,
+      context:'1M tokens; free on OpenRouter',
+      latency:'Fast',
+      strengths:['Free on OpenRouter','78.8% SWE-bench','Beats Claude Opus 4.6 on Terminal-Bench 2.0 (61.6)','OmniDocBench 91.2 — #1 document parsing','Zero-cost prototyping'],
+      benchmarks:['SWE-bench 78.8%','Terminal-Bench 2.0: 61.6 — beats Claude Opus 4.6','OmniDocBench 91.2 — #1 document parsing benchmark','1M context'],
+      tools:'OpenRouter API, OpenAI-style tool calling, MCP-compatible via OpenRouter bridge, strong code execution',
+      notes:'Best zero-cost coding baseline in April 2026. Free via OpenRouter. Use to prototype before committing to paid frontier models. Competitive with GPT-4-class on most coding tasks.',
+      failures:['Rate limited on free tier','Less reliable for nuanced enterprise risk reasoning','Alibaba commercial licence — check for enterprise data residency','No live voice'],
+      ratings:{coding:88,research:79,spreadsheet:78,live:40,longcontext:85,cost:100,latency:82,context:88,tool:80}
+    },
+    {
+      id:'minimax27', name:'MiniMax M2.7', family:'MiniMax / OSS', tier:'oss',
+      tags:['oss','china','multimodal'],
+      priceIn:0, priceOut:0, cachedIn:0,
+      context:'~200K tokens; open weights on HuggingFace',
+      latency:'Medium (self-hosted)',
+      strengths:['229B MoE — best open-weights ELO 1495 globally','100+ autonomous self-optimisation rounds during training','Independently invented loop detection, memory, verification','Native Agent Teams (open-source Three-Agent Harness)','30% self-generated performance improvement'],
+      benchmarks:['ELO 1495 GDPval-AA — best open-source, trailing only Opus 4.6+Sonnet 4.6+GPT-5.4','SWE-Pro 56.22%','Terminal Bench 2: 57.0%','First MemRL production model'],
+      tools:'Native Agent Teams = open-source Three-Agent Harness, SGLang/vLLM/Transformers/NVIDIA NIM deployment, MemRL self-improvement',
+      notes:'Landmark OSS release. First model to participate in its own development via 100+ autonomous optimisation rounds. Best open-weights model globally as of Apr 2026. Self-hosts well on NVIDIA NIM. Originally MIT; relicensed post-HK IPO — check licence for commercial use.',
+      failures:['Requires significant GPU to self-host (229B MoE)','MIT licence changed post-IPO — verify commercial terms','Context window smaller than frontier cloud models','Latency depends on your infrastructure'],
+      ratings:{coding:86,research:82,spreadsheet:78,live:42,longcontext:80,cost:96,latency:60,context:82,tool:80}
+    },
+    {
+      id:'gemma4', name:'Gemma 4 31B Dense', family:'Google DeepMind / OSS', tier:'oss',
+      tags:['oss','google','multimodal'],
+      priceIn:0, priceOut:0, cachedIn:0,
+      context:'128K tokens; runs locally',
+      latency:'Fast (local)',
+      strengths:['#3 globally on Arena AI leaderboard','Apache 2.0 — truly free for commercial use','Agentic-native architecture','400M+ downloads ecosystem','Runs on consumer hardware / Android / edge'],
+      benchmarks:['#3 globally on Arena AI leaderboard (Apr 2026)','400M ecosystem downloads + 100K community variants','Best open-weights model for on-device / Android deployment','Apache 2.0 — cleanest commercial licence'],
+      tools:'Google ADK native (best with A2A protocol), LiteRT-LM for on-device inference, Android/iOS/RPi compatible, Gemma-native tool calling',
+      notes:'Best choice for on-device, edge, or Android agentic deployments. Apache 2.0 is the cleanest licence here — no commercial restrictions. Strong with Google ADK for A2A workflows.',
+      failures:['128K context vs 1M for cloud frontier models','31B Dense requires decent GPU for full speed','Smaller than MiniMax M2.7 on complex enterprise tasks'],
+      ratings:{coding:78,research:75,spreadsheet:70,live:50,longcontext:72,cost:98,latency:85,context:74,tool:80}
+    },
+    {
+      id:'mimov25', name:'MiMo V2.5 Standard', family:'Xiaomi / OSS', tier:'specialist',
+      tags:['oss','china','multimodal'],
+      priceIn:0, priceOut:0, cachedIn:0,
+      context:'~128K tokens',
+      latency:'Fast',
+      strengths:['6 modalities in one API call (text/image/audio/video/speech/music)','Single autoregressive backbone for all modalities','Best cross-modal coherence in OSS tier','MCP-free via MMX-CLI','Beats MiMo V2 Pro on cross-modal benchmarks'],
+      benchmarks:['First credible Chinese answer to GPT-5.4 multimodal (Apr 22 2026)','Beats MiMo V2 Pro on cross-modal benchmarks','6-modality unified API — unique in OSS space'],
+      tools:'MMX-CLI (7 command groups: mmx text/image/video/speech/music/vision/search), MCP-free shell harness, Cursor/Claude Code/OpenCode compatible',
+      notes:'Launched April 22 2026. Unique proposition: all 6 modalities in a single autoregressive backbone and one API call. Use when you need multimodal output generation (not just input) at zero cost. MMX-CLI is the easiest integration path.',
+      failures:['Very new — limited production track record','Western API access still limited','Reasoning depth weaker than frontier on text-only tasks','No enterprise SLA'],
+      ratings:{coding:65,research:68,spreadsheet:58,live:72,longcontext:65,cost:98,latency:80,context:68,tool:70}
+    },
+  ];
 
-    function renderSources(){
-      document.getElementById('sourceList').innerHTML = sources.map(s => `<div><a href="${s.url}" target="_blank" rel="noopener noreferrer">${s.label}</a></div>`).join('');
-    }
+  const watchModels = [
+    {
+      name:'Claude Mythos (Anthropic)',
+      status:'Restricted — Project Glasswing partners only',
+      why:'94.5% GPQA Diamond, 97.6% AIME, 93.9% SWE-bench. Step-change in cybersecurity + reasoning. Found 1000s of zero-days autonomously. Expected to anchor Anthropic\'s Oct 2026 IPO. Will reset the benchmark table when GA.',
+      eta:'GA unknown; currently expanding to selected partners'
+    },
+    {
+      name:'DeepSeek V4',
+      status:'Not yet released (1T+ params MoE expected)',
+      why:'DeepSeek V3 already competitive with frontier models at a fraction of the cost. V4 rumoured at 1T+ params with MoE routing. If priced like V3 (~$0.14/M), it could undercut every model on this page while matching frontier quality.',
+      eta:'Q2–Q3 2026 expected'
+    },
+    {
+      name:'Qwen3-VL (Alibaba)',
+      status:'Available — but limited Western API access',
+      why:'Strongest open-weights vision-language model for agentic tool use. Beats proprietary models on several web-agent benchmarks. Now replacing MolmoWeb for many web-agent developers. Watch for OpenRouter availability.',
+      eta:'Available on Alibaba Cloud; OpenRouter listing pending'
+    },
+    {
+      name:'OpenHands v2 / All-Hands-AI',
+      status:'v1.6 GA — v2 in development',
+      why:'70K+ GitHub stars, MIT licence, $18.8M Series A. 53%+ SWE-bench Verified with Claude 4.5. Not a model but a model-agnostic agent harness that routes across any of the models on this page. Kubernetes + Planning Mode beta already live.',
+      eta:'v2 expected H2 2026'
+    },
+    {
+      name:'Hermes Agent (Nous Research)',
+      status:'Available (v0.8.0) — rapid iteration',
+      why:'Self-improving OSS agent: auto-generates "skill" docs after each complex task, reducing task time 40%. LLM-agnostic (any model via OpenRouter). Can orchestrate sub-agents and pay via x402. MIT licence. Not a model but a meta-layer worth tracking.',
+      eta:'v0.8.0 live; active development'
+    },
+    {
+      name:'Meta Muse Spark (Meta Superintelligence Labs)',
+      status:'Rolling to WhatsApp/Instagram/Facebook/Messenger',
+      why:'First model from Alexandr Wang\'s Meta Superintelligence Labs. Contemplating Mode spawns parallel sub-agents. Rolling to 3B+ users across Meta apps. Consumer proof-point that agentic AI has crossed the mainstream chasm.',
+      eta:'Rolling out to Meta app ecosystem (Apr 2026)'
+    },
+  ];
 
-    function renderTable(){
-      const tbody = document.getElementById('modelTableBody');
-      tbody.innerHTML = models.map(m => `
-        <tr>
-          <td><strong>${m.name}</strong><small>${m.family}</small></td>
-          <td>${m.notes}<small>Primary strengths: ${m.strengths.join(', ')}</small></td>
-          <td>${m.priceIn === 0 ? '<strong style="color:var(--color-success)">Free via OpenRouter</strong>' : `$${m.priceIn}/M input<br>$${m.priceOut}/M output`}<small>${m.cachedIn ? `Cached input: $${m.cachedIn}/M` : m.priceIn === 0 ? 'Rate limits apply on free tier' : 'Preview / live pricing varies by modality'}</small></td>
-          <td>${m.context}<small>Latency profile: ${m.latency}</small></td>
-          <td>${m.benchmarks.join('<br>')}</td>
-          <td>${m.tools}<div class="tools-list">${m.strengths.slice(0,4).map(t=>`<span class="chip">${t}</span>`).join('')}</div></td>
-          <td>${m.failures.map((f,i)=>`<div class="${i===0?'badge-watch':'badge-risk'}" style="margin:0 0 .35rem 0">${f}</div>`).join('')}</td>
-        </tr>
-      `).join('');
-    }
+  function renderSources(){
+    document.getElementById('sourceList').innerHTML = sources.map(s=>`<div><a href="${s.url}" target="_blank" rel="noopener noreferrer">${s.label}</a></div>`).join('');
+  }
 
-    function keywordAdjustments(task){
-      const t = task.toLowerCase();
-      return models.map(m => {
-        let adj = 0;
-        if(/code|repo|debug|typescript|python|agent|api|playwright|refactor|swe|coding/.test(t)) adj += m.ratings.coding * 0.08;
-        if(/research|sources|memo|synthesis|analysis|compare|market|legal|due diligence/.test(t)) adj += m.ratings.research * 0.08;
-        if(/excel|spreadsheet|model|financial|table|csv/.test(t)) adj += m.ratings.spreadsheet * 0.08;
-        if(/voice|call|live|realtime|meeting|demo|agent assist|audio/.test(t)) adj += m.ratings.live * 0.10;
-        if(/long|100k|200k|300k|1m|entire codebase|whole corpus|full document set/.test(t)) adj += m.ratings.longcontext * 0.09;
-        if(/free|cheap|cost|budget|open.?source|openrouter/.test(t)) adj += m.ratings.cost * 0.06;
-        return {id:m.id, adj};
+  function renderTable(filter='all'){
+    const tbody = document.getElementById('modelTableBody');
+    const tierLabels = {frontier:'Tier 1 — Frontier',efficient:'Tier 2 — Efficient / Price-Performance',oss:'Tier 3 — Open Source / Free',specialist:'Specialist'};
+    let html = '';
+    const tiers = ['frontier','efficient','oss','specialist'];
+    tiers.forEach(tier => {
+      const tierModels = models.filter(m => m.tier === tier && (filter==='all' || m.tags.includes(filter)));
+      if(!tierModels.length) return;
+      html += `<tr><td colspan="8" class="tier-header">${tierLabels[tier]}<span>· ${tierModels.length} model${tierModels.length>1?'s':''}</span></td></tr>`;
+      tierModels.forEach(m => {
+        const freeTag = m.priceIn===0 ? '<span class="chip chip-oss" style="margin-left:.4rem">Free</span>' : '';
+        html += `<tr>
+          <td><strong>${m.name}</strong>${freeTag}</td>
+          <td><span class="tiny">${m.family}</span></td>
+          <td>${m.notes}</td>
+          <td>${m.priceIn===0 ? '<strong style="color:var(--color-success)">Free (OSS)</strong>' : `$${m.priceIn} in / $${m.priceOut} out`}<small>${m.cachedIn ? `Cached: $${m.cachedIn}/M` : m.priceIn===0 ? 'Rate limits apply' : 'Varies by tier'}</small></td>
+          <td>${m.context}<small>Latency: ${m.latency}</small></td>
+          <td class="tiny">${m.benchmarks.map(b=>`<div style="margin-bottom:.2rem">${b}</div>`).join('')}</td>
+          <td><div class="tools-list">${m.strengths.slice(0,4).map(t=>`<span class="chip">${t}</span>`).join('')}</div></td>
+          <td>${m.failures.map((f,i)=>`<div class="${i===0?'badge-watch':'badge-risk'}">${f}</div>`).join('')}</td>
+        </tr>`;
       });
-    }
+    });
+    tbody.innerHTML = html;
+  }
 
-    function evaluateTask(){
-      const task = document.getElementById('taskInput').value.trim();
-      const type = document.getElementById('taskType').value;
-      const scale = document.getElementById('taskScale').value;
-      const cw = Number(document.getElementById('costWeight').value);
-      const lw = Number(document.getElementById('latencyWeight').value);
-      const xw = Number(document.getElementById('contextWeight').value);
-      const tw = Number(document.getElementById('toolWeight').value);
-      const kw = keywordAdjustments(task);
+  function renderWatch(){
+    document.getElementById('watchGrid').innerHTML = watchModels.map(w=>`
+      <article class="watch-card">
+        <span class="chip chip-watch">Upcoming</span>
+        <h3 style="margin-top:.75rem">${w.name}</h3>
+        <p class="muted tiny" style="margin-bottom:.5rem"><strong>${w.status}</strong></p>
+        <p class="muted" style="font-size:var(--text-sm)">${w.why}</p>
+        <p class="tiny" style="margin-top:.75rem;color:var(--color-text-faint)">ETA: ${w.eta}</p>
+      </article>
+    `).join('');
+  }
 
-      const results = models.map(m => {
-        const baseType = m.ratings[type];
-        const costScore = m.ratings.cost * (cw/5);
-        const latencyScore = m.ratings.latency * (lw/5);
-        const contextScore = m.ratings.context * (xw/5) + (scale === 'large' ? m.ratings.longcontext * 0.8 : scale === 'medium' ? m.ratings.longcontext * 0.4 : 0);
-        const toolScore = m.ratings.tool * (tw/5);
-        const keyAdj = kw.find(k => k.id === m.id)?.adj || 0;
-        const total = Math.round(baseType * 0.38 + costScore * 0.16 + latencyScore * 0.14 + contextScore * 0.18 + toolScore * 0.14 + keyAdj);
-        return {...m, total};
-      }).sort((a,b) => b.total - a.total);
+  // Filter logic
+  document.getElementById('filterBar').addEventListener('click', e => {
+    const btn = e.target.closest('.filter-btn');
+    if(!btn) return;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderTable(btn.dataset.filter);
+  });
 
-      const [best, backup] = results;
-      const summary = `Best fit: ${best.name}. Backup: ${backup.name}.`;
-      const explanation = explainChoice(best, type, scale, cw, lw, xw, tw);
-      document.getElementById('evaluationResults').innerHTML = `
+  // Evaluator — only score production-accessible models (exclude watch/restricted)
+  const evalModels = models.filter(m => m.tier !== 'watch');
+
+  function keywordAdjustments(task){
+    const t = task.toLowerCase();
+    return evalModels.map(m => {
+      let adj = 0;
+      if(/code|repo|debug|typescript|python|agent|api|playwright|refactor|swe/.test(t)) adj += m.ratings.coding * 0.08;
+      if(/research|sources|memo|synthesis|analysis|compare|market|legal|due diligence/.test(t)) adj += m.ratings.research * 0.08;
+      if(/excel|spreadsheet|model|financial|table|csv/.test(t)) adj += m.ratings.spreadsheet * 0.08;
+      if(/voice|call|live|realtime|meeting|demo|audio/.test(t)) adj += m.ratings.live * 0.10;
+      if(/long|100k|200k|300k|1m|entire codebase|whole corpus|full document/.test(t)) adj += m.ratings.longcontext * 0.09;
+      if(/free|cheap|budget|open.?source|openrouter/.test(t)) adj += m.ratings.cost * 0.08;
+      return {id:m.id, adj};
+    });
+  }
+
+  function evaluateTask(){
+    const task = document.getElementById('taskInput').value.trim();
+    const type = document.getElementById('taskType').value;
+    const scale = document.getElementById('taskScale').value;
+    const cw = Number(document.getElementById('costWeight').value);
+    const lw = Number(document.getElementById('latencyWeight').value);
+    const xw = Number(document.getElementById('contextWeight').value);
+    const tw = Number(document.getElementById('toolWeight').value);
+    const kw = keywordAdjustments(task);
+
+    const results = evalModels.map(m => {
+      const baseType = m.ratings[type];
+      const costScore = m.ratings.cost * (cw/5);
+      const latencyScore = m.ratings.latency * (lw/5);
+      const contextScore = m.ratings.context*(xw/5) + (scale==='large'?m.ratings.longcontext*0.8:scale==='medium'?m.ratings.longcontext*0.4:0);
+      const toolScore = m.ratings.tool*(tw/5);
+      const keyAdj = kw.find(k=>k.id===m.id)?.adj||0;
+      const total = Math.round(baseType*0.38 + costScore*0.16 + latencyScore*0.14 + contextScore*0.18 + toolScore*0.14 + keyAdj);
+      return {...m, total};
+    }).sort((a,b)=>b.total-a.total);
+
+    const [best, backup] = results;
+    const explanation = explainChoice(best, type, scale, cw, lw, xw, tw);
+    document.getElementById('evaluationResults').innerHTML = `
+      <article class="result-item">
+        <div class="score">${best.total}</div>
+        <h3>Best fit: ${best.name} · Backup: ${backup.name}</h3>
+        <p class="muted">${explanation}</p>
+      </article>
+      ${results.slice(0,5).map(m=>`
         <article class="result-item">
-          <div class="score">${best.total}</div>
-          <h3>${summary}</h3>
-          <p class="muted">${explanation}</p>
-        </article>
-        ${results.map(m => `
-          <article class="result-item">
-            <div style="display:flex;justify-content:space-between;gap:1rem;align-items:start">
-              <div>
-                <h3>${m.name}</h3>
-                <div class="muted">${m.notes}</div>
-              </div>
-              <span class="chip">Score ${m.total}</span>
-            </div>
-            <div class="score-grid">
-              <div class="score-pill"><div class="tiny muted">Task fit</div><strong>${m.ratings[type]}</strong></div>
-              <div class="score-pill"><div class="tiny muted">Cost</div><strong>${m.ratings.cost}</strong></div>
-              <div class="score-pill"><div class="tiny muted">Latency</div><strong>${m.ratings.latency}</strong></div>
-              <div class="score-pill"><div class="tiny muted">Tools</div><strong>${m.ratings.tool}</strong></div>
-            </div>
-            <small class="muted">Watch-outs: ${m.failures.join(' • ')}</small>
-          </article>`).join('')}
-      `;
-      buildRunners(task, type);
-      buildScorecards(results);
-    }
-
-    function explainChoice(best, type, scale, cw, lw, xw, tw){
-      const reasons = [];
-      if(type === 'coding') reasons.push('coding capability is weighted heavily');
-      if(type === 'research') reasons.push('research synthesis and evidence handling dominate the score');
-      if(type === 'spreadsheet') reasons.push('artifact quality for tables, models, and structured analysis matters most');
-      if(type === 'live') reasons.push('realtime responsiveness is the deciding factor');
-      if(type === 'longcontext') reasons.push('context retention and large-input handling matter most');
-      if(scale === 'large') reasons.push('your workload likely exceeds standard short-context comfort zones');
-      if(cw >= 4) reasons.push('cost sensitivity materially penalises expensive models — consider Qwen3.6-Plus (free) or Gemini 3.1 Pro for budget-constrained runs');
-      if(lw >= 4) reasons.push('latency sensitivity rewards faster responders');
-      if(xw >= 4) reasons.push('context fit has strong weight');
-      if(tw >= 4) reasons.push('tool-use capability is treated as core, not optional');
-      return `${best.name} comes out ahead because ${reasons.slice(0,4).join(', ')}.`;
-    }
-
-    function buildRunners(task, type){
-      const starter = task || 'Replace this with your real task.';
-      const templates = models.slice(0,3).map(m => {
-        const prompt = `SYSTEM: You are being evaluated for ${type} work. Be explicit about tradeoffs, assumptions, missing information, and likely failure modes.\n\nTASK:\n${starter}\n\nREQUIRED OUTPUT:\n1. Short plan\n2. Final answer or artifact outline\n3. Confidence and risks\n4. What tools or extra data you would request\n5. If this task should be handed to another model, say why.`;
-        return `<article class="runner panel stack"><div><h3>${m.name}</h3><p class="muted">Use this starter prompt, then compare completeness, speed, and error rate.</p></div><div class="prompt-pane"><textarea aria-label="${m.name} prompt runner">${prompt}</textarea></div><button class="btn btn-secondary" type="button" data-copy="${encodeURIComponent(prompt)}">Copy prompt</button></article>`;
-      });
-      document.getElementById('runnerGrid').innerHTML = templates.join('');
-      document.querySelectorAll('[data-copy]').forEach(btn => btn.onclick = async () => {
-        const text = decodeURIComponent(btn.getAttribute('data-copy'));
-        try { await navigator.clipboard.writeText(text); btn.textContent = 'Copied'; setTimeout(()=>btn.textContent='Copy prompt',1200); } catch(e) { btn.textContent = 'Copy failed'; }
-      });
-    }
-
-    function buildScorecards(results){
-      document.getElementById('scorecards').innerHTML = results.slice(0,3).map(m => `
-        <article class="scorecard">
-          <h3>${m.name}</h3>
-          <p class="muted">Score each run from 1-5, then average.</p>
-          <div class="score-grid">
-            <div class="score-pill"><div class="tiny muted">Accuracy</div><strong>1-5</strong></div>
-            <div class="score-pill"><div class="tiny muted">Latency</div><strong>1-5</strong></div>
-            <div class="score-pill"><div class="tiny muted">Cost efficiency</div><strong>1-5</strong></div>
-            <div class="score-pill"><div class="tiny muted">Tool discipline</div><strong>1-5</strong></div>
+          <div style="display:flex;justify-content:space-between;gap:1rem;align-items:start">
+            <div><h3>${m.name} <span class="tiny muted">${m.family}</span></h3><div class="muted" style="font-size:var(--text-sm)">${m.notes}</div></div>
+            <span class="chip">Score ${m.total}</span>
           </div>
-          <small class="muted">Observed risk profile: ${m.failures.join(' • ')}</small>
-        </article>
-      `).join('');
-    }
+          <div class="score-grid">
+            <div class="score-pill"><div class="tiny muted">Task fit</div><strong>${m.ratings[type]}</strong></div>
+            <div class="score-pill"><div class="tiny muted">Cost</div><strong>${m.ratings.cost}</strong></div>
+            <div class="score-pill"><div class="tiny muted">Latency</div><strong>${m.ratings.latency}</strong></div>
+            <div class="score-pill"><div class="tiny muted">Tools</div><strong>${m.ratings.tool}</strong></div>
+          </div>
+          <small class="muted">Watch-outs: ${m.failures.join(' · ')}</small>
+        </article>`).join('')}
+    `;
+    buildRunners(task, type, results);
+    buildScorecards(results);
+  }
 
-    function splitWorkflow(text){
-      return text.split(/\n|\d+\)|•|\-/).map(s=>s.trim()).filter(Boolean).slice(0,8);
-    }
+  function explainChoice(best, type, scale, cw, lw, xw, tw){
+    const reasons = [];
+    if(type==='coding') reasons.push('coding capability weighted heavily');
+    if(type==='research') reasons.push('research synthesis and evidence handling dominate');
+    if(type==='spreadsheet') reasons.push('artifact quality for structured analysis matters most');
+    if(type==='live') reasons.push('realtime responsiveness is the deciding factor');
+    if(type==='longcontext') reasons.push('context retention and large-input handling matter most');
+    if(scale==='large') reasons.push('workload likely exceeds standard context windows');
+    if(cw>=4) reasons.push('cost sensitivity penalises expensive models — consider Qwen3.6-Plus (free) or Gemini Flash');
+    if(lw>=4) reasons.push('latency sensitivity rewards faster responders');
+    if(xw>=4) reasons.push('context fit weighted heavily');
+    if(tw>=4) reasons.push('tool-use treated as core requirement');
+    return `${best.name} leads because ${reasons.slice(0,4).join(', ')}.`;
+  }
 
-    function pickModelForStep(step){
-      const t = step.toLowerCase();
-      if(/voice|call|demo|meeting|live|audio|realtime/.test(t)) return {model:'Gemini 3.1 Flash Live', why:'best aligned to low-latency live interaction'};
-      if(/spreadsheet|excel|financial|sensitivity|table|csv|model/.test(t)) return {model:'Claude Opus 4.7', why:'top enterprise spreadsheet and structured-analysis positioning, #1 SWE-bench Pro'};
-      if(/implement|code|debug|repo|agent|tool|browser|playwright|computer/.test(t)) return {model:'GPT-5.4', why:'best blend of coding, tool search, and computer-use — first to beat human baseline on OSWorld-V'};
-      if(/analyze large|entire corpus|long context|full codebase|full document|1m/.test(t)) return {model:'Gemini 3.1 Pro', why:'best cost-per-token at scale, leads 13/16 benchmarks, Deep Research Max for grounded analysis'};
-      if(/research|memo|compare|synthesis|legal|diligence|risk|governance/.test(t)) return {model:'Claude Opus 4.7', why:'strongest careful reasoning for high-stakes research and enterprise document work'};
-      if(/free|prototype|test|experiment|draft|quick/.test(t)) return {model:'Qwen3.6-Plus', why:'free on OpenRouter, competitive with paid models on coding benchmarks — ideal for zero-cost iteration'};
-      return {model:'GPT-5.4', why:'best generalist default for mixed professional subtasks'};
-    }
+  function buildRunners(task, type, results){
+    const starter = task||'Replace this with your real task.';
+    const top3 = results.slice(0,3);
+    document.getElementById('runnerGrid').innerHTML = top3.map(m=>{
+      const prompt = `SYSTEM: You are being evaluated for ${type} work. Be explicit about tradeoffs, assumptions, missing info, and likely failure modes.\n\nTASK:\n${starter}\n\nREQUIRED OUTPUT:\n1. Short plan\n2. Final answer or artifact outline\n3. Confidence and risks\n4. Tools or extra data you would request\n5. Whether this task should route to another model and why.`;
+      return `<article class="runner panel stack"><div><h3>${m.name} <span class="tiny muted">${m.family}</span></h3><p class="muted">Paste into ${m.priceIn===0?'OpenRouter (free)':'the vendor console'}, then compare completeness and error rate.</p></div><div class="prompt-pane"><textarea aria-label="${m.name} runner">${prompt}</textarea></div><button class="btn btn-secondary" type="button" data-copy="${encodeURIComponent(prompt)}">Copy prompt</button></article>`;
+    }).join('');
+    document.querySelectorAll('[data-copy]').forEach(btn=>btn.onclick=async()=>{
+      const text=decodeURIComponent(btn.getAttribute('data-copy'));
+      try{await navigator.clipboard.writeText(text);btn.textContent='Copied';setTimeout(()=>btn.textContent='Copy prompt',1200);}catch(e){btn.textContent='Copy failed';}
+    });
+  }
 
-    function buildRoute(){
-      const text = document.getElementById('routerInput').value.trim();
-      const steps = splitWorkflow(text || 'Inspect requirements; implement code; analyze spreadsheet outputs; run live demo');
-      const routed = steps.map((step, idx) => ({step, ...pickModelForStep(step), idx: idx+1}));
-      const synthesizer = routed.some(r => r.model === 'Claude Opus 4.7')
-        ? 'Use Claude Opus 4.7 as final synthesiser for document-heavy or legally sensitive outputs. Use GPT-5.4 if the final deliverable is a code artifact or tool orchestration result.'
-        : routed.some(r => r.model !== 'GPT-5.4')
-          ? 'Use GPT-5.4 or Claude Opus 4.7 as final synthesiser depending on whether the final package is code-heavy or document-heavy. Add Qwen3.6-Plus as a zero-cost validator step if budget is constrained.'
-          : 'One primary model is sufficient. Add Flash Live for interactive demos, Qwen3.6-Plus as a free sanity-check layer.';
-      document.getElementById('routeOutput').innerHTML = routed.map(r => `
-        <article class="route-step">
-          <div class="chip">Step ${r.idx}</div>
-          <h3>${r.step}</h3>
-          <p><strong>${r.model}</strong> — ${r.why}</p>
-        </article>
-      `).join('') + `<article class="route-step"><div class="chip">Final handoff</div><h3>Synthesis layer</h3><p>${synthesizer}</p></article>`;
-    }
+  function buildScorecards(results){
+    document.getElementById('scorecards').innerHTML = results.slice(0,3).map(m=>`
+      <article class="scorecard" style="padding:var(--space-4);border-radius:var(--radius-lg);background:var(--color-surface-offset);border:1px solid var(--color-border)">
+        <h3>${m.name}</h3>
+        <p class="muted">Score each run 1–5, then average.</p>
+        <div class="score-grid">
+          <div class="score-pill"><div class="tiny muted">Accuracy</div><strong>1-5</strong></div>
+          <div class="score-pill"><div class="tiny muted">Latency</div><strong>1-5</strong></div>
+          <div class="score-pill"><div class="tiny muted">Cost eff.</div><strong>1-5</strong></div>
+          <div class="score-pill"><div class="tiny muted">Tool use</div><strong>1-5</strong></div>
+        </div>
+        <small class="muted">Risks: ${m.failures.join(' · ')}</small>
+      </article>
+    `).join('');
+  }
 
-    (function initTheme(){
-      const root = document.documentElement;
-      let mode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      root.setAttribute('data-theme', mode);
-      const btn = document.querySelector('[data-theme-toggle]');
-      btn.addEventListener('click', ()=>{
-        mode = mode === 'dark' ? 'light' : 'dark';
-        root.setAttribute('data-theme', mode);
-        btn.textContent = mode === 'dark' ? '☼' : '◐';
-      });
-    })();
+  function splitWorkflow(text){
+    return text.split(/\n|\d+\)|•|-/).map(s=>s.trim()).filter(Boolean).slice(0,8);
+  }
 
-    document.getElementById('evaluateBtn').addEventListener('click', evaluateTask);
-    document.getElementById('routeBtn').addEventListener('click', buildRoute);
-    renderSources();
-    renderTable();
-    evaluateTask();
-    buildRoute();
+  function pickModelForStep(step){
+    const t = step.toLowerCase();
+    if(/voice|call|demo|meeting|live|audio|realtime/.test(t)) return {model:'Gemini 3.1 Flash Live',why:'lowest latency (<500ms) for live interaction'};
+    if(/multimodal|video|image|audio.*(generate|create)|6.modal/.test(t)) return {model:'MiMo V2.5 Standard',why:'6 modalities in one API call at zero cost'};
+    if(/free|prototype|experiment|quick draft|zero.cost/.test(t)) return {model:'Qwen3.6-Plus',why:'free on OpenRouter, competitive with paid frontier on coding'};
+    if(/spreadsheet|excel|financial|sensitivity|table|csv/.test(t)) return {model:'Claude Opus 4.7',why:'#1 SWE-bench Pro, best enterprise structured-analysis'};
+    if(/implement|code|debug|repo|agent|tool|browser|playwright|computer/.test(t)) return {model:'GPT-5.4',why:'best coding+computer-use combo, first to beat human baseline on OSWorld-V'};
+    if(/long.?context|entire corpus|full codebase|full document|1m|large.?doc/.test(t)) return {model:'Grok 4.20',why:'2M context window — largest in production, strong for very large inputs'};
+    if(/bulk|batch|cheap|scale|classify|triage|extract/.test(t)) return {model:'Gemini 3.1 Flash',why:'$0.075/M input — cheapest 1M-context model for high-volume pipelines'};
+    if(/research|memo|compare|synthesis|legal|diligence|risk|governance/.test(t)) return {model:'Claude Opus 4.7',why:'strongest careful reasoning for high-stakes enterprise work'};
+    if(/chinese|bilingual|zh|mandarin/.test(t)) return {model:'Kimi K2',why:'best bilingual ZH/EN long-context model at competitive pricing'};
+    if(/edge|device|mobile|android|local|on.?prem/.test(t)) return {model:'Gemma 4 31B Dense',why:'Apache 2.0, runs on-device/Android, #3 global Arena leaderboard'};
+    return {model:'GPT-5.4',why:'best generalist default for mixed professional subtasks'};
+  }
+
+  function buildRoute(){
+    const text = document.getElementById('routerInput').value.trim();
+    const steps = splitWorkflow(text||'Inspect requirements; implement code; analyze spreadsheet outputs; run live demo');
+    const routed = steps.map((step,idx)=>({step,...pickModelForStep(step),idx:idx+1}));
+    const usedModels = [...new Set(routed.map(r=>r.model))];
+    const synthesizer = usedModels.includes('Claude Opus 4.7')
+      ? 'Use Claude Opus 4.7 as final synthesiser for document-heavy or legally sensitive outputs.'
+      : 'Use GPT-5.4 as final synthesiser for code-heavy outputs. Add Qwen3.6-Plus as a zero-cost validation layer if budget is constrained.';
+    document.getElementById('routeOutput').innerHTML = routed.map(r=>`
+      <article class="route-step">
+        <div class="chip">Step ${r.idx}</div>
+        <h3>${r.step}</h3>
+        <p><strong>${r.model}</strong> — ${r.why}</p>
+      </article>
+    `).join('') + `<article class="route-step"><div class="chip">Synthesis layer</div><h3>Final handoff</h3><p>${synthesizer}</p></article>`;
+  }
+
+  (function initTheme(){
+    const root=document.documentElement;
+    let mode=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+    root.setAttribute('data-theme',mode);
+    const btn=document.querySelector('[data-theme-toggle]');
+    btn.addEventListener('click',()=>{
+      mode=mode==='dark'?'light':'dark';
+      root.setAttribute('data-theme',mode);
+      btn.textContent=mode==='dark'?'☼':'◐';
+    });
+  })();
+
+  document.getElementById('evaluateBtn').addEventListener('click',evaluateTask);
+  document.getElementById('routeBtn').addEventListener('click',buildRoute);
+  renderSources();
+  renderTable();
+  renderWatch();
+  evaluateTask();
+  buildRoute();
   </script>
 </body>
 </html>
