@@ -6,6 +6,71 @@
   },
   "learnings": [
     {
+      "date": "2026-04-25",
+      "display_date": "APRIL 25, 2026",
+      "issue": 34,
+      "title": "The Multimodal Agent Layer",
+      "focus_intro": "For the first 30+ days of this series, agents read the world (text, screenshots, web pages) but mostly",
+      "viral_app": {
+        "name": "Until early 2026, multimodal mostly meant multimodal input -- feed an image, get text back. The 2026",
+        "description": "shift is on the output side. An agent's deliverable can now be a video clip, an avatar explainer, a custom soundtrack, an annotated UI screenshot or a dubbed voice-over -- generated, synchronised and cited inside the same orchestration loop as its tool calls and database writes. This matters because consumers and enterprise users now expect agentic outputs that match the channel: a marketing agent that produces a 15-sec TikTok with synced foley, a sales agent whose follow-up email contains a 60-sec personalised avatar pitch, a compliance agent that returns a narrated walk-through of a flagged transaction. Text-only agents will start to feel quaint. 2 · The 2026 multimodal agent stack Six lay",
+        "stats": [
+          {
+            "stat": "6",
+            "label": "modalities now in one API (MiMo V2.5: text + image + audio + video + speech + music)"
+          },
+          {
+            "stat": "70%",
+            "label": "production-time cut for content teams using gen-video pipelines"
+          },
+          {
+            "stat": "175",
+            "label": "languages auto-lip-synced by HeyGen Avatar V from one 15-sec webcam clip"
+          }
+        ]
+      },
+      "stats": [
+        {
+          "stat": "6",
+          "label": "modalities now in one API (MiMo V2.5: text + image + audio + video + speech + music)"
+        },
+        {
+          "stat": "70%",
+          "label": "production-time cut for content teams using gen-video pipelines"
+        },
+        {
+          "stat": "175",
+          "label": "languages auto-lip-synced by HeyGen Avatar V from one 15-sec webcam clip"
+        }
+      ],
+      "sections": [
+        {
+          "title": "Viral app of the week",
+          "paragraphs": [
+            "Open-sourced April 12, 2026 by MiniMax (post Hong Kong IPO, MIT licence on the CLI), MMX-CLI is the first MCP-free shell harness that lets Cursor, Claude Code and OpenCode talk to MiniMax's full multimodal stack as ordinary commands: mmx image, mmx video, mmx speech, mmx music, mmx vision, mmx search. 1,200+ GitHub stars in three weeks, top trending repo on Hugging Face. Strategic shift: MiniMax is no longer just shipping models (M2.7 was Day 25) -- it's now building the developer harness around them. Expect Anthropic, OpenAI and Google to copy the shell-native pattern by Q3.",
+            "call, single autoregressive backbone, beats MiMo V2 Pro on cross-modal benchmarks; first credible",
+            "dialogue, foley and background score temporally aligned with visuals; Lyria 3 custom AI music is now production-grade; fully directable AI avatars inside the same editor.",
+            "621ms TTFT -- designed to be the \"voice and eyes\" of fast agent loops where Gemini 3.1 / GPT-5.4 are",
+            "reasoning + agentic tool use + long-context comprehension; the OSS default replacing MolmoWeb for",
+            "model out-performs a calibrated human on a real-desktop agent benchmark.",
+            "letting non-developers ship apps is a structural unlock, not a fad (echoes Day 32 vibe-coding).",
+            "back with a per-minute pricing model and a new ChatGPT integration; Veo 3.1 still leads on",
+            "Agentic AI in Healthcare & Life Sciences -- clinical workflow agents, MangroveGS metastasis prediction, FDA agent-class device guidance, and how privacy + provenance patterns from this multimodal layer carry into HIPAA/GDPR-grade health data. DeepMind, AI/ML API blog, MyEngineeringPath, BentoML, FutureAGI, TechCrunch."
+          ],
+          "bullets": [
+            "Xiaomi MiMo V2.5 Standard (Apr 22) -- natively processes image + audio + video + text in one API",
+            "Google Veo 3.1 free in Google Vids (Apr 2 announcement, rolled to all Google accounts mid-April) --",
+            "ByteDance Seed 2.0 Lite -- low-latency multimodal model purpose-built for agents: 262K context,",
+            "Qwen3-VL -- Alibaba's latest open-weights vision-language model, strongest open-source multimodal",
+            "OSWorld-V human baseline crossed -- GPT-5.4 75% vs. human 72.4%. For the first time, a frontier",
+            "App Store boom -- Q1 2026 worldwide app releases up 60% YoY; April 2026 to-date +104%. AI tools",
+            "Sora 2 quietly returns -- after the late-March wind-down for cost reasons, OpenAI brought Sora 2"
+          ]
+        }
+      ],
+      "practical_takeaway": []
+    },
+    {
       "date": "2026-04-24",
       "display_date": "APRIL 24, 2026",
       "title": "If the last 32 days taught us how agents think, plan, pay, and protect themselves, today we answer a",
@@ -4543,6 +4608,6 @@
       ]
     }
   ],
-  "last_updated": "2026-04-17",
-  "total_days": 27
+  "last_updated": "2026-04-25",
+  "total_days": 34
 }
