@@ -6,6 +6,144 @@
   },
   "learnings": [
     {
+      "date": "2026-04-26",
+      "display_date": "APRIL 26, 2026",
+      "issue": 35,
+      "title": "Day 35 -- Clinical Workflow Agents, Frontier Models & Health AI Governance",
+      "focus_intro": "Healthcare is entering its most consequential AI moment. Agentic AI systems are no longer just assistants -- they are autonomous participants in clinical workflows, saving nurses up to 24 minutes per shift, cutting documentation overhead by 4 minutes per patient visit, and powering the next generation of drug discovery agents. Today we cover the full landscape: FDA/HIPAA governance, clinical deployment patterns, and the massive model releases (GPT-5.5, DeepSeek V4) that give healthcare AI an unprecedented capability boost.",
+      "viral_app": {
+        "name": "",
+        "description": "",
+        "stats": [
+          {
+            "stat": "$3.48/M",
+            "label": "DeepSeek V4-Pro output tokens"
+          },
+          {
+            "stat": "1.6T",
+            "label": "DeepSeek V4-Pro parameters"
+          },
+          {
+            "stat": "87.6%",
+            "label": "Claude Opus 4.7 SWE-bench Verified"
+          },
+          {
+            "stat": "9×",
+            "label": "DeepSeek V4 cost advantage vs GPT-5.5"
+          }
+        ]
+      },
+      "stats": [
+        {
+          "stat": "47%",
+          "label": "orgs using/ assessing health agents"
+        },
+        {
+          "stat": "8-24 min",
+          "label": "saved per nurse shift by AI"
+        },
+        {
+          "stat": "$7.51B",
+          "label": "Agentic AI market size 2026"
+        },
+        {
+          "stat": "40%",
+          "label": "enterprise apps embed agents by end 2026"
+        }
+      ],
+      "sections": [
+        {
+          "title": "1. The Agentic AI Healthcare Landscape in 2026",
+          "paragraphs": [
+            "From Assistants to Autonomous Participants The central story of 2026 healthcare AI is the shift from 'AI that answers questions' to 'AI that logs into systems, retrieves data, and completes multi-step tasks on its own.' Large Action Models (LAMs) can now reason across fragmented systems -- Lab Information Management Systems (LIMS), Quality Management Systems (QMS), and EHRs -- without human intervention on each step.",
+            "Clinicians at Cooper Health reported saving more than 4 minutes per patient visit on documentation alone. At Mercy Health, nurses saved 8-24 minutes per shift, and patient satisfaction scores rose by 4.5%. These aren't pilot numbers -- these are production deployments at scale. The productivity gain compounds: freeing 24 min/shift means a single 12-hour shift yields ~2 hours of reclaimed clinical attention.",
+            "While 47% of healthcare organisations are using or assessing AI agents (per NVIDIA survey), agentic AI adoption still lags behind simpler LLM tooling. The reason: action-based use cases require deeper system integration, higher access rights, and stricter governance. This creates an advantage for early movers willing to invest in proper HITL controls and compliance frameworks.",
+            "NIST CAISI audit trail per action + Human Review Toggle for high-risk decisions."
+          ],
+          "bullets": [
+            "The agent stack for healthcare = EHR MCP server + clinical LLM + HIPAA-scoped SPIFFE SVID +"
+          ]
+        },
+        {
+          "title": "2. FDA, HIPAA & the New Regulatory Stack",
+          "paragraphs": [
+            "The FDA and European Medicines Agency published joint principles for Good AI Practice -- the first transatlantic alignment on AI validation in healthcare. This matters enormously: for any AI agent that influences clinical judgment or patient management, you are now operating under SaMD (Software as a Medical Device) classification, which requires FDA clearance under 21 CFR Part 11 + the AI/ML Action Plan. Administrative agents (scheduling, billing, prior auth) are generally not SaMD under current guidance -- but watch for 2026",
+            "Every third-party API integrated into a healthcare agent -- including LLM providers used in your clinical chatbot -- must have a signed Business Associate Agreement (BAA) under HITECH enforcement. A compliant agent must implement granular RBAC: a scheduling bot should see calendar availability but never clinical diagnosis notes, and the system must enforce these permissions at the infra level (namespace isolation), not just app",
+            "Greenway Health introduced the 'Agentic AI Factory' in 2026 -- a platform that standardizes how clinical agents are built, validated, and deployed with built-in controls for compliance, security, and explainability. This maps directly to the governance patterns we've covered: EU AI Act Annex III evidence generation, NIST CAISI audit trails, T1-T4 kill switches, and agent identity via SPIFFE SVIDs. The takeaway: governance-as-a-platform is the new table stakes for any vendor selling into healthcare."
+          ],
+          "table": {
+            "headers": [
+              "Regulation",
+              "Scope",
+              "Key Obligation"
+            ],
+            "rows": [
+              [
+                "FDA SaMD AI/ML",
+                "Clinical decision AI",
+                "Pre-market clearance + post-market monitoring"
+              ],
+              [
+                "HIPAA/HITECH",
+                "All US health data",
+                "BAA for every LLM API + RBAC enforcement"
+              ],
+              [
+                "EU AI Act Annex III",
+                "High-risk health AI",
+                "Aug 2 2026 enforcement, €35M/7% GTR fines"
+              ],
+              [
+                "EU MDR",
+                "Digital health devices (EU)",
+                "CE marking for AI-driven diagnostics"
+              ],
+              [
+                "FDA/EMA Joint AI Principles",
+                "All clinical AI globally",
+                "Good AI Practice validation framework (Jan 2026)"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "4. Discovery Agents in Life Sciences",
+          "paragraphs": [
+            "MangroveGS -- 80% Cancer Metastasis Prediction Accuracy MangroveGS AI, highlighted last session, has now been confirmed predicting cancer metastasis with 80% accuracy -- a landmark milestone for AI-assisted oncology. This uses a multi-modal agent pattern: genomic sequence inputs processed via VLM-style encoders, clinical record context retrieved via RAG from patient history, and an LLM reasoning layer that outputs risk stratification + treatment pathway recommendations. The agent doesn't replace the oncologist -- it gives them a 20-minute head start on each patient. AlphaEvolve as a Template for Drug Discovery Google DeepMind's AlphaEvolve -- the evolutionary coding agent that beat Strassen's 1969 matrix algorithm -- is now in Academia Early Access (April 2026). Its ReAct loop pattern (generate hypothesis → code simulation fi evaluate → iterate) maps directly to computational drug discovery: generate molecular scaffold → simulate binding affinity → evaluate against target → iterate. Expect the first AlphaEvolve-powered drug discovery",
+            "FDA/EMA Joint Framework -- Why It Matters Now The Jan 14, 2026 FDA/EMA joint principles represent the first time the two largest pharmaceutical regulators have aligned on AI validation. For life sciences companies using discovery agents, this means the validation evidence you build today -- NIST CAISI audit trails, OTEL observability spans, golden dataset regression gates -- will directly satisfy regulatory submissions. Govern your discovery agents like production clinical agents from"
+          ]
+        },
+        {
+          "title": "VIRAL APP OF THE DAY",
+          "paragraphs": [
+            "OpenAI launches GPT-5.5 on April 23 -- faster, smarter, same latency as 5.4 but dramatically higher intelligence. Best-in-class for agentic coding tasks and autonomous multi-step workflows. Rolling out to Plus/Pro/Business/Enterprise.",
+            "DeepSeek drops its biggest model yet on April 24: V4-Pro (1.6T params, $3.48/M output) and V4-Flash (284B, $0.28/M). Hybrid Attention Architecture + 1M",
+            "Parameters: GPT-5.5 at comparable quality. Kling AI 2.6 weekly actives hit 2.6M after OpenAI shuts Sora. Motion Control 3.0",
+            "Q1 2026 worldwide app releases up 60% YoY; April 2026 accelerates to 104% growth vs same period last year. AI-powered coding tools (Claude Code, Replit,",
+            "The Jan 14, 2026 transatlantic joint principles for Good AI Practice are now the de-facto validation standard for healthcare AI. First regulatory framework to",
+            "in Force: governance with EU AI Act Annex III.",
+            "Categorise every AI agent touching healthcare data into: (1) Administrative -- not SaMD, still needs HIPAA BAA + RBAC, (2) Clinical Decision Support -- likely SaMD, FDA clearance pathway required, (3) Discovery/Research -- governed by FDA/EMA joint principles. Do this inventory before the EU AI Act Aug 2 enforcement deadline. Switch to DeepSeek V4-Flash for High-Volume Clinical Doc Tasks At $0.28/M output tokens, V4-Flash is the most cost-efficient model for structured document extraction, prior auth automation, and billing code assignment. Run it behind the same SPIFFE SVID + NIST audit trail as your existing agents. Reserve GPT-5.5 or Claude Opus 4.7 for complex multi-step clinical reasoning where accuracy trumps cost. Instrument Before You Deploy -- OTEL for Clinical Agents Every clinical agent must have OpenTelemetry spans capturing: action type, patient ID namespace, SVID, OAuth scope, latency, and outcome. This is simultaneously your EU AI Act Annex III evidence, your NIST CAISI audit trail, and your Agent SRE dashboard. Start with Langfuse (MIT OSS) and fan-out to your SIEM for HIPAA audit log",
+            "Human Review Toggles Are Non-Negotiable for Clinical Agents ServiceNow's pattern from Day 25 applies directly to healthcare: every high-risk agent action (medication recommendation, care pathway change, discharge planning) must have a Human Review Toggle. This is the 'human-on-the-loop' pattern. It satisfies UK FCA accountability requirements, EU AI Act human oversight mandates, and NIST CAISI Approval element simultaneously.",
+            "The constraint is no longer model capability -- GPT-5.5 and DeepSeek V4 have cleared that bar. The constraint is governance: organisations that build audit trail, kill switch, and RBAC infrastructure today will capture disproportionate market share as the FDA/EMA joint framework forces the rest of",
+            "new agentic IDE landscape. How spec-driven development is changing software engineering and what it means for every knowledge worker's workflow. Topics covered so far: Days 1-35. Next: Agent-Native Dev Tools (Day 36)."
+          ],
+          "bullets": [
+            "Breaking News -- April 26, 2026",
+            "GPT-5.5 'Spud' Released: Codex on NVIDIA infrastructure is first to integrate.",
+            "DeepSeek V4 Preview -- 1.6T context. Open-source. Close integration with Huawei chips. 9× cheaper than",
+            "Kling AI Surges as Sora's spawns millions of viral TikTok dance videos. Bloomberg: 'Kling AI, Runway, Vidu",
+            "App Store Launches Up 104% Kiro) are enabling non-developers to ship production apps. 'Vibe coding' named",
+            "FDA/EMA Joint AI Principles explicitly cover agentic clinical AI decision support -- aligning clinical AI",
+            "Practical Takeaways for Today",
+            "Market Signal: The AI healthcare agent market is on a trajectory to $28B+ by 2030 (35% CAGR).",
+            "Tomorrow (Day 36): Agent-Native Developer Tools -- Kiro, OpenHands, Claude Code Epitaxy and the"
+          ]
+        }
+      ],
+      "market_signal": "The AI healthcare agent market is on a trajectory to $28B+ by 2030 (35% CAGR). The constraint is no longer model capability -- GPT-5.5 and DeepSeek V4 have cleared that bar. The constraint is governance: organisations that build audit trail, kill switch, and RBAC infrastructure today will capture disproportionate market share as the FDA/EMA joint framework forces the rest of the industry to comply by 2027.",
+      "practical_takeaway": []
+    },
+    {
       "date": "2026-04-25",
       "display_date": "APRIL 25, 2026",
       "issue": 34,
@@ -4608,6 +4746,6 @@
       ]
     }
   ],
-  "last_updated": "2026-04-25",
-  "total_days": 34
+  "last_updated": "2026-04-26",
+  "total_days": 35
 }
