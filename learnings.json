@@ -6,6 +6,147 @@
   },
   "learnings": [
     {
+      "date": "2026-04-27",
+      "display_date": "APRIL 27, 2026",
+      "issue": 35,
+      "title": "Agentic AI is crossing from tech labs into hospital wards, pharma pipelines, and clinical",
+      "focus_intro": "workflows. From AI agents that cut prior authorisation from 45 minutes to under a minute, to the first fully AI-designed drug now in Phase IIa trials, to cancer-metastasis prediction at 80% accuracy -- today you learn how the agentic stack you've been building connects directly to medicine's biggest unsolved problems.",
+      "viral_app": {
+        "name": "What is it? Cursor 3 (April 2, 2026) is a complete ground-up rebuild of the Cursor IDE -- now described as an",
+        "description": "'agent-first interface' rather than an AI code editor. The headline feature is the Agents Window: run unlimited parallel coding agents across local files, git worktrees, SSH servers, and cloud environments simultaneously. Multi-repo layout, seamless local-to-cloud handoff, and a plugin marketplace ship in v3.0. Why it matters for your agentic AI journey: Cursor 3 and Claude Code together account for 95.6% of all AI agent traffic in developer documentation (Mintlify March 2026). Cursor 3's architecture directly implements the parallel fan-out orchestration pattern from Day 24 -- multiple agents working simultaneously in isolated worktrees, with a human-managed coordination layer. The communit",
+        "stats": []
+      },
+      "stats": [
+        {
+          "stat": "61%",
+          "label": "health execs building agentic AI now"
+        },
+        {
+          "stat": "47%",
+          "label": "healthcare orgs using or assessing agents"
+        },
+        {
+          "stat": "200+",
+          "label": "AI-designed drugs in clinical pipeline"
+        }
+      ],
+      "sections": [
+        {
+          "title": "Real-World Deployments You Need to Know",
+          "paragraphs": [
+            "Black Book's 2026 Healthcare Autonomy Report names Suite Innovaccer the current leader in agentic healthcare AI. Their Emids unveiled production-ready agentic workflows built on platform deploys AI agents across five categories: patient Anthropic Claude models alongside the Pacca AI Agent access, value-based care, revenue cycle, risk & quality, Builder on April 21. These cover clinical documentation, and utilisation management. coding, prior auth, and care coordination -- each with full audit trails for HIPAA and EU AI Act Annex III compliance. The headline result: Risant Health reduced prior authorisation from 45 minutes to under 1 minute. Banner Health and Franciscan Health have eliminated hours of manual daily n Microsoft Health AI -- Readiness work. Innovaccer is now committing $250M over three years Research to scale the platform. Microsoft and The Health Management Academy published research showing that 85% of healthcare leaders plan to",
+            "only 24.4% have agent-to-agent visibility (the same Shadow Announced April 22, 2026. Merck and Google Cloud signed a AI problem from Day 31's enterprise board session -- now multi-year partnership valued at up to $1 billion to deploy",
+            "Gemini Enterprise agentic workflows across R&D, manufacturing, commercial operations, and corporate functions. This is the largest single agentic AI commitment in",
+            "Drug Discovery: AI Agents Reach the Clinic This is the area where agentic AI's potential impact is most staggering -- and most carefully scrutinised. Traditional drug discovery takes 10-15 years and costs over $2B per approved molecule. AI agents are",
+            "The critical question for 2026: Can AI agents improve clinical success rates, not just accelerate preclinical timelines? Current Phase III data shows AI-discovered compounds progress at similar rates to traditional molecules. The value proposition today is speed and cost -- a 10-15× acceleration in target identification, not yet a fundamental improvement in whether the drug actually works in humans. Healthcare AI Governance: Unique Constraints Healthcare agents face the intersection of every compliance framework you've learned -- plus two additional",
+            "high-risk Annex III. €35M/7% GTR penalties. Audit trail (PHI) has strict access controls, breach notification = liability firewall. within 60 days, and minimum-necessary principles.",
+            "Permission/Approval/Audit Trail/Kill Switch. Now a PHI too. baseline for FDA submissions. • FDA AI/ML Guidance -- Draft finalising 2026.",
+            "agent that mis-orders a medication needs to be architecture docs, training data governance for any AI stopped in <1 second. used in drug development or clinical decisions.",
+            "needs a cryptographically attested identity, not just an (Day 25) is now the clinical standard: agents handle API key. routine tasks autonomously, but a doctor must approve"
+          ],
+          "bullets": [
+            "Innovaccer -- $250M Agentic Platform n Emids × Anthropic -- Clinical Workflow",
+            "Merck × Google Cloud -- $1B Deal increase AI investment over the next 2-3 years. Key gap:",
+            "Frameworks You Already Know n Healthcare-Specific Layers",
+            "EU AI Act Aug 2, 2026 -- clinical AI classifies as • HIPAA / HITECH -- Protected Health Information",
+            "NIST CAISI -- 4-element framework: Memory IDs + GDPR-style hard delete now needed for",
+            "Kill Switch T1-T4 -- critical in clinical settings: an Requires credibility assessment plans, model",
+            "SPIFFE/SVID identity -- every agent touching PHI • Human Review Toggles -- ServiceNow's pattern",
+            "Viral App of the Day"
+          ],
+          "table": {
+            "headers": [
+              "Layer",
+              "Component",
+              "Healthcare Use Case",
+              "Example Tool"
+            ],
+            "rows": [
+              [
+                "1 -- Intelligence",
+                "LLM Brain",
+                "Clinical reasoning, summarisation",
+                "Claude Opus 4.7 / Gemini 3.1 Pro"
+              ],
+              [
+                "2 -- Memory",
+                "Write-Aside + pgvector",
+                "Patient history, FHIR records",
+                "MemOS + Oracle AI DB 26ai"
+              ],
+              [
+                "3 -- Tool Belt",
+                "MCP servers",
+                "EHR reads, lab orders, scheduling",
+                "Epic MCP, Cerner APIs"
+              ],
+              [
+                "4 -- Orchestration",
+                "LangGraph 2.0",
+                "Multi-step clinical workflows",
+                "Innovaccer Agent Platform"
+              ],
+              [
+                "5 -- Guardrails",
+                "NIST CAISI + Kill Switch",
+                "HIPAA audit trail, T1-T4 stop",
+                "Microsoft Governance Toolkit"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "What is it? Cursor 3 (April 2, 2026) is a complete ground-up rebuild of the Cursor IDE -- now described as an",
+          "paragraphs": [
+            "'agent-first interface' rather than an AI code editor. The headline feature is the Agents Window: run unlimited parallel coding agents across local files, git worktrees, SSH servers, and cloud environments simultaneously. Multi-repo layout, seamless local-to-cloud handoff, and a plugin marketplace ship in v3.0. Why it matters for your agentic AI journey: Cursor 3 and Claude Code together account for 95.6% of all AI agent traffic in developer documentation (Mintlify March 2026). Cursor 3's architecture directly implements the parallel fan-out orchestration pattern from Day 24 -- multiple agents working simultaneously in isolated worktrees, with a human-managed coordination layer. The community debate is revealing: Hacker News' top comment was 'I wish they'd keep the old philosophy of letting the developer drive' -- a live example of the trust architecture tension you",
+            "manage agents, not code' transition being clearly communicated. The lesson from Days 25 and 31: viral growth „ production readiness. Cursor 3's trust architecture gap (no explicit kill switch per agent) is the same issue that grounded Perplexity Comet (Day 31). Adoption without governance = a liability."
+          ],
+          "bullets": [
+            "Governance lesson embedded in Cursor 3's viral moment: The platform shipped without the 'you"
+          ],
+          "table": {
+            "headers": [
+              "Cursor 3 Launched April 2, 2026 · agent-first IDE · $20/mo Pro",
+              "",
+              "",
+              ""
+            ],
+            "rows": [
+              [
+                "95.6% of all AI agent traffic is Claude Code or Cursor",
+                "#1 in developer mindshare battle vs Claude Code",
+                "¥ parallel agents across local/cloud/SSH/worktrees",
+                "$20/mo Pro tier -- price unchanged from v2"
+              ]
+            ]
+          }
+        }
+      ],
+      "market_signal": "Merck's $1B Google Cloud deal (Apr 22) signals that Big Pharma is now treating agentic AI as core infrastructure, not an experiment. The AI drug discovery market alone is projected at $4B+ by",
+      "practical_takeaway": [
+        {
+          "title": "as core infrastructure, not an experiment. The AI drug disco",
+          "body": "as core infrastructure, not an experiment. The AI drug discovery market alone is projected at $4B+ by 2028. Healthcare AI overall: $45B (2026) fi $188B by 2030 at 42.5% CAGR. The governance gap is the biggest moat -- companies that get HIPAA + EU AI Act + NIST compliance right first will lock up enterprise health"
+        },
+        {
+          "title": "carbon accounting, energy grid optimisation, climate modelli",
+          "body": "carbon accounting, energy grid optimisation, climate modelling, and the environmental cost of inference itself (Grok 4's training = 72,000 tons COn). Plus: the EU's proposed AI Energy Disclosure requirement coming with the AI Act"
+        },
+        {
+          "title": "Varun's Daily AI Brief -- Issue #35 -- April 27, 2026 | Topi",
+          "body": "Varun's Daily AI Brief -- Issue #35 -- April 27, 2026 | Topics: Agentic AI · Healthcare · Drug Discovery · Compliance · Cursor 3 |"
+        },
+        {
+          "title": "Market Signal: Merck's $1B Google Cloud deal (Apr 22) signal",
+          "body": "Market Signal: Merck's $1B Google Cloud deal (Apr 22) signals that Big Pharma is now treating agentic AI"
+        },
+        {
+          "title": "Tomorrow -- Day 36: The Agent Economy meets Climate & Sustai",
+          "body": "Tomorrow -- Day 36: The Agent Economy meets Climate & Sustainability: how AI agents are being deployed for"
+        }
+      ]
+    },
+    {
       "date": "2026-04-26",
       "display_date": "APRIL 26, 2026",
       "issue": 35,
