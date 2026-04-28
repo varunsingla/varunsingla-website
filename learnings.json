@@ -6,6 +6,59 @@
   },
   "learnings": [
     {
+      "date": "2026-04-28",
+      "display_date": "APRIL 28, 2026",
+      "issue": 36,
+      "title": "The Agent Economy Meets Climate &",
+      "focus_intro": "How AI Agents Are Fighting the Environmental Crisis They Helped Create",
+      "viral_app": {
+        "name": "Watershed AI Agents -- Carbon Accounting Goes Agentic",
+        "description": "Launched April 21, 2026 at SF Climate Week, Watershed's AI agents represent the most significant production deployment of agentic AI in the sustainability space. What makes this viral-worthy: they didn't just add AI to a dashboard -- they rebuilt the entire data ingestion and analysis workflow as an agent loop. The agents use the same patterns you've learned: Write-Aside memory (activity data → emission factor vector DB fi structured audit output), parallel fan-out (multiple data sources processed simultaneously), and LLM-as-Judge for ESG report quality scoring. One client completed a 5-hour data cleaning project in Why it matters for you: Sustainability is now a board-level mandatory functi",
+        "stats": [
+          {
+            "stat": "945",
+            "label": "TWh"
+          }
+        ]
+      },
+      "stats": [
+        {
+          "stat": "80%",
+          "label": "less time with Watershed AI"
+        }
+      ],
+      "sections": [
+        {
+          "title": "challenges -- climate change. Yet those same agents are consuming energy at an",
+          "paragraphs": [
+            "unprecedented rate. Training Grok 4 alone emitted ~72,000 tons of COn, equivalent to driving 17,000 cars for a year. Today's issue maps both sides of this tension: how agentic AI is being deployed for carbon accounting, energy grid optimisation, climate modelling, and green data centres -- and what the EU AI Act's new energy disclosure mandates mean for every",
+            "Frontier AI model training is now 14× more carbon-intensive than 18 months ago. AI data centres globally consume 450-500 TWh annually (~2% of world electricity), projected to reach 945 TWh by 2030. Inference -- not training -- accounts for 60-70% of total AI energy use. A single medium-length DeepSeek V3 prompt uses 23 watts vs Claude's 5 watts. Yet the same AI capabilities are now being turned back on the climate problem. The key insight for 2026: model routing, green scheduling, and purpose-built sustainability agents can make agentic AI a net-positive force for the environment -- but only with deliberate architectural choices.",
+            "Watershed launched purpose-built AI agents at San Francisco Climate Week (April 21, 2026), cutting data-cleaning time by 80% -- one client completed a 5-hour project in 20 minutes. These agents upload and process utility bills 7× faster than manual processes, map spend to emission factors automatically, identify decarbonisation hotspots, and produce first-draft ESG reports. The broader carbon accounting agent stack in 2026 includes: CO2 AI (70% time savings on emissions tracking), Persefoni (enterprise GHG platform), and EcoVadis × Watershed (Scope 3 data gap partnership). These are real production deployments, not pilots. The key agentic pattern is the same Write-Aside memory loop you learned in Day 4: async data ingestion → vector search over emission factor libraries → structured output for audit-ready disclosure.",
+            "AI agents are becoming the control layer for smart energy grids in 2026. Key applications: renewable output forecasting (GAN-LSTM hybrids reduce RMSE by 15-20% for solar irradiance), real-time demand balancing, peer-to-peer energy trading (homeowners selling solar surplus via AI-automated pricing), and temporal load shifting -- moving compute to times when the grid has more renewable supply. MIT researchers (January 2026) demonstrated AI-optimised grid dispatch that allows utilities to accelerate compute capacity without building new generation or transmission infrastructure. The World Economic Forum (March 2026) published a framework arguing AI needs a smarter grid, not just more power -- the solution is bidirectional: AI optimises the grid, the green grid powers AI.",
+            "Nine leading built-environment organisations launched the Greening AI Data Centres Coalition (GADCC) in April 2026 to set credible standards -- cutting through greenwashing and directing capital to genuinely sustainable facilities. The coalition will publish transparent benchmarks on water use, energy source mix, PUE (Power Usage Effectiveness), and carbon intensity. A striking EU finding (March 30, 2026): AI data centre waste heat can power water purification and direct air capture (carbon capture), potentially making data centres water-positive and carbon-negative. This reframes data centres from pure energy consumers into potential climate infrastructure nodes.",
+            "The EU AI Act (enforcement August 2, 2026) introduces mandatory energy disclosures for General-Purpose AI models. Providers of GPAI systems trained on large datasets must report energy consumption -- with disclosures required every 4 years after the 2-year post-enactment period. The Corporate Sustainability Reporting Directive (CSRD) adds GHG emissions, energy efficiency of AI algorithms, and environmental impact to mandatory annual reporting. Baker Botts (March 2026) warns that high-risk AI systems under Annex III face the most stringent obligations, including Article 40 standardisation requirements for reducing energy during training and deployment. Non-compliance: €35M or 7% of global turnover (whichever is higher). The practical implication: if you are building or deploying any AI in the EU, you need OTEL energy metrics in your observability stack NOW -- not after August 2.",
+            "Building on everything learned across 35 days, here are the architectural patterns that make agentic AI genuinely sustainable -- not just ESG-washable:",
+            "Watershed AI Agents -- Carbon Accounting Goes Agentic Launched April 21, 2026 at SF Climate Week, Watershed's AI agents represent the most significant production deployment of agentic AI in the sustainability space. What makes this viral-worthy: they didn't just add AI to a dashboard -- they rebuilt the entire data ingestion and analysis workflow as an agent loop. The agents use the same patterns you've learned: Write-Aside memory (activity data → emission factor and LLM-as-Judge for ESG report quality scoring. One client completed a 5-hour data cleaning project in",
+            "Why it matters for you: Sustainability is now a board-level mandatory function (CSRD, EU AI Act). The first companies to deploy carbon accounting agents will have a structural advantage in regulatory compliance AND investor relations. This is the Salesforce Agentforce moment for ESG.",
+            "Instrument every LLM call with output.energy_wh and output.carbon_g. This is both an EU AI Act Annex III compliance requirement (August 2 deadline) and good engineering hygiene. Tools: OpenLLMetry (now part of ServiceNow, Apache 2.0) already tracks token usage -- extend with energy estimates based on",
+            "The 50-70% cost reduction from model routing (nano for classification, frontier only for complex reasoning) is also a 50-70% energy reduction. Frame this to your CFO as dual-impact: cost savings +",
+            "Any non-latency-sensitive agent task (batch embeddings, nightly reports, eval runs) should be scheduled to renewable-surplus windows. Use grid carbon intensity APIs (Electricity Maps, WattTime) as a tool in your agent's MCP toolkit -- let the agent decide when to run heavy jobs.",
+            "measurement per training run and per inference call. n Store as WORM audit logs (NIST CAISI requirement). n Map to CSRD reporting categories. n Assign an AI Governance Lead.",
+            "reporting live, EU AI Act energy disclosures coming August 2, and the global GADCC coalition setting data centre standards, sustainability is no longer optional for AI teams. The companies building carbon accounting agent workflows NOW will have a 12-18 month compliance advantage over those waiting",
+            "position yourself, what salaries look like across Agent SRE / Context Engineer / AI PM / AI Governance Lead, and the skills that will matter most in H2 2026. Topics: Sustainability AI · Carbon Accounting Agents · Green Data Centres · EU AI Act Energy Disclosure · Grid Optimisation"
+          ],
+          "bullets": [
+            "Carbon Accounting Agents: Watershed & Watershed launched purpose-built AI agents at San Francisco data-cleaning time by 80% -- one client completed a 5-hour and process utility bills 7× faster than manual processes, map identify decarbonisation hotspots, and produce first-draft ESG The broader carbon accounting agent stack in 2026 includes: tracking), Persefoni (enterprise GHG platform), and EcoVadis partnership). These are real production deployments, not Write-Aside memory loop you learned in Day 4: async data ingestion → libraries structured output for audit-ready disclosure.",
+            "Watershed AI Fellowship launches May 12 - June 30, 2026",
+            "Agents automatically match activity data to emission factors",
+            "EU ESMA issued digital taxonomies in April 2026 -- agent-readable"
+          ]
+        }
+      ],
+      "market_signal": "The AI-climate nexus is becoming a CFO-level priority. With CSRD mandatory reporting live, EU AI Act energy disclosures coming August 2, and the global GADCC coalition setting data centre standards, sustainability is no longer optional for AI teams. The companies building carbon accounting agent workflows NOW will have a 12-18 month compliance advantage over those waiting for clearer guidance.",
+      "practical_takeaway": []
+    },
+    {
       "date": "2026-04-27",
       "display_date": "APRIL 27, 2026",
       "issue": 35,
