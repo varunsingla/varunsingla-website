@@ -6,6 +6,271 @@
   },
   "learnings": [
     {
+      "date": "2026-04-29",
+      "display_date": "APRIL 29, 2026",
+      "issue": 37,
+      "title": "Which roles are exploding in demand -- and how to position",
+      "focus_intro": "The agentic AI wave is no longer just reshaping what software does -- it is reshaping who gets hired and",
+      "viral_app": {
+        "name": "V4 comes in two flavours: V4 Flash (fast, cheap, designed for agentic loops) and V4 Pro (frontier-class The agentic upgrade is the real story: V4 was built for autonomous task execution. Coding benchmarks",
+        "description": "One year after DeepSeek R1 upended Silicon Valley, Hangzhou's most audacious AI lab dropped a reasoning and coding). Both support 1 million token context windows and introduce a Hybrid Attention show it closing the gap with Western frontier models -- at a fraction of the cost. For developers preview of DeepSeek V4 on April 24, 2026 -- instantly dominating 3 of the top 5 Weibo hot-search Architecture for better long-conversation memory. V4 Pro achieves near-frontier performance at prices building agent stacks, V4 Flash at $0.14/M input tokens vs GPT-5.4 Mini means model routing slots and sending shockwaves through Western AI labs. that undercut GPT-5.5, Claude Opus 4.7, and Gemini 3.1 Pro sim",
+        "stats": [
+          {
+            "stat": "$0.14/M",
+            "label": "V4 Flash input tokens (vs $0.60 GPT-5.4 Mini)"
+          },
+          {
+            "stat": "$3.48/M",
+            "label": "V4 Pro output tokens (beats Gemini 3.1 Pro pricing)"
+          },
+          {
+            "stat": "1M",
+            "label": "token context window (V4 Pro & Flash)"
+          }
+        ]
+      },
+      "stats": [
+        {
+          "stat": "$206K+",
+          "label": "Avg AI engineer salary 2026"
+        },
+        {
+          "stat": "56%",
+          "label": "AI skills salary premium (vs 25% 1yr ago)"
+        },
+        {
+          "stat": "135%",
+          "label": "LLM specialist jobs YoY growth"
+        },
+        {
+          "stat": "57%",
+          "label": "Orgs with agents in production"
+        }
+      ],
+      "sections": [
+        {
+          "title": "1. Become the AI-Multiplied Expert",
+          "paragraphs": [
+            "Domain expertise + AI fluency > pure AI skills. A finance expert who can deploy LangGraph agents for regulatory reporting is worth more than a generic LLM engineer. Pick your domain, deepen your AI tooling knowledge, and position as a specialist who multiplies domain output 10× with agents."
+          ],
+          "table": {
+            "headers": [
+              "Skill Area",
+              "Why It's Scarce",
+              "Salary Premium"
+            ],
+            "rows": [
+              [
+                "Agentic RAG + Vector DBs",
+                "Requires knowing pgvector DiskANN, Weaviate hybrid, Qdrant GDPR self-hosted, chunking strategies, re-ranking",
+                "+30-50%"
+              ],
+              [
+                "LangGraph + Orchestration",
+                "Production-grade stateful graphs, circuit breakers, KEDA autoscaling, Argo Rollouts canary deployment",
+                "+25-40%"
+              ],
+              [
+                "SPIFFE / Agent Identity",
+                "IETF AIMS, SPIFFE/SPIRE SVIDs, OAuth 2.1 scoped delegation, NIST CAISI audit trail -- almost no supply",
+                "+35-55%"
+              ],
+              [
+                "Eval-Driven Development",
+                "Golden datasets, LLM-as-Judge calibration, Promptfoo CI gates, trajectory evaluation -- only 37% of orgs do this",
+                "+20-35%"
+              ],
+              [
+                "EU AI Act / Compliance",
+                "Annex III high-risk classification, Annex III audit evidence, Kill Switch T1-T4, Aug 2 2026 deadline -- regulatory urgency",
+                "+30-45%"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "2. Build Prompt-to-Production Fluency",
+          "paragraphs": [
+            "The gap between someone who demos AI and someone who can ship it to production is enormous. Master the full stack: LangGraph orchestration, OTEL instrumentation, Eval-Driven Development, Canary deployment with Argo Rollouts, and NIST audit trails. This is the rarest and best-paid combination."
+          ],
+          "table": {
+            "headers": [
+              "Skill Area",
+              "Why It's Scarce",
+              "Salary Premium"
+            ],
+            "rows": [
+              [
+                "Agentic RAG + Vector DBs",
+                "Requires knowing pgvector DiskANN, Weaviate hybrid, Qdrant GDPR self-hosted, chunking strategies, re-ranking",
+                "+30-50%"
+              ],
+              [
+                "LangGraph + Orchestration",
+                "Production-grade stateful graphs, circuit breakers, KEDA autoscaling, Argo Rollouts canary deployment",
+                "+25-40%"
+              ],
+              [
+                "SPIFFE / Agent Identity",
+                "IETF AIMS, SPIFFE/SPIRE SVIDs, OAuth 2.1 scoped delegation, NIST CAISI audit trail -- almost no supply",
+                "+35-55%"
+              ],
+              [
+                "Eval-Driven Development",
+                "Golden datasets, LLM-as-Judge calibration, Promptfoo CI gates, trajectory evaluation -- only 37% of orgs do this",
+                "+20-35%"
+              ],
+              [
+                "EU AI Act / Compliance",
+                "Annex III high-risk classification, Annex III audit evidence, Kill Switch T1-T4, Aug 2 2026 deadline -- regulatory urgency",
+                "+30-45%"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3. Own the Evaluation Layer",
+          "paragraphs": [
+            "53.3% of production AI teams now use LLM-as-Judge -- but most do it wrong. Build golden datasets, calibrate LLM judges against human labels, and gate PRs on <2% regression. The person who prevents quality regressions from shipping is indispensable."
+          ],
+          "table": {
+            "headers": [
+              "Skill Area",
+              "Why It's Scarce",
+              "Salary Premium"
+            ],
+            "rows": [
+              [
+                "Agentic RAG + Vector DBs",
+                "Requires knowing pgvector DiskANN, Weaviate hybrid, Qdrant GDPR self-hosted, chunking strategies, re-ranking",
+                "+30-50%"
+              ],
+              [
+                "LangGraph + Orchestration",
+                "Production-grade stateful graphs, circuit breakers, KEDA autoscaling, Argo Rollouts canary deployment",
+                "+25-40%"
+              ],
+              [
+                "SPIFFE / Agent Identity",
+                "IETF AIMS, SPIFFE/SPIRE SVIDs, OAuth 2.1 scoped delegation, NIST CAISI audit trail -- almost no supply",
+                "+35-55%"
+              ],
+              [
+                "Eval-Driven Development",
+                "Golden datasets, LLM-as-Judge calibration, Promptfoo CI gates, trajectory evaluation -- only 37% of orgs do this",
+                "+20-35%"
+              ],
+              [
+                "EU AI Act / Compliance",
+                "Annex III high-risk classification, Annex III audit evidence, Kill Switch T1-T4, Aug 2 2026 deadline -- regulatory urgency",
+                "+30-45%"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "4. Get EU AI Act Fluent",
+          "paragraphs": [
+            "The Aug 2, 2026 enforcement deadline (T-95 days) is a forcing function. Organisations need people who understand Annex III high-risk classification, NIST CAISI Kill Switch T1-T4 architecture, and how to generate audit-trail evidence packages. This is a career-defining certification opportunity right now."
+          ],
+          "table": {
+            "headers": [
+              "Skill Area",
+              "Why It's Scarce",
+              "Salary Premium"
+            ],
+            "rows": [
+              [
+                "Agentic RAG + Vector DBs",
+                "Requires knowing pgvector DiskANN, Weaviate hybrid, Qdrant GDPR self-hosted, chunking strategies, re-ranking",
+                "+30-50%"
+              ],
+              [
+                "LangGraph + Orchestration",
+                "Production-grade stateful graphs, circuit breakers, KEDA autoscaling, Argo Rollouts canary deployment",
+                "+25-40%"
+              ],
+              [
+                "SPIFFE / Agent Identity",
+                "IETF AIMS, SPIFFE/SPIRE SVIDs, OAuth 2.1 scoped delegation, NIST CAISI audit trail -- almost no supply",
+                "+35-55%"
+              ],
+              [
+                "Eval-Driven Development",
+                "Golden datasets, LLM-as-Judge calibration, Promptfoo CI gates, trajectory evaluation -- only 37% of orgs do this",
+                "+20-35%"
+              ],
+              [
+                "EU AI Act / Compliance",
+                "Annex III high-risk classification, Annex III audit evidence, Kill Switch T1-T4, Aug 2 2026 deadline -- regulatory urgency",
+                "+30-45%"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "5. Build an Agent-Native Network",
+          "paragraphs": [
+            "The $3-5T agent commerce economy (McKinsey 2030 projection) will run on relationships between the people who build the MCP servers, the orchestrators, and the enterprise buyers. Publish an MCP server on Fluora marketplace. Contribute to OpenHands or Claw Code. Become a connector in the agent",
+            "V4 comes in two flavours: V4 Flash (fast, cheap, designed for agentic loops) and V4 Pro (frontier-class The agentic upgrade is the real story: V4 was built for autonomous task execution. Coding benchmarks One year after DeepSeek R1 upended Silicon Valley, Hangzhou's most audacious AI lab dropped a reasoning and coding). Both support 1 million token context windows and introduce a Hybrid Attention show it closing the gap with Western frontier models -- at a fraction of the cost. For developers preview of DeepSeek V4 on April 24, 2026 -- instantly dominating 3 of the top 5 Weibo hot-search Architecture for better long-conversation memory. V4 Pro achieves near-frontier performance at prices building agent stacks, V4 Flash at $0.14/M input tokens vs GPT-5.4 Mini means model routing slots and sending shockwaves through Western AI labs. that undercut GPT-5.5, Claude Opus 4.7, and Gemini 3.1 Pro simultaneously. strategies just got significantly cheaper. DeepSeek V4 Preview -- China's Surprise Return",
+            "OpenAI quietly released GPT-5.5, the first completely retrained foundation model since GPT-4.5. Designed to act rather than converse -- agentic computing is now OpenAI's core product thesis. Scores 78.7% on OSWorld-Verified, up from GPT-5.4's 75%. Now the default for Codex Advanced agents.",
+            "China's comeback: V4 Flash and V4 Pro released with 1M token context, hybrid attention architecture, and prices that undercut every Western frontier model simultaneously. Viral in China instantly. LIANG Wenfeng (DeepSeek CEO) joined strategic AI partnership with Huawei and Cambricon.",
+            "Anthropic published a formal 'Effective Context Engineering for AI Agents' guide. Gartner published its first formal definition of the Context Engineer role. 95% of data teams plan to invest in context engineering training in 2026 (DataHub State of Context Management Report).",
+            "August 2, 2026 enforcement is 95 days away. Only 50% of enterprises in-scope for Annex III compliance are on track. AI Governance market is projected to cross $1B this year (Gartner). NIST and CSA are converging on a unified agent compliance framework.",
+            "The fastest OSS project in GitHub history continues its ascent. SECURITY WARNING: namespace isolation and NIST CAISI audit logging are mandatory before any production use. The harness layer is",
+            "Pick one skill from the premium skills table and build a proof-of-concept. A small LangGraph agent with OTEL instrumentation, or a RAG pipeline using pgvector with Write-Aside pattern, is a better career investment than any certification right now.",
+            "T-95 days is close. If you work with AI systems that make decisions about people (hiring, lending, healthcare, law enforcement) these likely qualify as Annex III high-risk. Map your systems now. The penalty for non-compliance is €35M or 7% GTR. fi Try DeepSeek V4 Flash for agent routing If you're running agents today, V4 Flash at $0.14/M input tokens is worth testing as a nano-tier model in your model routing strategy. The 30-70% cost savings from routing classification tasks to cheaper models is one of the highest-ROI architectural changes you can make. fi Read Anthropic's Context Engineering guide Published this week at anthropic.com/engineering/effective-context-engineering-for-ai-agents -- this is the definitive production guide for structuring what goes into an LLM's context window. If you're building",
+            "Tomorrow -- Day 38: AI Agents & The New Developer Stack -- How coding itself is being reinvented: spec-driven development with Kiro/AWS, parallel multi-agent teams with oh-my-codex, and what 'vibe coding' actually means for production software engineering in H2 2026. Anthropic Engineering Blog, DataHub State of Context Management 2026"
+          ],
+          "bullets": [
+            "VIRAL APP OF THE WEEK: DeepSeek V4",
+            "BREAKING NEWS THIS WEEK",
+            "GPT-5.5 Released (Apr 23)",
+            "DeepSeek V4 Preview (Apr 24)",
+            "Context Engineering Goes Mainstream",
+            "EU AI Act T-95 Days",
+            "OpenClaw Hits 302K+ Stars",
+            "PRACTICAL TAKEAWAYS FOR TODAY"
+          ],
+          "table": {
+            "headers": [
+              "Skill Area",
+              "Why It's Scarce",
+              "Salary Premium"
+            ],
+            "rows": [
+              [
+                "Agentic RAG + Vector DBs",
+                "Requires knowing pgvector DiskANN, Weaviate hybrid, Qdrant GDPR self-hosted, chunking strategies, re-ranking",
+                "+30-50%"
+              ],
+              [
+                "LangGraph + Orchestration",
+                "Production-grade stateful graphs, circuit breakers, KEDA autoscaling, Argo Rollouts canary deployment",
+                "+25-40%"
+              ],
+              [
+                "SPIFFE / Agent Identity",
+                "IETF AIMS, SPIFFE/SPIRE SVIDs, OAuth 2.1 scoped delegation, NIST CAISI audit trail -- almost no supply",
+                "+35-55%"
+              ],
+              [
+                "Eval-Driven Development",
+                "Golden datasets, LLM-as-Judge calibration, Promptfoo CI gates, trajectory evaluation -- only 37% of orgs do this",
+                "+20-35%"
+              ],
+              [
+                "EU AI Act / Compliance",
+                "Annex III high-risk classification, Annex III audit evidence, Kill Switch T1-T4, Aug 2 2026 deadline -- regulatory urgency",
+                "+30-45%"
+              ]
+            ]
+          }
+        }
+      ],
+      "practical_takeaway": []
+    },
+    {
       "date": "2026-04-28",
       "display_date": "APRIL 28, 2026",
       "issue": 36,
