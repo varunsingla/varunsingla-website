@@ -202,6 +202,9 @@ def is_section_heading(line: str) -> bool:
     # "01 — Title" or "01 - Title" or "01 -- Title" style
     if re.match(r"^\d{1,2}\s*[-—–]{1,2}\s+\S", line):
         return True
+    # "1 · Title" style (middle dot separator, used in some PDF layouts)
+    if re.match(r"^\d{1,2}\s*[·•]\s+\S", line):
+        return True
     headings = [
         "today's focus", "today's topic", "what's inside", "key announcements",
         "what is ", "core architecture", "how it works", "roadmap", "key concept",
@@ -212,6 +215,9 @@ def is_section_heading(line: str) -> bool:
         "application examples", "deep dive", "use cases", "agent communication",
         "glossary", "action points", "your action",
         "main topic", "industry flash",
+        # Handle 'n' bullet artifact prefix (e.g. "n Practical Takeaways for Varun", "n Market Signal")
+        "n practical takeaway", "n market signal", "n viral app", "n breaking",
+        "n today's focus", "n tomorrow",
     ]
     low = line.lower()
     for h in headings:
@@ -424,7 +430,8 @@ def _clean_stat_cell(cell: str) -> dict | None:
             return None
     stat = clean(stat)
     label = clean(label)
-    if re.match(r'^[\$£€]?[\d,]', stat) and label:
+    # Support numeric stats AND rank/hash stats like "#1", "#3"
+    if re.match(r'^[\$£€#]?[\d,]', stat) and label:
         return {'stat': stat, 'label': label}
     return None
 
@@ -439,7 +446,7 @@ def _is_stat_box(table_data: list[list]) -> bool:
         return False
     numeric_count = sum(
         1 for cell in row
-        if cell and re.match(r'^[\$£€]?[\d,\.]+[%+KMBTkx]*', str(cell).strip())
+        if cell and re.match(r'^[\$£€#]?[\d,\.]+[%+KMBTkx]*|^#\d', str(cell).strip())
     )
     return numeric_count >= len(row) // 2
 
@@ -884,6 +891,29 @@ def parse_pdf(pdf_path: Path) -> dict:
                             if len(cell_c) > len(app_desc):
                                 app_desc = cell_c[:600]
 
+        # If no stats found in tables, extract stat chips from consecutive short lines on this page
+        # Format in text: "v1.1.5\nReleased Apr 29 2026\nMulti-platform\nWeChat/...\nMemory dream\n..."
+        if not app_stats:
+            page_lines = pd['lines']
+            # Find viral app page position
+            viral_line_idx = next(
+                (i for i, ln in enumerate(page_lines) if re.search(r'viral app', ln, re.I)), None
+            )
+            if viral_line_idx is not None:
+                # After the description, look for pairs of short lines: stat value + stat label
+                remaining = page_lines[viral_line_idx:]
+                i = 0
+                while i < len(remaining) - 1 and len(app_stats) < 4:
+                    line = remaining[i].strip()
+                    next_line = remaining[i+1].strip() if i+1 < len(remaining) else ''
+                    # A stat chip: short value (version, keyword) + short label
+                    if (re.match(r'^(v[\d\.]+|Multi-\w+|Memory \w+|Tool \w+|Released \w+ \d+|Apache [\d\.]+|Blocks .{5,40}|Scheduled .{5,40})$', line, re.I)
+                            and 3 < len(next_line) < 80):
+                        app_stats.append({'stat': clean(line), 'label': clean(next_line)})
+                        i += 2
+                    else:
+                        i += 1
+
         viral_app = {
             'name': app_name or '',
             'description': app_desc,
@@ -913,7 +943,44 @@ def parse_pdf(pdf_path: Path) -> dict:
     # PDFs put takeaways in a 2-column table on the last page OR as a section heading
     practical_takeaway: list[dict] = []
 
-    # Strategy 1: look for takeaway section in sections list
+    # Strategy 0: scan all tables for 1-col format "n Title Body" (title and body merged in single cell)
+    if not practical_takeaway:
+        for pi, pd in enumerate(page_data):
+            for tbl in pd['tables']:
+                tdata = tbl['data']
+                if not tdata:
+                    continue
+                # 1-col table where cells start with "n " bullet marker
+                if all(len(row) == 1 for row in tdata if row):
+                    cells = [str(row[0]).strip() for row in tdata if row and row[0]]
+                    if len(cells) >= 2 and all(re.match(r'^n\s+\S', c) for c in cells[:2]):
+                        for cell in cells:
+                            cell = re.sub(r'^n\s+', '', cell)
+                            # These cells merge title + body: "Write specs first Before prompting..."
+                            # Split strategy: find where a capitalized "action title" ends and body begins.
+                            # Body starts at first occurrence of a verb/preposition after the short title.
+                            # Heuristic: title is 2-6 words (Title Case), body is a full sentence.
+                            # Use regex: short title-case phrase, then sentence starting with capital word.
+                            m2 = re.match(
+                                r'^([A-Z][a-zA-Z0-9\s\-\']{3,60}?)\s+((?:Before|For|At|If|T-\d|When|Use|After|To|This|The|It|You|By|In)\s+.+)$',
+                                cell, re.S
+                            )
+                            if m2:
+                                title_part = clean(m2.group(1))
+                                body_part = clean(m2.group(2))
+                            else:
+                                # Fallback: split on newline
+                                parts = cell.split('\n', 1)
+                                title_part = clean(parts[0][:80])
+                                body_part = clean(parts[1].strip()) if len(parts) > 1 else clean(cell)
+                            if title_part and body_part and len(body_part) > 20:
+                                practical_takeaway.append({'title': title_part, 'body': body_part})
+                        if practical_takeaway:
+                            break
+            if practical_takeaway:
+                break
+
+    # Strategy 1: look for takeaway section in sections list    # Strategy 1: look for takeaway section in sections list
     for sec in sections[:]:
         if re.search(r"(practical takeaway|key takeaway)", sec.get("title", ""), re.I):
             parts = sec.get("paragraphs", []) + sec.get("bullets", [])
@@ -975,9 +1042,18 @@ def parse_pdf(pdf_path: Path) -> dict:
 
     # ── Tomorrow preview ──────────────────────────────────────────────────────
     tomorrow_preview = ""
-    m = re.search(r"tomorrow.s? preview[:\s]+(.{10,400}?)(?:\n\n|\Z)", full_text, re.I | re.S)
+    m = re.search(r"tomorrow.s?(?:\s*—?\s*day\s*\d+\s*preview)?[:\s\—–]+(.{10,400}?)(?:\n\n|\Z)", full_text, re.I | re.S)
     if m:
         tomorrow_preview = clean(m.group(1))
+    # Also try "n Tomorrow — Day N Preview" style (with 'n' bullet artifact)
+    if not tomorrow_preview:
+        m = re.search(r"n\s+Tomorrow[^.\n]{0,40}?(?:Day\s*\d+)?[^.\n]{0,20}\n(.{10,400}?)(?:\n\n|\Z)", full_text, re.I | re.S)
+        if m:
+            tomorrow_preview = clean(m.group(1))
+    if not tomorrow_preview:
+        m = re.search(r"Day\s+\d+\s+will\s+cover\s+(.{20,500}?)(?:Agentic AI Daily|Sources:|$)", full_text, re.I | re.S)
+        if m:
+            tomorrow_preview = clean(m.group(0).strip())
     if not tomorrow_preview:
         # Last page often has it as a table
         for tbl in page_data[-1]['tables']:
@@ -1236,3 +1312,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
