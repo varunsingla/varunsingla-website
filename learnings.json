@@ -7,15 +7,10 @@
   "learnings": [
     {
       "date": "2026-04-30",
-      "display_date": "APRIL 30, 2026",
+      "display_date": "April 30, 2026",
       "issue": 38,
-      "title": "AI Agents & The New Developer Stack -- How Coding Is Being Reinvented",
-      "focus_intro": "After 37 days of learning how agentic AI works, today we zoom in on what it means for software developers. Coding is being reinvented: from \"vibe coding\" -- casually prompting an AI -- to a rigorous spec-driven, multi-agent production discipline. Tools like Kiro (AWS), oh-my-codex, Cursor 3, and Claude Code are converging into a composable stack nobody planned but everyone is now adopting. And the numbers are staggering: app-store launches up 104% YoY, 41% of all production code now written by AI, yet PR review",
-      "viral_app": {
-        "name": "QwenPaw by Alibaba AgentScope",
-        "description": "QwenPaw (github.com/agentscope-ai/QwenPaw) is Alibaba's rebranded desktop AI agent -- v1.1.5 shipped April 29, 2026. It runs locally or in the cloud, connects to every major messaging platform (WeChat, DingTalk, Feishu, Telegram, Discord, iMessage), and learns from your interactions via 'memory dream' -- a scheduled MemRL-style episodic memory consolidation that makes it smarter the longer you use it. Architecturally, it is the most complete consumer implementation of the full agentic safety stack: Tool Guards (blocks dangerous commands), File Access Guards (path restriction), Skill Security Scanning (detects prompt injection), and an Agent CLI for programmatic agent creation. Think of it as",
-        "stats": []
-      },
+      "title": "AI Agents & The New Developer Stack — How Coding Is Being Reinvented",
+      "focus_intro": "After 37 days of learning how agentic AI works, today we zoom in on what it means for software developers. Coding is being reinvented: from \"vibe coding\" — casually prompting an AI — to a rigorous spec-driven, multi-agent production discipline. Tools like Kiro (AWS), oh-my-codex, Cursor 3, and Claude Code are converging into a composable stack nobody planned but everyone is now adopting. App-store launches are up 104% YoY, 41% of all production code is now written by AI, yet PR review overhead jumped 91%. Understanding why that paradox exists — and how to fix it — is today's core lesson.",
       "stats": [
         {
           "stat": "104%",
@@ -26,13 +21,102 @@
           "label": "Orgs with AI agents in prod"
         },
         {
+          "stat": "#1",
+          "label": "Claude Code most-loved dev tool"
+        },
+        {
           "stat": "4 pillars",
-          "label": "Vibe/SpecfiSkill/Agent stack"
+          "label": "Vibe→Spec→Skill→Agent stack"
         }
       ],
-      "sections": [],
-      "market_signal": "The composable AI coding stack (Cursor + Claude Code + Codex) now accounts for 95.6% of all developer AI agent traffic. App-store launches are up 104% YoY -- and AI tools are the enabling force. This is the App Store boom of 2008 repeating: the barrier to shipping dropped overnight.",
-      "practical_takeaway": []
+      "viral_app": {
+        "name": "QwenPaw by Alibaba AgentScope",
+        "description": "QwenPaw (github.com/agentscope-ai/QwenPaw) is Alibaba's rebranded desktop AI agent — v1.1.5 shipped April 29, 2026. It runs locally or in the cloud, connects to every major messaging platform (WeChat, DingTalk, Feishu, Telegram, Discord, iMessage), and learns from your interactions via 'memory dream' — a scheduled MemRL-style episodic memory consolidation that makes it smarter the longer you use it. Architecturally it is the most complete consumer implementation of the full agentic safety stack: Tool Guards (blocks dangerous commands), File Access Guards (path restriction), Skill Security Scanning (detects prompt injection), and an Agent CLI for programmatic agent creation.",
+        "stats": [
+          {
+            "stat": "v1.1.5",
+            "label": "Released Apr 29 2026"
+          },
+          {
+            "stat": "6 platforms",
+            "label": "WeChat/DingTalk/Feishu/Telegram/Discord/iMessage"
+          },
+          {
+            "stat": "Memory dream",
+            "label": "Scheduled LTM consolidation"
+          },
+          {
+            "stat": "Tool Guards",
+            "label": "Blocks dangerous cmd injection"
+          }
+        ]
+      },
+      "sections": [
+        {
+          "title": "1 · From Vibe Coding to Spec-Driven Development",
+          "paragraphs": [
+            "\"Vibe coding\" — typing a casual prompt and shipping what the AI returns — exploded in 2025. MIT Technology Review called it the 2026 breakthrough. But the productivity paradox has arrived: while 84% of developers use AI tools and 41% of code is AI-written, PR review overhead has risen 91%, pull requests are 154% larger, and security vulnerabilities in AI-generated code are up 23.7%. Vibe coding ships fast but breaks at scale.",
+            "The industry's answer is Spec-Driven Development (SDD) — a four-pillar stack: (1) Vibes — high-level natural-language description; (2) Specs — a structured document defining requirements, constraints, architecture, and acceptance criteria before the agent writes a single line (GitHub Spec Kit: 72K+ stars); (3) Skills — reusable agent capabilities stored as tool definitions or MCP servers; (4) Agents — autonomous executors that invoke skills, write and test code, and iterate — with a human reviewing the spec output rather than every line of code.",
+            "AWS Kiro IDE is the boldest manifestation of this shift. It turns a prompt into a spec document first — then generates code + docs + tests from the spec. The spec itself becomes the EU AI Act Annex III audit trail. Kiro went viral partly because an early agent instance reportedly 'brought down AWS' internally — a governance lesson that spec-first architecture is not optional at scale."
+          ]
+        },
+        {
+          "title": "2 · The Composable AI Coding Stack 2026",
+          "paragraphs": [
+            "Nobody planned it, but a de-facto three-layer coding stack has emerged: Orchestration (oh-my-codex / Claude Code) coordinates parallel agent teams across git worktrees — best for multi-agent workflows and async delegation. Execution (Cursor 3 / Kiro) runs unlimited parallel agents in-editor or in the cloud — best for spec-to-code and parallel fan-out. Review (OpenAI Codex Advanced) provides autonomous PR review, scratchpad, and repo-level reasoning — the quality gate on AI-generated code.",
+            "Claude Code + Cursor together account for 95.6% of all AI agent traffic in developer environments (Mintlify, March 2026). The Anthropic Three-Agent Harness — Planner → Generator → Evaluator — is now a first-class product feature in Claude Code Epitaxy. This harness cuts silent failure rates by more than 50% vs single-agent approaches because each context window resets between agents, eliminating context drift."
+          ]
+        },
+        {
+          "title": "3 · The Productivity Paradox — Why More AI ≠ More Quality",
+          "paragraphs": [
+            "JetBrains' April 2026 developer survey reveals a striking tension: 41% of code is AI-written in production, yet PR review overhead is up 91%, pull requests are 154% bigger, and security vulnerabilities in AI code are up 23.7%. The root cause is context drift at the review layer — agents produce large, internally-consistent code blocks that humans struggle to review in full.",
+            "Three fixes are gaining traction: Eval-Driven Development (golden datasets of 200–500 pairs with CI gates that block merges on >2% regression — treat prompts as code); the Three-Agent Harness (context resets between Planner, Generator, and Evaluator prevent drift); and Spec as audit trail (Kiro's spec document becomes the ground truth — reviewers check spec compliance, not every generated line)."
+          ]
+        },
+        {
+          "title": "4 · QwenPaw & The Desktop Agent Moment",
+          "paragraphs": [
+            "Alibaba's QwenPaw (renamed from CoPaw April 12, 2026 — v1.1.5 released April 29) is a new breed of personal desktop AI agent. Unlike web-app chatbots, it runs locally or in the cloud, integrates with DingTalk, Feishu, WeChat, Discord, Telegram, and iMessage, learns via scheduled memory dream consolidation sessions, and proactively serves users based on inferred context.",
+            "What makes it architecturally significant: Tool Guards intercept dangerous commands before execution; File Access Guards restrict paths; Skill Security Scanning detects prompt injection (the KYA standard in a consumer product); Agent CLI lets you create, configure, and deploy agents from the command line (aligns with APM as 'npm for agents'); Memory dream implements the MemOS MemRL pattern in a consumer-facing product; and tight Qwen3 integration — including Qwen3.6-Plus which beats Claude Opus 4.7 on Terminal-Bench 2.0 — makes this the most capable open-ecosystem desktop agent for non-English-language users."
+          ]
+        },
+        {
+          "title": "5 · Breaking News This Week",
+          "paragraphs": [
+            "GPT-5.5 Released (Apr 23): First fully retrained model since GPT-4.5. 78.7% OSWorld-Verified — agentic-first architecture is now the baseline, not a feature.",
+            "DeepSeek V4 Preview (Apr 24): V4 Flash at $0.14/M input tokens undercuts every Western frontier model simultaneously. 1M token context, Hybrid Attention Architecture. The new nano-tier in model routing — 30–70% cost savings on classification tasks.",
+            "Context Engineering Goes Mainstream: Anthropic published a formal Context Engineering guide. Gartner gave it an official definition. 95% of data teams are now investing in it.",
+            "EU AI Act T-95 Days (Aug 2, 2026): 50% of enterprises are not on track. AI Governance market has crossed $1B (Gartner). Every agentic deployment needs Annex III evidence by August 2.",
+            "OpenClaw 302K+ GitHub Stars: Fastest-growing open-source project in GitHub history. NIST audit trail + namespace isolation mandatory before any production deployment.",
+            "App Store launches +104% YoY: AI coding tools are enabling non-developers to ship apps at a pace never seen before. iOS app launches up 80% in Q1 2026 alone."
+          ]
+        }
+      ],
+      "market_signal": "The composable AI coding stack (Cursor + Claude Code + Codex) now accounts for 95.6% of all developer AI agent traffic. App-store launches are up 104% YoY — and AI tools are the enabling force. This is the App Store boom of 2008 repeating: the barrier to shipping dropped overnight. The winners in 2026 are not those who write the most AI code — they are those who govern it best with specs, evals, and audit trails.",
+      "practical_takeaway": [
+        {
+          "title": "Write specs first",
+          "body": "Before prompting any coding agent, write a one-page spec: goal, constraints, acceptance criteria. This alone will cut your review overhead and make AI output reviewable at a glance."
+        },
+        {
+          "title": "Adopt the Three-Agent Harness",
+          "body": "For any task longer than a single context window: Planner decomposes → Generator builds → Evaluator scores. Use Claude Code's coordinator mode (Epitaxy) to wire this up in minutes."
+        },
+        {
+          "title": "Use DeepSeek V4 Flash for routing",
+          "body": "At $0.14/M input tokens, V4 Flash is the new nano-tier. Route classification, summarisation, and extraction tasks through it. Save Claude Opus for complex reasoning. Target 50–70% cost savings."
+        },
+        {
+          "title": "Try QwenPaw if you use Asian platforms",
+          "body": "If you use WeChat, DingTalk, or Feishu alongside Western tools, QwenPaw v1.1.5 is worth a trial. The memory dream feature is practically unique at this price point (free OSS)."
+        },
+        {
+          "title": "Start your EU AI Act inventory NOW",
+          "body": "T-95 days. If you are building or deploying any agentic system for business use, document what it does, what data it touches, and wire in a kill switch. Compliance fluency is a hiring premium right now (+30–45% salary)."
+        }
+      ],
+      "tomorrow_preview": "Day 39 will cover Context Engineering Deep Dive — now that Gartner has formally defined the role and Anthropic has published an official guide, we will go inside the discipline: RAG architecture patterns, chunking strategies, re-ranking, and how context windows are becoming the primary competitive moat for enterprise agentic applications."
     },
     {
       "date": "2026-04-29",
