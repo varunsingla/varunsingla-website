@@ -6,6 +6,35 @@
   },
   "learnings": [
     {
+      "date": "2026-04-30",
+      "display_date": "APRIL 30, 2026",
+      "issue": 38,
+      "title": "AI Agents & The New Developer Stack -- How Coding Is Being Reinvented",
+      "focus_intro": "After 37 days of learning how agentic AI works, today we zoom in on what it means for software developers. Coding is being reinvented: from \"vibe coding\" -- casually prompting an AI -- to a rigorous spec-driven, multi-agent production discipline. Tools like Kiro (AWS), oh-my-codex, Cursor 3, and Claude Code are converging into a composable stack nobody planned but everyone is now adopting. And the numbers are staggering: app-store launches up 104% YoY, 41% of all production code now written by AI, yet PR review",
+      "viral_app": {
+        "name": "QwenPaw by Alibaba AgentScope",
+        "description": "QwenPaw (github.com/agentscope-ai/QwenPaw) is Alibaba's rebranded desktop AI agent -- v1.1.5 shipped April 29, 2026. It runs locally or in the cloud, connects to every major messaging platform (WeChat, DingTalk, Feishu, Telegram, Discord, iMessage), and learns from your interactions via 'memory dream' -- a scheduled MemRL-style episodic memory consolidation that makes it smarter the longer you use it. Architecturally, it is the most complete consumer implementation of the full agentic safety stack: Tool Guards (blocks dangerous commands), File Access Guards (path restriction), Skill Security Scanning (detects prompt injection), and an Agent CLI for programmatic agent creation. Think of it as",
+        "stats": []
+      },
+      "stats": [
+        {
+          "stat": "104%",
+          "label": "App Store launches YoY Apr 2026"
+        },
+        {
+          "stat": "79%",
+          "label": "Orgs with AI agents in prod"
+        },
+        {
+          "stat": "4 pillars",
+          "label": "Vibe/SpecfiSkill/Agent stack"
+        }
+      ],
+      "sections": [],
+      "market_signal": "The composable AI coding stack (Cursor + Claude Code + Codex) now accounts for 95.6% of all developer AI agent traffic. App-store launches are up 104% YoY -- and AI tools are the enabling force. This is the App Store boom of 2008 repeating: the barrier to shipping dropped overnight.",
+      "practical_takeaway": []
+    },
+    {
       "date": "2026-04-29",
       "display_date": "APRIL 29, 2026",
       "issue": 37,
