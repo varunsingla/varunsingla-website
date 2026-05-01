@@ -6,6 +6,98 @@
   },
   "learnings": [
     {
+      "date": "2026-05-01",
+      "display_date": "MAY 1, 2026",
+      "issue": 39,
+      "title": "The New Competitive Moat for Agentic AI",
+      "focus_intro": "As AI agents become production reality, prompt engineering alone is no longer enough. Gartner has formally",
+      "viral_app": {
+        "name": "Microsoft Agent 365 -- Enterprise's First Native Agent Control Plane",
+        "description": "While not a consumer app, Agent 365's GA today is the most consequential launch of the week for enterprise practitioners. This is Microsoft's answer to the Shadow AI problem: only 24.4% of organisations have visibility into agent-to-agent traffic (Day 22). Agent 365 closes that gap with a centralised registry, real-time monitoring, and instant kill switches -- all delivered as part of the M365 stack enterprises already pay for. The apm.yml pattern (Day 7) is the config backbone. For Varun: every enterprise agent deployment recommendation should now start with 'register in Context Engineering is rapidly becoming a formal job function. Gartner's formal definition, Anthropic's official guide, a",
+        "stats": [
+          {
+            "stat": "$15",
+            "label": "standalone price per user/month"
+          },
+          {
+            "stat": "$99",
+            "label": "M365 E7 bundle (includes Agent 365)"
+          }
+        ]
+      },
+      "stats": [
+        {
+          "stat": "95%",
+          "label": "data teams investing in Context Engineering"
+        },
+        {
+          "stat": "$99",
+          "label": "M365 E7 per user/mo (Agent 365 included)"
+        },
+        {
+          "stat": "67%",
+          "label": "retrieval error cut with Contextual RAG"
+        },
+        {
+          "stat": "57%",
+          "label": "orgs with agents in production (2026)"
+        }
+      ],
+      "sections": [
+        {
+          "title": "What Is Context Engineering?",
+          "paragraphs": [
+            "Context Engineering is the discipline of designing, curating, and structuring the information an LLM receives -- beyond the prompt text. Gartner's formal 2026 definition: 'the art and science of shaping context-aware AI systems that consistently produce reliable, grounded, and coherent outputs.' Anthropic's official engineering guide (published this week) puts it directly: 'Prompt engineering has evolved into context engineering. Modern systems must manage multiple tools, knowledge bases, domain knowledge, system instructions, and memory -- all feeding into the",
+            "The most counterintuitive finding of 2026: context quality -- not model capability -- is the primary determinant of agent performance. Architecture improvements deliver a 42% to 78% score lift vs. marginal gains from model upgrades alone. The most common failure mode is bloated tool sets: if a human engineer can't say which tool to use in a given situation in one sentence, an AI agent can't be expected to do better. Context challenges have shifted from managing token counts to understanding which information actually drives model decisions.",
+            "Role definition, behavioural guardrails, output format contracts. Keep under 2,000 tokens -- every token of noise degrades coherence. Think of it as the agent's constitution. Remove anything a capable colleague would already know.",
+            "Tool descriptions are read by the LLM brain. Aim for fewer than 15 tools per agent. Each needs a crisp description: what it does, when NOT to use it, and expected output schema.",
+            "Multi-turn conversation state. Apply the Summarisation Pipeline (Day 15) every N turns: compress old turns into a structured handoff artifact to prevent context drift.",
+            "Dynamically injected knowledge. Chunking quality + contextualisation determines whether retrieval helps or hurts. (See Contextual RAG -- 67% error reduction is now table stakes.)",
+            "Short-lived in-context scratch-pad. Redis L1 for hot state, pgvector L2 for episodic facts. Inject only what's needed for the current",
+            "The most underestimated layer. Negative examples (what NOT to do) are 40% more effective than positive examples alone (Day 6). Include both. Curate a golden example library over time. [2] CONTEXTUAL RAG: 67% FEWER RETRIEVAL ERRORS",
+            "Standard RAG systems chunk documents and embed each chunk independently. The fatal flaw: chunks lose context when separated from their source. A chunk saying 'the company reported strong Q3 results' is useless without knowing which company or year. This context destruction is the root cause of most RAG hallucinations in production Anthropic's Contextual Retrieval Solution Prepend a chunk-specific explanatory context snippet to each chunk before embedding. An LLM (Claude, with prompt caching to reduce cost) reads the full document and generates context like: 'This chunk discusses Q3 2025 gross margin improvements for Acme Corp from supply chain restructuring.' This context-enriched chunk is then embedded",
+            "parent for context. Best for long structured documents.",
+            "Initial vector retrieval optimises for semantic overlap, not task relevance. Re-ranking takes the top-K retrieved chunks and scores them against the actual query using a cross-encoder (Cohere Rerank or BGE). Industry data: re-ranking alone improves agent task completion by 15-25% with under 50ms latency overhead. Combined with contextual embeddings, this is the current production gold standard. [3] MICROSOFT AGENT 365: ENTERPRISE CONTROL PLANE (GA TODAY) Microsoft Agent 365 went Generally Available today, May 1, 2026, alongside Microsoft 365 E7 -- the first new enterprise licence tier since E5 in 2015 ($99/user/month). Agent 365 is also available standalone at $15/user/month. This is the most significant enterprise AI governance event of 2026 H1.",
+            "register. Shadow AI (only 24.4% orgs have visibility today) is now governable.",
+            "permissions, and a revocable token -- SPIFFE-equivalent for the Microsoft ecosystem.",
+            "anomalous behaviour patterns from a central dashboard.",
+            "-- the same T1 App-level revocation architecture from Day 10.",
+            "is declared in apm.yml and enforced through Agent 365's registry. Context architecture is now a governed, auditable Connection: Context Engineering + Agent 365 A well-documented context architecture -- system prompt versions, tool allowlists, RAG provenance, example library -- directly generates the Annex III audit evidence EU regulators will require from Aug 2. Treat context engineering as a compliance workflow, not just a performance optimisation. With Agent 365 live, your apm.yml context config is version-controlled, auditable, and",
+            "[4] MODEL FRONTIER: GPT-5.5 + CLAUDE OPUS 4.7 + DEEPSEEK V4 Key trend: GPT-5.5 was released less than 2 months after GPT-5.4 -- OpenAI is accelerating cadence toward its 'super app' vision (ChatGPT + Codex + AI browser unified). DeepSeek V4 Flash at $0.14/M input is redefining the nano-tier for model routing -- use it for L1 classification; escalate to Claude Opus 4.7 or GPT-5.5 only for complex",
+            "[5] PRACTICAL FRAMEWORK: YOUR CONTEXT ENGINEERING AUDIT 8-Step Context Engineering Audit Checklist",
+            "Retrieval -- 67% error reduction is table stakes.",
+            ">> Action 1 -- Version your context config in apm.yml Declare your system prompt version, tool allowlist, and RAG settings in apm.yml. With Agent 365 live today, this config becomes an auditable governance artefact. Every context change is a PR, not a side effect. >> Action 2 -- Use DeepSeek V4 Flash as your context routing model For tool-routing and chunk-relevance-scoring tasks, V4 Flash at $0.14/M is now the cheapest option at frontier-class quality. Use it as your L1 classifier; escalate to Claude Opus 4.7 or GPT-5.5 only for complex reasoning steps. Delivers 30-70% cost savings on",
+            ">> Action 3 -- Treat context engineering as your EU AI Act defence A documented context architecture -- system prompt versions, tool allowlists, RAG provenance, example library -- directly generates the Annex III audit evidence regulators need from Aug 2 (T-93 days). This is not just a performance optimisation; it's a",
+            "[6] VIRAL APP OF THE DAY: MICROSOFT AGENT 365 Microsoft Agent 365 -- Enterprise's First Native Agent Control Plane While not a consumer app, Agent 365's GA today is the most consequential launch of the week for enterprise practitioners. This is Microsoft's answer to the Shadow AI problem: only 24.4% of organisations have visibility into agent-to-agent traffic (Day 22). Agent 365 closes that gap with a centralised registry, real-time monitoring, and instant kill switches -- all delivered as part of the M365 stack enterprises already pay for. The apm.yml pattern (Day 7) is the config backbone. For Varun: every enterprise agent deployment recommendation should now start with 'register in",
+            "Context Engineering is rapidly becoming a formal job function. Gartner's formal definition, Anthropic's official guide, and LinkedIn postings for 'Context Engineer' ($140K-$200K) all point to the same conclusion: the bottleneck in enterprise AI is no longer model capability -- it's the ability to architect, curate, and govern the information flowing into agent context windows. The organisations that master context engineering in the next 90 days will have a durable moat as frontier models continue to commoditise. Tomorrow -- Day 40: Agentic AI & Edge Inference: LiteRT-LM deep dive, on-device agent loops, Gemma 4 on mobile/Raspberry Pi, and how physical AI (Day 27) meets context engineering at the edge. Plus: EU AI Act T-92 countdown -- the exact steps to",
+            "Varun's Daily AI Intelligence | Issue #39 | May 1, 2026 | varun.singla@outlook.com | Context, not compute, is the new moat."
+          ],
+          "bullets": [
+            "Fixed-size (512-1024 tokens): Fast and cheap, good starting point. Weakness: splits at arbitrary semantic boundaries.",
+            "Semantic chunking: Splits at sentence or paragraph boundaries. Better coherence. Use for heterogeneous documents.",
+            "Hierarchical chunking: Parent chunk (section) + child chunks (paragraphs). Retrieve children for precision, expand to",
+            "Agentic chunking: Let an LLM propose chunk boundaries. Most expensive but highest quality. Use for high-value",
+            "Centralised Agent Registry: Every AI agent in the org -- built in Copilot Studio, Azure AI Foundry, or third-party -- must",
+            "Microsoft Entra Integration: Agent identity via Entra workload credentials. Each agent gets a unique identity, scoped",
+            "Real-time Anomaly Scoring: ML-based scoring of agent actions for data exfiltration risk, over-permission, and",
+            "One-click Kill Switch: Instant suspension of any agent or agent class across the entire tenant. Target: under 1 second",
+            "Automatic EU AI Act Annex III Evidence: Audit trail generation for Annex III compliance ahead of Aug 2, 2026",
+            "apm.yml as first-class citizen: Your agent's context config -- system prompt versions, tool allowlists, RAG settings --",
+            "[1] System Prompt Audit: Is it under 2,000 tokens? Does every sentence earn its place? Remove anything a capable",
+            "[2] Tool Inventory: Can you explain each tool's use-case boundary in one sentence? Aim for fewer than 15 tools per",
+            "[3] Chunking Strategy: Are you using semantic or hierarchical chunking? Fixed-size is a starting point, not a final",
+            "[4] Contextual Embeddings: Are chunks context-enriched before embedding? Implement Anthropic's Contextual",
+            "[5] Re-ranking Layer: Do retrieved chunks get re-scored against the live query? Add Cohere Rerank or a lightweight",
+            "[6] History Compression: Does your agent summarise conversation history every N turns? Prevents context drift and",
+            "[7] Few-Shot Example Library: Do you have curated golden examples -- both positive AND negative? Negative",
+            "[8] Context Observability: Are you logging what context was injected for each agent run? You can't optimise what you"
+          ]
+        }
+      ],
+      "market_signal": "Context Engineering is rapidly becoming a formal job function. Gartner's formal definition, Anthropic's official guide, and LinkedIn postings for 'Context Engineer' ($140K-$200K) all point to the same conclusion: the bottleneck in enterprise AI is no longer model capability -- it's the ability to architect, curate, and govern the information flowing into agent context windows. The organisations that master context engineering in the next 90 days will have a durable moat as frontier models continue to commoditise.",
+      "practical_takeaway": []
+    },
+    {
       "date": "2026-04-30",
       "display_date": "April 30, 2026",
       "issue": 38,
