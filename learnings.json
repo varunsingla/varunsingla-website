@@ -9,9 +9,31 @@
       "date": "2026-05-02",
       "display_date": "MAY 2, 2026",
       "issue": 40,
-      "title": "DAY 40 | AGENTIC AI LEARNING SERIES varunsingla.com",
+      "title": "Agentic AI & Edge Inference",
       "focus_intro": "For the first 39 days of this series we treated agents as cloud-native: LangGraph in Kubernetes, frontier models",
-      "stats": [],
+      "viral_app": {
+        "name": "Google AI Edge Gallery",
+        "description": "-- the on-device 'app store' moment for agents Google AI Edge Gallery (github.com/google-ai-edge/gallery) is the most-shared developer project of the week: an open-source Android & iOS app that lets anyone download Gemma 4 / Phi-4 / Qwen3 / Llama 3.2 weights and run agentic skills fully offline. It ships with Agent Skills (multi-step autonomous workflows on-device), a chat UI, and a playground for function-calling and RAG over local files. Why it matters: it is the first credible end-user surface for edge agents -- an iPhone or Pixel becomes a self-contained MCP host, no API key required. Expect a wave of consumer agent apps to be built on top of LiteRT-LM + Gemma 4 over the next quarter, ex",
+        "stats": []
+      },
+      "stats": [
+        {
+          "stat": "<1.5 GB",
+          "label": "RAM for Gemma 4 E2B on phone"
+        },
+        {
+          "stat": "<3 sec",
+          "label": "4K tokens, 2 skills (LiteRT-LM)"
+        },
+        {
+          "stat": "85 TOPS",
+          "label": "Qualcomm X2 NPU"
+        },
+        {
+          "stat": "T-92",
+          "label": "Days to EU AI Act enforcement"
+        }
+      ],
       "sections": [
         {
           "title": "1. Why run agents on the edge at all?",
@@ -119,42 +141,6 @@
           "title": "5. EU AI Act -- T-92 days, what to ship right now",
           "paragraphs": [
             "Aug 2 2026 enforcement is fixed; the standards are still being finalised but the four core compliance pillars are settled and edge agents do not get a pass -- a high-risk Annex III system on a phone is still a high-risk system. Use the next 92 days to land these four pieces."
-          ],
-          "table": {
-            "headers": [
-              "Pillar",
-              "What it means",
-              "Edge implementation"
-            ],
-            "rows": [
-              [
-                "Technical documentation",
-                "Decision logic, training data lineage, eval results, model cards.",
-                "Bundle a signed model card with each Gemma/LiteRT-LM build; ship apm.yml."
-              ],
-              [
-                "Open-loop architecture",
-                "System cannot operate in isolation; humans can intervene.",
-                "Mandatory escalation path + sync to cloud audit trail at least daily."
-              ],
-              [
-                "Human oversight",
-                "Clear intervention points; HITL toggles for high-stakes calls.",
-                "UI confirmation for any external action (send email, pay, share)."
-              ],
-              [
-                "Stop / correct controls",
-                "Layered kill switch; auditable shutdown.",
-                "T1+T4 on-device kill switch; remote disable via MDM / Microsoft Agent 365."
-              ]
-            ]
-          }
-        },
-        {
-          "title": "6. Viral AI App of the Day",
-          "paragraphs": [
-            "Google AI Edge Gallery -- the on-device 'app store' moment for agents Google AI Edge Gallery (github.com/google-ai-edge/gallery) is the most-shared developer project of the week: an open-source Android & iOS app that lets anyone download Gemma 4 / Phi-4 / Qwen3 / Llama 3.2 weights and run agentic skills fully offline. It ships with Agent Skills (multi-step autonomous workflows on-device), a chat UI, and a playground for function-calling and RAG over local files. Why it matters: it is the first credible end-user surface for edge agents -- an iPhone or Pixel becomes a self-contained MCP host, no API key required. Expect a wave of consumer agent apps to be built on top of LiteRT-LM + Gemma 4 over the next quarter, exactly like the post-MCP server explosion of 2025.",
-            "Kling AI motion-control video (still topping creator charts), Lyria 3 Pro in Google Vids (free, broadcast-quality AI music with SynthID), DeepSeek V4 Flash at $0.14/M input tokens (the new nano-tier in any model-routing stack), and Microsoft Agent 365 GA on May 1 (yesterday) -- the first credible enterprise control plane for shadow agents."
           ],
           "table": {
             "headers": [
