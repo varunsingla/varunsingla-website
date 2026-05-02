@@ -10,7 +10,7 @@
       "display_date": "MAY 2, 2026",
       "issue": 40,
       "title": "Agentic AI & Edge Inference",
-      "focus_intro": "For the first 39 days of this series we treated agents as cloud-native: LangGraph in Kubernetes, frontier models",
+      "focus_intro": "For the first 39 days of this series we treated agents as cloud-native: LangGraph in Kubernetes, frontier models behind APIs, vector DBs in managed Postgres. This week the centre of gravity moved. Google released Gemma 4 E2B (a 2.3B agentic model that runs in under 1.5 GB RAM on a phone), shipped LiteRT-LM as the production-ready cross-platform runtime, and Qualcomm + OpenAI announced a custom agent-first smartphone targeting 300-400M units/year. At the same time the EU AI Act enforcement clock now reads T-92 days, and Microsoft Agent 365 (Day 39) made shadow agents finally governable. Edge inference is no longer a side track -- it is where the agent loop closes fastest, cheapest, and most privately.",
       "viral_app": {
         "name": "Google AI Edge Gallery",
         "description": "-- the on-device 'app store' moment for agents Google AI Edge Gallery (github.com/google-ai-edge/gallery) is the most-shared developer project of the week: an open-source Android & iOS app that lets anyone download Gemma 4 / Phi-4 / Qwen3 / Llama 3.2 weights and run agentic skills fully offline. It ships with Agent Skills (multi-step autonomous workflows on-device), a chat UI, and a playground for function-calling and RAG over local files. Why it matters: it is the first credible end-user surface for edge agents -- an iPhone or Pixel becomes a self-contained MCP host, no API key required. Expect a wave of consumer agent apps to be built on top of LiteRT-LM + Gemma 4 over the next quarter, ex",
@@ -175,14 +175,27 @@
       ],
       "practical_takeaway": [
         {
-          "title": "Tomorrow (Day 41) -- Agentic AI Voice Stack Speech is the mo",
-          "body": "Tomorrow (Day 41) -- Agentic AI Voice Stack Speech is the most natural agent UI. We'll cover: ElevenLabs MCP, OpenAI Realtime API, Whisper-Tiny on-device, Voice Mode 2.0 (TTFT <600ms), interrupt-handling, and the avatar+voice fusion that HeyGen Avatar V kicked off. Plus how to keep voice agents under EU AI Act Article 50 and biometric-data rules. artificialintelligenceact.eu, TheNextWeb (OpenAI×Qualcomm phone), 24/7 Wall St., FrontierNews.ai (Apple M5), InfoWorld Edge AI,"
+          "title": "Add a 'nano-on-device' tier to your model routing",
+          "body": "If you're designing an agent today, draft model routing as three tiers, not two: on-device Gemma 4 E2B fi cloud nano (DeepSeek V4 Flash / GPT-5.5 nano) fi frontier (Claude Opus 4.7 / Gemini 3.1 Pro). Most agent steps are classification + retrieval -- both happily on-device."
         },
         {
-          "title": "Generated for varun.singla@outlook.com · Issue #40 · varunsi",
-          "body": "Generated for varun.singla@outlook.com · Issue #40 · varunsingla.com"
+          "title": "Try LiteRT-LM this weekend",
+          "body": "Clone github.com/google-ai-edge/LiteRT-LM, run Gemma 4 E2B on your Mac (CPU works fine for a demo), wire one MCP server (calendar or filesystem), and time the loop. Ten minutes of hands-on beats ten articles."
+        },
+        {
+          "title": "Treat the EU AI Act T-92 as a real product deadline",
+          "body": "Even if your stack is cloud-first today, the four pillars (docs, open-loop, oversight, stop control) are easier to retrofit on edge than on a multi-tenant SaaS. Edge agents can actually be more compliant out of the box."
+        },
+        {
+          "title": "Prepare for the post-app smartphone",
+          "body": "If OpenAI×Qualcomm hit their 2028 ship target, the surface where users meet agents shifts from app icons to a single agent OS. Plan integrations as MCP servers, not as apps -- the wrapper changes, the protocol survives."
+        },
+        {
+          "title": "Update your Agent SRE playbook",
+          "body": "Edge agents need a different SRE practice: telemetry over batched syncs, cohort drift instead of per-trace anomaly, OTA model rollback as a first-class deployment primitive. Add a Day 22 dashboard variant for fleet-of-edge."
         }
-      ]
+      ],
+      "tomorrow_preview": "Agentic AI Voice Stack Speech is the most natural agent UI. We'll cover: ElevenLabs MCP, OpenAI Realtime API, Whisper-Tiny on-device, Voice Mode 2.0 (TTFT <600ms), interrupt-handling, and the avatar+voice fusion that HeyGen Avatar V kicked off. Plus how to keep voice agents under EU AI Act Article 50 and biometric-data rules."
     },
     {
       "date": "2026-05-01",
@@ -5590,5 +5603,5 @@
     }
   ],
   "last_updated": "2026-05-02",
-  "total_days": 45
+  "total_days": 44
 }
