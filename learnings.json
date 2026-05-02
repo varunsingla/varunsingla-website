@@ -5408,8 +5408,105 @@
         "2026 (Gartner) 40% (vs",
         "5% in 2025) Orgs planning to increase AI budgets 86% Practical Takeaway The most valuable me"
       ]
+    },
+    {
+      "date": "2026-05-02",
+      "display_date": "MAY 2, 2026",
+      "issue": 40,
+      "title": "Agentic AI Goes On-Device — The Edge Inference Inflection",
+      "focus_intro": "For 39 days the agentic stack has lived in the cloud. This week the centre of gravity moved to the edge: Gemma 4 E2B runs in <1.5 GB RAM on a phone, LiteRT-LM became the cross-platform production runtime, and OpenAI + Qualcomm announced an agent-first smartphone. Combined with the EU AI Act T-92 countdown, edge inference is no longer optional — it is where the cheapest, fastest, and most private agent loops will close in 2026.",
+      "stats": [
+        {
+          "stat": "<1.5 GB",
+          "label": "RAM for Gemma 4 E2B on phone"
+        },
+        {
+          "stat": "<3 sec",
+          "label": "4K tokens, 2 skills (LiteRT-LM)"
+        },
+        {
+          "stat": "85 TOPS",
+          "label": "Qualcomm X2 NPU performance"
+        },
+        {
+          "stat": "T-92",
+          "label": "Days to EU AI Act enforcement"
+        }
+      ],
+      "viral_app": {
+        "name": "Google AI Edge Gallery — The On-Device Agent App Store Moment",
+        "description": "Google AI Edge Gallery (github.com/google-ai-edge/gallery) is the most-shared developer project of the week — an open-source Android & iOS app that lets anyone download Gemma 4 / Phi-4 / Qwen3 / Llama 3.2 weights and run agentic skills fully offline. It ships with Agent Skills (multi-step autonomous workflows entirely on-device), a chat UI, and a playground for function-calling and RAG over local files. Why it matters: the iPhone or Pixel becomes a self-contained MCP host, with no API key required. Expect a wave of consumer agent apps to be built on top of LiteRT-LM + Gemma 4 over the next quarter, mirroring the post-MCP server explosion of 2025.",
+        "stats": [
+          {
+            "stat": "Apache 2.0",
+            "label": "fully open-source"
+          },
+          {
+            "stat": "5+",
+            "label": "models (Gemma/Phi/Qwen/Llama)"
+          },
+          {
+            "stat": "0",
+            "label": "API keys needed (offline)"
+          }
+        ]
+      },
+      "sections": [
+        {
+          "title": "Why Run Agents on the Edge at All?",
+          "paragraphs": [
+            "Cloud agents have four taxes: latency (round-trip even on 5G is 80–250ms before the model thinks), cost (frontier inference at scale), privacy (every memory read leaves the device), and availability (no signal, no agent). Edge inference removes all four for the right tasks. The 2026 pattern is hybrid by default — production stacks now route by capability, not by location: Gemma 4 E2B on-device for intent classification, retrieval, and tool routing; escalate to Claude Opus 4.7 / GPT-5.5 / Gemini 3.1 Pro only when the task crosses a complexity threshold.",
+            "Edge wins at: voice wake-words and on-screen awareness (<100ms loops), personal memory (calendar, photos, location, health) that never leaves the device, offline modes (planes, factories, field ops, robotics), high-frequency tool calls where 50ms × 50 calls = 2.5s saved, and cost-floor classification routing. Edge loses at: long-horizon multi-agent reasoning, 1M+ token context windows, fresh-internet-data tasks, cross-user shared knowledge graphs, and discovery agents."
+          ]
+        },
+        {
+          "title": "The LiteRT-LM & Gemma 4 Stack",
+          "paragraphs": [
+            "LiteRT-LM (open-sourced by Google AI Edge, Apache 2.0) is the runtime equivalent of what Triton or vLLM are for the cloud — a production inference framework with hardware-acceleration fallbacks: CPU everywhere, GPU on mobile/desktop, NPU on Android with Qualcomm. Headline number: 4,000 input tokens across 2 distinct skills processed in under 3 seconds on a flagship phone.",
+            "Gemma 4 ships in 4 sizes — E2B (2.3B, edge), E4B (4.4B, premium phones), 26B MoE (workstation), 31B Dense (consumer GPU, ranked #3 globally on Arena AI). Crucially, both E2B and E4B support function calling with JSON outputs — i.e. they can be the LLM Brain inside a real agent loop. The 5-layer edge stack is: LLM Brain (Gemma 4 / Phi-4-mini / Qwen3-1.7B / Llama 3.2) → Runtime (LiteRT-LM, MLC, llama.cpp, MLX) → Hardware (Qualcomm Hexagon, Apple Neural Engine, Intel/AMD NPUs) → Memory (MemPalace, MemOS local, on-device pgvector) → Tools (local MCP servers for filesystem, calendar, contacts, camera)."
+          ]
+        },
+        {
+          "title": "The 2026 NPU Race — Silicon for Agents, Not Pixels",
+          "paragraphs": [
+            "Two announcements this week reframed the smartphone category. OpenAI + Qualcomm + MediaTek are co-designing an agent-first phone (no app icons; the OS surface is an agent), targeting 300–400M shipments/year by 2028, with mass production in 2028 and specs finalised by late 2026/Q1 2027. Apple's spring 2026 event made it explicit that the M5 Neural Engine generation is being designed around continuous local AI workloads. Qualcomm CEO Cristiano Amon's framing — 'AI agents will replace the OS and the apps' — is now product roadmap, not punditry.",
+            "Current NPU performance: Qualcomm X2 delivers 85 TOPS on PC; Snapdragon 8 Elite Gen 5's Hexagon NPU is 37% faster YoY with personal knowledge graph and continuous context awareness baked in; Apple M4 ships 38 TOPS today, with M5 generation due 2026; Intel and AMD AI PCs now hit 40–50 TOPS in the Copilot+ certification line. The architecture vision is universal: process lighter tasks on-device (context awareness, memory, smaller models), offload complex inference to cloud."
+          ]
+        },
+        {
+          "title": "EU AI Act T-92 — What to Ship Right Now",
+          "paragraphs": [
+            "August 2, 2026 enforcement is fixed. The technical standards are still being finalised but the four core compliance pillars are settled, and edge agents do not get a pass — a high-risk Annex III system on a phone is still a high-risk system. Use the next 92 days to land: (1) Technical documentation — bundle a signed model card with each Gemma/LiteRT-LM build and ship apm.yml; (2) Open-loop architecture — mandatory escalation path plus daily sync to cloud audit trail; (3) Human oversight — UI confirmation for any external action (send email, pay, share); (4) Stop / correct controls — T1 + T4 on-device kill switch, plus remote disable via MDM or Microsoft Agent 365.",
+            "Penalties remain €35M / 7% global turnover. California AB 316 already removes the autonomous-AI defence, EU PLD makes AI a strict-liability product (December 2026), Colorado AI Act lands June 2026, and UK FCA mandates a sub-1-second kill switch. The compounding takeaway: edge agents can actually be more compliant out of the box than multi-tenant SaaS, because the trust boundary collapses to a single device with a Secure Enclave / TEE."
+          ]
+        }
+      ],
+      "market_signal": "Gemma 4 ecosystem hit 400M downloads with 100K+ community variants; LiteRT-LM is now the cross-platform default for on-device inference; Microsoft Agent 365 went GA on May 1; the agentic AI market continues at $9.14B (2026) → $139B (2034), 40.5% CAGR. The edge-cloud split for agent inference is the structural shift of H2 2026.",
+      "practical_takeaway": [
+        {
+          "title": "Add a 'nano-on-device' tier to your model routing",
+          "body": "Draft model routing as three tiers, not two: on-device Gemma 4 E2B → cloud nano (DeepSeek V4 Flash / GPT-5.5 nano) → frontier (Claude Opus 4.7 / Gemini 3.1 Pro). Most agent steps are classification + retrieval — both happily on-device."
+        },
+        {
+          "title": "Try LiteRT-LM this weekend",
+          "body": "Clone github.com/google-ai-edge/LiteRT-LM, run Gemma 4 E2B on your Mac (CPU works fine for a demo), wire one MCP server (calendar or filesystem), and time the loop. Ten minutes of hands-on beats ten articles."
+        },
+        {
+          "title": "Treat EU AI Act T-92 as a real product deadline",
+          "body": "Even if your stack is cloud-first today, the four pillars (docs, open-loop, oversight, stop control) are easier to retrofit on edge than on a multi-tenant SaaS. Edge agents can actually be more compliant out of the box."
+        },
+        {
+          "title": "Prepare for the post-app smartphone",
+          "body": "If OpenAI×Qualcomm hit their 2028 ship target, the surface where users meet agents shifts from app icons to a single agent OS. Plan integrations as MCP servers, not as apps — the wrapper changes, the protocol survives."
+        },
+        {
+          "title": "Update your Agent SRE playbook",
+          "body": "Edge agents need a different SRE practice: telemetry over batched syncs, cohort drift instead of per-trace anomaly, OTA model rollback as a first-class deployment primitive. Add a Day 22 dashboard variant for fleet-of-edge."
+        }
+      ],
+      "tomorrow_preview": "Day 41 — Agentic AI Voice Stack: ElevenLabs MCP, OpenAI Realtime API, Whisper-Tiny on-device, Voice Mode 2.0 (TTFT <600ms), interrupt-handling, avatar+voice fusion (HeyGen Avatar V), and EU AI Act Article 50 + biometric-data rules for voice agents."
     }
   ],
-  "last_updated": "2026-04-26",
-  "total_days": 35
+  "last_updated": "2026-05-02",
+  "total_days": 45
 }
