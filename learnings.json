@@ -6,6 +6,105 @@
   },
   "learnings": [
     {
+      "date": "2026-05-03",
+      "display_date": "MAY 3, 2026",
+      "issue": 41,
+      "title": "The Agentic AI Voice Stack",
+      "focus_intro": "Voice has quietly become the highest-stakes surface in the agentic AI stack. Not because it's new -- but because in 2026 the latency, naturalness, and tool-action fidelity finally cleared the bar where users stop noticing the AI. ElevenLabs hit $330M ARR / 41% of the Fortune 500 / $11B valuation; Sesame's CSM voices generated 5M+ minutes of conversation in weeks; Decagon raised $250M Series D; Retell crossed $40M ARR processing 30M+ calls/month. Today we map the production voice agent stack: speech-to-text, turn detection, LLM brain, MCP tool calls, TTS, and barge-in -- the six-component loop that has to close in under 600ms for the experience to feel human.",
+      "viral_app": {
+        "name": "Sesame Maya & Miles",
+        "description": "-- the voice agents that broke the uncanny valley. Sesame's Conversational Speech Model (CSM) generates speech directly rather than running text through a separate TTS engine -- so it can pause for breath, drop an 'um', chuckle, and adapt tone mid-sentence based on conversation context. Within weeks of launch Maya and Miles drove 1M+ users and 5M+ minutes of conversation; users routinely report 30-min to 3-hour sessions. Sequoia and a16z backed the company with $290M+, and the open-source CSM-1B model (github.com/SesameAILabs/csm) is now the reference architecture for next-gen voice agents. Y Combinator launch Vogent ('insanely realistic voice agents powered by Sesame') is one of dozens of derivative products. Lesson: voice quality is no longer a feature -- it's a moat. Cascading STT+LLM+TTS stacks are now competing with native speech-to-speech models that skip the text bottleneck entirely.",
+        "stats": [
+          {
+            "stat": "5M+ min",
+            "label": "conversation in launch weeks"
+          },
+          {
+            "stat": "$290M+",
+            "label": "Sequoia + a16z funding"
+          },
+          {
+            "stat": "1M+",
+            "label": "users in <1 month"
+          }
+        ]
+      },
+      "stats": [
+        {
+          "stat": "<600ms",
+          "label": "TTFT for human-feeling voice"
+        },
+        {
+          "stat": "$330M",
+          "label": "ElevenLabs ARR (175% YoY)"
+        },
+        {
+          "stat": "$250M",
+          "label": "Decagon Series D"
+        },
+        {
+          "stat": "T-91",
+          "label": "Days to EU AI Act Article 50"
+        }
+      ],
+      "sections": [
+        {
+          "title": "1. The 6-component voice agent loop",
+          "paragraphs": [
+            "A production voice agent is six components stitched into a real-time pipeline: (1) audio capture + VAD (Voice Activity Detection), (2) speech-to-text -- Whisper-Tiny on-device or Deepgram/AssemblyAI streaming in cloud, (3) turn detection -- a model that decides when the user has finished speaking using prosody, semantics, and pause patterns together (not VAD alone), (4) LLM brain -- GPT-5.5, Claude Opus 4.7, Gemini 3.1 Pro, or DeepSeek V4 Flash for cheap intent + routing, (5) MCP tool calls -- the agent actually does something (book the appointment, hit the CRM, execute the payment), (6) TTS -- ElevenLabs Flash v2.5 (~75ms), OpenAI Voice Mode 2.0 (TTFT <600ms), or Sesame CSM for native speech-to-speech.",
+            "End-to-end latency budget rules everything. Below 300ms feels human. 300-600ms feels sluggish but acceptable. Above 600ms users revert to touch-tone mental models and start tapping keys. Above 1.5s they hang up. Every component in the chain has to be streaming -- batch operations are forbidden. The pipeline is also asymmetric: on every turn the user can interrupt, so the system has to be prepared to cancel TTS, roll back the in-flight LLM turn, and reprocess from the new input."
+          ]
+        },
+        {
+          "title": "2. Cascade vs Speech-to-Speech: the architectural fork",
+          "paragraphs": [
+            "Two architectures dominate 2026. Cascade stacks (STT → LLM → TTS) are the workhorses of production -- ElevenLabs, Deepgram, AssemblyAI, Vapi, Retell. They give you full control: swap any component, pin a TTS voice, route to any LLM (Claude, Gemini, OpenAI, DeepSeek V4), instrument every span in OTEL. Trade-off: the text bottleneck strips paralinguistic cues (laughter, breath, hesitation) and adds 200-400ms of pipeline overhead.",
+            "Speech-to-speech (S2S) models (Sesame CSM, Moshi, Hertz-dev, OpenAI Realtime API) skip text entirely -- raw audio in, raw audio out. The result is the eerie naturalness Maya and Miles became famous for. Trade-off: you give up component-level control, evaluation is harder (no transcript to grade), and tool calling has to be retrofitted via function-calling shims. The 2026 production answer is increasingly hybrid: S2S for the conversational surface, cascade-style tool execution underneath."
+          ]
+        },
+        {
+          "title": "3. Barge-in -- the make-or-break feature",
+          "paragraphs": [
+            "Barge-in (the user interrupting the agent mid-sentence) is non-negotiable in production voice agents in 2026. Pure VAD-based barge-in produces too many false positives (a sneeze cancels the agent's response). The 2026 standard is two-signal: acoustic VAD (Silero) AND semantic turn detection running in parallel. When VAD fires on the user's audio track while the agent is speaking, TTS is cancelled, the in-flight LLM turn is rolled back, and the new user input is processed.",
+            "ElevenLabs, LiveKit, Vapi, and Retell now ship this as a built-in primitive. The trick is getting the rollback right: any tool call that already started executing has to be either cancelled (ideal) or quarantined and reconciled when the new turn completes. Idempotent tool design (use idempotency keys on every MCP call) is now table-stakes for voice agents -- otherwise an interrupted booking results in a duplicate reservation."
+          ]
+        },
+        {
+          "title": "4. Voice as biometric: EU AI Act Article 50 + GDPR",
+          "paragraphs": [
+            "Voice data is biometric data under GDPR. That changes the compliance posture. EU AI Act Article 50 enforcement begins August 2, 2026 (T-91 days from today). Every voice agent interacting with EU citizens must: (a) clearly disclose at the start of every call that the user is speaking with AI -- not buried in a privacy policy, but spoken aloud or rendered in the UI, (b) watermark synthetic voice output (C2PA / SynthID-Audio), (c) treat voice prints as Special Category data under GDPR -- explicit consent, hard-delete cascade, namespace isolation per user.",
+            "Cloned voices add another layer: explicit prior consent from the voice owner, watermarking in the output, and a kill switch to revoke the clone. ElevenLabs has built voice-clone consent into its enterprise contracts; smaller providers haven't, and that's where the first Article 50 fines are likely to land in Q3 2026. For your own agents: the SVID identity model (Day 28) extends to voice -- bind the voice agent's SVID to a human principal, scope it to a single voice tool, audit every utterance to NIST CAISI WORM storage."
+          ]
+        },
+        {
+          "title": "5. The 2026 voice agent platform map",
+          "paragraphs": [
+            "Four architectural bets dominate the platform landscape: ElevenLabs (voice quality + ElevenAgents + MCP + Git-style branching for agents -- $11B valuation, 41% Fortune 500), Vapi (developer speed + cascade flexibility + LLM-agnostic), Retell (telephony-native + outbound dialer + 30M calls/month + $40M ARR), Bland (outbound phone volume at industrial scale). On the speech-to-speech side: Sesame (CSM-1B open source + Maya/Miles consumer surface), OpenAI (Realtime API + Voice Mode 2.0), Moshi (Kyutai open source), and Hertz-dev.",
+            "On the agent layer: Decagon ($250M Series D, enterprise CX), Goodcall (SMB voice receptionist), Vogent (YC, Sesame-powered). Open-source: VoxCPM2 (beats ElevenLabs on similarity), Whisper-Tiny on-device for STT. The fastest-growing wedge is voice + outbound action: appointment-booking, lead qualification, payment recovery -- agents that don't just talk but close the loop with MCP tool calls into Salesforce, HubSpot, Stripe MPP, and calendar systems."
+          ]
+        }
+      ],
+      "practical_takeaway": [
+        {
+          "title": "Pick cascade for control, S2S for naturalness",
+          "body": "Default to cascade (STT → LLM → ElevenLabs Flash v2.5) for any agent that needs MCP tool calls, evals, or per-component swap. Reach for Sesame CSM / OpenAI Realtime when conversational warmth is the moat (companion apps, sales, healthcare intake)."
+        },
+        {
+          "title": "Budget every component for <600ms TTFT",
+          "body": "STT <150ms streaming, turn detection <80ms, LLM <250ms (use DeepSeek V4 Flash $0.14/M for routing, frontier only when needed), TTS first-byte <100ms. Anything above 600ms total and users disengage."
+        },
+        {
+          "title": "Barge-in + idempotency are mandatory",
+          "body": "Use two-signal turn detection (VAD + semantic). Make every MCP tool call idempotent with a per-turn idempotency key so cancellations don't create duplicate bookings, charges, or messages."
+        },
+        {
+          "title": "Ship Article 50 compliance now, not in August",
+          "body": "Spoken AI disclosure on every call opener, C2PA/SynthID-Audio watermark on every TTS output, voice-print SVID bound to a human principal with hard-delete cascade. T-91 days to EU enforcement -- and the same architecture closes UK, US, and Singapore audit findings."
+        }
+      ],
+      "tomorrow_preview": "Day 42: Multi-Agent Debugging in Production -- the 5 hardest bugs (silent failure, context drift, tool hallucination, memory poisoning, runaway cost loops), the OTEL trace patterns to spot them, and the 3-step rollback playbook every Agent SRE should have on the wall."
+    },
+    {
       "date": "2026-05-02",
       "display_date": "MAY 2, 2026",
       "issue": 40,
@@ -5602,6 +5701,6 @@
       ]
     }
   ],
-  "last_updated": "2026-05-02",
-  "total_days": 44
+  "last_updated": "2026-05-03",
+  "total_days": 45
 }
