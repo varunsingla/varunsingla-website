@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Frontier Model Team Evaluator — April 2026</title>
+  <title>Frontier Model Team Evaluator — May 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -216,7 +216,7 @@
         </svg>
         <div>
           <div>Frontier Model Team Evaluator</div>
-          <div class="tiny muted">12 models · April 2026</div>
+          <div class="tiny muted">14 models · May 2026</div>
         </div>
       </div>
       <nav class="nav-links" aria-label="Primary">
@@ -237,7 +237,7 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <span class="eyebrow">Refreshed April 25, 2026 · 12 models</span>
+          <span class="eyebrow">Refreshed May 3, 2026 · 14 models</span>
           <h1>Every frontier model. One place.</h1>
           <p class="lede">Compare 12 production models across OpenAI, Anthropic, Google, xAI, Moonshot, Alibaba, Xiaomi, MiniMax, and DeepMind — on benchmarks, pricing, context, and practical task fit. Pick a model in 30 seconds, or evaluate a real task in two minutes.</p>
           <div class="nav-actions" style="margin-bottom:var(--space-5)">
@@ -246,19 +246,19 @@
           </div>
           <div class="whats-new" aria-label="What's new this week">
             <div class="whats-new-item">
-              <span class="nw-tag">Apr 22 · Just landed</span>
-              <span class="nw-title">Gemini Deep Research Max</span>
-              <span class="nw-desc">160 autonomous web searches + private data fusion in one API call. Built on Gemini 3.1 Pro.</span>
+              <span class="nw-tag">Apr 23 · GA</span>
+              <span class="nw-title">OpenAI GPT-5.5</span>
+              <span class="nw-desc">New flagship. 60% fewer hallucinations vs GPT-5.4. Intelligence Index 60. Codex agent hits 88.7% SWE-bench.</span>
+            </div>
+            <div class="whats-new-item">
+              <span class="nw-tag">Apr 24 · OSS</span>
+              <span class="nw-title">DeepSeek V4 Pro</span>
+              <span class="nw-desc">80%+ SWE-bench, Apache 2.0 on Hugging Face. $1.74/$3.48 per M — 10× cheaper than closed frontier.</span>
             </div>
             <div class="whats-new-item">
               <span class="nw-tag">Apr 16 · GA</span>
               <span class="nw-title">Claude Opus 4.7</span>
               <span class="nw-desc">SWE-bench Pro 64.3% — new #1 across all models. SWE-bench Verified jumped 80.8% → 87.6%.</span>
-            </div>
-            <div class="whats-new-item">
-              <span class="nw-tag">Apr 22 · OSS</span>
-              <span class="nw-title">Xiaomi MiMo V2.5</span>
-              <span class="nw-desc">All 6 modalities in a single autoregressive backbone — first credible OSS answer to GPT-5.4 multimodal.</span>
             </div>
           </div>
         </div>
@@ -502,7 +502,7 @@
   <footer class="footer">
     <div class="container stack">
       <div><h3>Source links</h3><div class="source-list tiny" id="sourceList"></div></div>
-      <div class="tiny">Local heuristic scorer based on official benchmarks and public pricing. Recheck vendor pages before architecture decisions — limits, pricing, and preview status change frequently. Last sync: April 25, 2026.</div>
+      <div class="tiny">Local heuristic scorer based on official benchmarks and public pricing. Recheck vendor pages before architecture decisions — limits, pricing, and preview status change frequently. Last sync: May 3, 2026.</div>
     </div>
   </footer>
 
@@ -536,9 +536,22 @@
       strengths:['Coding & computer use','Tool orchestration','Professional docs','Web grounding','Agentic tasks'],
       benchmarks:['OSWorld-V 75% — first to beat human baseline (72.4%)','GDPval 83.0%','SWE-bench Pro 57.7%','BrowseComp 82.7%'],
       tools:'Computer-use tool, tool search, Codex Advanced PR review, custom tool schemas',
-      notes:'Best all-round default for coding + tool orchestration. First AI to beat calibrated human baseline on real desktop tasks.',
+      notes:'Previous OpenAI flagship (superseded by GPT-5.5 Apr 23). Still excellent for coding + tool orchestration. First AI to beat calibrated human baseline on real desktop tasks. Use if GPT-5.5 is overkill or unavailable.',
       failures:['$15/M output — expensive at scale','No live voice lane','Overkill for bulk summarisation'],
       ratings:{coding:97,research:88,spreadsheet:93,live:62,longcontext:90,cost:66,latency:76,context:94,tool:97}
+    },
+    {
+      id:'gpt55', name:'GPT-5.5', family:'OpenAI', tier:'frontier',
+      tags:['openai','multimodal'],
+      priceIn:2.5, priceOut:15, cachedIn:0.25,
+      context:'1M (Codex Advanced); 272K standard',
+      latency:'Medium',
+      strengths:['60% fewer hallucinations vs GPT-5.4','Agentic coding with Codex (88.7% SWE-bench)','Best all-round intelligence index (60)','AWS Bedrock native (Apr 28)','Tool orchestration & computer use'],
+      benchmarks:['Intelligence Index 60 — highest all-round score','SWE-bench 88.7% with Codex agent','60% hallucination reduction vs GPT-5.4','GDPval 85%+'],
+      tools:'Computer-use tool, Codex Advanced agent, tool search, custom tool schemas, AWS Bedrock native',
+      notes:'Released Apr 23 2026. OpenAI\'s new flagship. Best all-round default — better reasoning, fewer hallucinations, and stronger agentic coding than GPT-5.4. Now available on AWS Bedrock (Apr 28).',
+      failures:['$15/M output — expensive at scale','No live voice lane','Overkill for bulk summarisation'],
+      ratings:{coding:98,research:92,spreadsheet:94,live:65,longcontext:92,cost:65,latency:76,context:95,tool:98}
     },
     {
       id:'claude47', name:'Claude Opus 4.7', family:'Anthropic', tier:'frontier',
@@ -589,7 +602,7 @@
       strengths:['Leads 13/16 major benchmarks','Price-performance leader','Google Search grounding','Deep Research Max (160 searches/call)','Native video/audio/image'],
       benchmarks:['Leads 13 of 16 public benchmarks (Apr 2026)','GPQA Diamond 94.3%','Best ARC-AGI-3 at 0.37%','$2/$12 per M — 20% cheaper than GPT-5.4 input'],
       tools:'Google Search grounding, Deep Research Max, Google Vids integration, native multimodal, MCP tools endpoint, Gemini API',
-      notes:'Best cost-performance pick for April 2026. Deep Research Max (launched Apr 22) = 160 autonomous web searches + private data fusion in one API call. Leads raw benchmark count.',
+      notes:'Best cost-performance pick for May 2026. Deep Research Max (launched Apr 22) = 160 autonomous web searches + private data fusion in one API call. Leads raw benchmark count.',
       failures:['Not top choice for deep agentic coding autonomy','Google-ecosystem tooling adds friction for OpenAI/Anthropic stacks','ARC-AGI-3 at 0.37% shows fundamental generalisation gap'],
       ratings:{coding:80,research:91,spreadsheet:82,live:62,longcontext:96,cost:94,latency:85,context:97,tool:84}
     },
@@ -642,7 +655,7 @@
       strengths:['Free on OpenRouter','78.8% SWE-bench','Beats Claude Opus 4.6 on Terminal-Bench 2.0 (61.6)','OmniDocBench 91.2 — #1 document parsing','Zero-cost prototyping'],
       benchmarks:['SWE-bench 78.8%','Terminal-Bench 2.0: 61.6 — beats Claude Opus 4.6','OmniDocBench 91.2 — #1 document parsing benchmark','1M context'],
       tools:'OpenRouter API, OpenAI-style tool calling, MCP-compatible via OpenRouter bridge, strong code execution',
-      notes:'Best zero-cost coding baseline in April 2026. Free via OpenRouter. Use to prototype before committing to paid frontier models. Competitive with GPT-4-class on most coding tasks.',
+      notes:'Best zero-cost coding baseline in May 2026. Free via OpenRouter. Use to prototype before committing to paid frontier models. Competitive with GPT-4-class on most coding tasks.'
       failures:['Rate limited on free tier','Less reliable for nuanced enterprise risk reasoning','Alibaba commercial licence — check for enterprise data residency','No live voice'],
       ratings:{coding:88,research:79,spreadsheet:78,live:40,longcontext:85,cost:100,latency:82,context:88,tool:80}
     },
@@ -673,6 +686,19 @@
       ratings:{coding:78,research:75,spreadsheet:70,live:50,longcontext:72,cost:98,latency:85,context:74,tool:80}
     },
     {
+      id:'deepseekv4pro', name:'DeepSeek V4 Pro', family:'DeepSeek / OSS', tier:'oss',
+      tags:['oss','china'],
+      priceIn:1.74, priceOut:3.48, cachedIn:0,
+      context:'1M tokens',
+      latency:'Medium',
+      strengths:['80%+ SWE-bench — strongest open-weight coder','$1.74/$3.48 per M — cheapest frontier-class pricing','Apache 2.0 on Hugging Face','1M context window','Strong graduate-level reasoning'],
+      benchmarks:['SWE-bench 80%+ — strongest open-weight option','GPQA Diamond competitive with frontier','LiveCodeBench 79%+','$1.74/$3.48 per M — 10× cheaper than Claude Opus'],
+      tools:'Hugging Face deployment, vLLM/SGLang compatible, OpenAI-compatible API, strong code execution',
+      notes:'Released Apr 24 2026. The open-source challenger that cleared the frontier bar. Best value for production coding at 10× cheaper than closed frontier. Apache 2.0 licence. Also available: V4 Flash at $0.14/$0.28 per M.',
+      failures:['Chinese-origin — check enterprise data-residency policies','Smaller ecosystem than OpenAI/Anthropic','Live voice not available'],
+      ratings:{coding:90,research:85,spreadsheet:80,live:45,longcontext:88,cost:98,latency:72,context:90,tool:82}
+    },
+    {
       id:'mimov25', name:'MiMo V2.5 Standard', family:'Xiaomi / OSS', tier:'specialist',
       tags:['oss','china','multimodal'],
       priceIn:0, priceOut:0, cachedIn:0,
@@ -695,10 +721,10 @@
       eta:'GA unknown; currently expanding to selected partners'
     },
     {
-      name:'DeepSeek V4',
-      status:'Imminent — V4 Lite (200B) released Mar 9; full V4 expected late April 2026',
-      why:'V4 Lite already validated the architecture (NVIDIA GPU shift after Huawei Ascend 910B failure). Full V4 targets ~1T params with Engram conditional memory. Internal benchmarks suggest it surpasses Claude and GPT in code generation. If priced near V3 levels (~$0.14/M), it would undercut every model on this page.',
-      eta:'Mid–late April 2026 (delayed from Feb)'
+      name:'DeepSeek V4 Flash',
+      status:'Released Apr 24, 2026 — Apache 2.0 on Hugging Face',
+      why:'Ultra-cheap frontier-class model at $0.14/$0.28 per M tokens. 80%+ SWE-bench quality at 1/100th the cost of Claude Opus 4.7. Best choice for cost-sensitive production coding pipelines.',
+      eta:'Available now'
     },
     {
       name:'Qwen3-VL (Alibaba)',
