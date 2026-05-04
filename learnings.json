@@ -7,7 +7,125 @@
   "learnings": [
     {
       "date": "2026-05-04",
-      "display_date": "MAY 4, 2026"
+      "display_date": "May 4, 2026",
+      "issue": 42,
+      "title": "Multi-Agent Debugging in Production",
+      "focus_intro": "Day 42 covers the 5 hardest agent bugs in production — silent failure, context drift, tool hallucination, memory poisoning, and runaway cost loops — the OpenTelemetry trace patterns that catch them, and the 3-step rollback playbook every Agent SRE keeps on the wall. Plus the May 1 GA of Microsoft Agent 365, the COSMO leak from Google, and how DeepSeek V4-Flash at $0.14/M reshapes model routing.",
+      "stats": [
+        {
+          "stat": "90%",
+          "label": "of silent failures caught by 30-second verification"
+        },
+        {
+          "stat": "6",
+          "label": "failure modes unique to agents"
+        },
+        {
+          "stat": "$0.14/M",
+          "label": "DeepSeek V4-Flash — new nano-tier"
+        },
+        {
+          "stat": "May 1",
+          "label": "Microsoft Agent 365 GA"
+        }
+      ],
+      "viral_app": {
+        "name": "Google COSMO (leaked May 1, pulled May 2)",
+        "description": "Gemini Nano-powered Android assistant accidentally shipped to Google Play and pulled within hours — but not before going viral as a top Google Trend. COSMO is proactive, not reactive: it observes context and offers help without being asked. Six built-in agents (List Tracker, Document Writer, Calendar Event Suggester, Browser Agent, Deep Research, Quick Photo Lookup) plus on-device retrieval. The edge-inference stack from Day 40 hitting consumer scale through Android distribution. Almost certainly the Google I/O 2026 (May 19) hero reveal.",
+        "stats": [
+          {
+            "stat": "May 1",
+            "label": "leaked to Play Store"
+          },
+          {
+            "stat": "Hours",
+            "label": "to pull and go viral"
+          },
+          {
+            "stat": "On-device",
+            "label": "Gemini Nano"
+          },
+          {
+            "stat": "May 19",
+            "label": "I/O reveal expected"
+          }
+        ]
+      },
+      "sections": [
+        {
+          "title": "Why agent debugging isn't APM",
+          "paragraphs": [
+            "Traditional APM was built for deterministic services: a 500 means a 500. Agents fail in multi-turn, multi-tool sequences where the dashboard stays green and the user still gets a wrong answer.",
+            "Six failure modes are unique to agents: tool misuse, context loss, goal drift, retry loops, cascading errors in multi-agent systems, and silent quality degradation. Three are silent — they require quality evaluation to detect, not error-log monitoring. If your only signal is HTTP status codes, you are blind to 60–70% of agent incidents."
+          ]
+        },
+        {
+          "title": "The 5 hardest bugs and their OTEL signals",
+          "paragraphs": [
+            "Silent failure: agent returns confident but wrong answer. OTEL signal — output-quality eval drops >5% on golden set; trajectory score <0.7. Tool span returns 200 but evaluator span scores low.",
+            "Context drift: by turn 4 the original constraint from turn 1 has faded. OTEL signal — cosine sim(goal, recent actions) <0.7; agent.goal_alignment trending down across spans in same trace.",
+            "Tool hallucination: agent calls non-existent tool or invents arguments. OTEL signal — tool error rate >25% over 30s OR 3 consecutive errors; mcp.tool.error spans clustered with token spike 3×.",
+            "Memory poisoning: NIST CAISI Tier-1 risk. OTEL signal — vector-write spans without provenance attestation; SVID mismatch on memory.write + retrieval score regression a day later.",
+            "Runaway cost loop: budget burn >3× P95. OTEL signal — >3 same tool calls within rolling-hash window OR token spend >2× P95 in a 60s slice."
+          ]
+        },
+        {
+          "title": "Correlating traces across parallel agents",
+          "paragraphs": [
+            "When two sub-agents run concurrently and one poisons shared state, you need trace context propagated through every message boundary, not just function calls.",
+            "OpenTelemetry GenAI Semantic Conventions (2026): traceparent inside the JSON body for queued transports; gen_ai.agent.id as stable ID per agent instance; gen_ai.tool.name and .error.type for per-tool aggregation; span events evaluator.score for LLM-as-Judge verdicts on the same trace as the failing reasoning."
+          ]
+        },
+        {
+          "title": "The 2026 debugging stack",
+          "paragraphs": [
+            "Arize Phoenix (OSS, OTEL-native, OpenInference, drift detection). Langfuse (MIT, 21K+ stars, EU AI Act data residency, in-product LLM-as-Judge). LangSmith (LangGraph-native checkpoint rewind). Braintrust ($80M, full lifecycle). New Relic SRE Agent (agentic root-cause analysis). Amazon OpenSearch unified observability (metrics + traces + agent debugging in one).",
+            "Microsoft Agent 365 (GA May 1) is the governance layer above APM: fleet registry, Entra-bound agent identity, real-time anomaly scoring, one-click kill switch. $15/user standalone or M365 E7 'Frontier Suite' at $991. First 10K agents free per tenant; ~$0.15/agent/month after."
+          ]
+        },
+        {
+          "title": "The 3-step rollback playbook",
+          "paragraphs": [
+            "Step 1 — Contain (T+0 to T+30s): revoke write permissions; shift swarm into read-only sandbox. Agents can still reason but cannot push code, post messages, or call paid APIs. T1 OAuth scope revoke + T2 egress block. Containment preserves the reasoning trace alive for forensics.",
+            "Step 2 — Snapshot (T+30s to T+2m): freeze working memory, tag state as incident-yyyy-mm-dd-NN; snapshot Redis L1, pgvector L2, Mem0 L3; export OTEL bundle for last 15 minutes.",
+            "Step 3 — Roll forward (T+2m to T+5m): don't roll back to last week — roll forward to a quarantined fork. Spin canary off the snapshot, route 1% of traffic to patched harness. If evaluator score recovers above golden baseline, ramp 5%→25%→100% with auto-rollback wired to error rate +2% / cost +20% / latency +30%."
+          ]
+        },
+        {
+          "title": "Today's breaking",
+          "paragraphs": [
+            "Microsoft Agent 365 GA (May 1) — Satya announced enterprise control plane: observe, govern, secure across Windows + Azure + multicloud. AWS + GCP partner-platform sync in preview. Closes the 24.4% agent-to-agent visibility gap.",
+            "Google COSMO leaked and pulled (May 1–2) — Gemini Nano-powered proactive Android assistant, six built-in agents, on-device. I/O 2026 hero reveal expected May 19.",
+            "DeepSeek V4 preview (Apr 24) — V4-Flash $0.14/M input / V4-Pro $1.74/M, MIT, 1M context. New default nano-tier in model routing — 30–70% cost cut on classification + tool-routing spans.",
+            "OTEL GenAI semantic conventions finalising — Datadog, Honeycomb, New Relic all support draft. Multi-agent framework spec is the next milestone; 1.0 expected mid-2026.",
+            "EU AI Act T-90 days to Aug 2 — Annex III audit trail = OTEL spans + evaluator events in WORM for 6 years. Microsoft Agent 365 ships Annex III evidence generation built-in."
+          ]
+        }
+      ],
+      "market_signal": "OpenTelemetry has become the lingua franca of agent observability in 2026. Vendor-neutral OTEL pipelines fan out to Arize, Langfuse, LangSmith, Braintrust, and New Relic SRE Agent — meaning the bet you make today survives a vendor swap tomorrow. Microsoft Agent 365 layers governance on top, closing the agent-to-agent visibility gap that 75%+ of enterprises had as of Q1.",
+      "practical_takeaway": [
+        {
+          "title": "Wire evaluator spans, not just request spans",
+          "body": "Adopt OTEL GenAI semantic conventions. Add span event evaluator.score on every agent reply. This single change makes silent failures visible."
+        },
+        {
+          "title": "Goal-pin every LLM call",
+          "body": "Begin every agent-loop LLM call with the original task spec + compressed state of completed/pending sub-goals. Single most underused fix for context drift."
+        },
+        {
+          "title": "Pre-build the rollback playbook",
+          "body": "Snapshot tags, golden dataset, canary infra, kill-switch wiring — all live in CI before you ship. Incident time is not the time to write the runbook."
+        },
+        {
+          "title": "Adopt Microsoft Agent 365 if you're M365",
+          "body": "Closes the agent-to-agent visibility gap, ships Annex III audit trail, has T1 kill switch baked in. Fastest EU AI Act path for any Microsoft-shop enterprise."
+        },
+        {
+          "title": "Re-tier your model routing",
+          "body": "DeepSeek V4-Flash at $0.14/M is the new nano default. Cheap classification + tool-routing spans cut total spend 30–70% with no observable quality loss for these tasks."
+        }
+      ],
+      "tomorrow_preview": "Day 43: The Agent Eval Layer — building golden datasets that actually catch regressions, calibrating LLM-as-Judge against human labels, and the <2% regression CI gate that lets you ship safely on a Friday afternoon."
     },
     {
       "date": "2026-05-03",
@@ -5707,5 +5825,5 @@
     }
   ],
   "last_updated": "2026-05-04",
-  "total_days": 46
+  "total_days": 28
 }
