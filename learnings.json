@@ -6,6 +6,10 @@
   },
   "learnings": [
     {
+      "date": "2026-05-04",
+      "display_date": "MAY 4, 2026"
+    },
+    {
       "date": "2026-05-03",
       "display_date": "MAY 3, 2026",
       "issue": 41,
@@ -5702,6 +5706,6 @@
       ]
     }
   ],
-  "last_updated": "2026-05-03",
-  "total_days": 45
+  "last_updated": "2026-05-04",
+  "total_days": 46
 }
