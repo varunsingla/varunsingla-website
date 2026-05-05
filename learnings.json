@@ -6,6 +6,206 @@
   },
   "learnings": [
     {
+      "date": "2026-05-05",
+      "display_date": "MAY 5, 2026",
+      "issue": 43,
+      "title": "Multi-Model Routing & Cost-Optimal Agent",
+      "focus_intro": "Yesterday we covered how to debug multi-agent systems in production. Today is the next",
+      "viral_app": {
+        "name": "High-performance multi-session coding agent harness on GitHub Trending May 2026. Single-server",
+        "description": "multi-client architecture: one server manages all sessions; TUI clients connect over a Unix socket and reconnect transparently. Spawn 2+ agents in the same repo and the server brokers live collaboration -- when agent A edits a file agent B has read, B is auto-notified. Renders at 1000+ fps (no flicker), inline mermaid diagram support, side panel diff viewer. MIT license, written for low RAM and fast boot vs Cursor/Claude Code/Codex CLI. The lesson: the next agent UX layer is multi-agent coordination as a first-class server primitive, not an after-thought. GitHub stars Render rate License Practical takeaway: 5-step routing rollout Wire OTEL gen_ai spans on every call. Capture input_tokens, ou",
+        "stats": []
+      },
+      "stats": [
+        {
+          "stat": "85%",
+          "label": "max cost cut via smart routing"
+        },
+        {
+          "stat": "$0.14/M",
+          "label": "DeepSeek V4 Flash input"
+        },
+        {
+          "stat": "70/25/5",
+          "label": "typical agent traffic split"
+        },
+        {
+          "stat": "5-25x",
+          "label": "Western vs Chinese frontier price gap"
+        }
+      ],
+      "sections": [
+        {
+          "title": "1. Why multi-model routing exploded in April-May 2026",
+          "paragraphs": [
+            "Three things converged in the last 30 days. First, DeepSeek V4 preview dropped April 24 with V4 Flash at $0.14/M input -- 1/6th the cost of Opus 4.7 at near-frontier quality. Second, four Chinese open-weights models (GLM-5.1, MiniMax M2.7, Kimi K2.6, DeepSeek V4) released inside a 12-day window, all scoring 56-80% on SWE-Bench Verified. Third, GPT-5.5 rolled out April 23 as agentic-first, but at $5/$25 per M tokens it is still 5x more expensive than DeepSeek V4 Pro on output. The price gap between Western frontier and Chinese frontier is now 5-25x at statistical parity on most agentic tasks. Picking one model is leaving 40-85% of your agent budget on the table.",
+            "A canonical 2026 agent stack routes ~70% of traffic to a nano-tier model (DeepSeek V4 Flash, GPT-5.5 nano, Gemini 3.1 Flash) for classification, summarisation and simple tool calls; ~25% to a mid-tier (Claude Sonnet 4.6, Qwen 3.6 Plus, GLM-5.1) for code generation and structured reasoning; ~5% to a frontier (Claude Opus 4.7, GPT-5.5, Gemini 3.1 Pro) for complex multi-step planning and ambiguous edge cases. Result: ~15% of all-frontier cost, indistinguishable end-to-end quality."
+          ],
+          "table": {
+            "headers": [
+              "Strategy",
+              "How it works",
+              "Typical savings",
+              "Trade-off"
+            ],
+            "rows": [
+              [
+                "Static rules",
+                "Simple: classify by intent, route by allowlist",
+                "30-40% cost cut, 1-day to ship",
+                "Brittle"
+              ],
+              [
+                "Embedding-based",
+                "Embed prompt, cosine to task buckets, route to bucket's model",
+                "50-70% cost cut",
+                "Drifts over time"
+              ],
+              [
+                "Trained classifier",
+                "Small fine-tuned model labels prompt; route by label",
+                "65-85% cost cut",
+                "Needs labelled data"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "2. The four routing strategies",
+          "paragraphs": [
+            "Not all routers are created equal. The four strategies span a complexity-vs-savings curve. Cascade is the 2026 default for production agents. You bind a confidence-extraction prompt to the cheap model's output (e.g. logprobs, self-rated confidence, or a small judge model), set a threshold around 0.7, and only escalate prompts that fall below. Vellum, Martian, RouteLLM and vLLM Semantic Router all ship cascade out-of-the-box. Real-world numbers: a coding agent serving 100K requests/day at $1.20/request all-Opus drops to $0.18/request with cascade (85% cut, <3% quality regression measured against a"
+          ],
+          "table": {
+            "headers": [
+              "Strategy",
+              "How it works",
+              "Typical savings",
+              "Trade-off"
+            ],
+            "rows": [
+              [
+                "Static rules",
+                "Simple: classify by intent, route by allowlist",
+                "30-40% cost cut, 1-day to ship",
+                "Brittle"
+              ],
+              [
+                "Embedding-based",
+                "Embed prompt, cosine to task buckets, route to bucket's model",
+                "50-70% cost cut",
+                "Drifts over time"
+              ],
+              [
+                "Trained classifier",
+                "Small fine-tuned model labels prompt; route by label",
+                "65-85% cost cut",
+                "Needs labelled data"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3. The 2026 LLM router landscape",
+          "paragraphs": [
+            "Five solutions you can pick up today, each with a different sweet spot:",
+            "Drop-in OpenAI-compatible proxy in front of your agent. Switch a config file and you can route the same code across DeepSeek V4, Claude, Gemini and self-hosted Qwen 3.6 Plus. Add Langfuse or LangSmith on top for OTEL spans (Day 22) and you have an observable cost-optimised stack in an afternoon. 33K+ GitHub stars; powers thousands of production agent stacks today."
+          ],
+          "table": {
+            "headers": [
+              "Strategy",
+              "How it works",
+              "Typical savings",
+              "Trade-off"
+            ],
+            "rows": [
+              [
+                "Cascade (escalate)",
+                "Try cheap model first; if confidence < threshold, escalate",
+                "70-85% cost cut",
+                "+latency on hard prompts"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "4. Reference architecture: cost-optimal coding agent",
+          "paragraphs": [
+            "Concrete worked example using Anthropic's Three-Agent Harness pattern (Day 23) with cost-aware model",
+            "End-to-end cost: a typical coding task that used to cost $45 all-Opus now runs at $6-9 (80% cut) with no measurable quality regression on a 200-pair golden set. The trick is treating each agent role as an independent routing decision -- not picking a model and forcing it to do everything."
+          ],
+          "table": {
+            "headers": [
+              "Strategy",
+              "How it works",
+              "Typical savings",
+              "Trade-off"
+            ],
+            "rows": [
+              [
+                "Cascade (escalate)",
+                "Try cheap model first; if confidence < threshold, escalate",
+                "70-85% cost cut",
+                "+latency on hard prompts"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "5. Five pitfalls that wipe out your savings",
+          "paragraphs": [
+            "High-performance multi-session coding agent harness on GitHub Trending May 2026. Single-server multi-client architecture: one server manages all sessions; TUI clients connect over a Unix socket and reconnect transparently. Spawn 2+ agents in the same repo and the server brokers live collaboration -- when agent A edits a file agent B has read, B is auto-notified. Renders at 1000+ fps (no flicker), inline mermaid diagram support, side panel diff viewer. MIT license, written for low RAM and fast boot vs Cursor/Claude Code/Codex CLI. The lesson: the next agent UX layer is multi-agent coordination as a first-class server primitive, not an after-thought."
+          ],
+          "bullets": [
+            "VIRAL APP OF THE DAY"
+          ],
+          "table": {
+            "headers": [
+              "Role",
+              "Task",
+              "Model (and why)",
+              "Cost"
+            ],
+            "rows": [
+              [
+                "Generator agent",
+                "Produce code for each chunk",
+                "Kimi K2.6 (80.2% SWE-Bench Verified, open-source, 1/8th Opus cost)",
+                "$2-4 / chunk"
+              ],
+              [
+                "Evaluator agent",
+                "Score design / craft / functionality with Playwright MCP",
+                "Claude Sonnet 4.6 (mid-tier judge with vision)",
+                "$0.50-1.00 / eval"
+              ],
+              [
+                "Tool selector",
+                "Pick which MCP server to call",
+                "DeepSeek V4 Flash (classification, $0.14/M)",
+                "$0.001 / call"
+              ],
+              [
+                "Summariser",
+                "Compress conversation history every N turns",
+                "Gemini 3.1 Flash (long-context, cheap)",
+                "$0.005 / summary"
+              ]
+            ]
+          }
+        }
+      ],
+      "practical_takeaway": [
+        {
+          "title": "Wire OTEL gen_ai spans on every call. Capture input_tokens, ",
+          "body": "Wire OTEL gen_ai spans on every call. Capture input_tokens, output_tokens, model, latency, cost.usd."
+        },
+        {
+          "title": "Agent Memory at Scale 3.0 -- what the latest MemRL papers, M",
+          "body": "Agent Memory at Scale 3.0 -- what the latest MemRL papers, MemOS v1.1 and the Hermes Agent skill-doc pattern teach us about cross-session learning. The big question: when does an agent stop being a tool and start being a colleague?"
+        }
+      ]
+    },
+    {
       "date": "2026-05-04",
       "display_date": "MAY 4, 2026",
       "issue": 42,
@@ -5927,6 +6127,6 @@
       ]
     }
   ],
-  "last_updated": "2026-05-04",
-  "total_days": 28
+  "last_updated": "2026-05-05",
+  "total_days": 29
 }
