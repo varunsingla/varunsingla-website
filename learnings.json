@@ -6,6 +6,127 @@
   },
   "learnings": [
     {
+      "date": "2026-05-06",
+      "display_date": "MAY 6, 2026",
+      "issue": 44,
+      "title": "Agent Memory at Scale 3.0",
+      "focus_intro": "Three things converged this week. MemRL moved from research paper to production-shipped feature inside",
+      "viral_app": {
+        "name": "OTHER BREAKING -- WEEK OF 5 MAY 2026 Accenture invests in Netomi -- coordinated multi-agent CX platform. Same playbook as Salesforce",
+        "description": "Agentforce, sold via the systems-integrator channel. TurboQuant goes mainstream -- Google's KV-cache compression algorithm from ICLR 2026 is now in Gemini 3.1 Pro inference, cutting long-context cost ~40%. Translation: longer agent sessions get cheaper, and the gap between in-context memory and external memory narrows for medium-horizon tasks. Mem0 State of AI Agent Memory 2026 report -- names the four open problems for the year: staleness detection, privacy governance, consent frameworks, cross-session identity resolution. Same four show up in EU AI Act Annex III audit checklists -- not a coincidence. PRACTICAL TAKEAWAYS -- WHAT TO DO THIS WEEK 1. Audit your agent's memory. If you don't hav",
+        "stats": [
+          {
+            "stat": "400M+",
+            "label": "Gemma 4 ecosystem downloads"
+          },
+          {
+            "stat": "$0",
+            "label": "API cost per interaction"
+          }
+        ]
+      },
+      "stats": [
+        {
+          "stat": "$6.27B",
+          "label": "Agent memory market 2026 (35% CAGR)"
+        },
+        {
+          "stat": "$28.45B",
+          "label": "Forecast 2030"
+        },
+        {
+          "stat": "1,445%",
+          "label": "Multi-agent inquiries Q1 24 fi Q2 25"
+        },
+        {
+          "stat": "60%+",
+          "label": "Orgs deploying agents within 24 mo"
+        }
+      ],
+      "sections": [
+        {
+          "title": "1. MemRL -- Agents That Improve at Your Tasks Without",
+          "paragraphs": [
+            "MemRL is the most consequential idea in agent design from the last 90 days. Instead of fine-tuning the base model -- expensive, slow, version-locks you to a single provider -- the agent does reinforcement learning at runtime on its own episodic memory. Every task becomes a training example. Every successful tool sequence becomes a reusable skill. The base model stays frozen; the memory graph evolves."
+          ]
+        },
+        {
+          "title": "2. MemOS v1.1 -- Memory at Database Scale",
+          "paragraphs": [
+            "Until Q1 2026, agent memory was a side-project of vector DBs. MemOS treats memory as OS-level primitive: a unified API on top of pluggable backends, with explicit lifecycle, deduplication, and skill-evolution semantics. v1.1 added Apache Cassandra and Valkey as backends -- production shops with billions of",
+            "The pattern from Day 4 still holds, but the backends shift. L1 hot cache = Valkey (replaces Redis). L2 durable store = Cassandra for billion-scale, or pgvector with pgvectorscale for <100M. L3 unified API = MemOS or Mem0 (Apache Cassandra and Valkey backends added Apr-May 2026 -- note this is the same release wave). Result: p99 read < 50ms, eventual consistency tolerated for episodic, strong consistency only required for the profile / transactive layer."
+          ],
+          "table": {
+            "headers": [
+              "Backend",
+              "Strength",
+              "Best when",
+              "Watch out for"
+            ],
+            "rows": [
+              [
+                "SQLite (local)",
+                "Zero ops",
+                "Single user, <1M memories",
+                "No concurrent writers; not for prod multi-tenant"
+              ],
+              [
+                "pgvector + scale",
+                "471 QPS @ 99% recall",
+                "Postgres shop, <100M memories",
+                "Index build cost on bulk insert"
+              ],
+              [
+                "Apache Cassandra",
+                "Linear scale, multi-region",
+                "Billions of memories, geo-distributed",
+                "Eventual consistency = stale reads"
+              ],
+              [
+                "Valkey",
+                "Sub-ms hot cache",
+                "L1 cache layer of Write-Aside",
+                "Memory-bound; not durable on its own"
+              ],
+              [
+                "Qdrant",
+                "Self-hosted, Rust",
+                "GDPR/EU residency mandates",
+                "Smaller ecosystem than pgvector"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3. Transactive Memory -- How Agent Teams Become Colleagues",
+          "paragraphs": [
+            "Single-agent memory is solved enough. The frontier moved to multi-agent memory in Q1-Q2 2026, and the breakthrough name is transactive memory: memory of who knows what. Borrowed from organisational psychology -- human teams perform better when each member knows their teammates' areas of expertise.",
+            "LLMA-Mem -- the lifelong memory framework LLMA-Mem (published April 2026) splits memory into three layers explicitly designed for multi-agent teams: Episodic -- what happened. Per-agent and per-task. Already familiar. Procedural -- how to do things. Cross-task transfer. Hermes-style skill docs live here. Transactive -- who is good at what. The orchestrator routes the next task using transactive memory: \"Sub-agent A solved 47/50 SQL tasks last month with 12s p50 latency. Sub-agent B is faster but only 31/50",
+            "Why this is the colleague-vs-tool transition A tool waits to be called. A colleague remembers context across sessions, knows the team's strengths, evolves their skill set without retraining, and self-routes work appropriately. As of May 2026, the four ingredients needed are all production-ready: episodic memory at scale (MemOS v1.1 + Cassandra), procedural memory (Hermes skill docs), transactive memory (LLMA-Mem), and the orchestrator-worker pattern (LangGraph 2.0 + Three-Agent Harness). The first agents that genuinely feel like teammates -- not",
+            "\"Memory is a first-class architectural component with its own benchmark suite and research literature.\""
+          ]
+        },
+        {
+          "title": "4. Today's Viral App & Breaking News",
+          "paragraphs": [
+            "Altara raises $7M (May 5) -- agentic AI for scientific R&D (semiconductors, batteries, materials). Continues the Day 28 \"discovery agent\" category seeded by AlphaEvolve. Accenture invests in Netomi -- coordinated multi-agent CX platform. Same playbook as Salesforce Agentforce, sold via the systems-integrator channel. TurboQuant goes mainstream -- Google's KV-cache compression algorithm from ICLR 2026 is now in Gemini 3.1 Pro inference, cutting long-context cost ~40%. Translation: longer agent sessions get cheaper, and the gap between in-context memory and external memory narrows for medium-horizon tasks. Mem0 State of AI Agent Memory 2026 report -- names the four open problems for the year: staleness detection, privacy governance, consent frameworks, cross-session identity resolution. Same four show up in EU AI Act Annex III audit checklists -- not a coincidence."
+          ]
+        },
+        {
+          "title": "Practical takeaway",
+          "paragraphs": [
+            "If you're below 10M memories, stay on pgvector -- operationally simpler. If you're crossing 100M or going multi-region, plan the Cassandra cutover now. Valkey is the new default for the L1 cache layer; Redis still works but the open-source community is consolidating around Valkey."
+          ]
+        }
+      ],
+      "practical_takeaway": [
+        {
+          "title": "Treat your skill docs as the version-controlled brain of you",
+          "body": "Treat your skill docs as the version-controlled brain of your agent. Promote successful tool-sequence traces to skills nightly. Tag every skill with the model and tools it was learned on so a routing change can re-validate"
+        }
+      ]
+    },
+    {
       "date": "2026-05-05",
       "display_date": "MAY 5, 2026",
       "issue": 43,
@@ -6127,6 +6248,6 @@
       ]
     }
   ],
-  "last_updated": "2026-05-05",
-  "total_days": 29
+  "last_updated": "2026-05-06 02:15:49 UTC",
+  "total_days": 49
 }
