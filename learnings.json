@@ -6,6 +6,53 @@
   },
   "learnings": [
     {
+      "date": "2026-05-07",
+      "display_date": "MAY 7, 2026",
+      "issue": 45,
+      "title": "Beyond LLM-as-Judge: Trajectory Evals, Continuous Production Monitoring & The New",
+      "focus_intro": "Beyond LLM-as-Judge: Trajectory Evals, Continuous Production Monitoring & The New",
+      "viral_app": {
+        "name": "STARS, #2 TRENDING) Originally launched October 2025, the Superpowers framework has now hit 121,000 GitHub stars and is",
+        "description": "sitting at #2 on GitHub Trending as of May 2026 (40K stars in January, tripled in four months). It is a ode-based visual editor where you wire pre-built 'superpowers' (web browsing, file I/O, MCP tool calls, structured output) into autonomous agent workflows -- the visual equivalent of LangGraph nodes for on-developers. The viral hook is the 'skills' marketplace: community members publish reusable skill packs (web scraping, data cleaning, outreach), and any agent can install one with a click. It rides exactly the same 'skills as the new APIs' wave that powered Hermes Agent (47K stars in 8 weeks) and APM by Microsoft. Why it matters for evals: Superpowers ships built-in trace export to LangSm",
+        "stats": []
+      },
+      "stats": [],
+      "sections": [
+        {
+          "title": "VIRAL APP OF THE DAY -- SUPERPOWERS SKILLS FRAMEWORK (121K",
+          "paragraphs": [
+            "Originally launched October 2025, the Superpowers framework has now hit 121,000 GitHub stars and is sitting at #2 on GitHub Trending as of May 2026 (40K stars in January, tripled in four months). It is a node-based visual editor where you wire pre-built 'superpowers' (web browsing, file I/O, MCP tool calls, structured output) into autonomous agent workflows -- the visual equivalent of LangGraph nodes for non-developers. The viral hook is the 'skills' marketplace: community members publish reusable skill packs (web scraping, data cleaning, outreach), and any agent can install one with a click. It rides exactly the same 'skills as the new APIs' wave that powered Hermes Agent (47K stars in 8 weeks) and APM by Microsoft. Why it matters for evals: Superpowers ships built-in trace export to LangSmith and Arize Phoenix -- every skill execution is an evaluable span by default. It is the first consumer-facing agent builder that treats observability as a feature, not a checkbox.",
+            "GitHub stars (as of May 2026) GitHub Trending stars added in 4 months",
+            "screener and more. Run as plugins in Claude Cowork/Code or as autonomous 'Claude Managed Agents' with full audit logs. Native Microsoft 365 add-ins (Excel, PowerPoint, Word, Outlook). New data partners: Moody's MCP server with credit data on 600M+ companies, plus Dun & Bradstreet, S&P, Verisk, Guidepoint. First credible agent template library for a regulated vertical.",
+            "four months. The Oct 2026 IPO anchor model (Mythos) plus Opus 4.7 + Cowork + finance agents are the",
+            "AI as a primary deployment surface for Claude in the enterprise.",
+            "Skills, now in ChatGPT and Codex for Plus/Pro/Business/Enterprise.",
+            "frontier-model testing by the US Center for AI Standards and Innovation. First formal government eval",
+            "of Annex III evidence for high-risk agent deployments."
+          ],
+          "bullets": [
+            "Anthropic ships 10 finance agents (May 5) -- Pitch builder, Meeting preparer, Earnings reviewer, KYC",
+            "Anthropic ARR overtakes OpenAI -- $30B ARR vs OpenAI's $24B. Anthropic went from $9B fi $30B in",
+            "Google + Anthropic deal -- Google to invest up to $40B in Anthropic in cash + compute. Cements Vertex",
+            "OpenAI GPT-5.5 fully rolled out -- agentic-first, 78.7% OSWorld-Verified, native computer-use + MCP +",
+            "US CAISI evaluation agreements signed -- Google DeepMind, Microsoft, xAI agree to pre-deployment",
+            "EU AI Act T-87 days -- Aug 2 2026 enforcement deadline. Online evals + trajectory audit logs are now part"
+          ]
+        }
+      ],
+      "practical_takeaway": [
+        {
+          "title": "PRACTICAL TAKEAWAYS Add trajectory evals this week. If you only score outputs to",
+          "body": "PRACTICAL TAKEAWAYS Add trajectory evals this week. If you only score outputs today, you're missing 20-40% of failures. Pick LangSmith (LangGraph), Braintrust (eval-as-code) or Vertex AI (Gemini) and add trajectory_exact_match + trajectory_precision to your CI. Wire online evals on sampled prod traffic. Run a cheap LLM judge async on 5-10% of prod traces. This is your early-warning system for drift. Galileo, LangSmith and Braintrust all support this pattern with one config block. Build a golden dataset of 200-500 trajectories -- not outputs. Capture the full tool-call sequence, not just the final answer. Curate from real production traces, never synthetic. Promote new prod failures into it weekly -- the dataset self-heals. Treat Galileo Signals / LangSmith Insights Agent as your meta-eval. These auto-cluster failure modes from millions of traces. They find the bugs your evals miss. Even if you don't pay for them, the pattern (cluster traces by embedding → label clusters by LLM fi prescribe fixes) is easy to replicate in 200 lines of Python. Make every agent CI/CD pipeline a 5-stage gate. Lint → unit evals (trajectory + output) fi integration in Docker sandbox → shadow on prod traffic copy → canary with auto-rollback on online-eval drop. This is the standard for EU AI Act Annex III evidence by Aug 2 2026."
+        },
+        {
+          "title": "Tomorrow (Day 46): The Anthropic Finance Agents deep dive -- what each of the 10",
+          "body": "Tomorrow (Day 46): The Anthropic Finance Agents deep dive -- what each of the 10 agents actually does, the Moody's MCP integration, the Microsoft 365 architecture, and what it means for the Big 4 / consulting model."
+        }
+      ],
+      "tomorrow_preview": "PRACTICAL TAKEAWAYS Add trajectory evals this week. If you only score outputs today, you're missing 20-40% of failures. Pick LangSmith (LangGraph), Braintrust (eval-as-code) or Vertex AI (Gemini) and add trajectory_exact_match + trajectory_precision to your CI. Wire online evals on sampled prod traf"
+    },
+    {
       "date": "2026-05-06",
       "display_date": "MAY 6, 2026",
       "issue": 44,
