@@ -6,6 +6,159 @@
   },
   "learnings": [
     {
+      "date": "2026-05-08",
+      "display_date": "MAY 8, 2026",
+      "issue": 46,
+      "title": "Anthropic Finance Agents -- Wall Street's",
+      "focus_intro": "important enterprise AI launch of the year: ten production-ready agent templates for financial services, full",
+      "viral_app": {
+        "name": "Claude Finance Agents (Anthropic) -- but not the way you'd expect",
+        "description": "The most viral AI moment of the week wasn't a consumer app -- it was the Anthropic Finance Agents launch itself. Within 48 hours: every CFO/CIO newsletter ran it as the lead story, the Big 4 internal Slack channels lit up, and a wave of LinkedIn posts from finance leaders went up asking 'how do we get on the pilot?'. Bloomberg, Fortune, Yahoo Finance, and InvestmentNews all ran it the same day. What to actually look at: The agent templates are public on the Anthropic cookbook repo (open-licensed scaffolds -- you can fork them today). Even if you're not in financial services, the Pitch builder is a cleanly-engineered example of: Three-Agent Harness + multi-source MCP fan-out + M365 cross-app ",
+        "stats": []
+      },
+      "stats": [
+        {
+          "stat": "10",
+          "label": "agent templates shipped"
+        },
+        {
+          "stat": "$1.5B",
+          "label": "JV vs Big 4 consulting"
+        },
+        {
+          "stat": "600M+",
+          "label": "companies via Moody's MCP"
+        },
+        {
+          "stat": "40%",
+          "label": "of top 50 customers = banks"
+        }
+      ],
+      "sections": [
+        {
+          "title": "2. The shared context layer is the moat -- not the model.",
+          "paragraphs": [
+            "The reason these will land at JP Morgan is the M365 add-in carrying state across Excel/PowerPoint/Word, not the Opus 4.7 weights. For your stack, ask: what's the state object that survives across tools? That's where the value"
+          ]
+        },
+        {
+          "title": "2. The ten agent templates -- what each one actually does",
+          "paragraphs": [
+            "Each agent ships in three forms: (a) a Cowork plugin (chat-driven, human-in-the-loop), (b) a Claude Code plugin (developer harness, scriptable, version-controlled), and (c) a Claude Managed Agent cookbook (autonomous, multi-hour, full audit trail). Same logic, three deployment surfaces -- pick by autonomy level needed."
+          ],
+          "table": {
+            "headers": [
+              "Agent",
+              "What it does"
+            ],
+            "rows": [
+              [
+                "Pitch builder",
+                "Pulls comps from S&P; Capital IQ + PitchBook + Moody's, drafts the deck in PowerPoint via the M365 add-in, threads context to the Excel comps model. Replaces the analyst all-nighter."
+              ],
+              [
+                "Meeting preparer",
+                "Reads the calendar, pulls last 6 months of email threads + CRM notes + recent earnings, drafts a one-pager brief with talking points, open questions, and competitive context."
+              ],
+              [
+                "Earnings reviewer",
+                "Reads transcripts + 10-Qs/10-Ks, updates the Excel model in-place, flags thesis-relevant changes (margin compression, guidance shift, capex pivot) against analyst notes."
+              ],
+              [
+                "Model builder",
+                "Builds DCF / LBO / merger models from a structured prompt; cites every assumption back to source filings; produces sensitivity tables and a written rationale."
+              ],
+              [
+                "Market researcher",
+                "Fans out across IBISWorld + Third Bridge + GLG/Guidepoint expert transcripts + Verisk + Fiscal AI; returns a cited, structured market map."
+              ],
+              [
+                "Valuation reviewer",
+                "Audits an existing model -- checks formula consistency, traces dependencies, flags circular refs and hard-coded overrides, scores defensibility."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3. Premium data fi MCP server is the new go-to-market.",
+          "paragraphs": [
+            "Moody's just turned a $5K/seat data product into agent-native infrastructure. If your company sells data or APIs, the question now is: what's the MCP server roadmap? Without one, frontier models route around you to a competitor"
+          ]
+        },
+        {
+          "title": "4. Audit trail is the unlock for regulated work.",
+          "paragraphs": [
+            "The reason banks can buy this is the per-action provenance chain. EU AI Act T-87. Build the audit log before the"
+          ]
+        },
+        {
+          "title": "5. The Big 4 / consulting career risk is now first-order.",
+          "paragraphs": [
+            "If you're in transformation, audit, or transaction services consulting, your billable-hour stack is now in a price war with templates that cost $300/month. The defensible work moves up: judgement, regulation interpretation, client trust, deal architecture. Re-position now (Day 29 + Day 37 playbook)."
+          ],
+          "bullets": [
+            "Claude Opus 4.7 launched as the most capable model explicitly for agentic finance workflows, paired with the templates.",
+            "Claude for Outlook entered beta (Excel/PowerPoint/Word add-ins",
+            "Anthropic ARR overtook OpenAI (Day 45 confirmed: $30B enterprise vertical after technology.",
+            "FIS announced agentic AI for banking built on Anthropic, deployment.",
+            "JV consulting fund ($1.5B Anthropic + Blackstone + H&F enterprise services vehicle.",
+            "EU AI Act T-87 days to Aug 2 enforcement; the agent audit packs. Tomorrow (Day 47) preview Agentic AI in Healthcare 2.0 -- connecting today's finance template × Google deployments from Day 35, plus the new wave of FDA a 'Claude for Healthcare' agent template library look like, and which",
+            "Anthropic -- Agents for financial services (anthropic.com/news/finance-agents)",
+            "Fortune -- Anthropic deepens push into Wall Street with new AI agents, partnership (May 5, 2026)",
+            "Bloomberg -- Anthropic Unveils AI Agents to Field Financial Services",
+            "The Register -- Anthropic wants Claude to play with money, unleashes",
+            "Fortune -- Anthropic takes shot at consulting industry in joint venture with",
+            "InvestmentNews -- Anthropic rolls out financial services agents as arms",
+            "PYMNTS -- Anthropic Targets Financial Services Space With New AI Varun Singla Page 4"
+          ]
+        },
+        {
+          "title": "8. Viral app of the week",
+          "paragraphs": [
+            "Claude Finance Agents (Anthropic) -- but not the way you'd expect The most viral AI moment of the week wasn't a consumer app -- it was the Anthropic Finance Agents launch itself. Within 48 hours: every CFO/CIO newsletter ran it as the lead story, the Big 4 internal Slack channels lit up, and a wave of LinkedIn posts from finance leaders went up asking 'how do we get on the pilot?'. Bloomberg, Fortune, Yahoo Finance, and InvestmentNews all ran it the same day. What to actually look at: The agent templates are public on the Anthropic cookbook repo (open-licensed scaffolds -- you can fork them today). Even if you're not in financial services, the Pitch builder is a cleanly-engineered example of: Three-Agent Harness + multi-source MCP fan-out + M365 cross-app context + audit trail. Read it like a reference architecture. Honourable mention: OpenClaw crossed 302K+ GitHub stars this week -- fastest-ever open-source growth -- but as covered Day 32, its security posture is a warning, not an endorsement. Use a governed harness (Microsoft Agent 365 / APM) on top before any production deployment."
+          ],
+          "bullets": [
+            "Claude Opus 4.7 launched as the most capable model explicitly for agentic finance workflows, paired with the templates.",
+            "Claude for Outlook entered beta (Excel/PowerPoint/Word add-ins",
+            "Anthropic ARR overtook OpenAI (Day 45 confirmed: $30B enterprise vertical after technology.",
+            "FIS announced agentic AI for banking built on Anthropic, deployment.",
+            "JV consulting fund ($1.5B Anthropic + Blackstone + H&F enterprise services vehicle.",
+            "EU AI Act T-87 days to Aug 2 enforcement; the agent audit packs. Tomorrow (Day 47) preview Agentic AI in Healthcare 2.0 -- connecting today's finance template × Google deployments from Day 35, plus the new wave of FDA a 'Claude for Healthcare' agent template library look like, and which",
+            "Anthropic -- Agents for financial services (anthropic.com/news/finance-agents)",
+            "Fortune -- Anthropic deepens push into Wall Street with new AI agents, partnership (May 5, 2026)",
+            "Bloomberg -- Anthropic Unveils AI Agents to Field Financial Services",
+            "The Register -- Anthropic wants Claude to play with money, unleashes",
+            "Fortune -- Anthropic takes shot at consulting industry in joint venture with",
+            "InvestmentNews -- Anthropic rolls out financial services agents as arms",
+            "PYMNTS -- Anthropic Targets Financial Services Space With New AI Varun Singla Page 4"
+          ]
+        },
+        {
+          "title": "9. Other breaking news this week",
+          "paragraphs": [
+            "explicitly for agentic finance workflows, paired with the templates.",
+            "Agentic AI in Healthcare 2.0 -- connecting today's finance template playbook to the Innovaccer / Emids / Merck × Google deployments from Day 35, plus the new wave of FDA AI/ML guidance landing in Q2 2026. What does a 'Claude for Healthcare' agent template library look like, and which clinical workflow goes first?"
+          ],
+          "bullets": [
+            "Claude Opus 4.7 launched as the most capable model explicitly for agentic finance workflows, paired with the templates.",
+            "Claude for Outlook entered beta (Excel/PowerPoint/Word add-ins",
+            "Anthropic ARR overtook OpenAI (Day 45 confirmed: $30B enterprise vertical after technology.",
+            "FIS announced agentic AI for banking built on Anthropic, deployment.",
+            "JV consulting fund ($1.5B Anthropic + Blackstone + H&F enterprise services vehicle.",
+            "EU AI Act T-87 days to Aug 2 enforcement; the agent audit packs. Tomorrow (Day 47) preview Agentic AI in Healthcare 2.0 -- connecting today's finance template × Google deployments from Day 35, plus the new wave of FDA a 'Claude for Healthcare' agent template library look like, and which",
+            "Anthropic -- Agents for financial services (anthropic.com/news/finance-agents)",
+            "Fortune -- Anthropic deepens push into Wall Street with new AI agents, partnership (May 5, 2026)",
+            "Bloomberg -- Anthropic Unveils AI Agents to Field Financial Services",
+            "The Register -- Anthropic wants Claude to play with money, unleashes",
+            "Fortune -- Anthropic takes shot at consulting industry in joint venture with",
+            "InvestmentNews -- Anthropic rolls out financial services agents as arms",
+            "PYMNTS -- Anthropic Targets Financial Services Space With New AI Varun Singla Page 4"
+          ]
+        }
+      ],
+      "practical_takeaway": []
+    },
+    {
       "date": "2026-05-07",
       "display_date": "MAY 7, 2026",
       "issue": 45,
