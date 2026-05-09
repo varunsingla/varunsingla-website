@@ -6446,8 +6446,112 @@
         "2026 (Gartner) 40% (vs",
         "5% in 2025) Orgs planning to increase AI budgets 86% Practical Takeaway The most valuable me"
       ]
+    },
+    {
+      "date": "2026-05-09",
+      "display_date": "MAY 9, 2026",
+      "issue": 47,
+      "title": "The Enterprise AI Operating Model -- From Agents to Agentic Control Planes",
+      "focus_intro": "May 5-8 was the most consequential enterprise AI week of 2026. Four announcements -- IBM Think 2026 (watsonx Orchestrate next-gen + IBM Bob + Sovereign Core), Mistral Vibe Remote Agents + Medium 3.5 (open-weight, 77.6% SWE-Bench Verified), Coder Agents (self-hosted, model-agnostic), and Snyk x Anthropic Claude -- collectively marked the moment agentic AI moved from 'one cool agent' to a fully governed operating model: registry, identity, kill-switch, audit trail, policy enforcement built in from day one. If Microsoft Agent 365 (May 1) was the consumer-facing control plane, this week was the vendor-neutral enterprise answer.",
+      "stats": [
+        {
+          "stat": "77.6%",
+          "label": "Mistral Medium 3.5 SWE-Bench Verified"
+        },
+        {
+          "stat": "65-70%",
+          "label": "production code now AI-generated (Snyk)"
+        },
+        {
+          "stat": "$1.5/$7.5",
+          "label": "per M tokens vs $5/$25 GPT-5.5"
+        },
+        {
+          "stat": "T-85d",
+          "label": "to EU AI Act enforcement (Aug 2)"
+        }
+      ],
+      "viral_app": {
+        "name": "Mistral Vibe Remote Agents -- Europe's open-weight Copilot challenger",
+        "description": "Mistral became the first open-weight provider to ship a credible, cloud-native, PR-opening coding agent at frontier-class quality (77.6% SWE-Bench Verified) for one-third of GPT-5.5's price. Within 72 hours of launch, Vibe trended on European Hacker News equivalents, French enterprise Twitter, and r/LocalLLaMA. Three differentiators: (1) Cloud parallelism without lock-in -- open weights mean you can self-host the same model later; (2) Teleport sessions -- you can start a task locally in the CLI, push it to cloud, and pick up exactly where you left off; (3) Native PR workflow -- the agent opens GitHub PRs, files Jira tickets, posts Sentry triage to Slack, all without you babysitting. Open weights under modified MIT licence + 256K context + multimodal.",
+        "stats": [
+          {
+            "stat": "77.6%",
+            "label": "SWE-Bench Verified"
+          },
+          {
+            "stat": "256K",
+            "label": "context window"
+          },
+          {
+            "stat": "$1.5/$7.5",
+            "label": "per M tokens (in/out)"
+          },
+          {
+            "stat": "128B",
+            "label": "dense, open-weight"
+          }
+        ]
+      },
+      "sections": [
+        {
+          "title": "1. Why this week is the inflection point",
+          "paragraphs": [
+            "Up until April 2026, enterprise agents were point solutions -- Salesforce Agentforce, ServiceNow Autonomous Workforce, JP Morgan COiN. Each lived in its own silo. The week of May 5 collapsed that pattern. Three structural shifts happened in parallel: (a) IBM made the operating model itself the product -- watsonx Orchestrate became a control plane that runs agents from any source under one policy fabric; (b) Mistral made the frontier model open-weight at 1/3rd of GPT-5.5 cost while matching agentic benchmarks; (c) Snyk + Coder + Cognizant made governance, security, and self-hosting table-stakes.",
+            "Together they answered the CIO's biggest 2026 question: 'How do I deploy agents at scale without losing control?'"
+          ]
+        },
+        {
+          "title": "2. IBM Think 2026 -- the four-pillar operating model",
+          "paragraphs": [
+            "Announced May 5 at Think 2026, IBM's blueprint frames enterprise AI as four cooperating planes: Multi-agent orchestration (watsonx Orchestrate next-gen, private preview) -- the agentic control plane that registers, routes, and governs agents from any vendor. Agentic dev partner (IBM Bob, GA + Concert Secure Coder) -- in-IDE agent that ships code with security and cost guard-rails baked in. Real-time data fabric (IBM Confluent) -- streams operational data to agents, replacing stale batch ETL. Sovereignty and governance (IBM Sovereign Core) -- operational independence: data residency, key isolation, EU AI Act-ready.",
+            "Why it matters: watsonx Orchestrate is the first enterprise control plane explicitly designed for the multi-vendor agent reality -- Salesforce Agentforce, ServiceNow, custom LangGraph, and Microsoft Copilot agents all run under one policy fabric. That solves the Shadow-AI problem (only 24.4% orgs see agent-to-agent traffic) at the operating-model level."
+          ]
+        },
+        {
+          "title": "3. Mistral Vibe Remote Agents + Medium 3.5 -- Europe's coding-agent wedge",
+          "paragraphs": [
+            "Announced May 2, generally rolled out through May 8. Mistral Medium 3.5 is a 128B dense, 256K-context, multimodal model with open weights under modified MIT licence. 77.6% SWE-Bench Verified beats Devstral 2 and Qwen 3.5 397B A17B. Reasoning effort is configurable per request. Pricing of $1.5 / $7.50 per M input/output tokens is roughly 1/3rd of GPT-5.5 and 1/4th of Claude Opus 4.7 at parity-class agentic performance -- the new mid-tier default for 70/25/5 model routing.",
+            "Vibe Remote Agents migrate coding sessions from local CLI to Mistral cloud, run in parallel, and notify on completion. In-flight local sessions can be teleported to cloud with full state (history, tasks, approvals) preserved. Native integrations: GitHub (auto-opens PRs), Linear, Jira, Sentry, Slack, Teams. EU sovereignty angle: open-weight + EU-hosted = first credible answer to GitHub Copilot / Cursor / Claude Code for European enterprises bound by data-residency rules."
+          ]
+        },
+        {
+          "title": "4. Self-hosted + secure-by-default -- Coder Agents and Snyk x Claude",
+          "paragraphs": [
+            "Coder Agents (beta, May 6): a native AI coding agent designed to run entirely on self-hosted infrastructure -- no SaaS dependency, no data egress. Model-agnostic across Anthropic Claude, OpenAI, Google Gemini, AWS Bedrock, and self-hosted weights. Centralised model access + policy enforcement + per-agent visibility for platform teams. Free full-access beta through September 2026 -- direct play for regulated industries that can't use Cursor or Vibe cloud.",
+            "Snyk x Anthropic Claude (May 8): Claude embedded into Snyk's AI Security Platform for automated discovery, prioritisation, and developer-ready fixes across code, dependencies, containers, and AI-generated artifacts (MCP servers, agents, tool-call graphs). Evo by Snyk red-teams running agents for prompt injection and data exfiltration, scans the agent supply chain for hidden capabilities, and enforces runtime policy on tool calls before damage occurs. Sobering data: 65-70% of production code is now AI-generated, ~50% contains vulnerabilities, and 82% of enterprise AI tools come from third-party packages outside traditional governance -- exactly the gap Evo + watsonx Orchestrate close."
+          ]
+        },
+        {
+          "title": "5. The 2026 enterprise reference architecture",
+          "paragraphs": [
+            "Putting this week's pieces together with the full Day 1-46 stack: Control plane (Microsoft Agent 365 / IBM watsonx Orchestrate / OpenShift AI) handles agent registry, policy fabric, kill-switch, audit trail. Agent dev partner (IBM Bob, Claude Code, Cursor 3, Mistral Vibe) sits in the IDE with security + cost guards. Model routing (DeepSeek V4 Flash / Mistral 3.5 / Claude Opus 4.7) follows the 70/25/5 nano/mid/frontier rule from Day 43. Memory + data (Valkey + Cassandra/pgvector + MemOS / Mem0) implements Write-Aside L1/L2/L3 with transactive memory.",
+            "Security + governance (Snyk Evo + Claude, SPIFFE/SPIRE, NIST CAISI audit) provides AI-aware AppSec, agent identity, and runtime tool-call policy. Self-hosting option (Coder Agents + open-weight Mistral 3.5 / DeepSeek V4) is now table-stakes for regulated industries. Eval + observability (LangSmith / Galileo / Arize Phoenix / Braintrust) closes the loop with OTEL traces + trajectory evals + online eval as covered on Day 45."
+          ]
+        }
+      ],
+      "market_signal": "AI governance market crosses $1B in 2026 (Gartner). Snyk reports 65-70% of production code is AI-generated with ~50% containing vulnerabilities. EU AI Act enforcement T-85 days. 50%+ enterprises are not yet on track. Anthropic ARR $30B vs OpenAI $24B post-Mythos + Finance Agents.",
+      "practical_takeaway": [
+        {
+          "title": "Treat the operating model -- not the model -- as the product",
+          "body": "Stop pitching individual agents. Frame your next deck around the four-plane control model (Orchestrate, Agentic Dev, Real-Time Data, Sovereign Core) -- that's the language CIOs now buy."
+        },
+        {
+          "title": "Add Mistral 3.5 as the new mid-tier in any routing config",
+          "body": "At $1.5/$7.50 per M tokens with open weights and 77.6% SWE-Bench, it's the new default for the 25% mid-tier slot in the 70/25/5 routing rule. Cuts coding-agent cost ~40% with no quality loss."
+        },
+        {
+          "title": "Shadow-AI is now governable -- there's no excuse left",
+          "body": "Microsoft Agent 365 (May 1) + IBM watsonx Orchestrate (May 5) + Snyk Evo (May 8) close the 24.4% agent-to-agent visibility gap. EU AI Act T-85 days. Audit your agent inventory this week."
+        },
+        {
+          "title": "Self-hosted is now table-stakes for regulated industries",
+          "body": "Coder Agents + open-weight Mistral 3.5 = the first complete air-gapped agentic coding stack. Telco, healthcare, defence, and public-sector deals you couldn't close before are now closeable."
+        }
+      ],
+      "tomorrow_preview": "Day 48: Agent UX & The AG-UI Maturity Curve -- how Microsoft Agent 365, Mistral Vibe, IBM Bob, and Cursor 3 are converging on a shared front-end pattern (STATE_SNAPSHOT + 16 AG-UI events + human-on-the-loop toggles) and what that means for designing or evaluating agentic products."
     }
   ],
-  "last_updated": "2026-05-06 02:15:49 UTC",
-  "total_days": 49
+  "last_updated": "2026-05-09 01:15:08 UTC",
+  "total_days": 50
 }
