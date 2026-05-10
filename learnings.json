@@ -6,6 +6,267 @@
   },
   "learnings": [
     {
+      "date": "2026-05-10",
+      "display_date": "MAY 10, 2026",
+      "issue": 48,
+      "title": "just shipped AG-UI compatibility, Cursor 3 is rebuilding around an Agents Window, IBM Bob ships with a",
+      "focus_intro": "just shipped AG-UI compatibility, Cursor 3 is rebuilding around an Agents Window, IBM Bob ships with a",
+      "viral_app": {
+        "name": "Google Remy",
+        "description": "Codename for Google's new agentic super-assistant (CNBC, May 8 2026). Runs natively inside the Gemini app, ties together Search + Gmail + Calendar + Drive + Maps into a single round-the-clock task agent. Internal testing now, public Q3. Direct response to the OpenClaw viral wave (3.2M users in weeks earlier this year). Significance: this is the moment Big Tech roadmaps openly pivot from search to action -- Sundar Pichai's framing on the Q1 earnings call. Remy will likely ship as L4 on the maturity curve (generative UI cards for flights, restaurants, calendar holds) with Article 50 disclosure baked in. Watch for: AG-UI compatibility (almost certain), MCP server adoption, and pricing -- Remy i",
+        "stats": []
+      },
+      "stats": [
+        {
+          "stat": "1.2M",
+          "label": "CopilotKit weekly downloads"
+        },
+        {
+          "stat": "$15",
+          "label": "Agent 365 standalone /user/mo"
+        }
+      ],
+      "sections": [
+        {
+          "title": "1. Why agent UX is the 2026 inflection layer",
+          "paragraphs": [
+            "For 18 months the bottleneck was the model -- could it reason, could it tool-call, could it stay coherent across 8+ steps. By May 2026 the frontier (Opus 4.7, GPT-5.5, Gemini 3.1 Pro, Mistral Medium 3.5, DeepSeek V4) all clear the 75% OSWorld-Verified bar. What separates a usable agent product from a vapourware demo is no longer the brain -- it is the UX. Specifically: how does the user see what the agent is about to do, intervene if it drifts, hand off cleanly, and trust the result. Three converging signals make this week the inflection point: (a) Microsoft Agent Framework went AG-UI-compatible Apr 30, instantly making the protocol the de-facto enterprise standard alongside MCP/A2A; (b) Cursor 3 launched an Agents Window as its primary surface, with parallel agent runs and trust toggles; (c) IBM Bob shipped with native generative UI inside watsonx Orchestrate. The pattern is the same across all three: STATE_SNAPSHOT events drive a live UI, 16 typed events stream incremental progress, and a"
+          ],
+          "table": {
+            "headers": [
+              "Lifecycle",
+              "Events",
+              "What the UI does"
+            ],
+            "rows": [
+              [
+                "Run lifecycle",
+                "RUN_STARTED, RUN_FINISHED, RUN_ERROR",
+                "Show spinner, completion, error state"
+              ],
+              [
+                "Step lifecycle",
+                "STEP_STARTED, STEP_FINISHED",
+                "Render the agent's current sub-step (e.g. 'Searching Drive')"
+              ],
+              [
+                "Text streaming",
+                "TEXT_MESSAGE_START, TEXT_MESSAGE_CHUNK, TEXT_MESSAGE_END",
+                "Token-by-token chat surface"
+              ],
+              [
+                "Tool calls",
+                "TOOL_CALL_START, TOOL_CALL_ARGS, TOOL_CALL_END",
+                "Show 'about to call X tool with these args' -- gate writes"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "2. AG-UI in 5 minutes -- the 16-event protocol",
+          "paragraphs": [
+            "AG-UI (Agent-User Interaction Protocol) is the open standard from CopilotKit that connects any agent backend to any frontend over Server-Sent Events (SSE). It sits in the same conceptual slot as MCP (agent « tools) and A2A (agent « agent) -- but for agent « human surface. The 16 event types fall into 5 lifecycle groups: Why STATE_SNAPSHOT is the breakthrough. Older chat UIs were limited to text chunks. STATE_SNAPSHOT lets the agent emit any JSON shape -- a kanban board, a flight booking card, a partially-filled form -- and the frontend renders it natively. STATE_DELTA then patches the same component in place. This is what 'generative UI' actually means in production: the agent owns the data, the UI is a deterministic projection, and intervention points (Approve / Edit / Cancel) are wired to TOOL_CALL_START gates. CopilotKit, AG2, Mastra, LangGraph, CrewAI, ADK, and now Microsoft Agent Framework all speak the"
+          ],
+          "table": {
+            "headers": [
+              "Lifecycle",
+              "Events",
+              "What the UI does"
+            ],
+            "rows": [
+              [
+                "Run lifecycle",
+                "RUN_STARTED, RUN_FINISHED, RUN_ERROR",
+                "Show spinner, completion, error state"
+              ],
+              [
+                "Step lifecycle",
+                "STEP_STARTED, STEP_FINISHED",
+                "Render the agent's current sub-step (e.g. 'Searching Drive')"
+              ],
+              [
+                "Text streaming",
+                "TEXT_MESSAGE_START, TEXT_MESSAGE_CHUNK, TEXT_MESSAGE_END",
+                "Token-by-token chat surface"
+              ],
+              [
+                "Tool calls",
+                "TOOL_CALL_START, TOOL_CALL_ARGS, TOOL_CALL_END",
+                "Show 'about to call X tool with these args' -- gate writes"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3. The Agent UX maturity curve -- 5 stages",
+          "paragraphs": [
+            "Where most enterprise agents are stuck: L2 -- tool transcript with no approval gates. That is the same level Perplexity Comet was at when it silently deleted Google Drive files in March (Day 31 governance case study). The fix is L3 -- wire TOOL_CALL_START to a UI gate before any write -- and it costs roughly one afternoon of CopilotKit + AG-UI integration. The leap from L3 to L4 is where product moats are built in 2026: generative UI lets a single agent surface dozens of domain-specific UI cards (flight, invoice, contract, Jira ticket) without shipping any new product surface. Microsoft Agent Framework + AG-UI is the first enterprise stack that ships L4"
+          ],
+          "table": {
+            "headers": [
+              "Lifecycle",
+              "Events",
+              "What the UI does"
+            ],
+            "rows": [
+              [
+                "State + custom",
+                "STATE_SNAPSHOT, STATE_DELTA, MESSAGES_SNAPSHOT, CUSTOM, RAW",
+                "Generative UI -- render any structured state as live components"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "5. Generative UI -- how STATE_SNAPSHOT actually works",
+          "paragraphs": [
+            "Generative UI is the most misunderstood term of 2026. It does not mean the LLM writes React code on the fly (that is unsafe and unstable). It means: the agent emits a typed JSON state, and a pre-built component library renders it. The state shape is the contract. Concrete pattern (CopilotKit + LangGraph): (a) define a Pydantic/Zod schema for the state -- e.g. FlightBooking with fields origin, destination, date, passengers, options[]; (b) the LangGraph agent maintains this state in its checkpoint; (c) on every node transition the agent emits STATE_SNAPSHOT or STATE_DELTA over AG-UI SSE; (d) the React frontend has a registered component <FlightCard /> bound to that schema; (e) the user can edit any field -- edits flow back as STATE_DELTA from frontend to agent (bi-directional). This is how IBM Bob's expense report card and Microsoft Agent Framework's Outlook draft preview work end-to-end."
+          ],
+          "table": {
+            "headers": [
+              "Element",
+              "What it does",
+              "AG-UI primitive"
+            ],
+            "rows": [
+              [
+                "3. Tool approval gate",
+                "Modal/inline card showing 'about to call X with args Y' -- Approve/Edit/Cancel",
+                "TOOL_CALL_START gate"
+              ],
+              [
+                "4. Generative UI canvas",
+                "Structured state rendered as native components (kanban, card, form)",
+                "STATE_SNAPSHOT + STATE_DELTA"
+              ],
+              [
+                "5. Kill switch + audit log",
+                "One-click stop, full trajectory replay (NIST CAISI Annex III)",
+                "RUN_ERROR + custom log channel"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "6. Trust UX -- making EU AI Act Article 50 visible",
+          "paragraphs": [
+            "EU AI Act Article 50 enforcement is T-83 days (Aug 2, 2026). It mandates that users must know they are interacting with an AI and that AI-generated content is watermarked + labelled. Most agent UIs today fail both tests silently. The 2026 trust UX checklist -- wired through AG-UI:"
+          ],
+          "table": {
+            "headers": [
+              "Element",
+              "What it does",
+              "AG-UI primitive"
+            ],
+            "rows": [
+              [
+                "3. Tool approval gate",
+                "Modal/inline card showing 'about to call X with args Y' -- Approve/Edit/Cancel",
+                "TOOL_CALL_START gate"
+              ],
+              [
+                "4. Generative UI canvas",
+                "Structured state rendered as native components (kanban, card, form)",
+                "STATE_SNAPSHOT + STATE_DELTA"
+              ],
+              [
+                "5. Kill switch + audit log",
+                "One-click stop, full trajectory replay (NIST CAISI Annex III)",
+                "RUN_ERROR + custom log channel"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "7. Breaking this week",
+          "paragraphs": [
+            "Google Remy revealed (May 8 CNBC): Google's agentic super-assistant, codename Remy, runs inside the Gemini app and connects Search, Gmail, Calendar, Drive into a single round-the-clock task agent. Direct response to OpenClaw's 3.2M-user viral run. Internal testing now, public preview Q3 2026. Meta Hatch (May 8 CNBC): Meta's competing personal agent, codename Hatch, has been training in simulated environments against DoorDash, Etsy, Reddit, and others. Internal testing by end of June. Meta + Google entering the agent layer simultaneously is the moment 'agentic wars' becomes a Big Tech roadmap, not a",
+            "Microsoft Agent Framework + AG-UI compatibility (Apr 30 fi GA this week): One-line wrapper exposes any Microsoft Agent Framework agent as AG-UI-compliant. CopilotKit, LangGraph, CrewAI, Mastra, ADK, and Microsoft Agent Framework now speak the same 16 events -- AG-UI is the de-facto standard. CopilotKit hits 1.2M weekly downloads -- fastest-growing open-source agent UI toolkit; its useCoAgent React hook is becoming the default for L4 generative UI surfaces (LangGraph + Microsoft Agent Framework + EU AI Act Article 50 enforcement T-83 days. First fines expected Q3 2026 on consumer AI products without disclosure + watermarking. Trust UX is now a compliance gate, not a polish item."
+          ],
+          "table": {
+            "headers": [
+              "Element",
+              "What it does",
+              "AG-UI primitive"
+            ],
+            "rows": [
+              [
+                "3. Tool approval gate",
+                "Modal/inline card showing 'about to call X with args Y' -- Approve/Edit/Cancel",
+                "TOOL_CALL_START gate"
+              ],
+              [
+                "4. Generative UI canvas",
+                "Structured state rendered as native components (kanban, card, form)",
+                "STATE_SNAPSHOT + STATE_DELTA"
+              ],
+              [
+                "5. Kill switch + audit log",
+                "One-click stop, full trajectory replay (NIST CAISI Annex III)",
+                "RUN_ERROR + custom log channel"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "Viral App of the Week: Google Remy",
+          "paragraphs": [
+            "Codename for Google's new agentic super-assistant (CNBC, May 8 2026). Runs natively inside the Gemini app, ties together Search + Gmail + Calendar + Drive + Maps into a single round-the-clock task agent. Internal testing now, public Q3. Direct response to the OpenClaw viral wave (3.2M users in weeks earlier this year). Significance: this is the moment Big Tech roadmaps openly pivot from search to action -- Sundar Pichai's framing on the Q1 earnings call. Remy will likely ship as L4 on the maturity curve (generative UI cards for flights, restaurants, calendar holds) with Article 50 disclosure baked in. Watch for: AG-UI compatibility (almost certain), MCP server adoption, and pricing -- Remy is expected to anchor a new Gemini Ultra subscription tier above the current $20/mo Gemini Advanced."
+          ],
+          "bullets": [
+            "Audit your agents against the L1-L5 maturity curve. Most production agents in 2026 are stuck at L2 (tool transcript). one-line approval modal moves you to L3 and closes the Comet-style",
+            "Adopt AG-UI now even if you don't need generative UI yet. AG-UI is the de-facto standard as of this week (Microsoft + LangGraph speak it). Stay protocol-compliant so you can swap front-ends later",
+            "Pick CopilotKit for the React surface unless you have a 1.2M weekly downloads, native LangGraph + Microsoft Agent Framework out of the box. useCoAgent is the closest thing to a React-Query",
+            "Make Article 50 trust UX a hard launch gate. T-83 days. Disclosure + watermarking + memory ID surfacing + difference between shipping in Q3 and a €35M / 7% GTR fine.",
+            "Domain-tune your tool approval defaults. Cursor 3 backlash is the lesson. Auto-approve writes inside finance, legal, healthcare, or HR is malpractice. Set defaults per Tomorrow: Day 49 -- Agent Reliability Engineering: SLOs, Error Daily AI Learning · Day 48 · May 10, 2026"
+          ]
+        }
+      ],
+      "practical_takeaway": [
+        {
+          "title": "Most production agents in 2026 are stuck at L2 (tool transcr",
+          "body": "Most production agents in 2026 are stuck at L2 (tool transcript). Wiring AG-UI TOOL_CALL_START gates to a one-line approval modal moves you to L3 and closes the Comet-style governance gap in an afternoon."
+        },
+        {
+          "title": "AG-UI is the de-facto standard as of this week (Microsoft + ",
+          "body": "AG-UI is the de-facto standard as of this week (Microsoft + LangGraph + CrewAI + Mastra + ADK + CopilotKit all speak it). Stay protocol-compliant so you can swap front-ends later without rewriting the agent."
+        },
+        {
+          "title": "1.2M weekly downloads, native LangGraph + Microsoft Agent Fr",
+          "body": "1.2M weekly downloads, native LangGraph + Microsoft Agent Framework integration, ships the L3 + L4 patterns out of the box. useCoAgent is the closest thing to a React-Query for agents."
+        },
+        {
+          "title": "T-83 days. Disclosure + watermarking + memory ID surfacing +",
+          "body": "T-83 days. Disclosure + watermarking + memory ID surfacing + kill switch are not nice-to-haves -- they are the difference between shipping in Q3 and a €35M / 7% GTR fine."
+        },
+        {
+          "title": "Cursor 3 backlash is the lesson. Auto-approve writes inside ",
+          "body": "Cursor 3 backlash is the lesson. Auto-approve writes inside a code worktree is fine. Auto-approve writes in finance, legal, healthcare, or HR is malpractice. Set defaults per agent role, not per framework. Tomorrow: Day 49 -- Agent Reliability Engineering: SLOs, Error Budgets & The Rise of the Agent SRE"
+        },
+        {
+          "title": "Audit your agents against the L1-L5 maturity curve. Most pro",
+          "body": "Audit your agents against the L1-L5 maturity curve. Most production agents in 2026 are stuck at L2 (tool transcript). one-line approval modal moves you to L3 and closes the Comet-style"
+        },
+        {
+          "title": "Adopt AG-UI now even if you don't need generative UI yet. AG",
+          "body": "Adopt AG-UI now even if you don't need generative UI yet. AG-UI is the de-facto standard as of this week (Microsoft + LangGraph speak it). Stay protocol-compliant so you can swap front-ends later"
+        },
+        {
+          "title": "Pick CopilotKit for the React surface unless you have a 1.2M",
+          "body": "Pick CopilotKit for the React surface unless you have a 1.2M weekly downloads, native LangGraph + Microsoft Agent Framework out of the box. useCoAgent is the closest thing to a React-Query"
+        },
+        {
+          "title": "Make Article 50 trust UX a hard launch gate. T-83 days. Disc",
+          "body": "Make Article 50 trust UX a hard launch gate. T-83 days. Disclosure + watermarking + memory ID surfacing + difference between shipping in Q3 and a €35M / 7% GTR fine."
+        },
+        {
+          "title": "Domain-tune your tool approval defaults. Cursor 3 backlash i",
+          "body": "Domain-tune your tool approval defaults. Cursor 3 backlash is the lesson. Auto-approve writes inside finance, legal, healthcare, or HR is malpractice. Set defaults per Tomorrow: Day 49 -- Agent Reliability Engineering: SLOs, Error Daily AI Learning · Day 48 · May 10, 2026"
+        }
+      ],
+      "tomorrow_preview": "Day 49 -- Agent Reliability Engineering: SLOs, Error Budgets & The Rise of the Agent SRE Daily AI Learning · Day 48 · May 10, 2026 Page 4"
+    },
+    {
       "date": "2026-05-09",
       "display_date": "MAY 9, 2026",
       "issue": 47,
