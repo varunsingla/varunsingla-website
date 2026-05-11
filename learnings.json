@@ -6,6 +6,242 @@
   },
   "learnings": [
     {
+      "date": "2026-05-11",
+      "display_date": "MAY 11, 2026",
+      "issue": 49,
+      "title": "Agent Reliability Engineering",
+      "focus_intro": "Frontier models all pass OSWorld-V-75% and SWE-Bench-87%. The bottleneck has moved. What",
+      "stats": [],
+      "sections": [
+        {
+          "title": "1. Why Agent Reliability Traditional SRE",
+          "paragraphs": [
+            "Traditional SRE was built for deterministic services: same request, same response, binary up/down. Agents broke that contract. Five reasons your APM stack is blind:",
+            "memory reads. Failure can hide in step 23."
+          ],
+          "bullets": [
+            "Non-determinism -- identical prompt + tools can return meaningless if the body is hallucinated.",
+            "Multi-hop execution -- a single user request spawns 5-50 memory reads. Failure can hide in step 23.",
+            "Temporal unboundedness -- agents can loop for minutes, cost budgets.",
+            "Cost as an SLO -- a stuck ReAct loop quietly burns $50/min alerts, not just error-rate alerts.",
+            "Quality drift -- model swap, MCP server update, or memory while uptime looks perfect."
+          ],
+          "table": {
+            "headers": [
+              "Concept",
+              "What It Is",
+              "Why It Matters"
+            ],
+            "rows": [
+              [
+                "Task Success SLO",
+                "% of agent runs that produce the user-intended outcome, scored by trajectory-aware judges (LangSmith / Galileo).",
+                "Replaces 'request success'. Target 92-98% depending on stakes. Budget burn pauses deploys."
+              ],
+              [
+                "Quality SLO",
+                "LLM-as-Judge or rubric score on sampled production traces. Calibrated against human labels weekly.",
+                "Catches silent regression after model swap or MCP server update. Drops >2% from baseline = page."
+              ],
+              [
+                "Cost-per-Task SLO",
+                "$ spent per successful task, tracked via OTEL gen_ai spans (tokens × price + tool fees).",
+                "Frontier model loops are the new memory leaks. SLO at p95 cost; auto-rollback if p95 cost > 2× baseline."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "2. The Four SLO Categories Every Agent Fleet Needs",
+          "table": {
+            "headers": [
+              "Concept",
+              "What It Is",
+              "Why It Matters"
+            ],
+            "rows": [
+              [
+                "Task Success SLO",
+                "% of agent runs that produce the user-intended outcome, scored by trajectory-aware judges (LangSmith / Galileo).",
+                "Replaces 'request success'. Target 92-98% depending on stakes. Budget burn pauses deploys."
+              ],
+              [
+                "Quality SLO",
+                "LLM-as-Judge or rubric score on sampled production traces. Calibrated against human labels weekly.",
+                "Catches silent regression after model swap or MCP server update. Drops >2% from baseline = page."
+              ],
+              [
+                "Cost-per-Task SLO",
+                "$ spent per successful task, tracked via OTEL gen_ai spans (tokens × price + tool fees).",
+                "Frontier model loops are the new memory leaks. SLO at p95 cost; auto-rollback if p95 cost > 2× baseline."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3. Error Budgets, Reframed for Agents",
+          "paragraphs": [
+            "The Google formula still holds: Burn-rate policy (Salesforce, Datadog reference): error_budget = (1 - SLO_target) × time Fast burn -- 2% budget in 1hr page on-call,",
+            "What changes is what consumes the budget. For Slow burn -- 10% in 24h ticket + auto-rollback an agent fleet, every event below is a withdrawal:",
+            "Catastrophic -- 30% in 6h kill switch tier T1/T2",
+            "invoked, agent restricted to read-only until SRE",
+            "The killer feature is self-regulation: when an agent's safety SLI drops below 99%, Microsoft Agent 365 (GA May 1) and Salesforce Agentforce 3.0 Self-Healing automatically scope down its capabilities -- fewer tools, read-only mode, mandatory HITL -- until the budget recovers. Error budgets become live policy, not"
+          ],
+          "bullets": [
+            "failed task (success SLO)",
+            "quality drop >2% on golden set (quality SLO) invoked,",
+            "cost spike >2× baseline (cost SLO) clears.",
+            "policy violation, exfil attempt, kill-switch latency miss (safety SLO) The killer feature is self-regulation: when an agent's safety (GA May 1) and Salesforce Agentforce 3.0 Self-Healing automatically tools, read-only mode, mandatory HITL -- until the budget recovers. quarterly reports.",
+            "Owns SLOs on task success + quality + cost + safety per",
+            "On-call for context drift, runaway loops, poisoned episodic regression -- not CPU spikes.",
+            "Tooling: OTEL gen_ai spans, LangSmith threads, Galileo Cursor.",
+            "Runbooks: rotate model, restore checkpoint, evict L1/L2 SVID.",
+            "Chaos drills: inject prompt-injection payloads, simulate Game Days for agents."
+          ],
+          "table": {
+            "headers": [
+              "Concept",
+              "What It Is",
+              "Why It Matters"
+            ],
+            "rows": [
+              [
+                "Safety / Compliance SLO",
+                "% runs without policy violation: prompt-injection caught, PII redacted, kill-switch responsive in <1s.",
+                "EU AI Act Annex III evidence. Galileo / Snyk Evo / Microsoft Agent 365 emit signals; budget burn restricts agent capabilities."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "4. The Agent SRE -- A New On-Call Discipline",
+          "paragraphs": [
+            "Gartner now lists Agent SRE as the fastest-growing platform engineering role. Salary band $150K-$220K (US). Day-to-day looks nothing like 2015 SRE:"
+          ],
+          "bullets": [
+            "Owns SLOs on task success + quality + cost + safety per",
+            "On-call for context drift, runaway loops, poisoned episodic regression -- not CPU spikes.",
+            "Tooling: OTEL gen_ai spans, LangSmith threads, Galileo Cursor.",
+            "Runbooks: rotate model, restore checkpoint, evict L1/L2 SVID.",
+            "Chaos drills: inject prompt-injection payloads, simulate Game Days for agents."
+          ],
+          "table": {
+            "headers": [
+              "Concept",
+              "What It Is",
+              "Why It Matters"
+            ],
+            "rows": [
+              [
+                "Safety / Compliance SLO",
+                "% runs without policy violation: prompt-injection caught, PII redacted, kill-switch responsive in <1s.",
+                "EU AI Act Annex III evidence. Galileo / Snyk Evo / Microsoft Agent 365 emit signals; budget burn restricts agent capabilities."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "5. Reference Playbook -- Stand Up Agent SRE in 30 Days",
+          "table": {
+            "headers": [
+              "Concept",
+              "What It Is",
+              "Why It Matters"
+            ],
+            "rows": [
+              [
+                "Safety / Compliance SLO",
+                "% runs without policy violation: prompt-injection caught, PII redacted, kill-switch responsive in <1s.",
+                "EU AI Act Annex III evidence. Galileo / Snyk Evo / Microsoft Agent 365 emit signals; budget burn restricts agent capabilities."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "Market Signal",
+          "bullets": [
+            "Anthropic ARR hits $44B -- 80× Q1 growth, $200B Google compute deal, Claude Code Auto Mode shipped, Jamie Dimon",
+            "OpenAI GPT-Realtime-2 / Translate / Whisper -- three conversational agents, 70+ languages translation.",
+            "US CAISI signs pre-deployment eval agreements with Google existing OpenAI / Anthropic agreements.",
+            "Apple Intelligence platform shift -- iOS/iPadOS/macOS OpenAI as the model provider. Multi-agent UX going mainstream.",
+            "claude-context MCP server trending -- semantic codebase context (extends Day 39 Context Engineering)."
+          ],
+          "table": {
+            "headers": [
+              "Concept",
+              "What It Is",
+              "Why It Matters"
+            ],
+            "rows": [
+              [
+                "Days 15-21 · Burn-rate alerts",
+                "Fast / slow / catastrophic policies with Argo Rollouts auto-rollback hooks. Wire to PagerDuty + Slack.",
+                "Add kill-switch T1-T4 hooks: app freeze → egress block → infra revoke → memory snapshot."
+              ],
+              [
+                "Days 22-30 · Drills + governance",
+                "Run 2 chaos drills (prompt injection + MCP outage). Generate first EU AI Act Annex III audit pack from OTEL traces.",
+                "Promote findings into golden dataset (Day 45 pattern). Self-healing data loop established."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "Market signal: Microsoft Agent 365 (GA May 1) bundles agent SLOs, burn-rate alerts and kill-switches",
+          "paragraphs": [
+            "into M365 E7 -- the first new enterprise licence tier since E5 (2015). Salesforce Agentforce 3.0 ships Self-Healing Workflows. Galileo, Braintrust ($80M raise) and Arize Phoenix all shipped Agent SLO dashboards in the last 60 days. The AI governance market crossed $1B (Gartner). Reliability is officially",
+            "OpenClaw crosses 300K GitHub stars -- fastest-growing OSS project ever Peter Steinberger's OpenClaw -- the local-first personal AI assistant that runs entirely on your own devices and connects 50+ integrations (WhatsApp, Telegram, Slack, Discord, Signal, iMessage, Notion, Linear) -- blew past 302K GitHub stars in early May 2026, making it the fastest-growing open-source project in GitHub history. From 9K stars to 60K in four days in late January, then 210K by April, now 302K. Reliability lesson: at this growth rate, OpenClaw is a Day-49 case study in agent SRE for consumer-scale OSS. Forks routinely ship with no kill switch, no audit trail, no scoped SPIFFE-style identity. That is the production reliability crisis Microsoft Agent 365 + apm.yml + per-agent SLOs were designed to solve. If you fork it, ship it with the 4 SLO categories",
+            "GitHub stars (fastest-ever integrations (WhatsApp, local-first (your data never default kill switch (reliability growth) Slack, Notion, ...) leaves device) gap)",
+            "compute deal, Claude Code Auto Mode shipped, Jamie Dimon endorses 10 finance agents.",
+            "conversational agents, 70+ languages translation.",
+            "OpenAI as the model provider. Multi-agent UX going mainstream.",
+            "context (extends Day 39 Context Engineering)."
+          ],
+          "bullets": [
+            "Anthropic ARR hits $44B -- 80× Q1 growth, $200B Google compute deal, Claude Code Auto Mode shipped, Jamie Dimon",
+            "OpenAI GPT-Realtime-2 / Translate / Whisper -- three conversational agents, 70+ languages translation.",
+            "US CAISI signs pre-deployment eval agreements with Google existing OpenAI / Anthropic agreements.",
+            "Apple Intelligence platform shift -- iOS/iPadOS/macOS OpenAI as the model provider. Multi-agent UX going mainstream.",
+            "claude-context MCP server trending -- semantic codebase context (extends Day 39 Context Engineering)."
+          ],
+          "table": {
+            "headers": [
+              "Concept",
+              "What It Is",
+              "Why It Matters"
+            ],
+            "rows": [
+              [
+                "Days 15-21 · Burn-rate alerts",
+                "Fast / slow / catastrophic policies with Argo Rollouts auto-rollback hooks. Wire to PagerDuty + Slack.",
+                "Add kill-switch T1-T4 hooks: app freeze → egress block → infra revoke → memory snapshot."
+              ],
+              [
+                "Days 22-30 · Drills + governance",
+                "Run 2 chaos drills (prompt injection + MCP outage). Generate first EU AI Act Annex III audit pack from OTEL traces.",
+                "Promote findings into golden dataset (Day 45 pattern). Self-healing data loop established."
+              ]
+            ]
+          }
+        }
+      ],
+      "market_signal": "Market signal: Microsoft Agent 365 (GA May 1) bundles agent SLOs, burn-rate alerts and kill-switches into M365 E7 -- the first new enterprise licence tier since E5 (2015). Salesforce Agentforce 3.0 ships Self-Healing Workflows. Galileo, Braintrust ($80M raise) and Arize Phoenix all shipped Agent SLO dashboards in the last 60 days.",
+      "practical_takeaway": [
+        {
+          "title": "Don't boil the ocean. Start with Cost-per-Task SLO for your ",
+          "body": "Don't boil the ocean. Start with Cost-per-Task SLO for your highest-traffic agent -- easiest to measure, fastest payback. Wire OTEL gen_ai spans, set p95 baseline, fire an alert at 2× baseline. Add burn-rate alerts before adding capabilities Every new tool you give an agent is a new way the budget can burn. Ship the alert with the tool -- pre-commit hook in CI checks every PR touching the MCP allowlist also updates the SLO config. Treat error budgets as live policy, not quarterly review Microsoft Agent 365 and Salesforce Agentforce 3.0 auto-restrict capability when safety SLI drops. Implement the same pattern in-house with LangGraph circuit breakers + budget-burn hooks → read-only fallback mode."
+        },
+        {
+          "title": "Game Day for agents = inject a known prompt-injection payloa",
+          "body": "Game Day for agents = inject a known prompt-injection payload, kill an MCP server mid-trajectory, fuzz a delegation chain. Measure detect-to-contain time. First drill always exposes the biggest gap (usually the kill Hire (or grow) one Agent SRE -- even part-time Fastest-growing platform role for a reason. If you can't hire, grow one from your strongest backend engineer + give them Phoenix Agent Evals MCP, LangSmith and Galileo Signals. EU AI Act T-83 days makes this a"
+        },
+        {
+          "title": "Day 50 preview: The Agentic Eval Stack 3.0 -- how Phoenix Ag",
+          "body": "Day 50 preview: The Agentic Eval Stack 3.0 -- how Phoenix Agent Evals MCP, Braintrust eval-as-code and LangSmith threads compose into the first truly closed self-healing dataset loop. Eval-driven development for non-deterministic systems hits maturity."
+        }
+      ]
+    },
+    {
       "date": "2026-05-10",
       "display_date": "MAY 10, 2026",
       "issue": 48,
@@ -6839,6 +7075,6 @@
       ]
     }
   ],
-  "last_updated": "2026-05-09 01:15:08 UTC",
-  "total_days": 50
+  "last_updated": "2026-05-11 01:15:19 UTC",
+  "total_days": 51
 }
