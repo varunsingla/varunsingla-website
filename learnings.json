@@ -6,6 +6,414 @@
   },
   "learnings": [
     {
+      "date": "2026-05-12",
+      "display_date": "MAY 12, 2026",
+      "issue": 50,
+      "title": "The Agentic Eval Stack 3.0",
+      "focus_intro": "Closed self-healing dataset loops · Phoenix Agent Evals MCP · Braintrust eval-as-code ·",
+      "viral_app": {
+        "name": "By the Milvus team. Drops into any MCP-compatible coding agent (Claude Code, Cursor, Windsurf, VS Code,",
+        "description": "Codex CLI, Gemini CLI, Qwen Code). AST-based parsing + BM25 hybrid retrieval = 40% fewer tokens at the same quality. Why it matters for Day 50: cleanest example of eval-as-IDE-action -- the same MCP that gives the agent context can also expose Phoenix Agent Evals as a tool. Repo: github.com/zilliztech/claude-context. By June 2026 the competitive frontier in production agents is the speed of the feedback loop between prod failure and golden-set test. Three actions this week: Ship one OTEL gen_ai span from your highest-traffic agent endpoint to Phoenix or Braintrust. Free Pull 50 real failed traces from the last week and label expected trajectory by hand. That is your Wire Braintrust or prompt",
+        "stats": []
+      },
+      "stats": [
+        {
+          "stat": "60-80%",
+          "label": "agent failures hide in trajectory, not output"
+        },
+        {
+          "stat": "$1B+",
+          "label": "AI governance market (Gartner Apr '26)"
+        },
+        {
+          "stat": "57%",
+          "label": "orgs running agents in prod (only 14% prod-ready)"
+        }
+      ],
+      "sections": [
+        {
+          "title": "1. The closed self-healing dataset loop",
+          "paragraphs": [
+            "Until April 2026, golden datasets were curated by humans every few weeks. That cadence was the bottleneck -- production was discovering new failure modes faster than QA could codify them. The 2026",
+            "The dataset is no longer a static asset that ages -- it is a living artefact that grows from the same telemetry your SRE uses for SLO burn-rate alerts. The same span that pages you at 02:00 becomes tomorrow's regression test. Eval debt stops accumulating."
+          ],
+          "table": {
+            "headers": [
+              "Step",
+              "What happens"
+            ],
+            "rows": [
+              [
+                "1. Trace",
+                "OTEL gen_ai spans capture every LLM/MCP/memory call (Day 22)."
+              ],
+              [
+                "2. Score",
+                "Online evals on sampled prod traffic -- Braintrust same metric, Phoenix LLM-as-Judge, Galileo Signals."
+              ],
+              [
+                "3. Cluster",
+                "LangSmith Insights Agent / Galileo Signals auto-cluster failing traces and name the failure mode."
+              ],
+              [
+                "4. Promote",
+                "Cluster centroid auto-drafted as new golden-set entry; PR opened against eval repo."
+              ],
+              [
+                "5. Gate",
+                "CI re-runs golden set on every PR (Braintrust eval-as-code); >2% regression blocks merge."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "2. The 2026 platform map (pick one per role)",
+          "table": {
+            "headers": [
+              "Step",
+              "What happens"
+            ],
+            "rows": [
+              [
+                "1. Trace",
+                "OTEL gen_ai spans capture every LLM/MCP/memory call (Day 22)."
+              ],
+              [
+                "2. Score",
+                "Online evals on sampled prod traffic -- Braintrust same metric, Phoenix LLM-as-Judge, Galileo Signals."
+              ],
+              [
+                "3. Cluster",
+                "LangSmith Insights Agent / Galileo Signals auto-cluster failing traces and name the failure mode."
+              ],
+              [
+                "4. Promote",
+                "Cluster centroid auto-drafted as new golden-set entry; PR opened against eval repo."
+              ],
+              [
+                "5. Gate",
+                "CI re-runs golden set on every PR (Braintrust eval-as-code); >2% regression blocks merge."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3. Eval-as-IDE-action: Phoenix Agent Evals MCP",
+          "paragraphs": [
+            "Most eval friction was the context switch -- you saw a bug in the IDE, opened the eval dashboard, copied trace IDs, ran a script, waited, then came back. Phoenix Agent Evals MCP collapses that to one tool call. Inside Cursor or Claude Code, the agent itself can:",
+            "The developer never leaves the editor. The same MCP server that Day 22 used for tool calls is now the substrate for evaluation. Every coding agent -- Claude Code, Cursor, Windsurf, Cline, VS Code, Codex CLI, Gemini CLI, Qwen Code -- gets a uniform eval interface for free."
+          ],
+          "bullets": [
+            "Pull a failing trajectory from production by trace ID.",
+            "Re-run the golden set against the candidate prompt change",
+            "Score a single span with an LLM-as-Judge using your project's",
+            "Promote a fixed trajectory back into the golden set as a new"
+          ],
+          "table": {
+            "headers": [
+              "Tool",
+              "Best for",
+              "2026 differentiator"
+            ],
+            "rows": [
+              [
+                "Phoenix (Arize, OSS)",
+                "OTEL-native, self-hostable, MIT.",
+                "Agent Evals MCP -- invoke evals as tools inside Cursor/Claude Code. CLI fetches traces+datasets+experiments."
+              ],
+              [
+                "Braintrust",
+                "eval-as-code; same metric in CI and prod.",
+                "Best when evals must gate CI/CD. AI-automated prompt optimisation. $80M raise, full lifecycle."
+              ],
+              [
+                "LangSmith",
+                "LangGraph-native; threads first-class.",
+                "Insights Agent auto-clusters prod traces, names failure modes, drafts golden-set entries."
+              ],
+              [
+                "Galileo",
+                "Lightweight LLM-as-Judge on live traffic.",
+                "Galileo Signals = failure-mode discovery at scale; strongest when prod traffic exists but failure taxonomy doesn't."
+              ],
+              [
+                "W&B; Weave",
+                "Deep MCP auto-logging across frameworks.",
+                "Best when MCP is the orchestration substrate (Claude Code, Cursor, Codex)."
+              ],
+              [
+                "Vertex AI Agent Eval",
+                "Trajectory_exact_match / precision / recall as 1st-class metrics.",
+                "Default if you live in Google Cloud + Gemini stack."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "4. Eval-as-code: define once, run everywhere",
+          "paragraphs": [
+            "Braintrust's wedge in 2026 is that the same Python/TypeScript metric definition runs in three places",
+            "The architectural payoff: there is no longer a 'CI dataset' vs an 'observability metric' -- they are the same artefact. Argo Rollouts / Flagger consume the online eval score as the canary signal. Auto-rollback on a 2% online quality drop is the same trigger as a CI block."
+          ],
+          "table": {
+            "headers": [
+              "Tool",
+              "Best for",
+              "2026 differentiator"
+            ],
+            "rows": [
+              [
+                "Phoenix (Arize, OSS)",
+                "OTEL-native, self-hostable, MIT.",
+                "Agent Evals MCP -- invoke evals as tools inside Cursor/Claude Code. CLI fetches traces+datasets+experiments."
+              ],
+              [
+                "Braintrust",
+                "eval-as-code; same metric in CI and prod.",
+                "Best when evals must gate CI/CD. AI-automated prompt optimisation. $80M raise, full lifecycle."
+              ],
+              [
+                "LangSmith",
+                "LangGraph-native; threads first-class.",
+                "Insights Agent auto-clusters prod traces, names failure modes, drafts golden-set entries."
+              ],
+              [
+                "Galileo",
+                "Lightweight LLM-as-Judge on live traffic.",
+                "Galileo Signals = failure-mode discovery at scale; strongest when prod traffic exists but failure taxonomy doesn't."
+              ],
+              [
+                "W&B; Weave",
+                "Deep MCP auto-logging across frameworks.",
+                "Best when MCP is the orchestration substrate (Claude Code, Cursor, Codex)."
+              ],
+              [
+                "Vertex AI Agent Eval",
+                "Trajectory_exact_match / precision / recall as 1st-class metrics.",
+                "Default if you live in Google Cloud + Gemini stack."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "5. Insights Agent: failure-mode discovery on autopilot",
+          "paragraphs": [
+            "LangSmith made threads a first-class concept this year -- a thread is the full multi-turn conversation, not a single span. Insights Agent runs over threads continuously and produces three outputs you used to write",
+            "Galileo Signals does the same with a slightly different bias -- it leans on prescriptive remediation (\"swap to GPT-5.5 nano on this intent class for 38% cost cut, no quality loss\"). For a team that has prod traffic but doesn't know what's breaking, this is the fastest path from chaos to a defensible eval taxonomy."
+          ],
+          "bullets": [
+            "Failure clusters: \"23% of failed runs share the pattern 'tool",
+            "Usage clusters: \"61% of users invoke calendar+email together;",
+            "Drafted golden-set entries: each cluster centroid becomes trajectory annotated. Galileo Signals does the same with a slightly different bias -- GPT-5.5 nano on this intent class for 38% cost cut, no quality doesn't know what's breaking, this is the fastest path from chaos",
+            "Output-only evals. The agent produced the right summary burned $40 in frontier tokens. Score the trajectory, not the",
+            "Synthetic golden sets. They miss the long-tail real users even if labelled by hand for the first 50.",
+            "Judge model = generator model. Self-grading is biased. generates, GPT-5.5 judges) and calibrate against humans",
+            "No online eval budget. Sample 1-5% of prod traffic to a The cost is rounding error vs the failures it catches.",
+            "Insights Agent without a promotion path. Auto-clustering merges the drafted golden-set PR. Schedule a 30-min weekly"
+          ],
+          "table": {
+            "headers": [
+              "Phase",
+              "What to ship"
+            ],
+            "rows": [
+              [
+                "Days 1-7",
+                "Instrument OTEL gen_ai spans on 100% shadow + 10% prod. Pick one platform: Phoenix (OSS), Braintrust (CI gate), or LangSmith (LangGraph)."
+              ],
+              [
+                "Days 8-14",
+                "Build initial golden set -- 200-500 input/expected-trajectory pairs from real production failures, not synthetic. Score trajectory AND output."
+              ],
+              [
+                "Days 15-21",
+                "Wire CI gate (>2% regression blocks PR). Add online evals on sampled prod (cheap judge model, async). Auto-rollback hook into Argo Rollouts."
+              ],
+              [
+                "Days 22-30",
+                "Turn on Insights Agent / Galileo Signals. Promote the first auto-clustered failure mode into the golden set. Generate first EU AI Act Annex III audit pack from OTEL trace + eval scores."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "6. 30-day playbook: stand up the closed loop",
+          "bullets": [
+            "Output-only evals. The agent produced the right summary burned $40 in frontier tokens. Score the trajectory, not the",
+            "Synthetic golden sets. They miss the long-tail real users even if labelled by hand for the first 50.",
+            "Judge model = generator model. Self-grading is biased. generates, GPT-5.5 judges) and calibrate against humans",
+            "No online eval budget. Sample 1-5% of prod traffic to a The cost is rounding error vs the failures it catches.",
+            "Insights Agent without a promotion path. Auto-clustering merges the drafted golden-set PR. Schedule a 30-min weekly"
+          ],
+          "table": {
+            "headers": [
+              "Phase",
+              "What to ship"
+            ],
+            "rows": [
+              [
+                "Days 1-7",
+                "Instrument OTEL gen_ai spans on 100% shadow + 10% prod. Pick one platform: Phoenix (OSS), Braintrust (CI gate), or LangSmith (LangGraph)."
+              ],
+              [
+                "Days 8-14",
+                "Build initial golden set -- 200-500 input/expected-trajectory pairs from real production failures, not synthetic. Score trajectory AND output."
+              ],
+              [
+                "Days 15-21",
+                "Wire CI gate (>2% regression blocks PR). Add online evals on sampled prod (cheap judge model, async). Auto-rollback hook into Argo Rollouts."
+              ],
+              [
+                "Days 22-30",
+                "Turn on Insights Agent / Galileo Signals. Promote the first auto-clustered failure mode into the golden set. Generate first EU AI Act Annex III audit pack from OTEL trace + eval scores."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "7. Five pitfalls killing eval programmes in 2026",
+          "paragraphs": [
+            "burned $40 in frontier tokens. Score the trajectory, not the answer.",
+            "even if labelled by hand for the first 50.",
+            "generates, GPT-5.5 judges) and calibrate against humans weekly.",
+            "The cost is rounding error vs the failures it catches.",
+            "merges the drafted golden-set PR. Schedule a 30-min weekly triage."
+          ],
+          "bullets": [
+            "Output-only evals. The agent produced the right summary burned $40 in frontier tokens. Score the trajectory, not the",
+            "Synthetic golden sets. They miss the long-tail real users even if labelled by hand for the first 50.",
+            "Judge model = generator model. Self-grading is biased. generates, GPT-5.5 judges) and calibrate against humans",
+            "No online eval budget. Sample 1-5% of prod traffic to a The cost is rounding error vs the failures it catches.",
+            "Insights Agent without a promotion path. Auto-clustering merges the drafted golden-set PR. Schedule a 30-min weekly"
+          ],
+          "table": {
+            "headers": [
+              "Phase",
+              "What to ship"
+            ],
+            "rows": [
+              [
+                "Days 1-7",
+                "Instrument OTEL gen_ai spans on 100% shadow + 10% prod. Pick one platform: Phoenix (OSS), Braintrust (CI gate), or LangSmith (LangGraph)."
+              ],
+              [
+                "Days 8-14",
+                "Build initial golden set -- 200-500 input/expected-trajectory pairs from real production failures, not synthetic. Score trajectory AND output."
+              ],
+              [
+                "Days 15-21",
+                "Wire CI gate (>2% regression blocks PR). Add online evals on sampled prod (cheap judge model, async). Auto-rollback hook into Argo Rollouts."
+              ],
+              [
+                "Days 22-30",
+                "Turn on Insights Agent / Galileo Signals. Promote the first auto-clustered failure mode into the golden set. Generate first EU AI Act Annex III audit pack from OTEL trace + eval scores."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "8. Breaking this week",
+          "table": {
+            "headers": [
+              "Phase",
+              "What to ship"
+            ],
+            "rows": [
+              [
+                "Days 1-7",
+                "Instrument OTEL gen_ai spans on 100% shadow + 10% prod. Pick one platform: Phoenix (OSS), Braintrust (CI gate), or LangSmith (LangGraph)."
+              ],
+              [
+                "Days 8-14",
+                "Build initial golden set -- 200-500 input/expected-trajectory pairs from real production failures, not synthetic. Score trajectory AND output."
+              ],
+              [
+                "Days 15-21",
+                "Wire CI gate (>2% regression blocks PR). Add online evals on sampled prod (cheap judge model, async). Auto-rollback hook into Argo Rollouts."
+              ],
+              [
+                "Days 22-30",
+                "Turn on Insights Agent / Galileo Signals. Promote the first auto-clustered failure mode into the golden set. Generate first EU AI Act Annex III audit pack from OTEL trace + eval scores."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "Viral app of the week",
+          "paragraphs": [
+            "claude-context (Zilliz) -- semantic codebase search MCP, #1 GitHub Trending By the Milvus team. Drops into any MCP-compatible coding agent (Claude Code, Cursor, Windsurf, VS Code, Codex CLI, Gemini CLI, Qwen Code). AST-based parsing + BM25 hybrid retrieval = 40% fewer tokens at the same quality. Why it matters for Day 50: cleanest example of eval-as-IDE-action -- the same MCP that gives the agent context can also expose Phoenix Agent Evals as a tool. Repo: github.com/zilliztech/claude-context."
+          ],
+          "bullets": [
+            "Ship one OTEL gen_ai span from your highest-traffic agent tier is enough.",
+            "Pull 50 real failed traces from the last week and label expected golden-set v0.",
+            "Wire Braintrust or promptfoo into CI with a 2% regression eval programme has paid for itself. Tomorrow (Day 51): The Agentic Browser Wars 2.0 -- Comet, Google generative-UI browser substrate."
+          ],
+          "table": {
+            "headers": [
+              "Headline",
+              "What it means for your stack"
+            ],
+            "rows": [
+              [
+                "Anthropic ARR $44B",
+                "80× Q1 growth. $200B Google Cloud compute deal + SpaceX compute. Claude Code Auto Mode shipped. Jamie Dimon publicly endorses 10 finance agent templates (Day 46) on JPM workflows."
+              ],
+              [
+                "AWS Bedrock AgentCore Payments",
+                "Built with Coinbase + Stripe. x402 protocol on Base, USDC settlement ~200ms, <cent/transaction. Per-session spend caps; user must pre-authorise wallet. Day 28 stack now hyperscaler-blessed."
+              ],
+              [
+                "OpenAI realtime trio",
+                "GPT-Realtime-2 + GPT-Translate + new Whisper. 70+ languages. Voice agent stack (Day 41) gets a frontier-tier upstream."
+              ],
+              [
+                "US CAISI eval agreements",
+                "Signed with Google DeepMind, Microsoft, xAI -- joining OpenAI + Anthropic. Pre-deployment government eval is now table stakes for frontier labs."
+              ],
+              [
+                "Apple Intelligence platform shift",
+                "iOS/iPadOS/macOS 27 will let users pick Anthropic / Google / OpenAI as the model provider for system intents. Multi-provider agent UX going mainstream."
+              ],
+              [
+                "claude-context MCP trending",
+                "Zilliz semantic codebase search MCP -- 40% token reduction via AST chunking + BM25 hybrid retrieval. Hit #1 GitHub Trending. Extends Day 39 Context Engineering."
+              ],
+              [
+                "EU AI Act T-82 days",
+                "Aug 2 enforcement of Annex III. ~50% enterprises still not on track. Online eval logs + trajectory audit trail = mandatory evidence for high-risk agents."
+              ]
+            ]
+          }
+        }
+      ],
+      "practical_takeaway": [
+        {
+          "title": "By June 2026 the competitive frontier in production agents i",
+          "body": "By June 2026 the competitive frontier in production agents is the speed of the feedback loop between prod failure and golden-set test. Three actions this week:"
+        },
+        {
+          "title": "Tomorrow (Day 51): The Agentic Browser Wars 2.0 -- Comet, Go",
+          "body": "Tomorrow (Day 51): The Agentic Browser Wars 2.0 -- Comet, Google Remy, Meta Hatch, OpenAI Operator-2 and the new"
+        },
+        {
+          "title": "Arize Phoenix docs & Agent Evals MCP (arize.com) · Braintrus",
+          "body": "Arize Phoenix docs & Agent Evals MCP (arize.com) · Braintrust eval-as-code & tracing 2026 (braintrust.dev) · LangSmith Insights Agent + threads (smith.langchain.com) · Anthropic -- Demystifying evals (anthropic.com/engineering) · Anthropic -- Finance Agents May 5 2026 (anthropic.com/news/finance-agents) · AWS Bedrock AgentCore Payments + Coinbase & Stripe (aws.amazon.com) · Coinbase AgentCore Payments x402 (coinbase.com/blog) · Zilliz claude-context MCP (github.com/zilliztech/claude-context) · CNBC -- Meta & Google agentic wars (May 8 2026) · Galileo Signals failure-mode discovery (galileo.ai) · Gartner -- AI governance market $1B+ (Apr 2026)."
+        },
+        {
+          "title": "Ship one OTEL gen_ai span from your highest-traffic agent ti",
+          "body": "Ship one OTEL gen_ai span from your highest-traffic agent tier is enough."
+        },
+        {
+          "title": "Pull 50 real failed traces from the last week and label expe",
+          "body": "Pull 50 real failed traces from the last week and label expected golden-set v0."
+        },
+        {
+          "title": "Wire Braintrust or promptfoo into CI with a 2% regression ev",
+          "body": "Wire Braintrust or promptfoo into CI with a 2% regression eval programme has paid for itself. Tomorrow (Day 51): The Agentic Browser Wars 2.0 -- Comet, Google generative-UI browser substrate."
+        }
+      ]
+    },
+    {
       "date": "2026-05-11",
       "display_date": "MAY 11, 2026",
       "issue": 49,
