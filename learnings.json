@@ -6,6 +6,107 @@
   },
   "learnings": [
     {
+      "date": "2026-05-13",
+      "display_date": "MAY 13, 2026",
+      "issue": 51,
+      "title": "The Agentic Browser Wars 2.0",
+      "focus_intro": "Comet vs Atlas vs Remy vs Hatch · three GenUI standards (AG-UI, A2UI, MCP Apps) · prompts-become-shells security disclosures · the browser is the new OS for AI.",
+      "stats": [
+        {
+          "stat": "4",
+          "label": "agentic browsers shipping at consumer scale"
+        },
+        {
+          "stat": "32%",
+          "label": "rise in malicious detections Nov 25 - Feb 26"
+        },
+        {
+          "stat": "3",
+          "label": "rival GenUI specs (AG-UI / A2UI / MCP Apps)"
+        },
+        {
+          "stat": "75+",
+          "label": "official Claude MCP App connectors"
+        }
+      ],
+      "viral_app": {
+        "name": "Chrome DevTools MCP",
+        "description": "Released this week on GitHub + NPM. Gives any MCP-compatible coding agent (Claude Code, Cursor, Codex CLI, Gemini CLI) direct access to Chrome's DevTools - DOM inspection, network requests, console messages, performance traces, JS execution in page context. Combined with claude-context (Day 50's viral app), an agent now has both semantic codebase search AND live runtime introspection. Most significant developer release of the week - turns 'view source' into 'agent-debuggable surface' for every web property.",
+        "stats": [
+          {
+            "stat": "MCP",
+            "label": "native browser tooling for coding agents"
+          },
+          {
+            "stat": "Chrome",
+            "label": "official Google DevTools project"
+          }
+        ]
+      },
+      "sections": [
+        {
+          "title": "1. Why the browser is the new agent battleground",
+          "paragraphs": [
+            "In a four-month window, four credible contenders crossed product-market fit: OpenAI Atlas (Oct 2025), Perplexity Comet (iOS rollout Mar 2026, free since April - #3 US App Store within 48h of free iOS launch, 430K+ downloads week 1), Google's leaked Remy (CNBC May 8, expected to debut at Google I/O later this month), and Meta's Hatch (internal testing by end of June, embedded in Facebook/Instagram/WhatsApp/Threads).",
+            "The wedge is the same in all four: intercept the human at the surface where they already start every task, then drive action across the tabs they have open, the apps connected to their identity, and the payments rails wired to their card. Whoever wins this layer owns the OS for AI agents.",
+            "Cursor + Claude Code already account for 95.6% of all developer AI agent traffic (Mintlify, Mar 26). Comet + Atlas + Remy + Hatch are the consumer-side version of that same lock-in race."
+          ]
+        },
+        {
+          "title": "2. Three GenUI standards, one canvas war",
+          "paragraphs": [
+            "Day 48's AG-UI maturity curve (L1 chat-only to L5 multi-agent UX) is being forced to L4 (generative UI) as the default - and three rival specs are now competing for the canvas. AG-UI (CopilotKit + LangGraph; 16 SSE events; cross-framework portability) just raised CopilotKit's $27M Series A.",
+            "A2UI v0.9 (Google open project) is declarative JSON only - the client maintains a trusted catalog of components and the agent can only request renders from it, so there is no executable code in the agent payload. Best for native cross-platform without JS execution risk.",
+            "MCP Apps (Anthropic + OpenAI spec layer) lets an MCP tool return inline HTML/iframe/widget. Supported by ChatGPT, Claude, Goose and VS Code; 75+ official Claude connectors already live. Default for new builds: AG-UI as the event substrate, A2UI for the component catalog, MCP Apps when embedding a partner web property inline."
+          ]
+        },
+        {
+          "title": "3. Anatomy of an agentic browser",
+          "paragraphs": [
+            "Strip back the marketing and every agentic browser is the same 6-layer stack: LLM Brain (Claude Opus 4.7 for Comet, GPT-5.5 for Atlas, Gemini 3.1 Pro for Remy; routed 70/25/5 with DeepSeek V4 Flash as nano-tier), Eyes (DOM + accessibility tree + OCR'd screenshots when DOM is gated), Tools (browser MCP servers - Chrome DevTools MCP just launched - per-domain catalogs, x402 for inline payments), Memory (Write-Aside: Valkey L1 + pgvector L2, namespaced per-domain so bank.com cannot leak to shop.com), Orchestration (LangGraph 2.0 or Microsoft Agent Framework with cosine drift < 0.7 context reset), and Guardrails (OTEL gen_ai spans, per-tab kill switch T1/T2, C2PA/SynthID watermarking, NIST CAISI audit trail)."
+          ]
+        },
+        {
+          "title": "4. Security - prompts have become shells",
+          "paragraphs": [
+            "Brave: 'Unseeable prompt injections in screenshots'. Attackers can hide instructions in images using faint blue-on-yellow text - invisible to humans, trivially read by OCR. Comet's screenshot-question feature extracts that text and executes it as agent instructions. Brave's verdict: not a Comet bug, a category bug across the entire agentic-browser space.",
+            "Microsoft: 'When prompts become shells' (May 7, 26). CVE-2026-25592 + CVE-2026-26030 in Semantic Kernel: a single prompt was enough to launch calc.exe - host-level RCE - on the device running the agent. Vector: InMemoryVectorStore's filter evaluator used eval() with an AST blocklist bypassable via __name__/load_module/BuiltinImporter to reach os.system. Fix: semantic-kernel >= 1.39.4. The broader pattern: the agent tool registry is now the attack surface.",
+            "Combined threat model: an attacker who can plant text on a page the user will visit can - via the agentic browser - reach host-level code execution if any tool in the chain has a vulnerable sandbox. This is the agentic-browser version of XSS, but the victim is the whole agent stack, not just the page. Mitigations: Trust-Zone separation (treat page text as untrusted data), visible-text-only OCR mode, per-tab kill switch, scoped SVIDs per origin, no eval()-style filter evaluation - whitelist-only AST."
+          ]
+        },
+        {
+          "title": "5. Article 50 enforcement - T-82 days",
+          "paragraphs": [
+            "EU AI Act Article 50 disclosure obligation takes effect August 2, 2026. Any agentic browser operating on EU users must (a) disclose AI use in the omnibar UI, (b) C2PA/SynthID-watermark generated content, (c) expose a kill-switch UI element, and (d) log all agent actions for Annex III audit evidence. Comet, Atlas and the not-yet-shipped Remy and Hatch all need this in production before the deadline. Disclosure + watermark + kill switch + audit log is the minimum bar - bake it in at design time, retrofitting after launch is 10x more expensive."
+          ]
+        }
+      ],
+      "market_signal": "Four agentic browsers, 4B+ combined potential users (Comet on iOS/Android/desktop, Atlas bundled with ChatGPT Pro, Remy inside Gemini app reaching all Google account holders, Hatch inside Meta's 3.5B-user social graph). The browser is no longer a window onto the web; it is becoming the agent's eyes, hands and wallet. Combined with two devastating security disclosures in 7 days (Brave's screenshot injection + Microsoft's Semantic Kernel RCE), agentic-browser security has overtaken model capability as the gating factor for mainstream rollout.",
+      "practical_takeaway": [
+        {
+          "title": "Default to agent-aware design",
+          "body": "If your product has a web UI, assume an agent will hit it within 12 months. Add machine-readable semantics (ARIA + JSON-LD) and an MCP entry point - cheapest distribution channel of 2026."
+        },
+        {
+          "title": "Pick your GenUI bet by trust model",
+          "body": "Web (MCP Apps) for partner embedding, native components (A2UI) for highest-trust enterprise, AG-UI as the event substrate that bridges both. CopilotKit's open-source generative-ui repo is the fastest way to evaluate all three."
+        },
+        {
+          "title": "Treat the omnibar as a trust boundary",
+          "body": "Separate page text (untrusted) from user intent (trusted) at the prompt layer. Day 26's Trust-Zone-4 pattern is now table stakes - Brave's disclosure is the canonical case study."
+        },
+        {
+          "title": "Pin tool deps and audit eval() usage",
+          "body": "Microsoft's Semantic Kernel RCE is the new nightmare scenario. Audit every tool in your MCP registry: no eval() of LLM output, whitelist-only AST, sandboxed execution. Wire APM (apm.yml) + Microsoft Agent Governance Toolkit for pre-deploy scanning."
+        },
+        {
+          "title": "Ship Article 50 compliance now, not in August",
+          "body": "Disclosure + watermark + kill switch + audit log is the EU minimum bar from Aug 2. Bake it in at design time; retrofitting after launch is 10x more expensive."
+        }
+      ],
+      "tomorrow_preview": "Day 52 - Agent Identity 3.0: SPIFFE/SPIRE production rollouts, the IETF AIMS framework one year on, W3C DID for agents going from research to early production, and the Know Your Agent (KYA) standard maturing as agent-to-agent commerce hits $600M in active wallets. Builds directly on today's per-origin SVID problem exposed by Brave's screenshot injection."
+    },
+    {
       "date": "2026-05-12",
       "display_date": "MAY 12, 2026",
       "issue": 50,
@@ -7483,6 +7584,6 @@
       ]
     }
   ],
-  "last_updated": "2026-05-11 01:15:19 UTC",
+  "last_updated": "2026-05-13 01:15:35 UTC",
   "total_days": 51
 }
