@@ -6,6 +6,213 @@
   },
   "learnings": [
     {
+      "date": "2026-05-14",
+      "display_date": "MAY 14, 2026",
+      "issue": 52,
+      "title": "From SPIFFE workload identity to Know Your Agent (KYA), the IETF AIMS framework, and the Five",
+      "focus_intro": "From SPIFFE workload identity to Know Your Agent (KYA), the IETF AIMS framework, and the Five",
+      "stats": [],
+      "sections": [
+        {
+          "title": "1. Why agent identity is suddenly existential",
+          "paragraphs": [
+            "An agent that can take actions on your behalf needs three things every human contractor needs: a verifiable identity, a scoped permission set, and an audit trail. None of these have been standardised -- until now. Three forces converged in the first half of 2026: the agent economy crossed real volume ($600M+ in x402 wallets, 131K daily on-chain agent payments), regulators stopped accepting 'we use API keys' as identity (Five Eyes guidance, EU AI Act Annex III, NIST CAISI), and high-capability agents like Anthropic's Project Glasswing demonstrated they can autonomously find zero-days -- making 'who is this agent and what is it allowed to do?' a board-level question. Critically, only 33% of organisations have an audit trail for agent actions, 60% have no kill switch, and 48% now name agentic AI as their #1 attack vector. The Five Eyes guidance released May 1, 2026 is the first government statement that treats this gap as a national security issue, not a vendor preference."
+          ],
+          "table": {
+            "headers": [
+              "Stage",
+              "Mechanism",
+              "Strengths",
+              "Why it's failing in 2026"
+            ],
+            "rows": [
+              [
+                "1. Static API keys",
+                "Long-lived secrets in env vars or vaults; agent presents key per request",
+                "Universal; works with any HTTP API; trivial to implement",
+                "No scope binding, no rotation, no proof of the calling agent's identity -- keys leak (npm OpenClaw map leak Feb 2026), and there is no link to the human principal for liability (California AB 316)"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "2. The Identity Maturity Ladder (Stage 1 fi Stage 3)",
+          "paragraphs": [
+            "Every production agent fleet is sitting on one of three rungs. Most are on Stage 1 and shouldn't be."
+          ],
+          "table": {
+            "headers": [
+              "Stage",
+              "Mechanism",
+              "Strengths",
+              "Why it's failing in 2026"
+            ],
+            "rows": [
+              [
+                "1. Static API keys",
+                "Long-lived secrets in env vars or vaults; agent presents key per request",
+                "Universal; works with any HTTP API; trivial to implement",
+                "No scope binding, no rotation, no proof of the calling agent's identity -- keys leak (npm OpenClaw map leak Feb 2026), and there is no link to the human principal for liability (California AB 316)"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3. The IETF AIMS framework -- what it actually says",
+          "paragraphs": [
+            "The Agent Identity Management System (AIMS), formalised in the IETF draft draft-klrc-aiagent-auth (revised March 2026), is the cleanest standards-track answer to the question 'how do agents authenticate and authorise?'. It composes three existing standards rather than inventing anything new -- which is why it has buy-in from NIST CAISI, OpenID Foundation, and the Cloud Security Alliance. The composition: AIMS = WIMSE + SPIFFE + OAuth 2.0 + AuthZEN",
+            "X may spend up to $200 at merchants in MCC 5812 until 17:00').",
+            "decision call so every PEP/PDP speaks the same language. Why this matters: every major vendor has now adopted some subset of this stack. Google Cloud Agent Identity = SPIFFE + OAuth. AWS IRSA = SPIFFE-equivalent. Microsoft Entra Agent ID (in Agent 365) = OAuth-first with workload binding. The Cloud Security Alliance's CSAI Foundation (launched RSA 2026) is publishing reference implementations of AIMS for procurement teams. If your fleet's identity story isn't roughly this shape by end of 2026, you will be the odd one out in a vendor RFP."
+          ],
+          "bullets": [
+            "WIMSE (Workload Identity in Multi-System Environments) non-human identity across clouds.",
+            "SPIFFE -- provides the cryptographic workload identity primitive",
+            "OAuth 2.0 + Token Exchange -- converts workload identity X may spend up to $200 at merchants in MCC 5812 until 17:00').",
+            "AuthZEN (OpenID Authorization API 1.0, Final Spec Jan decision call so every PEP/PDP speaks the same language. Why this matters: every major vendor has now adopted Agent Identity = SPIFFE + OAuth. AWS IRSA = SPIFFE-equivalent. 365) = OAuth-first with workload binding. The Cloud Security 2026) is publishing reference implementations of AIMS for procurement isn't roughly this shape by end of 2026, you will be the odd one"
+          ],
+          "table": {
+            "headers": [
+              "Stage",
+              "Mechanism",
+              "Strengths",
+              "Why it's failing in 2026"
+            ],
+            "rows": [
+              [
+                "2. SPIFFE/SPIRE workload SVIDs",
+                "X.509 or JWT SVIDs issued by SPIRE at workload boot, TTL 30-300s, rotated automatically, bound to attested workload identity",
+                "Cryptographic identity; mTLS channel binding; revocable; CNCF-graduated; Google Cloud Agent Identity built on it (Apr 2026)",
+                "Workload identity only -- doesn't natively express 'this agent is acting on behalf of Varun for purchases under $200 at MCC 5812' -- needs OAuth scopes layered on top (the IETF AIMS pattern)"
+              ],
+              [
+                "3. W3C DID + Verifiable Credentials",
+                "Self-sovereign identifiers (did:wba, did:agent); credentials issued by trusted authority; resolvable by any DID resolver; on-chain or off-chain anchoring",
+                "Decentralised; portable across providers; supports delegation chains; supports KYA cryptographic identity binding to legal owner",
+                "Revocation is still hard; W3C Community Group only formed Apr 2026; production rollout expected 2027+; today's pattern is Stage 2 + DID-as-overlay"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "4. Know Your Agent (KYA) -- the new trust layer",
+          "paragraphs": [
+            "AIMS solves 'is this agent who it says it is?'. KYA solves the harder question: is this agent behaving the way an agent operated by its legal owner should behave? The shift is from static credential checks (KYC pattern) to continuous behavioural monitoring. Think of it as fraud detection for autonomous",
+            "The Halborn / FinanceFeeds reports this week note KYA replacing KYC is now the shift in agentic finance compliance -- FinCEN's Q3 2026 AML rules will require KYA-style continuous monitoring for any platform processing over $10K/day in agent-initiated transactions. The same primitives apply outside of payments: HR agents, IT agents, and procurement agents all need behavioural baselines before EU AI Act Annex III"
+          ],
+          "table": {
+            "headers": [
+              "Stage",
+              "Mechanism",
+              "Strengths",
+              "Why it's failing in 2026"
+            ],
+            "rows": [
+              [
+                "2. SPIFFE/SPIRE workload SVIDs",
+                "X.509 or JWT SVIDs issued by SPIRE at workload boot, TTL 30-300s, rotated automatically, bound to attested workload identity",
+                "Cryptographic identity; mTLS channel binding; revocable; CNCF-graduated; Google Cloud Agent Identity built on it (Apr 2026)",
+                "Workload identity only -- doesn't natively express 'this agent is acting on behalf of Varun for purchases under $200 at MCC 5812' -- needs OAuth scopes layered on top (the IETF AIMS pattern)"
+              ],
+              [
+                "3. W3C DID + Verifiable Credentials",
+                "Self-sovereign identifiers (did:wba, did:agent); credentials issued by trusted authority; resolvable by any DID resolver; on-chain or off-chain anchoring",
+                "Decentralised; portable across providers; supports delegation chains; supports KYA cryptographic identity binding to legal owner",
+                "Revocation is still hard; W3C Community Group only formed Apr 2026; production rollout expected 2027+; today's pattern is Stage 2 + DID-as-overlay"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "6. Your 30-day Agent Identity playbook",
+          "paragraphs": [
+            "If you operate even a small fleet (5+ agents in production), this is the sequence to clear before August 2.",
+            "Five Eyes 'Careful Adoption of Agentic AI Services' The May 1 joint guidance from CISA + NSA + ASD's ACSC + CSE + NCSC-NZ + NCSC-UK is the highest-impact agentic AI release of the week -- not a model, not an app, but the first cross-government agreement on what production agent security has to look like. 23 risk classes. 100+ controls. Five risk categories that map 1:1 to EU AI Act Annex III and NIST CAISI. Forrester is already publishing how their AEGIS framework operationalises it. The Register's headline was 'Five Eyes warn agentic AI is too dangerous for rapid rollout' -- the actual document is more measured but equally clear: roll out incrementally, start with low-risk tasks, and treat agent identity as the foundational primitive. Why it's viral: first cross-government agentic AI guidance ever issued. Most-cited AI security release of Secondary call-out: the Andrej Karpathy Skills repo (forrestchang/andrej-karpathy-skills) crossed 126K GitHub stars this week -- a community-curated catalogue of agent 'skills' (reusable workflow packs that drop into Claude Skills, Microsoft APM, or Hermes Agent). It's the consumer-side mirror of the identity story: agents need a verified identity, and now they also need a verified skill catalogue."
+          ],
+          "table": {
+            "headers": [
+              "Pillar",
+              "What gets checked",
+              "Production tooling"
+            ],
+            "rows": [
+              [
+                "Identity",
+                "Cryptographic agent ID, bound to legal owner (individual or business), resolvable to a DID Document or SPIFFE trust domain",
+                "Google Agent Identity, SPIRE, knowyouragent.network registry, AIS-1 standard"
+              ],
+              [
+                "Authority",
+                "Scope of action (merchants, amounts, time windows, data classes), delegation chain from human principal, revocation status",
+                "OAuth 2.0 scopes, Stripe MPP Sessions, x402 Payment-Required, AuthZEN runtime checks"
+              ],
+              [
+                "Auditability",
+                "Tamper-evident log of every decision: what, why, alternatives considered, data accessed, agents called -- reconstructable reasoning per NIST CAISI",
+                "OpenTelemetry gen_ai spans, WORM storage, EU AI Act Annex III audit pack"
+              ],
+              [
+                "Behaviour",
+                "Continuous monitoring of transaction frequency, MCC drift, protocol usage, spending burn rate, delegation chain integrity, nonce replay attempts",
+                "Galileo Signals, Phoenix Agent Evals, Snyk Evo, Adversa AI continuous red-team, on-chain analytics (Nansen for crypto agents)"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "Practical takeaways",
+          "paragraphs": [
+            "Tomorrow (Day 53): we go deep on Agent Skills as a marketplace -- what the Karpathy Skills explosion, Claude Skills, Microsoft APM, and Hermes Agent skill-doc auto-writers mean for the long-term moat in agentic AI. Same time, same inbox."
+          ],
+          "table": {
+            "headers": [
+              "Week",
+              "Outcome",
+              "How"
+            ],
+            "rows": [
+              [
+                "Week 2 (Identity)",
+                "All agents on SPIFFE/SPIRE workload identity OR Google Cloud Agent Identity OR Entra Agent ID",
+                "Migrate off static API keys; bind every agent SVID to an OAuth scope set; document in apm.yml manifest (Microsoft APM); rotate SVIDs every 5 minutes"
+              ],
+              [
+                "Week 3 (Behaviour)",
+                "Continuous behavioural monitoring active on top 5 highest-spend / highest-privilege agents",
+                "Wire Galileo Signals or Phoenix Agent Evals MCP; baseline 7 days of normal behaviour; alert on cosine drift < 0.7, spend burn > 2× baseline, MCC drift, nonce replay, delegation chain break"
+              ],
+              [
+                "Week 4 (Audit pack)",
+                "EU AI Act Annex III audit pack auto-generated from OTEL + memory writes",
+                "Configure Phoenix / Braintrust / LangSmith to export tamper-evident logs to WORM storage (S3 Object Lock); include every tool call, every memory write, every model fallback; one-click PDF for the regulator"
+              ]
+            ]
+          }
+        }
+      ],
+      "practical_takeaway": [
+        {
+          "title": "Google Cloud's Agent Identity service makes this a 1-week mi",
+          "body": "Google Cloud's Agent Identity service makes this a 1-week migration if you're already on GKE. Stage 3 (DID) is the 2027 destination -- track but don't bet production on it yet."
+        },
+        {
+          "title": "WIMSE (Workload Identity in Multi-System Environments) non-h",
+          "body": "WIMSE (Workload Identity in Multi-System Environments) non-human identity across clouds."
+        },
+        {
+          "title": "SPIFFE -- provides the cryptographic workload identity primi",
+          "body": "SPIFFE -- provides the cryptographic workload identity primitive"
+        },
+        {
+          "title": "OAuth 2.0 + Token Exchange -- converts workload identity X m",
+          "body": "OAuth 2.0 + Token Exchange -- converts workload identity X may spend up to $200 at merchants in MCC 5812 until 17:00')."
+        },
+        {
+          "title": "AuthZEN (OpenID Authorization API 1.0, Final Spec Jan decisi",
+          "body": "AuthZEN (OpenID Authorization API 1.0, Final Spec Jan decision call so every PEP/PDP speaks the same language. Why this matters: every major vendor has now adopted Agent Identity = SPIFFE + OAuth. AWS IRSA = SPIFFE-equivalent. 365) = OAuth-first with workload binding. The Cloud Security 2026) is publishing reference implementations of AIMS for procurement isn't roughly this shape by end of 2026, you will be the odd one"
+        }
+      ]
+    },
+    {
       "date": "2026-05-13",
       "display_date": "MAY 13, 2026",
       "issue": 51,
