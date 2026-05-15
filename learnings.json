@@ -6,6 +6,234 @@
   },
   "learnings": [
     {
+      "date": "2026-05-15",
+      "display_date": "MAY 15, 2026",
+      "issue": 53,
+      "title": "The Workspace Becomes the Control Plane",
+      "focus_intro": "Notion's External Agent API and the multi-agent workspace era",
+      "stats": [
+        {
+          "stat": "4",
+          "label": "External agents at launch (Claude, Codex, Cursor, Decagon)"
+        },
+        {
+          "stat": "$3.4B",
+          "label": "Notion ARR (run-rate, 2026 estimate)"
+        },
+        {
+          "stat": "100M+",
+          "label": "Notion MAU -- largest agent surface outside Microsoft"
+        }
+      ],
+      "sections": [
+        {
+          "title": "1. Why the workspace just became the new control plane",
+          "paragraphs": [
+            "Until this week, three control planes were competing to host enterprise agents: the IDE (Cursor, Claude Code, Kiro), the OS (Microsoft Agent 365, Apple Intelligence multi-provider), and the browser (Atlas, Comet, Remy). Notion's launch opens a fourth front -- the workspace itself -- and it's structurally the strongest. The IDE only owns engineering. The OS owns the device. The browser owns one tab. The workspace owns the artifacts: docs, databases, projects, OKRs, meeting notes -- the actual state of the company. That's the substrate every agent eventually needs to read from and write to. Notion is not the first to try this -- Coda, Asana, ClickUp, and Atlassian Rovo all have agent stories -- but Notion is the first to ship the full triad: a hosted Worker runtime (so you don't run servers), an External Agent API (so agents you've already built plug straight in), and database sync (so Salesforce, Postgres, Zendesk live as Notion tables your agents can read). It's the AG-UI / MCP / A2A stack from Day 48 collapsed into a SaaS surface non-developers already use."
+          ],
+          "table": {
+            "headers": [
+              "Primitive",
+              "What it is",
+              "Maps to"
+            ],
+            "rows": [
+              [
+                "Workers",
+                "Hosted runtime for custom code. Receives webhooks, runs logic, calls Notion or any external API. Deployed via CLI, runs in a sandbox. No infra to manage.",
+                "AWS Lambda + a built-in trigger graph + Notion-native auth."
+              ],
+              [
+                "External Agent API",
+                "Lets external agents (Claude, Codex, Cursor, Decagon, or yours) act inside Notion as first-class participants -- read pages, edit databases, post comments, kick off Workers.",
+                "MCP server + AG-UI stream surface for the workspace."
+              ],
+              [
+                "Database sync",
+                "Bidirectional pull from Salesforce / Postgres / Zendesk / any API into a Notion database. Powered by Workers under the hood.",
+                "A managed Write-Aside cache (Day 33/44) where Notion is the L1 surface and the source-of-truth system is L2."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "2. The three new primitives, decoded",
+          "paragraphs": [
+            "Pricing watch: Workers are free during beta. Starting August 11, 2026 -- uncannily close to the EU AI Act enforcement date of August 2 -- they switch to Notion credits. Most enterprise teams will hit budget before they hit governance, so wire OTEL gen_ai spans (Day 22) around every Worker run before you ship"
+          ],
+          "table": {
+            "headers": [
+              "Primitive",
+              "What it is",
+              "Maps to"
+            ],
+            "rows": [
+              [
+                "Workers",
+                "Hosted runtime for custom code. Receives webhooks, runs logic, calls Notion or any external API. Deployed via CLI, runs in a sandbox. No infra to manage.",
+                "AWS Lambda + a built-in trigger graph + Notion-native auth."
+              ],
+              [
+                "External Agent API",
+                "Lets external agents (Claude, Codex, Cursor, Decagon, or yours) act inside Notion as first-class participants -- read pages, edit databases, post comments, kick off Workers.",
+                "MCP server + AG-UI stream surface for the workspace."
+              ],
+              [
+                "Database sync",
+                "Bidirectional pull from Salesforce / Postgres / Zendesk / any API into a Notion database. Powered by Workers under the hood.",
+                "A managed Write-Aside cache (Day 33/44) where Notion is the L1 surface and the source-of-truth system is L2."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3. Reference architecture -- a Notion-native sales agent",
+          "paragraphs": [
+            "Imagine a 5-person sales team. They live in Notion. The pipeline is a Notion database synced from Salesforce. Notes from every call are Notion pages. Today the agent stack looks like this: Cost: ~$0.40 per opportunity touched (DeepSeek V4 Flash + Sonnet 4.6 + Opus 4.7 routed 70/25/5, Day 43). Compare to a $90K SDR doing 60 follow-ups/day: ~$6/touch fully loaded. 15× cost lift, no SDR replaced -- every rep gets one to ten of these silently working in the background, all visible inside the same"
+          ]
+        },
+        {
+          "title": "4. What changes in the agent stack you already have",
+          "table": {
+            "headers": [
+              "Memory layer",
+              "Notion synced databases become a governed Episodic+Semantic memory store -- already audited, already permissioned, already exportable for GDPR. Many teams will retire their bespoke pgvector deployments for memory that's also a UI."
+            ],
+            "rows": [
+              [
+                "Approval surface",
+                "Generative UI (Day 48) lands inside Notion via the External Agent API. You no longer need to ship a separate React app for the human-in-the-loop step. The PM, the legal reviewer, and the agent share one canvas."
+              ],
+              [
+                "Identity",
+                "Notion uses workspace-scoped tokens today, but expect SPIFFE-style workload identity (Day 52) for Workers within 6-9 months. Until then, treat every Worker as a high-trust execution context -- short-lived secrets, principle of least privilege on database access."
+              ],
+              [
+                "Eval loop",
+                "Day 50's closed self-healing dataset loop slots in cleanly: trace every Worker + agent run into LangSmith / Phoenix / Galileo, cluster failures weekly, promote fixes back into the golden set."
+              ],
+              [
+                "Kill switch",
+                "Notion's admin panel becomes a partial T1 kill switch. For T2-T4 you still need network egress controls + container-level shutdown + memory snapshots -- Notion is the surface, not the substrate."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "5. The workspace control-plane race -- who's where, May 2026",
+          "table": {
+            "headers": [
+              "Memory layer",
+              "Notion synced databases become a governed Episodic+Semantic memory store -- already audited, already permissioned, already exportable for GDPR. Many teams will retire their bespoke pgvector deployments for memory that's also a UI."
+            ],
+            "rows": [
+              [
+                "Approval surface",
+                "Generative UI (Day 48) lands inside Notion via the External Agent API. You no longer need to ship a separate React app for the human-in-the-loop step. The PM, the legal reviewer, and the agent share one canvas."
+              ],
+              [
+                "Identity",
+                "Notion uses workspace-scoped tokens today, but expect SPIFFE-style workload identity (Day 52) for Workers within 6-9 months. Until then, treat every Worker as a high-trust execution context -- short-lived secrets, principle of least privilege on database access."
+              ],
+              [
+                "Eval loop",
+                "Day 50's closed self-healing dataset loop slots in cleanly: trace every Worker + agent run into LangSmith / Phoenix / Galileo, cluster failures weekly, promote fixes back into the golden set."
+              ],
+              [
+                "Kill switch",
+                "Notion's admin panel becomes a partial T1 kill switch. For T2-T4 you still need network egress controls + container-level shutdown + memory snapshots -- Notion is the surface, not the substrate."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "6. What to do this week",
+          "table": {
+            "headers": [
+              "Memory layer",
+              "Notion synced databases become a governed Episodic+Semantic memory store -- already audited, already permissioned, already exportable for GDPR. Many teams will retire their bespoke pgvector deployments for memory that's also a UI."
+            ],
+            "rows": [
+              [
+                "Approval surface",
+                "Generative UI (Day 48) lands inside Notion via the External Agent API. You no longer need to ship a separate React app for the human-in-the-loop step. The PM, the legal reviewer, and the agent share one canvas."
+              ],
+              [
+                "Identity",
+                "Notion uses workspace-scoped tokens today, but expect SPIFFE-style workload identity (Day 52) for Workers within 6-9 months. Until then, treat every Worker as a high-trust execution context -- short-lived secrets, principle of least privilege on database access."
+              ],
+              [
+                "Eval loop",
+                "Day 50's closed self-healing dataset loop slots in cleanly: trace every Worker + agent run into LangSmith / Phoenix / Galileo, cluster failures weekly, promote fixes back into the golden set."
+              ],
+              [
+                "Kill switch",
+                "Notion's admin panel becomes a partial T1 kill switch. For T2-T4 you still need network egress controls + container-level shutdown + memory snapshots -- Notion is the surface, not the substrate."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "7. Breaking this week (May 13-15, 2026)",
+          "table": {
+            "headers": [
+              "Notion Developer Platform GA",
+              "May 13 -- Workers (hosted code runtime) + External Agent API (Claude / Codex / Cursor / Decagon at launch) + database sync from Salesforce / Postgres / Zendesk. Free until Aug 11, then Notion credits. The headline launch of the week."
+            ],
+            "rows": [
+              [
+                "Sweet Security launches Sweet Attack",
+                "May 13 -- continuous agentic red-teaming product, indexes runtime topology and runs autonomous attack-chain discovery per environment. Timed deliberately to Anthropic's Mythos rollout: 'attackers now wield AI-grade tooling that rivals nation-state capability.' Backed by Evolution Equity, Munich Re, Glilot, CyberArk Ventures."
+              ],
+              [
+                "Nokia agentic-AI for telco networks",
+                "May 14 -- Altiplano + Corteca + Broadbridge platforms get agentic AI for ISPs and consumer home networks. Networks now self-troubleshoot, respond to voice, and maintain themselves without truck-rolls. First credible deployment of agentic AI in carrier-grade infrastructure."
+              ],
+              [
+                "Mythos + GPT-5.5 clear 32-step cyber range",
+                "Both Anthropic Claude Mythos Preview and OpenAI GPT-5.5 cleared a full 32-step end-to-end cyber-attack range -- meaningful jump in long-horizon planning and tool use across realistic enterprise environments."
+              ],
+              [
+                "Broadridge ships post-trade agentic capability",
+                "Production-ready agents that chain data + context + workflow to auto-resolve exceptions across post-trade and client services. Post-trade ops is one of the most regulated domains to get a live agent into -- early proof point that the Day 47 enterprise operating model is real."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "8. Viral AI app of the week -- Physical Intelligence's p0.7",
+          "paragraphs": [
+            "p0.7 -- the first robot foundation model with compositional generalization. Physical Intelligence's new model recombines skills learned in different contexts to solve tasks it has never been trained on. Demo: a robot using an air fryer to cook a sweet potato -- almost zero direct training data -- went from 5% to 95% success rate in 30 minutes of plain-language coaching from a human. A separate robot, with no laundry-folding data of its own, learned to fold laundry by recombining manipulation primitives from other Why this matters for agentic AI: robots have always been the laggard in the agent stack -- bespoke per task, expensive to train, brittle outside their data distribution. p0.7 is the moment that breaks. Three primitives matter: (1) language coaching -- humans correct the robot in natural language mid-task, identical to how Cursor/Claude Code accept developer corrections; (2) visual subgoals -- a lightweight world model generates 'what the next stage should look like' images, the visual equivalent of the Three-Agent Harness Planner output; (3) strategy metadata -- tags telling the model whether to prioritise speed, quality, or a specific control modality, i.e. the same routing decisions our 70/25/5 model router makes (Day 43). The agentic AI playbook is now running in physical hardware. Tomorrow (Day 54): Agent-Native Data Infrastructure -- Confluent, RisingWave, Databricks Genie, and the rise of streaming agentic pipelines (event-driven agents replacing batch ETL). · pi.website blog · TechCrunch (p0.7) · arXiv 2604.15483 · Rolling Out (Nokia) · Daily AI Agent News."
+          ],
+          "table": {
+            "headers": [
+              "Notion Developer Platform GA",
+              "May 13 -- Workers (hosted code runtime) + External Agent API (Claude / Codex / Cursor / Decagon at launch) + database sync from Salesforce / Postgres / Zendesk. Free until Aug 11, then Notion credits. The headline launch of the week."
+            ],
+            "rows": [
+              [
+                "Sweet Security launches Sweet Attack",
+                "May 13 -- continuous agentic red-teaming product, indexes runtime topology and runs autonomous attack-chain discovery per environment. Timed deliberately to Anthropic's Mythos rollout: 'attackers now wield AI-grade tooling that rivals nation-state capability.' Backed by Evolution Equity, Munich Re, Glilot, CyberArk Ventures."
+              ],
+              [
+                "Nokia agentic-AI for telco networks",
+                "May 14 -- Altiplano + Corteca + Broadbridge platforms get agentic AI for ISPs and consumer home networks. Networks now self-troubleshoot, respond to voice, and maintain themselves without truck-rolls. First credible deployment of agentic AI in carrier-grade infrastructure."
+              ],
+              [
+                "Mythos + GPT-5.5 clear 32-step cyber range",
+                "Both Anthropic Claude Mythos Preview and OpenAI GPT-5.5 cleared a full 32-step end-to-end cyber-attack range -- meaningful jump in long-horizon planning and tool use across realistic enterprise environments."
+              ],
+              [
+                "Broadridge ships post-trade agentic capability",
+                "Production-ready agents that chain data + context + workflow to auto-resolve exceptions across post-trade and client services. Post-trade ops is one of the most regulated domains to get a live agent into -- early proof point that the Day 47 enterprise operating model is real."
+              ]
+            ]
+          }
+        }
+      ],
+      "practical_takeaway": []
+    },
+    {
       "date": "2026-05-14",
       "display_date": "MAY 14, 2026",
       "issue": 52,
