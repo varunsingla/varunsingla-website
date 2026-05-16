@@ -6,6 +6,206 @@
   },
   "learnings": [
     {
+      "date": "2026-05-16",
+      "display_date": "MAY 16, 2026",
+      "issue": 54,
+      "title": "Agent Identity 3.0 -- SPIFFE Hits Prod, KYA",
+      "focus_intro": "Three forcing functions converged this week to make agent identity the most important infra layer of",
+      "stats": [
+        {
+          "stat": "63%",
+          "label": "orgs that cannot stop their own agents (Salesforce, 2026)"
+        },
+        {
+          "stat": "4×",
+          "label": "Anthropic enterprise share growth vs May 2025"
+        }
+      ],
+      "sections": [
+        {
+          "title": "1. Why agent identity is the layer that breaks first",
+          "paragraphs": [
+            "Every other layer of the agentic stack -- orchestration (LangGraph, MS Agent Framework), memory (MemOS, pgvector + Cassandra), observability (Phoenix, Galileo, LangSmith), payments (x402, MPP, SPTs) -- already assumes identity. They all answer the same question implicitly: which agent did this, on whose behalf, with what authority, and is there a tamper-evident log of it? Today, in most production deployments, that question gets answered with a static API key in an env var. That breaks the moment an agent is allowed to call another agent, spend money, write to a shared workspace, or persist memory across sessions -- which is exactly what Claude for Small Business, AgentCore Payments, Notion External Agent API, and Microsoft Agent 365 all assume. Static keys cannot revoke fast enough, cannot scope per-task, cannot bind to a human principal, and cannot survive a SOC 2 / ISO 42001 / EU AI Act audit. The Salesforce 2026 survey put a number on it: 63% of orgs admit they cannot stop an agent they deployed. That is a kill-switch problem dressed up as an identity"
+          ]
+        },
+        {
+          "title": "2. The Identity Maturity Ladder -- three stages",
+          "paragraphs": [
+            "Stage 1 is where most teams are today: static API keys in vaults, rotated quarterly if at all, shared across agents and environments. Blast radius unbounded. Stage 2 is SPIFFE / SPIRE workload identity -- every agent boots and is issued a short-lived SVID (SPIFFE Verifiable Identity Document, typically a 30-300 second X.509 cert or JWT). The SVID is cryptographically bound to the agent's workload attributes (image hash, namespace, task, parent agent), used as mTLS client cert for all downstream calls, and rotated automatically. Stage 3 is W3C DID self-sovereign identity -- the agent owns its identity cryptographically, can prove provenance across organisations, and supports revocation via online revocation lists. NIST's March 2026 concept paper explicitly adopts this ladder: adapt OAuth + OIDC + SPIFFE today, layer DID on top by 2027. IETF AIMS (draft-klrc-aiagent-auth) composes WIMSE + SPIFFE + OAuth 2.0 + AuthZEN (Jan 2026 Final Spec) into a single profile. This is the substrate every other 2026 standard now references."
+          ],
+          "table": {
+            "headers": [
+              "Stage Identity primitive What it solves Production examples (2026)",
+              "",
+              "",
+              ""
+            ],
+            "rows": [
+              [
+                "1 -- Static",
+                "API keys, long-lived secrets in vaults",
+                "Bootstrapping. Nothing else.",
+                "Most early agents; OpenAI Assistants v1; most LangChain demos"
+              ],
+              [
+                "2 -- Dynamic workload (SPIFFE/SPIRE)",
+                "Short-lived SVID (X.509/JWT), 30-300s TTL, mTLS-bound, attested at boot",
+                "Per-task scope, fast revocation, NIST CAISI audit trail, EU AI Act Annex III evidence",
+                "AWS IRSA, GCP Workload Identity, HashiCorp Vault Agent Injector, Microsoft Agent 365 (Entra workload identity)"
+              ],
+              [
+                "3 -- Self-sovereign (W3C DID)",
+                "did:wba or did:web, agent-controlled keys, JSON-LD agent metadata cards, online revocation lists",
+                "Cross-org provenance, agent-to-agent trust without central authority, open-internet agent commerce",
+                "Early ANP (Agent Network Protocol) deployments; Skyfire pilots; expected mainstream 2027-28"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "5. The Kill Switch as Identity Protocol",
+          "paragraphs": [
+            "The breakthrough framing this quarter is that kill switch is not a button -- it is the inverse of identity issuance. Okta Universal Logout, Entra Continuous Access Evaluation, and SPIRE bundle revocation all do the same thing: invalidate the SVID, fail the next mTLS handshake, force the agent to a halt. Kill switches stop working only when identity stops working -- which is why every 2026 enterprise control plane (Agent 365, IBM watsonx Orchestrate, Cognizant Secure AI Services launched May 7) is now structured as: identity provider (Entra / SPIRE / Vault) fi policy engine (AuthZEN / OPA) fi tool gateway (MCP gateway, Databricks Unity AI Gateway) fi audit lake (NIST CAISI, WORM). Pull the SVID and the agent cannot make a single downstream call. Target latency: under one second from kill-switch trigger to last possible request blocked at the network edge."
+          ],
+          "table": {
+            "headers": [
+              "Layer What it controls How identity revocation lands",
+              "",
+              ""
+            ],
+            "rows": [
+              [
+                "T1 -- Application",
+                "OAuth scopes, task freeze inside the agent process",
+                "OAuth token introspection fails → agent loops on retry → graceful halt"
+              ],
+              [
+                "T2 -- Network",
+                "Egress filtering, MCP gateway close, sidecar mTLS reject",
+                "SPIRE bundle rotation → next mTLS handshake fails → all outbound calls blocked"
+              ],
+              [
+                "T3 -- Infrastructure",
+                "Container drained or evicted, SVID revoked at SPIRE server",
+                "SPIRE marks SVID revoked → no new SVIDs issued → workload dies on next attestation cycle"
+              ],
+              [
+                "T4 -- Memory",
+                "Episodic memory frozen, vector DB snapshots taken for forensics",
+                "Memory IDs hard-deleted (GDPR cascade); WORM audit preserved separately"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "6. What to do this week",
+          "paragraphs": [
+            "Step 1 -- Inventory every agent in production and answer two questions: what identity does it use today, and who can revoke it in under one second? If the answer to either is 'long-lived API key' or 'no-one', you have a Stage-1 deployment that fails Annex III evidence on Aug 2. Step 2 -- Pilot SPIRE on one non-critical agent fleet. Helm chart available, takes a weekend. Wire it to issue SVIDs with 120s TTL. Replace static keys for downstream MCP servers with mTLS using the SVID. Step 3 -- Add the four KYA pillars to your existing OTEL gen_ai spans: agent_identity (SVID hash), authority (OAuth scope), behavioural (anomaly score from Galileo Signals or Phoenix), audit (NIST CAISI WORM log pointer). Step 4 -- Make your kill switch identity-based, not button-based. Wire Microsoft Agent 365 or your equivalent to revoke the SVID via SPIRE API; verify end-to-end revocation latency in a chaos drill (Day 49 pattern). Step 5 -- Generate one Annex III audit pack from the WORM log to confirm reconstructability of every agent decision, including alternatives considered. Aug 2 is 78 days away. Stage 2 identity is the cheapest path through."
+          ],
+          "table": {
+            "headers": [
+              "Story Why it matters",
+              ""
+            ],
+            "rows": [
+              [
+                "Claude for Small Business GA (May 13)",
+                "Anthropic puts Claude Cowork inside QuickBooks, PayPal, HubSpot, Canva, DocuSign, Google Workspace, M365 -- 15 ready-to-run workflows (payroll, invoices, tax prep, HR, customer service). Free US tour starts May 14 across 10 cities. Each workflow is an autonomous agent acting on the SMB's behalf with payment authority -- making per-agent SPIFFE identity a small-business requirement, not just an enterprise one."
+              ],
+              [
+                "Cognizant Secure AI Services launches (May 7)",
+                "Strategic positioning of governance + identity + runtime policy as a managed SI play -- Cognizant is the first big SI to package Snyk Evo + SPIRE-style identity + NIST CAISI audit into a single bundle. Signals that AI Identity is becoming a $1B+ services line, not just a vendor product."
+              ],
+              [
+                "AWS Bedrock AgentCore Payments preview (May 7)",
+                "x402 + USDC on Base + Coinbase + Stripe Privy wallet. ~200ms settlement, per-session spend caps, user must pre-authorise wallet. Hyperscaler-blessed KYA pattern -- explicit principal, scoped authority, audited transaction trail. The Day-28 stack is now AWS-native."
+              ],
+              [
+                "Anthropic Agent SDK adds Cowork credits (May 13)",
+                "Paid Claude accounts now receive $20-$200/month in Agent SDK credits -- directly monetising third-party agent deployments. Forces SPIFFE-style identity onto third-party developers because Anthropic must attribute compute and cost back to a verifiable principal."
+              ],
+              [
+                "Sweet Security launches Sweet Attack (May 13)",
+                "Continuous agentic red-teaming -- runs autonomous attack-chain discovery against your own agents. Backed by Evolution Equity / Munich Re / Glilot / CyberArk Ventures. Pairs with KYA: red team validates that your identity + scope enforcement actually holds under adversarial pressure."
+              ],
+              [
+                "EU AI Act Omnibus political agreement (May 7)",
+                "Legislative package adopted Nov 19, 2025; political agreement reached May 7, 2026. Aug 2 enforcement date for high-risk agent systems CONFIRMED. AI Office gets centralised oversight of GPAI. Penalties up to €35M / 7% global turnover. Annex III evidence requirements unchanged -- agent identity + audit trail mandatory."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "7. Breaking this week (May 13-16, 2026)",
+          "table": {
+            "headers": [
+              "Story Why it matters",
+              ""
+            ],
+            "rows": [
+              [
+                "Claude for Small Business GA (May 13)",
+                "Anthropic puts Claude Cowork inside QuickBooks, PayPal, HubSpot, Canva, DocuSign, Google Workspace, M365 -- 15 ready-to-run workflows (payroll, invoices, tax prep, HR, customer service). Free US tour starts May 14 across 10 cities. Each workflow is an autonomous agent acting on the SMB's behalf with payment authority -- making per-agent SPIFFE identity a small-business requirement, not just an enterprise one."
+              ],
+              [
+                "Cognizant Secure AI Services launches (May 7)",
+                "Strategic positioning of governance + identity + runtime policy as a managed SI play -- Cognizant is the first big SI to package Snyk Evo + SPIRE-style identity + NIST CAISI audit into a single bundle. Signals that AI Identity is becoming a $1B+ services line, not just a vendor product."
+              ],
+              [
+                "AWS Bedrock AgentCore Payments preview (May 7)",
+                "x402 + USDC on Base + Coinbase + Stripe Privy wallet. ~200ms settlement, per-session spend caps, user must pre-authorise wallet. Hyperscaler-blessed KYA pattern -- explicit principal, scoped authority, audited transaction trail. The Day-28 stack is now AWS-native."
+              ],
+              [
+                "Anthropic Agent SDK adds Cowork credits (May 13)",
+                "Paid Claude accounts now receive $20-$200/month in Agent SDK credits -- directly monetising third-party agent deployments. Forces SPIFFE-style identity onto third-party developers because Anthropic must attribute compute and cost back to a verifiable principal."
+              ],
+              [
+                "Sweet Security launches Sweet Attack (May 13)",
+                "Continuous agentic red-teaming -- runs autonomous attack-chain discovery against your own agents. Backed by Evolution Equity / Munich Re / Glilot / CyberArk Ventures. Pairs with KYA: red team validates that your identity + scope enforcement actually holds under adversarial pressure."
+              ],
+              [
+                "EU AI Act Omnibus political agreement (May 7)",
+                "Legislative package adopted Nov 19, 2025; political agreement reached May 7, 2026. Aug 2 enforcement date for high-risk agent systems CONFIRMED. AI Office gets centralised oversight of GPAI. Penalties up to €35M / 7% global turnover. Annex III evidence requirements unchanged -- agent identity + audit trail mandatory."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "8. Viral AI app of the week -- OwlPay Agent Wallet",
+          "paragraphs": [
+            "OwlTing's OwlPay Agent Wallet launched May 4 and went viral across the agent-economy crowd this week -- the first stablecoin wallet purpose-built for autonomous AI agents rather than humans. Unlike a regular wallet retrofitted for agents, OwlPay was designed from day one around the agent identity model: every agent gets a scoped sub-wallet tied to its workload identity (SPIFFE-ready), spending caps enforced at the wallet layer not just the application layer, every transaction signed with the agent's SVID hash for replayable audit, and nonce-based replay protection baked into the protocol. It interoperates with x402 (so it works with AWS Bedrock AgentCore Payments out of the box), with Stripe's Privy wallet, and with the Linux Foundation x402 governance stack. The viral hook: a developer can issue 100 sub-wallets in a single API call, each bound to a different agent persona with its own spend rules -- making it the first wallet that treats fleets of agents as first-class economic actors. Most concrete sign yet that the agent economy is moving from 'one wallet shared across all agents' to 'one identity, one wallet, one audit trail per agent.' Tomorrow (Day 55): Agent-Native Data Infrastructure -- Confluent, RisingWave, Databricks Genie, and the rise of event-driven agentic"
+          ],
+          "table": {
+            "headers": [
+              "Inventory identity by Friday",
+              "Every agent in production needs to be classified Stage 1 / Stage 2 / Stage 3. Anything Stage 1 with payment authority or memory writes is an Aug 2 audit failure waiting to happen."
+            ],
+            "rows": [
+              [
+                "Pilot SPIRE this weekend",
+                "Helm chart, 120s SVID TTL, one non-critical fleet. The hardest part is killing the static API key -- the tech itself is mature."
+              ],
+              [
+                "Wire kill switch to identity revocation",
+                "If your kill switch is a button in a dashboard, it is not a kill switch. Wire it to revoke the SVID via SPIRE API and prove sub-second propagation in a chaos drill."
+              ],
+              [
+                "Add the four KYA pillars to your OTEL spans",
+                "agent_identity (SVID hash), authority (OAuth scope), behavioural (anomaly score), audit (WORM log pointer). These are the Annex III evidence fields regulators will ask for."
+              ]
+            ]
+          }
+        }
+      ],
+      "practical_takeaway": [
+        {
+          "title": "Tomorrow: Day 55: Agent-Native Data Infrastructure -- Conflu",
+          "body": "Tomorrow: Day 55: Agent-Native Data Infrastructure -- Confluent, RisingWave, Databricks Genie, and event-driven agentic pipelines replacing batch ETL."
+        }
+      ],
+      "tomorrow_preview": "Day 55: Agent-Native Data Infrastructure -- Confluent, RisingWave, Databricks Genie, and event-driven agentic pipelines replacing batch ETL. AI Daily Learning · Day 54 · Issue #54 · 2026-05-16 Page 5 · varunsingla.com"
+    },
+    {
       "date": "2026-05-15",
       "display_date": "MAY 15, 2026",
       "issue": 53,
@@ -7976,6 +8176,6 @@
       ]
     }
   ],
-  "last_updated": "2026-05-13 01:15:35 UTC",
-  "total_days": 51
+  "last_updated": "2026-05-16",
+  "total_days": 59
 }
