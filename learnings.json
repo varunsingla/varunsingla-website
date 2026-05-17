@@ -9,29 +9,11 @@
       "date": "2026-05-17",
       "display_date": "MAY 17, 2026",
       "issue": 55,
-      "title": "Agent-Native Data Infrastructure — Streaming Becomes the New Memory Layer",
-      "focus_intro": "Six independent announcements from Databricks, Confluent, RisingWave, CockroachDB, ClickHouse and PingCAP arrived at the same conclusion in Q2 2026: the database stack must be redesigned for a non-human consumer. Today we map that shift — why batch ETL is dying, why streaming materialised views + MCP are becoming the new agent memory, and how to architect a production agent stack on top of Genie Code, Confluent Streaming Agents, and RisingWave.",
-      "stats": [
-        {
-          "stat": "90%",
-          "label": "new TiDB Cloud clusters created by AI agents, not humans"
-        },
-        {
-          "stat": "77.1%",
-          "label": "Genie Code real-world data science success vs 32.1% prior leader"
-        },
-        {
-          "stat": "6",
-          "label": "vendors converged on agent-native data infra in 60 days"
-        },
-        {
-          "stat": "100+",
-          "label": "MCP tools in RisingWave's official agent server"
-        }
-      ],
+      "title": "Agent-Native Data Infrastructure",
+      "focus_intro": "Six independent announcements from Databricks, Confluent, RisingWave, CockroachDB, ClickHouse and",
       "viral_app": {
         "name": "OpenHuman by tinyhumansai",
-        "description": "Open-source desktop AI agent (Rust + Tauri, MIT, github.com/tinyhumansai/openhuman, 5.6K+ GitHub stars in days, #1 GitHub Trending May 13-16). Inverts the playbook: instead of waiting for your first prompt, it pre-loads 1B-token Memory Tree from 118+ services (Gmail, GitHub, Slack, Notion, Stripe, Calendar, Drive, Linear, Jira) via one-click OAuth. A 'subconscious loop' runs without user input — reads your to-dos, your recent memory, decides what to act on next. A desktop mascot can join Google Meet as a separate participant, transcribe into the Memory Tree, speak back. All local-first: SQLite + Markdown Obsidian wiki, no data egress. First credible consumer surface for the 'agent that knows you on day one' pattern.",
+        "description": "Open-source desktop AI agent (Rust + Tauri, MIT, github.com/tinyhumansai/openhuman, 5.6K+ GitHub stars in days, #1 GitHub Trending May 13-16). Inverts the playbook: instead of waiting for your first prompt, it pre-loads a 1B-token Memory Tree from 118+ services (Gmail, GitHub, Slack, Notion, Stripe, Calendar, Drive, Linear, Jira) via one-click OAuth. A 'subconscious loop' runs without user input -- reads your to-dos and recent memory, decides what to act on next. A desktop mascot can join Google Meet as a separate participant, transcribe into the Memory Tree, speak back. All local-first: SQLite + Markdown Obsidian wiki, no data egress. First credible consumer surface for the 'agent that know",
         "stats": [
           {
             "stat": "1B",
@@ -42,7 +24,7 @@
             "label": "OAuth integrations one-click"
           },
           {
-            "stat": "20min",
+            "stat": "20m",
             "label": "subconscious loop cadence"
           },
           {
@@ -51,67 +33,70 @@
           }
         ]
       },
+      "stats": [
+        {
+          "stat": "90%",
+          "label": "new TiDB Cloud clusters created by AI agents, not humans"
+        },
+        {
+          "stat": "77.1%",
+          "label": "Genie Code success on real-world data tasks vs 32.1% prior leader"
+        },
+        {
+          "stat": "6",
+          "label": "vendors converged on agent-native data infra in 60 days"
+        },
+        {
+          "stat": "100+",
+          "label": "MCP tools in RisingWave's official agent server"
+        }
+      ],
       "sections": [
         {
           "title": "1. Why agent-native data infrastructure is a thing now",
           "paragraphs": [
-            "For thirty years databases optimised for two consumers: humans writing SQL in a console, and applications running parameterised queries. In 2026 the third consumer became dominant: AI agents that discover schemas at runtime, issue thousands of exploratory queries per task, spin up isolated workspaces for trial-and-error, and need fresh full-fidelity context — not sampled, not rolled up. PingCAP reports 90% of new TiDB Cloud clusters in Q2 2026 are created by AI agents. That single number changes everything about how a database should be designed.",
-            "Six 2026 launches independently codified the shift: Databricks Genie Code (autonomous data engineering agent, March 11), Confluent Streaming Agents (Flink + MCP + Real-time Context Engine, Oct→Feb), RisingWave v2.6 (native vector + HNSW + official MCP server with 100+ tools), CockroachDB managed MCP server + agent-ready ccloud CLI (March), ClickHouse clickhousectl beta with agent skills installer (April 9), and PingCAP TiDB positioning itself as 'the database for agentic workloads'. Six vendors, same six design principles, no coordination — that is what tectonic shifts look like."
+            "For thirty years databases optimised for two consumers: humans writing SQL in a console, and applications running parameterised queries. In 2026 the third consumer became dominant: AI agents that discover schemas at runtime, issue thousands of exploratory queries per task, spin up isolated workspaces for trial-and-error, and need fresh full-fidelity context -- not sampled, not rolled up. PingCAP reports 90% of new TiDB Cloud clusters in Q2 2026 are created by AI agents. That single number changes everything about how a database should be designed. Six 2026 launches independently codified the shift: Databricks Genie Code (autonomous data engineering agent, March 11), Confluent Streaming Agents (Flink + MCP + Real-time Context Engine), RisingWave v2.6 (native vector + HNSW + official MCP server with 100+ tools), CockroachDB managed MCP server + agent-ready ccloud CLI (March), ClickHouse clickhousectl beta with agent skills installer (April 9), and PingCAP TiDB positioning as 'the database for agentic workloads'. Six vendors, same six design principles, no coordination -- that is what tectonic shifts look like."
           ]
         },
         {
-          "title": "2. The six design principles of agent-native data infrastructure",
+          "title": "3. The 2026 reference architecture -- four layers",
           "paragraphs": [
-            "Principle 1: SQL as the universal agent interface. Every frontier LLM was trained on millions of SQL examples, so SQL has become the lingua franca that agents already speak fluently. CockroachDB, ClickHouse, RisingWave and Confluent Flink all converge on SQL as the agent-facing surface — not proprietary APIs, not GraphQL, not custom DSLs.",
-            "Principle 2: MCP as the control plane. Confluent integrated MCP-based tool calling directly into Flink. RisingWave shipped an official MCP server. CockroachDB launched a managed MCP server. Databricks ships Unity Catalog as the MCP-discoverable governance layer. MCP has become the de-facto agent-to-infrastructure protocol — your agent talks to your database through the same wire protocol it uses for every other tool.",
-            "Principle 3: Full-fidelity, not sampled. Agents are statistical reasoners — sampling, 7-day retention windows, and aggressive rollups become agent poison because the agent cannot tell the difference between 'data is missing' and 'event did not happen'. ClickHouse's object-storage economics make 30-365 day full-fidelity retention the new baseline. Principle 4: Scale-to-zero economics. Lakebase, TiDB Cloud, and ClickHouse Cloud all offer scale-to-zero or request-unit pricing — agents spin up workspaces, do their work, tear them down. Pay nothing in between.",
-            "Principle 5: Copy-on-write everywhere. Agents need cheap isolation for trial-and-error (run 50 hypothetical migrations, keep the one that worked) — full duplication does not scale. Iceberg / Delta / Hudi branching makes this cheap. Principle 6: Streaming materialised views as the memory layer. Static snapshots cannot keep up with an agent acting in the real world. RisingWave's CDC-driven incremental materialised views are the cleanest expression: a single SQL statement defines a continuously-fresh view that your agent can query at any time and get sub-second-stale data."
-          ]
-        },
-        {
-          "title": "3. The 2026 reference architecture — four layers",
-          "paragraphs": [
-            "Layer 1 — Transactional write layer (Postgres / MySQL / TiDB). The system of record. Your agent does not write here directly; humans, apps, and downstream agents do. Layer 2 — Streaming compute (RisingWave or Confluent Flink). CDC-ingests Layer 1, runs continuously-updated SQL materialised views over the stream, joins with reference data, computes embeddings inline via openai_embedding() or equivalent. This is where the agent's working memory lives — fresh by construction, no batch lag.",
-            "Layer 3 — Serving layer (Postgres protocol + MCP). The agent queries Layer 2 via standard SQL over the Postgres wire protocol, OR via the MCP server exposing the same data as tools. Same data, two surfaces — code agents pick SQL, conversational agents pick MCP. Layer 4 — Vector + semantic search. Lives inside the streaming layer (RisingWave native vector(n) + HNSW + cosine + L2), not as a separate Pinecone-shaped system. One less data plane to govern, one less consistency model to reason about, one less place for memory to go stale.",
-            "Mapping to the Day-44 Write-Aside pattern: Valkey/Redis is still your L1 hot cache (<5ms), but L2 changes — instead of an async flush into pgvector, your L2 becomes a RisingWave or Confluent materialised view that is automatically maintained against your transactional store. The agent never sees stale memory, and you remove an entire class of write-aside race conditions. MemOS L3 sits on top as the unified API. This is the single biggest unlock in agent memory architecture this quarter."
+            "Layer 1 -- Transactional write layer (Postgres / MySQL / TiDB). The system of record. Your agent does not write here directly; humans, apps and downstream agents do. Layer 2 -- Streaming compute (RisingWave or Confluent Flink). CDC-ingests Layer 1, runs continuously-updated SQL materialised views over the stream, joins with reference data, computes embeddings inline. This is where the agent's working memory lives -- fresh by construction, no batch lag. Layer 3 -- Serving layer (Postgres protocol + MCP). The agent queries Layer 2 via standard SQL over the Postgres wire protocol, OR via the MCP server exposing the same data as tools. Same data, two surfaces -- code agents pick SQL, conversational agents pick MCP. Layer 4 -- Vector + semantic search. Lives inside the streaming layer (RisingWave native vector(n) + HNSW + cosine + L2), not as a separate Pinecone-shaped system. One less data plane to govern, one less consistency model to reason about, one less place for memory to go stale. Mapping to the Day-44 Write-Aside pattern: Valkey/Redis is still your L1 hot cache (<5ms), but L2 changes -- instead of an async flush into pgvector, your L2 becomes a RisingWave or Confluent materialised view that is automatically maintained against your transactional store. The agent never sees stale memory, and you remove an entire class of write-aside race conditions. MemOS L3 sits on top as the unified API. This is the single biggest unlock in agent memory architecture this quarter."
           ]
         },
         {
           "title": "4. Genie Code, Streaming Agents, and what they actually do",
           "paragraphs": [
-            "Databricks Genie Code (GA at FabCon 2026) is a fully agentic data engineering partner inside Lakeflow. It builds pipelines, debugs failures, ships dashboards, monitors AI models in the background, triages anomalies, autonomously analyses agent traces to fix hallucinations, tunes resource allocation before a human intervenes. On Databricks' real-world data science benchmark it more than doubles the success rate of the leading coding agent (77.1% vs 32.1%). Integrated with Unity Catalog so it enforces existing governance + access controls, and understands business semantics + audit requirements — Annex III evidence by construction.",
-            "Confluent Streaming Agents (GA in Confluent Cloud for Apache Flink) is the event-driven counterpart. Agents are first-class Flink objects: they monitor real-time topics, reason via embedded LLM calls, and act through MCP tool calls — with every tool interaction logged into Kafka for replayability + auditability. The Real-time Context Engine continuously materialises enriched enterprise data sets into a fast in-memory cache and serves them to agents via MCP, all fully managed. Event-driven by design — agents communicate without rigid dependencies, collaborate with other agents, adapt to real-time inputs. This is the substrate the Day-49 Agent SRE will actually monitor in production.",
-            "RisingWave v2.6 is the open-source third leg. Streaming SQL + CDC + incremental materialised views + native vector(n) + HNSW + an official MCP server (risingwavelabs/risingwave-mcp) exposing 100+ tools. openai_embedding() runs inside a SQL query or MV definition so embeddings stay fresh automatically. Apache 2.0, self-hostable — the EU-AI-Act-safe default for agent memory when data residency matters."
+            "Databricks Genie Code (GA at FabCon 2026) is a fully agentic data engineering partner inside Lakeflow. It builds pipelines, debugs failures, ships dashboards, monitors AI models in the background, triages anomalies, autonomously analyses agent traces to fix hallucinations, tunes resource allocation before a human intervenes. On Databricks' real-world data science benchmark it more than doubles the success rate of the leading coding agent (77.1% vs 32.1%). Integrated with Unity Catalog so it enforces existing governance + access controls and understands business semantics + audit requirements -- Annex III",
+            "Confluent Streaming Agents (GA in Confluent Cloud for Apache Flink) is the event-driven counterpart. Agents are first-class Flink objects: they monitor real-time topics, reason via embedded LLM calls, act through MCP tool calls -- with every tool interaction logged into Kafka for replayability + auditability. The Real-time Context Engine continuously materialises enriched enterprise data sets into a fast in-memory cache and serves them via MCP, all fully managed. Event-driven by design -- agents communicate without rigid dependencies, collaborate with other agents, adapt to real-time inputs. This is the substrate the Day-49 Agent SRE will actually monitor in production. RisingWave v2.6 is the open-source third leg. Streaming SQL + CDC + incremental materialised views + native vector(n) + HNSW + an official MCP server (risingwavelabs/risingwave-mcp) exposing 100+ tools. openai_embedding() runs inside a SQL query or MV definition so embeddings stay fresh automatically. Apache 2.0, self-hostable -- the EU-AI-Act-safe default for agent memory when data residency matters."
           ]
         },
         {
-          "title": "5. What this means for governance, EU AI Act, and the next 12 months",
+          "title": "5. Governance, EU AI Act, and the next 12 months",
           "paragraphs": [
-            "EU AI Act Annex III high-risk obligations enforce Aug 2 (T-77 days). The audit checklist mandates reconstructable reasoning: what the agent did, why, with what data, in what order. A streaming substrate makes this near-trivial — every materialised view update, every MCP tool call, every vector lookup is already a logged event with timestamp + SVID + nonce. Compare to a batch-ETL world where evidence is reconstructed retroactively from logs in three different systems, often inconsistently. The streaming agent stack converts an audit nightmare into a Kafka topic.",
-            "Mapping back to Day 54 (SPIFFE + KYA): each agent SVID becomes the natural scope key for its streaming materialised views and MCP server namespaces. Per-agent isolation at the data plane, not just the app plane. Combined with Microsoft Agent 365 (control plane, Day 39), AWS Bedrock AgentCore Payments (commerce, Day 54), and Confluent / RisingWave / Genie Code (data), the 2026 enterprise agent operating model is now complete. Expectation for Day 56 onwards: data-plane primitives become the locus of competitive differentiation as model performance plateaus and the moat shifts to context freshness + retrieval semantics + governance evidence."
+            "EU AI Act Annex III enforces Aug 2 (T-77 days). The audit checklist mandates reconstructable reasoning: what the agent did, why, with what data, in what order. A streaming substrate makes this near-trivial -- every materialised view update, every MCP tool call, every vector lookup is already a logged event with timestamp + SVID + nonce. Compare to a batch-ETL world where evidence is reconstructed retroactively from logs in three different systems, often inconsistently. The streaming agent stack converts an audit nightmare into a Kafka topic. Mapping back to Day 54 (SPIFFE + KYA): each agent SVID becomes the natural scope key for its streaming materialised views and MCP server namespaces. Per-agent isolation at the data plane, not just the app plane. Combined with Microsoft Agent 365 (control plane), AWS Bedrock AgentCore Payments (commerce) and Confluent / RisingWave / Genie Code (data), the 2026 enterprise agent operating model is now complete. Expectation for Day 56+: data-plane primitives become the locus of competitive differentiation as model performance plateaus and the moat shifts to context freshness + retrieval"
+          ]
+        },
+        {
+          "title": "MARKET SIGNAL",
+          "paragraphs": [
+            "Anthropic in talks for a $30-50B raise at a ~$950B valuation; PwC announces firm-wide Claude deployment for client work; Anthropic + Gates Foundation form a $200M partnership. OpenAI grants EU access to GPT-5.5-Cyber in limited preview while Anthropic still withholds Mythos. US CAISI now pre-tests Microsoft, Google and xAI models before launch. Translation: data-plane and model-plane consolidation is happening at the same time -- pick your governance substrate before the regulator"
+          ]
+        },
+        {
+          "title": "Viral App of the Week",
+          "paragraphs": [
+            "Open-source desktop AI agent (Rust + Tauri, MIT, github.com/tinyhumansai/openhuman, 5.6K+ GitHub stars in days, #1 GitHub Trending May 13-16). Inverts the playbook: instead of waiting for your first prompt, it pre-loads a 1B-token Memory Tree from 118+ services (Gmail, GitHub, Slack, Notion, Stripe, Calendar, Drive, Linear, Jira) via one-click OAuth. A 'subconscious loop' runs without user input -- reads your to-dos and recent memory, decides what to act on next. A desktop mascot can join Google Meet as a separate participant, transcribe into the Memory Tree, speak back. All local-first: SQLite + Markdown Obsidian wiki, no data egress. First credible consumer surface for the 'agent that knows you on day one' pattern."
           ]
         }
       ],
-      "market_signal": "Anthropic in talks for a $30-50B raise at a ~$950B valuation; PwC announces firm-wide Claude deployment for client work; Anthropic + Gates Foundation form a $200M partnership. OpenAI grants EU access to GPT-5.5-Cyber in limited preview while Anthropic still withholds Mythos. US CAISI now pre-tests Microsoft, Google and xAI models before launch. Translation: data-plane and model-plane consolidation is happening at the same time — pick your governance substrate before the regulator picks it for you.",
+      "market_signal": "Anthropic in talks for a $30-50B raise at a ~$950B valuation; PwC announces firm-wide Claude deployment for client work; Anthropic + Gates Foundation form a $200M partnership. OpenAI grants EU access to GPT-5.5-Cyber in limited preview while Anthropic still withholds Mythos. US CAISI now pre-tests Microsoft, Google and xAI models before launch.",
       "practical_takeaway": [
         {
-          "title": "Audit your current agent data layer",
-          "body": "If your agents read from batch tables refreshed every 4 hours, every tool call is operating on stale context. Identify the top 3 queries your agents issue and move them to a streaming materialised view in RisingWave or Confluent Flink — measure the impact on task success rate before/after."
-        },
-        {
-          "title": "Wire MCP at the data layer, not just at the tool layer",
-          "body": "Most teams expose MCP for app-level tools (Slack, Notion, GitHub) but still give agents raw DB credentials. Flip it: deploy the official RisingWave / CockroachDB / ClickHouse MCP server, scope per agent SVID, log every call. Annex III evidence is then free."
-        },
-        {
-          "title": "Pilot Genie Code on one Lakeflow pipeline this sprint",
-          "body": "Pick a flaky existing pipeline. Let Genie Code monitor + triage + auto-fix for two weeks alongside the human owner. Measure mean-time-to-recovery and alert volume. The 77.1% benchmark is real, but the production value is in operational toil reduction, not headline accuracy."
-        },
-        {
-          "title": "Pre-register for AWS / Confluent / Databricks 2026 governance certs",
-          "body": "EU AI Act enforcement is now T-77 days. The hyperscalers are racing to ship Annex III-ready governance bundles on top of their agent stacks — early adopter slots are limited and pricing locks in during preview."
+          "title": "Day 56 (2026-05-18): Agent Skills & the Skills Economy -- ho",
+          "body": "Day 56 (2026-05-18): Agent Skills & the Skills Economy -- how reusable skill packages (APM by Microsoft, Claude Skills, Superpowers, Hermes Agent skill docs, MMX-CLI command groups) are becoming the npm of the agent era, and what it means for vendor lock-in, governance, and IP."
         }
-      ],
-      "tomorrow_preview": "Day 56 (2026-05-18): Agent Skills & the Skills Economy — how reusable skill packages (APM by Microsoft, Claude Skills, Superpowers, Hermes Agent skill docs, MMX-CLI command groups) are becoming the npm of the agent era, and what it means for vendor lock-in, governance, and IP."
+      ]
     },
     {
       "date": "2026-05-16",
