@@ -6,6 +6,199 @@
   },
   "learnings": [
     {
+      "date": "2026-05-18",
+      "display_date": "MAY 18, 2026",
+      "issue": 56,
+      "title": "Agent Skills & the Skills Economy",
+      "focus_intro": "Day 55 nailed down the data plane for agents (streaming MVs, MCP, vectors-in-SQL). Today we tackle the behaviour plane. Five months after Anthropic published SKILL.md on 18 December 2025, 32 vendors read the same Markdown format, two competing marketplaces (skills.sh 83K skills, SkillsMP 800K skills) list more packages than npm did in 10 years, and the Snyk ToxicSkills audit just shipped a number that should terrify every CISO: 1 in 7 skills has a critical security",
+      "viral_app": {
+        "name": "",
+        "description": "",
+        "stats": [
+          {
+            "stat": "24K+",
+            "label": "GitHub stars in days"
+          },
+          {
+            "stat": "2,434",
+            "label": "stars in a single day (May 6)"
+          },
+          {
+            "stat": "1M",
+            "label": "token context window (DeepSeek V4)"
+          },
+          {
+            "stat": "1/10",
+            "label": "the cost of Claude Code per task"
+          }
+        ]
+      },
+      "stats": [
+        {
+          "stat": "83,627",
+          "label": "skills on skills.sh (8M+ installs)"
+        },
+        {
+          "stat": "32",
+          "label": "tools speak SKILL.md (Anthropic, OpenAI, Microsoft, Google, JetBrains, AWS)"
+        },
+        {
+          "stat": "36.8%",
+          "label": "skills with security flaws (Snyk ToxicSkills audit)"
+        },
+        {
+          "stat": "13.4%",
+          "label": "skills with critical-severity issues"
+        }
+      ],
+      "sections": [
+        {
+          "title": "1. Use pdfplumber via bash (Day-49 reliability hook).",
+          "table": {
+            "headers": [
+              "Era",
+              "Packaging unit",
+              "Notes"
+            ],
+            "rows": [
+              [
+                "Dec 2025 -- Anthropic ships SKILL.md",
+                "Directory + YAML-fronted Markdown + bundled scripts",
+                "Open spec, ~200 lines, MIT licence. Designed for cross-vendor adoption from day one."
+              ],
+              [
+                "Q1 2026 -- 32 vendors adopt",
+                "Same SKILL.md read by 32 tools",
+                "Anthropic, OpenAI, Microsoft, Google, JetBrains, AWS, Block, Sourcegraph, Databricks, Snowflake, ByteDance, Mistral."
+              ],
+              [
+                "Q1-Q2 2026 -- Marketplaces",
+                "skills.sh (Vercel, npx) + SkillsMP (800K) + ClaudeSkills.info (658+ free)",
+                "skills.sh: 83K packages, 8M+ installs, leaderboard. Top skill hit 20K installs in 6 hours."
+              ],
+              [
+                "May 2026 -- Reusable agent IP",
+                "Anthropic Finance Agents (10 templates), Microsoft APM (apm.yml), Superpowers framework",
+                "Skills now ship as enterprise SKUs. Anthropic's Finance pack = first vertical skill bundle from a model vendor."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "2. Validate against schema.json",
+          "table": {
+            "headers": [
+              "Era",
+              "Packaging unit",
+              "Notes"
+            ],
+            "rows": [
+              [
+                "Dec 2025 -- Anthropic ships SKILL.md",
+                "Directory + YAML-fronted Markdown + bundled scripts",
+                "Open spec, ~200 lines, MIT licence. Designed for cross-vendor adoption from day one."
+              ],
+              [
+                "Q1 2026 -- 32 vendors adopt",
+                "Same SKILL.md read by 32 tools",
+                "Anthropic, OpenAI, Microsoft, Google, JetBrains, AWS, Block, Sourcegraph, Databricks, Snowflake, ByteDance, Mistral."
+              ],
+              [
+                "Q1-Q2 2026 -- Marketplaces",
+                "skills.sh (Vercel, npx) + SkillsMP (800K) + ClaudeSkills.info (658+ free)",
+                "skills.sh: 83K packages, 8M+ installs, leaderboard. Top skill hit 20K installs in 6 hours."
+              ],
+              [
+                "May 2026 -- Reusable agent IP",
+                "Anthropic Finance Agents (10 templates), Microsoft APM (apm.yml), Superpowers framework",
+                "Skills now ship as enterprise SKUs. Anthropic's Finance pack = first vertical skill bundle from a model vendor."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3. Return as structured JSON",
+          "paragraphs": [
+            "skills.sh (Vercel, launched 20 Jan 2026) is the closest thing to a canonical registry. npx skills add <package> drops a Skill folder into your repo, the leaderboard ranks packages by weekly installs, and Vercel ships first-party governance hooks. The top Skill hit 20,000 installs in six hours after launch. As of mid-May 2026: 83,627 packages, 8M+ total installs. For comparison, npm took ten years to cross 350K packages -- Skills did 25% of that in four months. SkillsMP takes the opposite approach: 800K+ Skills scraped from public GitHub repos with a minimum bar of 2 stars and almost no curation. Easy to discover, dangerous to install. ClaudeSkills.info sits in the middle -- 658+ Skills, free, community-contributed with light moderation. Anthropic's own GitHub org (anthropics/skills, anthropics/financial-services) publishes officially-supported Skills; financial-services alone gained 12,088 stars after Anthropic shipped the Finance Agent templates (Day 46). Addy Osmani's agent-skills (40,363 stars) is the monthly trending leader on production-grade engineering Skills. Skills inherit the full permissions of the agent that loads them. That is the dangerous part. Snyk published the ToxicSkills audit in February 2026 -- the first comprehensive sweep of the ecosystem. They scanned 3,984 Skills from ClawHub and skills.sh. Findings: OpenSourceMalware.com documented the first coordinated malware-as-a-Skill campaign in Feb 2026: 30+ malicious Skills distributed via ClawHub for Claude Code and OpenClaw. A separate audit of 2,857 ClawHub Skills found 341 malicious (12%) of the registry compromised. Attack patterns include hidden Unicode instructions invisible to humans but read by OCR, __name__/load_module tricks that escape Python sandboxing to call os.system, and \"Clinejection\" -- an attacker plants a Skill that, when triggered by a normal user prompt, opens a GitHub PR with a credential-stealing workflow. Snyk's framing is the right one: Skills are the new npm. We've been here before. We",
+            "Threat model -- three lines from SKILL.md to shell access Snyk's red-team published the canonical exploit demo: a single Skill description that says \"helps the user organise their repo,\" a body that includes <br>-hidden instructions to exec(open('/tmp/x').read()) wrapped in a benign-looking shell command, and a bundled post-install.sh that exfiltrates SSH keys. Three lines. Zero CVEs raised because no traditional supply-chain scanner has a detection category for Markdown-as-payload. That is the new",
+            "The standards body response is already moving. Three controls matter: EU AI Act Annex III (T-76 days, enforcement Aug 2 2026) is the forcing function. Any high-risk agent must produce reconstructable reasoning -- what tools were called, why, with what authority, what data was accessed. A Skill that injects un-audited instructions into the context window is an Annex III blast radius problem. The 90-day enterprise sprint is now: (a) inventory every Skill installed in every agent fleet via apm.yml, (b) gate all third-party Skills behind Snyk Skill Inspector + signing, (c) scope via allowed-tools + SPIFFE SVID per Skill execution, (d) log every Skill load to OTEL gen_ai spans with content hash so the audit trail is reconstructable. Skills without these four controls"
+          ],
+          "table": {
+            "headers": [
+              "Era",
+              "Packaging unit",
+              "Notes"
+            ],
+            "rows": [
+              [
+                "Dec 2025 -- Anthropic ships SKILL.md",
+                "Directory + YAML-fronted Markdown + bundled scripts",
+                "Open spec, ~200 lines, MIT licence. Designed for cross-vendor adoption from day one."
+              ],
+              [
+                "Q1 2026 -- 32 vendors adopt",
+                "Same SKILL.md read by 32 tools",
+                "Anthropic, OpenAI, Microsoft, Google, JetBrains, AWS, Block, Sourcegraph, Databricks, Snowflake, ByteDance, Mistral."
+              ],
+              [
+                "Q1-Q2 2026 -- Marketplaces",
+                "skills.sh (Vercel, npx) + SkillsMP (800K) + ClaudeSkills.info (658+ free)",
+                "skills.sh: 83K packages, 8M+ installs, leaderboard. Top skill hit 20K installs in 6 hours."
+              ],
+              [
+                "May 2026 -- Reusable agent IP",
+                "Anthropic Finance Agents (10 templates), Microsoft APM (apm.yml), Superpowers framework",
+                "Skills now ship as enterprise SKUs. Anthropic's Finance pack = first vertical skill bundle from a model vendor."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "MARKET SIGNAL -- Skills become enterprise SKUs",
+          "paragraphs": [
+            "Anthropic's 10 Finance Agent templates (May 5) and Claude for Small Business (May 13) are Skills sold as products -- the first model-vendor SKUs where the IP is the behaviour, not the model. Notion's Developer Platform (May 13) lets you publish External Agents into 1M+ customer workspaces -- distribution is now a feature of the workspace. Fiserv agentOS (May 14) ships an agentic OS for banking with co-developed Skills from six financial institutions. Cognizant Secure AI Services (May 7) bundles Snyk Evo + SPIRE-style identity + NIST CAISI audit into a single SI deal -- the first \"Skill-aware\" SI service. Read together: the Skill is now the unit of agent IP, distribution and compliance. Model vendors who tried to sell raw model access in 2025 are now",
+            "DeepSeek-TUI (github.com/Hmbown/DeepSeek-TUI) by Hunter Bown is the unexpected story of the week -- and the cleanest illustration of why Skills + cheap frontier models break the moat of every $20/mo coding agent. Bown isn't a professional developer (B.A. and M.Ed. in music education, currently a JD student at SMU). He wrote a Rust-native terminal coding agent that wraps DeepSeek V4's 1M-token context, reads files, edits code, runs shells, searches the web, spawns parallel sub-agents, and exposes Skills via SKILL.md -- at roughly one-tenth the cost of Claude Code. Why it matters: DeepSeek-TUI is GitHub Weekly Trending #1 with 24K+ stars, gained 2,434 stars in a single day (May 6), and is built entirely on the same SKILL.md spec as Claude Code. Bown went viral after a post on X explicitly inviting Chinese developers to collaborate. The lesson: the moment a behaviour package (Skill) is portable across runtimes, the moat moves from model → distribution fi cost. DeepSeek-TUI is what \"frontier model + portable Skills + open Rust harness\" looks like when one person with a music degree ships it. Expect 20 more of these by end of Q3 2026.",
+            "Agent Marketplaces & the Skill Economy 2.0. If today was about the packaging unit, tomorrow is about the marketplace mechanics: monetisation (free vs paid Skills), discovery (semantic search vs leaderboards), trust scoring, vendor-neutral identity for Skill publishers, and where the next $1B company in this space actually lives. We'll cover the Vercel skills.sh roadmap, Anthropic's enterprise Skill SKU strategy, Microsoft APM as the \"package-lock\" layer, and what happens when Skills meet x402 payments (an agent buying a Skill from another agent at runtime)."
+          ],
+          "table": {
+            "headers": [
+              "Day 2 -- Pin via apm.yml.",
+              "Promote your CSV into a Microsoft APM apm.yml at the repo root. Pin every Skill to an exact version + content hash. From this moment, no Skill silently updates. This alone closes 60% of supply-chain risk."
+            ],
+            "rows": [
+              [
+                "Day 3 -- Scope via allowed-tools.",
+                "Audit every SKILL.md. If allowed-tools is absent, the Skill has full agent privileges. Add an allowlist for every Skill -- start with the principle of least tool. Most Skills need read + one specific MCP server. Aggressive scoping has zero quality regression in 90% of cases."
+              ],
+              [
+                "Day 4 -- Sign + verify.",
+                "Switch your registry to a signed source (skills.sh signed feed, Anthropic anthropics/skills, your internal GitHub Enterprise org). Reject any Skill load whose Merkle hash doesn't match. Wire the check into CI so PRs fail on signature mismatch."
+              ],
+              [
+                "Day 5 -- Scan with Snyk + Repello.",
+                "Run Snyk Skill Inspector + Repello AI on every third-party Skill. Block the obvious ToxicSkills (hidden Unicode, shell exec, network egress). Score the rest and gate above a threshold. Treat unknown publishers as untrusted by default."
+              ],
+              [
+                "Day 6 -- Wire OTEL gen_ai spans.",
+                "Every Skill load + every tool call inside a Skill gets a span. Attributes: skill.name, skill.version, skill.content_hash, skill.publisher, tool.name. This is your Annex III audit trail and your Day-50 online eval substrate, free."
+              ],
+              [
+                "Day 7 -- Ship a kill switch + revocation hook.",
+                "Day-54 identity work: each Skill executes under a scoped SPIFFE SVID. Revoking the SVID kills every running invocation of that Skill within £1s (T1-T2 kill switch). This is what \"governable behaviour\" actually means in production."
+              ]
+            ]
+          }
+        }
+      ],
+      "market_signal": "-- Skills become enterprise SKUs Anthropic's 10 Finance Agent templates (May 5) and Claude for Small Business (May 13) are Skills sold as products -- the first model-vendor SKUs where the IP is the behaviour, not the model. Notion's Developer Platform (May 13) lets you publish External Agents into 1M+ customer workspaces -- distribution is now a feature of the workspace. Fiserv agentOS (May 14) ships an agentic OS for banking with co-developed Skills from six financial institutions.",
+      "practical_takeaway": [
+        {
+          "title": "Practical takeaways -- a 7-day Skills playbook",
+          "body": "Practical takeaways -- a 7-day Skills playbook"
+        }
+      ]
+    },
+    {
       "date": "2026-05-17",
       "display_date": "MAY 17, 2026",
       "issue": 55,
