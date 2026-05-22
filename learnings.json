@@ -6,6 +6,252 @@
   },
   "learnings": [
     {
+      "date": "2026-05-22",
+      "display_date": "MAY 22, 2026",
+      "issue": 60,
+      "title": "Agent Skills as the New App Store",
+      "focus_intro": "Why SKILL.md is becoming the unit of agentic value -- and the four marketplaces fighting to",
+      "viral_app": {
+        "name": "",
+        "description": "github.com/anthropics/skills -- the open reference library for the SKILL.md standard. As of May 22 2026, the repo ships 17 official skills spanning document creation (pdf, docx, pptx, xlsx), design (canvas-design, brand-guidelines, theme-factory), engineering (claude-api-helper, mcp-builder, webapp-testing), and content (algorithmic-art, internal-comms, slack-gifs). Why it matters: every skill is a 30-line YAML+Markdown file plus optional Python -- making it the lowest-barrier agent primitive yet. Adopted by Microsoft, OpenAI, Atlassian, Figma, Canva, Stripe, Notion, and Zapier within 5 months",
+        "stats": []
+      },
+      "stats": [],
+      "sections": [
+        {
+          "title": "1 · Anatomy of an Agent Skill",
+          "paragraphs": [
+            "A skill is a folder. At its root sits a SKILL.md file with YAML frontmatter (name, description, allowed-tools, model preferences) and Markdown body containing step-by-step instructions, do/don't examples, and references to scripts. Optional sub-folders hold executable scripts (Python, Bash, Node), templates, and reference documents. The agent loads the skill only when its description matches the user's intent -- preserving context budget. This is the same lazy-loading pattern that made MCP scalable in 2025."
+          ],
+          "table": {
+            "headers": [
+              "File",
+              "Purpose",
+              "Required"
+            ],
+            "rows": [
+              [
+                "SKILL.md",
+                "YAML frontmatter (name/desc/tools) + Markdown instructions for the agent",
+                "Yes"
+              ],
+              [
+                "scripts/",
+                "Helper Python/Bash invoked by the agent during execution",
+                "Optional"
+              ],
+              [
+                "templates/",
+                "Boilerplate documents/code the skill fills in",
+                "Optional"
+              ],
+              [
+                "examples/",
+                "Few-shot inputfioutput pairs improving trigger accuracy",
+                "Optional"
+              ],
+              [
+                "README.md",
+                "Human-facing install/use instructions; ignored by the agent",
+                "Optional"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "2 · The Four Distribution Channels",
+          "paragraphs": [
+            "Skills now compete for placement on four parallel marketplaces -- each with different economics, governance, and audience. Building once and publishing to all four is the 2026 default playbook. Varun's Daily AI Brief Day 60 · 22 May 2026 · Issue #60"
+          ],
+          "table": {
+            "headers": [
+              "File",
+              "Purpose",
+              "Required"
+            ],
+            "rows": [
+              [
+                "SKILL.md",
+                "YAML frontmatter (name/desc/tools) + Markdown instructions for the agent",
+                "Yes"
+              ],
+              [
+                "scripts/",
+                "Helper Python/Bash invoked by the agent during execution",
+                "Optional"
+              ],
+              [
+                "templates/",
+                "Boilerplate documents/code the skill fills in",
+                "Optional"
+              ],
+              [
+                "examples/",
+                "Few-shot inputfioutput pairs improving trigger accuracy",
+                "Optional"
+              ],
+              [
+                "README.md",
+                "Human-facing install/use instructions; ignored by the agent",
+                "Optional"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3 · Reference Build -- One Skill, Four Channels",
+          "paragraphs": [
+            "The fastest path to revenue in 2026 is to pick one narrow workflow, write it once as a SKILL.md, then mirror it as an MCP server and register it on A2A -- same artefact, four distribution surfaces. Example: contract-redline, a 4-file skill that takes a Word doc and returns a redlined version using a firm's house"
+          ],
+          "table": {
+            "headers": [
+              "Step",
+              "Action",
+              "Tool / Surface"
+            ],
+            "rows": [
+              [
+                "1. Author",
+                "Write SKILL.md (50 lines): name='contract-redline', allowed-tools=docx+pdf, body=10-step instructions with house-style examples",
+                "VS Code + Claude Code"
+              ],
+              [
+                "2. Test locally",
+                "Drop folder into ~/.claude/skills/, invoke via prompt, score against 20-pair golden set in Promptfoo",
+                "Claude Code CLI"
+              ],
+              [
+                "3. Wrap as MCP server",
+                "60 lines Python -- expose redline(doc_url) tool; reuse SKILL.md instructions as system prompt",
+                "FastMCP + Zuplo x402 middleware"
+              ],
+              [
+                "4. Register on A2A",
+                "Sign Agent Card with DID, publish to a2a-registry (now 150+ orgs in production)",
+                "Linux Foundation Agentic AI Foundation registry"
+              ],
+              [
+                "5. Publish to 4 channels",
+                "Anthropic Skills repo (PR) + GPT Store (zip) + Fluora MCP marketplace (x402 wallet) + Gemini Spark Skills (developer console)",
+                "One artefact, four channels"
+              ],
+              [
+                "6. Monitor + eval",
+                "OTEL gen_ai spans fi Langfuse/Phoenix; Galileo Signals flags failure modes weekly; promote into golden set",
+                "Eval-driven dev loop (Day 50)"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "4 · Monetisation Patterns",
+          "paragraphs": [
+            "Skills are unbundling SaaS pricing. Four models now have proof-points in production: per-call (Fluora MCP marketplace + x402 USDC on Base, sub-cent transactions, no signup), subscription (Anthropic Cowork plugin marketplaces, $20-99/user/mo), outcome-based (Agentforce Flex Credits $500 / 100K + 20 credits per action, Claude Managed Agents per task closed), and private offers (enterprise direct, 6-figure deals, 12-mo MSAs). Revenue splits favour the creator: 70-85% to the skill author, 15-30% to the platform -- the App Store curve, but with monthly settlement. Governance trap -- every skill is a privilege-escalation vector. A skill ships allowed-tools in its YAML -- that list IS the trust boundary. Run un-audited community skills inside a sandbox (Day 7), scope OAuth tokens to the skill's named tools only (Day 54 KYA), log every skill load to NIST CAISI WORM audit trail (EU AI Act Annex III evidence), and gate skill marketplaces with reputation scoring before auto-install. The 2025 npm/PyPI supply-chain attacks WILL repeat on",
+            "Varun's Daily AI Brief Day 60 · 22 May 2026 · Issue #60"
+          ],
+          "table": {
+            "headers": [
+              "Step",
+              "Action",
+              "Tool / Surface"
+            ],
+            "rows": [
+              [
+                "1. Author",
+                "Write SKILL.md (50 lines): name='contract-redline', allowed-tools=docx+pdf, body=10-step instructions with house-style examples",
+                "VS Code + Claude Code"
+              ],
+              [
+                "2. Test locally",
+                "Drop folder into ~/.claude/skills/, invoke via prompt, score against 20-pair golden set in Promptfoo",
+                "Claude Code CLI"
+              ],
+              [
+                "3. Wrap as MCP server",
+                "60 lines Python -- expose redline(doc_url) tool; reuse SKILL.md instructions as system prompt",
+                "FastMCP + Zuplo x402 middleware"
+              ],
+              [
+                "4. Register on A2A",
+                "Sign Agent Card with DID, publish to a2a-registry (now 150+ orgs in production)",
+                "Linux Foundation Agentic AI Foundation registry"
+              ],
+              [
+                "5. Publish to 4 channels",
+                "Anthropic Skills repo (PR) + GPT Store (zip) + Fluora MCP marketplace (x402 wallet) + Gemini Spark Skills (developer console)",
+                "One artefact, four channels"
+              ],
+              [
+                "6. Monitor + eval",
+                "OTEL gen_ai spans fi Langfuse/Phoenix; Galileo Signals flags failure modes weekly; promote into golden set",
+                "Eval-driven dev loop (Day 50)"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "Market Signal",
+          "paragraphs": [
+            "Skills are the protocol layer for the agent economy that MCP was for tool-use. The Stanford AI Index 2026 shows model performance compressing (frontier gap < 3% across Opus 4.7 / GPT-5.5 / Gemini 3.1 Pro / Qwen3.6+), which means the next $50B+ in agentic value is captured by whoever owns distribution + skills ecosystem + governance evidence. Anthropic chose the npm/open-protocol playbook (own the standard, monetise the runtime), Google chose the OS-surface playbook (Gemini Spark Skills inside 3B+ devices), Microsoft chose the enterprise control-plane playbook (Agent 365 as central skill registry). Indie skill-builders win on all three channels with one SKILL.md folder -- the asymmetry of this moment will not last past 2027 when revenue shares formalise and marketplace gatekeeping begins."
+          ],
+          "table": {
+            "headers": [
+              "Headline",
+              "What shipped",
+              "Why it matters"
+            ],
+            "rows": [
+              [
+                "Google Gemini Spark + 3.5 Flash",
+                "May 19 I/O: Spark agent with Skills system, Gemini 3.5 Flash at ~1/3 frontier cost, Ultra subscribers first",
+                "Brings SKILL.md format to 3B+ Android + Workspace users -- the consumer-scale channel"
+              ],
+              [
+                "Anthropic Claude for Small Business",
+                "May 13: 15 skills + 15 workflows for QuickB ooks/PayPal/HubSpot/Canva/DocuSign, $20-200/mo credits",
+                "First vertical packaging of skills + connectors + AG-UI for non-developer end users"
+              ],
+              [
+                "xAI Grok Build (coding agent)",
+                "May 20: Grok 4.20-powered coding agent, IDE + CLI, native X integration, $30/mo",
+                "5th major coding agent -- skill-based extensibility is now table stakes"
+              ],
+              [
+                "Anthropic talks $30-50B raise @ ~$950B",
+                "May 19-22: ARR hit $44B (80× Q1), PwC firm-wide deployment, Gates Foundation $200M partnership",
+                "Skills + Cowork + Code = the moat priced into the IPO anchor"
+              ],
+              [
+                "OutSystems agentic-AI survey",
+                "May 21: 96% enterprises using agents, 97% exploring system-wide, 94% concerned about sprawl",
+                "Validates need for central skills registry + governance (Microsoft Agent 365 pattern)"
+              ],
+              [
+                "EU AI Act T-72 days enforcement",
+                "Aug 2 2026 locked; 78% enterprises NOT on track per Secure Privacy",
+                "Skills marketplaces become Annex III evidence -- provenance + audit per skill load mandatory"
+              ]
+            ]
+          }
+        }
+      ],
+      "market_signal": "Skills are the protocol layer for the agent economy that MCP was for tool-use. The Stanford AI Index 2026 shows model performance compressing (frontier gap < 3% across Opus 4.7 / GPT-5.5 / Gemini 3.1 Pro / Qwen3.6+), which means the next $50B+ in agentic value is captured by whoever owns distribution + skills ecosystem + governance evidence. Anthropic chose the npm/open-protocol playbook (own the standard, monetise the runtime), Google chose the OS-surface playbook (Gemini Spark Skills inside 3B+ devices), Microsoft chose the enterprise control-plane playbook (Agent 365 as central skill registry).",
+      "practical_takeaway": [
+        {
+          "title": "1 Pick one narrow workflow you already do weekly Skills win ",
+          "body": "1 Pick one narrow workflow you already do weekly Skills win on specificity. 'Reconcile vendor invoices to bank feed' ships in 50 lines; 'be a better assistant' never ships. Pick the tightest possible scope where you can write a 20-pair golden set in an 2 Write SKILL.md, then mirror to MCP + A2A -- one artefact, four channels Author once in SKILL.md format. Wrap as MCP server (FastMCP, ~60 lines). Register on A2A. Publish to Anthropic Skills repo, GPT Store, Fluora MCP marketplace, and Gemini Spark Skills. Same artefact reaches every agent runtime. Varun's Daily AI Brief Day 60 · 22 May 2026 · Issue #60 3 Price for outcomes, not seats -- per-call x402 on day one Wire Fluora + x402 USDC on Base. Sub-cent transactions, no signup friction, settles in ~200ms. Adds OTEL gen_ai cost telemetry by default and converts skill usage into provable revenue for the"
+        },
+        {
+          "title": "4 Treat skill loading as a privilege escalation event Every ",
+          "body": "4 Treat skill loading as a privilege escalation event Every skill ships allowed-tools -- that list IS the trust boundary. Sandbox community skills, scope OAuth tokens per skill (Day 54 KYA), log every skill load to WORM audit, and gate marketplaces with"
+        },
+        {
+          "title": "5 Ship Annex III evidence BEFORE Aug 2 -- skills marketplace",
+          "body": "5 Ship Annex III evidence BEFORE Aug 2 -- skills marketplaces are high-risk 78% of enterprises are not on track. Skills that load into regulated workflows need: signed Agent Card, scope manifest, OTEL gen_ai trajectory log, kill-switch hook in apm.yml, and C2PA/SynthID on any generated content. The compliance gap is the buying signal. Tomorrow (Day 61): SKILL.md walkthrough -- build, test, and publish your first cross-vendor skill in 90 minutes."
+        }
+      ]
+    },
+    {
       "date": "2026-05-21",
       "display_date": "MAY 21, 2026",
       "issue": 59,
@@ -8678,6 +8924,6 @@
       ]
     }
   ],
-  "last_updated": "2026-05-21",
-  "total_days": 59
+  "last_updated": "2026-05-22",
+  "total_days": 60
 }
