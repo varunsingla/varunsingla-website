@@ -6,6 +6,200 @@
   },
   "learnings": [
     {
+      "date": "2026-05-23",
+      "display_date": "MAY 23, 2026",
+      "issue": 61,
+      "title": "SKILL.md Walkthrough -- Build, Test &",
+      "focus_intro": "Day 60 made the case that SKILL.md is the new app-store unit. Today is the hands-on follow-up:",
+      "viral_app": {
+        "name": "Governance, IP, Litigation) + 20+ MCP connectors (Harvey, Solve Intelligence, Definely, DocuSign, Ironclad, Thomson",
+        "description": "Reuters, Midpage, Trellis, Legal Data Hunter, Descrybe, Free Law Project) -- the largest single skill-plus-connector drop in 2026. Legal is now the most engaged Cowork knowledge-work function, validating the 'one skill, four channels' playbook at vertical scale. Free Law Project + Justice Technology Association partnerships extend reach to access-to-justice users. Lesson for builders: vertical plugin bundles ship faster than horizontal frameworks and capture 6-figure enterprise deals. practice-area plugins shipped MCP connectors live embedded AI agents inside the suite 1 · The 6-Step Build (90 minutes, end-to-end) The contract-redline skill is the canonical example because it touches three p",
+        "stats": []
+      },
+      "stats": [],
+      "sections": [
+        {
+          "title": "1 · The 6-Step Build (90 minutes, end-to-end)",
+          "paragraphs": [
+            "The contract-redline skill is the canonical example because it touches three primitives most enterprise agents need: document parsing, instruction-following, and structured output. Pick a workflow you do 3+ times a week -- that's the right scope for a v1 skill. Write the SKILL.md first, instruments and monetisation come last. Total clock time on a fresh laptop: 75-90 minutes."
+          ],
+          "table": {
+            "headers": [
+              "Step",
+              "Action",
+              "Tool / Output"
+            ],
+            "rows": [
+              [
+                "1. Scope (5 min)",
+                "Pick one narrow workflow you repeat weekly. Write a 1-sentence trigger ('When user uploads a .docx contract and asks for redline...')",
+                "Notepad"
+              ],
+              [
+                "2. Author SKILL.md (20 min)",
+                "YAML frontmatter: name, description (must read like a trigger), allowed-tools (the trust boundary), model preferences. Markdown body: do/dont examples + numbered steps + script refs.",
+                "VS Code"
+              ],
+              [
+                "3. Test locally (15 min)",
+                "Drop folder into ~/.claude/skills/. Invoke via Claude Code. Build 20-pair golden set in Promptfoo. Block PR on >2% regression.",
+                "Claude Code CLI + Promptfoo"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "2 · SKILL.md Anatomy -- The Frontmatter Is the Trust Boundary",
+          "paragraphs": [
+            "A skill is just a folder with SKILL.md at its root. YAML frontmatter declares name, description, allowed-tools, and model preferences -- the agent loads the skill only when description matches user intent, preserving context budget (same lazy-load pattern that made MCP scale in 2025). Critically: the allowed-tools list IS the trust boundary. Any tool not on that list cannot be called when this skill is active. This is the single most important governance lever -- get it wrong and you've shipped a privilege-escalation vector to every marketplace simultaneously."
+          ],
+          "table": {
+            "headers": [
+              "Step",
+              "Action",
+              "Tool / Output"
+            ],
+            "rows": [
+              [
+                "4. Wrap as MCP server (15 min)",
+                "FastMCP 3.0 - one @tool decorator + reuse SKILL.md body as system prompt. ~60 lines of Python. Add Zuplo or eco.com x402 middleware for monetisation.",
+                "FastMCP + Zuplo"
+              ],
+              [
+                "5. Register on A2A (10 min)",
+                "Sign Agent Card with DID, publish to a2a-registry (150+ orgs already in production, governed by Linux Foundation Agentic AI Foundation).",
+                "Linux Foundation registry"
+              ],
+              [
+                "6. Publish to all 4 channels (10 min)",
+                "PR to anthropics/skills + zip to GPT Store + Fluora MCP marketplace listing + Gemini Spark Skills developer console.",
+                "One artefact, four channels"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3 · Testing & Eval Loop -- Promptfoo + OTEL gen_ai From Day",
+          "paragraphs": [
+            "The Day 50 closed eval loop applies fully to skills. Build a 20-pair golden set from real prod usage (not synthetic) before publishing. Wire Promptfoo into CI as a regression gate -- any >2% drop blocks merge. Add OTEL gen_ai spans on every tool call so Phoenix / Langfuse / Galileo Signals can flag failure modes weekly and auto-promote them into the golden set. This is what turns a skill from a one-off demo into a self-healing product. Datasets become living artefacts."
+          ],
+          "table": {
+            "headers": [
+              "Step",
+              "Action",
+              "Tool / Output"
+            ],
+            "rows": [
+              [
+                "4. Wrap as MCP server (15 min)",
+                "FastMCP 3.0 - one @tool decorator + reuse SKILL.md body as system prompt. ~60 lines of Python. Add Zuplo or eco.com x402 middleware for monetisation.",
+                "FastMCP + Zuplo"
+              ],
+              [
+                "5. Register on A2A (10 min)",
+                "Sign Agent Card with DID, publish to a2a-registry (150+ orgs already in production, governed by Linux Foundation Agentic AI Foundation).",
+                "Linux Foundation registry"
+              ],
+              [
+                "6. Publish to all 4 channels (10 min)",
+                "PR to anthropics/skills + zip to GPT Store + Fluora MCP marketplace listing + Gemini Spark Skills developer console.",
+                "One artefact, four channels"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "4 · Distribute & Monetise -- Four Channels, One Artefact",
+          "paragraphs": [
+            "Each marketplace has different economics. Anthropic Skills (free open standard, drives Cowork stickiness, Claude.ai Directory unified at claude.ai/directory March 31). GPT Store (70/30 split, 4M+ Codex weekly users + 900M ChatGPT WAU). Fluora MCP marketplace + x402 USDC on Base (sub-cent per-call, no signup, $600M+ in 500K+ active wallets, Coinbase reports 165M transactions across 69K active agents as of April). Gemini Spark Skills (announced at Google I/O May 19, Gemini app reach 3B+ Android + Workspace users, Spark Skills inside the Gemini app with Tasks + Schedules orchestration, Android Halo"
+          ],
+          "table": {
+            "headers": [
+              "Layer",
+              "Tool",
+              "Trigger"
+            ],
+            "rows": [
+              [
+                "Auto-promotion",
+                "LangSmith Insights Agent or Galileo Signals",
+                "Cluster failures weekly, draft new golden-set entries"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "5 · Governance -- Skills Are Privilege-Escalation Vectors",
+          "paragraphs": [
+            "Every skill ships an allowed-tools list -- that list IS the trust boundary. Treat community skills like npm packages from unknown authors: sandbox them, scope OAuth per skill, and log every skill load to a WORM audit store. The npm / PyPI supply-chain attack pattern WILL hit Skills marketplaces in H2 2026 -- likely a typo-squatted contract-redline-pro skill that exfiltrates docs. Reputation gating (downloads + maintainer DID + Linux Foundation signed Agent Card) is the only durable defence. EU AI Act enforcement at T-71 days (Aug 2) means every skill load on a high-risk system needs Annex III audit"
+          ],
+          "table": {
+            "headers": [
+              "Layer",
+              "Tool",
+              "Trigger"
+            ],
+            "rows": [
+              [
+                "Auto-promotion",
+                "LangSmith Insights Agent or Galileo Signals",
+                "Cluster failures weekly, draft new golden-set entries"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "6 · Breaking This Week",
+          "paragraphs": [
+            "Anthropic Legal Plugin Suite (May 12) -- 12 practice-area plugins + 20+ connectors, largest single vertical skill drop in 2026. Legal already the most engaged Cowork knowledge-work function. Google Gemini Spark + 3.5 Flash (May 19 I/O) -- Spark Skills inside the Gemini app, Android Halo UI surface coming later this year, Spark runs on dedicated Google Cloud VMs (24/7 background). Google Antigravity 2.0 -- community benchmarks claim 12× speed vs Claude Code on some workflows but Annex III compliance docs missing. xAI Grok Build (May 20) -- coding agent at $30/mo. Walmart Sparky AI assistant 40% smarter, weekly users 2×. Netflix hands ad-buying to AI agents. Klarna shopping engine inside ChatGPT (100M products wired). ChatGPT now connects to financial accounts via Plaid for Pro users. Anthropic in talks for $30-50B raise at ~$950B valuation (ARR $44B = 80× Q1 2025). EU AI Act T-71 days, 78% enterprises NOT on track per Secure Privacy survey."
+          ]
+        },
+        {
+          "title": "MARKET SIGNAL",
+          "paragraphs": [
+            "Model performance is compressing (<3% across Opus 4.7 / GPT-5.5 / Gemini 3.1 Pro / Qwen3.6+). The next $50B+ in agentic value is captured by distribution and skills ecosystem and governance evidence -- not by another point on a benchmark. Anthropic plays the open-protocol / npm card. Google plays the OS-surface card via Gemini Spark + Android Halo. Microsoft plays the enterprise control-plane card via Agent 365. The asymmetry window closes in 2027 when revenue shares formalise. Build skills now while the marketplaces are still hungry for inventory."
+          ]
+        },
+        {
+          "title": "VIRAL APP -- Anthropic Legal Plugin Suite (May 12, 2026)",
+          "paragraphs": [
+            "12 practice-area plugins (Commercial, Corporate/M&A diligence, Employment, Privacy, Product, Regulatory, AI Governance, IP, Litigation) + 20+ MCP connectors (Harvey, Solve Intelligence, Definely, DocuSign, Ironclad, Thomson Reuters, Midpage, Trellis, Legal Data Hunter, Descrybe, Free Law Project) -- the largest single skill-plus-connector drop in"
+          ],
+          "table": {
+            "headers": [
+              "Step",
+              "Action",
+              "Tool / Output"
+            ],
+            "rows": [
+              [
+                "1. Scope (5 min)",
+                "Pick one narrow workflow you repeat weekly. Write a 1-sentence trigger ('When user uploads a .docx contract and asks for redline...')",
+                "Notepad"
+              ],
+              [
+                "2. Author SKILL.md (20 min)",
+                "YAML frontmatter: name, description (must read like a trigger), allowed-tools (the trust boundary), model preferences. Markdown body: do/dont examples + numbered steps + script refs.",
+                "VS Code"
+              ],
+              [
+                "3. Test locally (15 min)",
+                "Drop folder into ~/.claude/skills/. Invoke via Claude Code. Build 20-pair golden set in Promptfoo. Block PR on >2% regression.",
+                "Claude Code CLI + Promptfoo"
+              ]
+            ]
+          }
+        }
+      ],
+      "market_signal": "Model performance is compressing (<3% across Opus 4.7 / GPT-5.5 / Gemini 3.1 Pro / Qwen3.6+). The next $50B+ in agentic value is captured by distribution and skills ecosystem and governance evidence -- not by another point on a benchmark. Anthropic plays the open-protocol / npm card.",
+      "practical_takeaway": [
+        {
+          "title": "<b>Ship one skill this weekend.</b> Pick a workflow you do 3",
+          "body": "<b>Ship one skill this weekend.</b> Pick a workflow you do 3+ times a week. SKILL.md it. Test on a 20-pair golden set in Promptfoo. Total time: 90 minutes. Repeat next weekend with workflow #2. <b>Frontmatter discipline = governance.</b> Treat the allowed-tools list as the trust boundary. Scope every OAuth token to exactly that list. Reject any tool call outside it at host level -- not at app level. <b>Wrap as MCP + register on A2A from day one.</b> Same SKILL.md body becomes the MCP server's system prompt (~60 lines FastMCP). DID-signed Agent Card on Linux Foundation a2a-registry is your supply-chain defence. <b>Publish to all four channels in parallel.</b> Anthropic Skills (free) + GPT Store (70/30) + Fluora (per-call x402) + Gemini Spark Skills (developer console). One artefact, four revenue surfaces. <b>Wire OTEL gen_ai spans before publishing.</b> Phoenix or Langfuse on day one. Galileo Signals or LangSmith Insights Agent finds new failure modes weekly and auto-promotes them into the golden set -- closed self-healing loop from <b>Tomorrow:</b> Day 62 (2026-05-24): The Agent Marketplace Wars -- economics, take rates, and discovery algorithms across Anthropic Skills / GPT Store / Fluora / Gemini Spark Skills / Microsoft Agent Store. Which channel actually pays out, which captures the long tail, and where to bet your second skill. varunsingla.com · Daily learning brief · Built with Claude in Cowork mode"
+        }
+      ]
+    },
+    {
       "date": "2026-05-22",
       "display_date": "MAY 22, 2026",
       "issue": 60,
@@ -8922,281 +9116,6 @@
         "2026 (Gartner) 40% (vs",
         "5% in 2025) Orgs planning to increase AI budgets 86% Practical Takeaway The most valuable me"
       ]
-    },
-    {
-      "date": "2026-05-23",
-      "display_date": "MAY 23, 2026",
-      "issue": 61,
-      "title": "SKILL.md Walkthrough — Build, Test & Publish Your First Cross-Vendor Skill",
-      "focus_intro": "Day 60 made the case that SKILL.md is the new app-store unit. Today is the hands-on follow-up: pick a narrow workflow, ship one folder, distribute to four marketplaces, monetise per call — all in under 90 minutes. This is the playbook the Anthropic 17-skill repo, the Microsoft / OpenAI / Atlassian / Figma / Canva / Stripe / Notion / Zapier adoptions, and Google's Gemini Spark Skills (launched May 19 at I/O) all converge on.",
-      "stats": [
-        {
-          "stat": "5 mo",
-          "label": "from spec to 16+ tools speaking SKILL.md"
-        },
-        {
-          "stat": "17",
-          "label": "official Anthropic skills in the open repo"
-        },
-        {
-          "stat": "70-85%",
-          "label": "creator revenue share across marketplaces"
-        },
-        {
-          "stat": "T-71d",
-          "label": "to EU AI Act enforcement (Aug 2)"
-        }
-      ],
-      "viral_app": {
-        "name": "Anthropic Legal Plugin Suite (May 12, 2026)",
-        "description": "12 practice-area plugins (Commercial, Corporate/M&A diligence, Employment, Privacy, Product, Regulatory, AI Governance, IP, Litigation) + 20+ MCP connectors (Harvey, Solve Intelligence, Definely, DocuSign, Ironclad, Thomson Reuters, Midpage, Trellis, Legal Data Hunter, Descrybe, Free Law Project) — the largest single skill-plus-connector drop in 2026. Legal is now the most engaged Cowork knowledge-work function, validating the 'one skill, four channels' playbook at vertical scale. Free Law Project + Justice Technology Association partnerships extend reach to access-to-justice users. Lesson for builders: vertical plugin bundles ship faster than horizontal frameworks and capture 6-figure enterprise deals.",
-        "stats": [
-          {
-            "stat": "12",
-            "label": "practice-area plugins shipped"
-          },
-          {
-            "stat": "20+",
-            "label": "MCP connectors live"
-          },
-          {
-            "stat": "80",
-            "label": "embedded AI agents inside the suite"
-          }
-        ]
-      },
-      "sections": [
-        {
-          "title": "1 · The 6-Step Build (90 minutes, end-to-end)",
-          "paragraphs": [
-            "The contract-redline skill is the canonical example because it touches three primitives most enterprise agents need: document parsing, instruction-following, and structured output. Pick a workflow you do 3+ times a week — that's the right scope for a v1 skill. Write the SKILL.md first, instruments and monetisation come last. Total clock time on a fresh laptop: 75-90 minutes."
-          ],
-          "table": {
-            "headers": [
-              "Step",
-              "Action",
-              "Tool / Output"
-            ],
-            "rows": [
-              [
-                "1. Scope (5 min)",
-                "Pick one narrow workflow you repeat weekly. Write a 1-sentence trigger ('When user uploads a .docx contract and asks for redline...')",
-                "Notepad"
-              ],
-              [
-                "2. Author SKILL.md (20 min)",
-                "YAML frontmatter: name, description (must read like a trigger), allowed-tools (the trust boundary), model preferences. Markdown body: do/dont examples + numbered steps + script refs.",
-                "VS Code"
-              ],
-              [
-                "3. Test locally (15 min)",
-                "Drop folder into ~/.claude/skills/. Invoke via Claude Code. Build 20-pair golden set in Promptfoo. Block PR on >2% regression.",
-                "Claude Code CLI + Promptfoo"
-              ],
-              [
-                "4. Wrap as MCP server (15 min)",
-                "FastMCP 3.0 - one @tool decorator + reuse SKILL.md body as system prompt. ~60 lines of Python. Add Zuplo or eco.com x402 middleware for monetisation.",
-                "FastMCP + Zuplo"
-              ],
-              [
-                "5. Register on A2A (10 min)",
-                "Sign Agent Card with DID, publish to a2a-registry (150+ orgs already in production, governed by Linux Foundation Agentic AI Foundation).",
-                "Linux Foundation registry"
-              ],
-              [
-                "6. Publish to all 4 channels (10 min)",
-                "PR to anthropics/skills + zip to GPT Store + Fluora MCP marketplace listing + Gemini Spark Skills developer console.",
-                "One artefact, four channels"
-              ]
-            ]
-          }
-        },
-        {
-          "title": "2 · SKILL.md Anatomy — The Frontmatter Is the Trust Boundary",
-          "paragraphs": [
-            "A skill is just a folder with SKILL.md at its root. YAML frontmatter declares name, description, allowed-tools, and model preferences — the agent loads the skill only when description matches user intent, preserving context budget (same lazy-load pattern that made MCP scale in 2025). Critically: the allowed-tools list IS the trust boundary. Any tool not on that list cannot be called when this skill is active. This is the single most important governance lever — get it wrong and you've shipped a privilege-escalation vector to every marketplace simultaneously."
-          ],
-          "table": {
-            "headers": [
-              "YAML Field",
-              "Purpose",
-              "Governance Note"
-            ],
-            "rows": [
-              [
-                "name",
-                "Globally unique skill identifier (kebab-case)",
-                "Used in marketplace URLs and audit logs"
-              ],
-              [
-                "description",
-                "1-2 sentences describing when to use the skill. Used by Claude for lazy-load matching.",
-                "Most important field — bad descriptions = skill never triggers"
-              ],
-              [
-                "allowed-tools",
-                "Explicit list of MCP tools the skill can call (e.g. docx, pdf, web_search)",
-                "THE TRUST BOUNDARY. Scope OAuth tokens to this list only."
-              ],
-              [
-                "model",
-                "Preferred Claude model (sonnet/opus/haiku) for cost optimisation",
-                "Use haiku for high-volume cheap tasks, opus for ambiguous reasoning"
-              ],
-              [
-                "max_tokens",
-                "Optional output cap",
-                "Hard budget guard against runaway loops"
-              ]
-            ]
-          }
-        },
-        {
-          "title": "3 · Testing & Eval Loop — Promptfoo + OTEL gen_ai From Day One",
-          "paragraphs": [
-            "The Day 50 closed eval loop applies fully to skills. Build a 20-pair golden set from real prod usage (not synthetic) before publishing. Wire Promptfoo into CI as a regression gate — any >2% drop blocks merge. Add OTEL gen_ai spans on every tool call so Phoenix / Langfuse / Galileo Signals can flag failure modes weekly and auto-promote them into the golden set. This is what turns a skill from a one-off demo into a self-healing product. Datasets become living artefacts."
-          ],
-          "table": {
-            "headers": [
-              "Layer",
-              "Tool",
-              "Trigger"
-            ],
-            "rows": [
-              [
-                "Pre-commit",
-                "Promptfoo CLI (local)",
-                "Run on save - 20-pair golden set"
-              ],
-              [
-                "CI gate",
-                "Promptfoo + GitHub Actions",
-                "Block PR if regression >2% on trajectory or output score"
-              ],
-              [
-                "Shadow eval",
-                "Phoenix Agent Evals MCP (inside Claude Code/Cursor)",
-                "Score live trajectories - agent itself can pull failing trace"
-              ],
-              [
-                "Online eval",
-                "Galileo Signals or Braintrust (sampled prod traffic)",
-                "Cheap LLM-as-Judge on every Nth invocation"
-              ],
-              [
-                "Auto-promotion",
-                "LangSmith Insights Agent or Galileo Signals",
-                "Cluster failures weekly, draft new golden-set entries"
-              ]
-            ]
-          }
-        },
-        {
-          "title": "4 · Distribute & Monetise — Four Channels, One Artefact",
-          "paragraphs": [
-            "Each marketplace has different economics. Anthropic Skills (free open standard, drives Cowork stickiness, Claude.ai Directory unified at claude.ai/directory March 31). GPT Store (70/30 split, 4M+ Codex weekly users + 900M ChatGPT WAU). Fluora MCP marketplace + x402 USDC on Base (sub-cent per-call, no signup, $600M+ in 500K+ active wallets, Coinbase reports 165M transactions across 69K active agents as of April). Gemini Spark Skills (announced at Google I/O May 19, Gemini app reach 3B+ Android + Workspace users, Spark Skills inside the Gemini app with Tasks + Schedules orchestration, Android Halo UI surface coming later this year)."
-          ],
-          "table": {
-            "headers": [
-              "Channel",
-              "Reach / Audience",
-              "Monetisation"
-            ],
-            "rows": [
-              [
-                "Anthropic Skills repo + Cowork Directory",
-                "Claude Code + Cowork (Claude.ai Directory unified March 31, 170K+ monthly visitors)",
-                "Free / open standard - drives plugin attach + enterprise contracts"
-              ],
-              [
-                "GPT Store + Codex CLI",
-                "ChatGPT 900M WAU + 4M Codex devs weekly",
-                "70/30 revenue split, subscription bundles"
-              ],
-              [
-                "Fluora / mcp.so / Smithery (MCP Hubs)",
-                "Cross-vendor agents - any MCP host",
-                "Per-call x402 USDC on Base, sub-cent, no signup (Linux Foundation governance)"
-              ],
-              [
-                "Gemini Spark Skills + Android Halo",
-                "3B+ Android + Workspace users (launched I/O May 19)",
-                "Inside Gemini app - revenue model coming Q3 2026"
-              ]
-            ]
-          }
-        },
-        {
-          "title": "5 · Governance — Skills Are Privilege-Escalation Vectors",
-          "paragraphs": [
-            "Every skill ships an allowed-tools list — that list IS the trust boundary. Treat community skills like npm packages from unknown authors: sandbox them, scope OAuth per skill, and log every skill load to a WORM audit store. The npm / PyPI supply-chain attack pattern WILL hit Skills marketplaces in H2 2026 — likely a typo-squatted contract-redline-pro skill that exfiltrates docs. Reputation gating (downloads + maintainer DID + Linux Foundation signed Agent Card) is the only durable defence. EU AI Act enforcement at T-71 days (Aug 2) means every skill load on a high-risk system needs Annex III audit evidence."
-          ],
-          "table": {
-            "headers": [
-              "Risk",
-              "Mitigation",
-              "Day Reference"
-            ],
-            "rows": [
-              [
-                "Malicious community skill",
-                "Sandbox (Firecracker/Kata), scope OAuth per skill, reputation gating",
-                "Day 7 (sandboxing) + Day 30 (red teaming)"
-              ],
-              [
-                "Tool-call scope creep",
-                "allowed-tools enforced at host level - reject calls outside list",
-                "Day 39 (Microsoft Agent 365 + apm.yml)"
-              ],
-              [
-                "Memory poisoning across skills",
-                "Namespace isolation - each skill writes to its own memory partition",
-                "Day 44 (Memory at Scale 3.0)"
-              ],
-              [
-                "Audit gap on skill load",
-                "WORM log every skill load with timestamp + SVID + user context",
-                "Day 54 (Agent Identity 3.0)"
-              ],
-              [
-                "Supply-chain typo-squat",
-                "DID-signed Agent Cards + Linux Foundation registry as source of truth",
-                "Day 58 (Hyperscaler Counter-Move)"
-              ]
-            ]
-          }
-        },
-        {
-          "title": "6 · Breaking This Week",
-          "paragraphs": [
-            "Anthropic Legal Plugin Suite (May 12) — 12 practice-area plugins + 20+ connectors, largest single vertical skill drop in 2026. Legal already the most engaged Cowork knowledge-work function. Google Gemini Spark + 3.5 Flash (May 19 I/O) — Spark Skills inside the Gemini app, Android Halo UI surface coming later this year, Spark runs on dedicated Google Cloud VMs (24/7 background). Google Antigravity 2.0 — community benchmarks claim 12× speed vs Claude Code on some workflows but Annex III compliance docs missing. xAI Grok Build (May 20) — coding agent at $30/mo. Walmart Sparky AI assistant 40% smarter, weekly users 2×. Netflix hands ad-buying to AI agents. Klarna shopping engine inside ChatGPT (100M products wired). ChatGPT now connects to financial accounts via Plaid for Pro users. Anthropic in talks for $30-50B raise at ~$950B valuation (ARR $44B = 80× Q1 2025). EU AI Act T-71 days, 78% enterprises NOT on track per Secure Privacy survey."
-          ]
-        }
-      ],
-      "market_signal": "Model performance is compressing (<3% across Opus 4.7 / GPT-5.5 / Gemini 3.1 Pro / Qwen3.6+). The next $50B+ in agentic value is captured by distribution and skills ecosystem and governance evidence — not by another point on a benchmark. Anthropic plays the open-protocol / npm card. Google plays the OS-surface card via Gemini Spark + Android Halo. Microsoft plays the enterprise control-plane card via Agent 365. The asymmetry window closes in 2027 when revenue shares formalise. Build skills now while the marketplaces are still hungry for inventory.",
-      "practical_takeaway": [
-        {
-          "title": "Ship one skill this weekend",
-          "body": "Pick a workflow you do 3+ times a week. SKILL.md it. Test on a 20-pair golden set in Promptfoo. Total time: 90 minutes. Repeat next weekend with workflow #2."
-        },
-        {
-          "title": "Frontmatter discipline = governance",
-          "body": "Treat the allowed-tools list as the trust boundary. Scope every OAuth token to exactly that list. Reject any tool call outside it at host level — not at app level."
-        },
-        {
-          "title": "Wrap as MCP + register on A2A from day one",
-          "body": "Same SKILL.md body becomes the MCP server's system prompt (~60 lines FastMCP). DID-signed Agent Card on Linux Foundation a2a-registry is your supply-chain defence."
-        },
-        {
-          "title": "Publish to all four channels in parallel",
-          "body": "Anthropic Skills (free) + GPT Store (70/30) + Fluora (per-call x402) + Gemini Spark Skills (developer console). One artefact, four revenue surfaces."
-        },
-        {
-          "title": "Wire OTEL gen_ai spans before publishing",
-          "body": "Phoenix or Langfuse on day one. Galileo Signals or LangSmith Insights Agent finds new failure modes weekly and auto-promotes them into the golden set — closed self-healing loop from Day 50."
-        }
-      ],
-      "tomorrow_preview": "Day 62 (2026-05-24): The Agent Marketplace Wars — economics, take rates, and discovery algorithms across Anthropic Skills / GPT Store / Fluora / Gemini Spark Skills / Microsoft Agent Store. Which channel actually pays out, which captures the long tail, and where to bet your second skill."
     }
   ],
   "last_updated": "2026-05-23",
