@@ -6,6 +6,210 @@
   },
   "learnings": [
     {
+      "date": "2026-05-24",
+      "display_date": "MAY 24, 2026",
+      "issue": 62,
+      "title": "Head-to-head economics, take rates, and discovery across the five major channels where agent",
+      "focus_intro": "Head-to-head economics, take rates, and discovery across the five major channels where agent",
+      "stats": [],
+      "sections": [
+        {
+          "title": "1 · The Five Channels, Side-by-Side",
+          "paragraphs": [
+            "Each marketplace makes a different bet about who pays, how discovery works, and where the trust boundary sits. The same skill can be published into all five -- but the economics, audience, and"
+          ],
+          "table": {
+            "headers": [
+              "Channel",
+              "Economics",
+              "Take rate",
+              "Discovery"
+            ],
+            "rows": [
+              [
+                "Anthropic Skills + Cowork Directory",
+                "Free distribution today. Enterprise rev-share H2 2026. Conversion to Claude usage = real revenue.",
+                "0% today",
+                "Curated repo + claude.ai/directory (170K+ monthly visitors)"
+              ],
+              [
+                "GPT Store + Codex CLI",
+                "Per-conversation revenue share. 900M ChatGPT WAU + 4M Codex devs. Soft ceiling $100-500/mo for most creators.",
+                "~30% (OpenAI)",
+                "Algorithmic feed, top-charts bias, >25 chats/week to qualify"
+              ],
+              [
+                "Fluora / mcp.so / Smithery (MCP Hubs)",
+                "Per-call x402 USDC on Base. Sub-cent micropayments. 165M txs across 69K active agents (April 2026).",
+                "~2.5% (volume discount to 1.5%)",
+                "Leaderboards by call volume + agent revenue earned"
+              ],
+              [
+                "Gemini Spark Skills + Android Halo",
+                "Free skills today, Play Store-style monetisation expected Q3 2026. 3B+ Android + Workspace reach.",
+                "TBD (Play Store 15-30% likely)",
+                "Inside Gemini app + Android Halo surface, taught by user"
+              ],
+              [
+                "Microsoft Agent Store (Agent 365)",
+                "Enterprise control-plane play. $15/user standalone or $99 in M365 E7 bundle (GA May 1 2026).",
+                "Bundled licensing",
+                "Microsoft Admin Center + private org marketplaces"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "2 · The Real Take-Rate Math",
+          "paragraphs": [
+            "Take rate is the headline number, but the right comparison is net revenue per 1,000 invocations. Here is the same contract-redline skill running across all four monetised channels at 10,000 invocations/month: Pattern: per-call x402 marketplaces dominate creator economics at scale, but the GPT Store wins on absolute distribution. Direct enterprise contracts via Cowork plugins are still the highest dollar capture per creator, mirroring the App Store fi SaaS economics curve."
+          ],
+          "table": {
+            "headers": [
+              "Channel",
+              "Economics",
+              "Take rate",
+              "Discovery"
+            ],
+            "rows": [
+              [
+                "Anthropic Skills + Cowork Directory",
+                "Free distribution today. Enterprise rev-share H2 2026. Conversion to Claude usage = real revenue.",
+                "0% today",
+                "Curated repo + claude.ai/directory (170K+ monthly visitors)"
+              ],
+              [
+                "GPT Store + Codex CLI",
+                "Per-conversation revenue share. 900M ChatGPT WAU + 4M Codex devs. Soft ceiling $100-500/mo for most creators.",
+                "~30% (OpenAI)",
+                "Algorithmic feed, top-charts bias, >25 chats/week to qualify"
+              ],
+              [
+                "Fluora / mcp.so / Smithery (MCP Hubs)",
+                "Per-call x402 USDC on Base. Sub-cent micropayments. 165M txs across 69K active agents (April 2026).",
+                "~2.5% (volume discount to 1.5%)",
+                "Leaderboards by call volume + agent revenue earned"
+              ],
+              [
+                "Gemini Spark Skills + Android Halo",
+                "Free skills today, Play Store-style monetisation expected Q3 2026. 3B+ Android + Workspace reach.",
+                "TBD (Play Store 15-30% likely)",
+                "Inside Gemini app + Android Halo surface, taught by user"
+              ],
+              [
+                "Microsoft Agent Store (Agent 365)",
+                "Enterprise control-plane play. $15/user standalone or $99 in M365 E7 bundle (GA May 1 2026).",
+                "Bundled licensing",
+                "Microsoft Admin Center + private org marketplaces"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3 · How Discovery Actually Ranks Skills",
+          "paragraphs": [
+            "Every channel claims to rank by 'quality'. In practice each leans on a different signal -- and the signal"
+          ],
+          "table": {
+            "headers": [
+              "Channel",
+              "Gross / 10K invocations",
+              "Take rate",
+              "Net to creator"
+            ],
+            "rows": [
+              [
+                "GPT Store (10K conversations × $0.03)",
+                "$300",
+                "~30%",
+                "$210"
+              ],
+              [
+                "Fluora x402 (10K calls × $0.05 USDC)",
+                "$500",
+                "2.5%",
+                "$487.50"
+              ],
+              [
+                "Agensi / SkillsMP (paid skill, 200 sales × $5)",
+                "$1,000",
+                "20%",
+                "$800"
+              ],
+              [
+                "Direct via Cowork plugin (private enterprise SOW)",
+                "Variable -- typically 6-figure annual contracts",
+                "0% (direct)",
+                "$50K-$300K/yr"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "4 · The Supply-Chain Risk Pattern Nobody is Talking About",
+          "paragraphs": [
+            "Anthropic's own Project Deal experiment (Dec 2025, results published April 2026) ran a Claude-operated classified marketplace inside its SF office. 69 agents closed 186 deals across 500+ listings, $4,000 in real transactions, with humans rating deal fairness statistically identical regardless of which model represented them. Two findings matter for marketplace builders: (1) Model quality decided outcomes -- Opus agents closed 2 more deals on average than Haiku agents, but participants couldn't tell the difference in negotiation feel. (2) Aggressive prompting had zero statistical effect on price or sale likelihood. The implication for skill marketplaces: discovery + trust signal matter more than prompt engineering. Skills that ship with audit trails, scoped OAuth, and reputation scores will outcompete clever prompts. The flip side is the supply-chain attack surface. Every marketplace creates an npm/PyPI-style typo-squat opportunity: imagine a malicious contract-redline-pro uploaded next to the real contract-redline, that silently exfiltrates documents to an attacker-controlled MCP server. Expect the first major incident H2"
+          ],
+          "table": {
+            "headers": [
+              "Event",
+              "What it means"
+            ],
+            "rows": [
+              [
+                "Google I/O 2026 -- Gemini Spark + 3.5 Flash + Android Halo (May 19)",
+                "Spark = 24/7 agent inside Gemini for 900M users, MCP-native, rolling US beta to Ultra subs. Android Halo = OS-level agent layer 'later this year'. Skills marketplace inside Play Store now inevitable."
+              ],
+              [
+                "Qwen3.7-Max preview (May 20 -- Alibaba Cloud Summit)",
+                "35-hour autonomous run, 1,158 tool calls, 10× speedup over Triton reference. 69.7 on Terminal-Bench 2.0 (vs 61.6 for Qwen3.6-Plus). 1M context. No open weights yet -- Alibaba's full-stack agent bet."
+              ],
+              [
+                "Microsoft Marketplace updates (May 21)",
+                "Agent 365 ecosystem expanding weekly with new partners; private org marketplaces enabling internal skill catalogues with admin approval gates -- the enterprise control-plane play maturing."
+              ],
+              [
+                "EU AI Act enforcement T-70 days (Aug 2, 2026)",
+                "78% enterprises still not on track per Secure Privacy survey. Marketplace skills shipping without Annex III audit-trail evidence will be liability vectors not assets."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "5 · Breaking This Week (May 19-24, 2026)",
+          "paragraphs": [
+            "Three signals reinforce the marketplace thesis:",
+            "Announced May 20 at the Alibaba Cloud Summit, Qwen3.7-Max is the first model with a publicly documented 35-hour autonomous agentic run -- chaining 1,158 tool calls without human intervention to optimise a GPU kernel, achieving a 10× geometric mean speedup over Triton's reference implementation. Scores 69.7 on Terminal-Bench 2.0-Terminus (vs 61.6 for Qwen3.6-Plus, beating Claude Opus 4.5). $2.08M total revenue on YC-Bench startup simulation (2× Qwen3.6-Plus). 1M-token context. Ranked #13 on LM Arena, #7 on Math. Critically: no open weights yet -- Alibaba is doubling down on the API-first, full-stack model (model + Bailian platform + Qwen Code CLI), the China-side answer to Anthropic's vertically integrated stack. The 35-hour run is the new bar agent reliability engineers (Day 49) have to design SLOs against."
+          ],
+          "table": {
+            "headers": [
+              "Event",
+              "What it means"
+            ],
+            "rows": [
+              [
+                "Google I/O 2026 -- Gemini Spark + 3.5 Flash + Android Halo (May 19)",
+                "Spark = 24/7 agent inside Gemini for 900M users, MCP-native, rolling US beta to Ultra subs. Android Halo = OS-level agent layer 'later this year'. Skills marketplace inside Play Store now inevitable."
+              ],
+              [
+                "Qwen3.7-Max preview (May 20 -- Alibaba Cloud Summit)",
+                "35-hour autonomous run, 1,158 tool calls, 10× speedup over Triton reference. 69.7 on Terminal-Bench 2.0 (vs 61.6 for Qwen3.6-Plus). 1M context. No open weights yet -- Alibaba's full-stack agent bet."
+              ],
+              [
+                "Microsoft Marketplace updates (May 21)",
+                "Agent 365 ecosystem expanding weekly with new partners; private org marketplaces enabling internal skill catalogues with admin approval gates -- the enterprise control-plane play maturing."
+              ],
+              [
+                "EU AI Act enforcement T-70 days (Aug 2, 2026)",
+                "78% enterprises still not on track per Secure Privacy survey. Marketplace skills shipping without Annex III audit-trail evidence will be liability vectors not assets."
+              ]
+            ]
+          }
+        }
+      ],
+      "practical_takeaway": []
+    },
+    {
       "date": "2026-05-23",
       "display_date": "MAY 23, 2026",
       "issue": 61,
