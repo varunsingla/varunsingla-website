@@ -9320,8 +9320,122 @@
         "2026 (Gartner) 40% (vs",
         "5% in 2025) Orgs planning to increase AI budgets 86% Practical Takeaway The most valuable me"
       ]
+    },
+    {
+      "date": "2026-05-25",
+      "display_date": "May 25, 2026",
+      "issue": 63,
+      "title": "The Agentic AI Valuation Framework",
+      "focus_intro": "Anthropic is in talks to raise $30-50B at a $900-950B valuation against $44B ARR (80x growth in five quarters), OpenAI just filed its S-1 targeting up to $1T at $25B ARR, and Cursor is rumoured at $50B on $2B ARR. Every CFO, investor, and founder is being forced to answer the same question this quarter: how do you actually value an agentic AI company when the model is no longer the moat? Today is a working framework — DCF rebuilt around per-task economics, the 2026 comp sheet, the three new moat layers, and how to value pure-skill / pure-marketplace / pure-orchestration startups born after the agent economy went mainstream.",
+      "stats": [
+        {
+          "stat": "$950B",
+          "label": "Anthropic talks valuation"
+        },
+        {
+          "stat": "$44B",
+          "label": "Anthropic ARR (80x Q1 2025)"
+        },
+        {
+          "stat": "10-50x",
+          "label": "AI startup ARR multiple range"
+        },
+        {
+          "stat": "99.9%",
+          "label": "Reliability that unlocks 20x premium"
+        }
+      ],
+      "viral_app": {
+        "name": "OpenHuman by tinyhumansai",
+        "description": "Climbed to #1 on GitHub Trending May 13-16 by inverting the agent UX playbook. Instead of waiting for a first prompt, it pre-loads a 1B-token Memory Tree from 118+ services via one-click OAuth (Gmail, GitHub, Slack, Calendar, Drive, Stripe, Linear, Jira). A 'subconscious loop' runs every 20 minutes without user input, reading to-dos and recent memory to decide what to act on. The desktop mascot can join Google Meets as a separate participant, transcribing into the Memory Tree and speaking back. All local-first (Rust + Tauri, MIT, SQLite + Obsidian wiki) — no data egress unless explicitly escalated. Valuation read: pure-skill / pure-orchestration hybrid with zero ARR today, but the 1B-token Memory Tree is exactly the data feedback loop investors are paying 15-20x ARR for.",
+        "stats": [
+          {
+            "stat": "5.6K+",
+            "label": "GitHub stars in days"
+          },
+          {
+            "stat": "118+",
+            "label": "OAuth services pre-loaded"
+          },
+          {
+            "stat": "1B",
+            "label": "Token Memory Tree on day one"
+          },
+          {
+            "stat": "0",
+            "label": "Data egress without escalation"
+          }
+        ]
+      },
+      "sections": [
+        {
+          "title": "1 · Why valuation suddenly matters",
+          "paragraphs": [
+            "Anthropic is in talks to raise $30-50B at a pre-money valuation of $900-950B — pushing it past OpenAI's $850B and within sight of the $1T mark OpenAI itself targeted in its May 22 S-1 filing. Anthropic's ARR has compressed from $9B (late 2025) to $44B (May 2026), an 80x lift in five quarters.",
+            "Cowork, Claude Code, and the 10-agent Finance pack have collapsed the per-seat SaaS model into per-task economics — and that breaks every valuation framework built around seats, DAUs, and ARPU. Every CFO, investor, and founder is being asked the same question this quarter: what is an agentic AI company actually worth, and how do you defend the multiple when the underlying model is interchangeable across Opus 4.7, GPT-5.5, Gemini 3.5 Flash, and Qwen3.7-Max compressed under 3% on benchmarks?"
+          ]
+        },
+        {
+          "title": "2 · DCF rebuilt for per-task economics",
+          "paragraphs": [
+            "The classic SaaS DCF leans on seats × ARPU × net retention. Agentic businesses don't sell seats — they sell completed tasks. Rebuild the model around four primitives: Active Agents (AA) = distinct agent identities (SVID/DID) calling your platform per month; Tasks per Agent (TPA) = completed multi-step tasks per agent per month, 5-50x richer than chat turns; Revenue per Task (RPT) = blended price across model-routing tiers (nano $0.05 / mid $0.30 / frontier $2.00); Task Completion Rate (TCR) = % of attempted tasks completed without human escalation, where the 9.9% gap between 'works most of the time' and 'works always' is where 90% of valuation lives.",
+            "Forward revenue then becomes AA × TPA × RPT × TCR. Discount it at 12-15% (frontier model risk + EU AI Act enforcement risk T-69 days + agent-economy regulatory tail). The terminal multiple is no longer 8-10x SaaS FCF; it's anchored to the marketplace position you've earned in the skills ecosystem (Day 60-62) — typically 15-25x for skill-ecosystem leaders, capped at 3-4x if reliability cannot be proven at scale."
+          ]
+        },
+        {
+          "title": "3 · The 2026 comp sheet",
+          "paragraphs": [
+            "ARR multiples have widened — investors have stopped paying 50x just for the AI label. The new ceiling is reserved for companies that own a workflow AND the data feedback loop that makes the agent uniquely reliable. Anthropic trades at ~22x on its $44B ARR / $950B talks. OpenAI sits at ~34-40x on $25B ARR / $850B-$1T. xAI commands ~50x on a SpaceX-internal $250B mark. Cursor at ~25x on $2B ARR / $50B rumoured. Databricks at 27.9x on $4.8B / $134B. Mistral trades at a 96x sovereignty premium on $120M ARR / $11.5B.",
+            "Two patterns are visible. First, frontier-lab valuations have decoupled from current ARR and re-anchored to distribution surface — OpenAI's 900M WAU, Anthropic's enterprise share which jumped 4x year-on-year per the May IDC report. Second, EU-sovereign players (Mistral) trade at extreme premiums on geography alone — a direct consequence of the August 2 EU AI Act enforcement deadline now T-69 days away with 78% of enterprises still not on track per the Secure Privacy survey."
+          ]
+        },
+        {
+          "title": "4 · The new moat: skills + governance, not model",
+          "paragraphs": [
+            "Model performance has compressed to under 3% across Claude Opus 4.7, GPT-5.5, Gemini 3.5 Flash, and Qwen3.7-Max. The model is no longer a moat — it's a commodity component inside model-routing stacks (Day 43). The valuation multiple now lives in three places.",
+            "First, skills ecosystem (+5-10x on base ARR multiple): number of installed SKILL.md packages, A2A registry signed agent cards, MCP server installs. Anthropic's open Skills standard adopted by Microsoft / OpenAI / Atlassian / Figma / Canva / Stripe / Notion / Zapier within 5 months is the textbook case. Second, governance evidence (+3-7x for regulated verticals): pre-built EU AI Act Annex III audit trails, SPIFFE/SVID identity, T1-T4 kill switches, NIST CAISI WORM logs — Microsoft Agent 365 is the reference. Third, distribution lock (+5-10x driven by switching cost): native placement inside an OS surface (Gemini Spark, Apple Intelligence multi-provider) or enterprise control plane (Agent 365, Salesforce Agentforce 3.0)."
+          ]
+        },
+        {
+          "title": "5 · Treating agents as customers with LTV",
+          "paragraphs": [
+            "The biggest break with SaaS valuation is that agents are now customers. Coinbase reports 165M x402 transactions across 69K active agent wallets in April 2026; $600M+ now sits in 500K+ active agent wallets. These agents pay, renew, churn, and refer other agents — and they need their own LTV/CAC model.",
+            "Agent LTV = RPT × tasks/month × expected agent lifetime (the rolling 30-day quality score from Day 44 transactive memory). Agent CAC = marketplace placement fees (Fluora/mcp.so leaderboard cost) + SDK adoption cost. Net retention = tool-call expansion as orchestrator agents discover more of your skills. Churn signal = OTEL gen_ai span drop, cosine<0.7 drift, model rotation by the orchestrator. If your forecast still slices revenue by 'paid seats,' you're under-valuing every multi-agent customer by 5-20x. Re-slice by tasks billed and agent identities served — the same artefact that produces your EU AI Act Annex III audit pack."
+          ]
+        },
+        {
+          "title": "6 · Pure-skill, pure-marketplace, pure-orchestration",
+          "paragraphs": [
+            "Three new startup archetypes need bespoke valuation frames. Pure-skill plays (Hermes Agent skill libraries, legal-redline templates) earn per-call x402 USDC on Base, take home 70-85% of the per-call price after marketplace fees, and trade at 8-15x net revenue. Pure-marketplace plays (Fluora, mcp.so, Smithery) charge a 2.5% transaction fee, volume-discount to 1.5% above $100K/mo, and trade at 20-35x net revenue thanks to the x402 leaderboard premium.",
+            "Pure-orchestration plays (CopilotKit at 1.2M weekly downloads, LangChain at 1B+ cumulative downloads, n8n) charge per-task fees on multi-agent workflows and trade at 12-22x ARR. The asymmetry across these archetypes is that the marketplace position itself compounds — every new skill listed on Fluora increases the leaderboard's gravitational pull on the next skill. That's why the protocol-win plays (Anthropic Skills, MCP, A2A) are valued higher than any single skill startup."
+          ]
+        },
+        {
+          "title": "7 · Public market read-through",
+          "paragraphs": [
+            "Three public tape signals validate the framework. (a) Microsoft's M365 E7 tier — the first new enterprise SKU since E5 in 2015 — added a measurable ARPU lift credited explicitly to Agent 365 in MSFT's Q3 FY26 call. (b) Salesforce traded to a fresh agentic premium after Agentforce 3.0 crossed $500M ARR with 18,500+ customers. (c) ServiceNow's Autonomous Workforce drove gross margin expansion of ~180 bps QoQ as 90%+ of IT tickets moved off human agents.",
+            "Public markets are now paying explicitly for the same three moats — skills ecosystem, governance evidence, and distribution lock — that private agentic comps trade on. Nvidia's Q1 FY27 data center revenue of $75.2B (92% of total, doubled YoY) is the picks-and-shovels confirmation that the agentic capex cycle still has years of runway, not quarters."
+          ]
+        }
+      ],
+      "market_signal": "With model performance compressing under 3% across the frontier, the next $50B+ in agentic value is captured at the distribution layer — skills ecosystem, governance evidence, and OS/enterprise control-plane lock. Anthropic plays the open-protocol card (Skills + MCP + A2A), Google plays the OS surface (Gemini Spark + Android Halo), Microsoft plays the enterprise control plane (Agent 365 + M365 E7). The asymmetry window closes in 2027 when revenue shares formalise and the App Store curve flattens.",
+      "practical_takeaway": [
+        {
+          "title": "For the CFO",
+          "body": "Build a one-page agentic valuation deck with five blocks: (1) AA × TPA × RPT × TCR forward revenue, (2) ARR multiple anchored to 22x (Anthropic comp) discounted by your skills ecosystem position, (3) Skills + governance + distribution moat scorecard, (4) Agent-LTV/CAC for any third-party agent integrations, (5) Annex III governance evidence as a discount-rate reducer."
+        },
+        {
+          "title": "For the founder",
+          "body": "Publish a SKILL.md into all four monetised marketplaces this week (Anthropic Skills + GPT Store + MCP Hubs via x402 + Gemini Spark Skills). The 70-85% creator economics close in 2027 as revenue shares formalise. One artefact, four channels — the same skill compounds across all of them."
+        },
+        {
+          "title": "For the investor",
+          "body": "Reprice your AI portfolio against the three new moat layers, not against last year's benchmark scores. Cap your multiple at 3-4x ARR for any company whose Task Completion Rate cannot be proven above 99% at production scale — that's where 90% of valuation lives, and it's the question every Series C diligence is now leading with."
+        }
+      ],
+      "tomorrow_preview": "Day 64: Agentic AI in Financial Services — Anthropic's 10 finance agents in production (Pitch builder, Meeting preparer, Earnings reviewer, KYC screener), JP Morgan's COiN at scale, and the new FinCEN AML rules landing Q3 2026 with KYA monitoring requirements above $10K/day."
     }
   ],
-  "last_updated": "2026-05-23",
-  "total_days": 66
+  "last_updated": "2026-05-25T01:16:35.844921Z",
+  "total_days": 63
 }
