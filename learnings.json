@@ -6,6 +6,110 @@
   },
   "learnings": [
     {
+      "date": "2026-05-26",
+      "display_date": "MAY 26, 2026",
+      "issue": 64,
+      "title": "Agentic AI in Financial Services",
+      "focus_intro": "Anthropic's 10 finance agents go to Wall Street, FIS automates AML, and a regulatory wall lands in Q3 2026. The first vertical where agentic AI moves from pilot to production at trillion-dollar scale.",
+      "stats": [
+        {
+          "stat": "64.37%",
+          "label": "Claude Opus 4.7 on Vals Finance"
+        },
+        {
+          "stat": "$40B",
+          "label": "Annual AML spend FIS targets"
+        },
+        {
+          "stat": "T-68",
+          "label": "Days to EU AI Act Aug 2"
+        },
+        {
+          "stat": "360K hr",
+          "label": "JPM contract review collapsed"
+        }
+      ],
+      "viral_app": {
+        "name": "TradingAgents by Tauric Research",
+        "description": "Multi-agent LLM financial trading framework — mirrors a real-world trading firm with specialised fundamental analyst, sentiment expert, technical analyst, Bull/Bear researcher, risk manager, and trader agents debating each thesis before any position is taken. Most-starred AI finance repo on GitHub by a wide margin. v0.2.0 added multi-provider routing across Claude 4.x / GPT-5.x / Gemini 3.x / Grok 4.x. The cleanest demonstration that role specialisation + structured debate beats single-agent monoliths — the same Three-Agent Harness pattern (Day 23) generalised to any domain where you'd hire 4-5 specialists in real life.",
+        "stats": [
+          {
+            "stat": "#1",
+            "label": "AI finance repo on GitHub"
+          },
+          {
+            "stat": "4 LLM",
+            "label": "providers via routing"
+          },
+          {
+            "stat": "7",
+            "label": "specialised agent roles"
+          }
+        ]
+      },
+      "sections": [
+        {
+          "title": "1 · Why financial services moved first",
+          "paragraphs": [
+            "On May 5 2026, Anthropic stood Jamie Dimon on stage and released 10 ready-to-run finance agent templates. Three weeks later FIS — which sits underneath roughly 80% of the world's banks — announced it is building its agentic strategy on Anthropic, starting with the Financial Crimes AI Agent live at BMO and Amalgamated Bank. Financial services is the first vertical where agents move from pilot to regulated production: the workflows are document-heavy, the data is structured, and the ROI is measured in hundreds of thousands of analyst hours per year.",
+            "So what: The vertical that historically resists software change moved first because the math is unanswerable. Claude Opus 4.7 leads the Vals AI Finance benchmark at 64.37% (vs GPT-5.5 59.96%, Gemini 3.1 Pro 59.72%), and Anthropic's ARR jumped to $44B largely on the back of regulated-industry deployments."
+          ]
+        },
+        {
+          "title": "2 · The 10 finance agent templates",
+          "paragraphs": [
+            "Each template ships as a Cowork plugin or autonomous Claude Managed Agent with native Microsoft 365 add-ins for Excel, PowerPoint, Word, and Outlook — context carries between apps. New connectors added this month include Dun & Bradstreet, Fiscal AI, Financial Modeling Prep, Guidepoint, IBISWorld, SS&C IntraLinks, Third Bridge, Verisk, plus Moody's MCP server with credit data on 600M+ companies.",
+            "The lineup: Pitch Builder (8-12 hrs/pitch saved), Meeting Preparer (2-4 hrs/meeting), Earnings Reviewer (5-7 hrs/earnings), Model Builder (10-20 hrs/model), Market Researcher (6-10 hrs/report), Valuation Reviewer (3-5 hrs/valuation), General Ledger Reconciler (8-15 hrs/close), Month-End Closer (2-3 days/close), Statement Auditor (12-20 hrs/audit), and KYC Screener (30-60 min/file)."
+          ]
+        },
+        {
+          "title": "3 · What's already in production",
+          "paragraphs": [
+            "JP Morgan's COiN agent reviews commercial loan agreements that previously consumed 360K analyst hours per year — now seconds per contract with a NIST CAISI audit trail for regulatory examination. JPM has also deployed LLM Suite to 70,000+ employees.",
+            "FIS's Financial Crimes Agent compresses AML investigations from days to minutes — automatically assembling evidence across a bank's core systems, evaluating activity against known typologies, and surfacing only the highest-risk cases for human investigators. Live at BMO and Amalgamated Bank, broader H2 2026.",
+            "Salesforce Agentforce 3.0 crossed $500M ARR with 18,500+ customers, A2A + MCP native, Self-Healing Workflows GA. PwC has deployed Claude firm-wide for client work; Anthropic and the Gates Foundation announced a $200M agent rollout."
+          ]
+        },
+        {
+          "title": "4 · The regulatory wall arriving Q3 2026",
+          "paragraphs": [
+            "FinCEN AML NPRM (April 7 2026): The biggest BSA reform since the Patriot Act. Effectiveness-based standard replaces process-based; AI is explicitly named as evidence of program effectiveness. Mandatory structured risk assessments. Enforcement requires 'significant or systemic' failures.",
+            "EU AI Act Annex III (August 2 2026, T-68): Credit scoring, fraud detection, AML triage classified high-risk. Conformity assessment, EU database registration, human oversight, Article 50 disclosure, <1s kill switch, WORM audit per decision. May 7 Omnibus political agreement proposes 16-month delay to Dec 2027, but original date is legally binding until enacted — 78% of enterprises NOT on track, over 50% lack a basic AI inventory.",
+            "EU PSD3/PSR (Q1-Q2 2026 force, 21-month transition): Tightens agent payment exemption; SCA must anchor to a human principal. California AB 316 (Jan 2026): No 'autonomous AI' defence — the deploying institution is liable for agent decisions."
+          ]
+        },
+        {
+          "title": "5 · Reference architecture for a regulated agent",
+          "paragraphs": [
+            "Combining Day 44 (memory), Day 49 (reliability), Day 54 (identity), and Day 55 (streaming data) produces a deployable Annex-III-compliant blueprint for an AML triage agent: LLM brain (Opus 4.7 planner + Sonnet 4.6 generator + DeepSeek V4 Flash classifier at $0.14/M input — 6x cost cut at parity quality); Identity (SPIFFE SVID per agent, OAuth scope = aml:read + sar:propose, never sar:file); Memory (Write-Aside: Valkey L1 + Cassandra L2 + MemOS unified API for billion-row scale across 50-state US footprint).",
+            "Data plane (Confluent Streaming Agents + RisingWave incremental MVs + Genie Code lineage — every MV update logged with timestamp + SVID + nonce, Annex III evidence by construction); Tools (FIS core systems via Anthropic's new MCP tunnels released May 19 — outbound-only encrypted gateway, no inbound firewall rules, bank perimeter intact; Moody's MCP for credit data); Guardrails (T1-T4 kill switch <1s; LangSmith trajectory evals + Galileo Signals on prod traffic); Human-in-the-loop (AG-UI approval gate on every SAR proposal; cosine<0.7 drift triggers reset; investigator signs the SAR — agent never autonomously executes regulatory filings)."
+          ]
+        },
+        {
+          "title": "6 · What changes in the bank P&L",
+          "paragraphs": [
+            "Three line items move materially when these agents reach production scale across a top-10 bank: AML/KYC operations DOWN 30-50% (case-investigator FTE, $200-400M annual run-rate); Investment banking analyst pool MIX-SHIFTS (pitchbook + model build time 70% lower, senior bankers shift to client time); Audit + statutory reporting DOWN (close cycle 5 days to 2). Compliance technology line moves UP — Annex III evidence layer + KYA monitoring becomes $50-100M new run-rate per institution. Net P&L impact is positive but compliance build-out is the bottleneck, not technology adoption."
+          ]
+        }
+      ],
+      "market_signal": "Anthropic crossed $44B ARR (80x Q1 2025) largely on regulated-industry deployments. Vals AI Finance benchmark now the de facto leaderboard — Opus 4.7 at 64.37%. FIS's bet on Anthropic for 80% of the world's banks is the largest single agentic deployment in the regulated economy. The next 6 months are the production proof-point that determines whether agentic AI is a $50B or $500B category by 2027.",
+      "practical_takeaway": [
+        {
+          "title": "Pilot one of Anthropic's 10 templates this week",
+          "body": "Pitch Builder and KYC Screener have the cleanest ROI signal. Run inside Cowork or as a Claude Managed Agent with the new self-hosted sandbox (May 19) so data stays within your perimeter."
+        },
+        {
+          "title": "Wire the Annex III evidence layer from day one",
+          "body": "The WORM log produced by your OTEL gen_ai spans IS the regulator artefact — don't bolt it on after. Use Microsoft Agent 365 (M365 E7) or FIS's agent-first governed environment as the reference control plane."
+        },
+        {
+          "title": "Issue every agent a SPIFFE SVID with scope: aml:read + sar:propose",
+          "body": "Never sar:file. California AB 316 liability stays with the human investigator who signs the filing — agent identity + scoped OAuth at issuance is the audit-and-liability firewall."
+        }
+      ],
+      "tomorrow_preview": "Day 65 — Agentic AI in Healthcare & Life Sciences revisited: what changed since Day 35, with Innovaccer's expanded deployment, FDA's draft AI/ML guidance landing, and the first AI-discovered drug entering Phase III."
+    },
+    {
       "date": "2026-05-25",
       "display_date": "MAY 25, 2026",
       "issue": 63,
@@ -9676,6 +9780,6 @@
       ]
     }
   ],
-  "last_updated": "2026-05-25T01:16:35.844921Z",
-  "total_days": 63
+  "last_updated": "2026-05-26T10:10:00Z",
+  "total_days": 64
 }
