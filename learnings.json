@@ -6,6 +6,189 @@
   },
   "learnings": [
     {
+      "date": "2026-05-27",
+      "display_date": "MAY 27, 2026",
+      "issue": 65,
+      "title": "Agentic AI in Healthcare & Life Sciences",
+      "focus_intro": "Innovaccer pours $250M into agentic care, Claude for Healthcare lands at Stanford and Banner,",
+      "stats": [
+        {
+          "stat": "$250M",
+          "label": "Innovaccer agentic AI commitment"
+        },
+        {
+          "stat": "$2.1B",
+          "label": "Isomorphic Labs raise for trials"
+        }
+      ],
+      "sections": [
+        {
+          "title": "1 · Why healthcare moved from pilot to production",
+          "paragraphs": [
+            "Day 35 (Apr 27) framed healthcare as the highest-stakes agentic domain. One month later three things have changed materially. Innovaccer announced a $250M, three-year commitment to its agentic AI platform, with agents now live across five domains: patient access, value-based care, revenue cycle, risk and quality, and utilization management. The platform is deployed at Kaiser Permanente, Ascension, and Trinity Health -- three",
+            "Anthropic launched Claude for Healthcare at JPM26 with HIPAA-ready BAAs via AWS Bedrock, Google Cloud, and Azure. Customers already in production: Banner Health, Stanford Health Care, Novo Nordisk, Sanofi, AbbVie, Genmab, and Qualified Health. The platform ships native connectors to the CMS Coverage Database (Medicare prior-auth) and ICD-10 codes (billing). Anthropic does not train on user health data, and Memory IDs handle hard-delete cascade for HIPAA and GDPR simultaneously. On the EHR side, Oracle's Clinical AI Agent is now live across 30+ medical specialties and has cut physician documentation time by nearly 30%. Epic opened its Factory -- a standardised way for every health system to deploy agentic workflows with built-in guardrails -- and has roughly 200 AI features in development, including the named agents Art, Emmie, and Penny. Additional AI Charting features go live November 2026. So what: Three of the four largest US health systems are now in production with agentic AI. Healthcare followed financial services (Day 64) into regulated agentic production within 30 days -- the vertical playbook is generalising faster than the model benchmarks."
+          ]
+        },
+        {
+          "title": "2 · The first AI-discovered drugs reach humans",
+          "paragraphs": [
+            "Isomorphic Labs, the Alphabet-backed AlphaFold spinoff, raised $2.1B on May 12 to accelerate first-in-human trials of AI-designed drugs. The CEO has confirmed the first cancer drug enters Phase I by end of 2026 -- 17 active programs across oncology, immunology, and cardiovascular. In February 2026 Isomorphic unveiled IsoDDE, an internal drug design engine built on AlphaFold 3 that predicts protein-ligand interactions with precision that previously required wet-lab iteration. Insilico Medicine's Rentosertib has already reported +98.4 mL FVC improvement in a Phase IIa trial -- the first end-to-end AI-discovered drug to show a statistically meaningful clinical signal. Over 200 AI-discovered drugs are in pipelines globally, with 15-20 expected to reach pivotal trials in 2026 and the first regulatory approval"
+          ]
+        },
+        {
+          "title": "3 · Reference architecture for a clinical agent",
+          "paragraphs": [
+            "Combining patterns from Day 44 (memory), Day 49 (reliability), Day 54 (identity), Day 55 (streaming data), and Day 64 (financial services architecture), the deployable HIPAA-ready blueprint for a clinical agent:"
+          ]
+        },
+        {
+          "title": "4 · The regulatory wall: FDA + EU AI Act + IMDRF",
+          "paragraphs": [
+            "Three regulatory tracks are converging on healthcare AI in 2026-2027. The FDA is moving to a Total Product Lifecycle (TPLC) regime built on Predetermined Change Control Plans (PCCPs) and Good Machine Learning Practice (GMLP). A PCCP lets a manufacturer pre-specify allowable algorithm modifications and ship updates without filing a fresh 510(k) -- critical for any agent whose model rotates monthly. Healthcare gets one extra year vs financial services for the bulk of MDR-overlapping deployments (Annex I, Aug 2 2027). But pure-software clinical decision support and triage agents are on the same Aug 2 2026 clock as banking -- T-67 days. Most large hospital deployments hit this bar."
+          ],
+          "table": {
+            "headers": [
+              "Layer",
+              "Component",
+              "Why this for healthcare"
+            ],
+            "rows": [
+              [
+                "LLM brain",
+                "Opus 4.7 (clinical reasoning) + Sonnet 4.6 (documentation) + DeepSeek V4 Flash (ICD-10/CPT lookup).",
+                "70/25/5 routing keeps a 1,000-bed system inside its inference budget at full scale."
+              ],
+              [
+                "Identity",
+                "SPIFFE SVID per agent, OAuth scope = ehr:read + note:propose (NEVER note:sign).",
+                "Physician signature stays the human-in-the-loop -- clean liability firewall."
+              ],
+              [
+                "Memory",
+                "Write-Aside: Valkey L1 + pgvector L2 with per-patient namespace isolation.",
+                "Memory IDs map 1:1 to HIPAA minimum-necessary rule + GDPR erasure."
+              ],
+              [
+                "Data plane",
+                "Confluent Streaming Agents on HL7 FHIR feeds from Epic / Cerner.",
+                "Every read logged with timestamp + SVID + nonce = HIPAA audit + Annex III evidence."
+              ],
+              [
+                "Tools (MCP)",
+                "Epic Factory / Oracle Clinical Agent / CMS Coverage DB / ICD-10 lookup / Moody's-style provider DB.",
+                "Outbound-only encrypted gateway; no inbound firewall rules into the hospital perimeter."
+              ],
+              [
+                "Guardrails",
+                "T1-T4 kill switch <1s; LangSmith trajectory evals; cosine<0.7 drift triggers reset.",
+                "FDA PCCP + EU Annex III both require reconstructable reasoning per decision."
+              ],
+              [
+                "Human-in-the-loop",
+                "AG-UI approval gate on every note save, order proposal, coverage rec.",
+                "Agent proposes; clinician signs. Never autonomous on clinical action."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "5 · What changes in the hospital P&L",
+          "paragraphs": [
+            "Three line items move materially when these agents reach production scale across a 1,000-bed health system:"
+          ],
+          "table": {
+            "headers": [
+              "Layer",
+              "Component",
+              "Why this for healthcare"
+            ],
+            "rows": [
+              [
+                "LLM brain",
+                "Opus 4.7 (clinical reasoning) + Sonnet 4.6 (documentation) + DeepSeek V4 Flash (ICD-10/CPT lookup).",
+                "70/25/5 routing keeps a 1,000-bed system inside its inference budget at full scale."
+              ],
+              [
+                "Identity",
+                "SPIFFE SVID per agent, OAuth scope = ehr:read + note:propose (NEVER note:sign).",
+                "Physician signature stays the human-in-the-loop -- clean liability firewall."
+              ],
+              [
+                "Memory",
+                "Write-Aside: Valkey L1 + pgvector L2 with per-patient namespace isolation.",
+                "Memory IDs map 1:1 to HIPAA minimum-necessary rule + GDPR erasure."
+              ],
+              [
+                "Data plane",
+                "Confluent Streaming Agents on HL7 FHIR feeds from Epic / Cerner.",
+                "Every read logged with timestamp + SVID + nonce = HIPAA audit + Annex III evidence."
+              ],
+              [
+                "Tools (MCP)",
+                "Epic Factory / Oracle Clinical Agent / CMS Coverage DB / ICD-10 lookup / Moody's-style provider DB.",
+                "Outbound-only encrypted gateway; no inbound firewall rules into the hospital perimeter."
+              ],
+              [
+                "Guardrails",
+                "T1-T4 kill switch <1s; LangSmith trajectory evals; cosine<0.7 drift triggers reset.",
+                "FDA PCCP + EU Annex III both require reconstructable reasoning per decision."
+              ],
+              [
+                "Human-in-the-loop",
+                "AG-UI approval gate on every note save, order proposal, coverage rec.",
+                "Agent proposes; clinician signs. Never autonomous on clinical action."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "6 · Viral AI app of the day",
+          "paragraphs": [
+            "OpenHuman by tinyhumansai (github.com/tinyhumansai/openhuman) -- the Rust + Tauri desktop AI agent that inverts the agent UX playbook. Instead of waiting for the first prompt, OpenHuman pre-loads a 1B-token Memory Tree from 118+ services (Gmail, GitHub, Slack, Notion, Stripe, Calendar, Drive, Linear, Jira) via one-click OAuth, then runs a 'subconscious loop' every 20 minutes deciding what to act on without user input. The desktop mascot can join a Google Meet as a separate participant, transcribe into the Memory Tree, and speak back. All local-first -- SQLite plus an Obsidian-style Markdown wiki -- with zero data egress unless explicitly escalated. MIT licensed, #1 GitHub Trending May 13-16. Why it matters for healthcare: OpenHuman's 'pre-load context, local-first, explicit escalation' pattern is the only HIPAA-clean way to give a clinical agent the patient context it needs without violating minimum-necessary. Expect Epic Factory and Innovaccer to ship analogous patterns for"
+          ],
+          "table": {
+            "headers": [
+              "P&L line",
+              "Direction",
+              "Magnitude (1,000-bed system, fully ramped)"
+            ],
+            "rows": [
+              [
+                "Clinical documentation",
+                "Down",
+                "30% physician time recovered = 50K-80K hrs/yr » $25-50M clinician capacity unlocked."
+              ],
+              [
+                "Revenue cycle (prior auth)",
+                "Down",
+                "Innovaccer collapses 45-min cases to under 1 min; denial rates fall 15-25%."
+              ],
+              [
+                "Drug discovery (life sciences)",
+                "Down",
+                "Isomorphic/Insilico-class platforms compress discovery-to-IND from 4-6 yrs to 12-18 months."
+              ],
+              [
+                "Compliance + IT",
+                "Up",
+                "Annex III + HIPAA + FDA PCCP evidence layer = $20-40M new run-rate per system."
+              ]
+            ]
+          }
+        }
+      ],
+      "practical_takeaway": [
+        {
+          "title": "If you sit in a health system, three moves this week: (1) Pi",
+          "body": "If you sit in a health system, three moves this week: (1) Pilot one clinical-documentation agent on Claude for Healthcare via your existing AWS Bedrock or Azure BAA -- Stanford and Banner are the reference customers, not unicorns. (2) Wire HIPAA audit logs and Annex III evidence from day one as a single OTEL gen_ai pipeline; do not build separate tracks -- same trace data feeds all three regulators. (3) Scope every clinical agent's OAuth tightly to ehr:read + note:propose with the physician signature as the mandatory human-in-the-loop -- California AB 316-style liability is coming to healthcare, and the human-signs-the-note pattern is the cleanest"
+        },
+        {
+          "title": "Tomorrow (Day 66): Agentic AI in Manufacturing & Industrial ",
+          "body": "Tomorrow (Day 66): Agentic AI in Manufacturing & Industrial Operations -- how the Day 27 physical-AI stack (VLA models, humanoid robots, LiteRT-LM on edge) meets the Day 64 regulated-architecture playbook on the factory floor."
+        }
+      ]
+    },
+    {
       "date": "2026-05-26",
       "display_date": "MAY 26, 2026",
       "issue": 64,
@@ -9780,6 +9963,6 @@
       ]
     }
   ],
-  "last_updated": "2026-05-26T10:10:00Z",
-  "total_days": 64
+  "last_updated": "2026-05-27",
+  "total_days": 65
 }
