@@ -6,6 +6,235 @@
   },
   "learnings": [
     {
+      "date": "2026-05-28",
+      "display_date": "MAY 28, 2026",
+      "issue": 66,
+      "title": "Agentic AI in Manufacturing & Industrial",
+      "focus_intro": "Siemens and NVIDIA wire the Industrial AI Operating System, Boston Dynamics Atlas ships to",
+      "stats": [
+        {
+          "stat": "4×",
+          "label": "Deloitte agentic AI jump in mfg by 2026"
+        },
+        {
+          "stat": "15K",
+          "label": "humanoid shipments in 2026 (vs 5-7K 2025)"
+        },
+        {
+          "stat": "70%",
+          "label": "unplanned downtime reduction"
+        }
+      ],
+      "sections": [
+        {
+          "title": "1 · Why manufacturing is the next regulated frontier",
+          "paragraphs": [
+            "Deloitte's 2026 Tech Predictions forecast agentic AI adoption in manufacturing will quadruple from 6% to 24% by year-end -- the steepest sectoral jump outside finance and healthcare. The forcing functions are the same three we've seen elsewhere: labour shortages and aging workforces, margin compression that makes a 70% unplanned-downtime reduction impossible to ignore, and regulatory pressure (EU AI Act Annex III T-67, plus the Machinery Regulation 2027 enforcement that treats AI-controlled robots as safety-critical components). Unlike chatbots that answer questions, manufacturing AI agents solve problems end-to-end: they ingest sensor data, production schedules, and maintenance history, then draft repair plans, order parts, schedule technicians, and reconcile work orders -- autonomously. Factory AI deployments routinely report 250-300% ROI on predictive maintenance, 99.8% accuracy on quality inspection, and 25-40% reductions in maintenance costs. The pattern matches Day 28's Salesforce Agentforce numbers almost line for line: the moat is not the model, it is the vertical integration with PLCs, MES, ERP, and safety systems. So what: Three regulated verticals -- finance (Day 64), healthcare (Day 65), and now manufacturing -- have converged on the same agent architecture in 30 days. The vertical playbook is generalising"
+          ]
+        },
+        {
+          "title": "2 · Physical AI moves from demo to mass production",
+          "paragraphs": [
+            "Boston Dynamics unveiled the production Atlas at CES 2026 -- electric, enterprise-grade, designed for industrial reliability. All 2026 units are committed to Hyundai's Robotics Metaplant Application Center, with Hyundai targeting 30,000 humanoid units per year at their facilities by 2028. Tesla began mass production of Optimus Gen 3 at Fremont, targeting 100,000-300,000 units in 2026 at $20K-$30K per unit, with external",
+            "Figure AI's Figure 03 is in production testing at BMW (Plant Spartanburg expanded the pilot in April), Agility Robotics' Digit remains the most commercially deployed US humanoid (GXO Logistics), and Agibot has shipped over 10,000 humanoids in China -- the highest volume globally. BMW Group's Plant Leipzig launched Europe's first physical-AI pilot in April 2026, Samsung committed to converting every factory it operates worldwide into a fully autonomous, AI-driven facility by 2030, and Siemens' partner Humanoid deployed the HMND 01 wheeled Alpha humanoid at the Erlangen electronics factory for autonomous logistics. The unlock under all of this is VLA (Vision-Language-Action) models with cross-embodiment learning: training one foundation model on single-arm, bimanual, mobile, quadruped, and humanoid data simultaneously, and finding the resulting policy outperforms body-specific models on the same per-robot data. ICLR 2026 featured 164 VLA papers, up from a handful in 2025. Leading logistics deployments report 40-60% picking-speed improvements and 25% error-rate reductions."
+          ]
+        },
+        {
+          "title": "3 · The Industrial AI Operating System emerges",
+          "paragraphs": [
+            "Siemens and NVIDIA announced at CES 2026 (and expanded at Hannover Messe in April) that they are building the world's first fully AI-driven, adaptive manufacturing operating system. The architecture: Siemens Industrial Copilot portfolio as the user-facing surface, NVIDIA CUDA-X and the Omniverse DSX Blueprint as the simulation and inference layer, and agentic frameworks (including OpenClaw-derived components) for long-running autonomous tasks. Customers already evaluating: Foxconn, HD Hyundai, KION Group, PepsiCo,",
+            "The Omniverse DSX Blueprint became generally available at GTC March 2026 -- a physically accurate digital-twin spec that lets operators simulate every layer of an AI factory before a single rack or robot lands on the floor. Cadence (ChipStack AI SuperAgent), Dassault Systèmes, Schneider Electric, Siemens, and Synopsys are contributing the agentic orchestration layer; Phaidra AI agents continuously optimise power, cooling, and workloads inside the twin. This is the same control-plane pattern Microsoft Agent 365 brought to enterprise IT (Day 39), now applied to robots, PLCs, and energy grids. Whoever wins the Industrial AI OS layer wins the next"
+          ],
+          "table": {
+            "headers": [
+              "Layer",
+              "Component",
+              "Why this for manufacturing"
+            ],
+            "rows": [
+              [
+                "LLM brain",
+                "Opus 4.7 (planning) + Sonnet 4.6 (docs/work orders) + Gemma 4 E2B on-device + Gemini Robotics-ER 1.6 (spatial).",
+                "Sub-100ms control loops on the robot; 70/25/5 routing keeps inference inside the OT budget."
+              ],
+              [
+                "Identity",
+                "SPIFFE SVID per robot + per agent; OAuth scope = telemetry:read + plc:read + maintenance:propose. Never plc:write or estop:override without dual-SVID + HITL.",
+                "Per-cell isolation; immediate revocation; clean liability firewall for AB 316-style claims."
+              ],
+              [
+                "Memory",
+                "Valkey L1 sensor windows + Confluent Streaming Agents on PLC/MES + RisingWave incremental MVs as L2.",
+                "Streaming MV removes write-aside races; per-cell namespace = data residency by construction."
+              ],
+              [
+                "Tools (MCP)",
+                "Outbound-only MCP gateway into Siemens Industrial Copilot, Omniverse, CMMS, and ERP.",
+                "OT network inbound firewall stays untouched; gateway logs every call for audit."
+              ],
+              [
+                "Guardrails",
+                "T1-T4 kill switch <1s; T4 hard E-stop wired to physical relays (IEC 61508 safety case); cosine<0.7 reset.",
+                "T4 is the only kill switch in the stack that has to clear a functional-safety bar."
+              ],
+              [
+                "Human-in-the-loop",
+                "AG-UI approval gate on every work order, parts order, and production-schedule change.",
+                "Operator HMI is the agent's only path to write. Agent proposes; operator signs."
+              ],
+              [
+                "Audit",
+                "WORM store of OTEL gen_ai spans + SVID + nonce + payload per decision.",
+                "One artefact satisfies Annex III, Machinery Regulation, ISO 23894, ISO 42001, OSHA."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "4 · Reference architecture: a factory-floor agent",
+          "paragraphs": [
+            "Combining Day 27 (VLA + LiteRT-LM edge), Day 40 (edge inference), Day 44 (Write-Aside memory), Day 49 (reliability + SLOs), Day 54 (SPIFFE + KYA), Day 55 (streaming data plane), and Days 64-65 (regulated-architecture pattern), the deployable blueprint for an industrial agent:"
+          ],
+          "table": {
+            "headers": [
+              "Layer",
+              "Component",
+              "Why this for manufacturing"
+            ],
+            "rows": [
+              [
+                "LLM brain",
+                "Opus 4.7 (planning) + Sonnet 4.6 (docs/work orders) + Gemma 4 E2B on-device + Gemini Robotics-ER 1.6 (spatial).",
+                "Sub-100ms control loops on the robot; 70/25/5 routing keeps inference inside the OT budget."
+              ],
+              [
+                "Identity",
+                "SPIFFE SVID per robot + per agent; OAuth scope = telemetry:read + plc:read + maintenance:propose. Never plc:write or estop:override without dual-SVID + HITL.",
+                "Per-cell isolation; immediate revocation; clean liability firewall for AB 316-style claims."
+              ],
+              [
+                "Memory",
+                "Valkey L1 sensor windows + Confluent Streaming Agents on PLC/MES + RisingWave incremental MVs as L2.",
+                "Streaming MV removes write-aside races; per-cell namespace = data residency by construction."
+              ],
+              [
+                "Tools (MCP)",
+                "Outbound-only MCP gateway into Siemens Industrial Copilot, Omniverse, CMMS, and ERP.",
+                "OT network inbound firewall stays untouched; gateway logs every call for audit."
+              ],
+              [
+                "Guardrails",
+                "T1-T4 kill switch <1s; T4 hard E-stop wired to physical relays (IEC 61508 safety case); cosine<0.7 reset.",
+                "T4 is the only kill switch in the stack that has to clear a functional-safety bar."
+              ],
+              [
+                "Human-in-the-loop",
+                "AG-UI approval gate on every work order, parts order, and production-schedule change.",
+                "Operator HMI is the agent's only path to write. Agent proposes; operator signs."
+              ],
+              [
+                "Audit",
+                "WORM store of OTEL gen_ai spans + SVID + nonce + payload per decision.",
+                "One artefact satisfies Annex III, Machinery Regulation, ISO 23894, ISO 42001, OSHA."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "5 · The regulatory wall: EU AI Act + Machinery Regulation + ISO 23894",
+          "paragraphs": [
+            "Three regulatory tracks converge on industrial agents in 2026-2027. The May 7 Omnibus political agreement proposed pushing some Annex III deadlines to December 2027, but the original August 2026 dates remain legally binding today -- and 78% of enterprises are still not on track (Day 59). Practical implication: The Annex III audit pack you build for an industrial agent -- OTEL gen_ai spans fi WORM store → conformity evidence -- is the same artefact that feeds Machinery Regulation, ISO 23894, ISO 42001, and OSHA simultaneously. Build the evidence layer once,"
+          ],
+          "table": {
+            "headers": [
+              "Layer",
+              "Component",
+              "Why this for manufacturing"
+            ],
+            "rows": [
+              [
+                "LLM brain",
+                "Opus 4.7 (planning) + Sonnet 4.6 (docs/work orders) + Gemma 4 E2B on-device + Gemini Robotics-ER 1.6 (spatial).",
+                "Sub-100ms control loops on the robot; 70/25/5 routing keeps inference inside the OT budget."
+              ],
+              [
+                "Identity",
+                "SPIFFE SVID per robot + per agent; OAuth scope = telemetry:read + plc:read + maintenance:propose. Never plc:write or estop:override without dual-SVID + HITL.",
+                "Per-cell isolation; immediate revocation; clean liability firewall for AB 316-style claims."
+              ],
+              [
+                "Memory",
+                "Valkey L1 sensor windows + Confluent Streaming Agents on PLC/MES + RisingWave incremental MVs as L2.",
+                "Streaming MV removes write-aside races; per-cell namespace = data residency by construction."
+              ],
+              [
+                "Tools (MCP)",
+                "Outbound-only MCP gateway into Siemens Industrial Copilot, Omniverse, CMMS, and ERP.",
+                "OT network inbound firewall stays untouched; gateway logs every call for audit."
+              ],
+              [
+                "Guardrails",
+                "T1-T4 kill switch <1s; T4 hard E-stop wired to physical relays (IEC 61508 safety case); cosine<0.7 reset.",
+                "T4 is the only kill switch in the stack that has to clear a functional-safety bar."
+              ],
+              [
+                "Human-in-the-loop",
+                "AG-UI approval gate on every work order, parts order, and production-schedule change.",
+                "Operator HMI is the agent's only path to write. Agent proposes; operator signs."
+              ],
+              [
+                "Audit",
+                "WORM store of OTEL gen_ai spans + SVID + nonce + payload per decision.",
+                "One artefact satisfies Annex III, Machinery Regulation, ISO 23894, ISO 42001, OSHA."
+              ]
+            ]
+          }
+        },
+        {
+          "title": "6 · Viral AI app of the day",
+          "paragraphs": [
+            "Siemens × NVIDIA Industrial AI Operating System -- announced at CES 2026 and expanded at Hannover Messe (April), this is the first credible 'control plane' for the factory floor. It brings CUDA-X, Omniverse digital twins, and agentic orchestration into a single stack that runs across the entire Siemens Industrial Copilot portfolio. First blueprint deployment: Siemens Electronics Factory in Erlangen, Germany. Foxconn, HD Hyundai, KION, PepsiCo, Mercedes-Benz, and TSMC are already evaluating. The Operations Copilot alone saves 30% of reactive maintenance time. Cadence's ChipStack AI SuperAgent, Dassault Systèmes, and Synopsys are",
+            "Why it matters: This is the manufacturing-floor analogue of Microsoft Agent 365 (Day 39) for enterprise IT -- one governed surface for every agent that touches a robot, PLC, or production schedule. Whoever wins the Industrial AI OS layer wins the next decade of manufacturing margin."
+          ],
+          "table": {
+            "headers": [
+              "Regulation",
+              "Enforces",
+              "What it requires of agents"
+            ],
+            "rows": [
+              [
+                "EU AI Act Annex III (Aug 2 2026, T-67)",
+                "Industrial control, safety components in critical infrastructure, worker-management systems = high-risk.",
+                "Conformity assessment, EU database registration, human oversight, Article 50 disclosure, <1s kill switch, WORM audit."
+              ],
+              [
+                "EU Machinery Regulation 2023/1230 (Jan 2027)",
+                "AI-controlled safety components treated as machinery in their own right.",
+                "CE marking, technical file, notified-body conformity assessment for any agent that can move a robot or change a setpoint."
+              ],
+              [
+                "ISO 23894 + ISO/IEC 42001",
+                "AI risk management + AI management systems. Already audited by ANAB and UKAS.",
+                "De-facto procurement requirement for Tier 1 OEMs; sets the documented risk-mgmt baseline."
+              ],
+              [
+                "US OSHA draft (March 2026)",
+                "Collaborative robotics with AI.",
+                "Harmonisation with EU rules expected through 2027; same evidence pack works."
+              ]
+            ]
+          }
+        }
+      ],
+      "practical_takeaway": [
+        {
+          "title": "If you sit in a manufacturing organisation, three moves this",
+          "body": "If you sit in a manufacturing organisation, three moves this quarter: (1) Pick one high-ROI use case -- predictive maintenance on a single critical asset class, or AI visual inspection on one production line -- and pilot it on the Siemens × NVIDIA Industrial AI OS or Omniverse DSX Blueprint. Erlangen, Plant Leipzig, and Hyundai's Metaplant are the reference deployments, not unicorns. Target 70% unplanned-downtime reduction and 99.8% inspection accuracy as gating KPIs before scaling to a second cell. (2) Stand up a single OTEL gen_ai pipeline that feeds a WORM store with SVID, nonce, timestamp, and tool-call payload for every agent decision -- the same trace data satisfies Annex III, Machinery Regulation, ISO 23894, ISO 42001, and OSHA simultaneously. T-67 days to August 2. (3) Issue every agent and every robot a SPIFFE SVID at boot, scope OAuth to telemetry:read + plc:read + maintenance:propose, and treat the T4 hard E-stop as a separate IEC 61508 safety case -- software kill switches alone do not pass a notified-body audit. Tomorrow (Day 67): The Agentic AI Supply Chain -- how agentic AI compresses the multi-tier supply chain from raw-material planning and supplier scoring (KYS, the supply-chain analogue of KYA from Day 54) through logistics orchestration (Agility Robotics Digit + GXO + the Walmart inventory pattern from Day 25) into the customer-facing storefront (Shopify Agentic Storefronts from Day 28). The full network, end to end, with one identity layer."
+        }
+      ]
+    },
+    {
       "date": "2026-05-27",
       "display_date": "MAY 27, 2026",
       "issue": 65,
@@ -9963,6 +10192,6 @@
       ]
     }
   ],
-  "last_updated": "2026-05-27",
-  "total_days": 65
+  "last_updated": "2026-05-28",
+  "total_days": 71
 }
