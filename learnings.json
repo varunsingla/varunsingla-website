@@ -6,6 +6,101 @@
   },
   "learnings": [
     {
+      "date": "2026-05-29",
+      "display_date": "MAY 29, 2026",
+      "issue": 67,
+      "title": "The Agentic AI Supply Chain",
+      "focus_intro": "Anthropic vaults to a $965B valuation overnight on a $65B raise as Claude Opus 4.8 ships dynamic workflows that spawn hundreds of parallel subagents. The same week, the agentic playbook lands on the global supply chain: KYS (Know Your Supplier) becomes the procurement analogue of KYA, and the logistics + storefront layers finally connect under one SPIFFE identity.",
+      "stats": [
+        {
+          "stat": "$965B",
+          "label": "Anthropic post-money valuation (May 28)"
+        },
+        {
+          "stat": "88.6%",
+          "label": "Opus 4.8 SWE-bench Verified (+1.0 vs 4.7)"
+        },
+        {
+          "stat": "60-70%",
+          "label": "transactional procurement automatable"
+        },
+        {
+          "stat": "T-66",
+          "label": "Days to EU AI Act Annex III enforcement"
+        }
+      ],
+      "viral_app": {
+        "name": "Claude Opus 4.8 + Dynamic Workflows",
+        "description": "Anthropic shipped Opus 4.8 alongside the $65B raise. Headline benchmarks: 88.6% SWE-bench Verified (+1.0 vs 4.7), 69.2% SWE-bench Pro (vs 58.6% GPT-5.5), 74.6% Terminal-Bench 2.1. But the real story is Dynamic Workflows in Claude Code: Claude plans tasks too large for a single context window, spawns hundreds of parallel subagents, verifies its own outputs, and reports back — the Three-Agent Harness from Day 23 is now a product feature, not a pattern. Fast Mode pricing dropped 3× to $10/$50 per million tokens; user-selectable effort levels (Low → Max) trade quality for cost on every call.",
+        "stats": [
+          {
+            "stat": "$65B",
+            "label": "raise that pushed valuation to $965B"
+          },
+          {
+            "stat": "3×",
+            "label": "Fast Mode price cut ($30/$150 → $10/$50)"
+          },
+          {
+            "stat": "100s",
+            "label": "parallel subagents per task"
+          }
+        ]
+      },
+      "sections": [
+        {
+          "title": "1 · Anthropic crosses $965B — the agentic-AI inflection",
+          "paragraphs": [
+            "On May 28 Anthropic closed a $65B round at a $965B post-money valuation, pushing it within a hair of OpenAI's reported $1T target ahead of its S-1 and giving Claude the largest fundraise in private market history. ARR has compounded from $9B in Q1 2025 to roughly $44B today (~80×), anchored by enterprise deployments — JPMorgan's 10 finance-agent rollout (Day 64), PwC firm-wide, the Gates Foundation $200M partnership, and now the Google + Broadcom expanded compute deal announced earlier this week.",
+            "Same day, Claude Opus 4.8 shipped. The benchmarks matter less than the two product moves: (a) Dynamic Workflows in Claude Code spawn hundreds of parallel subagents and verify their own outputs — the Three-Agent Harness (Planner→Generator→Evaluator) from Day 23 is now a first-class product feature, no harness code required; (b) Fast Mode pricing dropped to $10/$50 per million tokens (from $30/$150), a 3× cut that resets the cost-routing assumptions from Day 43. Combined effect: orchestrating a 100-agent fleet just got cheaper than running a small Snowflake cluster."
+          ]
+        },
+        {
+          "title": "2 · KYS — Know Your Supplier becomes table stakes",
+          "paragraphs": [
+            "Day 54 introduced KYA (Know Your Agent) as the identity + audit standard for autonomous agents. The supply-chain analogue, KYS, just emerged in procurement: an AI sourcing agent continuously monitors each supplier's financial health, geopolitical exposure, ESG scores, and delivery performance, and flags instability before it disrupts production. Gartner's 2026 forecast: 60-70% of end-to-end transactional procurement will be agent-managed by 2027, with tail spend, standardised sourcing events, supplier monitoring, and early risk-flagging fully automatable. Organisations using AI for supply-chain coordination in 2026 are already reporting 25% faster response to disruptions and 30% fewer manual interventions.",
+            "The KYS pattern composes the previous 13 days of learnings: SPIFFE SVID per supplier-monitoring agent (Day 54) + scoped OAuth (vendor:read + po:propose, never po:execute) + Confluent Streaming Agents on EDI/ERP feeds as the data plane (Day 55) + Write-Aside memory with per-supplier namespace isolation (Day 44) + AG-UI approval gate on any switch of approved supplier (Day 48). Every decision lands in a WORM audit log that satisfies EU AI Act Annex III, the German LkSG supply-chain due-diligence law, and the EU CSDDD — by construction, not bolt-on."
+          ]
+        },
+        {
+          "title": "3 · Four agent classes the supply chain needs",
+          "paragraphs": [
+            "Supplier Risk Agent (Tier-1/2/3 sourcing) monitors financial / ESG / geopolitical signals and proposes alternates — the KYA → KYS pattern. Demand Sensing Agent (S&OP planning) fuses POS, weather, and social sentiment into a rolling forecast, cutting MAPE 30-40% — the Write-Aside memory pattern from Day 44. Logistics Orchestrator (warehouse + transport) routes loads, rebalances inventory, and dispatches Digit/Atlas humanoids — the Walmart inventory pattern from Day 25 plus Physical AI from Day 27. Storefront Agent (customer-facing) sells inside ChatGPT/Gemini/Copilot via MCP + MPP with 3× conversion lift — the Shopify Universal Commerce Protocol pattern from Day 28.",
+            "The unlock is that all four agent classes now run on the same identity + audit + payments substrate (SPIFFE + Annex III WORM + x402/MPP). One control plane, four agent personas, one auditable supply chain."
+          ]
+        },
+        {
+          "title": "4 · Three regulatory tracks converging",
+          "paragraphs": [
+            "EU AI Act Annex III (T-66 days, Aug 2 2026): credit scoring of suppliers, AI-driven worker management in warehouses, and any agent that makes autonomous purchasing decisions above company-defined thresholds is high-risk — conformity assessment, EU database registration, human oversight, Article 50 disclosure, <1s kill switch, and per-decision WORM audit are mandatory. The May 7 Omnibus political agreement proposed a 16-month delay to Dec 2027 but the original Aug 2 date is still legally binding today. Per Secure Privacy's April survey, 78% of enterprises are not on track.",
+            "EU CSDDD (Corporate Sustainability Due Diligence Directive): transposition into national law in 2026, first reporting cycle 2027. Large EU companies must identify, prevent, and remediate adverse human rights and environmental impacts across their full chain of activities. KYS agents are how this gets done at scale — manual due diligence on 10,000+ tier-2/3 suppliers is no longer plausible. Germany LkSG & UK Modern Slavery Act: already enforceable, fines up to 2% of global turnover. US Uyghur Forced Labor Prevention Act (UFLPA): presumption-of-guilt model for any goods linked to Xinjiang — agents must trace provenance back to raw materials."
+          ]
+        },
+        {
+          "title": "5 · Reference architecture",
+          "paragraphs": [
+            "Brain: Opus 4.8 (planning + KYS reasoning) + Sonnet 4.6 (PO drafting + supplier comms) + DeepSeek V4 Flash (HTS code lookup, $0.14/M input). Identity: SPIFFE SVID per agent (Sourcing/Demand/Logistics/Storefront), OAuth scopes strictly proposing not executing — human signs the PO. Memory: Valkey L1 hot cache + pgvector L2 with per-supplier namespace + MemOS unified API. Data plane: Confluent Streaming Agents on EDI 850/856/810 + RisingWave incremental MVs of supplier scorecards (continuously refreshed, fresh by construction). Tools: SAP/Oracle/Coupa via outbound-only MCP gateway + Bloomberg Supply Chain + S&P Global RatingsXpress + Sayari (UBO graph) + customs APIs. Guardrails: T1-T4 kill switch <1s + Galileo Signals on supplier-risk drift + cosine<0.7 reset. HITL: AG-UI approval gate on any switch of approved supplier + any PO >$50K + any geographic re-route."
+          ]
+        }
+      ],
+      "market_signal": "Anthropic at $965B is the agentic-AI valuation reset — every comp from Day 63 just shifted. With Opus 4.8 Dynamic Workflows turning the Three-Agent Harness into a checkbox and Fast Mode 3× cheaper, the data-plane + skills + governance layers (not raw model performance) are where the next $50B in agentic value gets captured. The asymmetry window from Day 60 just narrowed.",
+      "practical_takeaway": [
+        {
+          "title": "Pilot one KYS agent on your top 100 suppliers",
+          "body": "Use Anthropic Cowork + a Bloomberg/S&P/Sayari MCP connector + Opus 4.8 Dynamic Workflows. Supplier risk monitoring is the single highest-ROI starting point. Reference deployments (Coupa Navi, SAP Joule for Sourcing, GEP Quantum) all use the same SPIFFE + WORM pattern."
+        },
+        {
+          "title": "Wire OTEL gen_ai → WORM as one audit pipeline",
+          "body": "Same trace data satisfies Annex III, CSDDD, LkSG, UK Modern Slavery, and UFLPA simultaneously. T-66 days to Aug 2 is non-negotiable — every agent decision needs SVID + nonce + timestamp + payload in tamper-evident storage."
+        },
+        {
+          "title": "Scope every agent po:propose, never po:execute",
+          "body": "SPIFFE SVID at boot + OAuth scoped to vendor:read + po:propose. The approve-PO button stays the only place a human signs — that is the clean liability firewall under California AB 316 and the EU PLD."
+        }
+      ],
+      "tomorrow_preview": "Day 68: Agentic AI in Marketing & Customer Experience — how Klarna's ChatGPT shopping engine (100M products), Netflix handing ad-buying to agents, Walmart Sparky (40% smarter, 2× weekly users), and Meta's agentic Instagram shopping rollout are rewriting the marketing funnel into a continuous agent loop."
+    },
+    {
       "date": "2026-05-28",
       "display_date": "MAY 28, 2026",
       "issue": 66,
@@ -10192,6 +10287,6 @@
       ]
     }
   ],
-  "last_updated": "2026-05-28",
-  "total_days": 71
+  "last_updated": "2026-05-29",
+  "total_days": 72
 }
