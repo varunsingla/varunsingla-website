@@ -6,6 +6,181 @@
   },
   "learnings": [
     {
+      "date": "2026-05-30",
+      "display_date": "MAY 30, 2026",
+      "issue": 68,
+      "title": "Agentic AI in Marketing & Customer",
+      "focus_intro": "The marketing funnel is being rewritten into a continuous agent loop. In a single fortnight Klarna",
+      "stats": [
+        {
+          "stat": "119%",
+          "label": "YoY surge in AI-assistant retail traffic"
+        },
+        {
+          "stat": "35%",
+          "label": "higher AOV for Walmart Sparky users"
+        },
+        {
+          "stat": "250M",
+          "label": "Netflix ad-tier monthly viewers + AI buyers"
+        },
+        {
+          "stat": "$540M",
+          "label": "Salesforce Agentforce ARR (early 2026)"
+        }
+      ],
+      "sections": [
+        {
+          "title": "1 · The funnel becomes a loop -- why marketing moved first",
+          "paragraphs": [
+            "Marketing has always been the fastest-iterating function in the enterprise, so it is no surprise it is where agentic AI hit the mainstream first. The classic linear funnel (awareness → consideration → purchase → loyalty) is being replaced by a continuous loop in which an agent senses intent, generates the creative, buys the media, personalises the offer, closes the sale, and feeds the outcome back into the next decision -- all without a human touching each step. AI-driven traffic to retail sites grew nearly 700% over the 2025 holiday season and those shoppers convert at 31% higher rates; AI-assistant retail traffic is up 119% year-over-year. The channel is no",
+            "Two structural shifts make this work. First, the storefront is moving inside the assistant: consumers increasingly start in ChatGPT, Gemini, Copilot, or Perplexity rather than a search bar or a brand site, so the brand has to be reachable as an MCP tool, not just a web page. Second, the buy-side and sell-side of advertising are both becoming agents that negotiate with each other -- the human marketer sets objectives and guardrails, and a fleet of agents executes against them in real time. So what: If your product cannot be discovered, compared, and purchased by an agent acting on a customer's behalf, you are invisible to the fastest-growing acquisition channel of 2026."
+          ],
+          "table": {
+            "headers": [
+              "Deployment",
+              "What shipped",
+              "Result / signal"
+            ],
+            "rows": [
+              [
+                "Klarna in ChatGPT",
+                "AI Shopping Search app powered by Klarna's Product Search MCP server (100M+ products, 400M merchant listings, 13 markets)",
+                "Live prices + availability inside the chat; agentic commerce goes mainstream consumer"
+              ],
+              [
+                "Netflix AI ad agents",
+                "May 13 upfront: agents that manage, optimise and autonomously purchase ad campaigns + creative-adaptation AI",
+                "250M ad-tier viewers; programmatic on Live + Pause Ads; raises conflict-of-interest questions"
+              ],
+              [
+                "Walmart Sparky / Marty",
+                "Consumer shopping agent + a brand-side advertising agent (Marty) for sponsored-search campaigns",
+                "Units bought via Sparky 4× QoQ; Sparky users +35% AOV; ChatGPT drives ~2× new customers vs search"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "2 · Four live deployments rewriting the playbook",
+          "paragraphs": [
+            "The pattern: Every player is shipping two agents -- a customer-facing one (Sparky, Klarna app) and a brand-facing one (Marty, Agentforce campaigns). The marketer's job shifts from running campaigns"
+          ],
+          "table": {
+            "headers": [
+              "Deployment",
+              "What shipped",
+              "Result / signal"
+            ],
+            "rows": [
+              [
+                "Klarna in ChatGPT",
+                "AI Shopping Search app powered by Klarna's Product Search MCP server (100M+ products, 400M merchant listings, 13 markets)",
+                "Live prices + availability inside the chat; agentic commerce goes mainstream consumer"
+              ],
+              [
+                "Netflix AI ad agents",
+                "May 13 upfront: agents that manage, optimise and autonomously purchase ad campaigns + creative-adaptation AI",
+                "250M ad-tier viewers; programmatic on Live + Pause Ads; raises conflict-of-interest questions"
+              ],
+              [
+                "Walmart Sparky / Marty",
+                "Consumer shopping agent + a brand-side advertising agent (Marty) for sponsored-search campaigns",
+                "Units bought via Sparky 4× QoQ; Sparky users +35% AOV; ChatGPT drives ~2× new customers vs search"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3 · The continuous agent loop, stage by stage",
+          "paragraphs": [
+            "Sense: a demand-sensing agent fuses first-party data, social signal, weather, and live pricing into a rolling view of intent. Create: a creative agent generates and adapts assets per format (vertical video, pause ad, email, SMS) -- exactly the Netflix creative-adaptation tool. Buy: a media-buying agent purchases inventory across DSPs against brand objectives, the Netflix and Walmart Marty pattern. Personalise & close: a storefront agent (Klarna, Sparky, Agentforce Commerce) answers questions, compares products, and completes checkout inside the assistant via MCP + a payments protocol (MPP / x402). Learn: every outcome writes back to episodic memory (Write-Aside pattern, Day 44) so the next loop starts smarter. This is the same Sense/CreatefiBuy/ClosefiLearn cycle Salesforce and Adobe have hard-wired into their 2026 clouds."
+          ],
+          "table": {
+            "headers": [
+              "Deployment",
+              "What shipped",
+              "Result / signal"
+            ],
+            "rows": [
+              [
+                "Salesforce + Adobe",
+                "Marketing Cloud Next (agentic funnel) + Adobe 'CX Enterprise' rebrand, both all-in on autonomous agents",
+                "Agentforce ~$540M ARR; AI-agent adopters see 59% higher growth rate, +6.2% YoY sales"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "4 · Trust is the bottleneck -- disclosure, conflict, consent",
+          "paragraphs": [
+            "Consumer-facing agents inherit every governance obligation from the enterprise stack, plus new ones unique to marketing. EU AI Act Article 50 (T-64 days, Aug 2 2026): any AI-generated or AI-personalised creative must be disclosed to the consumer and watermarked (C2PA / SynthID); an agent transacting on a shopper's behalf must identify itself as an agent. Conflict of interest: Netflix selling a platform-owned agent that autonomously buys inventory on Netflix's own platform is the open question media agencies are pushing back on -- transparency and independent verification are unresolved. Autonomous-purchase caution: 50% of consumers remain wary of fully autonomous buying, so human-on-the-loop approval and clear spend caps are table-stakes UX, not optional. KYA for consumer agents: the Know Your Agent identity + audit standard (Day 54) extends to any agent shopping with a consumer's stored payment method -- scoped tokens, spend limits,",
+            "Watch this: The first Article 50 enforcement actions in Q3 2026 are most likely to land on consumer marketing -- undisclosed AI creative and non-transparent agentic ad-buying are the highest-visibility,"
+          ],
+          "table": {
+            "headers": [
+              "Deployment",
+              "What shipped",
+              "Result / signal"
+            ],
+            "rows": [
+              [
+                "Salesforce + Adobe",
+                "Marketing Cloud Next (agentic funnel) + Adobe 'CX Enterprise' rebrand, both all-in on autonomous agents",
+                "Agentforce ~$540M ARR; AI-agent adopters see 59% higher growth rate, +6.2% YoY sales"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "5 · Reference architecture -- an agentic CX stack",
+          "paragraphs": [
+            "Brain: Opus 4.8 / GPT-5.5 for planning + creative reasoning, Sonnet 4.6 for copy and conversation, DeepSeek V4 Flash ($0.14/M) for high-volume classification (intent tagging, audience bucketing). Surface: expose the catalogue as an MCP server (Klarna's Product Search MCP is the canonical example) so ChatGPT / Gemini / Copilot can discover and transact. Orchestration: Salesforce Agentforce or Adobe CX Enterprise as the control plane wiring the Sense/CreatefiBuy/Close loop; AG-UI generative-UI surfaces (Day 48) for the human supervisor. Memory: Write-Aside -- Valkey L1 + pgvector L2 with per-customer namespace isolation; Memory IDs for GDPR erasure. Payments: MPP / x402 with scoped tokens + spend caps. Guardrails: Article 50 disclosure + C2PA watermark on every generated asset, AG-UI approval gate on any spend above threshold, T1-T4 kill switch, and a WORM audit trail of every agentic ad buy for conflict-of-interest verification."
+          ],
+          "table": {
+            "headers": [
+              "Deployment",
+              "What shipped",
+              "Result / signal"
+            ],
+            "rows": [
+              [
+                "Salesforce + Adobe",
+                "Marketing Cloud Next (agentic funnel) + Adobe 'CX Enterprise' rebrand, both all-in on autonomous agents",
+                "Agentforce ~$540M ARR; AI-agent adopters see 59% higher growth rate, +6.2% YoY sales"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "6 · Viral AI app of the day",
+          "paragraphs": [
+            "Klarna Shopping Search in ChatGPT -- launched May 20, the clearest consumer proof-point yet of agentic commerce. The app lets a shopper search products, compare live prices, check availability, and view offers from multiple retailers without leaving the chat, powered by Klarna's Product Search MCP server spanning 100M+ products and 400M+ merchant listings across 13 markets. It turns ChatGPT into a price-comparison storefront and turns Klarna into the connective tissue between assistants and merchants -- the exact 'be the agent, expose the MCP entry point' move every brand now has to make. Meta's competing Instagram shopping agent (codenamed 'Hatch', influenced by OpenClaw) is expected later in 2026, and OpenAI projects $25B in advertising and commerce revenue by 2029, signalling how big this surface becomes. Why it matters: Klarna didn't build a chatbot -- it built the merchant-discovery layer for the assistant era. Whoever owns the product-search MCP that assistants call becomes the new shelf, and the new"
+          ],
+          "table": {
+            "headers": [
+              "Deployment",
+              "What shipped",
+              "Result / signal"
+            ],
+            "rows": [
+              [
+                "Salesforce + Adobe",
+                "Marketing Cloud Next (agentic funnel) + Adobe 'CX Enterprise' rebrand, both all-in on autonomous agents",
+                "Agentforce ~$540M ARR; AI-agent adopters see 59% higher growth rate, +6.2% YoY sales"
+              ]
+            ]
+          }
+        }
+      ],
+      "practical_takeaway": [
+        {
+          "title": "Three moves this quarter for anyone in marketing, growth, or",
+          "body": "Three moves this quarter for anyone in marketing, growth, or CX: (1) Make your catalogue agent-discoverable -- stand up a Product Search MCP server (Klarna pattern) or list via Shopify's Universal Commerce Protocol so ChatGPT, Gemini, and Copilot can find and transact your products; agent-readiness is the new SEO and AI traffic already converts 31% higher. (2) Pilot one brand-side agent -- campaign creation or media optimisation in Agentforce Marketing Cloud Next or Adobe CX Enterprise -- with the human marketer supervising objectives, not executing steps; AI-agent adopters are seeing a 59% higher growth rate. (3) Ship Article 50 compliance now (T-64 days): disclose AI-generated creative, watermark with C2PA/SynthID, scope every shopping agent's payment token with a spend cap and a <1s kill switch, and keep a WORM log of every autonomous ad buy -- conflict-of-interest transparency is about to become a procurement requirement. Tomorrow (Day 69): Agentic AI in Sales & Revenue Operations -- how Agentforce Sales, autonomous SDR agents, and AI-driven pipeline orchestration are collapsing lead-to-close, and where the human seller still owns the relationship in a fleet-of-agents revenue motion."
+        }
+      ]
+    },
+    {
       "date": "2026-05-29",
       "display_date": "MAY 29, 2026",
       "issue": 67,
