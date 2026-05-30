@@ -9,7 +9,7 @@
       "date": "2026-05-30",
       "display_date": "MAY 30, 2026",
       "issue": 68,
-      "title": "Agentic AI in Marketing & Customer Experience",
+      "title": "Agentic AI in Marketing & Customer",
       "focus_intro": "The marketing funnel is being rewritten into a continuous agent loop. In a single fortnight Klarna",
       "stats": [
         {
@@ -178,31 +178,7 @@
           "title": "Three moves this quarter for anyone in marketing, growth, or",
           "body": "Three moves this quarter for anyone in marketing, growth, or CX: (1) Make your catalogue agent-discoverable -- stand up a Product Search MCP server (Klarna pattern) or list via Shopify's Universal Commerce Protocol so ChatGPT, Gemini, and Copilot can find and transact your products; agent-readiness is the new SEO and AI traffic already converts 31% higher. (2) Pilot one brand-side agent -- campaign creation or media optimisation in Agentforce Marketing Cloud Next or Adobe CX Enterprise -- with the human marketer supervising objectives, not executing steps; AI-agent adopters are seeing a 59% higher growth rate. (3) Ship Article 50 compliance now (T-64 days): disclose AI-generated creative, watermark with C2PA/SynthID, scope every shopping agent's payment token with a spend cap and a <1s kill switch, and keep a WORM log of every autonomous ad buy -- conflict-of-interest transparency is about to become a procurement requirement. Tomorrow (Day 69): Agentic AI in Sales & Revenue Operations -- how Agentforce Sales, autonomous SDR agents, and AI-driven pipeline orchestration are collapsing lead-to-close, and where the human seller still owns the relationship in a fleet-of-agents revenue motion."
         }
-      ],
-      "viral_app": {
-        "name": "Klarna Shopping Search in ChatGPT",
-        "description": "Launched May 20, the clearest consumer proof-point yet of agentic commerce. Shoppers search products, compare live prices, check availability and view offers from multiple retailers without leaving the chat, powered by Klarna's Product Search MCP server spanning 100M+ products and 400M+ merchant listings across 13 markets. It turns ChatGPT into a price-comparison storefront and Klarna into the connective tissue between assistants and merchants — the merchant-discovery layer for the assistant era. Whoever owns the product-search MCP that assistants call becomes the new shelf. Meta's competing Instagram shopping agent (codename Hatch) is expected later in 2026; OpenAI projects $25B advertising and commerce revenue by 2029.",
-        "stats": [
-          {
-            "stat": "100M+",
-            "label": "products in Klarna Product Search MCP"
-          },
-          {
-            "stat": "400M+",
-            "label": "merchant listings across 13 markets"
-          },
-          {
-            "stat": "+119%",
-            "label": "YoY AI-assistant retail traffic"
-          },
-          {
-            "stat": "+31%",
-            "label": "higher conversion for AI shoppers"
-          }
-        ]
-      },
-      "market_signal": "AI-assistant retail traffic is up 119% YoY and AI shoppers convert ~31% higher, yet 50% of consumers remain wary of fully autonomous buying — trust architecture (Article 50 disclosure + watermarking + conflict-of-interest transparency) is now the gating factor on consumer agentic commerce, not model capability.",
-      "tomorrow_preview": "Day 69: Agentic AI in Sales & Revenue Operations — Agentforce Sales, autonomous SDR agents, and AI-driven pipeline orchestration collapsing lead-to-close, and where the human seller still owns the relationship."
+      ]
     },
     {
       "date": "2026-05-29",
