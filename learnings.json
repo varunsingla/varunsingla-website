@@ -10,7 +10,7 @@
       "display_date": "MAY 31, 2026",
       "issue": 69,
       "title": "Agentic AI in Sales & Revenue Operations",
-      "focus_intro": "Sales is becoming the proving ground for a fleet-of-agents revenue motion: autonomous SDR agents prospect, research and book 24/7, pipeline-orchestration agents keep the CRM honest, and vendors are abandoning per-seat pricing for per-meeting and per-outcome models. The 2026 lesson is sharp — full SDR replacement keeps failing, and the human seller still owns the relationship.",
+      "focus_intro": "Sales is the function with the cleanest feedback loop in the enterprise -- every action has a price",
       "stats": [
         {
           "stat": "$540M",
@@ -33,68 +33,145 @@
         {
           "title": "1 · Lead-to-close collapses into one agent loop",
           "paragraphs": [
-            "The classic revenue funnel (MQL → SDR outreach → AE discovery → proposal → close) is being compressed into a continuous loop where agents handle high-volume, low-judgement work and humans handle judgement calls. An autonomous SDR agent now generates a prioritised prospect list from intent signals, researches each account, drafts and sends personalised sequences, engages website visitors in real time, handles basic objections, books meetings, and keeps opportunity data accurate with automatic CRM updates. Salesforce reports Agentforce reached ~$540M ARR with 18,500 enterprise customers — Benioff calls it the company's fastest-growing product ever.",
-            "What makes revenue different from marketing is the directness of the scoreboard: every agent action maps to a pipeline-stage transition with a dollar value. That is why RevOps leaders are designing AI into lead routing, forecasting, account scoring, territory design, and rep coaching as a coordinated fleet — and why the human role shifts from executing the motion to supervising the agents that execute it, owning the trust moments: the cold call, the buying committee, the negotiation."
+            "The classic revenue funnel -- marketing-qualified lead fi SDR outreach fi AE discovery → proposal → close -- is being compressed into a continuous loop where agents handle the high-volume, low-judgement work and humans handle the judgement calls. An autonomous SDR agent now generates a prioritised prospect list from intent signals, researches each account, drafts and sends personalised sequences, engages website visitors in real time, handles basic objections, books the meeting, and keeps opportunity data accurate with automatic CRM updates -- all without a human touching each step. Salesforce reports its Agentforce platform reached roughly $540M ARR with 18,500 enterprise customers, which Benioff calls the company's fastest-growing",
+            "What makes revenue different from marketing (Day 68) is the directness of the scoreboard. Every agent action maps to a pipeline-stage transition with a dollar value, which is exactly why RevOps leaders are designing AI into lead routing, forecasting, account scoring, territory design, and rep coaching -- not as point tools but as a coordinated fleet. The human's role shifts from executing the motion to supervising the agents that execute it and owning the moments that require trust: the cold call, the multi-threaded buying committee, the negotiation. So what: Treat the revenue motion as a loop, not a funnel. The teams winning in 2026 deploy agents for signal detection, research, and draft generation, and reserve humans for the relationship-defining conversations -- not the other way around."
+          ],
+          "table": {
+            "headers": [
+              "Capability",
+              "Agent strength",
+              "Where it still fails"
+            ],
+            "rows": [
+              [
+                "Prospecting & research",
+                "Builds prioritised lists from intent signals, enriches accounts, drafts personalised first-touch at scale",
+                "Garbage-in: 20-40% bounce rates on bad lists burn send limits and tank sender reputation"
+              ],
+              [
+                "Email outreach",
+                "24/7 sequencing, instant website-visitor engagement, A/B at volume",
+                "Deliverability cap ~200/mailbox/day; >0.3% spam complaints trigger enforcement; median 38-pt reputation drop in 90 days"
+              ],
+              [
+                "Live conversation",
+                "Handles simple, scripted objections and scheduling",
+                "Falls miles short on cold calls, real-time objection handling, multi-threaded committee selling"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "2 · The autonomous SDR -- what works, what fails",
+          "paragraphs": [
+            "The data point that matters: Of 249 YC GTM startups (2023-Spring 2026), only ~2% still pitch full SDR replacement. The founders closest to the problem have concluded full replacement either isn't possible or isn't a good go-to-market -- the winning shape is human-orchestrates-agents."
+          ],
+          "table": {
+            "headers": [
+              "Capability",
+              "Agent strength",
+              "Where it still fails"
+            ],
+            "rows": [
+              [
+                "Prospecting & research",
+                "Builds prioritised lists from intent signals, enriches accounts, drafts personalised first-touch at scale",
+                "Garbage-in: 20-40% bounce rates on bad lists burn send limits and tank sender reputation"
+              ],
+              [
+                "Email outreach",
+                "24/7 sequencing, instant website-visitor engagement, A/B at volume",
+                "Deliverability cap ~200/mailbox/day; >0.3% spam complaints trigger enforcement; median 38-pt reputation drop in 90 days"
+              ],
+              [
+                "Live conversation",
+                "Handles simple, scripted objections and scheduling",
+                "Falls miles short on cold calls, real-time objection handling, multi-threaded committee selling"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3 · Per-seat is dying -- the move to per-outcome",
+          "paragraphs": [
+            "When an agent can book a meeting like a human SDR, charging per seat stops making sense. 2026 is the year revenue-agent pricing fragments into three shapes. Per-outcome: a fee per qualified lead, per booked meeting, or per issue resolved -- \"we get paid when you get X.\" Consumption / action-based: Agentforce charges per conversation (~$2) or per action via Flex Credits (a standard action is 20 credits / $0.10, voice 30 credits / $0.15, credits at $500 per 100,000). Redefined seat: some vendors keep per-seat but license an AI agent as if it were a user. Pure-play autonomous SDR vendors like 11x sit at $5,000+/month plus $5K-$150K setup, with fully-loaded annual costs of $35K-$65K once data, infrastructure, warm-up and oversight are counted -- which is why outcome pricing is attractive but hard: defining a 'valid' outcome still requires custom negotiation, so most",
+            "Buyer's lens: Outcome pricing transfers performance risk to the vendor, but only if the 'outcome' is tightly defined and independently measurable. Demand a shared definition of a qualified meeting and an audit trail before signing a per-meeting deal -- otherwise you pay for no-shows."
+          ],
+          "table": {
+            "headers": [
+              "Capability",
+              "Agent strength",
+              "Where it still fails"
+            ],
+            "rows": [
+              [
+                "Meeting-to-opp",
+                "Cheap, high-volume meeting booking",
+                "Converts meetings to opportunities at ~15% vs ~25% for human SDRs -- volume hides quality gap"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "4 · Pipeline orchestration -- the RevOps control plane",
+          "paragraphs": [
+            "The deeper shift is below the SDR layer, in RevOps. Salesforce's Agentforce Operations (April 2026, ecosystem integration in beta May 2026) turns slow, fragmented back-office processes into agent-driven workflows, claiming up to 70% shorter cycle times and 80% fewer manual tasks, with the ability to auto-sync data and trigger Salesforce Flows. On the Agentforce 360 platform, agents are embedded in day-to-day operations: triaging tickets, recommending next steps on opportunities, scoring accounts, and assisting forecasting -- all against a unified, real-time customer profile spanning front- and back-office systems. This is where the Salesforce-ServiceNow battle is now fiercest: ServiceNow argues 'CRM is broken' and is pushing into agentic orchestration, while Salesforce needs a stronger back-office story. The strategic point for a RevOps leader: the moat is no longer the CRM of record, it is the orchestration layer that keeps a fleet of agents coordinated and the pipeline data trustworthy."
+          ],
+          "table": {
+            "headers": [
+              "Capability",
+              "Agent strength",
+              "Where it still fails"
+            ],
+            "rows": [
+              [
+                "Meeting-to-opp",
+                "Cheap, high-volume meeting booking",
+                "Converts meetings to opportunities at ~15% vs ~25% for human SDRs -- volume hides quality gap"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "5 · Governance -- Article 50 + KYA for outbound agents",
+          "paragraphs": [
+            "Outbound revenue agents inherit the enterprise governance stack plus rules specific to selling. EU AI Act Article 50 (Aug 2 2026): an agent emailing or calling a prospect must disclose that it is an AI, and any AI-generated voice or video in the sequence must be watermarked (C2PA / SynthID). Deliverability as a compliance surface: the same send-limit and spam-complaint thresholds that protect inboxes are now operational guardrails -- an agent that ignores them doesn't just underperform, it can get a domain blacklisted. KYA (Know Your Agent, Day 54): each SDR agent should carry a SPIFFE/SVID identity scoped to send-only or propose-only authority -- never execute a discount or sign a contract -- with a <1s kill switch and a WORM audit of every message sent. Liability: under California AB 316 there is no 'autonomous AI' defence; the deploying company owns what its sales agent says, so human sign-off on anything contractual is the clean",
+            "Watch this: The first uncomfortable headlines in outbound won't be hallucinated claims -- they'll be a high-volume agent torching a company's email domain reputation or sending an undisclosed AI sequence into the EU after Aug 2. Wire the guardrails before you scale the sends."
+          ],
+          "table": {
+            "headers": [
+              "Capability",
+              "Agent strength",
+              "Where it still fails"
+            ],
+            "rows": [
+              [
+                "Meeting-to-opp",
+                "Cheap, high-volume meeting booking",
+                "Converts meetings to opportunities at ~15% vs ~25% for human SDRs -- volume hides quality gap"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "6 · Reference architecture -- a revenue-agent stack",
+          "paragraphs": [
+            "Brain (model routing, Day 43): Opus 4.8 / GPT-5.5 for account strategy and call planning, Sonnet 4.6 for email copy and conversation, DeepSeek V4 Flash ($0.14/M) for high-volume lead scoring and intent classification. Orchestration: Agentforce 360 or an equivalent control plane wiring the Sense/EngagefiQualify/BookfiUpdate loop, with AG-UI generative surfaces (Day 48) for the human supervisor and approval gates on anything customer-committing. Memory (Write-Aside, Day 44): Valkey L1 + pgvector L2 with a per-account namespace so the agent remembers every prior touch; Memory IDs for GDPR erasure on opt-out. Data plane (Day 55): streaming materialised views over CRM + intent + product-usage signals so pipeline state is fresh by construction. Identity & guardrails: SPIFFE/SVID per agent scoped to send/propose-only, Article 50 disclosure on every outbound touch, deliverability rate-limits enforced at the gateway, T1-T4 kill switch, and a WORM audit trail of every message and CRM write for both compliance and"
           ]
         },
         {
-          "title": "2 · The autonomous SDR — what works, what fails",
+          "title": "7 · Viral AI app of the day",
           "paragraphs": [
-            "Agents are strong at prospecting/research (prioritised lists from intent signals, account enrichment, personalised first-touch at scale) but garbage-in bad lists with 20-40% bounce rates burn send limits and tank sender reputation. They run 24/7 email sequencing but hit a deliverability cap of ~200/mailbox/day, and >0.3% spam complaints trigger enforcement — Smartlead/Instantly data shows a median 38-point sender-reputation drop within 90 days as automated campaigns scale. In live conversation they handle scripted objections and scheduling but fall miles short on cold calls, real-time objection handling, and multi-threaded committee selling. The headline number: human SDRs convert meetings to opportunities at ~25% vs ~15% for AI — volume hides a quality gap.",
-            "The data point that matters: of 249 YC GTM startups (2023–Spring 2026) only ~2% still pitch full SDR replacement. The founders closest to the problem concluded full replacement either isn't possible or isn't a good go-to-market — the winning shape is human-orchestrates-agents."
-          ]
-        },
-        {
-          "title": "3 · Per-seat is dying — the move to per-outcome",
-          "paragraphs": [
-            "When an agent can book a meeting like a human SDR, per-seat stops making sense. 2026 fragments revenue-agent pricing into three shapes. Per-outcome: a fee per qualified lead, booked meeting, or issue resolved — 'we get paid when you get X.' Consumption/action-based: Agentforce charges ~$2 per conversation or per action via Flex Credits (standard action 20 credits/$0.10, voice 30 credits/$0.15, credits at $500 per 100,000). Redefined seat: some vendors keep per-seat but license an AI agent as if it were a user.",
-            "Pure-play autonomous SDR vendors like 11x sit at $5,000+/month plus $5K–$150K setup, with fully-loaded annual costs of $35K–$65K once data, infrastructure, warm-up and oversight are counted. Outcome pricing is attractive but hard: defining a 'valid' outcome still requires custom negotiation, so most contracts are hybrids today. Buyer's lens: outcome pricing transfers performance risk to the vendor only if the outcome is tightly defined and independently measurable — demand a shared definition of a qualified meeting and an audit trail before signing, or you pay for no-shows."
-          ]
-        },
-        {
-          "title": "4 · Pipeline orchestration — the RevOps control plane",
-          "paragraphs": [
-            "The deeper shift is below the SDR layer, in RevOps. Salesforce Agentforce Operations (April 2026, ecosystem integration beta May 2026) turns slow, fragmented back-office processes into agent-driven workflows, claiming up to 70% shorter cycle times and 80% fewer manual tasks, with auto-sync data and triggered Salesforce Flows. On the Agentforce 360 platform, agents triage tickets, recommend opportunity next steps, score accounts, and assist forecasting against a unified real-time customer profile spanning front- and back-office systems.",
-            "This is where the Salesforce–ServiceNow battle is fiercest: ServiceNow argues 'CRM is broken' and pushes into agentic orchestration, while Salesforce needs a stronger back-office story. The strategic point for a RevOps leader: the moat is no longer the CRM of record, it is the orchestration layer that keeps a fleet of agents coordinated and pipeline data trustworthy."
-          ]
-        },
-        {
-          "title": "5 · Governance — Article 50 + KYA for outbound agents",
-          "paragraphs": [
-            "Outbound revenue agents inherit the enterprise governance stack plus selling-specific rules. EU AI Act Article 50 (Aug 2 2026): an agent emailing or calling a prospect must disclose it is an AI, and any AI-generated voice/video must be watermarked (C2PA/SynthID). Deliverability is now a compliance surface — send-limit and spam-complaint thresholds are operational guardrails; an agent that ignores them can get a domain blacklisted.",
-            "KYA (Know Your Agent, Day 54): each SDR agent should carry a SPIFFE/SVID identity scoped to send-only or propose-only authority — never execute a discount or sign a contract — with a <1s kill switch and a WORM audit of every message sent. Liability: under California AB 316 there is no 'autonomous AI' defence; the deploying company owns what its sales agent says, so human sign-off on anything contractual is the clean liability firewall. The first uncomfortable outbound headlines won't be hallucinated claims — they'll be a high-volume agent torching a company's email-domain reputation or sending undisclosed AI sequences into the EU after Aug 2."
-          ]
-        },
-        {
-          "title": "6 · Reference architecture — a revenue-agent stack",
-          "paragraphs": [
-            "Brain (model routing, Day 43): Opus 4.8/GPT-5.5 for account strategy and call planning, Sonnet 4.6 for email copy and conversation, DeepSeek V4 Flash ($0.14/M) for high-volume lead scoring and intent classification. Orchestration: Agentforce 360 or equivalent control plane wiring the Sense→Engage→Qualify→Book→Update loop, with AG-UI generative surfaces (Day 48) for the human supervisor and approval gates on anything customer-committing.",
-            "Memory (Write-Aside, Day 44): Valkey L1 + pgvector L2 with a per-account namespace so the agent remembers every prior touch; Memory IDs for GDPR erasure on opt-out. Data plane (Day 55): streaming materialised views over CRM + intent + product-usage signals so pipeline state is fresh by construction. Identity & guardrails: SPIFFE/SVID per agent scoped to send/propose-only, Article 50 disclosure on every outbound touch, deliverability rate-limits enforced at the gateway, T1–T4 kill switch, and a WORM audit trail of every message and CRM write for compliance and forecast integrity."
-          ]
-        },
-        {
-          "title": "7 · Viral AI app of the day — OpenHuman",
-          "paragraphs": [
-            "OpenHuman (github.com/tinyhumansai/openhuman) — the agent that reads you first. Built in Rust + Tauri (MIT), it topped GitHub Trending in May 2026 by inverting the playbook: instead of waiting for a prompt, it pre-loads a 1B-token 'Memory Tree' from 118+ services (Gmail, Slack, Notion, Stripe, Calendar, Linear, CRMs) via one-click OAuth, then runs a 'subconscious loop' every 20 minutes that reads your to-dos and recent context and decides what to act on — all local-first with no data egress unless you escalate.",
-            "For revenue teams the relevance is direct: the bottleneck for an AI seller has always been context, and OpenHuman's pre-loaded, always-on memory is exactly the pattern that makes an agent feel like a colleague who already knows the account, not a tool you have to brief. Expect CRM vendors to ship analogous 'knows-the-account-on-day-one' memory layers through 2026. The agent that already knows the customer beats the agent with the better model — in sales, memory and context, not raw reasoning, are becoming the moat."
+            "OpenHuman (github.com/tinyhumansai/openhuman) -- the agent that reads you first. Built in Rust + Tauri (MIT), it topped GitHub Trending in May 2026 by inverting the playbook: instead of waiting for a prompt, it pre-loads a 1B-token 'Memory Tree' from 118+ services (Gmail, Slack, Notion, Stripe, Calendar, Linear, HubSpot-style CRMs) via one-click OAuth, then runs a 'subconscious loop' every 20 minutes that reads your to-dos and recent context and decides what to act on -- all local-first with no data egress unless you escalate. For revenue teams the relevance is direct: the bottleneck for an AI seller has always been context, and OpenHuman's pre-loaded, always-on memory is exactly the pattern that makes an agent feel like a colleague who already knows the account, not a tool you have to brief. Expect CRM vendors to ship analogous 'knows-the-account-on-day-one' memory layers through 2026. Why it matters: The agent that already knows the customer beats the agent with the better model. In sales, memory and context -- not raw reasoning -- are becoming the moat."
           ]
         }
       ],
       "practical_takeaway": [
         {
-          "title": "Deploy agents on the top of the loop, not the relationship",
-          "body": "Put an autonomous SDR on research, list-building, draft sequences and scheduling, but keep humans on cold calls, objection handling and committee selling — where the 25% vs 15% conversion gap lives."
-        },
-        {
-          "title": "Renegotiate pricing around outcomes",
-          "body": "Push vendors toward per-meeting or per-qualified-lead terms with a written, auditable definition of a valid outcome, and model fully-loaded cost ($35K–$65K/yr per autonomous SDR), not the sticker price."
-        },
-        {
-          "title": "Wire governance before you scale sends",
-          "body": "SPIFFE identity scoped send/propose-only, Article 50 disclosure on every outbound touch (T-63 days), deliverability limits enforced at the gateway to protect domain reputation, and a WORM log of every message and CRM write — they now are the pipeline."
+          "title": "Three moves this quarter for anyone in sales, RevOps, or gro",
+          "body": "Three moves this quarter for anyone in sales, RevOps, or growth: (1) Deploy agents for the top of the loop, not the relationship -- put an autonomous SDR on research, list-building, draft sequences, and scheduling, but keep humans on cold calls, objection handling, and committee selling, where the conversion gap (25% vs 15%) lives. (2) Renegotiate pricing around outcomes -- push vendors toward per-meeting or per-qualified-lead terms with a written, auditable definition of a valid outcome, and model the fully-loaded cost ($35K-$65K/yr per autonomous SDR) not the sticker price. (3) Wire governance before you scale sends -- SPIFFE identity scoped to send/propose-only, Article 50 disclosure on every outbound touch (T-63 days), deliverability limits enforced at the gateway to protect domain reputation, and a WORM log of every message and CRM write. Protect the email domain and the audit trail the way you'd protect the pipeline -- because they now are the pipeline. Tomorrow (Day 70): Agentic AI in Customer Success & Retention -- how autonomous health-scoring, churn-prediction, and onboarding agents are reshaping the post-sale motion, and where the human CSM still owns the renewal conversation."
         }
-      ],
-      "tomorrow_preview": "Day 70: Agentic AI in Customer Success & Retention — autonomous health-scoring, churn-prediction and onboarding agents reshaping the post-sale motion, and where the human CSM still owns the renewal conversation."
+      ]
     },
     {
       "date": "2026-05-30",
