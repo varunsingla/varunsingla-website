@@ -6,6 +6,180 @@
   },
   "learnings": [
     {
+      "date": "2026-06-02",
+      "display_date": "JUNE 2, 2026",
+      "issue": 70,
+      "title": "Agentic AI in Customer Success & Retention",
+      "focus_intro": "If sales is the cleanest feedback loop in the enterprise (Day 69), customer success is the one",
+      "stats": [
+        {
+          "stat": "15-20%",
+          "label": "churn reduction within 6 months of agentic deployment"
+        },
+        {
+          "stat": "3x",
+          "label": "growth on accounts using Gainsight's Staircase AI Agent"
+        }
+      ],
+      "sections": [
+        {
+          "title": "1 · The post-sale motion becomes an agent loop",
+          "paragraphs": [
+            "The traditional customer-success cycle -- onboard → adopt → monitor → renew → expand -- was built around a human CSM who could realistically watch a few dozen accounts. Agentic AI breaks that ceiling. Autonomous CS systems now observe every touchpoint (product usage, support tickets, emails, meetings, Slack threads), decide which accounts are drifting, and act -- firing re-engagement workflows, alerting the CSM, or drafting a renewal play -- then learn from whether the save worked. The enterprise paradigm has shifted from reactive firefighting to predictive lifecycle intervention: platforms identify at-risk accounts weeks or months before cancellation and hand the CSM a prioritised list of exactly who needs attention and why. This is the same loop pattern seen across the vertical series (finance Day 64, healthcare Day 65, sales Day 69): agents own the high-volume, low-judgement work -- signal aggregation, scoring, drafting -- and humans own the judgement-heavy moments. In CS the highest-judgement moment is the renewal or expansion conversation, where a misread of a relationship costs six or seven figures of recurring revenue. The win condition is not an autonomous CSM; it is a CSM whose entire book is continuously triaged for them. So what: Net revenue retention is now an agent-instrumented metric. The teams pulling ahead deploy agents to watch the whole book and rank risk, freeing humans to spend their scarce hours on the renewals and expansions that actually move NRR."
+          ],
+          "table": {
+            "headers": [
+              "CS workflow",
+              "Agent strength",
+              "Where the human still owns it"
+            ],
+            "rows": [
+              [
+                "Health scoring",
+                "Fuses usage, sentiment, tickets, and comms into a live score; flags anomalies the moment they appear, not at QBR",
+                "Interpreting why a strategic account cooled -- reorg, champion change, budget freeze"
+              ],
+              [
+                "Churn prediction",
+                "Surfaces at-risk accounts weeks ahead; reported 15-20% churn cut in first 6 months",
+                "Deciding which save-play fits a relationship; making the retention call itself"
+              ],
+              [
+                "Onboarding & adoption",
+                "Guides customers step-by-step, sends behaviour-based follow-ups, runs adaptive in-product nudges",
+                "Executive alignment, change management, and the first-value 'aha' workshop"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "2 · Health scoring, churn prediction, onboarding -- what works",
+          "paragraphs": [
+            "The pattern that matters: Agents are excellent at seeing risk and preparing the response; they are weak at reading a relationship and making the call. Design the hand-off at exactly that seam."
+          ],
+          "table": {
+            "headers": [
+              "CS workflow",
+              "Agent strength",
+              "Where the human still owns it"
+            ],
+            "rows": [
+              [
+                "Health scoring",
+                "Fuses usage, sentiment, tickets, and comms into a live score; flags anomalies the moment they appear, not at QBR",
+                "Interpreting why a strategic account cooled -- reorg, champion change, budget freeze"
+              ],
+              [
+                "Churn prediction",
+                "Surfaces at-risk accounts weeks ahead; reported 15-20% churn cut in first 6 months",
+                "Deciding which save-play fits a relationship; making the retention call itself"
+              ],
+              [
+                "Onboarding & adoption",
+                "Guides customers step-by-step, sends behaviour-based follow-ups, runs adaptive in-product nudges",
+                "Executive alignment, change management, and the first-value 'aha' workshop"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3 · The flagship deployment -- Gainsight Atlas",
+          "paragraphs": [
+            "Gainsight, the category leader in customer success software, has made the most complete bet here. Its Atlas family of AI agents is anchored by the Staircase AI Agent (from its Staircase AI acquisition), which scans every touchpoint -- email, meetings, Slack, product usage, support tickets -- to surface hidden sentiment and risk and proactively alert the team; Gainsight reports customers using it drove 3x growth over the past year. A companion Renewal AI Agent orchestrates the renewal motion. The strategic move came in April 2026 when Gainsight opened its platform with MCP: for the first time, CS and post-sales leaders can direct AI agents to run retention workflows on their behalf -- flagging risk, orchestrating renewal plays -- in minutes instead of weeks, and Gainsight MCP is exposed through approved partners including the Claude ecosystem, so teams can activate Gainsight from inside the AI tools they already use. Gainsight frames the whole programme as 'Human-First AI': agents remove the grunt work and the surprises so humans can own the strategy. Why MCP is the real story: By exposing retention workflows as MCP tools, Gainsight turns its platform into something an external orchestrator (e.g. a Claude agent) can call. CS data and plays stop being trapped in a dashboard and become callable capabilities in a wider agent fleet -- the Day 60 'skills as the new app store' thesis applied to retention."
+          ],
+          "table": {
+            "headers": [
+              "CS workflow",
+              "Agent strength",
+              "Where the human still owns it"
+            ],
+            "rows": [
+              [
+                "Renewal & expansion",
+                "Drafts renewal plays, assembles the account narrative, schedules the motion",
+                "The renewal conversation, the negotiation, the upsell pitch to the buying committee"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "4 · The platform landscape in 2026",
+          "paragraphs": [
+            "The CS-platform market is consolidating around agentic capability. Gainsight leads enterprise with the deepest health-score models and the Atlas agent family, but carries a heavy implementation cost (12-24 weeks in practice). Totango wins on speed with pre-built 'SuccessBLOCs' -- modular onboarding / adoption / renewal / expansion packages with playbooks and automations out of the box (4-8 week deploys) -- but falls short in complex enterprise health-scoring. Salesforce Agentforce is the natural choice for Salesforce-native shops, with autonomous agents handling case resolution, account research, and proactive interventions across service and CS, and the Spring '26 release leaning hard into agentic automation. The broader service-CX players (NiCE and others) are bolting churn-prediction agents onto contact-centre stacks. The common thread: every serious platform is moving from 'assist the CSM' to 'execute the flow, supervised'."
+          ],
+          "table": {
+            "headers": [
+              "CS workflow",
+              "Agent strength",
+              "Where the human still owns it"
+            ],
+            "rows": [
+              [
+                "Renewal & expansion",
+                "Drafts renewal plays, assembles the account narrative, schedules the motion",
+                "The renewal conversation, the negotiation, the upsell pitch to the buying committee"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "5 · Governance -- Article 50 + KYA for post-sale agents",
+          "paragraphs": [
+            "Retention agents touch customer data and increasingly reach the customer directly, so they inherit the full governance stack. EU AI Act Article 50 (Aug 2 2026, now T-61 days): a CS agent that emails, chats, or calls a customer must disclose it is an AI, and any synthetic voice/video must be watermarked (C2PA / SynthID). Annex III exposure: a churn or health model that influences access to an essential service, or that profiles customers at scale, can fall into high-risk territory -- requiring a risk-management system, technical documentation, human oversight, and logging. The Aug 2 deadline is confirmed and not moving (the proposed Digital Omnibus that might push some high-risk dates to Dec 2027 is not yet law -- treat August as binding). KYA (Know Your Agent, Day 54): each CS agent should carry a SPIFFE/SVID identity scoped to read-and-propose authority -- it can flag risk and draft a save-play but should never autonomously issue a credit, change a contract, or commit a discount -- with a <1s kill switch and a WORM audit of every customer-facing message. GDPR: per-customer Memory IDs make opt-out erasure a one-call cascade. Watch this: The first awkward CS-agent headline won't be a hallucinated answer -- it'll be an undisclosed AI 'check-in' email into the EU after Aug 2, or a churn model quietly profiling protected customers without an audit trail. Wire disclosure, scoping, and logging before you point an agent at"
+          ],
+          "table": {
+            "headers": [
+              "CS workflow",
+              "Agent strength",
+              "Where the human still owns it"
+            ],
+            "rows": [
+              [
+                "Renewal & expansion",
+                "Drafts renewal plays, assembles the account narrative, schedules the motion",
+                "The renewal conversation, the negotiation, the upsell pitch to the buying committee"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "6 · Reference architecture -- a retention-agent stack",
+          "paragraphs": [
+            "Brain (model routing, Day 43): Opus 4.8 / GPT-5.5 for account strategy and renewal narrative, Sonnet 4.6 for customer comms and summaries, DeepSeek V4 Flash ($0.14/M) for high-volume health scoring and ticket classification. Orchestration: Gainsight Atlas (via MCP) or Agentforce 360 as the control plane wiring the Onboard/AdoptfiMonitor/RenewfiExpand loop, with AG-UI generative surfaces (Day 48) for the CSM and approval gates on anything customer-committing. Memory (Write-Aside, Day 44): Valkey L1 + pgvector L2 with a per-account namespace so the agent remembers every prior touch and save; Memory IDs for GDPR erasure on churn/opt-out. Data plane (Day 55): streaming materialised views over product-usage + ticket + sentiment feeds so the health score is fresh by construction, not stale to the last QBR. Identity & guardrails: SPIFFE/SVID per agent scoped to read/propose-only, Article 50 disclosure on every customer-facing touch, T1-T4 kill switch, and a WORM audit trail of every message and account write -- the same trace satisfies Annex III evidence and renewal-forecast integrity at once."
+          ]
+        },
+        {
+          "title": "7 · Breaking -- Anthropic files for IPO ahead of OpenAI",
+          "paragraphs": [
+            "On June 1, 2026, Anthropic confidentially filed for a US IPO, edging ahead of OpenAI in the race to public markets. The context is staggering: Anthropic last raised $65B at a $965B post-money valuation in late May (more than double its $380B mark from February), and its annualised revenue run-rate recently crossed ~$47B, driven by enterprise adoption of Claude for coding and agentic workflows. OpenAI filed confidentially around May 22 and is eyeing a September debut above $1T; SpaceX filed May 20 -- three of the most-watched names all heading public in 2026. Jensen Huang used the moment to push back on software-obsolescence fears, arguing that 'agentic AI is coming' and software companies must present their tools in ways agents can call -- which is precisely what Gainsight's MCP move (above) does for retention."
+          ]
+        },
+        {
+          "title": "8 · Viral AI app of the day",
+          "paragraphs": [
+            "OpenClaw -- the fastest-growing open-source project in GitHub history, having blown past 302,000 stars by mid-May 2026 (from 9K to 60K in days back in January). It's a personal AI assistant that runs entirely on your own devices, acting as a local gateway that connects AI models to 50+ integrations -- WhatsApp, Telegram, Slack, Discord, Signal, iMessage -- and its signature trick is that it writes its own new skills, extending itself without manual coding. The 2026 GitHub trend it embodies is 'agentic execution': AI that doesn't just talk, but acts, locally and privately. For a CS leader the lesson is the same as the governance section: the most viral agents are the most autonomous, and OpenClaw forks routinely ship with no kill switch, no audit trail, and no scoped identity -- a vivid reminder of why retention agents touching customer data need the opposite. Why it matters: Local-first, self-extending agents are the consumer-side proof that 'agents that act' have crossed into the mainstream. The enterprise job is to keep that autonomy inside a trust boundary -- identity, approval gates, and an audit trail -- before it touches a customer."
+          ]
+        },
+        {
+          "title": "Market signal: The IPO race ratifies that the value is in agentic enterprise workflows, not chat. A",
+          "paragraphs": [
+            "$965B private valuation on ~$47B run-rate prices in a future where most of that revenue is agents doing work inside finance, healthcare, sales, and customer success -- the exact verticals this series"
+          ]
+        }
+      ],
+      "market_signal": "The IPO race ratifies that the value is in agentic enterprise workflows, not chat. A $965B private valuation on ~$47B run-rate prices in a future where most of that revenue is agents doing work inside finance, healthcare, sales, and customer success -- the exact verticals this series has been walking through. 8 · Viral AI app of the day OpenClaw -- the fastest-growing open-source project in GitHub history, having blown past 302,000 stars by mid-May 2026 (from 9K to 60K in days back in January).",
+      "practical_takeaway": [
+        {
+          "title": "Three moves this quarter for anyone in customer success, Rev",
+          "body": "Three moves this quarter for anyone in customer success, RevOps, or post-sale growth: (1) Instrument the whole book -- deploy a health-scoring / churn agent (Gainsight Atlas, Totango, or an Agentforce flow) to continuously triage every account, and measure it on net revenue retention and on how many weeks earlier it surfaces risk, not on dashboards built. (2) Keep the human on the renewal -- let agents draft the play and assemble the narrative, but reserve the renewal and expansion conversations for the CSM, where the relationship (and the seven-figure decision) actually lives. (3) Wire governance before you point an agent at a customer -- SPIFFE identity scoped to read/propose-only, Article 50 disclosure on every customer-facing touch (T-61 days to Aug 2), per-customer Memory IDs for GDPR erasure, and a WORM log of every message and account write. Protect the audit trail and the relationship the way you'd protect the renewal -- because they now"
+        },
+        {
+          "title": "Tomorrow (Day 71): Agentic AI in Finance & FP&A -- how auton",
+          "body": "Tomorrow (Day 71): Agentic AI in Finance & FP&A -- how autonomous close, reconciliation, and forecasting agents are reshaping the office of the CFO, and where the controller's sign-off remains"
+        }
+      ]
+    },
+    {
       "date": "2026-05-31",
       "display_date": "MAY 31, 2026",
       "issue": 69,
