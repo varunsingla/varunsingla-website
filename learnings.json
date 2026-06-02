@@ -19,14 +19,6 @@
         {
           "stat": "3x",
           "label": "growth on accounts using Gainsight's Staircase AI Agent"
-        },
-        {
-          "stat": "12-24wk",
-          "label": "Gainsight enterprise implementation in practice"
-        },
-        {
-          "stat": "T-61",
-          "label": "days to EU AI Act Article 50 / Annex III (Aug 2)"
         }
       ],
       "sections": [
@@ -185,21 +177,7 @@
           "title": "Tomorrow (Day 71): Agentic AI in Finance & FP&A -- how auton",
           "body": "Tomorrow (Day 71): Agentic AI in Finance & FP&A -- how autonomous close, reconciliation, and forecasting agents are reshaping the office of the CFO, and where the controller's sign-off remains"
         }
-      ],
-      "viral_app": {
-        "name": "OpenClaw",
-        "description": "Fastest-growing OSS project in GitHub history (302K+ stars by mid-May 2026). A local-first personal AI assistant that connects models to 50+ integrations (WhatsApp, Telegram, Slack, Discord, Signal, iMessage) and writes its own new skills to extend itself without manual coding. Embodies the 2026 'agentic execution' trend: AI that acts, locally and privately. CS lesson: the most viral agents are the most autonomous, and forks ship with no kill switch, audit trail, or scoped identity -- the opposite of what a retention agent touching customer data needs.",
-        "stats": [
-          {
-            "stat": "302K+",
-            "label": "GitHub stars"
-          },
-          {
-            "stat": "50+",
-            "label": "local integrations"
-          }
-        ]
-      }
+      ]
     },
     {
       "date": "2026-05-31",
