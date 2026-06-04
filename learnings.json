@@ -6,6 +6,182 @@
   },
   "learnings": [
     {
+      "date": "2026-06-04",
+      "display_date": "JUNE 4, 2026",
+      "issue": 72,
+      "title": "Agentic AI in HR & People Operations",
+      "focus_intro": "HR is the vertical where agentic AI moves fastest and where the law watches most closely. By",
+      "stats": [],
+      "sections": [
+        {
+          "title": "1 · The hire-to-retire cycle becomes an agent loop",
+          "paragraphs": [
+            "The people lifecycle -- Source fi Screen fi Interview fi Offer fi Onboard fi Develop fi Retain fi Offboard -- was built around recruiters and HRBPs doing high-volume coordination by hand: chasing calendars, parsing CVs, answering the same benefits question fifty times, provisioning accounts across a dozen systems. Agentic AI collapses the mechanical layer into a continuous loop. A sourcing agent works a requisition against internal and external talent pools; a screening agent scores candidates semantically against the job's real skill requirements; a coordination agent negotiates interview slots; an onboarding agent provisions accounts, equipment and training across HRIS, IT and payroll on day one; and a Tier-1 support agent resolves routine employee questions and tickets. The recruiter and the HRBP move from doing the steps to supervising the loop",
+            "This is the same vertical pattern this series has walked (finance Day 71, sales Day 69, customer success Day 70): agents own the high-volume, rules-driven work, humans own judgement and accountability. The twist in HR is that the highest-judgement moments are also the legally protected ones -- who gets screened out, who gets the offer, who gets managed out. Those are exactly the decisions regulators insist stay human. So what: Time-to-fill and time-to-productivity are becoming agent-instrumented metrics. The teams pulling ahead let agents run sourcing, screening and onboarding coordination continuously, so recruiters spend their time on candidate relationships and final judgement -- not calendar Tetris."
+          ],
+          "table": {
+            "headers": [
+              "HR workflow",
+              "Agent strength",
+              "Where the human still owns it"
+            ],
+            "rows": [
+              [
+                "Sourcing",
+                "Works requisitions across internal + external pools, surfaces skill-adjacent candidates, drafts outreach",
+                "Defining the role honestly; deciding who is genuinely a fit beyond keywords"
+              ],
+              [
+                "Screening",
+                "Parses CVs, scores semantically against real skill needs, ranks and routes to hiring managers",
+                "Reviewing every screen-out; owning the reject decision and its reasoning log"
+              ],
+              [
+                "Coordination",
+                "Negotiates interview calendars, runs background-check logistics, keeps candidates warm",
+                "The interview judgement itself; reading fit, motivation and team chemistry"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "2 · Source, screen, onboard -- what works",
+          "paragraphs": [
+            "The pattern that matters: Agents are excellent at finding, ranking and coordinating; they must not be the ones who decide to reject, hire or fire. Design the hand-off precisely at the adverse-decision seam -- the same place the EEOC and the EU AI Act draw the line."
+          ],
+          "table": {
+            "headers": [
+              "HR workflow",
+              "Agent strength",
+              "Where the human still owns it"
+            ],
+            "rows": [
+              [
+                "Sourcing",
+                "Works requisitions across internal + external pools, surfaces skill-adjacent candidates, drafts outreach",
+                "Defining the role honestly; deciding who is genuinely a fit beyond keywords"
+              ],
+              [
+                "Screening",
+                "Parses CVs, scores semantically against real skill needs, ranks and routes to hiring managers",
+                "Reviewing every screen-out; owning the reject decision and its reasoning log"
+              ],
+              [
+                "Coordination",
+                "Negotiates interview calendars, runs background-check logistics, keeps candidates warm",
+                "The interview judgement itself; reading fit, motivation and team chemistry"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3 · The adoption curve -- hype vs reality",
+          "paragraphs": [
+            "Adoption in HR is already broad: roughly 70-80% of recruiting teams use AI for screening and sourcing, and the most successful 2026 agentic pilots cluster in recruitment coordination (scheduling, background checks), onboarding orchestration (cross-system provisioning), and Tier-1 employee support (benefits Q&A with automated ticket resolution). But the gap between an impressive demo and a defensible deployment is wider here than anywhere else. The bottleneck is rarely the model -- it is bias testing, data quality, system integration, and the control framework. An agent that silently screens out a protected class, or ranks candidates on a proxy for age or gender, is not a productivity win; it is discrimination exposure waiting to surface in a complaint or an"
+          ],
+          "table": {
+            "headers": [
+              "HR workflow",
+              "Agent strength",
+              "Where the human still owns it"
+            ],
+            "rows": [
+              [
+                "Onboarding",
+                "Provisions accounts/equipment/training across HRIS, IT and payroll; answers Tier-1 questions",
+                "Manager relationship, culture, first-value conversations, exceptions"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "4 · The platform landscape in 2026",
+          "paragraphs": [
+            "The HR-AI market is splitting into three layers. HCM-native suites (Workday, SAP SuccessFactors, Oracle HCM, ADP) are embedding agents for sourcing, screening, onboarding and employee support directly into the system of record. Recruiting-specialist platforms (Carv, Eightfold, Paradox and the volume-hiring wave) ship purpose-built agents for high-throughput sourcing and candidate coordination, increasingly with built-in reasoning logs to meet the new compliance bar. Horizontal enterprise stacks bring the control plane: Microsoft Copilot and Agent 365, Salesforce Agentforce, and Anthropic's Claude agents wire HR workflows into a governed, audited surface. The common thread mirrors finance: every serious vendor is moving from 'assist the recruiter' to 'execute the workflow, supervised, with a reasoning trail' -- because in hiring, the trail is the"
+          ],
+          "table": {
+            "headers": [
+              "HR workflow",
+              "Agent strength",
+              "Where the human still owns it"
+            ],
+            "rows": [
+              [
+                "Onboarding",
+                "Provisions accounts/equipment/training across HRIS, IT and payroll; answers Tier-1 questions",
+                "Manager relationship, culture, first-value conversations, exceptions"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "5 · Governance -- Annex III, the EEOC & reasoning logs",
+          "paragraphs": [
+            "HR is, with finance and healthcare, one of the few verticals where governance is non-negotiable from day one. EU AI Act (Aug 2 2026, ~T-59 days): AI used for recruitment, worker management and access to employment is high-risk by default under Annex III -- pulling in mandatory risk assessments, technical documentation, bias testing, transparency disclosures to candidates, human oversight, and continuous monitoring. Reasoning logs: the emerging standard is a per-candidate reasoning log for every ranking, with a human reviewer signing off on every reject, every screen-out and every offer -- which simultaneously satisfies the EU AI Act's human-oversight mandate and the US EEOC's requirement that adverse employment decisions stay human-supervised. Bias & adverse impact: agents must be tested for disparate impact before and during production, not just at launch. KYA (Know Your Agent, Day 54): each HR agent carries a SPIFFE/SVID identity scoped to read-and-propose -- it can source, rank and coordinate, but never autonomously reject, hire, set pay, or terminate -- with a <1s kill switch and a WORM audit of every action. Watch this: 2026 is the year hiring-agent reasoning logs go from best practice to legal requirement. The first uncomfortable HR-agent headline won't be a clumsy chatbot -- it'll be an agent that screened out candidates on a protected-class proxy with no human review and no reviewable trail, surfaced in a discrimination claim. Test for bias, log the reasoning, keep the adverse decision human."
+          ],
+          "table": {
+            "headers": [
+              "HR workflow",
+              "Agent strength",
+              "Where the human still owns it"
+            ],
+            "rows": [
+              [
+                "Onboarding",
+                "Provisions accounts/equipment/training across HRIS, IT and payroll; answers Tier-1 questions",
+                "Manager relationship, culture, first-value conversations, exceptions"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "6 · Reference architecture -- a compliant hiring stack",
+          "paragraphs": [
+            "Brain (model routing, Day 43): Opus 4.8 / GPT-5.5 for nuanced fit reasoning and interview-guide generation, Sonnet 4.6 for candidate comms and summaries, DeepSeek V4 Flash ($0.14/M) for high-volume CV parsing and classification. Orchestration: a control plane (Claude managed agents, Agentforce, or an HCM-native agent layer) wiring the Source/ScreenfiCoordinate/Onboard loop, with AG-UI surfaces (Day 48) for the recruiter and approval gates on every screen-out, offer and termination. Memory (Write-Aside, Day 44): Valkey L1 + pgvector L2 with a per-requisition / per-candidate namespace; Memory IDs for data-subject erasure under GDPR -- candidate data is some of the most regulated PII you hold. Data plane (Day 55): streaming views over ATS, HRIS and assessment feeds so candidate state is fresh by construction. Identity & guardrails: SPIFFE/SVID per agent scoped to read/propose-only (e.g. candidate:read + rank:propose, never offer:send or termination:execute), a reasoning log per ranking, T1-T4 kill switch, and a WORM audit trail -- the same trace satisfies EU AI Act logging, EEOC oversight and a fair-hiring audit at once. The one design rule: the agent proposes, the human decides -- on every decision that touches someone's job. Every reject, offer and termination flows through a human approval gate, and that approval, with its reasoning log, is the compliance artefact. Build the gate and the bias test first;"
+          ],
+          "table": {
+            "headers": [
+              "HR workflow",
+              "Agent strength",
+              "Where the human still owns it"
+            ],
+            "rows": [
+              [
+                "Onboarding",
+                "Provisions accounts/equipment/training across HRIS, IT and payroll; answers Tier-1 questions",
+                "Manager relationship, culture, first-value conversations, exceptions"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "7 · Breaking -- Anthropic IPO & the coding-model land grab",
+          "paragraphs": [
+            "On June 1, 2026, Anthropic confirmed it had confidentially filed for a US IPO, taking an early lead over OpenAI in the race to public markets -- on the back of a late-May raise of $65B at a $965B post-money valuation and an annualised run-rate near ~$47B, driven largely by Claude Code and agentic enterprise adoption. The same week, the model field got more crowded: at Build, Microsoft unveiled MAI-Code-1-Flash, its own coding model aimed at lowering developer cost and reducing reliance on OpenAI, while Google leaned hard into agentic AI with Antigravity 2.0, which orchestrates many agents in parallel. OpenAI is expected to ship GPT-5.6 in June with a heavy agentic-workflow emphasis. The throughline: the frontier is converging on coding and multi-agent orchestration, and the public-market race (Anthropic, OpenAI eyeing September, SpaceX) is on."
+          ]
+        },
+        {
+          "title": "8 · Viral AI app of the day",
+          "paragraphs": [
+            "OpenClaw -- the fastest-growing open-source project in GitHub history, now well past 210,000 stars (and climbing toward the mid-300Ks by some trackers) in under five months. Created by PSPDFKit founder Peter Steinberger, it is a free, local-first personal AI assistant that runs entirely on your own devices and connects models to 50+ integrations (WhatsApp, Telegram, Slack, Discord, Signal, iMessage); its signature move is that it writes its own skills, extending itself without manual coding. For an HR leader the lesson is the governance section in miniature: the most viral agents are the most autonomous, and these forks routinely ship with no kill switch, no audit trail, and no scoped identity -- precisely the opposite of what an agent touching a candidate's application or an employee's record must have. Why it matters: Local-first, self-extending agents prove 'agents that act' have gone mainstream. The people-ops job is to keep that autonomy inside a trust boundary -- scoped identity, bias testing, approval gates, reasoning logs and a WORM audit trail -- before it ever touches a hiring or"
+          ]
+        },
+        {
+          "title": "Market signal: For an HR or people-ops leader the relevance is procurement, not benchmarks. The",
+          "paragraphs": [
+            "agent tooling underneath your HCM is being rebuilt monthly by a handful of extremely well-capitalised vendors heading for public markets -- plan for a fast-moving supplier set, insist on reasoning-log and audit features in every RFP, and don't lock into a stack that can't prove human"
+          ]
+        }
+      ],
+      "market_signal": "For an HR or people-ops leader the relevance is procurement, not benchmarks. The agent tooling underneath your HCM is being rebuilt monthly by a handful of extremely well-capitalised vendors heading for public markets -- plan for a fast-moving supplier set, insist on reasoning-log and audit features in every RFP, and don't lock into a stack that can't prove human oversight. 8 · Viral AI app of the day OpenClaw -- the fastest-growing open-source project in GitHub history, now well past 210,000 stars (and climbing toward the mid-300Ks by some trackers) in under five months.",
+      "practical_takeaway": [
+        {
+          "title": "Three moves this quarter for anyone in HR, talent or people-",
+          "body": "Three moves this quarter for anyone in HR, talent or people-ops: (1) Start with coordination and onboarding, not screening -- interview scheduling, background-check logistics and cross-system provisioning are high-volume, low-legal-risk, and easy to verify, so pilot agents there first and measure them on time-to-fill and time-to-productivity. (2) Keep every adverse decision human -- let agents source, rank and coordinate, but route every screen-out, offer and termination through a human reviewer with a reasoning log, because that review is both your EEOC oversight and your EU AI Act evidence. (3) Wire governance before you point an agent at candidates -- bias-test before and during production, give each agent a scoped SPIFFE identity (read/propose, never decide/send), a <1s kill switch, and a WORM audit trail that ties every action to a human decision (~T-59 days to Aug 2). Automate the sourcing, never the judgement. Tomorrow (Day 73): Agentic AI in Legal & Contracts -- autonomous review, redlining and diligence agents, privilege and confidentiality as the trust boundary, and why the lawyer's sign-off stays on"
+        }
+      ]
+    },
+    {
       "date": "2026-06-03",
       "display_date": "JUNE 3, 2026",
       "issue": 71,
