@@ -6,6 +6,187 @@
   },
   "learnings": [
     {
+      "date": "2026-06-05",
+      "display_date": "JUNE 5, 2026",
+      "issue": 73,
+      "title": "Agentic AI in Legal & Contracts",
+      "focus_intro": "Legal is the vertical where agentic AI has crossed from drafting assistant to workflow operator --",
+      "stats": [
+        {
+          "stat": "25,000+",
+          "label": "custom agents running on Harvey across legal work"
+        },
+        {
+          "stat": "$11B",
+          "label": "Harvey valuation; Legora $5.55B -- legal AI arms race"
+        }
+      ],
+      "sections": [
+        {
+          "title": "1 · From drafting assistant to workflow operator",
+          "paragraphs": [
+            "The legal lifecycle -- Intake fi Draft fi Review fi Redline fi Negotiate fi Diligence fi Sign fi Obligate -- was, for most of legal-AI's history, a sequence where the tool suggested and the lawyer did everything that mattered by hand. 2026 is the year that flipped. As the vendors now put it, agents don't just review clauses -- they redline the document; they don't just propose research angles -- they compose and execute the queries, synthesise the results, and write the findings in; they don't just spot issues in a data room -- they organise it, review it exhaustively, and produce the diligence report. The lawyer moves from doing the mechanical review to supervising the loop and owning the legal judgement. This is the same vertical pattern the series has walked through finance (Day 71), HR (Day 72) and sales (Day 69): agents own the high-volume, rules-driven work; humans own judgement and accountability. The twist in legal is that the 'judgement' is also a regulated professional duty. A misjudged clause isn't just a bad outcome -- it can be malpractice, a privilege waiver, or an unauthorised-practice-of-law problem. So the hand-off has to land",
+            "So what: Cycle time and matter throughput are becoming agent-instrumented metrics. The firms pulling ahead let agents run first-pass review, redline generation and data-room diligence continuously, so lawyers spend their hours on negotiation strategy, risk calls and client counsel --"
+          ],
+          "table": {
+            "headers": [
+              "Legal workflow",
+              "Agent strength",
+              "Where the lawyer still owns it"
+            ],
+            "rows": [
+              [
+                "Contract review",
+                "Reads the full agreement, compares clauses to the firm playbook, flags risks, missing protections and non-conforming terms with citations to source language",
+                "The risk appetite call; what is acceptable for this client on this deal"
+              ],
+              [
+                "Redlining",
+                "Produces a first-draft redline in Word tracked changes following the style guide, with negotiation notes attached to each material change",
+                "Approving every edit; the negotiation posture and what to concede"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "2 · Review, redline, diligence -- what works",
+          "paragraphs": [
+            "The pattern that matters: Agents are excellent at reading, comparing, redlining and organising; they must not be the ones who decide what risk to accept or what obligation to commit the client to. Design the hand-off precisely at the obligation seam -- the clause that binds, the term that's"
+          ],
+          "table": {
+            "headers": [
+              "Legal workflow",
+              "Agent strength",
+              "Where the lawyer still owns it"
+            ],
+            "rows": [
+              [
+                "Contract review",
+                "Reads the full agreement, compares clauses to the firm playbook, flags risks, missing protections and non-conforming terms with citations to source language",
+                "The risk appetite call; what is acceptable for this client on this deal"
+              ],
+              [
+                "Redlining",
+                "Produces a first-draft redline in Word tracked changes following the style guide, with negotiation notes attached to each material change",
+                "Approving every edit; the negotiation posture and what to concede"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3 · Defensibility -- the audit log is the product",
+          "paragraphs": [
+            "The single biggest shift in 2026 legal AI is from output you have to trust to output you can audit. Modern contract-review tools now attach citations that link each finding back to the exact source language, so a reviewer can verify rather than believe. The emerging governance primitive is the reviewer-of-record per output: whatever the agent produces -- a redline, a clause comparison, a compliance flag -- the audit log records the named human who reviewed it, when, and what they changed. That record is what makes the deployment defensible if it is ever questioned by a regulator, by opposing counsel, or by the firm's own bar. The defensibility frame is no longer optional -- in a regulated profession, the trail is the deliverable."
+          ],
+          "table": {
+            "headers": [
+              "Legal workflow",
+              "Agent strength",
+              "Where the lawyer still owns it"
+            ],
+            "rows": [
+              [
+                "Due diligence",
+                "Organises the data room, reviews it exhaustively, extracts obligations and change-of-control / assignment terms, drafts the diligence report",
+                "Materiality judgement; what gets escalated and how it shapes the deal"
+              ],
+              [
+                "Legal research",
+                "Composes and runs queries, synthesises authority, drafts the memo with pin cites",
+                "Verifying every citation; the legal theory and its defensibility"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "4 · The platform landscape in 2026",
+          "paragraphs": [
+            "Legal AI is splitting into three layers, and the capital flowing in is enormous. Domain-specific leaders: Harvey raised a $200M growth round at an $11B valuation (25,000+ custom agents, Big-Law M&A and diligence focus); Legora raised a $550M Series D at $5.55B (high-volume, structured portfolio review); Spellbook ($50M Series B) targets mid-market in-house drafting; Sirion's AI Redline Agent reports ~60% review-time cuts. Horizontal control planes: in April 2026 Microsoft shipped a Legal Agent inside Word (Frontier preview) -- playbook-driven contract review and redlines in native tracked changes for roughly $30/user/month on a Copilot licence firms already hold; tellingly, it requires Anthropic enabled as a subprocessor, i.e. it runs on Claude, not GPT. CLM-native players (Workday, Sirion, Juro, Ironclad) embed redlining and obligation extraction directly into the contract system of record. The common thread mirrors finance and HR: every serious vendor is moving from 'assist the lawyer' to 'execute the workflow, supervised, with a citation trail.'"
+          ],
+          "table": {
+            "headers": [
+              "Legal workflow",
+              "Agent strength",
+              "Where the lawyer still owns it"
+            ],
+            "rows": [
+              [
+                "Due diligence",
+                "Organises the data room, reviews it exhaustively, extracts obligations and change-of-control / assignment terms, drafts the diligence report",
+                "Materiality judgement; what gets escalated and how it shapes the deal"
+              ],
+              [
+                "Legal research",
+                "Composes and runs queries, synthesises authority, drafts the memo with pin cites",
+                "Verifying every citation; the legal theory and its defensibility"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "5 · Governance -- privilege, Annex III & the sign-off",
+          "paragraphs": [
+            "Legal sits alongside finance, HR and healthcare as a vertical where governance is non-negotiable from day one -- but it has one boundary the others don't. Privilege & confidentiality are the trust boundary: feeding a privileged document to an agent whose data-handling, training use or subprocessor chain isn't airtight can waive privilege -- the deployment question is not just 'is it accurate' but 'does this preserve confidentiality and privilege end to end.' EU AI Act (Aug 2 2026, ~T-58 days): AI used in the administration of justice is high-risk under Annex III, pulling in risk management (Art. 9), automatic event logging over the system lifetime (Art. 12), human oversight, technical documentation and transparency; penalties run to €35M / 7% of global turnover for prohibited practices. Professional responsibility: the bar's rules -- competence, supervision, unauthorised-practice-of-law -- mean a named lawyer must own every output that creates obligation. KYA (Day 54): each legal agent carries a SPIFFE/SVID identity scoped to read-and-propose -- it can review, redline and draft, but never autonomously execute, file or bind -- with a <1s kill switch and a WORM audit of every action. Watch this: The first uncomfortable legal-AI headline of the era won't be a hallucinated case cite (we've already had those sanctioned). It will be a privilege waiver -- a privileged document fed to an agent on terms that didn't preserve confidentiality, surfaced in discovery. Lock the privilege boundary before you point an agent at a single client document."
+          ],
+          "table": {
+            "headers": [
+              "Legal workflow",
+              "Agent strength",
+              "Where the lawyer still owns it"
+            ],
+            "rows": [
+              [
+                "Due diligence",
+                "Organises the data room, reviews it exhaustively, extracts obligations and change-of-control / assignment terms, drafts the diligence report",
+                "Materiality judgement; what gets escalated and how it shapes the deal"
+              ],
+              [
+                "Legal research",
+                "Composes and runs queries, synthesises authority, drafts the memo with pin cites",
+                "Verifying every citation; the legal theory and its defensibility"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "6 · Reference architecture -- a privilege-safe legal stack",
+          "paragraphs": [
+            "Brain (model routing, Day 43): Opus 4.8 / GPT-5.5 for nuanced clause reasoning, diligence synthesis and negotiation notes; Sonnet 4.6 for redline drafting and summaries; DeepSeek V4 Flash ($0.14/M) for high-volume clause classification and obligation tagging -- but only on de-identified or non-privileged text unless the deployment is fully self-hosted. Orchestration: a control plane (Claude managed agents, Harvey/Legora, or a CLM-native agent layer) wiring the Review/RedlinefiDiligence/Research loop, with AG-UI surfaces (Day 48) for the lawyer and approval gates on every redline, diligence finding and outbound draft. Memory (Write-Aside, Day 44): Valkey L1 + pgvector L2 with a per-matter / per-client namespace and hard isolation; Memory IDs for erasure -- client data is privileged PII and ethical walls must hold at the infra layer. Data plane (Day 55): streaming views over the DMS, CLM and data room so matter state is fresh by construction, every read logged. Identity & guardrails: SPIFFE/SVID per agent scoped read/propose-only (e.g. matter:read + redline:propose, never filing:execute or contract:bind), a reviewer-of-record log per output, T1-T4 kill switch, and a WORM audit trail -- the same trace satisfies EU AI Act Art. 12 logging, bar supervision duties, and a privilege/confidentiality",
+            "The one design rule: the agent proposes, the lawyer decides -- on every output that creates obligation or relies on authority. Every redline, diligence call and filed document flows through a named-lawyer approval gate, and that approval, with its citation trail, is the compliance artefact. Build the privilege boundary and the reviewer-of-record log first; everything else is optimisation."
+          ]
+        },
+        {
+          "title": "7 · Breaking -- Anthropic IPO, Opus 4.8 & GPT-5.6",
+          "paragraphs": [
+            "On June 1, 2026, Anthropic confirmed it had confidentially filed for a US IPO -- beating OpenAI to the SEC -- at a reported $965B valuation on an annualised run-rate near ~$47B, driven largely by Claude Code and agentic enterprise adoption (legal among the fastest-growing verticals; recall Microsoft's Word Legal Agent runs on Claude). It rides Claude Opus 4.8, shipped May 28 with a Dynamic Workflows mode and a 3× cheaper Fast Mode that reclaimed the coding and agentic benchmark lead, plus a reported $36B Apollo/Blackstone private-credit deal to finance Google TPU chips -- the largest chip-financing transaction on record. Meanwhile OpenAI's GPT-5.6 is expected to land in June with a heavy agentic-workflow and token-efficiency emphasis (prediction markets put it ~80-89% before June 30), an explicit answer to Claude's lead in coding. The throughline: the frontier is converging on agentic coding and orchestration, and the public-market race is on."
+          ]
+        },
+        {
+          "title": "8 · Viral AI app of the day",
+          "paragraphs": [
+            "OpenClaw -- the fastest-growing open-source project in GitHub history, having raced from ~9,000 to 60,000+ stars in days back in January and since blown past 210,000 (some trackers put the wider fork ecosystem in the mid-300Ks) in under five months. Created by PSPDFKit founder Peter Steinberger, it is a free, local-first personal AI assistant that runs entirely on your own devices and connects models to 50+ integrations (WhatsApp, Telegram, Slack, Discord, Signal, iMessage); its signature move is that it writes its own skills, extending itself without manual coding. For a legal leader it is section 5 in miniature: the most viral agents are the most autonomous, and these forks routinely ship with no kill switch, no audit trail and no scoped identity -- the exact opposite of what an agent touching a privileged document or a binding contract must have. Why it matters: Local-first, self-extending agents prove 'agents that act' have gone mainstream. The legal-ops job is to keep that autonomy inside a trust boundary -- privilege isolation, scoped identity, approval gates, reviewer-of-record logs and a WORM audit trail -- before it ever touches a client"
+          ]
+        },
+        {
+          "title": "Market signal: For a GC or legal-ops leader, the relevance is procurement, not benchmarks. The",
+          "paragraphs": [
+            "model under your legal-AI stack is being rebuilt monthly by a handful of extremely well-capitalised vendors heading to public markets -- insist on privilege-preserving data terms, named-subprocessor disclosure, citation trails and audit logging in every RFP, and don't lock into a stack that can't prove"
+          ]
+        }
+      ],
+      "market_signal": "For a GC or legal-ops leader, the relevance is procurement, not benchmarks. The model under your legal-AI stack is being rebuilt monthly by a handful of extremely well-capitalised vendors heading to public markets -- insist on privilege-preserving data terms, named-subprocessor disclosure, citation trails and audit logging in every RFP, and don't lock into a stack that can't prove the lawyer stayed in the loop. 8 · Viral AI app of the day OpenClaw -- the fastest-growing open-source project in GitHub history, having raced from ~9,000 to 60,000+ stars in days back in January and since blown past 210,000 (some trackers put the wider fork ecosystem in the mid-300Ks) in under five months.",
+      "practical_takeaway": [
+        {
+          "title": "Three moves this quarter for anyone in legal, contracts or l",
+          "body": "Three moves this quarter for anyone in legal, contracts or legal-ops: (1) Start where the risk is contained -- first-pass contract review, playbook redlines and data-room organisation are high-volume and easy to verify, so pilot agents there (Microsoft's Word Legal Agent or a CLM-native tool is the lowest-friction start) and measure them on cycle time and reviewer hours saved. (2) Keep a named lawyer on every obligation -- let agents review, redline and draft, but route every binding clause, diligence call and filed document through a reviewer-of-record with a citation trail, because that review is your bar-supervision evidence and your EU AI Act Art. 12 log at once. (3) Lock the privilege boundary before you point an agent at a client document -- verify data-handling and subprocessor terms, give each agent a scoped SPIFFE identity (read/propose, never execute/file/bind), a <1s kill switch and a WORM audit trail (~T-58 days to Aug 2). Automate the reading, never"
+        },
+        {
+          "title": "Tomorrow (Day 74): Agentic AI in the Public Sector & GovTech",
+          "body": "Tomorrow (Day 74): Agentic AI in the Public Sector & GovTech -- citizen-service and casework agents, the FedRAMP / EU AI Act compliance double-bind, and why 'administration of justice' and benefits decisions demand the highest human-oversight bar of any deployment."
+        }
+      ]
+    },
+    {
       "date": "2026-06-04",
       "display_date": "JUNE 4, 2026",
       "issue": 72,
@@ -11232,6 +11413,6 @@
       ]
     }
   ],
-  "last_updated": "2026-06-02",
-  "total_days": 75
+  "last_updated": "2026-06-05",
+  "total_days": 76
 }
