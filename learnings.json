@@ -6,6 +6,177 @@
   },
   "learnings": [
     {
+      "date": "2026-06-06",
+      "display_date": "JUNE 6, 2026",
+      "issue": 74,
+      "title": "Agentic AI in the Public Sector & GovTech",
+      "focus_intro": "Government is the vertical with the widest gap between ambition and readiness. Capgemini finds",
+      "stats": [],
+      "sections": [
+        {
+          "title": "1 · From digital forms to autonomous casework",
+          "paragraphs": [
+            "The public-service lifecycle -- Intake fi Triage fi Eligibility fi Decision fi Service delivery fi Appeal -- has spent two decades being 'digitised' into online forms that still dump work on a human caseworker. Agentic AI changes the unit of automation: instead of one task in isolation, an agent now coordinates an entire workflow -- gathering information, checking eligibility against rules, routing the case across agency boundaries, and drafting the outcome. The Deloitte and World Economic Forum 2026 framings both land on the same line: unlike earlier RPA, agentic systems cross organisational lines and deliver an outcome, not just a step. This is the same vertical pattern the series walked through finance (Day 71), HR (Day 72) and legal (Day 73): agents own the high-volume, rules-driven work; humans own judgement and accountability. The twist in government is that the 'judgement' is the exercise of state authority over a citizen -- a wrong benefits denial or a mis-triaged asylum case isn't a bad customer experience, it is a violation of due process. So the hand-off has to land exactly where a right or an entitlement is decided. So what: The WEF readiness framework maps ~70 government functions by value and complexity for a reason -- the winning agencies do not 'deploy agents' broadly; they sequence high-volume, low-rights-impact services first (FAQs, status look-ups, form pre-fill) and keep rights-determining decisions human while they build trust and evidence."
+          ],
+          "table": {
+            "headers": [
+              "Gov workflow",
+              "Agent strength",
+              "Where the public servant still owns it"
+            ],
+            "rows": [
+              [
+                "Citizen FAQ & status",
+                "24/7 answers across channels; the UK's Bobbi resolved 82% of police queries with no escalation in week one",
+                "Edge cases, vulnerable callers, anything implying legal advice or a complaint"
+              ],
+              [
+                "Cross-agency service",
+                "Coordinates a transaction across departments -- Estonia's Bürokratt renews a passport while talking to border control",
+                "Consent, data-sharing legality, exceptions that fall outside the interoperability rules"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "2 · Citizen service & casework -- what works",
+          "paragraphs": [
+            "The pattern that matters: Agents are excellent at answering, coordinating, gathering and drafting; they must not be the ones who decide to deny a benefit, refuse a visa, or rule on a case. Design the hand-off precisely at the rights seam -- the determination that grants or denies an entitlement."
+          ],
+          "table": {
+            "headers": [
+              "Gov workflow",
+              "Agent strength",
+              "Where the public servant still owns it"
+            ],
+            "rows": [
+              [
+                "Citizen FAQ & status",
+                "24/7 answers across channels; the UK's Bobbi resolved 82% of police queries with no escalation in week one",
+                "Edge cases, vulnerable callers, anything implying legal advice or a complaint"
+              ],
+              [
+                "Cross-agency service",
+                "Coordinates a transaction across departments -- Estonia's Bürokratt renews a passport while talking to border control",
+                "Consent, data-sharing legality, exceptions that fall outside the interoperability rules"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3 · The FedRAMP / EU AI Act double-bind",
+          "paragraphs": [
+            "Public-sector agents face two compliance regimes at once, and they pull in different directions. US -- FedRAMP: any cloud AI service touching federal data needs a FedRAMP authorisation (usually Moderate or High). GSA's 20x programme is racing to compress that from 12-18 months toward weeks via automated validation, and is prioritising AI offerings -- in 2026 Salesforce reached FedRAMP High for Agentforce, and IBM cleared FedRAMP Moderate for 11 watsonx solutions, quadrupling its authorised federal portfolio in a year. EU -- AI Act: from August 2, 2026 (~T-57 days), AI used in essential public services, benefits eligibility, migration/asylum, law enforcement and the administration of justice is high-risk under Annex III, pulling in risk management, data governance, lifetime event logging, human oversight, technical documentation and Article 50 transparency -- penalties to €35M / 7% of global turnover. The double-bind: FedRAMP asks 'is the platform secure enough to host?', the AI Act asks 'is the decision governed enough to make?' -- and a"
+          ],
+          "table": {
+            "headers": [
+              "Gov workflow",
+              "Agent strength",
+              "Where the public servant still owns it"
+            ],
+            "rows": [
+              [
+                "Eligibility & benefits",
+                "Gathers evidence, checks rules, prepares a recommended determination with reasons",
+                "The adverse decision -- a denial or reduction must be made and signed by a human"
+              ],
+              [
+                "Records & intelligence",
+                "Turns archives into queryable intelligence (Indiana: 20M+ records) and drafts case summaries",
+                "Provenance, FOIA boundaries, what is releasable vs sealed"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "4 · The platform & sovereignty landscape",
+          "paragraphs": [
+            "The govtech agent market is splitting along the same three layers as other verticals, with a sovereignty overlay. Hyperscaler & suite control planes: Google AI for Public Sector, Microsoft (Copilot + Agent 365 in GCC High), Salesforce Agentforce at FedRAMP High, and IBM watsonx (FedRAMP Moderate) compete to be the governed surface for every agency agent. Specialist govtech: Moveworks and others target federal IT and HR service desks; national programmes like Estonia's Bürokratt and the UK's deployments are effectively bespoke control planes built on frontier models. The sovereignty wrinkle: the frontier-model layer is now political. OpenAI and Anthropic both offered their models to the US government for $1/year; OpenAI's FedRAMP High ties to Azure Government, while Anthropic offered multi-cloud (AWS, Google Cloud, Palantir) across all three branches. But a 2026 dispute -- Anthropic declining to relax safeguards for autonomous weapons/surveillance -- saw it labelled a 'supply-chain risk', pulled from USAi.gov, and litigating against the government, while OpenAI moved to fill the gap. For a public CIO, model choice is now a procurement and a policy decision."
+          ],
+          "table": {
+            "headers": [
+              "Gov workflow",
+              "Agent strength",
+              "Where the public servant still owns it"
+            ],
+            "rows": [
+              [
+                "Eligibility & benefits",
+                "Gathers evidence, checks rules, prepares a recommended determination with reasons",
+                "The adverse decision -- a denial or reduction must be made and signed by a human"
+              ],
+              [
+                "Records & intelligence",
+                "Turns archives into queryable intelligence (Indiana: 20M+ records) and drafts case summaries",
+                "Provenance, FOIA boundaries, what is releasable vs sealed"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "5 · Governance -- the highest human-oversight bar of any vertical",
+          "paragraphs": [
+            "Government is where the human-in-the-loop requirement is strictest, because the deployer is the state and the subject is a citizen with rights. Administration of justice & benefits are the trust boundary: under Annex III these are explicitly high-risk, and the consistent regulatory line -- EU AI Act, plus US due-process norms -- is that an automated system may recommend but a human must decide any adverse action against an individual. Reason-giving is mandatory: a citizen denied a benefit is entitled to know why, so every agent determination needs a per-case reasoning log linking the decision to the rule and the evidence (this satisfies AI Act Art. 12 logging and administrative-law duty to give reasons at once). Equity & bias testing must run before and during production -- a biased eligibility model is a civil-rights liability, not a bug. KYA (Day 54): each gov agent carries a SPIFFE/SVID identity scoped to read-and-propose -- it can triage, gather and draft, but never autonomously deny, approve or rule -- with a <1s kill switch and a WORM audit trail. Watch this: The first hard public-sector AI headline won't be a chatbot saying something silly. It will be an automated benefits denial -- a vulnerable citizen cut off by an agent with no human sign-off and no readable reason -- surfaced in a court or an ombudsman ruling. Keep every adverse decision human, with a reason on the record, before you scale."
+          ],
+          "table": {
+            "headers": [
+              "Gov workflow",
+              "Agent strength",
+              "Where the public servant still owns it"
+            ],
+            "rows": [
+              [
+                "Eligibility & benefits",
+                "Gathers evidence, checks rules, prepares a recommended determination with reasons",
+                "The adverse decision -- a denial or reduction must be made and signed by a human"
+              ],
+              [
+                "Records & intelligence",
+                "Turns archives into queryable intelligence (Indiana: 20M+ records) and drafts case summaries",
+                "Provenance, FOIA boundaries, what is releasable vs sealed"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "6 · Reference architecture -- a rights-safe gov stack",
+          "paragraphs": [
+            "Brain (model routing, Day 43): Opus 4.8 / GPT-5.5 for casework reasoning and cross-agency synthesis; Sonnet 4.6 for citizen comms and case-summary drafting; DeepSeek V4 Flash ($0.14/M) for high-volume intake classification -- but on a FedRAMP-authorised or sovereign-hosted deployment, on de-identified data wherever possible. Orchestration: a governed control plane (Agentforce at FedRAMP High, watsonx, Google AI for Public Sector, or a national platform) wiring the Intake/TriagefiEligibility/Draft loop, with AG-UI surfaces (Day 48) for the caseworker and approval gates on every eligibility recommendation and citizen-facing message. Memory (Write-Aside, Day 44): Valkey L1 + pgvector L2 with a per-citizen / per-case namespace and hard isolation; Memory IDs for erasure -- citizen data is the most regulated PII there is, and data-residency must be sovereign. Data plane (Day 55): streaming views over the case-management system and registries so case state is fresh by construction, every read logged. Identity & guardrails: SPIFFE/SVID per agent scoped read/propose-only (e.g. case:read + recommendation:propose, never benefit:deny or case:rule), a per-case reasoning log, T1-T4 kill switch, and a WORM audit trail -- one trace satisfies EU AI Act Art. 12 logging, the duty to give reasons, and a FedRAMP audit at once. The one design rule: the agent proposes, the public servant decides -- on every output that grants, denies or rules on a citizen's entitlement. Every adverse determination flows through a named-official approval gate, and that approval, with its reasoning log, is the compliance artefact. Build the rights boundary and the reasoning log first; everything else is optimisation."
+          ]
+        },
+        {
+          "title": "7 · Breaking -- Anthropic IPO, the coding-model land grab",
+          "paragraphs": [
+            "On June 1, 2026, Anthropic confirmed it had confidentially filed for a US IPO -- beating OpenAI to the SEC -- at a reported $965B valuation on an annualised run-rate near ~$47B, driven largely by Claude Code and agentic enterprise adoption. It rides Claude Opus 4.8 (shipped May 28, Dynamic Workflows mode + a 3× cheaper Fast Mode that reclaimed the coding/agentic lead). In the same week the coding-model land grab intensified: Microsoft unveiled MAI-Code-1-Flash, its first home-grown model that turns written descriptions into application source code -- an explicit move to cut its OpenAI reliance and lower developer cost -- while Google pushed Antigravity 2.0, which orchestrates multiple agents in parallel (one coding a site while another generates brand assets). OpenAI's GPT-5.6 is expected in June with an agentic-workflow emphasis. The throughline for a public CIO: the model layer is consolidating into a handful of extremely well-capitalised vendors heading to public markets -- and, post the Anthropic-government dispute, model choice is now inseparable"
+          ]
+        },
+        {
+          "title": "8 · Viral AI app of the day",
+          "paragraphs": [
+            "OpenClaw -- the fastest-growing open-source project in GitHub history, racing from ~9,000 to 60,000+ stars in days in January and blowing past 302,000 by mid-May (the wider fork ecosystem sits higher still). Created by PSPDFKit founder Peter Steinberger (who joined OpenAI in February, with the project moving to an open-source foundation), it is a free, local-first personal AI assistant that runs entirely on your own devices and connects models to 50+ integrations (WhatsApp, Telegram, Slack, Discord, Signal, iMessage); its signature move is that it writes its own skills, extending itself without manual coding. For a public-sector leader it is section 5 in miniature: the most viral agents are the most autonomous, and these forks routinely ship with no kill switch, no audit trail and no scoped identity -- the exact opposite of what an agent deciding a citizen's benefit or",
+            "Why it matters: Local-first, self-extending agents prove 'agents that act' have gone mainstream -- and that government staff will install them on their own (shadow AI). The govtech job is to give people a sanctioned, governed agent -- sovereign hosting, scoped identity, approval gates, reasoning logs and a WORM audit trail -- before an ungoverned fork touches citizen data."
+          ]
+        },
+        {
+          "title": "Market signal: For an agency, the relevance is procurement and resilience, not benchmarks. Insist",
+          "paragraphs": [
+            "on FedRAMP (or local-sovereign) authorisation, multi-cloud / multi-model portability so a single political dispute can't strand a critical service, reason-giving and audit logging in every RFP, and a contractual kill switch. Don't lock a citizen-facing service to a stack that can't prove the official stayed"
+          ]
+        }
+      ],
+      "market_signal": "For an agency, the relevance is procurement and resilience, not benchmarks. Insist on FedRAMP (or local-sovereign) authorisation, multi-cloud / multi-model portability so a single political dispute can't strand a critical service, reason-giving and audit logging in every RFP, and a contractual kill switch. Don't lock a citizen-facing service to a stack that can't prove the official stayed in the loop.",
+      "practical_takeaway": [
+        {
+          "title": "Three moves this quarter for anyone in govtech, public-secto",
+          "body": "Three moves this quarter for anyone in govtech, public-sector digital or policy: (1) Start where rights-impact is low -- citizen FAQs, status look-ups, form pre-fill and cross-agency coordination are high-volume and easy to verify (Bobbi and Bürokratt are the references), so pilot agents there and measure them on queries resolved and time-to-service, not on dashboards. (2) Keep every adverse decision human -- let agents triage, gather and draft, but route every benefits denial, visa refusal and case ruling through a named official with a per-case reasoning log, because that record is your EU AI Act Art. 12 evidence and your duty-to-give-reasons at once. (3) Resolve the double-bind before you deploy -- pick a FedRAMP-authorised (or local-sovereign) platform, demand multi-cloud/multi-model portability, scope each agent's SPIFFE identity to read/propose (never deny/approve/rule), with a <1s kill switch and WORM audit (~T-57 days to Aug 2). Automate the service, never"
+        },
+        {
+          "title": "Tomorrow (Day 75): Agentic AI in Education & EdTech -- tutor",
+          "body": "Tomorrow (Day 75): Agentic AI in Education & EdTech -- tutoring and grading agents, the FERPA / EU AI Act minor-protection bind, and why the 'teacher in the loop' is the non-negotiable design"
+        }
+      ]
+    },
+    {
       "date": "2026-06-05",
       "display_date": "JUNE 5, 2026",
       "issue": 73,
