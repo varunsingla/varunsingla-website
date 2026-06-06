@@ -10,25 +10,8 @@
       "display_date": "JUNE 6, 2026",
       "issue": 74,
       "title": "Agentic AI in the Public Sector & GovTech",
-      "focus_intro": "Government is the vertical with the widest gap between ambition and readiness. Around 90% of public-sector bodies plan to deploy agentic AI within 2-3 years, yet Gartner sees over 40% of agentic projects cancelled by 2027 for want of a value case. Early wins are real -- the UK's 'Bobbi' agent resolved 82% of police queries with no escalation in week one; Estonia's Burokratt renews a passport while coordinating across agencies. But public-sector agents decide people's rights and benefits, under a FedRAMP / EU AI Act double-bind, with 'administration of justice' in the highest-risk tier. The agent does the casework; the public servant owns the decision.",
-      "stats": [
-        {
-          "stat": "~90%",
-          "label": "public-sector bodies plan agentic AI in 2-3 yrs (Capgemini)"
-        },
-        {
-          "stat": "82%",
-          "label": "UK 'Bobbi' police queries resolved, no escalation (week 1)"
-        },
-        {
-          "stat": ">40%",
-          "label": "agentic projects Gartner sees cancelled by 2027"
-        },
-        {
-          "stat": "Aug 2",
-          "label": "EU AI Act high-risk enforcement -- now ~T-57 days"
-        }
-      ],
+      "focus_intro": "Government is the vertical with the widest gap between ambition and readiness. Capgemini finds",
+      "stats": [],
       "sections": [
         {
           "title": "1 · From digital forms to autonomous casework",
@@ -181,7 +164,7 @@
           ]
         }
       ],
-      "market_signal": "With the model layer consolidating into a few well-capitalised vendors heading to public markets -- and model choice now inseparable from sovereignty after the Anthropic-government dispute -- the public-sector edge is procurement discipline: FedRAMP (or sovereign) authorisation, multi-cloud/multi-model portability, reason-giving, audit logging and a contractual kill switch in every RFP.",
+      "market_signal": "For an agency, the relevance is procurement and resilience, not benchmarks. Insist on FedRAMP (or local-sovereign) authorisation, multi-cloud / multi-model portability so a single political dispute can't strand a critical service, reason-giving and audit logging in every RFP, and a contractual kill switch. Don't lock a citizen-facing service to a stack that can't prove the official stayed in the loop.",
       "practical_takeaway": [
         {
           "title": "Three moves this quarter for anyone in govtech, public-secto",
@@ -191,21 +174,7 @@
           "title": "Tomorrow (Day 75): Agentic AI in Education & EdTech -- tutor",
           "body": "Tomorrow (Day 75): Agentic AI in Education & EdTech -- tutoring and grading agents, the FERPA / EU AI Act minor-protection bind, and why the 'teacher in the loop' is the non-negotiable design"
         }
-      ],
-      "viral_app": {
-        "name": "OpenClaw",
-        "description": "Fastest-growing OSS project in GitHub history -- ~9K to 60K+ stars in days in January, past 302K by mid-May. Free, local-first personal AI assistant by PSPDFKit founder Peter Steinberger (now at OpenAI; project moved to an open-source foundation); runs entirely on your devices, connects 50+ integrations (WhatsApp, Telegram, Slack, Discord, Signal, iMessage), and writes its own skills. Govtech lesson: the most viral agents are the most autonomous, and forks ship with no kill switch, no audit trail and no scoped identity -- the exact opposite of what an agent deciding a citizen's benefit must have.",
-        "stats": [
-          {
-            "stat": "302K+",
-            "label": "GitHub stars by mid-May 2026"
-          },
-          {
-            "stat": "50+",
-            "label": "local integrations, self-extending skills"
-          }
-        ]
-      }
+      ]
     },
     {
       "date": "2026-06-05",
