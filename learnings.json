@@ -6,6 +6,175 @@
   },
   "learnings": [
     {
+      "date": "2026-06-07",
+      "display_date": "JUNE 7, 2026",
+      "title": "June 7, 2026 | Agentic AI Era Intensifies",
+      "focus_intro": "The Inflection: With Claude Opus 4.8 (88.6% SWE-bench Verified), GPT-5.5 (78.7% OSWorld-Verified), and",
+      "viral_app": {
+        "name": "Status: #1 GitHub Trending May 13-16. 5,600+ stars in first week. Rust+Tauri, MIT license. GitHub:",
+        "description": "github.com/tinyhumansai/openhuman Most AI agents start with a blank slate and a prompt. OpenHuman inverts this: Pre-load your entire digital past on day one. Via one-click OAuth, it vacuum-extracts 1 billion tokens of context from 118 services (Gmail, GitHub, Slack, Notion, Stripe, Calendar, Drive, Linear, Jira, etc.). Then every 20 minutes, a 'subconscious loop' runs autonomously--reading your to-dos, recent actions, calendar events--and deciding what to act on without you typing anything. A desktop mascot can join your Google Meet as a separate participant, transcribing meeting notes into your Memory Tree + summarizing key decisions. 100% local-first: all data encrypted in SQLite on your m",
+        "stats": []
+      },
+      "stats": [],
+      "sections": [
+        {
+          "title": "1. Model Parity = Horizontal Stack Wins",
+          "paragraphs": [
+            "When Opus 4.8 » GPT-5.5 within noise, value shifts to: (a) Memory freshness via streaming materialized views (Write-Aside Day 44 + RisingWave MVs = memory never stale by construction), (b) Multi-agent orchestration (Three-Agent Harness Day 23 is now first-class product--Anthropic Dynamic Workflows, Google Antigravity, Microsoft Agent Framework all ship native parallel sub-agents), (c) Governance evidence (SPIFFE/SVID identity + WORM audit logs satisfy Annex III by product design, not retrofit)."
+          ],
+          "table": {
+            "headers": [
+              "• METRIC",
+              "• VALUE",
+              "• IMPACT"
+            ],
+            "rows": [
+              [
+                "Model Performance Gap",
+                "<3% Between Leaders",
+                "Race Moves to Distribution"
+              ],
+              [
+                "Enterprise Agent Adoption",
+                "60% in Production",
+                "Governance Critical"
+              ],
+              [
+                "Physical AI Deployment",
+                "Humanoids in Mass Prod",
+                "Boston Dynamics Atlas Live"
+              ],
+              [
+                "Hyperscaler Capex",
+                "$570B+ on AI Infra",
+                "Chips + Software Wars"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "2. EU AI Act T-56 Days = Moat Builder, Not Burden",
+          "paragraphs": [
+            "August 2, 2026 enforcement. ~78% enterprises still not ready. This is NOT a panic event--it's a competitive wedge. Teams shipping SPIFFE/SVID identity + OTEL audit trails + T1-T4 kill switches NOW will have auditable evidence by August. Teams scrambling in September will cost 3-4× more to retrofit compliance post-facto. Anthropic, Microsoft, and ServiceNow all front-loading Article 50 compliance as product feature."
+          ],
+          "table": {
+            "headers": [
+              "• METRIC",
+              "• VALUE",
+              "• IMPACT"
+            ],
+            "rows": [
+              [
+                "Model Performance Gap",
+                "<3% Between Leaders",
+                "Race Moves to Distribution"
+              ],
+              [
+                "Enterprise Agent Adoption",
+                "60% in Production",
+                "Governance Critical"
+              ],
+              [
+                "Physical AI Deployment",
+                "Humanoids in Mass Prod",
+                "Boston Dynamics Atlas Live"
+              ],
+              [
+                "Hyperscaler Capex",
+                "$570B+ on AI Infra",
+                "Chips + Software Wars"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3. Physical AI Crosses Into Production",
+          "paragraphs": [
+            "Boston Dynamics Atlas mass production starts NOW (all 2026 units committed to Hyundai targeting 30K/year by 2028). Tesla Optimus Gen 3 at Fremont factory (100K-300K units in 2026 at $20-30K/unit). Figure 03 in production testing at BMW. VLA models from 164 ICLR 2026 papers are the integration layer. By Q4 2026, expect Optimus humanoids working Walmart distribution centers + GXO Logistics as the first ROI proof point. Implications: supply chain agents will orchestrate physical asset execution in real time.",
+            "Status: #1 GitHub Trending May 13-16. 5,600+ stars in first week. Rust+Tauri, MIT license. GitHub:",
+            "Most AI agents start with a blank slate and a prompt. OpenHuman inverts this: Pre-load your entire digital past on day one. Via one-click OAuth, it vacuum-extracts 1 billion tokens of context from 118 services (Gmail, GitHub, Slack, Notion, Stripe, Calendar, Drive, Linear, Jira, etc.). Then every 20 minutes, a 'subconscious loop' runs autonomously--reading your to-dos, recent actions, calendar events--and deciding what to act on without you typing anything. A desktop mascot can join your Google Meet as a separate participant, transcribing meeting notes into your Memory Tree + summarizing key decisions. 100% local-first: all data encrypted in SQLite on your machine. Zero egress unless you explicitly escalate.",
+            "It solved the #1 cold-start problem that's haunted agentic AI: 'How does an AI agent know me on day one?' Every other agent platform starts blank. OpenHuman starts with your entire digital history pre-indexed. The combination of (1) pre-loaded rich context, (2) autonomous 'subconscious' looping without user prompts, (3) meeting integration as separate participant, and (4) zero data egress hit a nerve with privacy-conscious developer community. Within 48 hours, forks exploded in Telegram/Discord/Slack bots using OpenHuman's"
+          ],
+          "bullets": [
+            "VIRAL APP OF THE WEEK: OPENHUMAN BY TINYHUMANSAI"
+          ],
+          "table": {
+            "headers": [
+              "• METRIC",
+              "• VALUE",
+              "• IMPACT"
+            ],
+            "rows": [
+              [
+                "Model Performance Gap",
+                "<3% Between Leaders",
+                "Race Moves to Distribution"
+              ],
+              [
+                "Enterprise Agent Adoption",
+                "60% in Production",
+                "Governance Critical"
+              ],
+              [
+                "Physical AI Deployment",
+                "Humanoids in Mass Prod",
+                "Boston Dynamics Atlas Live"
+              ],
+              [
+                "Hyperscaler Capex",
+                "$570B+ on AI Infra",
+                "Chips + Software Wars"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "Market Signal: Zero ARR today, but OpenHuman embodies the 'memory is the moat, not the model'",
+          "paragraphs": [
+            "thesis that will define 2026-2027. If I had to predict: (a) paid Stripe SaaS tier within 60 days, (b) A2A agent registry play (Linux Foundation) within 90 days, or (c) acquihire by Anthropic/OpenAI before EOY. Memoryless agents are becoming obsolete. Agents with episodic memory that write their own skills (MemRL) + route tasks via transactive memory (knowing who-knows-what) are 2027 baseline.",
+            "By mid-June 2026, three vendors have crystallized the 'agentic control plane' pattern. Every enterprise will",
+            "Your Move (Next 90 Days): If M365-centric fi Agent 365. If Workspace-native fi Cloud Orchestration. If regulated vertical fi Cowork (self-hosted = data residency solved = EU AI Act compliance). Pick ONE. Don't try to hedge across all three. Then invest 60% of your engineering in 'skills' (SKILL.md, open standard adopted by 16+ IDEs) that run on all platforms via skills marketplace + MCP + A2A protocol. Don't own the model; own the context freshness, governance evidence, and operational discipline.",
+            "Lesson 1: When Models Compress, Memory Expands Every frontier LLM is now within 1-3% on reasoning benchmarks. But none of them have perfect recall of your past 100 emails, your weekly standup notes, or what you said last month about a project. Agents with Write-Aside memory + streaming materialized views (auto-updating per transaction) will route tasks 40%+ faster than memoryless agents. OpenHuman proved this in 72 hours. Memory is becoming the new moat. Lesson 2: Governance is Competitive Advantage (Not Cost) T-56 days to Annex III enforcement. Most teams see this as burden. Anthropic + Microsoft see it as product feature that separates them from competitors. SPIFFE/SVID identity, WORM audit trails, T1-T4 kill switches baked into product = you ship with compliance evidence already collected. By August, you're auditable on day one. Competitors retrofitting compliance cost 3-4× more. This is like when companies realized SOC2 compliance became a sales enabler in enterprise software. Compliance-first design is the new moat. Lesson 3: Physical AI is NOT Coming--It's Here Boston Dynamics Atlas production units exist today. Tesla Optimus Gen 3 at Fremont factory today. This is not 'robots arriving in 5 years.' This is 'humanoids working warehouses by Q4 2026.' If you work in supply chain, logistics, manufacturing, or facilities--agents orchestrating physical assets is your 2026 reality. VLA (Vision-Language-Action) models trained on 164 ICLR papers are the integration layer. Budget for this. Lesson 4: Skills Marketplace is the New App Store SKILL.md went from Anthropic spec (Dec 2025) fi adopted by 16+ tools (Claude Code, Cursor, GitHub Copilot, Gemini CLI, etc.) fi 17 official Anthropic skills in production (May 2026) in 6 months. One SKILL.md published to 4 marketplaces (Anthropic Skills + GPT Store + MCP Hubs + Gemini Spark) reaches 3B+ users. Creator economics: 70-85% split to builder. But H2 2026 will see npm/PyPI-style supply-chain attacks (malicious contract-redline-pro siphoning docs to attacker). Ship with signed Agent Cards on A2A + WORM audit +",
+            "Lesson 5: The Moat is Orchestration, Not IQ When all frontier models are roughly equally intelligent, the teams that win have better (a) multi-agent orchestration (parallel agents + dependency graphs + deadlock avoidance), (b) data plane isolation (streaming MVs per agent + SPIFFE/SVID scoped access), (c) governance evidence (OTEL audit trails satisfy 3+ regulators). Teams thinking 'smarter model = faster shipping' are fighting yesterday's war. Focus on operational",
+            "Blog, NVIDIA GTC Taipei 2026, OpenAI Releases"
+          ],
+          "bullets": [
+            "ENTERPRISE AGENTIC AI: CONTROL PLANES By mid-June 2026, three vendors have crystallized the 'agentic evaluate one."
+          ],
+          "table": {
+            "headers": [
+              "CONTROL PLANE",
+              "PRICING",
+              "KEY DIFFERENTIATOR",
+              "READINESS"
+            ],
+            "rows": [
+              [
+                "Microsoft Agent 365",
+                "$15/user standalone or $99/M",
+                "365E nEt7ra identity + kill switch baked in. Ann",
+                "exP IrIIo edvuicdteionnc e(1 a5u Fto5-0g0e npeilroatste)d"
+              ],
+              [
+                "Google Cloud Orchestration",
+                "$2/$12 per M tokens Gemini 3.",
+                "5 CFloassth leadership + 3B Android reach. Mi",
+                "ssiBnegt aA n(GneAx eIIxIp deocctes du nJutiln He 230)"
+              ],
+              [
+                "Anthropic Cowork + Manage",
+                "dSkills free, Agents $20-200/mo",
+                "crSePdIiFtsFE/SVID native. RisingWave strea",
+                "minPgro MduVcst iaosn m(Feinmaonrcye. Sageelf-nhtso slitveed)"
+              ]
+            ]
+          }
+        }
+      ],
+      "market_signal": "Zero ARR today, but OpenHuman embodies the 'memory is the moat, not the model' thesis that will define 2026-",
+      "practical_takeaway": []
+    },
+    {
       "date": "2026-06-06",
       "display_date": "JUNE 6, 2026",
       "issue": 74,
