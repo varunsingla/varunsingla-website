@@ -6,6 +6,116 @@
   },
   "learnings": [
     {
+      "date": "2026-06-08",
+      "display_date": "June 8, 2026",
+      "issue": 75,
+      "title": "Agentic AI in Education & EdTech",
+      "focus_intro": "Education is the vertical where the agent touches the most vulnerable user of all: a child. The 2026 shift is that the AI tutor stops being a chatbot that answers and becomes an agent that runs the whole learning loop — assess, plan, teach, grade, adapt — while the teacher moves from delivering content to supervising learning and owning the judgement. The twist vs other verticals: the 'judgement' is a duty of care to a minor, so the hand-off must land exactly at the assessment seam — the grade on a transcript, the flag that triggers an intervention, the record that follows a child. The agent does the teaching support; the teacher owns the verdict.",
+      "stats": [
+        {
+          "stat": "2σ",
+          "label": "Bloom's tutoring gain agents chase at classroom scale"
+        },
+        {
+          "stat": "~86%",
+          "label": "students globally now use AI tools to study"
+        },
+        {
+          "stat": "60%+",
+          "label": "US teachers used AI in 2025–26 school year"
+        },
+        {
+          "stat": "Aug 2",
+          "label": "EU AI Act high-risk education enforcement (~T-55 days)"
+        }
+      ],
+      "viral_app": {
+        "name": "GitHub Copilot App (agent-native desktop)",
+        "description": "GitHub shipped a standalone desktop 'control center' for agentic development, moving Copilot from in-editor assistant to a surface where you dispatch, watch and steer multiple coding agents at once. It lands amid a fortnight where a new agent repo went viral almost weekly — OpenClaw (past 210K stars, fastest-growing OSS in GitHub history), Hermes Agent (100K+ stars, self-improving 'grows-with-you' memory + new desktop app) and mattpocock/skills (~91K stars in a week). Education lesson: the most viral agents are the most autonomous and often ship with no kill switch, audit trail or scoped identity — the opposite of what an agent touching a child's record must have.",
+        "stats": [
+          {
+            "stat": "210K+",
+            "label": "OpenClaw GitHub stars (fastest-growing OSS ever)"
+          },
+          {
+            "stat": "100K+",
+            "label": "Hermes Agent stars, self-improving memory"
+          },
+          {
+            "stat": "~91K",
+            "label": "mattpocock/skills stars in one week"
+          }
+        ]
+      },
+      "sections": [
+        {
+          "title": "From answer-bot to learning-loop agent",
+          "paragraphs": [
+            "The learning lifecycle — Assess → Plan → Teach → Practise → Grade → Intervene → Report — spent a decade being 'personalised' by adaptive-content engines that still left planning, marking and pastoral judgement on the teacher. Agentic AI changes the unit of automation: instead of serving the next worksheet, an agent runs the whole loop — diagnosing a misconception from a wrong answer, generating a tailored explanation, setting practice at the right level, marking it, and surfacing a struggling student before the test does.",
+            "The difference from earlier adaptive learning is the same one seen across every vertical this series: the agent crosses steps and produces an outcome — a lesson taught and a record updated — not just a single adaptive nudge."
+          ]
+        },
+        {
+          "title": "What works today vs what stays teacher-owned",
+          "paragraphs": [
+            "The reliable 2026 pattern: agents do the high-volume, low-stakes scaffolding; humans own anything that grades, flags or follows a child. Tutoring & practice (agent runs Socratic dialogue, hints, worked examples | teacher judges genuine understanding vs answer-mimicry). Grading & feedback (agent does first-pass marking against a rubric + draft comments | teacher reviews every grade that lands on a transcript). Lesson planning (agent drafts + differentiates + builds quizzes | teacher approves pedagogy and curriculum fit). Early-warning/pastoral (agent spots disengagement and risk signals | teacher owns the intervention and any safeguarding referral).",
+            "The assessment seam: agents tutor, draft and flag — but must NOT decide the grade, the placement, or the safeguarding outcome. Design the hand-off precisely at the line where a record becomes a child's permanent record — the same line FERPA and the EU AI Act both draw."
+          ]
+        },
+        {
+          "title": "Governance — the minor-protection bind",
+          "paragraphs": [
+            "Education carries a double regulatory load. In the US, FERPA protects the student education record and COPPA restricts data collection on under-13s, so any agent reading or writing student data must scope access to legitimate educational interest and keep a disclosable audit trail. In the EU, the AI Act places systems that determine access to education, evaluate learning outcomes, or monitor exam behaviour into Annex III high-risk, enforced from Aug 2 2026 (~T-55 days): risk management, automatic event logging over the lifetime, human oversight, technical documentation and transparency, €35M / 7% GTR penalties.",
+            "The emerging standard mirrors the 'reviewer-of-record' pattern from legal (Day 73): a per-student reasoning log for every grade and every flag, plus a named teacher signing off anything that scores, places or refers a child — one record satisfying EU oversight AND US fair-treatment duties at once. KYA (Day 54) = SPIFFE/SVID scoped read-and-propose (tutor/draft/flag, never grade:commit/place/refer) + <1s kill switch + WORM audit."
+          ]
+        },
+        {
+          "title": "Platform landscape",
+          "paragraphs": [
+            "Khan Academy Khanmigo is the reference tutoring agent — Socratic-by-design (won't give the answer), teacher dashboard + lesson tools, district deployments at scale. Google Gemini for Education / LearnLM folds pedagogy-tuned models into Gemini with Workspace for Education distribution + Guided Learning Socratic default. OpenAI ChatGPT Edu / Study Mode coaches rather than answers and sells governed university deployments (ASU, Cal State). Anthropic Claude for Education adds Learning Mode + campus partnerships (Northeastern, LSE, Champlain), positioning on guardrails, privacy and not training on student conversations.",
+            "Specialists go deep where the suites go wide: MagicSchool and Brisk (teacher-side planning/grading agents), Carnegie Learning, Squirrel AI (China adaptive at scale) and Duolingo (agentic practice)."
+          ]
+        },
+        {
+          "title": "Reference architecture for a learning agent",
+          "paragraphs": [
+            "Combining memory (Day 44), reliability (Day 49), identity (Day 54) and streaming-data (Day 55) pointed at a classroom — Brain: Opus 4.8 / Gemini LearnLM for pedagogy + planning, Sonnet 4.6 for feedback drafting, DeepSeek V4 Flash for answer classification on de-identified text only. Orchestration: Assess→Plan→Teach→Grade loop via Khanmigo / LearnLM / Claude managed agents + AG-UI + approval gate on every committed grade or flag. Memory: Write-Aside Valkey L1 + pgvector L2, per-student namespace + Memory IDs (COPPA/FERPA erasure = one-call cascade).",
+            "Data plane: streaming views over the SIS/LMS, every read logged with student ID + SVID + nonce = FERPA disclosure log by construction. Identity: SPIFFE/SVID scoped student:read + tutor:deliver + grade:propose — NEVER grade:commit / placement:set / referral:file + reviewer-of-record per output + T1–T4 kill switch + WORM audit. The one rule: the agent teaches, the teacher decides — on every output that scores, places or refers a child."
+          ]
+        },
+        {
+          "title": "Does it actually help? The 2 sigma question",
+          "paragraphs": [
+            "The honest 2026 read: tutoring agents show real gains on well-scoped skills (languages, maths fluency, coding) and clear time savings for teachers on planning and first-pass grading — but the full Bloom '2 sigma' effect is unproven at population scale, and the risk that students outsource thinking rather than build it is the dominant pedagogical worry.",
+            "Hence the convergence on Socratic-by-default designs (Khanmigo, Study Mode, Guided Learning all refuse to simply hand over the answer) and on teacher-in-the-loop as a product constraint, not a setting. The measurable wins live on the teacher side first: reclaiming hours from lesson prep and marking, which is also the lowest-risk place to start."
+          ]
+        },
+        {
+          "title": "Breaking this week",
+          "paragraphs": [
+            "Anthropic confidentially filed for a US IPO (June 1 2026) at a reported ~$965B valuation — on track to be the first AI company toward a trillion-dollar listing, ahead of OpenAI which is preparing its own confidential filing for a possible September debut. It rides Claude Opus 4.8 (shipped May 28, topping GPT-5.5 and Gemini 3.1 Pro on key benchmarks, new Dynamic Workflows tool spawning parallel subagents) at unchanged $5/$25 per M-token pricing.",
+            "OpenAI shipped real-time audio + translation models for agents (live voice tutoring becomes practical) and is expected to ship GPT-5.6 in June. Google pushed Gemini deeper into managed task flows; Microsoft unveiled its own MAI coding model at Build to cut reliance on OpenAI. The frontier is converging on agentic coding + orchestration, and the public-market race is now on."
+          ]
+        }
+      ],
+      "market_signal": "With frontier model performance compressing across Opus 4.8 / GPT-5.5 / Gemini 3.1 Pro, the next wave of value in education is captured not by a smarter tutor but by the governance layer — Socratic-by-default design, teacher-in-the-loop assessment, FERPA/COPPA-clean data handling and an audit trail that survives an Aug 2 EU AI Act high-risk review. The platform that lets a district deploy an agent without waiving a child's privacy wins the classroom.",
+      "practical_takeaway": [
+        {
+          "title": "Start teacher-side, not student-side",
+          "body": "Lesson planning, differentiation and first-pass grading are high-volume, low-rights-risk and easy to verify (MagicSchool and Khanmigo's teacher tools are the references). Pilot there and measure on hours reclaimed and feedback turnaround, not test scores."
+        },
+        {
+          "title": "Keep every assessment human",
+          "body": "Let agents tutor, draft and flag, but route every committed grade, placement and safeguarding flag through a named teacher with a per-student reasoning log — that record is your EU AI Act Art. 12 evidence and your FERPA fair-treatment duty at once."
+        },
+        {
+          "title": "Lock the minor-protection boundary first",
+          "body": "Verify data-handling and no-training-on-student-data terms, scope each agent's SPIFFE identity to read/tutor/propose (never grade/place/refer), with a <1s kill switch and WORM audit (~T-55 days to Aug 2). Automate the teaching, never the verdict."
+        }
+      ],
+      "tomorrow_preview": "Day 76: Agentic AI in Real Estate & PropTech — listing, leasing and transaction-coordination agents, the fair-housing / disclosure liability bind, and why 'the agent gathers, the broker discloses' is the design constraint."
+    },
+    {
       "date": "2026-06-07",
       "display_date": "JUNE 7, 2026",
       "title": "June 7, 2026 | Agentic AI Era Intensifies",
@@ -11753,6 +11863,6 @@
       ]
     }
   ],
-  "last_updated": "2026-06-05",
-  "total_days": 76
+  "last_updated": "2026-06-08",
+  "total_days": 77
 }
