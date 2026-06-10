@@ -6,6 +6,192 @@
   },
   "learnings": [
     {
+      "date": "2026-06-10",
+      "display_date": "JUNE 10, 2026",
+      "issue": 76,
+      "title": "Agentic AI in Scientific Research &",
+      "focus_intro": "After walking the enterprise verticals -- finance, healthcare, legal, the public sector -- the series",
+      "stats": [
+        {
+          "stat": "10×",
+          "label": "more experimental data per run from self-driving labs"
+        },
+        {
+          "stat": "164",
+          "label": "agentic-science / VLA papers at ICLR 2026 -- field exploded"
+        },
+        {
+          "stat": "$2.1B",
+          "label": "Isomorphic Labs raise to push AI-designed drugs to trials"
+        }
+      ],
+      "sections": [
+        {
+          "title": "1 · From 'AI for science' to agentic science",
+          "paragraphs": [
+            "For a decade, AI in science meant a model that predicted something -- a protein fold, a material property, a reaction yield -- and a human did everything around it. 2026 is the year that loop closed. The discovery lifecycle -- Literature fi Hypothesis fi Experimental design fi Execution fi Analysis fi Next hypothesis -- is now something an agent can run end to end with the scientist supervising. Survey work this year ('From AI for Science to Agentic Science') frames the shift exactly that way: systems that operate with enough autonomy to perform hypothesis generation, literature review, experimental design and data analysis as a connected pipeline",
+            "This mirrors the vertical pattern the series has traced through finance, HR and legal: the agent owns the high-volume, structured labour and the human owns judgement and accountability. The twist in science is what the 'judgement' is -- deciding whether a result is real, reproducible and not an artefact. An agent can propose ten thousand hypotheses and run a thousand experiments; only a scientist can decide which findings are trustworthy enough to build on, and that seam is where the entire methodology of science lives. So what: Discovery throughput is becoming an agent-instrumented metric. The labs pulling ahead let agents run literature triage, hypothesis enumeration and experiment scheduling continuously, so researchers spend their hours on the questions that matter -- what to ask and whether to believe the"
+          ],
+          "table": {
+            "headers": [
+              "Discovery stage",
+              "Agent strength",
+              "Where the scientist still owns it"
+            ],
+            "rows": [
+              [
+                "Literature & hypothesis",
+                "Reads thousands of papers, finds gaps and contradictions, enumerates testable hypotheses with rationale and prior support",
+                "Choosing which hypothesis is worth the lab time; framing the real question"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "2 · The discovery loop -- what works",
+          "paragraphs": [
+            "The pattern that matters: Agents are superb at reading, proposing, running and crunching; they must not be the final arbiter of what is true. Design the hand-off at the validation seam -- the moment a finding becomes something the lab will publish, patent or build on."
+          ],
+          "table": {
+            "headers": [
+              "Discovery stage",
+              "Agent strength",
+              "Where the scientist still owns it"
+            ],
+            "rows": [
+              [
+                "Literature & hypothesis",
+                "Reads thousands of papers, finds gaps and contradictions, enumerates testable hypotheses with rationale and prior support",
+                "Choosing which hypothesis is worth the lab time; framing the real question"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3 · Self-driving labs -- the loop goes physical",
+          "paragraphs": [
+            "The biggest 2026 change is that the discovery loop now reaches into the physical world. Self-driving laboratories (SDLs) have matured from academic demos into industrial infrastructure, pairing cloud compute, robotics and specialised chemistry models to run closed-loop experiments with little human touch. New techniques let these labs collect at least 10× more data than previous methods at record speed, and the scientist's role shifts from manual bench work to strategic architecture of the search. The landmark integration this year is LabOS, described as the first system to unify digital lab reasoning and physical lab execution in one adaptive framework: an agentic core for hypothesis and design, an extended-reality interface for human-in-the-loop execution, and a self-expanding 'Tool Ocean' of modules the system writes for itself from web search and the literature. It is the science-lab analogue of the self-extending agents the series keeps flagging -- powerful, and exactly why the trust boundary has to be explicit."
+          ],
+          "table": {
+            "headers": [
+              "Discovery stage",
+              "Agent strength",
+              "Where the scientist still owns it"
+            ],
+            "rows": [
+              [
+                "Experimental design",
+                "Designs protocols, picks parameters, sets up the search space, optimises for information per run",
+                "Validity, ethics, safety; whether the design can actually answer the question"
+              ],
+              [
+                "Execution (self-driving lab)",
+                "Drives robotics in a closed loop, runs experiments 24/7, collects 10× more data, replans mid-run",
+                "Physical-world oversight; what to halt, escalate or constrain"
+              ],
+              [
+                "Analysis & the result",
+                "Crunches data, fits models, drafts the write-up with figures and citations",
+                "Is it real? Reproducible? An artefact? -- the scientific judgement call"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "4 · The landscape -- discovery agents in the wild",
+          "paragraphs": [
+            "Three layers are forming, and serious capital is behind each. Algorithmic discovery: Google DeepMind's AlphaEvolve orchestrates an autonomous pipeline of LLMs that evolve and refine code against evaluators, and has already improved real algorithms (it beat a 55-year-old Strassen matrix-multiplication result) -- the first credible 'discovery agent' rather than a task agent. Drug & molecule discovery: Isomorphic Labs raised $2.1B to push AI-designed drugs into human trials (oncology, immunology, cardiovascular; first cancer-drug Phase I targeted for end of 2026), and Insilico's Rentosertib has already shown a statistically meaningful Phase IIa clinical signal as a first end-to-end AI-discovered drug. Autonomous research teams & labs: 'Virtual Lab'-style multi-agent teams have designed novel SARS-CoV-2 nanobodies later validated at the bench, and frameworks like InternAgent and LabOS push toward long-horizon, self-driving discovery. The common thread mirrors every other vertical: the move from 'assist the researcher' to 'run the loop, supervised, with a verifiable trail.'"
+          ],
+          "table": {
+            "headers": [
+              "Discovery stage",
+              "Agent strength",
+              "Where the scientist still owns it"
+            ],
+            "rows": [
+              [
+                "Experimental design",
+                "Designs protocols, picks parameters, sets up the search space, optimises for information per run",
+                "Validity, ethics, safety; whether the design can actually answer the question"
+              ],
+              [
+                "Execution (self-driving lab)",
+                "Drives robotics in a closed loop, runs experiments 24/7, collects 10× more data, replans mid-run",
+                "Physical-world oversight; what to halt, escalate or constrain"
+              ],
+              [
+                "Analysis & the result",
+                "Crunches data, fits models, drafts the write-up with figures and citations",
+                "Is it real? Reproducible? An artefact? -- the scientific judgement call"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "5 · Governance -- reproducibility, dual-use & the sign-off",
+          "paragraphs": [
+            "Science has its own non-negotiables. Reproducibility is the trust boundary: a discovery agent that can't show its work -- every literature source, every design choice, every raw measurement -- produces findings no one can stand behind; the audit log is the methods section. Dual-use is the hard limit: the same agent that designs a therapeutic can, unconstrained, design a hazard -- which is exactly why Mythos-class models were withheld from the public until safeguards could block responses in specific high-risk areas (notably biology), and why Anthropic framed Fable 5's release around those new blocks. Provenance & integrity: AI-generated hypotheses, figures and text must be traceable and watermarked so the literature doesn't fill with unverifiable machine output. KYA (Day 54): each research agent carries a SPIFFE/SVID identity scoped to read-propose-and-simulate -- it can design, run and analyse, but never autonomously order a regulated reagent, publish, or actuate hazardous equipment -- with a <1s kill switch and a WORM audit of every action. Watch this: The first uncomfortable agentic-science headline won't be a wrong prediction -- it will be an irreproducible result built on an agent's untraceable reasoning, or a dual-use design that slipped a weak safety filter. Lock provenance and the dual-use boundary before an agent ever drives a real"
+          ],
+          "table": {
+            "headers": [
+              "Discovery stage",
+              "Agent strength",
+              "Where the scientist still owns it"
+            ],
+            "rows": [
+              [
+                "Experimental design",
+                "Designs protocols, picks parameters, sets up the search space, optimises for information per run",
+                "Validity, ethics, safety; whether the design can actually answer the question"
+              ],
+              [
+                "Execution (self-driving lab)",
+                "Drives robotics in a closed loop, runs experiments 24/7, collects 10× more data, replans mid-run",
+                "Physical-world oversight; what to halt, escalate or constrain"
+              ],
+              [
+                "Analysis & the result",
+                "Crunches data, fits models, drafts the write-up with figures and citations",
+                "Is it real? Reproducible? An artefact? -- the scientific judgement call"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "6 · Reference architecture -- a verifiable discovery stack",
+          "paragraphs": [
+            "Brain (model routing, Day 43): a Mythos/Fable-class or Opus-class model for hypothesis reasoning and cross-domain synthesis; a mid-tier model (Sonnet 4.6) for protocol drafting and write-ups; a cheap model (DeepSeek V4 Flash, $0.14/M) for high-volume literature triage and data tagging -- with hard guardrails on any step touching hazardous design. Orchestration: a control plane wiring the Literature/HypothesisfiDesign/ExecutefiAnalyse loop, with AG-UI surfaces (Day 48) for the scientist and approval gates before any physical-world actuation, reagent order or publication. Memory (Write-Aside, Day 44): Valkey L1 + pgvector L2 with a per-project / per-lab namespace; episodic memory captures failed runs so the next hypothesis starts past them (MemRL). Data plane (Day 55): streaming views over instrument feeds and ELN/LIMS so experiment state is fresh by construction and every reading is logged. Identity & guardrails: SPIFFE/SVID per agent scoped read/propose/simulate-only (e.g. literature:read + experiment:design + sim:run, never reagent:order or equipment:actuate without a human gate), provenance tags on every generated artefact, T1-T4 kill switch, and a WORM audit trail -- the same trace serves as the reproducibility record, the dual-use audit, and the regulator's evidence at once. The one design rule: the agent proposes and runs, the scientist decides what is true -- and every result carries its full provenance trail. Build the reproducibility log and the dual-use boundary first;"
+          ]
+        },
+        {
+          "title": "7 · Breaking -- Claude Fable 5 & the IPO race",
+          "paragraphs": [
+            "On June 9, 2026, Anthropic released Claude Fable 5 -- its first publicly available Mythos-class model -- alongside the still-restricted Mythos 5. This is the headline for a science issue because the Mythos tier was, until now, gated to cyber-defence partners and a small set of biology researchers; the public release was made possible by new safeguards that block responses in specific high-risk areas. Fable 5 posts frontier numbers -- ~80.3% on SWE-Bench Pro (vs 58.6% for GPT-5.5), and it tops GPT-5.5 on knowledge work, computer use and tool use -- at $10 / $50 per million input/output tokens (about double Opus 4.8). The release lands inside a public-market sprint: Anthropic has confidentially filed for a US IPO after its late-May raise of $65B at a $965B post-money valuation, and OpenAI has confirmed its own confidential filing. The throughline for science: the most capable models on Earth are now reaching researchers' hands, and the gating question has become safety and provenance, not access."
+          ]
+        },
+        {
+          "title": "8 · Viral AI app of the day",
+          "paragraphs": [
+            "Claude Fable 5 -- the breakout of the week, and not just for engineers. Anthropic handed the public a model from its top-secret Mythos tier, made free inside GitHub Copilot, Bedrock and the API for a two-week window, and the developer and research communities lit up within hours: side-by-side benchmark threads, agentic-coding deep dives, and -- most relevant here -- biology and chemistry researchers testing a frontier reasoning model that had been off-limits to them until now. It is the clearest sign yet that the 'agent that can do real science' has moved from restricted preview to general tool. (The longer-running viral standout, OpenClaw, still leads the OSS charts at 210K+ stars as the local-first, self-extending personal agent -- the same autonomy",
+            "Why it matters: When the most capable model class becomes a public tool, the competitive edge stops being access and starts being how responsibly and verifiably you wield it -- provenance, dual-use limits, scoped identity and an audit trail around every experiment an agent touches."
+          ]
+        },
+        {
+          "title": "Market signal: For a research leader, the relevance is governance, not leaderboards. A",
+          "paragraphs": [
+            "Mythos-class model going public means your lab can now wield frontier reasoning -- but it also means the dual-use and reproducibility guardrails the series keeps describing are no longer theoretical. Insist on provenance, scoped identity and a kill switch in any agent that touches a real"
+          ]
+        }
+      ],
+      "market_signal": "For a research leader, the relevance is governance, not leaderboards. A Mythos-class model going public means your lab can now wield frontier reasoning -- but it also means the dual-use and reproducibility guardrails the series keeps describing are no longer theoretical. Insist on provenance, scoped identity and a kill switch in any agent that touches a real experiment.",
+      "practical_takeaway": [
+        {
+          "title": "Three moves this quarter for anyone in or near research: (1)",
+          "body": "Three moves this quarter for anyone in or near research: (1) Start where the loop is safe and verifiable -- literature triage, hypothesis enumeration and experiment scheduling are high-volume and low-physical-risk, so pilot agents there first and measure them on discovery throughput and information-per-run, not vanity metrics. (2) Keep a scientist on the validation seam -- let agents read, propose, run and crunch, but route every finding that will be published, patented or built on through a human who owns the 'is it real?' call, with the full provenance trail attached. (3) Lock provenance and the dual-use boundary before an agent drives a real experiment -- give each agent a scoped SPIFFE identity (read/propose/simulate, never order-reagent or actuate-equipment without a gate), a <1s kill switch, watermarked outputs and a WORM audit trail. Automate the search, never the judgement of what is true. Tomorrow (Day 77): Agentic AI in Energy & Climate -- grid-optimising and carbon-accounting agents, the data-centre energy paradox, and why the same autonomy that accelerates the transition has to be metered and audited like any other high-stakes deployment."
+        }
+      ]
+    },
+    {
       "date": "2026-06-09",
       "display_date": "JUNE 9, 2026",
       "issue": 74,
@@ -12135,118 +12321,6 @@
         "2026 (Gartner) 40% (vs",
         "5% in 2025) Orgs planning to increase AI budgets 86% Practical Takeaway The most valuable me"
       ]
-    },
-    {
-      "date": "2026-06-10",
-      "display_date": "JUNE 10, 2026",
-      "issue": 76,
-      "title": "Agentic AI in Scientific Research & Discovery",
-      "focus_intro": "After walking the enterprise verticals -- finance, healthcare, legal, the public sector -- the series turns to the one domain where an agent doesn't just process work but can generate new knowledge. In 2026 the 'AI co-scientist' stopped being a slide and became infrastructure: agents now read the literature, propose hypotheses, design experiments, drive robotic labs that run themselves, and fold results back into the next hypothesis -- a closed discovery loop. The timing is pointed: Anthropic just put a Mythos-class model (Claude Fable 5) into public hands -- a tier previously reserved for cyber-defence partners and a handful of biology researchers -- because the scientific upside now outweighs the risk of withholding it. The scientist's role shifts from running experiments to architecting the search and owning what counts as a real result.",
-      "stats": [
-        {
-          "stat": "10x",
-          "label": "more experimental data per run from self-driving labs"
-        },
-        {
-          "stat": "164",
-          "label": "agentic-science / VLA papers at ICLR 2026"
-        },
-        {
-          "stat": "$2.1B",
-          "label": "Isomorphic Labs raise to push AI-designed drugs to trials"
-        },
-        {
-          "stat": "Fable 5",
-          "label": "first public Mythos-class model -- shipped Jun 9"
-        }
-      ],
-      "viral_app": {
-        "name": "Claude Fable 5",
-        "description": "The breakout of the week, and not just for engineers. Anthropic handed the public a model from its top-secret Mythos tier -- free inside GitHub Copilot, Bedrock and the API for a two-week window -- and the developer and research communities lit up within hours. Most relevant for science: biology and chemistry researchers can now test a frontier reasoning model that had been off-limits to them. It posts ~80.3% on SWE-Bench Pro (vs 58.6% for GPT-5.5) and tops GPT-5.5 on knowledge work, computer use and tool use, at $10/$50 per M tokens. It's the clearest sign yet that the 'agent that can do real science' has moved from restricted preview to general tool. The longer-running OSS standout, OpenClaw, still leads the charts at 210K+ stars as the local-first, self-extending personal agent -- the same autonomy lesson at consumer scale.",
-        "stats": [
-          {
-            "stat": "80.3%",
-            "label": "SWE-Bench Pro (vs 58.6% GPT-5.5)"
-          },
-          {
-            "stat": "$10/$50",
-            "label": "per M input/output tokens"
-          }
-        ]
-      },
-      "sections": [
-        {
-          "title": "1 · From 'AI for science' to agentic science",
-          "paragraphs": [
-            "For a decade, AI in science meant a model that predicted something -- a protein fold, a material property, a reaction yield -- and a human did everything around it. 2026 is the year that loop closed. The discovery lifecycle -- Literature, Hypothesis, Experimental design, Execution, Analysis, Next hypothesis -- is now something an agent can run end to end with the scientist supervising. Survey work this year ('From AI for Science to Agentic Science') frames the shift exactly that way: systems autonomous enough to perform hypothesis generation, literature review, experimental design and data analysis as a connected pipeline rather than isolated predictions.",
-            "This mirrors the vertical pattern the series has traced through finance, HR and legal: the agent owns the high-volume, structured labour and the human owns judgement and accountability. The twist in science is what the 'judgement' is -- deciding whether a result is real, reproducible and not an artefact. An agent can propose ten thousand hypotheses and run a thousand experiments; only a scientist can decide which findings are trustworthy enough to build on, and that seam is where the entire methodology of science lives."
-          ]
-        },
-        {
-          "title": "2 · The discovery loop -- what works",
-          "paragraphs": [
-            "Agents are superb at reading thousands of papers and enumerating testable hypotheses with rationale; at designing protocols and optimising for information per run; at driving robotics in a closed loop 24/7 and collecting 10x more data; and at crunching results and drafting the write-up with figures and citations.",
-            "What the scientist still owns: which hypothesis is worth the lab time and how the real question is framed; whether a design is valid, ethical and safe; physical-world oversight (what to halt or constrain); and the final 'is it real, reproducible, or an artefact?' call. Design the hand-off at the validation seam -- the moment a finding becomes something the lab will publish, patent or build on."
-          ]
-        },
-        {
-          "title": "3 · Self-driving labs -- the loop goes physical",
-          "paragraphs": [
-            "The biggest 2026 change is that the discovery loop now reaches into the physical world. Self-driving laboratories (SDLs) have matured from academic demos into industrial infrastructure, pairing cloud compute, robotics and specialised chemistry models to run closed-loop experiments with little human touch. New techniques let these labs collect at least 10x more data than previous methods at record speed, shifting the scientist from manual bench work to strategic architecture of the search.",
-            "The landmark integration this year is LabOS, described as the first system to unify digital lab reasoning and physical lab execution in one adaptive framework: an agentic core for hypothesis and design, an extended-reality interface for human-in-the-loop execution, and a self-expanding 'Tool Ocean' of modules the system writes for itself from web search and the literature. It is the science-lab analogue of the self-extending agents the series keeps flagging -- powerful, and exactly why the trust boundary has to be explicit."
-          ]
-        },
-        {
-          "title": "4 · The landscape -- discovery agents in the wild",
-          "paragraphs": [
-            "Three layers are forming, each with serious capital behind it. Algorithmic discovery: Google DeepMind's AlphaEvolve orchestrates an autonomous pipeline of LLMs that evolve and refine code against evaluators, and has already improved real algorithms (it beat a 55-year-old Strassen matrix-multiplication result) -- the first credible 'discovery agent' rather than a task agent.",
-            "Drug and molecule discovery: Isomorphic Labs raised $2.1B to push AI-designed drugs into human trials (oncology, immunology, cardiovascular; first cancer-drug Phase I targeted for end of 2026), and Insilico's Rentosertib has already shown a statistically meaningful Phase IIa clinical signal as a first end-to-end AI-discovered drug. Autonomous research teams: 'Virtual Lab'-style multi-agent teams have designed novel SARS-CoV-2 nanobodies later validated at the bench, and frameworks like InternAgent and LabOS push toward long-horizon, self-driving discovery."
-          ]
-        },
-        {
-          "title": "5 · Governance -- reproducibility, dual-use & the sign-off",
-          "paragraphs": [
-            "Science has its own non-negotiables. Reproducibility is the trust boundary: a discovery agent that can't show its work -- every source, every design choice, every raw measurement -- produces findings no one can stand behind; the audit log is the methods section. Dual-use is the hard limit: the same agent that designs a therapeutic can, unconstrained, design a hazard -- which is exactly why Mythos-class models were withheld from the public until safeguards could block responses in specific high-risk areas (notably biology), and why Anthropic framed Fable 5's release around those new blocks.",
-            "Provenance and integrity: AI-generated hypotheses, figures and text must be traceable and watermarked so the literature doesn't fill with unverifiable machine output. KYA (Day 54): each research agent carries a SPIFFE/SVID identity scoped to read-propose-and-simulate -- it can design, run and analyse, but never autonomously order a regulated reagent, publish, or actuate hazardous equipment -- with a <1s kill switch and a WORM audit of every action."
-          ]
-        },
-        {
-          "title": "6 · Reference architecture -- a verifiable discovery stack",
-          "paragraphs": [
-            "Brain (model routing, Day 43): a Mythos/Fable-class or Opus-class model for hypothesis reasoning and cross-domain synthesis; a mid-tier model (Sonnet 4.6) for protocol drafting and write-ups; a cheap model (DeepSeek V4 Flash, $0.14/M) for high-volume literature triage and data tagging -- with hard guardrails on any step touching hazardous design.",
-            "Orchestration wires the Literature->Hypothesis->Design->Execute->Analyse loop with AG-UI surfaces and approval gates before any physical-world actuation, reagent order or publication. Memory (Write-Aside, Day 44): Valkey L1 + pgvector L2 with per-project namespace; episodic memory captures failed runs so the next hypothesis starts past them (MemRL). Data plane (Day 55): streaming views over instrument feeds and ELN/LIMS. Identity & guardrails: SPIFFE/SVID per agent scoped read/propose/simulate-only, provenance tags on every generated artefact, T1-T4 kill switch, and a WORM audit trail -- the same trace serves as the reproducibility record, the dual-use audit, and the regulator's evidence at once. The one rule: the agent proposes and runs, the scientist decides what is true."
-          ]
-        },
-        {
-          "title": "7 · Breaking -- Claude Fable 5 & the IPO race",
-          "paragraphs": [
-            "On June 9, 2026, Anthropic released Claude Fable 5 -- its first publicly available Mythos-class model -- alongside the still-restricted Mythos 5. This is the headline for a science issue because the Mythos tier was, until now, gated to cyber-defence partners and a small set of biology researchers; the public release was made possible by new safeguards that block responses in specific high-risk areas. Fable 5 posts frontier numbers -- ~80.3% on SWE-Bench Pro (vs 58.6% for GPT-5.5), topping GPT-5.5 on knowledge work, computer use and tool use -- at $10/$50 per million tokens.",
-            "The release lands inside a public-market sprint: Anthropic has confidentially filed for a US IPO after its late-May raise of $65B at a $965B post-money valuation, and OpenAI has confirmed its own confidential filing. The throughline for science: the most capable models on Earth are now reaching researchers' hands, and the gating question has become safety and provenance, not access."
-          ]
-        },
-        {
-          "title": "8 · Practical takeaway",
-          "paragraphs": [
-            "Three moves this quarter for anyone in or near research. (1) Start where the loop is safe and verifiable -- literature triage, hypothesis enumeration and experiment scheduling are high-volume and low-physical-risk, so pilot agents there first and measure them on discovery throughput and information-per-run. (2) Keep a scientist on the validation seam -- let agents read, propose, run and crunch, but route every finding that will be published, patented or built on through a human who owns the 'is it real?' call, with the full provenance trail attached. (3) Lock provenance and the dual-use boundary before an agent drives a real experiment -- scoped SPIFFE identity (read/propose/simulate, never order-reagent or actuate-equipment without a gate), a <1s kill switch, watermarked outputs and a WORM audit trail. Automate the search, never the judgement of what is true."
-          ]
-        }
-      ],
-      "market_signal": "When the most capable model class becomes a public tool, the competitive edge stops being access and starts being how responsibly and verifiably you wield it -- provenance, dual-use limits, scoped identity and an audit trail around every experiment an agent touches.",
-      "practical_takeaway": [
-        {
-          "title": "Start where the loop is safe",
-          "body": "Pilot agents on literature triage, hypothesis enumeration and experiment scheduling -- high-volume, low-physical-risk, easy to verify -- and measure on discovery throughput and information-per-run, not vanity metrics."
-        },
-        {
-          "title": "Keep a scientist on the validation seam",
-          "body": "Let agents read, propose, run and crunch, but route every finding that will be published, patented or built on through a human who owns the 'is it real?' call with full provenance attached."
-        },
-        {
-          "title": "Lock provenance and the dual-use boundary first",
-          "body": "Give each agent a scoped SPIFFE identity (read/propose/simulate, never order-reagent or actuate-equipment without a gate), a <1s kill switch, watermarked outputs and a WORM audit trail before it drives a real experiment."
-        }
-      ],
-      "tomorrow_preview": "Tomorrow (Day 77): Agentic AI in Energy & Climate -- grid-optimising and carbon-accounting agents, the data-centre energy paradox, and why the same autonomy that accelerates the transition has to be metered and audited like any other high-stakes deployment."
     }
   ],
   "last_updated": "2026-06-10",
