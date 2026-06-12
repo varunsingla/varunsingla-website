@@ -11,7 +11,24 @@
       "issue": 78,
       "title": "Agentic AI in Retail & E-commerce",
       "focus_intro": "Retail is the vertical where agentic AI meets the consumer directly -- and where the shopping",
-      "stats": [],
+      "stats": [
+        {
+          "stat": "~$67B",
+          "label": "global online sales AI influenced during Cyber Week 2025 (~20% of digital orders)"
+        },
+        {
+          "stat": "+4,700%",
+          "label": "YoY surge in US retail traffic from generative-AI browsers (2025)"
+        },
+        {
+          "stat": "$1T",
+          "label": "US B2C agentic-commerce revenue projected by 2030 (McKinsey)"
+        },
+        {
+          "stat": "+35%",
+          "label": "higher order value from Walmart Sparky users vs non-users"
+        }
+      ],
       "sections": [
         {
           "title": "1 · The new front door -- chat is the storefront",
@@ -186,7 +203,21 @@
           "title": "Tomorrow (Day 79): Agentic AI in Media & Entertainment -- ge",
           "body": "Tomorrow (Day 79): Agentic AI in Media & Entertainment -- generative production pipelines, autonomous content personalisation and ad-buying agents, and the provenance and watermarking rules that decide what's allowed to ship."
         }
-      ]
+      ],
+      "viral_app": {
+        "name": "ChatGPT Instant Checkout / Shopify Agentic Storefronts",
+        "description": "The clearest consumer-scale proof that the storefront has moved inside the chat window. A US shopper can describe a product in ChatGPT and buy it from an Etsy seller (and soon 1M+ Shopify brands) without leaving the conversation, powered by ACP + Stripe. Shopify Agentic Storefronts lets any merchant turn on that channel plus Google UCP from the admin in minutes, no code. The catalogue becomes a callable, transactable endpoint and discovery happens in the assistant, not on the website. (OpenClaw still tops OSS charts at 250K+ stars as the local-first self-extending agent.)",
+        "stats": [
+          {
+            "stat": "1M+",
+            "label": "Shopify merchants rolling into ChatGPT checkout"
+          },
+          {
+            "stat": "ACP + UCP",
+            "label": "dual-protocol reach from one setup"
+          }
+        ]
+      }
     },
     {
       "date": "2026-06-11",
