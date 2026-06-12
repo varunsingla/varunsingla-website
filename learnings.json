@@ -6,6 +6,189 @@
   },
   "learnings": [
     {
+      "date": "2026-06-12",
+      "display_date": "JUNE 12, 2026",
+      "issue": 78,
+      "title": "Agentic AI in Retail & E-commerce",
+      "focus_intro": "Retail is the vertical where agentic AI meets the consumer directly -- and where the shopping",
+      "stats": [],
+      "sections": [
+        {
+          "title": "1 · The new front door -- chat is the storefront",
+          "paragraphs": [
+            "For two decades the retail front door was a search box and a product page. In 2026 it is a conversation. AI shopping agents are live and transacting inside ChatGPT, Google Gemini, Microsoft Copilot and Perplexity, completing real purchases for real consumers. The consumer describes what they want; the agent searches, compares across merchants, narrows the choice and -- with ChatGPT Instant Checkout and Google's agentic checkout -- completes the purchase without the shopper ever landing on the retailer's site. ChatGPT already lets US users buy directly from Etsy sellers, with over a million Shopify merchants -- Glossier, Vuori, Spanx, SKIMS and more -- rolling in. The signal that this is real, not a demo: during Cyber Week 2025, AI-driven interactions influenced roughly $67 billion in global online sales, about a fifth of all digital orders. So what: If the agent never visits your site, your beautiful PDP, your retargeting and your checkout funnel are invisible. The unit of competition shifts from the page a human sees to the structured feed an agent reads. Discoverability is now an API problem."
+          ],
+          "table": {
+            "headers": [
+              "Layer",
+              "ACP (OpenAI + Stripe)",
+              "UCP (Google)"
+            ],
+            "rows": [
+              [
+                "Discovery model",
+                "Conversational -- buy inside ChatGPT where the product is discovered",
+                "Intent-based -- products surfaced in Google AI Mode / Search"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "2 · The protocol war -- ACP vs UCP",
+          "paragraphs": [
+            "Agentic commerce runs on open protocols, and two camps now define the rails. ACP (Agentic Commerce Protocol), co-developed by OpenAI and Stripe and maintained as an open standard, makes a merchant's checkout agent-ready so a shopper in ChatGPT can buy in-chat; its April 2026 release added Cart, Feed, Orders, Authentication and native MCP integration. UCP (Universal Commerce Protocol), Google's open standard for intent-based discovery, is backed by Walmart, Target, Shopify, Etsy and 20+ others. The crucial nuance for a retailer: these are not mutually exclusive. Shopify's Agentic Storefronts let the same catalogue appear in ChatGPT via ACP and in Google AI Mode via UCP from one setup, with the platform handling the multi-protocol plumbing. MCP, donated to a neutral foundation, sits underneath as the tool-calling layer agents use to query inventory, price and availability. The pattern that matters: Do not bet on one protocol. The durable move is a platform layer (Shopify Agentic Storefronts and peers -- Squarespace, Wix, BigCommerce, commercetools) that publishes your catalogue to every agent surface at once. Multi-protocol presence is the new omnichannel."
+          ],
+          "table": {
+            "headers": [
+              "Layer",
+              "ACP (OpenAI + Stripe)",
+              "UCP (Google)"
+            ],
+            "rows": [
+              [
+                "Discovery model",
+                "Conversational -- buy inside ChatGPT where the product is discovered",
+                "Intent-based -- products surfaced in Google AI Mode / Search"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3 · The retail agent loop -- what works",
+          "paragraphs": [
+            "The seam is the commit: Agents are excellent at discovery, recommendation, analysis and routine fulfilment. The hand-off belongs at the moment money moves or a live price publishes -- propose-and-meter inside the line, human-gated (or hard-limited) past it."
+          ],
+          "table": {
+            "headers": [
+              "Layer",
+              "ACP (OpenAI + Stripe)",
+              "UCP (Google)"
+            ],
+            "rows": [
+              [
+                "Checkout",
+                "Instant Checkout via Stripe; Shopify channel enabled from admin, no code",
+                "Agentic checkout across partner retailers; payment via partner rails"
+              ],
+              [
+                "Backing",
+                "OpenAI + Stripe; Etsy live, 1M+ Shopify merchants rolling in",
+                "Walmart, Target, Shopify, Etsy + 20 others"
+              ],
+              [
+                "Retailer move",
+                "Make checkout agent-ready; expose Feed + Cart + Orders + MCP",
+                "Expose intent-rich structured product data for discovery"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "4 · Distribution is leverage -- the Walmart lesson",
+          "paragraphs": [
+            "The most instructive 2026 move is Walmart's. Rather than cede the customer relationship to a third-party agent, Walmart pulled OpenAI's Instant Checkout after it converted at roughly a third of Walmart.com's rate, and instead embedded its own agent, Sparky, directly inside ChatGPT and Gemini -- keeping the experience, the data and the margin. Sparky users spend ~35% more per order; internally, the Wally merchandising agent turns sales, inventory and pricing data into faster assortment and stock decisions. Amazon's Rufus is the other proof point: on pace for ~$10B in incremental annualised sales, with Rufus users ~60% more likely to complete a purchase, and able to monitor a price and buy automatically when it hits a target. The lesson for everyone smaller: you may not own the assistant, but you must own how your brand shows up inside it -- and the conversion math decides whether a third-party agent is a channel or a disintermediator."
+          ],
+          "table": {
+            "headers": [
+              "Layer",
+              "ACP (OpenAI + Stripe)",
+              "UCP (Google)"
+            ],
+            "rows": [
+              [
+                "Checkout",
+                "Instant Checkout via Stripe; Shopify channel enabled from admin, no code",
+                "Agentic checkout across partner retailers; payment via partner rails"
+              ],
+              [
+                "Backing",
+                "OpenAI + Stripe; Etsy live, 1M+ Shopify merchants rolling in",
+                "Walmart, Target, Shopify, Etsy + 20 others"
+              ],
+              [
+                "Retailer move",
+                "Make checkout agent-ready; expose Feed + Cart + Orders + MCP",
+                "Expose intent-rich structured product data for discovery"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "5 · Agent-readiness is the new SEO",
+          "paragraphs": [
+            "When the shopper is an algorithm, ranking is won on data quality, not copywriting. The discipline has a name -- AEO (Agent / Answer Engine Optimisation), the successor to SEO and GEO. Agents need machine-parsable, real-time product data: price, availability, shipping timelines, return policy and functionality exposed as structured fields (Schema.org markup, clean feeds) that an agent can query and act on without a human in the loop. Retailers report that generative-AI browser traffic already behaves better than classic web traffic -- up 4,700% YoY in 2025, with visitors spending ~32% more time on-site and bouncing ~27% less -- but only if the agent can read the catalogue in the first place. Four signals define agent-readiness: structured metadata, real-time availability and pricing feeds, a transactable checkout endpoint (ACP/UCP), and clear, machine-readable policies. Miss them and your products are literally not in the consideration set. Design principle: Treat your product feed as a first-class API, not a marketing afterthought. The cost of inaction is invisibility -- an agent cannot recommend what it cannot parse, and there is no second"
+          ],
+          "table": {
+            "headers": [
+              "Layer",
+              "ACP (OpenAI + Stripe)",
+              "UCP (Google)"
+            ],
+            "rows": [
+              [
+                "Checkout",
+                "Instant Checkout via Stripe; Shopify channel enabled from admin, no code",
+                "Agentic checkout across partner retailers; payment via partner rails"
+              ],
+              [
+                "Backing",
+                "OpenAI + Stripe; Etsy live, 1M+ Shopify merchants rolling in",
+                "Walmart, Target, Shopify, Etsy + 20 others"
+              ],
+              [
+                "Retailer move",
+                "Make checkout agent-ready; expose Feed + Cart + Orders + MCP",
+                "Expose intent-rich structured product data for discovery"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "6 · Governance -- disclosure, payment scope & the kill switch",
+          "paragraphs": [
+            "Retail agents touch the consumer's wallet, so governance is concrete. Disclosure (EU AI Act Article 50, Aug 2): an agent transacting with a shopper must disclose it is AI and watermark synthetic media (C2PA/SynthID) -- first enforcement is most likely in consumer marketing and commerce. Payment scope (KYA, Day 54): any agent shopping with a consumer's stored payment method needs scoped, short-lived tokens, per-transaction spend caps and a <1s kill switch -- the agent proposes and executes within a pre-authorised envelope, never an open-ended mandate. Pricing fairness: dynamic-pricing agents must respect margin floors and anti-discrimination limits, with a human or a hard rule owning any live price commit. Liability: there is no 'autonomous AI' defence -- the retailer owns what its agent recommends, prices and charges, so every transacting agent carries a SPIFFE/SVID identity scoped to read-recommend-transact-within-cap, with a WORM",
+            "Watch this: The first hard agentic-retail headline won't be a clever recommendation -- it will be an agent that bought the wrong thing on a stored card, or a dynamic price that crossed a fairness line. Wire payment caps and disclosure before an agent touches a checkout."
+          ]
+        },
+        {
+          "title": "7 · Reference architecture -- an agent-ready storefront",
+          "paragraphs": [
+            "Brain (model routing, Day 43): an Opus/Fable-class model for merchandising strategy and complex shopper intent; a mid-tier model (Sonnet 4.6) for product copy and conversation; a cheap model (DeepSeek V4 Flash, $0.14/M) for catalogue classification and query triage. Distribution: expose the catalogue as a structured feed + MCP server and enable ACP and UCP channels (via Shopify Agentic Storefronts or equivalent) so the same SKUs are transactable in ChatGPT, Gemini and Copilot. Orchestration: wire Discover/RecommendfiPrice/CheckoutfiFulfil, with AG-UI surfaces (Day 48) and approval gates before any live-price commit or out-of-policy action. Memory (Write-Aside, Day 44): Valkey L1 + pgvector L2 with a per-customer namespace and Memory IDs for GDPR erasure (shopper data is regulated PII). Data plane (Day 55): streaming views over inventory, price and demand feeds so availability is fresh by construction. Identity & guardrails: SPIFFE/SVID per agent scoped read/recommend/transact-within-cap; Article 50 AI disclosure + watermarking; scoped payment tokens with per-order caps; a T1-T4 kill switch; and a WORM audit trail of every",
+            "The one design rule: the agent discovers, recommends, prices-within-floor and transacts-within-cap; a human (or a hard rule) owns the live price commit and the open-ended spend. Make your catalogue agent-readable first; the storefront agent is the layer on top."
+          ]
+        },
+        {
+          "title": "8 · Breaking -- the commerce rails harden",
+          "paragraphs": [
+            "The infrastructure matured fast this quarter. ACP's 2026-04-17 release added Cart, Feed, Orders, Authentication and MCP integration, turning a checkout protocol into a full commerce surface; the Agentic Commerce Suite has extended exposure to Shopify, Squarespace, Wix, BigCommerce and commercetools, with branded retailers including Coach, Kate Spade, URBN labels and Ashley Furniture going live. On the model side, the macro backdrop stays loud: GPT-5.6 shipped this month (OpenAI delaying its IPO around the launch) and Anthropic's Claude Fable 5 (June 9), the first public Mythos-class model, both land into an Anthropic-OpenAI IPO race -- Anthropic confidentially filed June 1 at a ~$965B valuation, OpenAI June 8. For retail, the throughline is that the frontier-model arms race is now being monetised through commerce: whoever owns the assistant the shopper talks to owns the new shelf, and the protocol layer (ACP/UCP/MCP) decides"
+          ]
+        },
+        {
+          "title": "9 · Viral AI app of the day",
+          "paragraphs": [
+            "ChatGPT Instant Checkout / Shopify Agentic Storefronts -- the clearest consumer-scale proof that the storefront has moved inside the chat window. A US shopper can now describe a product in ChatGPT and buy it from an Etsy seller (and soon a million-plus Shopify brands) without leaving the conversation, powered by ACP and Stripe; the matching Shopify Agentic Storefronts feature lets any merchant turn on that channel -- plus Google's UCP surface -- from the admin in minutes, no code. It is the commerce analogue of an app store: the catalogue becomes a callable, transactable endpoint, and discovery happens in the assistant, not on the website. (The longer-running OSS standout, OpenClaw, still tops the charts at 250K+ stars as the local-first self-extending agent -- the same autonomy lesson at personal scale, and a reminder that the most viral agents are also the ones that most need scoped identity and a kill switch.) Why it matters: Instant Checkout turns 'find a product' and 'buy a product' into a single agent action. For retailers that is either the biggest new channel of the decade or an existential disintermediation -- and which one depends entirely on whether your catalogue is agent-ready and your conversion"
+          ]
+        },
+        {
+          "title": "Market signal: For a retail or e-commerce leader, the relevance is presence, not leaderboards. The",
+          "paragraphs": [
+            "shelf is moving inside the assistant; the retailers who win publish to every agent surface via the open protocols and keep their conversion math honest enough that a third-party agent stays a channel, not"
+          ]
+        }
+      ],
+      "market_signal": "For a retail or e-commerce leader, the relevance is presence, not leaderboards. The shelf is moving inside the assistant; the retailers who win publish to every agent surface via the open protocols and keep their conversion math honest enough that a third-party agent stays a channel, not a disintermediator. 9 · Viral AI app of the day ChatGPT Instant Checkout / Shopify Agentic Storefronts -- the clearest consumer-scale proof that the storefront has moved inside the chat window.",
+      "practical_takeaway": [
+        {
+          "title": "Three moves this quarter for anyone in or near retail and e-",
+          "body": "Three moves this quarter for anyone in or near retail and e-commerce: (1) Make your catalogue agent-readable -- expose structured, real-time product data (price, stock, shipping, returns) as clean feeds with Schema.org markup, and treat AEO as the new SEO; an agent cannot recommend what it cannot parse. (2) Publish to every agent surface -- enable ACP and UCP (via Shopify Agentic Storefronts or your platform equivalent) so the same SKUs are transactable in ChatGPT, Gemini and Copilot, and watch your conversion inside each assistant the way Walmart watched Instant Checkout. (3) Gate the wallet and disclose the agent -- give every transacting agent a scoped SPIFFE identity, per-order spend caps, Article 50 AI disclosure, a <1s kill switch and a WORM audit trail. Automate discovery, recommendation and routine fulfilment; keep a human (or a hard rule) on the live"
+        },
+        {
+          "title": "Tomorrow (Day 79): Agentic AI in Media & Entertainment -- ge",
+          "body": "Tomorrow (Day 79): Agentic AI in Media & Entertainment -- generative production pipelines, autonomous content personalisation and ad-buying agents, and the provenance and watermarking rules that decide what's allowed to ship."
+        }
+      ]
+    },
+    {
       "date": "2026-06-11",
       "display_date": "JUNE 11, 2026",
       "issue": 77,
