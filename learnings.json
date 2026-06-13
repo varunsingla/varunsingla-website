@@ -10,7 +10,7 @@
       "display_date": "JUNE 13, 2026",
       "issue": 79,
       "title": "Agentic AI in Media & Entertainment",
-      "focus_intro": "Media is the vertical where the agent's output is the product. In every other industry an agent produces decisions, documents or transactions; here it produces the film frame, the trailer, the playlist, the ad — the thing the audience actually consumes. In 2026 the production pipeline (Develop→Pre-pro→Shoot→Post→Distribute→Monetise) is collapsing into an agent loop: editing agents live inside Avid, production agents drive Maya and Nuke, personalisation agents assemble per-listener podcasts, and ad agents autonomously buy the inventory the content created. Because the output ships to the public, provenance and watermarking (C2PA/SynthID) are the trust boundary — they decide what is allowed to ship at all.",
+      "focus_intro": "Media is the vertical where the agent's output is the product. In every other industry an agent",
       "stats": [
         {
           "stat": "4,000+",
@@ -18,7 +18,7 @@
         },
         {
           "stat": "$3B",
-          "label": "Netflix 2026 ad revenue target — 2x 2025 — partly agent-managed"
+          "label": "Netflix 2026 ad revenue target -- 2x 2025 -- partly agent-managed"
         },
         {
           "stat": "20B+",
@@ -26,7 +26,7 @@
         },
         {
           "stat": "6,000+",
-          "label": "members in the C2PA provenance coalition"
+          "label": "members in the C2PA provenance coalition (Google, Adobe, MSFT, OpenAI, Sony, BBC)"
         }
       ],
       "sections": [
@@ -209,36 +209,13 @@
           ]
         }
       ],
-      "market_signal": "The content industry's AI suppliers are about to be public companies with quarterly scrutiny. Expect aggressive monetisation of media verticals (ads, commerce, licensing) — and expect provenance compliance to become a procurement checkbox in every studio deal.",
+      "market_signal": "the content industry's AI suppliers are about to be public companies with quarterly scrutiny. Expect aggressive monetisation of media verticals (ads, commerce, licensing) -- and expect provenance compliance to become a procurement checkbox in every studio deal. 9 · Viral AI app of the day Studio by Spotify Labs -- Spotify's agentic desktop app, unveiled at its Investor Day (May 21) and rolling out as a research preview in 20+ markets.",
       "practical_takeaway": [
         {
-          "title": "Wire provenance before scale",
-          "body": "C2PA-sign and SynthID-watermark every AI-touched output now; August 2 is T-50 days, and the audit log doubles as your chain of custody and rights ledger."
-        },
-        {
-          "title": "Start where the loop is reversible",
-          "body": "Metadata, localisation, marketing variants, rough cuts and per-user briefings; measure on cycle time and cost per asset, and keep a named human on every master that ships."
-        },
-        {
-          "title": "Treat ad agents as spending agents",
-          "body": "Scoped SPIFFE identity, budget caps, brand-safety floors, and independent verification wherever a platform's own agent buys on its own platform."
+          "title": "Three moves for anyone in or near media and entertainment: (",
+          "body": "Three moves for anyone in or near media and entertainment: (1) Wire provenance before scale -- C2PA-sign and SynthID-watermark every AI-touched output now; August 2 is T-50 days, and the audit log doubles as your chain of custody and rights ledger. (2) Start where the loop is reversible -- metadata, localisation, marketing variants, rough cuts and per-user briefings; measure on cycle time and cost per asset, and keep a named human on every master that ships. (3) Treat ad agents as spending agents -- scoped SPIFFE identity, budget caps, brand-safety floors, and independent verification wherever a platform's own agent buys on its own platform. Automate the assembly line; never the authorship. Tomorrow (Day 80): The Mid-Year Scorecard -- H1 2026 in agentic AI: what actually shipped vs what stalled, the IPO race scoreboard, the protocol and skills land-grab, and the H2 watchlist from EU AI Act enforcement to the first public frontier-lab earnings."
         }
-      ],
-      "viral_app": {
-        "name": "Studio by Spotify Labs",
-        "description": "Spotify's agentic desktop app (unveiled at Investor Day, May 21, research preview in 20+ markets): a built-in agent browses the web, reads your listening history across music, podcasts and audiobooks, and — with explicit permission — your calendar, inbox and notes, then generates private podcasts, daily audio briefings and playlists on demand ('create a daily audio brief for my road trip through Italy'). Conversational mid-task — refine, retone, redirect — and everything lands privately in your Library. The cleanest consumer proof that media personalisation has flipped from recommending a catalogue to generating the artefact, with NotebookLM-style audio generation fused to the platform that already owns your listening graph.",
-        "stats": [
-          {
-            "stat": "20+",
-            "label": "markets in the launch research preview"
-          },
-          {
-            "stat": "100%",
-            "label": "private — output lands only in your Library"
-          }
-        ]
-      },
-      "tomorrow_preview": "Day 80: The Mid-Year Scorecard — H1 2026 in agentic AI: what actually shipped vs what stalled, the IPO race scoreboard, the protocol and skills land-grab, and the H2 watchlist from EU AI Act enforcement to the first public frontier-lab earnings."
+      ]
     },
     {
       "date": "2026-06-12",
