@@ -10,20 +10,41 @@
       "display_date": "JUNE 14, 2026",
       "issue": 80,
       "title": "The Mid-Year Scorecard: H1 2026 in Agentic AI",
-      "focus_intro": "Eighty days into this series, the calendar hits the half-year mark -- a good moment to stop",
+      "focus_intro": "Eighty days into this series, the calendar hits the half-year mark — a good moment to grade the field. H1 2026 was the year agentic AI stopped being a demo and became a line item: priced into IPOs, regulated by statute, and audited against production reality. Model performance compressed to a near-tie, so the score is now kept on distribution, governance, and reliability — not benchmark points.",
       "viral_app": {
-        "name": "R2-D2-style chirps. It's part demo, part thought experiment about where agent-to-agent communication is",
-        "description": "heading -- and a neat real-world counterpoint to the formal A2A/MCP rails maturing this half-year. (On the OSS charts, OpenClaw -- the privacy-first local agent connecting 50+ apps with no external API -- remains the runaway leader at 210K+ stars.) Why it matters: GibberLink is a memorable reminder that the standards war isn't settled -- humans standardised on A2A and MCP, but agents, given the chance, invent their own faster channel. Efficient, yes; auditable, no. Which is exactly why governance, not raw speed, is the H2 story. 1. Grade your own agents against the 37% gap. Stop trusting dashboard benchmarks. Re-test on real inputs, real latency and messy user phrasing; if you can't show ROI",
-        "stats": []
+        "name": "GibberLink",
+        "description": "Built by two Meta engineers at the ElevenLabs × a16z London hackathon, GibberLink starts two AI agents in English, then — once both confirm they are AI — they switch to GGWave sound-level protocol, communicating ~80% faster than speech and dropping into R2-D2-style chirps. Won global top prize; went viral on a hotel-booking clip. Real-world counterpoint to formal A2A/MCP rails: agents invent their own faster channel when given the chance. Efficient, yes; auditable, no — which is exactly why governance, not raw speed, is the H2 story.",
+        "stats": [
+          {
+            "stat": "80%",
+            "label": "faster than speech via GGWave protocol"
+          },
+          {
+            "stat": "210K+",
+            "label": "OpenClaw GitHub stars — still the OSS chart-topper"
+          },
+          {
+            "stat": "2",
+            "label": "Meta engineers who built it at a hackathon weekend"
+          }
+        ]
       },
       "stats": [
         {
           "stat": "$1.77T",
-          "label": "SpaceX valuation at its June 12 Nasdaq debut -- largest US IPO on record"
+          "label": "SpaceX/SPCX valuation at Nasdaq debut — largest US IPO on record"
         },
         {
           "stat": "37%",
-          "label": "average gap between lab benchmark scores and real-world agent performance"
+          "label": "average gap between lab benchmarks and real-world agent performance"
+        },
+        {
+          "stat": "~10%",
+          "label": "orgs running TRUE multi-agent systems (vs 51% claiming live production)"
+        },
+        {
+          "stat": "$200B",
+          "label": "combined Anthropic + OpenAI + SpaceX raise if all three IPOs list"
         }
       ],
       "sections": [
@@ -237,7 +258,22 @@
           ]
         }
       ],
-      "practical_takeaway": []
+      "practical_takeaway": [
+        {
+          "title": "Grade your own agents against the 37% gap",
+          "body": "Stop trusting dashboard benchmarks. Re-test on real inputs with real latency and messy phrasing. If you cannot show ROI and contain blast radius, it is still a pilot."
+        },
+        {
+          "title": "Treat Aug 2 as a hard deadline, not a proposal",
+          "body": "Annex III evidence + WORM audit trail is the compliance deliverable. The Omnibus Dec-2027 push is proposed but not law — build for August."
+        },
+        {
+          "title": "Plant your flag on the rails while open",
+          "body": "One SKILL.md → all four channels + MCP server + A2A agent card. The asymmetry window closes in 2027 when revenue shares formalise."
+        }
+      ],
+      "market_signal": "A governed agent you can audit beats a smarter agent you cannot. Distribution + skills ecosystem + governance evidence capture the next $50B+ in agentic value — not benchmark deltas.",
+      "tomorrow_preview": "Day 81: The EU AI Act August 2 Enforcement Playbook — the exact Annex III evidence pack, conformity-assessment checklist, and how to turn OTEL + WORM into a clean regulator artefact."
     },
     {
       "date": "2026-06-13",
