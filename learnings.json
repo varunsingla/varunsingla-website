@@ -7,100 +7,237 @@
   "learnings": [
     {
       "date": "2026-06-14",
-      "display_date": "June 14, 2026",
+      "display_date": "JUNE 14, 2026",
       "issue": 80,
       "title": "The Mid-Year Scorecard: H1 2026 in Agentic AI",
-      "focus_intro": "Eighty days in, the calendar hits the half-year mark — time to stop adding verticals and grade the field. H1 2026 was the year agentic AI stopped being a demo and became a line item: priced into IPOs, regulated by statute, audited against production reality. This scorecard tracks five things — what actually shipped versus what stalled, the model frontier, the IPO race (SpaceX is now public; Anthropic and OpenAI are queued), the protocol and skills land-grab, and the H2 watchlist that opens with EU AI Act enforcement on August 2 and the first-ever public earnings from a frontier lab. The throughline: model performance compressed to a near-tie, so the score is now kept on distribution, governance and reliability — not benchmark points.",
+      "focus_intro": "Eighty days into this series, the calendar hits the half-year mark -- a good moment to stop",
+      "viral_app": {
+        "name": "R2-D2-style chirps. It's part demo, part thought experiment about where agent-to-agent communication is",
+        "description": "heading -- and a neat real-world counterpoint to the formal A2A/MCP rails maturing this half-year. (On the OSS charts, OpenClaw -- the privacy-first local agent connecting 50+ apps with no external API -- remains the runaway leader at 210K+ stars.) Why it matters: GibberLink is a memorable reminder that the standards war isn't settled -- humans standardised on A2A and MCP, but agents, given the chance, invent their own faster channel. Efficient, yes; auditable, no. Which is exactly why governance, not raw speed, is the H2 story. 1. Grade your own agents against the 37% gap. Stop trusting dashboard benchmarks. Re-test on real inputs, real latency and messy user phrasing; if you can't show ROI",
+        "stats": []
+      },
       "stats": [
         {
           "stat": "$1.77T",
-          "label": "SpaceX valuation at its June 12 Nasdaq debut — largest US IPO on record"
-        },
-        {
-          "stat": "~$200B",
-          "label": "combined raise if SpaceX + OpenAI + Anthropic all list in 2026"
+          "label": "SpaceX valuation at its June 12 Nasdaq debut -- largest US IPO on record"
         },
         {
           "stat": "37%",
           "label": "average gap between lab benchmark scores and real-world agent performance"
-        },
-        {
-          "stat": "Aug 2",
-          "label": "EU AI Act high-risk obligations become enforceable — the H2 starting gun"
         }
       ],
-      "viral_app": {
-        "name": "GibberLink (AI's secret language)",
-        "description": "Open-source project where two conversational AI agents start in plain English and, once each confirms the other is an AI, switch into a sound-level protocol (GGWave) that exchanges modulated audio signals roughly 80% faster than speech. Built by two Meta engineers at an ElevenLabs × a16z hackathon in London (where it won the global top prize), it went viral on a clip of two voice agents booking a hotel before dropping into R2-D2-style chirps. A real-world counterpoint to the formal A2A/MCP rails maturing this half-year: humans standardised on protocols, but agents — given the chance — invent their own faster channel. Efficient, yes; auditable, no. (On the OSS charts, OpenClaw — the privacy-first local agent connecting 50+ apps with no external API — remains the runaway leader at 210K+ stars.)",
-        "stats": [
-          {
-            "stat": "~80%",
-            "label": "faster than speech via the GGWave sound protocol"
-          },
-          {
-            "stat": "#1",
-            "label": "prize at the ElevenLabs × a16z London hackathon"
-          },
-          {
-            "stat": "210K+",
-            "label": "OpenClaw stars — the OSS chart-topper of H1"
-          }
-        ]
-      },
       "sections": [
         {
-          "title": "The scoreboard — what shipped vs what stalled",
+          "title": "1 · The scoreboard -- what shipped vs what stalled",
           "paragraphs": [
-            "H1 2026 delivered genuine production milestones, but the headline of the half-year is the reliability reckoning. The hype broke against hard data: a 2026 analysis of enterprise deployments found a ~37% gap between lab benchmark scores and real-world performance — a system that looks production-ready on the dashboard misses roughly one task in three once it meets real inputs, real latency and users who phrase things their own way.",
-            "Adoption claims stayed loud (51% of organisations say they run agents in live production) but only about 10% have deployed true multi-agent systems; ~71% of the market is still running 'assistive AI' or below — sophisticated retrieval tools that can't independently pursue a goal. 'Agent-washing' — rebranding a chatbot as 'agentic' — became a recognised, systemic problem.",
-            "Shipped (real): frontier models hit a public ceiling (Opus 4.8, then the publicly-released Mythos-class Fable 5; GPT-5.5/5.6 and Gemini 3.5 Flash all production-grade); enterprise control planes (OpenAI Frontier, Microsoft Agent 365, Salesforce Agentforce 3.0) gave agents identity, governance and audit by construction; the protocol layer matured; and vertical playbooks landed in finance, healthcare and industrial. Stalled / over-promised: full-autonomy agents, ROI at scale, and a market still ~71% assistive-or-below dressed up as agentic. The win of H1 wasn't a smarter model — it was the field learning to tell a governed agent from a rebranded chatbot. Success clustered in constrained, well-governed domains (IT ops, finance ops, onboarding, reconciliation, support)."
+            "H1 2026 delivered genuine production milestones, but the headline of the half-year is the reliability reckoning. The hype broke against hard data: a 2026 analysis of enterprise deployments found a ~37% gap between lab benchmark scores and real-world performance -- a system that looks production-ready on the dashboard misses roughly one task in three once it meets real inputs, real latency and users who phrase things their own way. Adoption claims stayed loud (51% of organisations say they run agents in live production) but only about 10% have deployed true multi-agent systems; ~71% of the market is still running \"assistive AI\" or below -- sophisticated retrieval tools that can't independently pursue a goal. \"Agent-washing\" -- rebranding a chatbot as \"agentic\" -- became a recognised, systemic problem."
+          ],
+          "table": {
+            "headers": [
+              "Shipped in H1 2026 (real)",
+              "Stalled / over-promised"
+            ],
+            "rows": [
+              [
+                "Frontier models hit a public ceiling: Opus 4.8, then Fable 5 (a publicly-released Mythos-class model); GPT-5.5/5.6 and Gemini 3.5 Flash all production-grade.",
+                "Full-autonomy agents: only ~10% of orgs run true multi-agent systems; pilots routinely miss 1 task in 3 once they meet real users."
+              ],
+              [
+                "Enterprise control planes: OpenAI Frontier, Microsoft Agent 365, Salesforce Agentforce 3.0 -- agents now have identity, governance, audit by construction.",
+                "ROI at scale: the majority of generative-AI pilots still fail to show measurable ROI -- poor integration, unclear ownership, undefined blast radius."
+              ],
+              [
+                "Protocol layer matured: MCP past ~97M monthly SDK downloads, A2A v1.0 stable with 150+ production orgs under the Linux Foundation.",
+                "'Agent-washing': ~71% of the market is assistive AI or below, marketed as agentic -- the credibility tax of 2026."
+              ],
+              [
+                "Vertical playbooks landed: finance (Anthropic + FIS), healthcare (Claude for Healthcare), industrial (Siemens × NVIDIA) moved into governed production.",
+                "Consumer over-reach: agentic browsers shipped real capability but also real incidents (prompt injection, unintended deletions) -- trust, not capability, was the gate."
+              ],
+              [
+                "So what: The win of H1 wasn't a smarter model -- it was the field learning to tell a governed agent from a rebranded chatbot. Success clustered in constrained, well-governed domains (IT ops, finance ops, onboarding, reconciliation, support) where human-in-the-loop is tolerated and ROI is fast.",
+                ""
+              ]
+            ]
+          }
+        },
+        {
+          "title": "1. Grade your own agents against the 37% gap.",
+          "paragraphs": [
+            "Stop trusting dashboard benchmarks. Re-test on real inputs, real latency and messy user phrasing; if you can't show ROI and a defined blast radius, you have a pilot, not a deployment. Aim at constrained, governed domains (ops, finance, support) where H1's wins actually clustered."
           ]
         },
         {
-          "title": "The IPO race — SpaceX prints, Anthropic and OpenAI queue",
+          "title": "2 · The IPO race -- SpaceX prints, Anthropic and OpenAI queue",
           "paragraphs": [
-            "The single biggest market event of the half-year happened on the public markets, not in a model release. SpaceX priced its IPO at $135/share (555.6M shares, a ~$75B raise) and began trading on Nasdaq under SPCX on June 12, valuing the company at ~$1.77 trillion — the largest US IPO on record, with xAI sitting inside it.",
-            "Both leading labs filed confidentially within a week of each other: Anthropic on June 1 (targeting ~October at roughly $965B post-money on a ~$44–47B run-rate, first operating profit expected around Q2) and OpenAI on June 8 ($20B+ ARR against a projected ~$14B 2026 loss). It's the first time both frontier labs are in the IPO pipeline simultaneously — and the SpaceX listing is now the template they follow. When a frontier lab is public, agents become a quarterly-earnings story: expect aggressive monetisation of every vertical and 'governance evidence' to show up as a procurement checkbox."
+            "The single biggest market event of the half-year happened on the public markets, not in a model release. SpaceX priced its IPO at $135/share (555.6M shares, a ~$75B raise) and began trading on Nasdaq under SPCX on June 12, valuing the company at ~$1.77 trillion -- the largest US IPO on record, with xAI sitting inside it. Both leading labs filed confidentially within a week of each other: Anthropic on June 1 (targeting ~October at roughly $965B post-money on a ~$44-47B run-rate, first operating profit expected around Q2) and OpenAI on June 8 (~$20B+ ARR against a projected ~$14B 2026 loss). It's the first time both frontier labs are in the IPO pipeline simultaneously -- and the SpaceX listing is now the template they follow."
+          ],
+          "table": {
+            "headers": [
+              "Company",
+              "Status (June 2026)",
+              "Valuation / scale",
+              "Read-through"
+            ],
+            "rows": [
+              [
+                "SpaceX (SPCX)",
+                "Public -- listed Nasdaq Jun 12",
+                "~$1.77T; ~$75B raised at $135/sh",
+                "Largest US IPO ever; xAI division inside; the model for the next two"
+              ],
+              [
+                "Anthropic",
+                "Confidential S-1 filed Jun 1; targets ~Oct",
+                "~$965B post-money; ~$44-47B run-rate",
+                "First operating profit expected ~Q2; coding + agentic enterprise engine"
+              ],
+              [
+                "OpenAI",
+                "Confidential S-1 filed Jun 8",
+                "$20B+ ARR; ~$14B projected 2026 loss",
+                "Scale leader still burning cash; timing unconfirmed"
+              ],
+              [
+                "So what: When a frontier lab is public, agents become a quarterly-earnings story. Expect aggressive monetisation of every vertical and \"governance evidence\" to show up as a procurement checkbox -- the discipline of public markets arrives in H2.",
+                "",
+                "",
+                ""
+              ]
+            ]
+          }
+        },
+        {
+          "title": "2. Treat August 2 as a hard deadline, not a proposal.",
+          "paragraphs": [
+            "If any agent touches employment, credit, education or law-enforcement decisions, it's Annex III high-risk. Finish conformity assessment + technical docs + human-oversight + audit logging now -- the Omnibus delay to Dec 2027 is not law, and the WORM audit trail doubles as your compliance evidence."
           ]
         },
         {
-          "title": "The model frontier — the public ceiling rose, then compressed",
+          "title": "3 · The model frontier -- the public ceiling rose, then compressed",
           "paragraphs": [
-            "H1's defining model moment was Claude Fable 5 (June 9): a Mythos-class model made safe enough for general release. Fable 5 and the still-restricted Mythos 5 are the same underlying model — the only difference is safeguards. In high-risk areas (cybersecurity, biology, chemistry, model distillation) Fable 5 blocks the response and falls back to Opus 4.8; everywhere else it is state-of-the-art, at $10/$50 per million tokens (less than half the price of Mythos Preview).",
-            "The strategic point: with Opus 4.8, Fable 5, GPT-5.5/5.6 and Gemini 3.5 Flash all clustered within a few points of each other, raw capability is no longer the differentiator. Anthropic's framing — ship the capability, gate the danger — is the new frontier-release template, landing precisely as governments stand up pre-release review windows for 'covered frontier models'. The compression thesis: when the top four models are within ~3% of each other, the next $50B+ of agentic value is captured one layer down — distribution, skills, and governance evidence. Benchmarks stopped being the scoreboard in H1."
+            "H1's defining model moment was Claude Fable 5 (June 9): a Mythos-class model made safe enough for general release. Fable 5 and the still-restricted Mythos 5 are the same underlying model -- the only difference is safeguards. In high-risk areas (cybersecurity, biology, chemistry, model distillation) Fable 5 blocks the response and falls back to Opus 4.8; everywhere else it is state-of-the-art, at $10/$50 per million tokens (less than half the price of Mythos Preview). The strategic point for this scorecard: with Opus 4.8, Fable 5, GPT-5.5/5.6 and Gemini 3.5 Flash all clustered within a few points of each other, raw capability is no longer the differentiator. Anthropic's own framing -- ship the capability, gate the danger -- is the new frontier-release template, and it lands precisely as governments stand up pre-release review windows for \"covered frontier models.\" The compression thesis: when the top four models are within ~3% of each other, the next $50B+ of agentic value is captured one layer down -- distribution (whose surface the agent runs on), skills (what it can do), and governance evidence (whether you can prove what it did). Benchmarks stopped"
+          ],
+          "table": {
+            "headers": [
+              "Company",
+              "Status (June 2026)",
+              "Valuation / scale",
+              "Read-through"
+            ],
+            "rows": [
+              [
+                "SpaceX (SPCX)",
+                "Public -- listed Nasdaq Jun 12",
+                "~$1.77T; ~$75B raised at $135/sh",
+                "Largest US IPO ever; xAI division inside; the model for the next two"
+              ],
+              [
+                "Anthropic",
+                "Confidential S-1 filed Jun 1; targets ~Oct",
+                "~$965B post-money; ~$44-47B run-rate",
+                "First operating profit expected ~Q2; coding + agentic enterprise engine"
+              ],
+              [
+                "OpenAI",
+                "Confidential S-1 filed Jun 8",
+                "$20B+ ARR; ~$14B projected 2026 loss",
+                "Scale leader still burning cash; timing unconfirmed"
+              ],
+              [
+                "So what: When a frontier lab is public, agents become a quarterly-earnings story. Expect aggressive monetisation of every vertical and \"governance evidence\" to show up as a procurement checkbox -- the discipline of public markets arrives in H2.",
+                "",
+                "",
+                ""
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3. Plant your flag on the rails while they're still open.",
+          "paragraphs": [
+            "Publish one SKILL.md into all four channels (Anthropic Skills, GPT Store, MCP hubs, Gemini Spark), expose your product as an MCP server, and register an A2A agent card. The model-performance compression means distribution -- not benchmark points -- is where the next $50B is captured before revenue shares formalise in 2027. Tomorrow (Day 81): H2 kicks off -- a deep dive into the EU AI Act August 2 enforcement playbook: the exact Annex III evidence pack, the conformity-assessment checklist, and how to turn an OTEL + WORM audit trail into a clean regulator artefact with weeks, not months, to spare."
           ]
         },
         {
-          "title": "The protocol & skills land-grab",
+          "title": "4 · The protocol & skills land-grab",
           "paragraphs": [
-            "If H2 2025 was the MCP moment, H1 2026 was the year the agent stack's plumbing standardised. MCP crossed ~97M monthly SDK downloads and is now spoken by every major provider (Anthropic, OpenAI, Google, Microsoft, Amazon); MCP v2.0 added Streamable HTTP transport and OAuth 2.1. A2A reached a stable v1.0 and, under the Linux Foundation, crossed 150+ production organisations, 22,000+ GitHub stars and SDKs in five languages. A Q2 interoperability spec now defines how A2A and MCP compose.",
-            "Layered on top, the SKILL.md open standard turned the 'skill' into the unit of agentic value — one artefact published to Anthropic Skills, the GPT Store, MCP hubs and Gemini Spark at once. The contest of the half-year was never about who has the smartest model; it was about who owns the distribution rails: Anthropic plays the open-protocol/npm hand, Google plays the OS surface, Microsoft plays the enterprise control plane. The asymmetry window is closing — while protocols are open and revenue shares aren't yet formalised, publishing one SKILL.md into all four channels is the cheapest leverage in the agent economy, a position that gets harder to take once platforms lock in their cut (expected 2027)."
-          ]
+            "If H2 2025 was the MCP moment, H1 2026 was the year the agent stack's plumbing standardised. MCP crossed ~97M monthly SDK downloads and is now spoken by every major provider (Anthropic, OpenAI, Google, Microsoft, Amazon); MCP v2.0 added Streamable HTTP transport and OAuth 2.1. A2A reached a stable v1.0 and, under the Linux Foundation, crossed 150+ production organisations, 22,000+ GitHub stars and SDKs in five languages. A Q2 interoperability spec now defines how A2A and MCP compose. Layered on top, the SKILL.md open standard turned the \"skill\" into the unit of agentic value -- one artefact published to Anthropic Skills, the GPT Store, MCP hubs and Gemini Spark at once. The contest of the half-year was never about who has the smartest model; it was about who owns the distribution rails: Anthropic plays the open-protocol/npm hand, Google plays the OS surface, Microsoft plays the enterprise control plane."
+          ],
+          "table": {
+            "headers": [
+              "Layer",
+              "H1 2026 status",
+              "Who's winning the rails"
+            ],
+            "rows": [
+              [
+                "MCP (tools/data)",
+                "~97M monthly SDK downloads; v2.0 Streamable HTTP + OAuth 2.1; universal provider support",
+                "Anthropic-originated, now neutral -- the de-facto tool layer"
+              ],
+              [
+                "A2A (agent-to-agent)",
+                "v1.0 stable; 150+ production orgs; Linux Foundation governance; 5-language SDKs",
+                "Google-originated, foundation-governed -- cross-org comms standard"
+              ],
+              [
+                "Skills (SKILL.md)",
+                "Open standard; 16+ tools speak it; one artefact, four marketplaces",
+                "Anthropic open-standard play vs Google OS surface vs MS control plane"
+              ],
+              [
+                "So what: The asymmetry window is closing. While the protocols are open and revenue shares aren't yet formalised, publishing one SKILL.md into all four channels is the cheapest leverage in the agent economy -- a position that gets harder to take once the platforms lock in their cut (expected 2027).",
+                "",
+                ""
+              ]
+            ]
+          }
         },
         {
-          "title": "The H2 2026 watchlist",
+          "title": "5 · The H2 2026 watchlist",
           "paragraphs": [
-            "Three forces define the back half of the year. First, EU AI Act enforcement on August 2: high-risk (Annex III) obligations become binding — conformity assessments, technical documentation, CE marking, EU-database registration, human oversight — with penalties up to €15M or 3% of global turnover. A proposed Omnibus would push stand-alone Annex III systems to December 2027, but it is not yet law, so August 2 must be treated as the operative deadline — and many enterprises are not on track.",
-            "Second, the first public frontier-lab earnings: once Anthropic and/or OpenAI list, the agent economy gets quarterly scrutiny for the first time. Third, the governance-as-procurement shift: audit trails, scoped identity (SPIFFE/SVID), kill switches and provenance (C2PA/SynthID) move from nice-to-have to line items in every enterprise contract. Watch, too, for whether voluntary government pre-release review windows for frontier models harden into rules."
+            "Three forces define the back half of the year. First, EU AI Act enforcement on August 2: high-risk (Annex III) obligations become binding -- conformity assessments, technical documentation, CE marking, EU-database registration, human oversight -- with penalties up to €15M or 3% of global turnover. A proposed Omnibus would push stand-alone Annex III systems to December 2027, but it is not yet law, so August 2 must be treated as the operative deadline -- and many enterprises are not on track. Second, the first public frontier-lab earnings: once Anthropic and/or OpenAI list, the agent economy gets quarterly scrutiny for the first time. Third, the governance-as-procurement shift: audit trails, scoped identity (SPIFFE/SVID), kill switches and provenance (C2PA/SynthID) move from nice-to-have to line items in every enterprise contract."
+          ],
+          "table": {
+            "headers": [
+              "Layer",
+              "H1 2026 status",
+              "Who's winning the rails"
+            ],
+            "rows": [
+              [
+                "MCP (tools/data)",
+                "~97M monthly SDK downloads; v2.0 Streamable HTTP + OAuth 2.1; universal provider support",
+                "Anthropic-originated, now neutral -- the de-facto tool layer"
+              ],
+              [
+                "A2A (agent-to-agent)",
+                "v1.0 stable; 150+ production orgs; Linux Foundation governance; 5-language SDKs",
+                "Google-originated, foundation-governed -- cross-org comms standard"
+              ],
+              [
+                "Skills (SKILL.md)",
+                "Open standard; 16+ tools speak it; one artefact, four marketplaces",
+                "Anthropic open-standard play vs Google OS surface vs MS control plane"
+              ],
+              [
+                "So what: The asymmetry window is closing. While the protocols are open and revenue shares aren't yet formalised, publishing one SKILL.md into all four channels is the cheapest leverage in the agent economy -- a position that gets harder to take once the platforms lock in their cut (expected 2027).",
+                "",
+                ""
+              ]
+            ]
+          }
+        },
+        {
+          "title": "Viral app spotlight -- GibberLink (AI's secret language)",
+          "paragraphs": [
+            "Fitting for a scorecard about protocols, the viral app of the moment is GibberLink -- an open-source project (PennyroyalTea on GitHub) where two conversational AI agents start in plain English and, once each confirms the other is an AI, switch into a sound-level protocol (GGWave) that exchanges modulated audio signals roughly 80% faster than speech. Built by two Meta engineers at an ElevenLabs × a16z hackathon in London (where it won the global top prize), it went viral on a clip of two voice agents booking a hotel before dropping into R2-D2-style chirps. It's part demo, part thought experiment about where agent-to-agent communication is heading -- and a neat real-world counterpoint to the formal A2A/MCP rails maturing this half-year. (On the OSS charts, OpenClaw -- the privacy-first local agent connecting 50+ apps with no external API -- remains the",
+            "Why it matters: GibberLink is a memorable reminder that the standards war isn't settled -- humans standardised on A2A and MCP, but agents, given the chance, invent their own faster channel. Efficient, yes; auditable, no. Which is exactly why governance, not raw speed, is the H2 story."
           ]
         }
       ],
-      "market_signal": "Model performance compressed to a near-tie across Opus 4.8, Fable 5, GPT-5.5/5.6 and Gemini 3.5 Flash — so the next $50B+ in agentic value is captured at the distribution, governance and reliability layers, not in benchmark points. H1's lesson, in one line: a governed agent you can audit beats a smarter agent you can't.",
-      "practical_takeaway": [
-        {
-          "title": "Grade your own agents against the 37% gap",
-          "body": "Stop trusting dashboard benchmarks. Re-test on real inputs, real latency and messy user phrasing; if you can't show ROI and a defined blast radius, you have a pilot, not a deployment. Aim at the constrained, governed domains where H1's wins actually clustered."
-        },
-        {
-          "title": "Treat August 2 as a hard deadline, not a proposal",
-          "body": "If any agent touches employment, credit, education or law-enforcement decisions, it's Annex III high-risk. Finish conformity assessment, technical docs, human oversight and audit logging now — the Omnibus delay to Dec 2027 is not law, and the WORM audit trail doubles as your compliance evidence."
-        },
-        {
-          "title": "Plant your flag on the rails while they're open",
-          "body": "Publish one SKILL.md into all four channels (Anthropic Skills, GPT Store, MCP hubs, Gemini Spark), expose your product as an MCP server, and register an A2A agent card. With model performance compressed, distribution — not benchmark points — is where the next $50B is captured before revenue shares formalise in 2027."
-        }
-      ],
-      "tomorrow_preview": "Day 81: H2 kicks off — the EU AI Act August 2 enforcement playbook: the exact Annex III evidence pack, the conformity-assessment checklist, and how to turn an OTEL + WORM audit trail into a clean regulator artefact with weeks to spare."
+      "practical_takeaway": []
     },
     {
       "date": "2026-06-13",
