@@ -6,6 +6,95 @@
   },
   "learnings": [
     {
+      "date": "2026-06-15",
+      "display_date": "June 15, 2026",
+      "issue": 81,
+      "title": "The EU AI Act August 2 Enforcement Playbook",
+      "focus_intro": "H2 opens with the regulatory event the whole series has been building toward. August 2, 2026 is when the EU AI Act's next wave of obligations becomes enforceable -- and this year the date comes with a twist. A last-minute Digital Omnibus deal (provisional May 7) would push the heaviest high-risk (Annex III) obligations out to December 2, 2027, but it is NOT yet law, and several obligations -- chiefly Article 50 transparency, the governance machinery, and GPAI penalties -- stay live on August 2 regardless. This playbook covers what is binding on the day, the high-risk evidence pack, the penalty tiers, and how to turn an OTEL + WORM audit trail into a clean regulator artefact. The series throughline holds: a governed agent you can audit beats a smarter agent you can't -- and the audit is now a legal deliverable.",
+      "stats": [
+        {
+          "stat": "Aug 2",
+          "label": "2026 -- Article 50 transparency + governance + GPAI penalties go live"
+        },
+        {
+          "stat": "Dec 2027",
+          "label": "where high-risk (Annex III) moves IF the Omnibus is adopted -- not yet law"
+        },
+        {
+          "stat": "EUR 35M / 7%",
+          "label": "top penalty tier (prohibited practices), whichever is higher of fine or global turnover"
+        },
+        {
+          "stat": "78%",
+          "label": "of enterprises not meaningfully prepared for the obligations (2026 readiness survey)"
+        }
+      ],
+      "viral_app": {
+        "name": "OpenCode",
+        "description": "OpenCode (opencode.ai, by the SST team at Anomaly Innovations) crossed ~172,000 GitHub stars to become the most-starred open-source AI agent -- ahead of Gemini CLI and Codex -- with ~7.5M monthly active developers, ~900 contributors and 13,000+ commits in under a year. Its thesis is the perfect coda to a governance issue: the model is a pluggable dependency, not the product. OpenCode is a pure terminal agent (no IDE extension, no web UI) that runs on Claude, GPT-5, Gemini, Grok, Bedrock, Azure OpenAI or a local Ollama model, and stores none of your code or context -- exactly the data-residency posture EU deployers need. Clearest proof of the Day 80 compression thesis: when frontier models sit within ~3% of each other, durable value moves to the layer you control -- the harness, the data boundary, the audit trail. (OpenClaw still tops the raw OSS charts at 210K+ stars, now governed by a foundation.)",
+        "stats": [
+          {
+            "stat": "~172K",
+            "label": "GitHub stars -- most-starred open-source AI agent in 2026"
+          },
+          {
+            "stat": "7.5M",
+            "label": "monthly active developers in under a year"
+          },
+          {
+            "stat": "0",
+            "label": "code / context bytes stored -- model-agnostic, privacy-first by design"
+          }
+        ]
+      },
+      "sections": [
+        {
+          "title": "1. Read the date correctly -- August 2 is now a split deadline",
+          "paragraphs": [
+            "For two years 'August 2, 2026' has been shorthand for 'the day high-risk AI gets regulated.' That is no longer the clean story. On May 7, 2026 the Council, Parliament and Commission reached a provisional political agreement on the Digital Omnibus, which defers stand-alone Annex III high-risk obligations to December 2, 2027 (and AI embedded in regulated products under Annex I to August 2, 2028). But that deal only takes legal effect once it clears the final European Parliament plenary vote (expected in June), is formally adopted by the Council, and is published in the Official Journal -- expected, but not guaranteed, before August 2. Until publication, the original August 2, 2026 date formally stands.",
+            "So you must hold two clocks at once. LIVE on Aug 2 no matter what: Article 50 transparency (chatbot disclosure, AI-content marking, deepfake labelling); the governance machinery (AI Office, national competent authorities, Member-State penalty regimes); and GPAI penalties (Article 101, enforced by the AI Office). PROBABLY deferred to Dec 2027 -- but only once the Omnibus is published: the heavy high-risk Annex III evidence pack (risk management, technical docs, logging, human oversight, conformity assessment, EU-database registration). The Omnibus also ADDS new Article 5 prohibitions (non-consensual intimate imagery / 'nudifiers', CSAM generation) -- stricter, not looser. The one mental model: August 2 didn't get cancelled, it got split. Plan to the earlier of the two clocks and you are never caught out."
+          ]
+        },
+        {
+          "title": "2. Article 50 -- the obligation almost every agent touches on Aug 2",
+          "paragraphs": [
+            "Because the heavy high-risk pack is (probably) deferred, Article 50 transparency is the live obligation most teams will meet first. It is a two-sided duty. Providers of generative systems must ensure outputs are machine-readable as AI-generated -- watermarking plus C2PA / IPTC metadata, the same provenance stack from Day 79 (media) and Day 34 (multimodal). Deployers must add visible disclosure: tell people they're talking to an AI at first interaction, and clearly label deepfake image / audio / video as artificially generated, at the latest on first exposure. Narrow carve-outs exist for law enforcement and 'obviously artistic or fictional' work.",
+            "Map it to your agent: if it talks to people (chat, voice, outreach, support) -> disclose it's an AI at first interaction (persistent badge wired into the run, logged as an event -- ties to the AG-UI RUN_STARTED pattern, Day 48). If it generates media -> SynthID-class watermark + signed C2PA manifest on every asset plus a visible 'AI-generated' label; provenance is the trust boundary. If it writes public-facing text -> label AI-authored content and keep the prompt-to-output trail. If it's purely internal / analytical -> largely out of Article 50 scope, but still log it for the high-risk pack and governance requests."
+          ]
+        },
+        {
+          "title": "3. The high-risk evidence pack -- what Annex III actually demands",
+          "paragraphs": [
+            "If your system lands in Annex III (biometrics, critical infrastructure, education, employment / HR, essential public & private services including credit and insurance, law enforcement, migration, justice) you owe a full conformity story. The Omnibus likely buys you until Dec 2027, but the pack takes 12-18 months to build -- and 61% of enterprises have NO process to produce it -- so the start date is now, not the deadline. The deliverable is the Annex IV technical file: nine sections demonstrating compliance, kept live (a maintained record, not write-once) and handed to national authorities on request. Most Annex III systems can self-assess; only remote biometric identification and certain law-enforcement uses need an external notified body. After assessment you issue an EU Declaration of Conformity, apply CE marking, and register the system in the EU database before it goes live.",
+            "The reframe that makes this cheap: you are not building compliance from scratch, you are relabelling artefacts you already produce. System description & intended purpose = your apm.yml manifest + SKILL.md allowed-tools list (Day 39, Day 60). Risk management (Art. 9) = threat model + kill-switch design + red-team results (Day 21, Day 54). Data governance = Memory IDs + namespace isolation + data-residency story (Day 44, Day 55). Logging (Art. 12) = OTEL gen_ai spans -> WORM store (Day 22, Day 50). Human oversight (Art. 14) = AG-UI approval gates + T1-T4 kill switch <1s (Day 48, Day 49). Accuracy / robustness / security + signed DoC + post-market monitoring = eval golden sets + online evals + SPIFFE/SVID identity + drift alerts (Day 45, Day 54). Build the agent right and the evidence pack falls out as a by-product."
+          ]
+        },
+        {
+          "title": "4. Penalties, and the audit pipeline that doubles as your defence",
+          "paragraphs": [
+            "The Act's fines are deliberately existential and use a 'whichever is higher' rule (fixed sum or percentage of global turnover). Prohibited practices: up to EUR 35M or 7%. High-risk & GPAI breaches: up to EUR 15M or 3%. Misleading authorities / false documentation: up to EUR 7.5M or 1%. Enforcement splits between the AI Office (general-purpose models) and national competent authorities (everything else) -- and both go live on August 2.",
+            "The single most leveraged thing you can do before the date is wire one pipeline: OTEL gen_ai spans -> WORM (write-once) audit store. Every model call, tool call, memory write, approval gate and kill-switch event lands as an immutable, timestamped record tagged with the agent's SPIFFE identity. That same trace is your Article 12 log, your Annex III evidence, and -- if a regulator ever asks 'why did the agent do that?' -- your reconstructable answer. The 90-day sprint to Aug 2: (1) Inventory every AI system and classify it (prohibited / high-risk / limited / minimal) -- 50%+ of firms can't yet, and you can't comply with what you can't see. (2) Ship Article 50 -- disclosure + watermarking on every public-facing agent. (3) Stand up the OTEL->WORM pipeline and start the Annex IV file on the original clock."
+          ]
+        }
+      ],
+      "market_signal": "August 2 reframes the agent market: the moat shifts decisively from model performance (compressed to ~3% across Fable 5 / Opus 4.8 / GPT-5.6 / Gemini 3.5 Flash) to GOVERNANCE EVIDENCE. With 78% of enterprises unprepared, 61% lacking any technical-documentation process and 50%+ without a basic AI inventory, the firms that already produce OTEL->WORM audit trails, SPIFFE/SVID identity and kill switches by construction can sell compliance as a feature -- while competitors scramble. Even with high-risk deferred to Dec 2027, Article 50 transparency is live on the day, and 'show me your audit trail' is becoming the new procurement question. Distribution + skills + governance, not benchmark points, capture the next wave of value.",
+      "practical_takeaway": [
+        {
+          "title": "Hold two clocks -- and plan to the earlier one.",
+          "body": "Article 50 transparency, governance and GPAI penalties are binding on August 2, 2026. High-risk (Annex III) is probably deferred to Dec 2027 by the Digital Omnibus -- but only once it is published in the Official Journal, which hasn't happened yet. Build the high-risk pack on the original clock so a slipped Omnibus never catches you out."
+        },
+        {
+          "title": "Ship the live obligation first: disclose + watermark.",
+          "body": "Every public-facing agent needs AI disclosure at first interaction and machine-readable marking (SynthID-class watermark + signed C2PA manifest) on synthetic media -- now. This is the obligation most teams actually touch on August 2, and it's a days-not-months fix."
+        },
+        {
+          "title": "Wire OTEL -> WORM once; reuse it as evidence, log and defence.",
+          "body": "Stand up a single pipeline that lands every model call, tool call, approval gate and kill-switch event as an immutable, SPIFFE-tagged record. That same trail is your Article 12 log, your Annex IV evidence, and your reconstructable answer to 'why did the agent do that?' Build the agent right and compliance falls out as a by-product."
+        }
+      ],
+      "tomorrow_preview": "Day 82: The Agentic AI Procurement Playbook -- how governance becomes a contract line item. Buyer checklists for SPIFFE/SVID identity, kill switches, C2PA/SynthID, Annex IV evidence and SLAs; the build-vs-buy decision for the control plane; and why 'show me your audit trail' is the new RFP question."
+    },
+    {
       "date": "2026-06-14",
       "display_date": "JUNE 14, 2026",
       "issue": 80,
@@ -13221,95 +13310,6 @@
         "2026 (Gartner) 40% (vs",
         "5% in 2025) Orgs planning to increase AI budgets 86% Practical Takeaway The most valuable me"
       ]
-    },
-    {
-      "date": "2026-06-15",
-      "display_date": "June 15, 2026",
-      "issue": 81,
-      "title": "The EU AI Act August 2 Enforcement Playbook",
-      "focus_intro": "H2 opens with the regulatory event the whole series has been building toward. August 2, 2026 is when the EU AI Act's next wave of obligations becomes enforceable -- and this year the date comes with a twist. A last-minute Digital Omnibus deal (provisional May 7) would push the heaviest high-risk (Annex III) obligations out to December 2, 2027, but it is NOT yet law, and several obligations -- chiefly Article 50 transparency, the governance machinery, and GPAI penalties -- stay live on August 2 regardless. This playbook covers what is binding on the day, the high-risk evidence pack, the penalty tiers, and how to turn an OTEL + WORM audit trail into a clean regulator artefact. The series throughline holds: a governed agent you can audit beats a smarter agent you can't -- and the audit is now a legal deliverable.",
-      "stats": [
-        {
-          "stat": "Aug 2",
-          "label": "2026 -- Article 50 transparency + governance + GPAI penalties go live"
-        },
-        {
-          "stat": "Dec 2027",
-          "label": "where high-risk (Annex III) moves IF the Omnibus is adopted -- not yet law"
-        },
-        {
-          "stat": "EUR 35M / 7%",
-          "label": "top penalty tier (prohibited practices), whichever is higher of fine or global turnover"
-        },
-        {
-          "stat": "78%",
-          "label": "of enterprises not meaningfully prepared for the obligations (2026 readiness survey)"
-        }
-      ],
-      "viral_app": {
-        "name": "OpenCode",
-        "description": "OpenCode (opencode.ai, by the SST team at Anomaly Innovations) crossed ~172,000 GitHub stars to become the most-starred open-source AI agent -- ahead of Gemini CLI and Codex -- with ~7.5M monthly active developers, ~900 contributors and 13,000+ commits in under a year. Its thesis is the perfect coda to a governance issue: the model is a pluggable dependency, not the product. OpenCode is a pure terminal agent (no IDE extension, no web UI) that runs on Claude, GPT-5, Gemini, Grok, Bedrock, Azure OpenAI or a local Ollama model, and stores none of your code or context -- exactly the data-residency posture EU deployers need. Clearest proof of the Day 80 compression thesis: when frontier models sit within ~3% of each other, durable value moves to the layer you control -- the harness, the data boundary, the audit trail. (OpenClaw still tops the raw OSS charts at 210K+ stars, now governed by a foundation.)",
-        "stats": [
-          {
-            "stat": "~172K",
-            "label": "GitHub stars -- most-starred open-source AI agent in 2026"
-          },
-          {
-            "stat": "7.5M",
-            "label": "monthly active developers in under a year"
-          },
-          {
-            "stat": "0",
-            "label": "code / context bytes stored -- model-agnostic, privacy-first by design"
-          }
-        ]
-      },
-      "sections": [
-        {
-          "title": "1. Read the date correctly -- August 2 is now a split deadline",
-          "paragraphs": [
-            "For two years 'August 2, 2026' has been shorthand for 'the day high-risk AI gets regulated.' That is no longer the clean story. On May 7, 2026 the Council, Parliament and Commission reached a provisional political agreement on the Digital Omnibus, which defers stand-alone Annex III high-risk obligations to December 2, 2027 (and AI embedded in regulated products under Annex I to August 2, 2028). But that deal only takes legal effect once it clears the final European Parliament plenary vote (expected in June), is formally adopted by the Council, and is published in the Official Journal -- expected, but not guaranteed, before August 2. Until publication, the original August 2, 2026 date formally stands.",
-            "So you must hold two clocks at once. LIVE on Aug 2 no matter what: Article 50 transparency (chatbot disclosure, AI-content marking, deepfake labelling); the governance machinery (AI Office, national competent authorities, Member-State penalty regimes); and GPAI penalties (Article 101, enforced by the AI Office). PROBABLY deferred to Dec 2027 -- but only once the Omnibus is published: the heavy high-risk Annex III evidence pack (risk management, technical docs, logging, human oversight, conformity assessment, EU-database registration). The Omnibus also ADDS new Article 5 prohibitions (non-consensual intimate imagery / 'nudifiers', CSAM generation) -- stricter, not looser. The one mental model: August 2 didn't get cancelled, it got split. Plan to the earlier of the two clocks and you are never caught out."
-          ]
-        },
-        {
-          "title": "2. Article 50 -- the obligation almost every agent touches on Aug 2",
-          "paragraphs": [
-            "Because the heavy high-risk pack is (probably) deferred, Article 50 transparency is the live obligation most teams will meet first. It is a two-sided duty. Providers of generative systems must ensure outputs are machine-readable as AI-generated -- watermarking plus C2PA / IPTC metadata, the same provenance stack from Day 79 (media) and Day 34 (multimodal). Deployers must add visible disclosure: tell people they're talking to an AI at first interaction, and clearly label deepfake image / audio / video as artificially generated, at the latest on first exposure. Narrow carve-outs exist for law enforcement and 'obviously artistic or fictional' work.",
-            "Map it to your agent: if it talks to people (chat, voice, outreach, support) -> disclose it's an AI at first interaction (persistent badge wired into the run, logged as an event -- ties to the AG-UI RUN_STARTED pattern, Day 48). If it generates media -> SynthID-class watermark + signed C2PA manifest on every asset plus a visible 'AI-generated' label; provenance is the trust boundary. If it writes public-facing text -> label AI-authored content and keep the prompt-to-output trail. If it's purely internal / analytical -> largely out of Article 50 scope, but still log it for the high-risk pack and governance requests."
-          ]
-        },
-        {
-          "title": "3. The high-risk evidence pack -- what Annex III actually demands",
-          "paragraphs": [
-            "If your system lands in Annex III (biometrics, critical infrastructure, education, employment / HR, essential public & private services including credit and insurance, law enforcement, migration, justice) you owe a full conformity story. The Omnibus likely buys you until Dec 2027, but the pack takes 12-18 months to build -- and 61% of enterprises have NO process to produce it -- so the start date is now, not the deadline. The deliverable is the Annex IV technical file: nine sections demonstrating compliance, kept live (a maintained record, not write-once) and handed to national authorities on request. Most Annex III systems can self-assess; only remote biometric identification and certain law-enforcement uses need an external notified body. After assessment you issue an EU Declaration of Conformity, apply CE marking, and register the system in the EU database before it goes live.",
-            "The reframe that makes this cheap: you are not building compliance from scratch, you are relabelling artefacts you already produce. System description & intended purpose = your apm.yml manifest + SKILL.md allowed-tools list (Day 39, Day 60). Risk management (Art. 9) = threat model + kill-switch design + red-team results (Day 21, Day 54). Data governance = Memory IDs + namespace isolation + data-residency story (Day 44, Day 55). Logging (Art. 12) = OTEL gen_ai spans -> WORM store (Day 22, Day 50). Human oversight (Art. 14) = AG-UI approval gates + T1-T4 kill switch <1s (Day 48, Day 49). Accuracy / robustness / security + signed DoC + post-market monitoring = eval golden sets + online evals + SPIFFE/SVID identity + drift alerts (Day 45, Day 54). Build the agent right and the evidence pack falls out as a by-product."
-          ]
-        },
-        {
-          "title": "4. Penalties, and the audit pipeline that doubles as your defence",
-          "paragraphs": [
-            "The Act's fines are deliberately existential and use a 'whichever is higher' rule (fixed sum or percentage of global turnover). Prohibited practices: up to EUR 35M or 7%. High-risk & GPAI breaches: up to EUR 15M or 3%. Misleading authorities / false documentation: up to EUR 7.5M or 1%. Enforcement splits between the AI Office (general-purpose models) and national competent authorities (everything else) -- and both go live on August 2.",
-            "The single most leveraged thing you can do before the date is wire one pipeline: OTEL gen_ai spans -> WORM (write-once) audit store. Every model call, tool call, memory write, approval gate and kill-switch event lands as an immutable, timestamped record tagged with the agent's SPIFFE identity. That same trace is your Article 12 log, your Annex III evidence, and -- if a regulator ever asks 'why did the agent do that?' -- your reconstructable answer. The 90-day sprint to Aug 2: (1) Inventory every AI system and classify it (prohibited / high-risk / limited / minimal) -- 50%+ of firms can't yet, and you can't comply with what you can't see. (2) Ship Article 50 -- disclosure + watermarking on every public-facing agent. (3) Stand up the OTEL->WORM pipeline and start the Annex IV file on the original clock."
-          ]
-        }
-      ],
-      "market_signal": "August 2 reframes the agent market: the moat shifts decisively from model performance (compressed to ~3% across Fable 5 / Opus 4.8 / GPT-5.6 / Gemini 3.5 Flash) to GOVERNANCE EVIDENCE. With 78% of enterprises unprepared, 61% lacking any technical-documentation process and 50%+ without a basic AI inventory, the firms that already produce OTEL->WORM audit trails, SPIFFE/SVID identity and kill switches by construction can sell compliance as a feature -- while competitors scramble. Even with high-risk deferred to Dec 2027, Article 50 transparency is live on the day, and 'show me your audit trail' is becoming the new procurement question. Distribution + skills + governance, not benchmark points, capture the next wave of value.",
-      "practical_takeaway": [
-        {
-          "title": "Hold two clocks -- and plan to the earlier one.",
-          "body": "Article 50 transparency, governance and GPAI penalties are binding on August 2, 2026. High-risk (Annex III) is probably deferred to Dec 2027 by the Digital Omnibus -- but only once it is published in the Official Journal, which hasn't happened yet. Build the high-risk pack on the original clock so a slipped Omnibus never catches you out."
-        },
-        {
-          "title": "Ship the live obligation first: disclose + watermark.",
-          "body": "Every public-facing agent needs AI disclosure at first interaction and machine-readable marking (SynthID-class watermark + signed C2PA manifest) on synthetic media -- now. This is the obligation most teams actually touch on August 2, and it's a days-not-months fix."
-        },
-        {
-          "title": "Wire OTEL -> WORM once; reuse it as evidence, log and defence.",
-          "body": "Stand up a single pipeline that lands every model call, tool call, approval gate and kill-switch event as an immutable, SPIFFE-tagged record. That same trail is your Article 12 log, your Annex IV evidence, and your reconstructable answer to 'why did the agent do that?' Build the agent right and compliance falls out as a by-product."
-        }
-      ],
-      "tomorrow_preview": "Day 82: The Agentic AI Procurement Playbook -- how governance becomes a contract line item. Buyer checklists for SPIFFE/SVID identity, kill switches, C2PA/SynthID, Annex IV evidence and SLAs; the build-vs-buy decision for the control plane; and why 'show me your audit trail' is the new RFP question."
     }
   ],
   "last_updated": "2026-06-14",
