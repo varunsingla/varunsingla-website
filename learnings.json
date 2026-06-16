@@ -6,206 +6,6 @@
   },
   "learnings": [
     {
-      "date": "2026-06-16",
-      "display_date": "JUNE 16, 2026",
-      "issue": 82,
-      "title": "The Agentic AI Procurement Playbook",
-      "focus_intro": "Yesterday's playbook was the regulator's clock. Today is the mirror image: the buyer's side.",
-      "viral_app": {
-        "name": "On a day about \"show me your audit trail,\" the app worth knowing is the one that produces the trail. MLflow 3.x",
-        "description": "has become the most widely deployed open-source AI engineering platform and -- the standout in the June 2026 agent-observability wave -- the only fully open-source stack that covers tracing, evaluation, prompt management, governance and an AI gateway in one place, with no enterprise paywalls. It is built on an OpenTelemetry-native layer, so you emit gen_ai traces once and route them to any backend without re-instrumenting. For a buyer that is the clean answer to \"how do I generate Annex IV / 12-field audit evidence without locking into a vendor?\" -- emit the trace, keep the WORM trail you own. It is the procurement-grade governance-evidence layer, in open source. (OpenClaw still tops the raw",
-        "stats": [
-          {
-            "stat": "5-in-1",
-            "label": "tracing + eval + prompt + governance + gateway in one open platform"
-          },
-          {
-            "stat": "$0 paywall",
-            "label": "fully open source -- the buyer's answer to control-plane lock-in"
-          }
-        ]
-      },
-      "stats": [
-        {
-          "stat": "30",
-          "label": "questions in the 2026 agentic-AI RFP, across 8 categories (Kognitos template)"
-        },
-        {
-          "stat": "19%",
-          "label": "of orgs have an agentic-AI governance + monitoring platform (Hackett 2026 Index)"
-        },
-        {
-          "stat": "$15-$99",
-          "label": "per user/mo for a control plane: Agent 365 standalone fi M365 E7 Frontier"
-        }
-      ],
-      "sections": [
-        {
-          "title": "1 · Governance is now a line item -- and the RFP is where it's caught",
-          "paragraphs": [
-            "Three things changed in 2025-26 that make the old RFP inadequate. First, audit trails became a procurement requirement. COSO's February 2026 guidance on internal control over generative AI requires that monitoring capture prompts, inputs, outputs, model and config versions, and evidence of human review sufficient to reconstruct what the AI acted on; PCAOB AS 2201 (expanded benchmarking effective Dec 15, 2026) conditions any reliance on an automated control on the model's decision logic not having changed. Second, the EU AI Act moved from theory to enforcement (Day 81): Articles 11, 12, 13, 14 and 86 create vendor obligations the buyer inherits if the contract is silent. Third, platforms diverged architecturally -- deterministic (same input, same output, inspectable rules) versus probabilistic (output varies with model state). Yet only 19% of organisations run a governance + monitoring platform and just 24% have defined KPIs. The new artefact a buyer asks for is the AIBOM (AI Bill of Materials), delivered at deployment and on every material change. One question separates a 2026-ready vendor from a 2022 one: show me, for a decision you made six months ago, the exact rule applied and who reviewed it. The reframe: you are not buying features, you are buying evidence you can hand a regulator and an auditor. A brilliant demo on a platform that can't reconstruct a decision is a liability you'll inherit at the next audit cycle. Score governance before you score capability."
-          ],
-          "table": {
-            "headers": [
-              "RFP question",
-              "What a good answer looks like",
-              "Red flag"
-            ],
-            "rows": [
-              [
-                "Audit-trail completeness -- what's in the log for each decision?",
-                "The 12-field schema: NTP timestamp, decision ID, authenticated human identity, AI system + version, model + version, inputs with source, the specific rule applied, plain-language reasoning, output, downstream action, human-review event, tamper-evident proof.",
-                "\"We log the confidence score.\" A confidence score is not an explanation."
-              ]
-            ]
-          }
-        },
-        {
-          "title": "1. Make \"show me your audit trail\" your first RFP question.",
-          "paragraphs": [
-            "Score vendors on the 12-field log, model-version pinning, tiered HITL and tamper-evidence before you score features. A great demo on an un-auditable platform fails your next regulator and auditor review -- and the obligation lands on"
-          ]
-        },
-        {
-          "title": "2 · The buyer's checklist -- the six questions that predict regret",
-          "paragraphs": [
-            "A full RFP runs to 30 questions across eight categories, but six carry most of the signal. Each maps cleanly to a governance primitive this series has built over 80 days -- so the checklist below is also a quick test of whether a vendor has actually done the work or is selling a 2022 product with an AI label."
-          ],
-          "table": {
-            "headers": [
-              "RFP question",
-              "What a good answer looks like",
-              "Red flag"
-            ],
-            "rows": [
-              [
-                "Audit-trail completeness -- what's in the log for each decision?",
-                "The 12-field schema: NTP timestamp, decision ID, authenticated human identity, AI system + version, model + version, inputs with source, the specific rule applied, plain-language reasoning, output, downstream action, human-review event, tamper-evident proof.",
-                "\"We log the confidence score.\" A confidence score is not an explanation."
-              ]
-            ]
-          }
-        },
-        {
-          "title": "2. Buy the control plane; build only what's differentiated.",
-          "paragraphs": [
-            "Pick the registry / identity / governance plane that matches your identity backbone (Agent 365 for M365/Entra, Agentforce for CRM-grounded work, Claude/Cowork as the value layer, WSO2 or self-host for residency). Layer a regulated tier where you must; build only the proprietary skills that touch your unique data."
-          ]
-        },
-        {
-          "title": "3 · Build vs buy -- the control-plane decision comes first",
-          "paragraphs": [
-            "The first procurement decision is not which agent -- it is which control plane registers, identifies, governs and audits every agent you run. Get this right and the buyer's checklist above is satisfied by construction. Four paths, chosen by your existing identity backbone and data-residency needs, not by demo dazzle."
-          ],
-          "table": {
-            "headers": [
-              "RFP question",
-              "What a good answer looks like",
-              "Red flag"
-            ],
-            "rows": [
-              [
-                "Model version pinning -- what happens when the provider upgrades the model?",
-                "Versions pinned per workflow; upgrades are explicit, change-controlled, regression-tested events.",
-                "\"We always use the latest model.\" A silent upgrade reopens every AS 2201 effectiveness conclusion."
-              ],
-              [
-                "Tiered human oversight (HITL) -- is oversight risk-weighted?",
-                "Low-risk auto-approve + sampling audit; medium-risk async review; high-risk synchronous block. Reviewer sees the rule, the inputs and why it escalated.",
-                "\"We support human-in-the-loop\" with no tiering = bottleneck + rubber-stamp theatre."
-              ],
-              [
-                "Agent identity -- how is each agent identified and scoped?",
-                "Per-agent identity (SPIFFE/SVID or Entra), least-privilege scopes, deprovisioning + periodic access reviews; trail captures both agent and the human who triggered it.",
-                "\"Agents inherit user permissions\" with no agent-level audit trail."
-              ],
-              [
-                "Kill switch + incident SLA -- can you stop it, and when are we told?",
-                "<1s tiered stop (T1-T4) and a contractual 24-72h incident-notification SLA.",
-                "\"Logs are stored securely\" / no stop control / no notification clause in the contract."
-              ],
-              [
-                "Exit portability -- what do we keep if we leave?",
-                "Export of data, workflow logic AND audit history, retained through the regulatory floor (6 mo EU high-risk, 6-7 yr SOX/HIPAA).",
-                "\"You can export your data.\" Logic and audit history are separate -- most contracts ignore them."
-              ]
-            ]
-          }
-        },
-        {
-          "title": "4 · Pricing -- per-seat is dying; price for outcomes you can audit",
-          "paragraphs": [
-            "When one agent does the work of a team, paying \"per seat\" stops making sense. Per-seat collapsed from 21% to 15% of SaaS in twelve months; hybrid (a base subscription with usage and/or outcome components) is now the dominant model at ~41-43% adoption, and Gartner expects ‡40% of enterprise SaaS spend to be usage-, agent- or outcome-based by 2030. The catch is the one this whole issue keeps returning to: outcome pricing only transfers risk to the vendor if the outcome is tightly defined AND auditable. The same audit trail you demanded in Section 2 is exactly what makes a \"qualified lead\" or \"resolved ticket\" billable without a dispute. Demand a shared, logged definition of the billable outcome -- or you will pay for no-shows."
-          ],
-          "table": {
-            "headers": [
-              "Pricing model",
-              "2026 examples",
-              "Buyer's watch-out"
-            ],
-            "rows": [
-              [
-                "Per-outcome",
-                "Fin ~$0.99 per resolved outcome (no platform fee); HubSpot $0.50 per resolved conversation (Apr 2026).",
-                "Insist the \"outcome\" is defined + logged in the audit trail, or disputes follow."
-              ],
-              [
-                "Consumption / per-action",
-                "Agentforce ~$2/conversation + Flex Credits; control-plane fee + inference on top.",
-                "Model the fully-loaded cost; a cheap per-action rate hides inference + platform fees."
-              ],
-              [
-                "Hybrid (base + usage/outcome)",
-                "Dominant model (~41-43%); enterprises lead with subscription, layer usage underneath.",
-                "Predictable, but get the usage caps and overage rates in writing."
-              ],
-              [
-                "Put it in the contract, not the deck. Five protections are now standard: model-version pinning (no silent upgrades), audit-trail completeness (the 12-field schema), a 24-72h incident-notification SLA, AIBOM delivery on every material change, and data + logic + audit portability on termination. If the vendor can't point to the clause, the commitment doesn't exist.",
-                "",
-                ""
-              ]
-            ]
-          }
-        },
-        {
-          "title": "5 · Viral app spotlight -- MLflow 3.x, the open governance-evidence",
-          "paragraphs": [
-            "On a day about \"show me your audit trail,\" the app worth knowing is the one that produces the trail. MLflow 3.x has become the most widely deployed open-source AI engineering platform and -- the standout in the June 2026 agent-observability wave -- the only fully open-source stack that covers tracing, evaluation, prompt management, governance and an AI gateway in one place, with no enterprise paywalls. It is built on an OpenTelemetry-native layer, so you emit gen_ai traces once and route them to any backend without re-instrumenting. For a buyer that is the clean answer to \"how do I generate Annex IV / 12-field audit evidence without locking into a vendor?\" -- emit the trace, keep the WORM trail you own. It is the procurement-grade governance-evidence layer, in open source. (OpenClaw still tops the raw OSS star charts at 210K+ as the local-first foil -- viral, but it ships with no kill switch, no audit trail and no scoped identity: the exact anti-pattern"
-          ],
-          "table": {
-            "headers": [
-              "Pricing model",
-              "2026 examples",
-              "Buyer's watch-out"
-            ],
-            "rows": [
-              [
-                "Per-outcome",
-                "Fin ~$0.99 per resolved outcome (no platform fee); HubSpot $0.50 per resolved conversation (Apr 2026).",
-                "Insist the \"outcome\" is defined + logged in the audit trail, or disputes follow."
-              ],
-              [
-                "Consumption / per-action",
-                "Agentforce ~$2/conversation + Flex Credits; control-plane fee + inference on top.",
-                "Model the fully-loaded cost; a cheap per-action rate hides inference + platform fees."
-              ],
-              [
-                "Hybrid (base + usage/outcome)",
-                "Dominant model (~41-43%); enterprises lead with subscription, layer usage underneath.",
-                "Predictable, but get the usage caps and overage rates in writing."
-              ],
-              [
-                "Put it in the contract, not the deck. Five protections are now standard: model-version pinning (no silent upgrades), audit-trail completeness (the 12-field schema), a 24-72h incident-notification SLA, AIBOM delivery on every material change, and data + logic + audit portability on termination. If the vendor can't point to the clause, the commitment doesn't exist.",
-                "",
-                ""
-              ]
-            ]
-          }
-        }
-      ],
-      "practical_takeaway": []
-    },
-    {
       "date": "2026-06-15",
       "display_date": "June 15, 2026",
       "issue": 81,
@@ -13510,6 +13310,95 @@
         "2026 (Gartner) 40% (vs",
         "5% in 2025) Orgs planning to increase AI budgets 86% Practical Takeaway The most valuable me"
       ]
+    },
+    {
+      "date": "2026-06-16",
+      "display_date": "June 16, 2026",
+      "issue": 82,
+      "title": "The Agentic AI Procurement Playbook",
+      "focus_intro": "Yesterday's playbook was the regulator's clock. Today is the mirror image: the BUYER's side. Governance has stopped being an internal hygiene project and become a contract line item -- and the RFP is where it is caught or missed. The 2024-era AI RFP was a software questionnaire with an 'AI section' bolted on; it asked about integrations, certs and price, not the questions that decide whether the platform survives your next audit cycle, regulator review, or silent model upgrade. This issue is the new checklist: the buyer questions that matter, the build-vs-buy decision for the control plane, the shift from per-seat to per-outcome pricing, and why 'show me your audit trail' is the single most clarifying question you can put to any agentic AI vendor in 2026.",
+      "stats": [
+        {
+          "stat": "30",
+          "label": "questions in the 2026 agentic-AI RFP, across 8 categories (Kognitos template)"
+        },
+        {
+          "stat": "19%",
+          "label": "of orgs have an agentic-AI governance + monitoring platform (Hackett 2026 Index)"
+        },
+        {
+          "stat": "21% -> 15%",
+          "label": "per-seat share of SaaS in 12 months as agents break the seat (Gartner)"
+        },
+        {
+          "stat": "$15-$99",
+          "label": "per user/mo for a control plane: Agent 365 standalone to M365 E7 Frontier"
+        }
+      ],
+      "viral_app": {
+        "name": "MLflow 3.x",
+        "description": "On a day about 'show me your audit trail,' the app worth knowing is the one that PRODUCES the trail. MLflow 3.x has become the most widely deployed open-source AI engineering platform and -- the standout in the June 2026 agent-observability wave -- the only fully open-source stack covering tracing, evaluation, prompt management, governance and an AI gateway in one place, with no enterprise paywalls. It is built on an OpenTelemetry-native layer, so you emit gen_ai traces once and route them to any backend without re-instrumenting. For a buyer that is the clean answer to 'how do I generate Annex IV / 12-field audit evidence without locking into a vendor?' -- emit the trace, keep the WORM trail YOU own. It is the procurement-grade governance-evidence layer, in open source. (OpenClaw still tops the raw OSS star charts at 210K+ as the local-first foil -- viral, but it ships with no kill switch, no audit trail and no scoped identity: the exact anti-pattern this playbook is built to screen out.)",
+        "stats": [
+          {
+            "stat": "OTEL-native",
+            "label": "emit gen_ai traces once, route to any backend, no re-instrumentation"
+          },
+          {
+            "stat": "5-in-1",
+            "label": "tracing + eval + prompt + governance + gateway in one open platform"
+          },
+          {
+            "stat": "$0 paywall",
+            "label": "fully open source -- the buyer's answer to control-plane lock-in"
+          }
+        ]
+      },
+      "sections": [
+        {
+          "title": "1. Governance is now a line item -- and the RFP is where it's caught",
+          "paragraphs": [
+            "Three things changed in 2025-26 that make the old RFP inadequate. First, audit trails became a procurement requirement. COSO's February 2026 guidance on internal control over generative AI requires that monitoring capture prompts, inputs, outputs, model and config versions, and evidence of human review sufficient to RECONSTRUCT what the AI acted on; PCAOB AS 2201 (expanded benchmarking effective Dec 15, 2026) conditions any reliance on an automated control on the model's decision logic NOT having changed. Second, the EU AI Act moved from theory to enforcement (Day 81): Articles 11, 12, 13, 14 and 86 create vendor obligations the BUYER inherits if the contract is silent. Third, platforms diverged architecturally -- deterministic (same input, same output, inspectable rules) versus probabilistic (output varies with model state).",
+            "Yet only 19% of organisations run a governance + monitoring platform and just 24% have defined KPIs. The new artefact a buyer asks for is the AIBOM (AI Bill of Materials), delivered at deployment and on every material change. One question separates a 2026-ready vendor from a 2022 one: show me, for a decision you made six months ago, the exact rule applied and who reviewed it. The reframe: you are not buying features, you are buying evidence you can hand a regulator and an auditor. A brilliant demo on a platform that can't reconstruct a decision is a liability you'll inherit at the next audit cycle. Score governance BEFORE you score capability."
+          ]
+        },
+        {
+          "title": "2. The buyer's checklist -- the six questions that predict regret",
+          "paragraphs": [
+            "A full RFP runs to 30 questions across eight categories, but six carry most of the signal, and each maps to a governance primitive this series has built over 80 days. (1) Audit-trail completeness -- the 12-field schema: NTP timestamp, decision ID, authenticated human identity, AI system + version, MODEL + version, inputs with source, the SPECIFIC RULE applied, plain-language reasoning, output, downstream action, human-review event, tamper-evident proof. Red flag: 'we log the confidence score' (a confidence score is not an explanation). (2) Model version pinning -- versions pinned per workflow, upgrades change-controlled and regression-tested. Red flag: 'we always use the latest model' (a silent upgrade reopens every AS 2201 effectiveness conclusion). (3) Tiered HITL -- low-risk auto-approve + sampling, medium-risk async review, high-risk synchronous block; reviewer sees the rule, inputs and why it escalated. Red flag: 'we support human-in-the-loop' with no tiering = bottleneck + rubber-stamp theatre.",
+            "(4) Agent identity -- per-agent identity (SPIFFE/SVID or Entra), least-privilege scopes, deprovisioning + periodic access reviews; the trail captures both the agent and the human who triggered it. Red flag: 'agents inherit user permissions' with no agent-level trail. (5) Kill switch + incident SLA -- a <1s tiered stop (T1-T4) and a contractual 24-72h incident-notification clause. Red flag: 'logs are stored securely' with no stop control and no notification clause. (6) Exit portability -- export of data, WORKFLOW LOGIC and AUDIT HISTORY, retained through the regulatory floor (6 months EU high-risk, 6-7 years SOX/HIPAA). Red flag: 'you can export your data' -- logic and audit history are separate, and most contracts ignore them."
+          ]
+        },
+        {
+          "title": "3. Build vs buy -- the control-plane decision comes first",
+          "paragraphs": [
+            "The first procurement decision is not WHICH AGENT -- it is WHICH CONTROL PLANE registers, identifies, governs and audits every agent you run. Get this right and the buyer's checklist is satisfied by construction. Four paths, chosen by your existing identity backbone and data-residency needs, not by demo dazzle. Microsoft Agent 365 (GA May 1, 2026; $15/user or M365 E7 $99 Frontier) -- Entra identity per agent, Purview labels, Defender runtime governance, Intune for local agents, multicloud registry sync with AWS Bedrock + Google Gemini Enterprise (preview); KPMG rolled it to 276,000 people; best for M365/Entra shops. Salesforce Agentforce (per-conversation / Flex Credits) -- an agent execution platform inside the Salesforce world where CRM data is ground truth; best for high-volume customer-facing automation. Anthropic Claude (Cowork + Code + Managed Agents) -- open Agent Skills standard, MCP tunnels, self-hosted sandboxes; a portable value layer over whatever plane you pick. Self-host / open (e.g. WSO2 Agent Manager, Apache 2.0; SPIFFE/SPIRE + OTEL->WORM) -- you own the registry, identity issuance and governance evidence end-to-end; best when residency or sovereignty makes 'you own the evidence' non-negotiable.",
+            "Decision rule: BUY the control plane that matches your identity backbone, LAYER a regulated tier where residency demands it, and BUILD only the proprietary skills and agents that touch your differentiated data. Score every option on the five lenses from the Buyer's Guide (Day 59): control plane, skills ecosystem, governance evidence, distribution, and pricing-per-outcome. The platform you register agents in -- not the smartest model -- is the durable decision, because it is where identity, kill switches and the audit trail live."
+          ]
+        },
+        {
+          "title": "4. Pricing -- per-seat is dying; price for outcomes you can audit",
+          "paragraphs": [
+            "When one agent does the work of a team, paying 'per seat' stops making sense. Per-seat collapsed from 21% to 15% of SaaS in twelve months; hybrid (a base subscription with usage and/or outcome components) is now the dominant model at ~41-43% adoption, and Gartner expects >=40% of enterprise SaaS spend to be usage-, agent- or outcome-based by 2030. Live examples: Fin ~$0.99 per resolved outcome (no platform fee); HubSpot $0.50 per resolved conversation (Apr 2026); Agentforce ~$2/conversation + Flex Credits on top of a control-plane fee.",
+            "The catch is the one this whole issue keeps returning to: outcome pricing only transfers risk to the vendor if the outcome is tightly defined AND auditable. The same audit trail you demanded in the checklist is exactly what makes a 'qualified lead' or 'resolved ticket' billable without a dispute -- demand a shared, logged definition or you will pay for no-shows. And put it in the contract, not the deck: five protections are now standard -- model-version pinning (no silent upgrades), audit-trail completeness (the 12-field schema), a 24-72h incident-notification SLA, AIBOM delivery on every material change, and data + logic + audit portability on termination. If the vendor can't point to the clause, the commitment doesn't exist."
+          ]
+        }
+      ],
+      "market_signal": "Procurement is where the Day 80 compression thesis cashes out. With frontier models within ~3% of each other (Fable 5 / Opus 4.8 / GPT-5.6 / Gemini 3.5 Flash), the buyer can no longer differentiate on raw capability -- so the RFP shifts to GOVERNANCE EVIDENCE: the audit trail, per-agent identity, kill switch, model-version pinning and exit portability. Only 19% of orgs have a governance + monitoring platform, so vendors that emit OTEL->WORM trails, SPIFFE/SVID identity and tiered HITL by construction win procurement faster and can price compliance as a feature. The control plane (Agent 365 / Agentforce / Claude / self-host) is the durable decision; the model is a pluggable dependency; and per-seat pricing is structurally dead, replaced by hybrid/outcome models that only work when the outcome is logged. 'Show me your audit trail' is the new procurement question -- and the same artefact you owe the regulator (Day 81) is the one you hand the buyer.",
+      "practical_takeaway": [
+        {
+          "title": "Make 'show me your audit trail' your first RFP question.",
+          "body": "Score vendors on the 12-field log, model-version pinning, tiered HITL and tamper-evidence BEFORE you score features. A great demo on an un-auditable platform fails your next regulator and auditor review -- and the obligation lands on you, the deployer."
+        },
+        {
+          "title": "Buy the control plane; build only what's differentiated.",
+          "body": "Pick the registry / identity / governance plane that matches your identity backbone (Agent 365 for M365/Entra, Agentforce for CRM-grounded work, Claude/Cowork as the value layer, WSO2 or self-host for residency). Layer a regulated tier where you must; build only the proprietary skills that touch your unique data."
+        },
+        {
+          "title": "Price for outcomes -- but make the outcome auditable, and put it in the contract.",
+          "body": "Per-seat is structurally dead; move to hybrid/outcome pricing and insist the billable outcome is defined and logged in the same audit trail. Get model-pinning, audit completeness, a 24-72h incident SLA, AIBOM delivery and exit portability into the contract, not the marketing deck."
+        }
+      ],
+      "tomorrow_preview": "Day 83: The Agentic AI Operating Model & Agent FinOps -- what happens AFTER you sign. Running, costing and scaling the fleet you just bought: model-routing economics, cost- and quality-SLOs at fleet scale, the Agent SRE + CFO view, and how the audit trail you procured becomes your live cost-and-control dashboard."
     }
   ],
   "last_updated": "2026-06-16",
