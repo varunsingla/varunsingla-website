@@ -13399,8 +13399,97 @@
         }
       ],
       "tomorrow_preview": "Day 83: The Agentic AI Operating Model & Agent FinOps -- what happens AFTER you sign. Running, costing and scaling the fleet you just bought: model-routing economics, cost- and quality-SLOs at fleet scale, the Agent SRE + CFO view, and how the audit trail you procured becomes your live cost-and-control dashboard."
+    },
+    {
+      "date": "2026-06-17",
+      "display_date": "June 17, 2026",
+      "issue": 83,
+      "title": "The Agentic AI Operating Model & Agent FinOps",
+      "focus_intro": "Day 81 was the regulator's clock; Day 82 was the buyer's checklist. Today is what happens AFTER you sign -- you have to run, cost and scale the fleet you just bought. Last week's FinOps X 2026 made it official: 98% of FinOps teams now manage AI spend, up from 31% two years ago. The discipline that used to govern cloud bills is being rebuilt around tokens, agents and outcomes -- and most organisations still can't see where the money goes. This issue is the operating model: why agent cost is non-deterministic, the shift from cost per token to cost per outcome, the five levers that keep a fleet from running away, and how the same audit trail you procured (Day 82) becomes your live cost-and-control dashboard.",
+      "stats": [
+        {
+          "stat": "98%",
+          "label": "of FinOps practitioners now manage AI spend, up from 31% two years ago (State of FinOps 2026)"
+        },
+        {
+          "stat": "20K -> 2M",
+          "label": "tokens a single agent prompt can burn depending on design = AI cost is non-deterministic (AWS)"
+        },
+        {
+          "stat": "4x / $30M",
+          "label": "throughput lift + savings from Google's invoice-reconciliation agent (humans review, not do)"
+        },
+        {
+          "stat": "60-80%",
+          "label": "of fleet work agents handle by volume; humans keep the high-stakes 20-40%"
+        }
+      ],
+      "viral_app": {
+        "name": "agenttrace",
+        "description": "On a day about cost-and-control dashboards, the trending tool is the one that puts that dashboard on a single developer's machine. agenttrace (luoyuctl/agenttrace, v0.5.2) is a local-first terminal TUI that reads your AI coding-agent session logs -- Claude Code, Codex CLI, Gemini CLI, Qwen Code, Cline, Aider, Cursor, Hermes Agent, OpenCode, OpenClaw, Kimi CLI and generic JSON/JSONL -- and traces cost, input/output/cache tokens, wall-clock time, tool failures, retries, hanging runs, health scores and diffs, then emits JSON / Markdown / HTML reports with health and tool-failure gates you can wire into CI. It's the personal-scale mirror of everything in this issue: the cost iceberg, per-task attribution, and a kill-gate on runaway loops. It's riding a whole micro-wave of agent-cost observability tools -- codeburn ('npx codeburn', see where your AI tokens go) and agentwatch (one local timeline across coding and non-coding agents) launched in the same window. (OpenClaw still tops the raw OSS star charts at 210K+ as the local-first foil -- viral, but it ships with no cost meter, no kill switch and no scoped identity: the exact blind-spot this issue is about.)",
+        "stats": [
+          {
+            "stat": "Local-first",
+            "label": "reads 12+ agent log formats on your machine, no API key, no data egress"
+          },
+          {
+            "stat": "Cost + tokens",
+            "label": "per session by source, model, in/out/cache tokens, time, tool failures"
+          },
+          {
+            "stat": "CI gates",
+            "label": "health + tool-failure gates in JSON/MD/HTML = a cost kill-gate for your agents"
+          }
+        ]
+      },
+      "sections": [
+        {
+          "title": "1. Why the cloud playbook breaks -- the cost iceberg",
+          "paragraphs": [
+            "Tokenomics is the visible tip. Below the waterline, when an agent executes a task it may spin up a VM in a sandbox to run scripts, consume key-value cache storage, and trigger RAG pipelines -- costs that sit entirely outside the input/output token line item. Google Cloud's Pravir Gupta called it exactly that at FinOps X: 'It's like the iceberg -- what's under the water.' Worse, the spend is non-deterministic: AWS's Jerry Rapisarda noted a single prompt to an agent could consume 20,000 tokens or two million, depending on how the system is designed. That is why tagging an EC2 instance no longer covers it.",
+            "The scaling math is brutal -- an agent running at ~$5,000/month with 1,000 daily conversations can realistically hit $20,000-$25,000/month at 10,000 users once reasoning tokens, state management and tool calls stack up. At production scale, agent operating spend becomes the largest line item in the monthly budget -- and the one nobody owned a year ago. The reframe: you are not running a chatbot, you are running a fleet of non-deterministic workers that each spin up infrastructure on demand. FinOps for AI is now the iceberg-management discipline -- and 98% of teams are in it whether they planned to be or not."
+          ]
+        },
+        {
+          "title": "2. The unit that matters: cost per outcome, not cost per token",
+          "paragraphs": [
+            "The C-suite question for 2026 is blunt: how much does an agent cost per successfully completed task? Cost per token is an input metric; what matters is cost per invocation tied to a business outcome. Rapisarda's example: a chatbot at 3 cents per invocation converting at 4% is only meaningful once you know what that conversion drives in revenue. SailPoint's Victoria Levy put it plainly at FinOps X: 'The KPIs are going to be way different -- cost per token, tokens per business driver ... it will converge on things that are useful.' This is the same unit this series built on Day 63 (revenue-per-task x task-completion-rate) and Day 49 (the Cost-per-Task SLO).",
+            "The translation every FinOps team is now writing: cost per instance-hour becomes cost per COMPLETED task (total spend divided by tasks that hit the goal, not tasks attempted, because a task can loop, retry or fail silently); utilisation % becomes cost per outcome x quality; reserved-capacity coverage becomes token mix by model tier (% nano / mid / frontier) plus cache-hit rate, because routing and caching not reservations are where agent savings live; and the monthly bill by service becomes cost granularity by orchestrator -> sub-agent -> model -> org tag, because headless orchestrators call sub-agents on different tiers and you must attribute every hop."
+          ]
+        },
+        {
+          "title": "3. The operating model -- five levers that keep a fleet from running away",
+          "paragraphs": [
+            "Once you can SEE cost per outcome, five levers control it. (1) Model routing -- send classification and simple tools to a nano/flash model, code and reasoning to a mid tier, only ambiguous planning to frontier; lands at ~15% of all-frontier cost at indistinguishable quality (Day 43, the 70/25/5 rule). (2) Caching + context discipline -- reuse KV cache and compress memory; newer text-memory systems (e.g. Mastra Observational Memory) cut token cost 4-10x vs naive context stuffing (Day 39/44). (3) Budget caps + circuit breakers -- hard per-task and per-fleet spend ceilings plus loop detection that trips before a stuck ReAct loop burns real money; a runaway loop is now a cost incident (Day 24/49).",
+            "(4) Tagging + cost granularity -- high-quality attribution tags per orchestrator, sub-agent, model and team; Datadog's lesson from the FinOps X floor is that without tags the ability to allocate spend and find waste collapses (Day 22/82). (5) Human-in-the-loop review -- humans review agent output rather than do the work; Google's invoice-reconciliation agent across Alphabet hit 4x throughput and $30M savings this way, and the trick was review + feedback, not 100% autonomy (Day 48/70). Enforcement, not advice: Levy's warning is that telling people to right-size once means the savings erode the moment you look away. The levers only hold if they're automated and enforced -- budget caps in code, routing in the gateway, tags required at deploy -- not a quarterly slide deck."
+          ]
+        },
+        {
+          "title": "4. Who runs it -- the Agent SRE + CFO + FinOps triangle",
+          "paragraphs": [
+            "Agent FinOps is a team sport, and the clearest signal from FinOps X was that cross-functional context decides whether a cost is waste or an intentional trade-off (a pricey call might be a security requirement, not sloppiness). Three roles share the fleet. The Agent SRE owns fleet SLOs -- task success, quality, cost-per-task, safety -- with burn-rate alerts and a kill switch (Day 49), asking 'is this fleet within its cost and quality error budget right now?'. The CFO/Finance owns ROI and unit economics -- cost per outcome vs revenue per outcome, and the pre-committed token budget (Day 31/63) -- asking 'what does a completed task cost us, and what does it earn?'. FinOps/Platform owns attribution, tagging, routing policy and enforcement -- the AI gateway and the cost dashboard (Day 82) -- asking 'can we attribute every token to a team, and is the saving enforced?'.",
+            "The tooling is arriving to back them: AWS's FinOps Agent (preview at FinOps X 2026) autonomously monitors spend, detects anomalies, does root-cause analysis and routes alerts to the owning team in Slack/Jira without waiting for end-of-month -- itself built human-in-the-loop because, as AWS put it, 'there's a trust arc to be earned around full autonomous actions.' Bedrock now lets you compare cost-per-token across models and allocate by IAM role, so sandbox and production get different model tiers by policy. The convergence: the OTEL->WORM audit trail you procured for the regulator (Day 81) and the buyer (Day 82) is the SAME telemetry stream that powers your cost dashboard -- every model call, tool call and approval gate is both an audit event and a cost event. And pricing closes the loop: per-seat is dying, with frontier providers moving to seat-fee + pre-committed token consumption (Anthropic's April 2026 enterprise transition is the front edge), so your routing and caching discipline is now what you negotiate against."
+          ]
+        }
+      ],
+      "market_signal": "FinOps X 2026 marks the moment agent cost moved from a line item nobody owned to a board-level discipline: 98% of FinOps teams now manage AI spend (up from 31% two years ago), but most still lack the granularity to govern it. With frontier models compressed within ~3% of each other (Fable 5 / Opus 4.8 / GPT-5.6 / Gemini 3.5 Flash), you can no longer out-model a rival -- but you can out-OPERATE them, by running the lowest cost per successful, audited outcome. That is exactly the unit-economics race the IPO market is now pricing: SpaceX priced its record ~$75B IPO (Nasdaq SPCX), and both Anthropic and OpenAI have filed confidential S-1s, so the soon-to-be-public labs live or die on cost per token and cost per task. Governance and FinOps converge on one OTEL->WORM stream -- the audit trail you owe the regulator (Day 81) and hand the buyer (Day 82) is the same telemetry that powers the cost dashboard. The winning move is operational, not model-shopping: route, cache, cap, tag, and put a human on review.",
+      "practical_takeaway": [
+        {
+          "title": "Measure cost per outcome, not cost per token.",
+          "body": "Instrument OTEL gen_ai spans, tag every call by orchestrator, sub-agent, model and team, and divide spend by COMPLETED tasks. A token count without a business outcome attached tells you nothing about whether you're winning."
+        },
+        {
+          "title": "Wire the five levers before you scale -- and enforce them in code.",
+          "body": "Routing (70/25/5), caching/context discipline, budget caps + circuit breakers, required tags, and human-in-the-loop review. Right-sizing once is theatre; the savings only stick when the levers are automated and enforced at the gateway, not recommended in a deck."
+        },
+        {
+          "title": "Make it somebody's job -- stand up the Agent SRE + CFO + FinOps triangle.",
+          "body": "Point all three at one OTEL->WORM stream so the audit trail you bought doubles as the cost dashboard. With frontier models within ~3% of each other, you can't out-model a rival -- but you can out-operate them by running the lowest cost per successful, audited outcome."
+        }
+      ],
+      "tomorrow_preview": "Day 84: The Agent-Augmented Org Chart -- who actually runs the fleet. Team topologies, RACI and the new roles (Agent SRE, AI FinOps lead, Context Engineer, the human-review function) that a traditional org re-wires into once agents become coworkers, not tools."
     }
   ],
-  "last_updated": "2026-06-16",
-  "total_days": 82
+  "last_updated": "2026-06-17",
+  "total_days": 83
 }
