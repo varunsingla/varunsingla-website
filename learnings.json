@@ -6,127 +6,6 @@
   },
   "learnings": [
     {
-      "date": "2026-06-18",
-      "display_date": "JUNE 18, 2026",
-      "issue": 84,
-      "title": "The Agent-Augmented Org Chart",
-      "focus_intro": "Yesterday (Day 83) was the cost of running the fleet -- FinOps, tokens, the five levers. Today is",
-      "viral_app": {
-        "name": "On a day about the org chart, the trending launch is the one that productises it. agnt8x (by EightX Labs, public",
-        "description": "June 3 2026, agnt8x.ai) bills itself as the world's first AI-agent recruitment and workforce-management platform -- let enterprises find, hire, onboard, manage and orchestrate AI agents the way they manage human teams, across every major LLM provider, under one Passport, one audit trail and one contract. Its five surfaces read like an HR stack: FIND (an ontological job board matching agents to roles), FORGE (a private enterprise catalogue to onboard your own agents), STUDIO (a nine-step onboarding flow), MANAGE (the workforce control plane with real-time P&L per agent and a full audit trail), and CONDUCTOR (multi-agent orchestration on one canvas). The Passport is an immutable digital identi",
-        "stats": []
-      },
-      "stats": [
-        {
-          "stat": "78%",
-          "label": "of leaders are reorganising their org around AI capabilities (Microsoft Work Trend Index)"
-        },
-        {
-          "stat": "1:300",
-          "label": "human-agent ratio in repetitive ops (1:2-1:3 in HR) = the new core metric"
-        },
-        {
-          "stat": "$155-275K",
-          "label": "Agent SRE 2026 US salary band -- the on-call role nobody had a year ago"
-        },
-        {
-          "stat": "1 in 4",
-          "label": "firms now list AI agents on their org / work chart; 1 in 3 managers call AI a teammate"
-        }
-      ],
-      "sections": [
-        {
-          "title": "1 · From org chart to work chart -- the shape flips pyramid → diamond",
-          "paragraphs": [
-            "The traditional org is a pyramid: a wide base of juniors does the work, a thin layer of seniors reviews it. Agentic AI inverts that -- agents do, humans supervise -- and PwC's blunt verdict is \"no more pyramids.\" As agents absorb entry-level data-gathering and processing (PwC estimates AI can shave up to 50% of human effort), the org compresses into a diamond: a small leadership team, a strong empowered middle, and a narrow base of new talent. The catch is structural -- a narrow junior base starves the apprenticeship pipeline, so the firms that win deliberately re-engineer how people gain the experience that used to come from doing the grunt work. Microsoft calls the replacement the work chart: an organising structure built around the jobs that need doing and the human-agent team that does them, not around functional expertise. It is dynamic, not static -- work flows to whatever mix of human and agent capacity fits. Every employee becomes an \"agent boss\" (a human who builds, delegates to and manages agents), and a brand-new metric appears: the human-agent ratio, which Microsoft puts at ~1:2-1:3 in HR and as high as 1:300 in repetitive supply-chain ops. That single number -- how many agents one human can responsibly oversee -- is becoming the org-design dial of 2026. The reframe that keeps you out of trouble: agents are capacity, not headcount with accountability. IBM and recent org research warn that putting agents on the chart as formal \"coworkers\" quietly shifts accountability away from humans, inflates review escalations and erodes review quality. A human always owns the decision -- the agent is the tool that executes it."
-          ]
-        },
-        {
-          "title": "1. Draw the work chart, not the org chart.",
-          "paragraphs": [
-            "List the jobs-to-be-done, then assign a mix of human and agent capacity to each. Pick a human-agent ratio per function and name an \"agent boss\" who owns each agent's behaviour. Structure around the work, not the functional"
-          ]
-        },
-        {
-          "title": "2 · Solve ownership before scale -- the agent RACI",
-          "paragraphs": [
-            "The reframe everyone landed on this year: the hard question is not \"who owns the model?\" but \"who owns the decision?\" Acting AI systems observe, decide and execute across workflows without real-time human approval -- so for every agent you must name, up front, who owns the outcome, who evaluates its quality, and who handles the edge cases. The 2026 guidance (First Line Software's RACI for acting AI) is to assign ownership functions, not job titles -- the organisations that succeed are the ones that solve ownership before scale, not"
-          ]
-        },
-        {
-          "title": "2. Solve ownership before scale -- write the agent RACI now.",
-          "paragraphs": [
-            "For every agent, name who owns the outcome, the behaviour, the data/context, the security/identity, the cost, and the edge cases. \"Who owns the decision?\" must be answered before an agent is allowed to act autonomously -- not after"
-          ]
-        },
-        {
-          "title": "3 · The new roles the org re-wires into",
-          "paragraphs": [
-            "When agents handle the volume, the humans move up the stack into roles that mostly didn't exist as distinct titles two years ago. Some are net-new hires; most are re-skills of people you already have. These are the six that show up on every Frontier-Firm org chart."
-          ],
-          "table": {
-            "headers": [
-              "Decision / event",
-              "Who's accountable (owner function)",
-              "If nobody owns it"
-            ],
-            "rows": [
-              [
-                "An autonomous decision the agent makes",
-                "Workflow-outcome owner -- a named human, never \"the AI\"",
-                "Accountability evaporates -- the #1 failure mode of 2026"
-              ],
-              [
-                "A change to how the agent behaves",
-                "Agent product owner / \"agent boss\" (backlog + behaviour)",
-                "Silent behaviour drift; no one can explain a regression"
-              ],
-              [
-                "What data / context the agent can see",
-                "Data & context owner (retrieval, memory, grounding)",
-                "Hallucination + leakage; the RAG layer rots unnoticed"
-              ],
-              [
-                "Permissions, identity, audit",
-                "Security & identity owner (scoped SVID + kill switch)",
-                "Over-privileged agent = blast radius (Day 54)"
-              ],
-              [
-                "A cost overrun / runaway loop",
-                "Agent SRE + FinOps (cost-per-task SLO)",
-                "The $25K/month surprise nobody saw coming (Day 83)"
-              ],
-              [
-                "An edge case / escalation",
-                "Human-review (HITL) function",
-                "Rubber-stamp theatre, or dropped exceptions (Day 70)"
-              ]
-            ]
-          }
-        },
-        {
-          "title": "3. Staff the three roles that keep the fleet alive.",
-          "paragraphs": [
-            "An Agent SRE (on-call for agent behaviour + fleet SLOs + the kill switch), an AI FinOps lead (cost-per-outcome, enforced at the gateway), and a platform/enablement team that encodes bounded agency -- guardrails, scoped identity, audit -- so every team ships agents safely on one OTELfiWORM stream. The bottleneck is no longer the",
-            "Tomorrow (Day 85): The Inference Economics Stack -- the supply side of Agent FinOps. The silicon and serving layer (Graviton5, Trainium/TPU, vLLM/SGLang, quantisation, speculative decoding) that sets the cost-per-token your org's FinOps levers push against -- newly in focus as Amazon's custom-silicon run-rate crosses $20B and xAI rents Anthropic 300MW of compute at"
-          ]
-        },
-        {
-          "title": "4 · How reporting lines, on-call and ownership actually change",
-          "paragraphs": [
-            "Use the Team Topologies lens (it matters more in the agent era, not less, because cognitive-load management is the whole game). The four team types still hold: stream-aligned teams now count agents as capacity inside the team; a platform team builds the internal agent platform -- the IDP for agents -- and runs it like a product, not infrastructure (73% of platform teams have already wired AI into a developer workflow); an enabling team spreads winning agent practices across the org (Matthew Skelton's \"Innovation & Practices Enabling Team\"); and a complicated-subsystem team owns the orchestration and eval core. The platform team is the leverage point because bounded agency -- authority intentionally constrained by guardrails, scoped identity, kill switch and audit -- is org design encoded as a platform. On-call inverts. The pager no longer fires for a CPU spike -- it fires for context drift (cosine < 0.7), a budget burn-rate breach, a stuck ReAct loop, or a poisoned memory write. The Agent SRE owns that rotation and the runbook is new: rotate the model, restore a checkpoint, evict L1/L2 memory, trip the kill switch. And the reporting line everyone reads is the same one you already built for the regulator (Day 81) and the buyer (Day 82): the OTELfiWORM telemetry stream is simultaneously the audit trail, the cost dashboard (Day 83), and the org's source of truth for \"what did the fleet do and who owns it.\" The coordination trap. GitHub's own /fleet command shows why raw parallelism isn't the answer: sub-agents share a filesystem with no file locking, so if two agents write the same file the last one wins -- silently, no error, no merge. Spinning up more agents without clear ownership and coordination doesn't scale your org, it scales your collisions. Coordination + ownership is the hard part -- which is exactly the gap the new \"agent management\" platforms are racing to fill."
-          ]
-        },
-        {
-          "title": "5 · Viral app spotlight -- agnt8x, the HR department for the AI",
-          "paragraphs": [
-            "On a day about the org chart, the trending launch is the one that productises it. agnt8x (by EightX Labs, public June 3 2026, agnt8x.ai) bills itself as the world's first AI-agent recruitment and workforce-management platform -- let enterprises find, hire, onboard, manage and orchestrate AI agents the way they manage human teams, across every major LLM provider, under one Passport, one audit trail and one contract. Its five surfaces read like an HR stack: FIND (an ontological job board matching agents to roles), FORGE (a private enterprise catalogue to onboard your own agents), STUDIO (a nine-step onboarding flow), MANAGE (the workforce control plane with real-time P&L per agent and a full audit trail), and CONDUCTOR (multi-agent orchestration on one canvas). The Passport is an immutable digital identity per agent -- capabilities, security scans, performance history, independent audits -- and EightX open-sourced the underlying spec (EightX Agent Manifest v0.1, Apache 2.0). Founders: John Shipman (PwC's first global Digital Assets Leader) and Michael Harte (ex-Group CIO/COO at three global banks). It's the agent RACI and the human-agent ratio shipped as a product. (OpenClaw still tops the raw OSS star charts at 210K+ as the local-first foil -- a 24/7 agent on a Mac Mini, but with no passport, no roles, no audit trail: the exact ownership gap this issue is about.)"
-          ]
-        }
-      ],
-      "practical_takeaway": []
-    },
-    {
       "date": "2026-06-17",
       "display_date": "June 17, 2026",
       "issue": 83,
@@ -13609,6 +13488,97 @@
         "2026 (Gartner) 40% (vs",
         "5% in 2025) Orgs planning to increase AI budgets 86% Practical Takeaway The most valuable me"
       ]
+    },
+    {
+      "date": "2026-06-18",
+      "display_date": "June 18, 2026",
+      "issue": 84,
+      "title": "The Agent-Augmented Org Chart",
+      "focus_intro": "Yesterday (Day 83) was the cost of running the fleet -- FinOps, tokens, the five levers. Today is the people: who actually RUNS the agents once 60-80% of the work is agent-handled. The org chart is becoming a work chart -- structured around jobs-to-be-done and human-agent teams, not functional silos -- and Microsoft reports 78% of leaders are already reorganising around AI. This issue is the org design: how the shape flips from pyramid to diamond, why you must solve ownership before scale with an agent RACI, the new roles a traditional org re-wires into (Agent SRE, AI FinOps lead, Context Engineer, the platform and human-review functions), and how reporting lines and on-call change when your coworkers are software.",
+      "stats": [
+        {
+          "stat": "78%",
+          "label": "of leaders are reorganising their org around AI capabilities (Microsoft Work Trend Index)"
+        },
+        {
+          "stat": "1:300",
+          "label": "human-agent ratio in repetitive ops (1:2-1:3 in HR) = the new core org metric"
+        },
+        {
+          "stat": "$155-275K",
+          "label": "Agent SRE 2026 US salary band -- the on-call role nobody had a year ago"
+        },
+        {
+          "stat": "1 in 4",
+          "label": "firms now list AI agents on their org / work chart; 1 in 3 managers call AI a teammate"
+        }
+      ],
+      "viral_app": {
+        "name": "agnt8x -- HR for the AI workforce",
+        "description": "On a day about the org chart, the trending launch is the one that productises it. agnt8x (by EightX Labs, public June 3 2026, agnt8x.ai) bills itself as the world's first AI-agent recruitment and workforce-management platform -- let enterprises find, hire, onboard, manage and orchestrate AI agents the way they manage human teams, across every major LLM provider, under one Passport, one audit trail and one contract. Its five surfaces read like an HR stack: FIND (an ontological job board matching agents to roles), FORGE (a private enterprise catalogue to onboard your own agents), STUDIO (a nine-step onboarding flow), MANAGE (the workforce control plane with real-time P&L per agent and a full audit trail), and CONDUCTOR (multi-agent orchestration on one canvas). The Passport is an immutable digital identity per agent -- capabilities, security scans, performance history, independent audits -- and EightX open-sourced the underlying spec (EightX Agent Manifest v0.1, Apache 2.0). Founders: John Shipman (PwC's first global Digital Assets Leader) and Michael Harte (ex-Group CIO/COO at three global banks). It is the agent RACI and the human-agent ratio shipped as a product. The adjacent micro-wave is the coordination problem: GitHub's /fleet command now runs many sub-agents in parallel but they share a filesystem with no file locking (last write silently wins) -- proof that ownership and coordination, not raw parallelism, are the hard part. (OpenClaw still tops the raw OSS star charts at 210K+ as the local-first foil -- a 24/7 agent on a Mac Mini, but with no passport, no roles and no audit trail: the exact ownership gap this issue is about.)",
+        "stats": [
+          {
+            "stat": "Find -> Conductor",
+            "label": "find, hire, onboard, manage & orchestrate agents across every major LLM"
+          },
+          {
+            "stat": "Passport",
+            "label": "immutable per-agent identity + P&L + audit trail = the org chart productised"
+          },
+          {
+            "stat": "EAM v0.1",
+            "label": "open agent-manifest spec (Apache 2.0); SaaS / VPC / EMBASSY deploy modes"
+          }
+        ]
+      },
+      "sections": [
+        {
+          "title": "1. From org chart to work chart -- the shape flips pyramid -> diamond",
+          "paragraphs": [
+            "The traditional org is a pyramid: a wide base of juniors does the work, a thin layer of seniors reviews it. Agentic AI inverts that -- agents do, humans supervise -- and PwC's blunt verdict is 'no more pyramids.' As agents absorb entry-level data-gathering and processing (PwC estimates AI can shave up to 50% of human effort), the org compresses into a diamond: a small leadership team, a strong empowered middle, and a narrow base of new talent. The catch is structural -- a narrow junior base starves the apprenticeship pipeline, so the firms that win deliberately re-engineer how people gain the experience that used to come from doing the grunt work.",
+            "Microsoft calls the replacement the work chart: an organising structure built around the jobs that need doing and the human-agent team that does them, not around functional expertise. It is dynamic, not static -- work flows to whatever mix of human and agent capacity fits. Every employee becomes an 'agent boss' (a human who builds, delegates to and manages agents), and a brand-new metric appears: the human-agent ratio, which Microsoft puts at ~1:2-1:3 in HR and as high as 1:300 in repetitive supply-chain ops. That single number -- how many agents one human can responsibly oversee -- is becoming the org-design dial of 2026.",
+            "The reframe that keeps you out of trouble: agents are capacity, not headcount with accountability. IBM and recent org research warn that putting agents on the chart as formal 'coworkers' quietly shifts accountability away from humans, inflates review escalations and erodes review quality. A human always owns the decision -- the agent is the tool that executes it."
+          ]
+        },
+        {
+          "title": "2. Solve ownership BEFORE scale -- the agent RACI",
+          "paragraphs": [
+            "The reframe everyone landed on this year: the hard question is not 'who owns the model?' but 'who owns the decision?' Acting AI systems observe, decide and execute across workflows without real-time human approval -- so for every agent you must name, up front, who owns the outcome, who evaluates its quality, and who handles the edge cases. The 2026 guidance (First Line Software's RACI for acting AI) is to assign ownership functions, not job titles -- the organisations that succeed solve ownership before scale, not after the incident.",
+            "The agent RACI names an accountable owner-function for each kind of event. An autonomous decision -> the workflow-outcome owner (a named human, never 'the AI'); a change to how the agent behaves -> the agent product owner / 'agent boss'; what data and context the agent can see -> the data & context owner; permissions, identity and audit -> the security & identity owner (scoped SVID + kill switch, Day 54); a cost overrun or runaway loop -> the Agent SRE + FinOps (cost-per-task SLO, Day 83); an edge case or escalation -> the human-review (HITL) function (Day 70). If a row has no owner, that is precisely where the next incident comes from -- accountability evaporating on an autonomous decision is the #1 failure mode of 2026."
+          ]
+        },
+        {
+          "title": "3. The new roles the org re-wires into",
+          "paragraphs": [
+            "When agents handle the volume, the humans move up the stack into roles that mostly didn't exist as distinct titles two years ago. Six show up on every Frontier-Firm org chart: the Agent SRE ($155-275K) owns fleet SLOs -- task success, quality, cost-per-task, safety -- and is on-call for agent behaviour with the kill switch (Day 49/83); the AI FinOps lead owns unit economics -- cost-per-outcome, the token budget, routing and caching enforced at the gateway (Day 83); the Context Engineer ($140-200K) owns the information architecture that grounds the fleet -- RAG, memory, retrieval and re-ranking quality (Day 39); the Agent PM / 'agent boss' owns agent behaviour as a product (backlog, eval criteria, behaviour changes); the platform / enablement team owns the internal platform that lets every team ship agents safely -- bounded agency, guardrails, scoped identity, audit (Team Topologies, Day 47); and the AI Governance lead ($130-190K) owns policy, risk thresholds, EU AI Act evidence and kill-switch governance (Day 81).",
+            "Roles are functions, not always new headcount. An SRE/DevOps engineer pivots to Agent SRE in ~2-3 months; a data engineer becomes a Context Engineer; a finance analyst becomes the AI FinOps lead. The scarce thing isn't the model -- it's the person who can own a fleet of non-deterministic workers and keep them inside their error budget."
+          ]
+        },
+        {
+          "title": "4. How reporting lines, on-call and ownership actually change",
+          "paragraphs": [
+            "Use the Team Topologies lens -- it matters more in the agent era, not less, because cognitive-load management is the whole game. The four team types still hold: stream-aligned teams now count agents as capacity inside the team; a platform team builds the internal agent platform (the IDP for agents) and runs it like a product, not infrastructure (73% of platform teams have already wired AI into a developer workflow); an enabling team spreads winning agent practices across the org (Matthew Skelton's 'Innovation & Practices Enabling Team'); and a complicated-subsystem team owns the orchestration and eval core. The platform team is the leverage point, because bounded agency -- authority intentionally constrained by guardrails, scoped identity, kill switch and audit -- is org design encoded as a platform.",
+            "On-call inverts. The pager no longer fires for a CPU spike -- it fires for context drift (cosine < 0.7), a budget burn-rate breach, a stuck ReAct loop, or a poisoned memory write. The Agent SRE owns that rotation and the runbook is new: rotate the model, restore a checkpoint, evict L1/L2 memory, trip the kill switch. And the reporting line everyone reads is the same one you already built for the regulator (Day 81) and the buyer (Day 82): the OTEL->WORM telemetry stream is simultaneously the audit trail, the cost dashboard (Day 83) and the org's source of truth for 'what did the fleet do and who owns it.'",
+            "The coordination trap is real. GitHub's own /fleet command shows why raw parallelism isn't the answer: sub-agents share a filesystem with no file locking, so if two agents write the same file the last one wins -- silently, no error, no merge. Spinning up more agents without clear ownership and coordination doesn't scale your org, it scales your collisions. Coordination + ownership is the hard part -- exactly the gap the new 'agent management' platforms (this issue's viral app) are racing to fill."
+          ]
+        }
+      ],
+      "market_signal": "With frontier models within ~3% of each other (Fable 5 / Opus 4.8 / GPT-5.6 / Gemini 3.5 Flash), you can't out-model a rival and -- per Day 83 -- you out-operate them on cost. But the deepest moat is organisational: the firms that redesign around human-agent teams, solve ownership before scale, and staff the new roles (Agent SRE, AI FinOps, Context Engineer, platform/enablement, HITL) are the ones that actually capture the productivity. Microsoft says 78% are already reorganising and the human-agent ratio is the new core metric; the bottleneck has moved from the model to org design. This lands the same week the agent stack went enterprise-default: Google shipped Managed Agents + the Antigravity Agent + a Deep Research Agent in the Gemini API (Google-hosted sandboxes), OpenAI launched the OpenAI Partner Network and Deployment Simulation, and both labs sit in the IPO pipeline (Anthropic ~$965B post a $65B Series H; OpenAI confidential S-1) -- so 'who runs the fleet' is now a board-level operating question, not an IT one.",
+      "practical_takeaway": [
+        {
+          "title": "Draw the work chart, not the org chart.",
+          "body": "List the jobs-to-be-done, then assign a mix of human and agent capacity to each. Pick a human-agent ratio per function and name an 'agent boss' who owns each agent's behaviour. Structure around the work, not the functional silo."
+        },
+        {
+          "title": "Solve ownership before scale -- write the agent RACI now.",
+          "body": "For every agent, name who owns the outcome, the behaviour, the data/context, the security/identity, the cost, and the edge cases. 'Who owns the decision?' must be answered BEFORE an agent is allowed to act autonomously -- not after the incident."
+        },
+        {
+          "title": "Staff the three roles that keep the fleet alive.",
+          "body": "An Agent SRE (on-call for agent behaviour + fleet SLOs + the kill switch), an AI FinOps lead (cost-per-outcome, enforced at the gateway), and a platform/enablement team that encodes bounded agency -- guardrails, scoped identity, audit -- so every team ships agents safely on one OTEL->WORM stream. The bottleneck is no longer the model; it's org design."
+        }
+      ],
+      "tomorrow_preview": "Day 85: The Inference Economics Stack -- the supply side of Agent FinOps. The silicon and serving layer (Graviton5, Trainium/TPU, vLLM/SGLang, quantisation, speculative decoding) that sets the cost-per-token your org's FinOps levers push against -- newly in focus as Amazon's custom-silicon run-rate crosses $20B and xAI rents Anthropic 300MW of compute at $1.25B/month."
     }
   ],
   "last_updated": "2026-06-18",
