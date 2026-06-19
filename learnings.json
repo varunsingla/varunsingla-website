@@ -6,6 +6,275 @@
   },
   "learnings": [
     {
+      "date": "2026-06-19",
+      "display_date": "JUNE 19, 2026",
+      "issue": 85,
+      "title": "The Inference Economics Stack",
+      "focus_intro": "Day 83 was the demand side of Agent FinOps -- your routing, caching and budget levers. Day",
+      "viral_app": {
+        "name": "On a day about who serves a token cheapest, the trending project is the one that drives the price to the floor.",
+        "description": "llama.cpp (Georgi Gerganov / ggml-org) crossed 100,000 GitHub stars in March 2026 -- the fastest open-source AI project ever to reach the mark, quicker than PyTorch (~7 years) or TensorFlow (~8 years). It's the C/C++ inference engine that quietly powers most of the local-AI world (Ollama, LM Studio and dozens of apps sit on top of it), and its momentum is staggering: 700+ contributors merged 3,800+ pull requests in 2025, roughly 3x the PR throughput of NVIDIA's fully-funded TensorRT-LLM. One GGUF model runs across Apple Metal, NVIDIA CUDA, AMD ROCm, Intel SYCL, Vulkan and ARM NEON -- from a Raspberry Pi 5 to an 8x-GPU server -- and now ships WebGPU inference in the browser. Why it matters he",
+        "stats": [
+          {
+            "stat": "100K stars",
+            "label": "fastest OSS AI project ever to 100K (Mar 2026) -- beat PyTorch & TensorFlow"
+          }
+        ]
+      },
+      "stats": [
+        {
+          "stat": "55-80%",
+          "label": "of enterprise AI GPU spend goes to INFERENCE, not training -- the bill that never stops"
+        },
+        {
+          "stat": "$1.25B / mo",
+          "label": "Anthropic pays xAI to rent 300MW / 220K GPUs through May 2029 (SpaceX S-1)"
+        }
+      ],
+      "sections": [
+        {
+          "title": "1 · Why the supply side is suddenly the battleground",
+          "paragraphs": [
+            "Day 83 gave you the demand-side levers -- model routing, caching, budget caps, tagging. Every one of those pushes against a floor that something else sets: the cost-per-token of actually running the model. That floor is the supply side, built from three stacked layers -- the silicon the model runs on, the serving engine that schedules the work, and the optimisation techniques (quantisation, speculative decoding) that squeeze more tokens out of each chip-second. Your FinOps savings are bounded by how cheap this stack can make a token; the cheaper the floor, the more headroom your routing and caching buy you. Two things make this the battleground of mid-2026. First, model performance has compressed to a near-tie -- the top models sit within ~3% -- so you can't win on capability; you win on unit economics. Second, the spend has shifted decisively: analysts now put 55-80% of enterprise AI GPU budget on inference, not training. Training is a one-time capital event; serving is a bill that accrues every hour, for the life of the product. Whoever owns the cheapest path from prompt to token owns the margin -- which is why Amazon, Google, NVIDIA, AMD and a wave of start-ups are pouring tens of billions into custom silicon aimed squarely at the decode phase. The headline proof this is now a balance-sheet fight: SpaceX's S-1 disclosed that Anthropic is paying xAI $1.25B a month to rent 300MW of compute (220,000 NVIDIA GPUs at Colossus 1 near Memphis) through May 2029 -- over $40B from one frontier lab to a direct rival, capped at 11% of the park, terminable on 90 days' notice. When labs rent compute from competitors at that scale, the binding constraint on agentic AI is no longer the model -- it's the inference substrate under it."
+          ]
+        },
+        {
+          "title": "2 · The silicon layer -- custom chips break the GPU monopoly",
+          "paragraphs": [
+            "For three years inference meant NVIDIA GPUs. In 2026 the hyperscalers' custom silicon turned that into a real contest -- because designing a chip for the decode phase (memory-bound, latency-sensitive) rather than for training (compute-bound) changes the price-performance maths. AWS shipped the 192-core Graviton5 on June 15 (5x larger cache, ~35% faster ML inference, M9g up to 25% faster), but Trainium is the bigger story: Trainium2 runs ~30% better price-performance than comparable GPUs and is largely sold out; Trainium3 is another 30-40% better and nearly fully subscribed. Amazon's custom-silicon run-rate has crossed $20B, and Anthropic has committed >$100B to AWS over ten years and up to 5GW of Trainium capacity. Google reframed the category: Ironwood went GA as the TPU \"for the age of inference,\" and Cloud Next 2026 previewed an eighth generation split into a training chip (8t) and a dedicated inference chip (8i). The bifurcation is the tell -- general-purpose silicon is giving way to chips purpose-built for serving. For an agent fleet the practical point is that \"which chip\" is now a cost lever you can pull: the same model on Trainium3, a TPU 8i or a Groq LPU can carry a materially different cost-per-token than the default NVIDIA path."
+          ]
+        },
+        {
+          "title": "3 · The serving engine -- software that 5-8x's your throughput",
+          "paragraphs": [
+            "Silicon sets the ceiling; the serving engine decides how much of it you actually use. The three that matter in 2026 serve the same purpose but make different bets -- and the rule of thumb is simple."
+          ],
+          "table": {
+            "headers": [
+              "The chip",
+              "What it changes for inference",
+              "Status"
+            ],
+            "rows": [
+              [
+                "AWS Graviton5",
+                "192-core CPU, 5x cache, ~35% faster ML inference; M9g +25% vs prior gen; pitched for the agentic era",
+                "GA June 15 2026"
+              ],
+              [
+                "AWS Trainium2 / 3",
+                "~30% then +30-40% better price-perf vs GPUs; >$225B revenue commitments; Anthropic up to 5GW",
+                "Trn2 sold out; Trn3 ~full"
+              ],
+              [
+                "Google Ironwood fi 8t/8i",
+                "\"First TPU for the age of inference\"; 8i is a dedicated inference chip, +80% price-perf, TSMC 2nm",
+                "Ironwood GA; 8t/8i previewed"
+              ],
+              [
+                "NVIDIA Rubin",
+                "Next-gen memory + networking gains that shift TCO; the incumbent's answer",
+                "Ramp ~Q3 2026 (slipped a Q)"
+              ],
+              [
+                "AMD MI400",
+                "432GB HBM4, 19.6 TB/s bandwidth; aimed at the largest serving clusters",
+                "Hyperscalers first; broad 2027"
+              ],
+              [
+                "Groq 3 LPU",
+                "~35x more inference throughput per megawatt than HBM GPUs; attacks the decode phase directly",
+                "Announced GTC 2026"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3. Make \"which silicon\" a lever you actually pull.",
+          "paragraphs": [
+            "The same model on Trainium3, a TPU 8i, a Groq LPU or llama.cpp on your own hardware can carry a very different cost-per-token than the default NVIDIA path. Benchmark at least one non-NVIDIA option per workload -- and for low-volume or privacy-bound tasks, remember local inference runs at ~$0.002/M in electricity versus $2.50-15/M in Tomorrow (Day 86): Agent Interop & the Protocol Stack 2.0 -- one year on from MCP. How the connective tissue settled: MCP at ~97M monthly SDK downloads, A2A v1.x under the Linux Foundation with 150+ production orgs, and AG-UI converging on a shared event model -- the standards layer that lets today's cheap-token fleet actually talk to each other."
+          ]
+        },
+        {
+          "title": "4 · The optimisation layer -- where the $0.40 token comes from",
+          "paragraphs": [
+            "The last layer is the math trick that collapsed the price: serve the model in lower precision and predict more tokens per pass. Quantisation is the workhorse -- moving FP16fiFP8 roughly halves the cost of an 8x-H100 node at negligible quality loss; 4-bit (AWQ) cuts VRAM ~75%, letting the same model fit on a cheaper GPU class entirely. Speculative decoding adds throughput from the other side: a small draft model proposes tokens and the large model verifies them in parallel."
+          ],
+          "table": {
+            "headers": [
+              "The chip",
+              "What it changes for inference",
+              "Status"
+            ],
+            "rows": [
+              [
+                "AWS Graviton5",
+                "192-core CPU, 5x cache, ~35% faster ML inference; M9g +25% vs prior gen; pitched for the agentic era",
+                "GA June 15 2026"
+              ],
+              [
+                "AWS Trainium2 / 3",
+                "~30% then +30-40% better price-perf vs GPUs; >$225B revenue commitments; Anthropic up to 5GW",
+                "Trn2 sold out; Trn3 ~full"
+              ],
+              [
+                "Google Ironwood fi 8t/8i",
+                "\"First TPU for the age of inference\"; 8i is a dedicated inference chip, +80% price-perf, TSMC 2nm",
+                "Ironwood GA; 8t/8i previewed"
+              ],
+              [
+                "NVIDIA Rubin",
+                "Next-gen memory + networking gains that shift TCO; the incumbent's answer",
+                "Ramp ~Q3 2026 (slipped a Q)"
+              ],
+              [
+                "AMD MI400",
+                "432GB HBM4, 19.6 TB/s bandwidth; aimed at the largest serving clusters",
+                "Hyperscalers first; broad 2027"
+              ],
+              [
+                "Groq 3 LPU",
+                "~35x more inference throughput per megawatt than HBM GPUs; attacks the decode phase directly",
+                "Announced GTC 2026"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "5 · Viral app spotlight -- llama.cpp, the engine that drives",
+          "paragraphs": [
+            "On a day about who serves a token cheapest, the trending project is the one that drives the price to the floor. llama.cpp (Georgi Gerganov / ggml-org) crossed 100,000 GitHub stars in March 2026 -- the fastest open-source AI project ever to reach the mark, quicker than PyTorch (~7 years) or TensorFlow (~8 years). It's the C/C++ inference engine that quietly powers most of the local-AI world (Ollama, LM Studio and dozens of apps sit on top of it), and its momentum is staggering: 700+ contributors merged 3,800+ pull requests in 2025, roughly 3x the PR throughput of NVIDIA's fully-funded TensorRT-LLM. One GGUF model runs across Apple Metal, NVIDIA CUDA, AMD ROCm, Intel SYCL, Vulkan and ARM NEON -- from a Raspberry Pi 5 to an 8x-GPU server -- and now ships WebGPU inference in the browser. Why it matters here: local inference on llama.cpp costs roughly $0.002 per million tokens in electricity, versus $2.50-15.00/M through cloud APIs. That's the cost-per-token war reaching the desktop -- the cleanest proof that the supply side, not the model, is where the economics are now won. (OpenClaw still tops the raw OSS star charts at 210K+ as the local-first foil -- viral, but a personal agent, not the serving engine underneath it.)"
+          ],
+          "table": {
+            "headers": [
+              "Technique",
+              "What it does",
+              "The win"
+            ],
+            "rows": [
+              [
+                "FP8 quantisation",
+                "Half-precision serving, negligible quality loss for most production traffic",
+                "~$1.90 fi ~$0.95-1.10 / M"
+              ],
+              [
+                "4-bit (AWQ)",
+                "Cuts VRAM ~75% -- same model fits a cheaper GPU class",
+                "Drops a hardware tier"
+              ],
+              [
+                "Speculative decoding",
+                "Draft model proposes, target verifies in parallel; output-heavy work",
+                "2-4x faster, no quality cost"
+              ],
+              [
+                "Stacked (FP8+FA3+batch+spec)",
+                "All four together on an H100 vs naive FP16 + static batching",
+                "5-8x better cost-efficiency"
+              ],
+              [
+                "The discipline that ties it back to Day 83: cheaper tokens aren't the goal -- cheaper successful outputs are. The FinOps Foundation warns that instrumenting cost-per-token without a quality gate is a trap: a 4-bit model that fails 5% more tasks can cost MORE per completed job than the FP8 version it replaced. The supply-side stack sets your floor, but you still measure the win in cost-per-successful-task on the same OTELfiWORM stream you built for the regulator (Day 81), the buyer (Day 82) and your FinOps dashboard (Day 83).",
+                "",
+                ""
+              ]
+            ]
+          }
+        }
+      ],
+      "practical_takeaway": []
+    },
+    {
+      "date": "2026-06-18",
+      "display_date": "June 18, 2026",
+      "issue": 84,
+      "title": "The Agent-Augmented Org Chart",
+      "focus_intro": "Yesterday (Day 83) was the cost of running the fleet -- FinOps, tokens, the five levers. Today is the people: who actually RUNS the agents once 60-80% of the work is agent-handled. The org chart is becoming a work chart -- structured around jobs-to-be-done and human-agent teams, not functional silos -- and Microsoft reports 78% of leaders are already reorganising around AI. This issue is the org design: how the shape flips from pyramid to diamond, why you must solve ownership before scale with an agent RACI, the new roles a traditional org re-wires into (Agent SRE, AI FinOps lead, Context Engineer, the platform and human-review functions), and how reporting lines and on-call change when your coworkers are software.",
+      "stats": [
+        {
+          "stat": "78%",
+          "label": "of leaders are reorganising their org around AI capabilities (Microsoft Work Trend Index)"
+        },
+        {
+          "stat": "1:300",
+          "label": "human-agent ratio in repetitive ops (1:2-1:3 in HR) = the new core org metric"
+        },
+        {
+          "stat": "$155-275K",
+          "label": "Agent SRE 2026 US salary band -- the on-call role nobody had a year ago"
+        },
+        {
+          "stat": "1 in 4",
+          "label": "firms now list AI agents on their org / work chart; 1 in 3 managers call AI a teammate"
+        }
+      ],
+      "viral_app": {
+        "name": "agnt8x -- HR for the AI workforce",
+        "description": "On a day about the org chart, the trending launch is the one that productises it. agnt8x (by EightX Labs, public June 3 2026, agnt8x.ai) bills itself as the world's first AI-agent recruitment and workforce-management platform -- let enterprises find, hire, onboard, manage and orchestrate AI agents the way they manage human teams, across every major LLM provider, under one Passport, one audit trail and one contract. Its five surfaces read like an HR stack: FIND (an ontological job board matching agents to roles), FORGE (a private enterprise catalogue to onboard your own agents), STUDIO (a nine-step onboarding flow), MANAGE (the workforce control plane with real-time P&L per agent and a full audit trail), and CONDUCTOR (multi-agent orchestration on one canvas). The Passport is an immutable digital identity per agent -- capabilities, security scans, performance history, independent audits -- and EightX open-sourced the underlying spec (EightX Agent Manifest v0.1, Apache 2.0). Founders: John Shipman (PwC's first global Digital Assets Leader) and Michael Harte (ex-Group CIO/COO at three global banks). It is the agent RACI and the human-agent ratio shipped as a product. The adjacent micro-wave is the coordination problem: GitHub's /fleet command now runs many sub-agents in parallel but they share a filesystem with no file locking (last write silently wins) -- proof that ownership and coordination, not raw parallelism, are the hard part. (OpenClaw still tops the raw OSS star charts at 210K+ as the local-first foil -- a 24/7 agent on a Mac Mini, but with no passport, no roles and no audit trail: the exact ownership gap this issue is about.)",
+        "stats": [
+          {
+            "stat": "Find -> Conductor",
+            "label": "find, hire, onboard, manage & orchestrate agents across every major LLM"
+          },
+          {
+            "stat": "Passport",
+            "label": "immutable per-agent identity + P&L + audit trail = the org chart productised"
+          },
+          {
+            "stat": "EAM v0.1",
+            "label": "open agent-manifest spec (Apache 2.0); SaaS / VPC / EMBASSY deploy modes"
+          }
+        ]
+      },
+      "sections": [
+        {
+          "title": "1. From org chart to work chart -- the shape flips pyramid -> diamond",
+          "paragraphs": [
+            "The traditional org is a pyramid: a wide base of juniors does the work, a thin layer of seniors reviews it. Agentic AI inverts that -- agents do, humans supervise -- and PwC's blunt verdict is 'no more pyramids.' As agents absorb entry-level data-gathering and processing (PwC estimates AI can shave up to 50% of human effort), the org compresses into a diamond: a small leadership team, a strong empowered middle, and a narrow base of new talent. The catch is structural -- a narrow junior base starves the apprenticeship pipeline, so the firms that win deliberately re-engineer how people gain the experience that used to come from doing the grunt work.",
+            "Microsoft calls the replacement the work chart: an organising structure built around the jobs that need doing and the human-agent team that does them, not around functional expertise. It is dynamic, not static -- work flows to whatever mix of human and agent capacity fits. Every employee becomes an 'agent boss' (a human who builds, delegates to and manages agents), and a brand-new metric appears: the human-agent ratio, which Microsoft puts at ~1:2-1:3 in HR and as high as 1:300 in repetitive supply-chain ops. That single number -- how many agents one human can responsibly oversee -- is becoming the org-design dial of 2026.",
+            "The reframe that keeps you out of trouble: agents are capacity, not headcount with accountability. IBM and recent org research warn that putting agents on the chart as formal 'coworkers' quietly shifts accountability away from humans, inflates review escalations and erodes review quality. A human always owns the decision -- the agent is the tool that executes it."
+          ]
+        },
+        {
+          "title": "2. Solve ownership BEFORE scale -- the agent RACI",
+          "paragraphs": [
+            "The reframe everyone landed on this year: the hard question is not 'who owns the model?' but 'who owns the decision?' Acting AI systems observe, decide and execute across workflows without real-time human approval -- so for every agent you must name, up front, who owns the outcome, who evaluates its quality, and who handles the edge cases. The 2026 guidance (First Line Software's RACI for acting AI) is to assign ownership functions, not job titles -- the organisations that succeed solve ownership before scale, not after the incident.",
+            "The agent RACI names an accountable owner-function for each kind of event. An autonomous decision -> the workflow-outcome owner (a named human, never 'the AI'); a change to how the agent behaves -> the agent product owner / 'agent boss'; what data and context the agent can see -> the data & context owner; permissions, identity and audit -> the security & identity owner (scoped SVID + kill switch, Day 54); a cost overrun or runaway loop -> the Agent SRE + FinOps (cost-per-task SLO, Day 83); an edge case or escalation -> the human-review (HITL) function (Day 70). If a row has no owner, that is precisely where the next incident comes from -- accountability evaporating on an autonomous decision is the #1 failure mode of 2026."
+          ]
+        },
+        {
+          "title": "3. The new roles the org re-wires into",
+          "paragraphs": [
+            "When agents handle the volume, the humans move up the stack into roles that mostly didn't exist as distinct titles two years ago. Six show up on every Frontier-Firm org chart: the Agent SRE ($155-275K) owns fleet SLOs -- task success, quality, cost-per-task, safety -- and is on-call for agent behaviour with the kill switch (Day 49/83); the AI FinOps lead owns unit economics -- cost-per-outcome, the token budget, routing and caching enforced at the gateway (Day 83); the Context Engineer ($140-200K) owns the information architecture that grounds the fleet -- RAG, memory, retrieval and re-ranking quality (Day 39); the Agent PM / 'agent boss' owns agent behaviour as a product (backlog, eval criteria, behaviour changes); the platform / enablement team owns the internal platform that lets every team ship agents safely -- bounded agency, guardrails, scoped identity, audit (Team Topologies, Day 47); and the AI Governance lead ($130-190K) owns policy, risk thresholds, EU AI Act evidence and kill-switch governance (Day 81).",
+            "Roles are functions, not always new headcount. An SRE/DevOps engineer pivots to Agent SRE in ~2-3 months; a data engineer becomes a Context Engineer; a finance analyst becomes the AI FinOps lead. The scarce thing isn't the model -- it's the person who can own a fleet of non-deterministic workers and keep them inside their error budget."
+          ]
+        },
+        {
+          "title": "4. How reporting lines, on-call and ownership actually change",
+          "paragraphs": [
+            "Use the Team Topologies lens -- it matters more in the agent era, not less, because cognitive-load management is the whole game. The four team types still hold: stream-aligned teams now count agents as capacity inside the team; a platform team builds the internal agent platform (the IDP for agents) and runs it like a product, not infrastructure (73% of platform teams have already wired AI into a developer workflow); an enabling team spreads winning agent practices across the org (Matthew Skelton's 'Innovation & Practices Enabling Team'); and a complicated-subsystem team owns the orchestration and eval core. The platform team is the leverage point, because bounded agency -- authority intentionally constrained by guardrails, scoped identity, kill switch and audit -- is org design encoded as a platform.",
+            "On-call inverts. The pager no longer fires for a CPU spike -- it fires for context drift (cosine < 0.7), a budget burn-rate breach, a stuck ReAct loop, or a poisoned memory write. The Agent SRE owns that rotation and the runbook is new: rotate the model, restore a checkpoint, evict L1/L2 memory, trip the kill switch. And the reporting line everyone reads is the same one you already built for the regulator (Day 81) and the buyer (Day 82): the OTEL->WORM telemetry stream is simultaneously the audit trail, the cost dashboard (Day 83) and the org's source of truth for 'what did the fleet do and who owns it.'",
+            "The coordination trap is real. GitHub's own /fleet command shows why raw parallelism isn't the answer: sub-agents share a filesystem with no file locking, so if two agents write the same file the last one wins -- silently, no error, no merge. Spinning up more agents without clear ownership and coordination doesn't scale your org, it scales your collisions. Coordination + ownership is the hard part -- exactly the gap the new 'agent management' platforms (this issue's viral app) are racing to fill."
+          ]
+        }
+      ],
+      "market_signal": "With frontier models within ~3% of each other (Fable 5 / Opus 4.8 / GPT-5.6 / Gemini 3.5 Flash), you can't out-model a rival and -- per Day 83 -- you out-operate them on cost. But the deepest moat is organisational: the firms that redesign around human-agent teams, solve ownership before scale, and staff the new roles (Agent SRE, AI FinOps, Context Engineer, platform/enablement, HITL) are the ones that actually capture the productivity. Microsoft says 78% are already reorganising and the human-agent ratio is the new core metric; the bottleneck has moved from the model to org design. This lands the same week the agent stack went enterprise-default: Google shipped Managed Agents + the Antigravity Agent + a Deep Research Agent in the Gemini API (Google-hosted sandboxes), OpenAI launched the OpenAI Partner Network and Deployment Simulation, and both labs sit in the IPO pipeline (Anthropic ~$965B post a $65B Series H; OpenAI confidential S-1) -- so 'who runs the fleet' is now a board-level operating question, not an IT one.",
+      "practical_takeaway": [
+        {
+          "title": "Draw the work chart, not the org chart.",
+          "body": "List the jobs-to-be-done, then assign a mix of human and agent capacity to each. Pick a human-agent ratio per function and name an 'agent boss' who owns each agent's behaviour. Structure around the work, not the functional silo."
+        },
+        {
+          "title": "Solve ownership before scale -- write the agent RACI now.",
+          "body": "For every agent, name who owns the outcome, the behaviour, the data/context, the security/identity, the cost, and the edge cases. 'Who owns the decision?' must be answered BEFORE an agent is allowed to act autonomously -- not after the incident."
+        },
+        {
+          "title": "Staff the three roles that keep the fleet alive.",
+          "body": "An Agent SRE (on-call for agent behaviour + fleet SLOs + the kill switch), an AI FinOps lead (cost-per-outcome, enforced at the gateway), and a platform/enablement team that encodes bounded agency -- guardrails, scoped identity, audit -- so every team ships agents safely on one OTEL->WORM stream. The bottleneck is no longer the model; it's org design."
+        }
+      ],
+      "tomorrow_preview": "Day 85: The Inference Economics Stack -- the supply side of Agent FinOps. The silicon and serving layer (Graviton5, Trainium/TPU, vLLM/SGLang, quantisation, speculative decoding) that sets the cost-per-token your org's FinOps levers push against -- newly in focus as Amazon's custom-silicon run-rate crosses $20B and xAI rents Anthropic 300MW of compute at $1.25B/month."
+    },
+    {
       "date": "2026-06-17",
       "display_date": "June 17, 2026",
       "issue": 83,
@@ -13488,190 +13757,6 @@
         "2026 (Gartner) 40% (vs",
         "5% in 2025) Orgs planning to increase AI budgets 86% Practical Takeaway The most valuable me"
       ]
-    },
-    {
-      "date": "2026-06-18",
-      "display_date": "June 18, 2026",
-      "issue": 84,
-      "title": "The Agent-Augmented Org Chart",
-      "focus_intro": "Yesterday (Day 83) was the cost of running the fleet -- FinOps, tokens, the five levers. Today is the people: who actually RUNS the agents once 60-80% of the work is agent-handled. The org chart is becoming a work chart -- structured around jobs-to-be-done and human-agent teams, not functional silos -- and Microsoft reports 78% of leaders are already reorganising around AI. This issue is the org design: how the shape flips from pyramid to diamond, why you must solve ownership before scale with an agent RACI, the new roles a traditional org re-wires into (Agent SRE, AI FinOps lead, Context Engineer, the platform and human-review functions), and how reporting lines and on-call change when your coworkers are software.",
-      "stats": [
-        {
-          "stat": "78%",
-          "label": "of leaders are reorganising their org around AI capabilities (Microsoft Work Trend Index)"
-        },
-        {
-          "stat": "1:300",
-          "label": "human-agent ratio in repetitive ops (1:2-1:3 in HR) = the new core org metric"
-        },
-        {
-          "stat": "$155-275K",
-          "label": "Agent SRE 2026 US salary band -- the on-call role nobody had a year ago"
-        },
-        {
-          "stat": "1 in 4",
-          "label": "firms now list AI agents on their org / work chart; 1 in 3 managers call AI a teammate"
-        }
-      ],
-      "viral_app": {
-        "name": "agnt8x -- HR for the AI workforce",
-        "description": "On a day about the org chart, the trending launch is the one that productises it. agnt8x (by EightX Labs, public June 3 2026, agnt8x.ai) bills itself as the world's first AI-agent recruitment and workforce-management platform -- let enterprises find, hire, onboard, manage and orchestrate AI agents the way they manage human teams, across every major LLM provider, under one Passport, one audit trail and one contract. Its five surfaces read like an HR stack: FIND (an ontological job board matching agents to roles), FORGE (a private enterprise catalogue to onboard your own agents), STUDIO (a nine-step onboarding flow), MANAGE (the workforce control plane with real-time P&L per agent and a full audit trail), and CONDUCTOR (multi-agent orchestration on one canvas). The Passport is an immutable digital identity per agent -- capabilities, security scans, performance history, independent audits -- and EightX open-sourced the underlying spec (EightX Agent Manifest v0.1, Apache 2.0). Founders: John Shipman (PwC's first global Digital Assets Leader) and Michael Harte (ex-Group CIO/COO at three global banks). It is the agent RACI and the human-agent ratio shipped as a product. The adjacent micro-wave is the coordination problem: GitHub's /fleet command now runs many sub-agents in parallel but they share a filesystem with no file locking (last write silently wins) -- proof that ownership and coordination, not raw parallelism, are the hard part. (OpenClaw still tops the raw OSS star charts at 210K+ as the local-first foil -- a 24/7 agent on a Mac Mini, but with no passport, no roles and no audit trail: the exact ownership gap this issue is about.)",
-        "stats": [
-          {
-            "stat": "Find -> Conductor",
-            "label": "find, hire, onboard, manage & orchestrate agents across every major LLM"
-          },
-          {
-            "stat": "Passport",
-            "label": "immutable per-agent identity + P&L + audit trail = the org chart productised"
-          },
-          {
-            "stat": "EAM v0.1",
-            "label": "open agent-manifest spec (Apache 2.0); SaaS / VPC / EMBASSY deploy modes"
-          }
-        ]
-      },
-      "sections": [
-        {
-          "title": "1. From org chart to work chart -- the shape flips pyramid -> diamond",
-          "paragraphs": [
-            "The traditional org is a pyramid: a wide base of juniors does the work, a thin layer of seniors reviews it. Agentic AI inverts that -- agents do, humans supervise -- and PwC's blunt verdict is 'no more pyramids.' As agents absorb entry-level data-gathering and processing (PwC estimates AI can shave up to 50% of human effort), the org compresses into a diamond: a small leadership team, a strong empowered middle, and a narrow base of new talent. The catch is structural -- a narrow junior base starves the apprenticeship pipeline, so the firms that win deliberately re-engineer how people gain the experience that used to come from doing the grunt work.",
-            "Microsoft calls the replacement the work chart: an organising structure built around the jobs that need doing and the human-agent team that does them, not around functional expertise. It is dynamic, not static -- work flows to whatever mix of human and agent capacity fits. Every employee becomes an 'agent boss' (a human who builds, delegates to and manages agents), and a brand-new metric appears: the human-agent ratio, which Microsoft puts at ~1:2-1:3 in HR and as high as 1:300 in repetitive supply-chain ops. That single number -- how many agents one human can responsibly oversee -- is becoming the org-design dial of 2026.",
-            "The reframe that keeps you out of trouble: agents are capacity, not headcount with accountability. IBM and recent org research warn that putting agents on the chart as formal 'coworkers' quietly shifts accountability away from humans, inflates review escalations and erodes review quality. A human always owns the decision -- the agent is the tool that executes it."
-          ]
-        },
-        {
-          "title": "2. Solve ownership BEFORE scale -- the agent RACI",
-          "paragraphs": [
-            "The reframe everyone landed on this year: the hard question is not 'who owns the model?' but 'who owns the decision?' Acting AI systems observe, decide and execute across workflows without real-time human approval -- so for every agent you must name, up front, who owns the outcome, who evaluates its quality, and who handles the edge cases. The 2026 guidance (First Line Software's RACI for acting AI) is to assign ownership functions, not job titles -- the organisations that succeed solve ownership before scale, not after the incident.",
-            "The agent RACI names an accountable owner-function for each kind of event. An autonomous decision -> the workflow-outcome owner (a named human, never 'the AI'); a change to how the agent behaves -> the agent product owner / 'agent boss'; what data and context the agent can see -> the data & context owner; permissions, identity and audit -> the security & identity owner (scoped SVID + kill switch, Day 54); a cost overrun or runaway loop -> the Agent SRE + FinOps (cost-per-task SLO, Day 83); an edge case or escalation -> the human-review (HITL) function (Day 70). If a row has no owner, that is precisely where the next incident comes from -- accountability evaporating on an autonomous decision is the #1 failure mode of 2026."
-          ]
-        },
-        {
-          "title": "3. The new roles the org re-wires into",
-          "paragraphs": [
-            "When agents handle the volume, the humans move up the stack into roles that mostly didn't exist as distinct titles two years ago. Six show up on every Frontier-Firm org chart: the Agent SRE ($155-275K) owns fleet SLOs -- task success, quality, cost-per-task, safety -- and is on-call for agent behaviour with the kill switch (Day 49/83); the AI FinOps lead owns unit economics -- cost-per-outcome, the token budget, routing and caching enforced at the gateway (Day 83); the Context Engineer ($140-200K) owns the information architecture that grounds the fleet -- RAG, memory, retrieval and re-ranking quality (Day 39); the Agent PM / 'agent boss' owns agent behaviour as a product (backlog, eval criteria, behaviour changes); the platform / enablement team owns the internal platform that lets every team ship agents safely -- bounded agency, guardrails, scoped identity, audit (Team Topologies, Day 47); and the AI Governance lead ($130-190K) owns policy, risk thresholds, EU AI Act evidence and kill-switch governance (Day 81).",
-            "Roles are functions, not always new headcount. An SRE/DevOps engineer pivots to Agent SRE in ~2-3 months; a data engineer becomes a Context Engineer; a finance analyst becomes the AI FinOps lead. The scarce thing isn't the model -- it's the person who can own a fleet of non-deterministic workers and keep them inside their error budget."
-          ]
-        },
-        {
-          "title": "4. How reporting lines, on-call and ownership actually change",
-          "paragraphs": [
-            "Use the Team Topologies lens -- it matters more in the agent era, not less, because cognitive-load management is the whole game. The four team types still hold: stream-aligned teams now count agents as capacity inside the team; a platform team builds the internal agent platform (the IDP for agents) and runs it like a product, not infrastructure (73% of platform teams have already wired AI into a developer workflow); an enabling team spreads winning agent practices across the org (Matthew Skelton's 'Innovation & Practices Enabling Team'); and a complicated-subsystem team owns the orchestration and eval core. The platform team is the leverage point, because bounded agency -- authority intentionally constrained by guardrails, scoped identity, kill switch and audit -- is org design encoded as a platform.",
-            "On-call inverts. The pager no longer fires for a CPU spike -- it fires for context drift (cosine < 0.7), a budget burn-rate breach, a stuck ReAct loop, or a poisoned memory write. The Agent SRE owns that rotation and the runbook is new: rotate the model, restore a checkpoint, evict L1/L2 memory, trip the kill switch. And the reporting line everyone reads is the same one you already built for the regulator (Day 81) and the buyer (Day 82): the OTEL->WORM telemetry stream is simultaneously the audit trail, the cost dashboard (Day 83) and the org's source of truth for 'what did the fleet do and who owns it.'",
-            "The coordination trap is real. GitHub's own /fleet command shows why raw parallelism isn't the answer: sub-agents share a filesystem with no file locking, so if two agents write the same file the last one wins -- silently, no error, no merge. Spinning up more agents without clear ownership and coordination doesn't scale your org, it scales your collisions. Coordination + ownership is the hard part -- exactly the gap the new 'agent management' platforms (this issue's viral app) are racing to fill."
-          ]
-        }
-      ],
-      "market_signal": "With frontier models within ~3% of each other (Fable 5 / Opus 4.8 / GPT-5.6 / Gemini 3.5 Flash), you can't out-model a rival and -- per Day 83 -- you out-operate them on cost. But the deepest moat is organisational: the firms that redesign around human-agent teams, solve ownership before scale, and staff the new roles (Agent SRE, AI FinOps, Context Engineer, platform/enablement, HITL) are the ones that actually capture the productivity. Microsoft says 78% are already reorganising and the human-agent ratio is the new core metric; the bottleneck has moved from the model to org design. This lands the same week the agent stack went enterprise-default: Google shipped Managed Agents + the Antigravity Agent + a Deep Research Agent in the Gemini API (Google-hosted sandboxes), OpenAI launched the OpenAI Partner Network and Deployment Simulation, and both labs sit in the IPO pipeline (Anthropic ~$965B post a $65B Series H; OpenAI confidential S-1) -- so 'who runs the fleet' is now a board-level operating question, not an IT one.",
-      "practical_takeaway": [
-        {
-          "title": "Draw the work chart, not the org chart.",
-          "body": "List the jobs-to-be-done, then assign a mix of human and agent capacity to each. Pick a human-agent ratio per function and name an 'agent boss' who owns each agent's behaviour. Structure around the work, not the functional silo."
-        },
-        {
-          "title": "Solve ownership before scale -- write the agent RACI now.",
-          "body": "For every agent, name who owns the outcome, the behaviour, the data/context, the security/identity, the cost, and the edge cases. 'Who owns the decision?' must be answered BEFORE an agent is allowed to act autonomously -- not after the incident."
-        },
-        {
-          "title": "Staff the three roles that keep the fleet alive.",
-          "body": "An Agent SRE (on-call for agent behaviour + fleet SLOs + the kill switch), an AI FinOps lead (cost-per-outcome, enforced at the gateway), and a platform/enablement team that encodes bounded agency -- guardrails, scoped identity, audit -- so every team ships agents safely on one OTEL->WORM stream. The bottleneck is no longer the model; it's org design."
-        }
-      ],
-      "tomorrow_preview": "Day 85: The Inference Economics Stack -- the supply side of Agent FinOps. The silicon and serving layer (Graviton5, Trainium/TPU, vLLM/SGLang, quantisation, speculative decoding) that sets the cost-per-token your org's FinOps levers push against -- newly in focus as Amazon's custom-silicon run-rate crosses $20B and xAI rents Anthropic 300MW of compute at $1.25B/month."
-    },
-    {
-      "date": "2026-06-19",
-      "display_date": "June 19, 2026",
-      "issue": 85,
-      "title": "The Inference Economics Stack",
-      "focus_intro": "Day 83 was the DEMAND side of Agent FinOps -- your routing, caching and budget levers. Day 84 was the people who run the fleet. Today is the SUPPLY side: the silicon and serving layer that actually sets the cost-per-token your FinOps levers push against. As frontier models compress to a near-tie (within ~3%), you can no longer out-model a rival -- so the margin war moves down the stack to who can serve a token cheapest. And the numbers moved hard this month: AWS shipped the 192-core Graviton5 on June 15, Amazon's custom-silicon run-rate crossed $20B, and SpaceX's S-1 revealed Anthropic is paying xAI $1.25B a month to rent 300MW of compute. This issue walks the three layers that set cost-per-token -- the custom silicon, the serving engine, and the optimisation techniques (quantisation, speculative decoding, disaggregated prefill) -- and why the GPT-4-class token just fell ~1,000x in three years.",
-      "stats": [
-        {
-          "stat": "~$0.40 / M",
-          "label": "cost of a GPT-4-class output token today -- a ~1,000x collapse in 3 years (from ~$30/M in 2023)"
-        },
-        {
-          "stat": ">$20B",
-          "label": "Amazon's custom-silicon annual run-rate (Graviton + Trainium + Nitro); ~$50B if sold externally"
-        },
-        {
-          "stat": "55-80%",
-          "label": "of enterprise AI GPU spend goes to INFERENCE (serving), not training -- the bill that never stops"
-        },
-        {
-          "stat": "$1.25B / mo",
-          "label": "what Anthropic pays xAI to rent 300MW / 220,000 GPUs through May 2029 (SpaceX S-1)"
-        }
-      ],
-      "viral_app": {
-        "name": "llama.cpp -- the engine that drives cost-per-token to ~$0",
-        "description": "On a day about who serves a token cheapest, the trending project is the one that drives the price to the floor. llama.cpp (Georgi Gerganov / ggml-org) crossed 100,000 GitHub stars in March 2026 -- the fastest open-source AI project ever to reach the mark, quicker than PyTorch (~7 years) or TensorFlow (~8 years). It is the C/C++ inference engine that quietly powers most of the local-AI world (Ollama, LM Studio and dozens of apps all sit on top of it), and its momentum is staggering: 700+ contributors merged 3,800+ pull requests in 2025, roughly 3x the PR throughput of NVIDIA's fully-funded TensorRT-LLM. It runs the same GGUF model across Apple Metal, NVIDIA CUDA, AMD ROCm, Intel SYCL, Vulkan and ARM NEON -- from a Raspberry Pi 5 to an 8x-GPU server -- and now ships WebGPU inference in the browser, with Hugging Face Inference Endpoints supporting GGUF out of the box. Why it matters for this issue: local inference on llama.cpp costs roughly $0.002 per million tokens in electricity, versus $2.50-15.00/M through cloud APIs. That is the cost-per-token war reaching the desktop -- the cleanest proof that the supply side, not the model, is where the economics are now won. (OpenClaw still tops the raw OSS star charts at 210K+ as the local-first foil -- viral, but a personal agent, not the serving engine underneath it.)",
-        "stats": [
-          {
-            "stat": "100K stars",
-            "label": "fastest OSS AI project ever to 100K (March 2026) -- beat PyTorch & TensorFlow"
-          },
-          {
-            "stat": "~$0.002 / M",
-            "label": "local inference in electricity vs $2.50-15.00/M cloud API -- the floor"
-          },
-          {
-            "stat": "RPi 5 -> 8x GPU",
-            "label": "one GGUF model across Metal / CUDA / ROCm / SYCL / Vulkan / ARM + WebGPU"
-          }
-        ]
-      },
-      "sections": [
-        {
-          "title": "1. Why the supply side is suddenly the battleground",
-          "paragraphs": [
-            "Day 83 gave you the demand-side levers -- model routing, caching, budget caps, tagging. Every one of those levers pushes against a floor that something else sets: the cost-per-token of actually running the model. That floor is the supply side, and it is built from three stacked layers -- the silicon the model runs on, the serving engine that schedules the work, and the optimisation techniques (quantisation, speculative decoding) that squeeze more tokens out of each chip-second. Your FinOps savings are bounded by how cheap this stack can make a token; the cheaper the floor, the more headroom your routing and caching actually buy you.",
-            "Two things make this the battleground of mid-2026. First, model performance has compressed to a near-tie -- the top models sit within roughly 3% of each other -- so you can't win on capability; you win on unit economics. Second, the spend has shifted decisively: industry analysts now put 55-80% of enterprise AI GPU budget on INFERENCE, not training. Training is a one-time capital event; serving is a bill that accrues every hour, every day, for the life of the product. Whoever owns the cheapest path from prompt to token owns the margin -- which is exactly why Amazon, Google, NVIDIA, AMD and a wave of start-ups are pouring tens of billions into custom silicon aimed squarely at the decode phase.",
-            "The headline proof that this is now a strategic, balance-sheet-level fight: SpaceX's S-1 filing disclosed that Anthropic is paying xAI $1.25B a month to rent 300MW of compute (220,000 NVIDIA GPUs at the Colossus 1 site near Memphis) through May 2029 -- over $40B from one frontier lab to a direct rival, capped at 11% of the park and terminable on 90 days' notice. When labs rent compute from competitors at that scale, the message is clear: the binding constraint on agentic AI is no longer the model -- it is the cost and availability of the inference substrate underneath it."
-          ]
-        },
-        {
-          "title": "2. The silicon layer -- custom chips break the GPU monopoly",
-          "paragraphs": [
-            "For three years inference meant NVIDIA GPUs. In 2026 the hyperscalers' custom silicon turned that into a real contest -- because designing a chip for the decode phase (memory-bound, latency-sensitive) rather than for training (compute-bound) changes the price-performance maths. AWS shipped the 192-core Graviton5 on June 15 with a 5x larger cache, ~35% faster ML inference and M9g instances up to 25% faster than the prior generation, explicitly pitched for 'the agentic AI era.' Its Trainium line is the bigger story: Trainium2 runs ~30% better price-performance than comparable GPUs and is largely sold out, Trainium3 (shipping since early 2026) is another 30-40% better and nearly fully subscribed, and Amazon's custom-silicon run-rate has crossed $20B (Andy Jassy says it would be ~$50B if sold externally). Anthropic has committed over $100B to AWS over ten years and up to 5GW of Trainium capacity.",
-            "Google reframed the whole category around inference. Ironwood -- its 7th-gen TPU -- went GA as 'the first TPU for the age of inference,' and at Cloud Next 2026 Google previewed an eighth-generation split into a training chip (TPU 8t) and a dedicated inference chip (TPU 8i) on TSMC's 2nm process, claiming up to 2.8x training gains and an 80% inference price-performance improvement over Ironwood. The bifurcation is the tell: general-purpose silicon is giving way to chips purpose-built for serving.",
-            "The incumbents are not standing still, but the timing favours challengers near-term. NVIDIA's Rubin generation slipped roughly a quarter (ramp now around Q3 2026), AMD's MI400 -- 432GB of HBM4 and 19.6 TB/s of bandwidth -- goes to hyperscalers first with broad availability in 2027, and specialised entrants like Groq are attacking the decode phase directly (its LPU claims ~35x more inference throughput per megawatt than HBM-based GPUs). For an agent fleet, the practical takeaway is that 'which chip' is now a cost lever you can actually pull: the same Claude or open-weight model served on Trainium, a TPU 8i or a Groq LPU can carry a materially different cost-per-token than the default NVIDIA path."
-          ]
-        },
-        {
-          "title": "3. The serving engine -- software that 5-8x's your throughput",
-          "paragraphs": [
-            "Silicon sets the ceiling; the serving engine decides how much of it you actually use. The three that matter in 2026 -- vLLM, SGLang and TensorRT-LLM -- serve the same purpose but make different architectural bets, and the rule of thumb is simple: vLLM for the fastest path to production, TensorRT-LLM for peak NVIDIA throughput, SGLang for heavy multi-turn prefix reuse. All three now ship continuous (in-flight) batching, where a new request joins the running batch the moment a sequence slot frees up instead of waiting for the whole batch to drain -- the single biggest GPU-utilisation win of the last two years.",
-            "Three more primitives separate a cheap deployment from an expensive one. PagedAttention / KV-cache paging treats the attention cache like virtual memory so you stop wasting VRAM on reserved-but-unused slots. Prefix caching reuses the KV cache for shared prompt prefixes -- decisive for agents, whose long system prompts and tool schemas repeat on every call (this is the serving-side mirror of the caching lever from Day 83). And disaggregated prefill splits the compute-bound prefill phase and the memory-bound decode phase onto separate devices so they stop interfering -- now standard in vLLM and SGLang, and the reason large deployments get stable decode latency under load.",
-            "For an agentic workload the serving engine is not a back-office detail -- it is a first-class FinOps decision. Long, repetitive system prompts make prefix caching worth more to an agent than to a chatbot; bursty, parallel sub-agent fan-out makes continuous batching and disaggregated prefill the difference between 40% and 90% GPU occupancy. Picking the engine and turning on these features is often a larger cost win than swapping the model -- and it is entirely under your control."
-          ]
-        },
-        {
-          "title": "4. The optimisation layer -- where the $0.40 token comes from",
-          "paragraphs": [
-            "The last layer is the math trick that collapsed the price: serve the model in lower precision and predict more tokens per pass. Quantisation is the workhorse. Moving from FP16 to FP8 roughly halves the cost of an 8x-H100 node -- from about $1.90 to $0.95-1.10 per million tokens -- with negligible quality loss for most production traffic. Going further, 4-bit (AWQ) quantisation cuts VRAM by roughly 75%, which doesn't just save memory -- it lets the same model fit on a cheaper GPU class entirely, changing the hardware line item.",
-            "Speculative decoding attacks throughput from the other side: a small, cheap 'draft' model proposes several tokens, and the large target model verifies them in parallel, accepting the ones it agrees with. For output-heavy work like code generation and long-form writing that is a 2-4x speed-up at no quality cost. Stack the techniques together -- FP8 + FlashAttention 3 + continuous batching + speculative decoding on an H100 -- and you get 5-8x better cost-efficiency than naive FP16 with static batching. That multiplier, compounded across the whole industry, is what took a GPT-4-class token from ~$30/M in early 2023 to ~$0.40/M today: a roughly 1,000x collapse, one of the fastest in computing history.",
-            "The discipline that ties it back to Day 83: cheaper tokens are not the goal -- cheaper SUCCESSFUL OUTPUTS are. The FinOps Foundation's warning is that instrumenting cost-per-token without a quality gate is a trap; a 4-bit model that fails 5% more tasks can cost more per completed job than the FP8 version it replaced. So the supply-side stack (silicon -> serving engine -> quantisation/speculative decoding) is what sets your floor, but you still measure the win in cost-per-successful-task on the same OTEL->WORM telemetry stream you built for the regulator (Day 81), the buyer (Day 82) and your FinOps dashboard (Day 83)."
-          ]
-        }
-      ],
-      "market_signal": "With frontier models within ~3% of each other (Fable 5 / Opus 4.8 / GPT-5.6 / Gemini 3.5 Flash), capability is no longer the moat -- and Day 83 showed the demand-side levers are now table stakes. The next margin war is fought on the SUPPLY side: who can serve a token cheapest. That is why the money is moving into the inference substrate -- Amazon's custom-silicon run-rate past $20B with >$225B in Trainium commitments, Google splitting its TPU line into dedicated training (8t) and inference (8i) chips, AMD's MI400 and Groq's LPU attacking the decode phase, and Anthropic renting 300MW from xAI at $1.25B/month because the binding constraint is compute, not models. For a builder, the strategic read is that 'which chip + which serving engine + which quantisation' is now a first-class product decision, not an infra afterthought -- and the open-source serving stack (vLLM/SGLang) plus llama.cpp means the cheapest-token frontier is available to everyone, not just the hyperscalers. As model performance plateaus, the durable advantage is the lowest cost per successful, audited token -- the unit-economics race the IPO market (SpaceX priced, Anthropic and OpenAI both in the S-1 pipeline) is now pricing directly.",
-      "practical_takeaway": [
-        {
-          "title": "Treat the serving stack as a product decision, not an afterthought.",
-          "body": "Pick the engine for your workload -- vLLM for fastest-to-prod, TensorRT-LLM for peak NVIDIA throughput, SGLang for prefix-heavy agents -- then turn on continuous batching, prefix caching and disaggregated prefill. For repetitive agent prompts that is often a bigger cost win than swapping the model, and it is entirely under your control."
-        },
-        {
-          "title": "Quantise to FP8 by default, and measure cost-per-successful-task.",
-          "body": "FP8 roughly halves cost-per-token at negligible quality loss; 4-bit can drop you to a cheaper GPU class; speculative decoding adds 2-4x on output-heavy work. But validate on your golden set -- a lower-precision model that fails more tasks can cost MORE per completed job. The metric is cost-per-successful-output, not cost-per-token (Day 83)."
-        },
-        {
-          "title": "Make 'which silicon' a lever you actually pull.",
-          "body": "The same model on Trainium3, a TPU 8i, a Groq LPU or llama.cpp on your own hardware can carry a very different cost-per-token than the default NVIDIA path. Benchmark at least one non-NVIDIA option per workload, and for low-volume or privacy-bound tasks, remember local inference runs at ~$0.002/M in electricity versus $2.50-15/M in the cloud."
-        }
-      ],
-      "tomorrow_preview": "Day 86: Agent Interop & the Protocol Stack 2.0 -- one year on from MCP. How the connective tissue settled: MCP at ~97M monthly SDK downloads, A2A v1.x under the Linux Foundation with 150+ production orgs, and AG-UI converging on a shared event model -- the standards layer that lets the cheap-token fleet from today actually talk to each other."
     }
   ],
   "last_updated": "2026-06-19",
