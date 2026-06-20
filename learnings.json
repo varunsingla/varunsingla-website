@@ -6,6 +6,240 @@
   },
   "learnings": [
     {
+      "date": "2026-06-20",
+      "display_date": "JUNE 20, 2026",
+      "issue": 86,
+      "title": "Agent Interop & the Protocol Stack 2.0",
+      "focus_intro": "models compressed to a near-tie (~3%); Day 85 showed the inference floor driving the token",
+      "viral_app": {
+        "name": "On a day about the protocol stack, the fitting trending project is the one that is the stack in a single binary.",
+        "description": "goose (Block) has crossed ~46,700 GitHub stars with 500+ contributors and 110+ releases -- a local-first, general-purpose agent you run as a desktop app, a CLI or via API, with any LLM, wired to the MCP ecosystem (3,000+ servers and counting). What makes it the right spotlight here is governance, not just stars: goose now lives under the aaif-goose organisation -- it is one of the three founding projects of the Agentic AI Foundation (alongside MCP and AGENTS.md). It is, in other words, the consumer-facing embodiment of the open protocol stack: MCP for tools, local-first for data residency, no SaaS lock-in, foundation-stewarded rather than vendor-owned. That is the whole thesis of this issue ",
+        "stats": [
+          {
+            "stat": "3,000+ MCP servers",
+            "label": "the tool ecosystem goose plugs into via the open MCP standard"
+          },
+          {
+            "stat": "1 of 3",
+            "label": "AAIF founding projects (MCP + goose + AGENTS.md) -- foundation-stewarded, not vendor-owned"
+          }
+        ]
+      },
+      "stats": [
+        {
+          "stat": "59,000+",
+          "label": "MCP servers indexed across public registries (mcp.so / Smithery / Glama / official) from ~0"
+        },
+        {
+          "stat": "150+ orgs",
+          "label": "running A2A in production at its 1-yr mark -- 22K+ stars, SDKs in 5 languages"
+        }
+      ],
+      "sections": [
+        {
+          "title": "1 · One year on -- from experiment to infrastructure",
+          "paragraphs": [
+            "Anthropic open-sourced the Model Context Protocol in late 2024 as a tidy answer to a messy problem: every agent needed bespoke glue for every tool. On its first anniversary (Nov 25, 2025) MCP shipped a major spec adding a Tasks API for long-running async jobs (kick off work, check back later) and Client ID Metadata Documents to simplify client registration and trust -- the upgrades you only build once a protocol is load-bearing. The adoption curve is the headline: from ~100K SDK downloads at launch to ~97M per month by early 2026 (~970x in 18 months), with Anthropic, OpenAI, Google, Microsoft, AWS and Salesforce all shipping support inside ~13 months, and 10,000+ public servers (59,000+ across all registries). The decisive 2026 move was governance. On December 9, 2025 the Linux Foundation formed the Agentic AI Foundation (AAIF), anchored by three donated projects -- Anthropic's MCP, Block's goose (a local-first agent) and OpenAI's AGENTS.md -- with platinum members AWS, Anthropic, Block, Bloomberg, Cloudflare, Google, Microsoft and OpenAI. The point is structural: the protocols moved out from under any single vendor's wallet into neutral stewardship. Google's A2A, donated to the Linux Foundation back in June 2025, sits in the same umbrella. The MCP Registry is now funded by dozens of companies at $100K+/year -- the 'protocol-win' playbook (give the standard away, win the ecosystem) is now an institution, not a bet. The reframe: a year ago these were experiments competing for mindshare. Today MCP is plumbing -- assumed, not argued. The interesting questions have moved up a level: not 'will agents standardise?' but 'who governs the rails, and what evidence rides on them?'"
+          ]
+        },
+        {
+          "title": "1. Layer the three protocols -- don't reinvent the wiring.",
+          "paragraphs": [
+            "Use MCP for tool/data access, A2A for agent-to-agent delegation, and AG-UI for the user-facing surface. Adopting the stack means you can swap the model underneath (Day 85's cheap, fungible token) without rewiring -- the wiring is the asset, so don't build a bespoke RPC you'll have to maintain alone."
+          ]
+        },
+        {
+          "title": "2 · The three-layer stack -- MCP / A2A / AG-UI",
+          "paragraphs": [
+            "The 2026 production architecture is not one protocol but three, each answering a different question with a clean separation of concerns. You don't choose between them -- you layer them. MCP connects an agent down to its tools and data; A2A connects agents sideways to each other across frameworks and orgs; AG-UI connects the agent up to the human in a live, streaming interface. AWS Bedrock AgentCore Runtime added AG-UI support in March 2026, cementing the three-layer stack as the reference production pattern. The elegance is composition: an orchestrator uses A2A to hand a sub-task to a specialist agent, that agent uses MCP to hit the database and the payments API, and the whole run streams back to the user over AG-UI with approval gates and a kill switch. Get the layering right and you can swap the model underneath (Day 85's cheap, fungible token) without touching the wiring -- which is why the wiring, not the model, is where durable"
+          ]
+        },
+        {
+          "title": "2. Plant your flag while the rails are still open.",
+          "paragraphs": [
+            "Publish one SKILL.md to the marketplaces, expose MCP entry points on your product so agents can call it, and register an A2A Agent Card so other agents can discover it. The asymmetry window -- free to build on, open governance -- closes around 2027 as revenue shares formalise."
+          ]
+        },
+        {
+          "title": "3 · The interop frontier -- where the rails are still being laid",
+          "paragraphs": [
+            "Mature does not mean finished. The live work in 2026 is at the seams -- making the three layers, and the packaging on top of them, genuinely interoperable rather than merely co-existing. Read the four rows together and a shape emerges: the protocol layer (MCP/A2A/AG-UI) is converging, and a packaging-and-discovery layer (SKILL.md + AGENTS.md + registries) is forming on top of it -- the way npm sat on Node. That layer is where the App-Store economics of Day 60 play out, and it is being standardised now, while it is still free to plant a flag on."
+          ],
+          "table": {
+            "headers": [
+              "Protocol",
+              "Question it answers",
+              "Signature primitives",
+              "Steward"
+            ],
+            "rows": [
+              [
+                "MCP (agent → tools)",
+                "How does an agent reach a tool, file, API or data source?",
+                "Tools / resources / prompts; Streamable HTTP + OAuth 2.1; Tasks API; MCP Apps (UI returns)",
+                "AAIF / Linux Foundation"
+              ],
+              [
+                "A2A (agent « agent)",
+                "How do agents discover, delegate to and trust each other across orgs?",
+                "Signed Agent Cards; task lifecycle; 5-language SDKs (Py/JS/Java/Go/.NET)",
+                "Linux Foundation"
+              ],
+              [
+                "AG-UI (agent → user)",
+                "How does any front-end stay in sync with a running agent in real time?",
+                "16 event types: token stream, tool calls, shared state, generative UI",
+                "CopilotKit / open spec"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3. Make governance evidence ride the protocol.",
+          "paragraphs": [
+            "The same OTELfiWORM audit trail and SPIFFE/SVID identity you owe the regulator (Day 81) and buyer (Day 82) are what make your agent safe to trust inside someone else's fleet. Interop without an audit trail is a liability; interop with",
+            "Tomorrow (Day 87): The Agentic AI Data-Centre & Power Wall -- the physical constraint behind Day 85's silicon race. Data-centre electricity heading to ~945 TWh by 2030, the gigawatt compute deals, orbital data centres on the drawing board, and why power -- not chips or models -- may be"
+          ]
+        },
+        {
+          "title": "4 · Why the standards layer is the moat now",
+          "paragraphs": [
+            "Stack the last two retrospectives. Day 80: frontier models are within ~3% of each other -- capability is a near-tie. Day 85: the serving stack drove a GPT-4-class token down ~1,000x -- the token is cheap and fungible. If neither the model nor the token is scarce, the scarce, defensible thing is the connective tissue that lets a cheap-token fleet actually work together, and the governance evidence that makes one agent safe to trust",
+            "Governance rides the rails. The same OTELfiWORM audit trail you owe the regulator (Day 81) and the buyer (Day 82), and the SPIFFE/SVID identity + kill switches from Day 54, are exactly what make your agent a trustworthy citizen of someone else's fleet. Interop without audit is a liability; interop with it is a sellable feature. 'Show me your Agent Card and your audit trail' is becoming the",
+            "That is why the real 2026 contest is who owns the rails. Anthropic plays the open-protocol / npm game (donate MCP and Skills, win the ecosystem). Google plays the OS-surface game (Gemini, Android, Spark -- own the device the agent runs on). Microsoft plays the enterprise control-plane game (Agent 365, Entra -- own the identity and registry the fleet is governed through). All three routes lead to the same prize: whoever's rails the fleet runs on captures the next $50B even as model performance plateaus. And there is a clock on it: the asymmetry window -- when the standards are open and free to build on -- closes around 2027 as revenue shares formalise. The cheapest flag you'll ever plant in the agent economy is the one you plant this year."
+          ],
+          "table": {
+            "headers": [
+              "Protocol",
+              "Question it answers",
+              "Signature primitives",
+              "Steward"
+            ],
+            "rows": [
+              [
+                "MCP (agent → tools)",
+                "How does an agent reach a tool, file, API or data source?",
+                "Tools / resources / prompts; Streamable HTTP + OAuth 2.1; Tasks API; MCP Apps (UI returns)",
+                "AAIF / Linux Foundation"
+              ],
+              [
+                "A2A (agent « agent)",
+                "How do agents discover, delegate to and trust each other across orgs?",
+                "Signed Agent Cards; task lifecycle; 5-language SDKs (Py/JS/Java/Go/.NET)",
+                "Linux Foundation"
+              ],
+              [
+                "AG-UI (agent → user)",
+                "How does any front-end stay in sync with a running agent in real time?",
+                "16 event types: token stream, tool calls, shared state, generative UI",
+                "CopilotKit / open spec"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "5 · Viral app spotlight -- goose by Block, the protocol stack as an app",
+          "paragraphs": [
+            "On a day about the protocol stack, the fitting trending project is the one that is the stack in a single binary. goose (Block) has crossed ~46,700 GitHub stars with 500+ contributors and 110+ releases -- a local-first, general-purpose agent you run as a desktop app, a CLI or via API, with any LLM, wired to the MCP ecosystem (3,000+ servers and counting). What makes it the right spotlight here is governance, not just stars: goose now lives under the aaif-goose organisation -- it is one of the three founding projects of the Agentic AI Foundation (alongside MCP and AGENTS.md). It is, in other words, the consumer-facing embodiment of the open protocol stack: MCP for tools, local-first for data residency, no SaaS lock-in, foundation-stewarded rather than vendor-owned. That is the whole thesis of this issue shipped as something you can install tonight. (OpenClaw still tops the raw OSS star charts at 210K+ as the local-first foil -- viral, but a personal assistant, not a governed, foundation-stewarded protocol citizen.)"
+          ]
+        }
+      ],
+      "practical_takeaway": []
+    },
+    {
+      "date": "2026-06-19",
+      "display_date": "June 19, 2026",
+      "issue": 85,
+      "title": "The Inference Economics Stack",
+      "focus_intro": "Day 83 was the DEMAND side of Agent FinOps -- your routing, caching and budget levers. Day 84 was the people who run the fleet. Today is the SUPPLY side: the silicon and serving layer that actually sets the cost-per-token your FinOps levers push against. As frontier models compress to a near-tie (within ~3%), you can no longer out-model a rival -- so the margin war moves down the stack to who can serve a token cheapest. And the numbers moved hard this month: AWS shipped the 192-core Graviton5 on June 15, Amazon's custom-silicon run-rate crossed $20B, and SpaceX's S-1 revealed Anthropic is paying xAI $1.25B a month to rent 300MW of compute. This issue walks the three layers that set cost-per-token -- the custom silicon, the serving engine, and the optimisation techniques (quantisation, speculative decoding, disaggregated prefill) -- and why the GPT-4-class token just fell ~1,000x in three years.",
+      "stats": [
+        {
+          "stat": "~$0.40 / M",
+          "label": "cost of a GPT-4-class output token today -- a ~1,000x collapse in 3 years (from ~$30/M in 2023)"
+        },
+        {
+          "stat": ">$20B",
+          "label": "Amazon's custom-silicon annual run-rate (Graviton + Trainium + Nitro); ~$50B if sold externally"
+        },
+        {
+          "stat": "55-80%",
+          "label": "of enterprise AI GPU spend goes to INFERENCE (serving), not training -- the bill that never stops"
+        },
+        {
+          "stat": "$1.25B / mo",
+          "label": "what Anthropic pays xAI to rent 300MW / 220,000 GPUs through May 2029 (SpaceX S-1)"
+        }
+      ],
+      "viral_app": {
+        "name": "llama.cpp -- the engine that drives cost-per-token to ~$0",
+        "description": "On a day about who serves a token cheapest, the trending project is the one that drives the price to the floor. llama.cpp (Georgi Gerganov / ggml-org) crossed 100,000 GitHub stars in March 2026 -- the fastest open-source AI project ever to reach the mark, quicker than PyTorch (~7 years) or TensorFlow (~8 years). It is the C/C++ inference engine that quietly powers most of the local-AI world (Ollama, LM Studio and dozens of apps all sit on top of it), and its momentum is staggering: 700+ contributors merged 3,800+ pull requests in 2025, roughly 3x the PR throughput of NVIDIA's fully-funded TensorRT-LLM. It runs the same GGUF model across Apple Metal, NVIDIA CUDA, AMD ROCm, Intel SYCL, Vulkan and ARM NEON -- from a Raspberry Pi 5 to an 8x-GPU server -- and now ships WebGPU inference in the browser, with Hugging Face Inference Endpoints supporting GGUF out of the box. Why it matters for this issue: local inference on llama.cpp costs roughly $0.002 per million tokens in electricity, versus $2.50-15.00/M through cloud APIs. That is the cost-per-token war reaching the desktop -- the cleanest proof that the supply side, not the model, is where the economics are now won. (OpenClaw still tops the raw OSS star charts at 210K+ as the local-first foil -- viral, but a personal agent, not the serving engine underneath it.)",
+        "stats": [
+          {
+            "stat": "100K stars",
+            "label": "fastest OSS AI project ever to 100K (March 2026) -- beat PyTorch & TensorFlow"
+          },
+          {
+            "stat": "~$0.002 / M",
+            "label": "local inference in electricity vs $2.50-15.00/M cloud API -- the floor"
+          },
+          {
+            "stat": "RPi 5 -> 8x GPU",
+            "label": "one GGUF model across Metal / CUDA / ROCm / SYCL / Vulkan / ARM + WebGPU"
+          }
+        ]
+      },
+      "sections": [
+        {
+          "title": "1. Why the supply side is suddenly the battleground",
+          "paragraphs": [
+            "Day 83 gave you the demand-side levers -- model routing, caching, budget caps, tagging. Every one of those levers pushes against a floor that something else sets: the cost-per-token of actually running the model. That floor is the supply side, and it is built from three stacked layers -- the silicon the model runs on, the serving engine that schedules the work, and the optimisation techniques (quantisation, speculative decoding) that squeeze more tokens out of each chip-second. Your FinOps savings are bounded by how cheap this stack can make a token; the cheaper the floor, the more headroom your routing and caching actually buy you.",
+            "Two things make this the battleground of mid-2026. First, model performance has compressed to a near-tie -- the top models sit within roughly 3% of each other -- so you can't win on capability; you win on unit economics. Second, the spend has shifted decisively: industry analysts now put 55-80% of enterprise AI GPU budget on INFERENCE, not training. Training is a one-time capital event; serving is a bill that accrues every hour, every day, for the life of the product. Whoever owns the cheapest path from prompt to token owns the margin -- which is exactly why Amazon, Google, NVIDIA, AMD and a wave of start-ups are pouring tens of billions into custom silicon aimed squarely at the decode phase.",
+            "The headline proof that this is now a strategic, balance-sheet-level fight: SpaceX's S-1 filing disclosed that Anthropic is paying xAI $1.25B a month to rent 300MW of compute (220,000 NVIDIA GPUs at the Colossus 1 site near Memphis) through May 2029 -- over $40B from one frontier lab to a direct rival, capped at 11% of the park and terminable on 90 days' notice. When labs rent compute from competitors at that scale, the message is clear: the binding constraint on agentic AI is no longer the model -- it is the cost and availability of the inference substrate underneath it."
+          ]
+        },
+        {
+          "title": "2. The silicon layer -- custom chips break the GPU monopoly",
+          "paragraphs": [
+            "For three years inference meant NVIDIA GPUs. In 2026 the hyperscalers' custom silicon turned that into a real contest -- because designing a chip for the decode phase (memory-bound, latency-sensitive) rather than for training (compute-bound) changes the price-performance maths. AWS shipped the 192-core Graviton5 on June 15 with a 5x larger cache, ~35% faster ML inference and M9g instances up to 25% faster than the prior generation, explicitly pitched for 'the agentic AI era.' Its Trainium line is the bigger story: Trainium2 runs ~30% better price-performance than comparable GPUs and is largely sold out, Trainium3 (shipping since early 2026) is another 30-40% better and nearly fully subscribed, and Amazon's custom-silicon run-rate has crossed $20B (Andy Jassy says it would be ~$50B if sold externally). Anthropic has committed over $100B to AWS over ten years and up to 5GW of Trainium capacity.",
+            "Google reframed the whole category around inference. Ironwood -- its 7th-gen TPU -- went GA as 'the first TPU for the age of inference,' and at Cloud Next 2026 Google previewed an eighth-generation split into a training chip (TPU 8t) and a dedicated inference chip (TPU 8i) on TSMC's 2nm process, claiming up to 2.8x training gains and an 80% inference price-performance improvement over Ironwood. The bifurcation is the tell: general-purpose silicon is giving way to chips purpose-built for serving.",
+            "The incumbents are not standing still, but the timing favours challengers near-term. NVIDIA's Rubin generation slipped roughly a quarter (ramp now around Q3 2026), AMD's MI400 -- 432GB of HBM4 and 19.6 TB/s of bandwidth -- goes to hyperscalers first with broad availability in 2027, and specialised entrants like Groq are attacking the decode phase directly (its LPU claims ~35x more inference throughput per megawatt than HBM-based GPUs). For an agent fleet, the practical takeaway is that 'which chip' is now a cost lever you can actually pull: the same Claude or open-weight model served on Trainium, a TPU 8i or a Groq LPU can carry a materially different cost-per-token than the default NVIDIA path."
+          ]
+        },
+        {
+          "title": "3. The serving engine -- software that 5-8x's your throughput",
+          "paragraphs": [
+            "Silicon sets the ceiling; the serving engine decides how much of it you actually use. The three that matter in 2026 -- vLLM, SGLang and TensorRT-LLM -- serve the same purpose but make different architectural bets, and the rule of thumb is simple: vLLM for the fastest path to production, TensorRT-LLM for peak NVIDIA throughput, SGLang for heavy multi-turn prefix reuse. All three now ship continuous (in-flight) batching, where a new request joins the running batch the moment a sequence slot frees up instead of waiting for the whole batch to drain -- the single biggest GPU-utilisation win of the last two years.",
+            "Three more primitives separate a cheap deployment from an expensive one. PagedAttention / KV-cache paging treats the attention cache like virtual memory so you stop wasting VRAM on reserved-but-unused slots. Prefix caching reuses the KV cache for shared prompt prefixes -- decisive for agents, whose long system prompts and tool schemas repeat on every call (this is the serving-side mirror of the caching lever from Day 83). And disaggregated prefill splits the compute-bound prefill phase and the memory-bound decode phase onto separate devices so they stop interfering -- now standard in vLLM and SGLang, and the reason large deployments get stable decode latency under load.",
+            "For an agentic workload the serving engine is not a back-office detail -- it is a first-class FinOps decision. Long, repetitive system prompts make prefix caching worth more to an agent than to a chatbot; bursty, parallel sub-agent fan-out makes continuous batching and disaggregated prefill the difference between 40% and 90% GPU occupancy. Picking the engine and turning on these features is often a larger cost win than swapping the model -- and it is entirely under your control."
+          ]
+        },
+        {
+          "title": "4. The optimisation layer -- where the $0.40 token comes from",
+          "paragraphs": [
+            "The last layer is the math trick that collapsed the price: serve the model in lower precision and predict more tokens per pass. Quantisation is the workhorse. Moving from FP16 to FP8 roughly halves the cost of an 8x-H100 node -- from about $1.90 to $0.95-1.10 per million tokens -- with negligible quality loss for most production traffic. Going further, 4-bit (AWQ) quantisation cuts VRAM by roughly 75%, which doesn't just save memory -- it lets the same model fit on a cheaper GPU class entirely, changing the hardware line item.",
+            "Speculative decoding attacks throughput from the other side: a small, cheap 'draft' model proposes several tokens, and the large target model verifies them in parallel, accepting the ones it agrees with. For output-heavy work like code generation and long-form writing that is a 2-4x speed-up at no quality cost. Stack the techniques together -- FP8 + FlashAttention 3 + continuous batching + speculative decoding on an H100 -- and you get 5-8x better cost-efficiency than naive FP16 with static batching. That multiplier, compounded across the whole industry, is what took a GPT-4-class token from ~$30/M in early 2023 to ~$0.40/M today: a roughly 1,000x collapse, one of the fastest in computing history.",
+            "The discipline that ties it back to Day 83: cheaper tokens are not the goal -- cheaper SUCCESSFUL OUTPUTS are. The FinOps Foundation's warning is that instrumenting cost-per-token without a quality gate is a trap; a 4-bit model that fails 5% more tasks can cost more per completed job than the FP8 version it replaced. So the supply-side stack (silicon -> serving engine -> quantisation/speculative decoding) is what sets your floor, but you still measure the win in cost-per-successful-task on the same OTEL->WORM telemetry stream you built for the regulator (Day 81), the buyer (Day 82) and your FinOps dashboard (Day 83)."
+          ]
+        }
+      ],
+      "market_signal": "With frontier models within ~3% of each other (Fable 5 / Opus 4.8 / GPT-5.6 / Gemini 3.5 Flash), capability is no longer the moat -- and Day 83 showed the demand-side levers are now table stakes. The next margin war is fought on the SUPPLY side: who can serve a token cheapest. That is why the money is moving into the inference substrate -- Amazon's custom-silicon run-rate past $20B with >$225B in Trainium commitments, Google splitting its TPU line into dedicated training (8t) and inference (8i) chips, AMD's MI400 and Groq's LPU attacking the decode phase, and Anthropic renting 300MW from xAI at $1.25B/month because the binding constraint is compute, not models. For a builder, the strategic read is that 'which chip + which serving engine + which quantisation' is now a first-class product decision, not an infra afterthought -- and the open-source serving stack (vLLM/SGLang) plus llama.cpp means the cheapest-token frontier is available to everyone, not just the hyperscalers. As model performance plateaus, the durable advantage is the lowest cost per successful, audited token -- the unit-economics race the IPO market (SpaceX priced, Anthropic and OpenAI both in the S-1 pipeline) is now pricing directly.",
+      "practical_takeaway": [
+        {
+          "title": "Treat the serving stack as a product decision, not an afterthought.",
+          "body": "Pick the engine for your workload -- vLLM for fastest-to-prod, TensorRT-LLM for peak NVIDIA throughput, SGLang for prefix-heavy agents -- then turn on continuous batching, prefix caching and disaggregated prefill. For repetitive agent prompts that is often a bigger cost win than swapping the model, and it is entirely under your control."
+        },
+        {
+          "title": "Quantise to FP8 by default, and measure cost-per-successful-task.",
+          "body": "FP8 roughly halves cost-per-token at negligible quality loss; 4-bit can drop you to a cheaper GPU class; speculative decoding adds 2-4x on output-heavy work. But validate on your golden set -- a lower-precision model that fails more tasks can cost MORE per completed job. The metric is cost-per-successful-output, not cost-per-token (Day 83)."
+        },
+        {
+          "title": "Make 'which silicon' a lever you actually pull.",
+          "body": "The same model on Trainium3, a TPU 8i, a Groq LPU or llama.cpp on your own hardware can carry a very different cost-per-token than the default NVIDIA path. Benchmark at least one non-NVIDIA option per workload, and for low-volume or privacy-bound tasks, remember local inference runs at ~$0.002/M in electricity versus $2.50-15/M in the cloud."
+        }
+      ],
+      "tomorrow_preview": "Day 86: Agent Interop & the Protocol Stack 2.0 -- one year on from MCP. How the connective tissue settled: MCP at ~97M monthly SDK downloads, A2A v1.x under the Linux Foundation with 150+ production orgs, and AG-UI converging on a shared event model -- the standards layer that lets the cheap-token fleet from today actually talk to each other."
+    },
+    {
       "date": "2026-06-18",
       "display_date": "June 18, 2026",
       "issue": 84,
@@ -13579,191 +13813,6 @@
         "2026 (Gartner) 40% (vs",
         "5% in 2025) Orgs planning to increase AI budgets 86% Practical Takeaway The most valuable me"
       ]
-    },
-    {
-      "date": "2026-06-19",
-      "display_date": "June 19, 2026",
-      "issue": 85,
-      "title": "The Inference Economics Stack",
-      "focus_intro": "Day 83 was the DEMAND side of Agent FinOps -- your routing, caching and budget levers. Day 84 was the people who run the fleet. Today is the SUPPLY side: the silicon and serving layer that actually sets the cost-per-token your FinOps levers push against. As frontier models compress to a near-tie (within ~3%), you can no longer out-model a rival -- so the margin war moves down the stack to who can serve a token cheapest. And the numbers moved hard this month: AWS shipped the 192-core Graviton5 on June 15, Amazon's custom-silicon run-rate crossed $20B, and SpaceX's S-1 revealed Anthropic is paying xAI $1.25B a month to rent 300MW of compute. This issue walks the three layers that set cost-per-token -- the custom silicon, the serving engine, and the optimisation techniques (quantisation, speculative decoding, disaggregated prefill) -- and why the GPT-4-class token just fell ~1,000x in three years.",
-      "stats": [
-        {
-          "stat": "~$0.40 / M",
-          "label": "cost of a GPT-4-class output token today -- a ~1,000x collapse in 3 years (from ~$30/M in 2023)"
-        },
-        {
-          "stat": ">$20B",
-          "label": "Amazon's custom-silicon annual run-rate (Graviton + Trainium + Nitro); ~$50B if sold externally"
-        },
-        {
-          "stat": "55-80%",
-          "label": "of enterprise AI GPU spend goes to INFERENCE (serving), not training -- the bill that never stops"
-        },
-        {
-          "stat": "$1.25B / mo",
-          "label": "what Anthropic pays xAI to rent 300MW / 220,000 GPUs through May 2029 (SpaceX S-1)"
-        }
-      ],
-      "viral_app": {
-        "name": "llama.cpp -- the engine that drives cost-per-token to ~$0",
-        "description": "On a day about who serves a token cheapest, the trending project is the one that drives the price to the floor. llama.cpp (Georgi Gerganov / ggml-org) crossed 100,000 GitHub stars in March 2026 -- the fastest open-source AI project ever to reach the mark, quicker than PyTorch (~7 years) or TensorFlow (~8 years). It is the C/C++ inference engine that quietly powers most of the local-AI world (Ollama, LM Studio and dozens of apps all sit on top of it), and its momentum is staggering: 700+ contributors merged 3,800+ pull requests in 2025, roughly 3x the PR throughput of NVIDIA's fully-funded TensorRT-LLM. It runs the same GGUF model across Apple Metal, NVIDIA CUDA, AMD ROCm, Intel SYCL, Vulkan and ARM NEON -- from a Raspberry Pi 5 to an 8x-GPU server -- and now ships WebGPU inference in the browser, with Hugging Face Inference Endpoints supporting GGUF out of the box. Why it matters for this issue: local inference on llama.cpp costs roughly $0.002 per million tokens in electricity, versus $2.50-15.00/M through cloud APIs. That is the cost-per-token war reaching the desktop -- the cleanest proof that the supply side, not the model, is where the economics are now won. (OpenClaw still tops the raw OSS star charts at 210K+ as the local-first foil -- viral, but a personal agent, not the serving engine underneath it.)",
-        "stats": [
-          {
-            "stat": "100K stars",
-            "label": "fastest OSS AI project ever to 100K (March 2026) -- beat PyTorch & TensorFlow"
-          },
-          {
-            "stat": "~$0.002 / M",
-            "label": "local inference in electricity vs $2.50-15.00/M cloud API -- the floor"
-          },
-          {
-            "stat": "RPi 5 -> 8x GPU",
-            "label": "one GGUF model across Metal / CUDA / ROCm / SYCL / Vulkan / ARM + WebGPU"
-          }
-        ]
-      },
-      "sections": [
-        {
-          "title": "1. Why the supply side is suddenly the battleground",
-          "paragraphs": [
-            "Day 83 gave you the demand-side levers -- model routing, caching, budget caps, tagging. Every one of those levers pushes against a floor that something else sets: the cost-per-token of actually running the model. That floor is the supply side, and it is built from three stacked layers -- the silicon the model runs on, the serving engine that schedules the work, and the optimisation techniques (quantisation, speculative decoding) that squeeze more tokens out of each chip-second. Your FinOps savings are bounded by how cheap this stack can make a token; the cheaper the floor, the more headroom your routing and caching actually buy you.",
-            "Two things make this the battleground of mid-2026. First, model performance has compressed to a near-tie -- the top models sit within roughly 3% of each other -- so you can't win on capability; you win on unit economics. Second, the spend has shifted decisively: industry analysts now put 55-80% of enterprise AI GPU budget on INFERENCE, not training. Training is a one-time capital event; serving is a bill that accrues every hour, every day, for the life of the product. Whoever owns the cheapest path from prompt to token owns the margin -- which is exactly why Amazon, Google, NVIDIA, AMD and a wave of start-ups are pouring tens of billions into custom silicon aimed squarely at the decode phase.",
-            "The headline proof that this is now a strategic, balance-sheet-level fight: SpaceX's S-1 filing disclosed that Anthropic is paying xAI $1.25B a month to rent 300MW of compute (220,000 NVIDIA GPUs at the Colossus 1 site near Memphis) through May 2029 -- over $40B from one frontier lab to a direct rival, capped at 11% of the park and terminable on 90 days' notice. When labs rent compute from competitors at that scale, the message is clear: the binding constraint on agentic AI is no longer the model -- it is the cost and availability of the inference substrate underneath it."
-          ]
-        },
-        {
-          "title": "2. The silicon layer -- custom chips break the GPU monopoly",
-          "paragraphs": [
-            "For three years inference meant NVIDIA GPUs. In 2026 the hyperscalers' custom silicon turned that into a real contest -- because designing a chip for the decode phase (memory-bound, latency-sensitive) rather than for training (compute-bound) changes the price-performance maths. AWS shipped the 192-core Graviton5 on June 15 with a 5x larger cache, ~35% faster ML inference and M9g instances up to 25% faster than the prior generation, explicitly pitched for 'the agentic AI era.' Its Trainium line is the bigger story: Trainium2 runs ~30% better price-performance than comparable GPUs and is largely sold out, Trainium3 (shipping since early 2026) is another 30-40% better and nearly fully subscribed, and Amazon's custom-silicon run-rate has crossed $20B (Andy Jassy says it would be ~$50B if sold externally). Anthropic has committed over $100B to AWS over ten years and up to 5GW of Trainium capacity.",
-            "Google reframed the whole category around inference. Ironwood -- its 7th-gen TPU -- went GA as 'the first TPU for the age of inference,' and at Cloud Next 2026 Google previewed an eighth-generation split into a training chip (TPU 8t) and a dedicated inference chip (TPU 8i) on TSMC's 2nm process, claiming up to 2.8x training gains and an 80% inference price-performance improvement over Ironwood. The bifurcation is the tell: general-purpose silicon is giving way to chips purpose-built for serving.",
-            "The incumbents are not standing still, but the timing favours challengers near-term. NVIDIA's Rubin generation slipped roughly a quarter (ramp now around Q3 2026), AMD's MI400 -- 432GB of HBM4 and 19.6 TB/s of bandwidth -- goes to hyperscalers first with broad availability in 2027, and specialised entrants like Groq are attacking the decode phase directly (its LPU claims ~35x more inference throughput per megawatt than HBM-based GPUs). For an agent fleet, the practical takeaway is that 'which chip' is now a cost lever you can actually pull: the same Claude or open-weight model served on Trainium, a TPU 8i or a Groq LPU can carry a materially different cost-per-token than the default NVIDIA path."
-          ]
-        },
-        {
-          "title": "3. The serving engine -- software that 5-8x's your throughput",
-          "paragraphs": [
-            "Silicon sets the ceiling; the serving engine decides how much of it you actually use. The three that matter in 2026 -- vLLM, SGLang and TensorRT-LLM -- serve the same purpose but make different architectural bets, and the rule of thumb is simple: vLLM for the fastest path to production, TensorRT-LLM for peak NVIDIA throughput, SGLang for heavy multi-turn prefix reuse. All three now ship continuous (in-flight) batching, where a new request joins the running batch the moment a sequence slot frees up instead of waiting for the whole batch to drain -- the single biggest GPU-utilisation win of the last two years.",
-            "Three more primitives separate a cheap deployment from an expensive one. PagedAttention / KV-cache paging treats the attention cache like virtual memory so you stop wasting VRAM on reserved-but-unused slots. Prefix caching reuses the KV cache for shared prompt prefixes -- decisive for agents, whose long system prompts and tool schemas repeat on every call (this is the serving-side mirror of the caching lever from Day 83). And disaggregated prefill splits the compute-bound prefill phase and the memory-bound decode phase onto separate devices so they stop interfering -- now standard in vLLM and SGLang, and the reason large deployments get stable decode latency under load.",
-            "For an agentic workload the serving engine is not a back-office detail -- it is a first-class FinOps decision. Long, repetitive system prompts make prefix caching worth more to an agent than to a chatbot; bursty, parallel sub-agent fan-out makes continuous batching and disaggregated prefill the difference between 40% and 90% GPU occupancy. Picking the engine and turning on these features is often a larger cost win than swapping the model -- and it is entirely under your control."
-          ]
-        },
-        {
-          "title": "4. The optimisation layer -- where the $0.40 token comes from",
-          "paragraphs": [
-            "The last layer is the math trick that collapsed the price: serve the model in lower precision and predict more tokens per pass. Quantisation is the workhorse. Moving from FP16 to FP8 roughly halves the cost of an 8x-H100 node -- from about $1.90 to $0.95-1.10 per million tokens -- with negligible quality loss for most production traffic. Going further, 4-bit (AWQ) quantisation cuts VRAM by roughly 75%, which doesn't just save memory -- it lets the same model fit on a cheaper GPU class entirely, changing the hardware line item.",
-            "Speculative decoding attacks throughput from the other side: a small, cheap 'draft' model proposes several tokens, and the large target model verifies them in parallel, accepting the ones it agrees with. For output-heavy work like code generation and long-form writing that is a 2-4x speed-up at no quality cost. Stack the techniques together -- FP8 + FlashAttention 3 + continuous batching + speculative decoding on an H100 -- and you get 5-8x better cost-efficiency than naive FP16 with static batching. That multiplier, compounded across the whole industry, is what took a GPT-4-class token from ~$30/M in early 2023 to ~$0.40/M today: a roughly 1,000x collapse, one of the fastest in computing history.",
-            "The discipline that ties it back to Day 83: cheaper tokens are not the goal -- cheaper SUCCESSFUL OUTPUTS are. The FinOps Foundation's warning is that instrumenting cost-per-token without a quality gate is a trap; a 4-bit model that fails 5% more tasks can cost more per completed job than the FP8 version it replaced. So the supply-side stack (silicon -> serving engine -> quantisation/speculative decoding) is what sets your floor, but you still measure the win in cost-per-successful-task on the same OTEL->WORM telemetry stream you built for the regulator (Day 81), the buyer (Day 82) and your FinOps dashboard (Day 83)."
-          ]
-        }
-      ],
-      "market_signal": "With frontier models within ~3% of each other (Fable 5 / Opus 4.8 / GPT-5.6 / Gemini 3.5 Flash), capability is no longer the moat -- and Day 83 showed the demand-side levers are now table stakes. The next margin war is fought on the SUPPLY side: who can serve a token cheapest. That is why the money is moving into the inference substrate -- Amazon's custom-silicon run-rate past $20B with >$225B in Trainium commitments, Google splitting its TPU line into dedicated training (8t) and inference (8i) chips, AMD's MI400 and Groq's LPU attacking the decode phase, and Anthropic renting 300MW from xAI at $1.25B/month because the binding constraint is compute, not models. For a builder, the strategic read is that 'which chip + which serving engine + which quantisation' is now a first-class product decision, not an infra afterthought -- and the open-source serving stack (vLLM/SGLang) plus llama.cpp means the cheapest-token frontier is available to everyone, not just the hyperscalers. As model performance plateaus, the durable advantage is the lowest cost per successful, audited token -- the unit-economics race the IPO market (SpaceX priced, Anthropic and OpenAI both in the S-1 pipeline) is now pricing directly.",
-      "practical_takeaway": [
-        {
-          "title": "Treat the serving stack as a product decision, not an afterthought.",
-          "body": "Pick the engine for your workload -- vLLM for fastest-to-prod, TensorRT-LLM for peak NVIDIA throughput, SGLang for prefix-heavy agents -- then turn on continuous batching, prefix caching and disaggregated prefill. For repetitive agent prompts that is often a bigger cost win than swapping the model, and it is entirely under your control."
-        },
-        {
-          "title": "Quantise to FP8 by default, and measure cost-per-successful-task.",
-          "body": "FP8 roughly halves cost-per-token at negligible quality loss; 4-bit can drop you to a cheaper GPU class; speculative decoding adds 2-4x on output-heavy work. But validate on your golden set -- a lower-precision model that fails more tasks can cost MORE per completed job. The metric is cost-per-successful-output, not cost-per-token (Day 83)."
-        },
-        {
-          "title": "Make 'which silicon' a lever you actually pull.",
-          "body": "The same model on Trainium3, a TPU 8i, a Groq LPU or llama.cpp on your own hardware can carry a very different cost-per-token than the default NVIDIA path. Benchmark at least one non-NVIDIA option per workload, and for low-volume or privacy-bound tasks, remember local inference runs at ~$0.002/M in electricity versus $2.50-15/M in the cloud."
-        }
-      ],
-      "tomorrow_preview": "Day 86: Agent Interop & the Protocol Stack 2.0 -- one year on from MCP. How the connective tissue settled: MCP at ~97M monthly SDK downloads, A2A v1.x under the Linux Foundation with 150+ production orgs, and AG-UI converging on a shared event model -- the standards layer that lets the cheap-token fleet from today actually talk to each other."
-    },
-    {
-      "date": "2026-06-20",
-      "display_date": "June 20, 2026",
-      "issue": 86,
-      "title": "Agent Interop & the Protocol Stack 2.0",
-      "focus_intro": "One year on from MCP, this is the connective-tissue retrospective. Day 80 showed frontier models compressed to a near-tie (~3%); Day 85 showed the inference floor driving the token cheap and fungible. So if neither the model nor the token is the moat any more, what is? The answer is the standards layer -- the rails that let a fleet of cheap-token agents actually discover, call and trust each other -- plus the governance evidence riding on top of it. The stack settled into three complementary protocols (MCP for tools, A2A for agent-to-agent, AG-UI for agent-to-user), all now under neutral Linux Foundation governance. This issue walks how that connective tissue matured -- and why who owns the rails is the contest that captures the next $50B as model performance plateaus.",
-      "stats": [
-        {
-          "stat": "~97M / mo",
-          "label": "MCP SDK downloads (Python+TS) -- up from ~100K at launch, a ~970x rise in 18 months"
-        },
-        {
-          "stat": "59,000+",
-          "label": "MCP servers indexed across public registries (mcp.so / Smithery / Glama / official) from ~0"
-        },
-        {
-          "stat": "150+ orgs",
-          "label": "running A2A in production at its 1-yr mark -- 22K+ stars, SDKs in 5 languages"
-        },
-        {
-          "stat": "Dec 9 2025",
-          "label": "Linux Foundation forms the AAIF, anchored by MCP + goose + AGENTS.md"
-        }
-      ],
-      "viral_app": {
-        "name": "goose by Block -- the protocol stack as an app you run",
-        "description": "On a day about the protocol stack, the fitting trending project is the one that IS the stack in a single binary. goose (Block) has crossed ~46,700 GitHub stars with 500+ contributors and 110+ releases -- a local-first, general-purpose agent you run as a desktop app, a CLI or via API, with any LLM, wired to the MCP ecosystem (3,000+ servers and counting). What makes it the right spotlight here is governance, not just stars: goose now lives under the aaif-goose organisation -- it is one of the three founding projects of the Agentic AI Foundation (alongside MCP and AGENTS.md). It is, in other words, the consumer-facing embodiment of the open protocol stack: MCP for tools, local-first for data residency, no SaaS lock-in, foundation-stewarded rather than vendor-owned. That is the whole thesis of this issue shipped as something you can install tonight. (OpenClaw still tops the raw OSS star charts at 210K+ as the local-first foil -- viral, but a personal assistant, not a governed, foundation-stewarded protocol citizen.)",
-        "stats": [
-          {
-            "stat": "~46.7K stars",
-            "label": "500+ contributors, 110+ releases -- local-first agent, any LLM, MCP-native"
-          },
-          {
-            "stat": "3,000+ MCP servers",
-            "label": "the tool ecosystem goose plugs into via the open MCP standard"
-          },
-          {
-            "stat": "1 of 3",
-            "label": "AAIF founding projects (MCP + goose + AGENTS.md) -- foundation-stewarded"
-          }
-        ]
-      },
-      "sections": [
-        {
-          "title": "1. One year on -- from experiment to infrastructure",
-          "paragraphs": [
-            "Anthropic open-sourced the Model Context Protocol in late 2024 as a tidy answer to a messy problem: every agent needed bespoke glue for every tool. On its first anniversary (Nov 25, 2025) MCP shipped a major spec adding a Tasks API for long-running async jobs (kick off work, check back later) and Client ID Metadata Documents to simplify client registration and trust -- the upgrades you only build once a protocol is load-bearing. The adoption curve is the headline: from ~100K SDK downloads at launch to ~97M per month by early 2026 (~970x in 18 months), with Anthropic, OpenAI, Google, Microsoft, AWS and Salesforce all shipping support inside ~13 months, and 10,000+ public servers (59,000+ across all registries).",
-            "The decisive 2026 move was governance. On December 9, 2025 the Linux Foundation formed the Agentic AI Foundation (AAIF), anchored by three donated projects -- Anthropic's MCP, Block's goose (a local-first agent) and OpenAI's AGENTS.md -- with platinum members AWS, Anthropic, Block, Bloomberg, Cloudflare, Google, Microsoft and OpenAI. The point is structural: the protocols moved out from under any single vendor's wallet into neutral stewardship. Google's A2A, donated to the Linux Foundation back in June 2025, sits in the same umbrella. The MCP Registry is now funded by dozens of companies at $100K+/year -- the 'protocol-win' playbook (give the standard away, win the ecosystem) is now an institution, not a bet.",
-            "The reframe: a year ago these were experiments competing for mindshare. Today MCP is plumbing -- assumed, not argued. The interesting questions have moved up a level: not 'will agents standardise?' but 'who governs the rails, and what evidence rides on them?'"
-          ]
-        },
-        {
-          "title": "2. The three-layer stack -- MCP / A2A / AG-UI",
-          "paragraphs": [
-            "The 2026 production architecture is not one protocol but three, each answering a different question with a clean separation of concerns. You don't choose between them -- you layer them. MCP connects an agent DOWN to its tools and data; A2A connects agents SIDEWAYS to each other across frameworks and orgs; AG-UI connects the agent UP to the human in a live, streaming interface. AWS Bedrock AgentCore Runtime added AG-UI support in March 2026, cementing the three-layer stack as the reference production pattern.",
-            "MCP (agent -> tools): how does an agent reach a tool, file, API or data source? Primitives: tools / resources / prompts, Streamable HTTP + OAuth 2.1, Tasks API, MCP Apps (UI returns); stewarded by the AAIF / Linux Foundation. A2A (agent <-> agent): how do agents discover, delegate to and trust each other across orgs? Primitives: signed Agent Cards, task lifecycle, 5-language SDKs (Python/JS/Java/Go/.NET); Linux Foundation. AG-UI (agent -> user): how does any front-end stay in sync with a running agent in real time? Primitives: 16 event types -- token stream, tool calls, shared state, generative UI; CopilotKit / open spec.",
-            "The elegance is composition: an orchestrator uses A2A to hand a sub-task to a specialist agent, that agent uses MCP to hit the database and the payments API, and the whole run streams back to the user over AG-UI with approval gates and a kill switch. Get the layering right and you can swap the model underneath (Day 85's cheap, fungible token) without touching the wiring -- which is why the wiring, not the model, is where durable value now sits."
-          ]
-        },
-        {
-          "title": "3. The interop frontier -- where the rails are still being laid",
-          "paragraphs": [
-            "Mature does not mean finished. The live work in 2026 is at the seams -- making the three layers, and the packaging on top of them, genuinely interoperable rather than merely co-existing. Four frontiers: (1) A2A <-> MCP interop spec -- both are now Linux Foundation projects with overlapping membership and a committed joint interop spec, formally bridging 'tool access' and 'agent-to-agent' so the seam stops being bespoke glue. (2) MCP Apps -- tool calls return interactive UI (dashboards, widgets), not just text, with a stateless spec expected to land mid-2026, turning MCP from a data pipe into a UI surface (the bridge toward AG-UI). (3) SKILL.md + AGENTS.md -- a packaging layer on top of the protocols; SKILL.md is spoken by 20+ agents across 8 marketplaces by Q2 2026, the portable unit of agent value (write once, run on any compliant runtime). (4) Registries -- mcp.so (20K+), Smithery (the 'Docker Hub of MCP'), Glama and the official MCP Registry index 59K+ servers, so an agent can find and wire a tool at runtime.",
-            "Read the four together and a shape emerges: the protocol layer (MCP/A2A/AG-UI) is converging, and a packaging-and-discovery layer (SKILL.md + AGENTS.md + registries) is forming on top of it -- the way npm sat on Node. That layer is where the App-Store economics of Day 60 play out, and it is being standardised now, while it is still free to plant a flag on."
-          ]
-        },
-        {
-          "title": "4. Why the standards layer is the moat now",
-          "paragraphs": [
-            "Stack the last two retrospectives. Day 80: frontier models are within ~3% of each other -- capability is a near-tie. Day 85: the serving stack drove a GPT-4-class token down ~1,000x -- the token is cheap and fungible. If neither the model nor the token is scarce, the scarce, defensible thing is the connective tissue that lets a cheap-token fleet actually work together, and the governance evidence that makes one agent safe to trust inside another's workflow.",
-            "Governance rides the rails. The same OTEL->WORM audit trail you owe the regulator (Day 81) and the buyer (Day 82), and the SPIFFE/SVID identity + kill switches from Day 54, are exactly what make your agent a trustworthy citizen of someone else's fleet. Interop without audit is a liability; interop with it is a sellable feature. 'Show me your Agent Card and your audit trail' is becoming the new integration question.",
-            "That is why the real 2026 contest is who owns the rails. Anthropic plays the open-protocol / npm game (donate MCP and Skills, win the ecosystem). Google plays the OS-surface game (Gemini, Android, Spark -- own the device the agent runs on). Microsoft plays the enterprise control-plane game (Agent 365, Entra -- own the identity and registry the fleet is governed through). All three routes lead to the same prize: whoever's rails the fleet runs on captures the next $50B even as model performance plateaus. And there is a clock on it: the asymmetry window -- when the standards are open and free to build on -- closes around 2027 as revenue shares formalise. The cheapest flag you'll ever plant in the agent economy is the one you plant this year."
-          ]
-        }
-      ],
-      "market_signal": "With frontier models tied within ~3% and Day 85's inference floor making the token cheap and fungible, capability and unit cost are both commoditising -- so the durable moat moves to the connective tissue (MCP + A2A + AG-UI) and the governance evidence riding on it (OTEL->WORM, SPIFFE/SVID, kill switches). The contest is who owns the rails: Anthropic plays open-protocol/npm (donate MCP and Skills, win the ecosystem), Google plays the OS surface (Gemini/Android/Spark), Microsoft plays the enterprise control plane (Agent 365/Entra). Whoever's rails the fleet runs on captures the next $50B even as model performance plateaus -- and the asymmetry window, when the standards are open and free to plant a flag on, closes around 2027 as revenue shares formalise. The strategic read for a builder: adopt the three-layer stack, expose MCP entry points and an A2A Agent Card now, and make sure your audit trail rides the protocol so your agent is safe to embed in someone else's fleet.",
-      "practical_takeaway": [
-        {
-          "title": "Layer the three protocols -- don't reinvent the wiring.",
-          "body": "Use MCP for tool/data access, A2A for agent-to-agent delegation, and AG-UI for the user-facing surface. Adopting the stack means you can swap the model underneath (Day 85's cheap, fungible token) without rewiring -- the wiring is the asset, so don't build a bespoke RPC you'll have to maintain alone."
-        },
-        {
-          "title": "Plant your flag while the rails are still open.",
-          "body": "Publish one SKILL.md to the marketplaces, expose MCP entry points on your product so agents can call it, and register an A2A Agent Card so other agents can discover it. The asymmetry window -- free to build on, open governance -- closes around 2027 as revenue shares formalise."
-        },
-        {
-          "title": "Make governance evidence ride the protocol.",
-          "body": "The same OTEL->WORM audit trail and SPIFFE/SVID identity you owe the regulator (Day 81) and buyer (Day 82) are what make your agent safe to trust inside someone else's fleet. Interop without an audit trail is a liability; interop with one is a feature you can sell."
-        }
-      ],
-      "tomorrow_preview": "Day 87: The Agentic AI Data-Centre & Power Wall -- the physical constraint behind Day 85's silicon race. Data-centre electricity heading to ~945 TWh by 2030, the gigawatt compute deals, orbital data centres on the drawing board, and why power -- not chips or models -- may be the real ceiling on the agent economy."
     }
   ],
   "last_updated": "2026-06-20",
