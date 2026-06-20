@@ -7,63 +7,59 @@
   "learnings": [
     {
       "date": "2026-06-20",
-      "display_date": "JUNE 20, 2026",
+      "display_date": "June 20, 2026",
       "issue": 86,
       "title": "Agent Interop & the Protocol Stack 2.0",
-      "focus_intro": "models compressed to a near-tie (~3%); Day 85 showed the inference floor driving the token",
-      "viral_app": {
-        "name": "On a day about the protocol stack, the fitting trending project is the one that is the stack in a single binary.",
-        "description": "goose (Block) has crossed ~46,700 GitHub stars with 500+ contributors and 110+ releases -- a local-first, general-purpose agent you run as a desktop app, a CLI or via API, with any LLM, wired to the MCP ecosystem (3,000+ servers and counting). What makes it the right spotlight here is governance, not just stars: goose now lives under the aaif-goose organisation -- it is one of the three founding projects of the Agentic AI Foundation (alongside MCP and AGENTS.md). It is, in other words, the consumer-facing embodiment of the open protocol stack: MCP for tools, local-first for data residency, no SaaS lock-in, foundation-stewarded rather than vendor-owned. That is the whole thesis of this issue ",
-        "stats": [
-          {
-            "stat": "3,000+ MCP servers",
-            "label": "the tool ecosystem goose plugs into via the open MCP standard"
-          },
-          {
-            "stat": "1 of 3",
-            "label": "AAIF founding projects (MCP + goose + AGENTS.md) -- foundation-stewarded, not vendor-owned"
-          }
-        ]
-      },
+      "focus_intro": "One year on from MCP, models compressed to a ~3% tie and tokens down ~1,000x — so what's the moat? The rails. MCP / A2A / AG-UI are now neutral Linux Foundation infrastructure, and who owns the protocol layer is the $50B contest playing out in 2026.",
       "stats": [
+        {
+          "stat": "~97M / mo",
+          "label": "MCP SDK downloads (Python+TS) — up from ~100K at launch, a ~970x rise in 18 months"
+        },
         {
           "stat": "59,000+",
           "label": "MCP servers indexed across public registries (mcp.so / Smithery / Glama / official) from ~0"
         },
         {
           "stat": "150+ orgs",
-          "label": "running A2A in production at its 1-yr mark -- 22K+ stars, SDKs in 5 languages"
+          "label": "running A2A in production at its 1-yr mark — 22K+ stars, SDKs in 5 languages"
+        },
+        {
+          "stat": "Dec 9, 2025",
+          "label": "Linux Foundation forms the AAIF, anchored by MCP + goose + AGENTS.md, with 8 platinum members"
         }
       ],
+      "viral_app": {
+        "name": "goose by Block (aaif-goose)",
+        "description": "goose (Block) has crossed ~46,700 GitHub stars with 500+ contributors and 110+ releases — a local-first, general-purpose agent you run as a desktop app, CLI or via API, with any LLM, wired to the MCP ecosystem (3,000+ servers and counting). What makes it the right spotlight: goose now lives under the aaif-goose organisation — one of the three founding projects of the Agentic AI Foundation (alongside MCP and AGENTS.md). It is the consumer-facing embodiment of the open protocol stack: MCP for tools, local-first for data residency, no SaaS lock-in, foundation-stewarded rather than vendor-owned. The whole thesis of this issue shipped as something you can install tonight. (OpenClaw still tops raw OSS charts at 210K+ as the local-first foil — viral, but not a governed protocol citizen.)",
+        "stats": [
+          {
+            "stat": "~46.7K stars",
+            "label": "500+ contributors, 110+ releases — local-first agent, any LLM, MCP-native"
+          },
+          {
+            "stat": "3,000+ MCP servers",
+            "label": "the tool ecosystem goose plugs into via the open MCP standard"
+          },
+          {
+            "stat": "1 of 3",
+            "label": "AAIF founding projects (MCP + goose + AGENTS.md) — foundation-stewarded, not vendor-owned"
+          }
+        ]
+      },
       "sections": [
         {
-          "title": "1 · One year on -- from experiment to infrastructure",
+          "title": "1 · One year on — from experiment to infrastructure",
           "paragraphs": [
-            "Anthropic open-sourced the Model Context Protocol in late 2024 as a tidy answer to a messy problem: every agent needed bespoke glue for every tool. On its first anniversary (Nov 25, 2025) MCP shipped a major spec adding a Tasks API for long-running async jobs (kick off work, check back later) and Client ID Metadata Documents to simplify client registration and trust -- the upgrades you only build once a protocol is load-bearing. The adoption curve is the headline: from ~100K SDK downloads at launch to ~97M per month by early 2026 (~970x in 18 months), with Anthropic, OpenAI, Google, Microsoft, AWS and Salesforce all shipping support inside ~13 months, and 10,000+ public servers (59,000+ across all registries). The decisive 2026 move was governance. On December 9, 2025 the Linux Foundation formed the Agentic AI Foundation (AAIF), anchored by three donated projects -- Anthropic's MCP, Block's goose (a local-first agent) and OpenAI's AGENTS.md -- with platinum members AWS, Anthropic, Block, Bloomberg, Cloudflare, Google, Microsoft and OpenAI. The point is structural: the protocols moved out from under any single vendor's wallet into neutral stewardship. Google's A2A, donated to the Linux Foundation back in June 2025, sits in the same umbrella. The MCP Registry is now funded by dozens of companies at $100K+/year -- the 'protocol-win' playbook (give the standard away, win the ecosystem) is now an institution, not a bet. The reframe: a year ago these were experiments competing for mindshare. Today MCP is plumbing -- assumed, not argued. The interesting questions have moved up a level: not 'will agents standardise?' but 'who governs the rails, and what evidence rides on them?'"
+            "Anthropic open-sourced the Model Context Protocol in late 2024 as a tidy answer to a messy problem: every agent needed bespoke glue for every tool. On its first anniversary (Nov 25, 2025) MCP shipped a major spec adding a Tasks API for long-running async jobs and Client ID Metadata Documents to simplify client registration and trust — upgrades you only build once a protocol is load-bearing. The adoption curve is the headline: from ~100K SDK downloads at launch to ~97M per month by early 2026 (~970x in 18 months), with Anthropic, OpenAI, Google, Microsoft, AWS and Salesforce all shipping support inside ~13 months, and 10,000+ public servers (59,000+ across all registries).",
+            "The decisive 2026 move was governance. On December 9, 2025 the Linux Foundation formed the Agentic AI Foundation (AAIF), anchored by three donated projects — Anthropic's MCP, Block's goose and OpenAI's AGENTS.md — with platinum members AWS, Anthropic, Block, Bloomberg, Cloudflare, Google, Microsoft and OpenAI. The protocols moved out from under any single vendor's wallet into neutral stewardship. Google's A2A, donated to the Linux Foundation back in June 2025, sits in the same umbrella. The MCP Registry is now funded by dozens of companies at $100K+/year — the 'protocol-win' playbook is now an institution, not a bet. The reframe: a year ago these were experiments competing for mindshare. Today MCP is plumbing — assumed, not argued."
           ]
         },
         {
-          "title": "1. Layer the three protocols -- don't reinvent the wiring.",
+          "title": "2 · The three-layer stack — MCP / A2A / AG-UI",
           "paragraphs": [
-            "Use MCP for tool/data access, A2A for agent-to-agent delegation, and AG-UI for the user-facing surface. Adopting the stack means you can swap the model underneath (Day 85's cheap, fungible token) without rewiring -- the wiring is the asset, so don't build a bespoke RPC you'll have to maintain alone."
-          ]
-        },
-        {
-          "title": "2 · The three-layer stack -- MCP / A2A / AG-UI",
-          "paragraphs": [
-            "The 2026 production architecture is not one protocol but three, each answering a different question with a clean separation of concerns. You don't choose between them -- you layer them. MCP connects an agent down to its tools and data; A2A connects agents sideways to each other across frameworks and orgs; AG-UI connects the agent up to the human in a live, streaming interface. AWS Bedrock AgentCore Runtime added AG-UI support in March 2026, cementing the three-layer stack as the reference production pattern. The elegance is composition: an orchestrator uses A2A to hand a sub-task to a specialist agent, that agent uses MCP to hit the database and the payments API, and the whole run streams back to the user over AG-UI with approval gates and a kill switch. Get the layering right and you can swap the model underneath (Day 85's cheap, fungible token) without touching the wiring -- which is why the wiring, not the model, is where durable"
-          ]
-        },
-        {
-          "title": "2. Plant your flag while the rails are still open.",
-          "paragraphs": [
-            "Publish one SKILL.md to the marketplaces, expose MCP entry points on your product so agents can call it, and register an A2A Agent Card so other agents can discover it. The asymmetry window -- free to build on, open governance -- closes around 2027 as revenue shares formalise."
-          ]
-        },
-        {
-          "title": "3 · The interop frontier -- where the rails are still being laid",
-          "paragraphs": [
-            "Mature does not mean finished. The live work in 2026 is at the seams -- making the three layers, and the packaging on top of them, genuinely interoperable rather than merely co-existing. Read the four rows together and a shape emerges: the protocol layer (MCP/A2A/AG-UI) is converging, and a packaging-and-discovery layer (SKILL.md + AGENTS.md + registries) is forming on top of it -- the way npm sat on Node. That layer is where the App-Store economics of Day 60 play out, and it is being standardised now, while it is still free to plant a flag on."
+            "The 2026 production architecture is not one protocol but three, each answering a different question with a clean separation of concerns. You don't choose between them — you layer them. MCP connects an agent down to its tools and data; A2A connects agents sideways to each other across frameworks and orgs; AG-UI connects the agent up to the human in a live, streaming interface. AWS Bedrock AgentCore Runtime added AG-UI support in March 2026, cementing the three-layer stack as the reference production pattern.",
+            "The elegance is composition: an orchestrator uses A2A to hand a sub-task to a specialist agent, that agent uses MCP to hit the database and the payments API, and the whole run streams back to the user over AG-UI with approval gates and a kill switch. Get the layering right and you can swap the model underneath (Day 85's cheap, fungible token) without touching the wiring — which is why the wiring, not the model, is where durable value now sits."
           ],
           "table": {
             "headers": [
@@ -80,7 +76,7 @@
                 "AAIF / Linux Foundation"
               ],
               [
-                "A2A (agent « agent)",
+                "A2A (agent ↔ agent)",
                 "How do agents discover, delegate to and trust each other across orgs?",
                 "Signed Agent Cards; task lifecycle; 5-language SDKs (Py/JS/Java/Go/.NET)",
                 "Linux Foundation"
@@ -95,56 +91,65 @@
           }
         },
         {
-          "title": "3. Make governance evidence ride the protocol.",
+          "title": "3 · The interop frontier — where the rails are still being laid",
           "paragraphs": [
-            "The same OTELfiWORM audit trail and SPIFFE/SVID identity you owe the regulator (Day 81) and buyer (Day 82) are what make your agent safe to trust inside someone else's fleet. Interop without an audit trail is a liability; interop with",
-            "Tomorrow (Day 87): The Agentic AI Data-Centre & Power Wall -- the physical constraint behind Day 85's silicon race. Data-centre electricity heading to ~945 TWh by 2030, the gigawatt compute deals, orbital data centres on the drawing board, and why power -- not chips or models -- may be"
-          ]
+            "Mature does not mean finished. The live work in 2026 is at the seams — making the three layers, and the packaging on top of them, genuinely interoperable rather than merely co-existing. Read the four frontiers together and a shape emerges: the protocol layer (MCP/A2A/AG-UI) is converging, and a packaging-and-discovery layer (SKILL.md + AGENTS.md + registries) is forming on top of it — the way npm sat on Node. That layer is where the App-Store economics of Day 60 play out, and it is being standardised now, while it is still free to plant a flag on."
+          ],
+          "table": {
+            "headers": [
+              "Frontier",
+              "What's shipping in 2026",
+              "Why it matters"
+            ],
+            "rows": [
+              [
+                "A2A ↔ MCP interop spec",
+                "Both are now Linux Foundation projects with overlapping membership and a committed joint interop spec",
+                "Formally bridges 'tool access' and 'agent-to-agent' so the seam stops being bespoke glue"
+              ],
+              [
+                "MCP Apps",
+                "Tool calls return interactive UI (dashboards, widgets), not just text; stateless spec expected to land mid-2026",
+                "Turns MCP from a data pipe into a UI surface — the bridge toward AG-UI"
+              ],
+              [
+                "SKILL.md + AGENTS.md",
+                "Packaging layer on top of the protocols; SKILL.md spoken by 20+ agents, 8 marketplaces by Q2 2026",
+                "The portable unit of agent value — write once, run on any compliant runtime"
+              ],
+              [
+                "Registries",
+                "mcp.so (20K+), Smithery ('Docker Hub of MCP'), Glama, official MCP Registry — 59K+ servers indexed",
+                "Discovery infrastructure: an agent can find and wire a tool at runtime"
+              ]
+            ]
+          }
         },
         {
           "title": "4 · Why the standards layer is the moat now",
           "paragraphs": [
-            "Stack the last two retrospectives. Day 80: frontier models are within ~3% of each other -- capability is a near-tie. Day 85: the serving stack drove a GPT-4-class token down ~1,000x -- the token is cheap and fungible. If neither the model nor the token is scarce, the scarce, defensible thing is the connective tissue that lets a cheap-token fleet actually work together, and the governance evidence that makes one agent safe to trust",
-            "Governance rides the rails. The same OTELfiWORM audit trail you owe the regulator (Day 81) and the buyer (Day 82), and the SPIFFE/SVID identity + kill switches from Day 54, are exactly what make your agent a trustworthy citizen of someone else's fleet. Interop without audit is a liability; interop with it is a sellable feature. 'Show me your Agent Card and your audit trail' is becoming the",
-            "That is why the real 2026 contest is who owns the rails. Anthropic plays the open-protocol / npm game (donate MCP and Skills, win the ecosystem). Google plays the OS-surface game (Gemini, Android, Spark -- own the device the agent runs on). Microsoft plays the enterprise control-plane game (Agent 365, Entra -- own the identity and registry the fleet is governed through). All three routes lead to the same prize: whoever's rails the fleet runs on captures the next $50B even as model performance plateaus. And there is a clock on it: the asymmetry window -- when the standards are open and free to build on -- closes around 2027 as revenue shares formalise. The cheapest flag you'll ever plant in the agent economy is the one you plant this year."
-          ],
-          "table": {
-            "headers": [
-              "Protocol",
-              "Question it answers",
-              "Signature primitives",
-              "Steward"
-            ],
-            "rows": [
-              [
-                "MCP (agent → tools)",
-                "How does an agent reach a tool, file, API or data source?",
-                "Tools / resources / prompts; Streamable HTTP + OAuth 2.1; Tasks API; MCP Apps (UI returns)",
-                "AAIF / Linux Foundation"
-              ],
-              [
-                "A2A (agent « agent)",
-                "How do agents discover, delegate to and trust each other across orgs?",
-                "Signed Agent Cards; task lifecycle; 5-language SDKs (Py/JS/Java/Go/.NET)",
-                "Linux Foundation"
-              ],
-              [
-                "AG-UI (agent → user)",
-                "How does any front-end stay in sync with a running agent in real time?",
-                "16 event types: token stream, tool calls, shared state, generative UI",
-                "CopilotKit / open spec"
-              ]
-            ]
-          }
-        },
-        {
-          "title": "5 · Viral app spotlight -- goose by Block, the protocol stack as an app",
-          "paragraphs": [
-            "On a day about the protocol stack, the fitting trending project is the one that is the stack in a single binary. goose (Block) has crossed ~46,700 GitHub stars with 500+ contributors and 110+ releases -- a local-first, general-purpose agent you run as a desktop app, a CLI or via API, with any LLM, wired to the MCP ecosystem (3,000+ servers and counting). What makes it the right spotlight here is governance, not just stars: goose now lives under the aaif-goose organisation -- it is one of the three founding projects of the Agentic AI Foundation (alongside MCP and AGENTS.md). It is, in other words, the consumer-facing embodiment of the open protocol stack: MCP for tools, local-first for data residency, no SaaS lock-in, foundation-stewarded rather than vendor-owned. That is the whole thesis of this issue shipped as something you can install tonight. (OpenClaw still tops the raw OSS star charts at 210K+ as the local-first foil -- viral, but a personal assistant, not a governed, foundation-stewarded protocol citizen.)"
+            "Stack the last two retrospectives. Day 80: frontier models are within ~3% of each other — capability is a near-tie. Day 85: the serving stack drove a GPT-4-class token down ~1,000x — the token is cheap and fungible. If neither the model nor the token is scarce, the scarce, defensible thing is the connective tissue that lets a cheap-token fleet actually work together, and the governance evidence that makes one agent safe to trust inside another's workflow.",
+            "Governance rides the rails. The same OTEL→WORM audit trail you owe the regulator (Day 81) and the buyer (Day 82), and the SPIFFE/SVID identity + kill switches from Day 54, are exactly what make your agent a trustworthy citizen of someone else's fleet. Interop without audit is a liability; interop with it is a sellable feature. 'Show me your Agent Card and your audit trail' is becoming the new integration question.",
+            "That is why the real 2026 contest is who owns the rails. Anthropic plays the open-protocol / npm game (donate MCP and Skills, win the ecosystem). Google plays the OS-surface game (Gemini, Android, Spark — own the device). Microsoft plays the enterprise control-plane game (Agent 365, Entra — own the identity and registry). All three routes lead to the same prize: whoever's rails the fleet runs on captures the next $50B even as model performance plateaus. And there is a clock on it: the asymmetry window — when the standards are open and free to build on — closes around 2027 as revenue shares formalise. The cheapest flag you'll ever plant in the agent economy is the one you plant this year."
           ]
         }
       ],
-      "practical_takeaway": []
+      "market_signal": "With models within ~3% and tokens down ~1,000x, the moat has moved to the connective-tissue layer — the protocol stack and governance evidence that let a cheap-token fleet discover, call and trust each other. MCP/A2A/AG-UI are already neutral foundations; SKILL.md + AGENTS.md + registries are the packaging layer forming on top. Asymmetry window closes ~2027 as revenue shares formalise.",
+      "practical_takeaway": [
+        {
+          "title": "Layer the three protocols — don't reinvent the wiring",
+          "body": "Use MCP for tool/data access, A2A for agent-to-agent delegation, and AG-UI for the user-facing surface. Adopting the stack means you can swap the model underneath (Day 85's cheap, fungible token) without rewiring — the wiring is the asset, so don't build a bespoke RPC you'll have to maintain alone."
+        },
+        {
+          "title": "Plant your flag while the rails are still open",
+          "body": "Publish one SKILL.md to the marketplaces, expose MCP entry points on your product so agents can call it, and register an A2A Agent Card so other agents can discover it. The asymmetry window — free to build on, open governance — closes around 2027 as revenue shares formalise."
+        },
+        {
+          "title": "Make governance evidence ride the protocol",
+          "body": "The same OTEL→WORM audit trail and SPIFFE/SVID identity you owe the regulator (Day 81) and buyer (Day 82) are what make your agent safe to trust inside someone else's fleet. Interop without an audit trail is a liability; interop with one is a feature you can sell."
+        }
+      ],
+      "tomorrow_preview": "Day 87: The Agentic AI Data-Centre & Power Wall — the physical constraint behind Day 85's silicon race. Data-centre electricity heading to ~945 TWh by 2030, the gigawatt compute deals, orbital data centres on the drawing board, and why power — not chips or models — may be the real ceiling on the agent economy."
     },
     {
       "date": "2026-06-19",
