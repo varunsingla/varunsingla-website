@@ -6,6 +6,158 @@
   },
   "learnings": [
     {
+      "date": "2026-06-21",
+      "display_date": "June 21, 2026",
+      "issue": 87,
+      "title": "The Agentic AI Data-Centre & Power Wall",
+      "focus_intro": "Day 85 showed the token is nearly free; Day 86 showed the rails are commodity. So what's left to be scarce? Electrons. The binding constraint on the agent economy isn't the model or the chip — it's the gigawatt. Compute deals are now power deals, the grid is years behind, and labs are eyeing orbit to escape the wall.",
+      "stats": [
+        {
+          "stat": "~945 TWh",
+          "label": "projected global data-centre electricity by 2030 (IEA) — ~Japan's entire use, double the ~485 TWh of 2025"
+        },
+        {
+          "stat": "~half",
+          "label": "of US electricity-demand growth to 2030 is data centres — soon more US power than steel+aluminium+cement+chemicals combined"
+        },
+        {
+          "stat": "4–7 yrs",
+          "label": "grid-interconnection wait in major markets; transformers now 128–144 weeks — the queue is the bottleneck"
+        },
+        {
+          "stat": "20+ GW",
+          "label": "compute Broadcom's Apollo/Blackstone 'AI XPV' vehicle is wiring through 2028 for Anthropic + OpenAI"
+        }
+      ],
+      "viral_app": {
+        "name": "Starcloud — the data centre that left Earth",
+        "description": "Starcloud (NVIDIA-backed, Y Combinator) became the first company to train an LLM in space — Andrej Karpathy's nanoGPT — and to run Google's Gemma in orbit, aboard its Starcloud-1 satellite carrying an NVIDIA H100 (about 100x the most powerful GPU ever flown). Founded barely 21 months ago, it raised $170M in April 2026 at a $1.1B valuation and filed with the FCC for a constellation of up to 88,000 satellites; its second satellite, due October 2026, carries NVIDIA's Blackwell platform and ~100x the first's power generation. The pitch IS the thesis of this issue: in orbit you get continuous space solar and free radiative cooling, sidestepping the grid queue, the transformer wait and the water draw entirely. It's the literal escape hatch from the power wall — with NVIDIA's Space-1 Vera Rubin Module and Google's Project Suncatcher (TPU-laden solar satellites, Planet-flown demo early 2027) as the big-tech versions of the same bet. Amazon's cloud chief calls orbital data centres 'nowhere close' to practical — the skeptic's counterweight. (OpenClaw still tops raw OSS charts at 210K+ as the local-first foil — viral, but a personal agent, not a moonshot on the energy constraint.)",
+        "stats": [
+          {
+            "stat": "First in orbit",
+            "label": "first company to train an LLM (nanoGPT) & run Google's Gemma in space, on an H100 satellite"
+          },
+          {
+            "stat": "$1.1B val",
+            "label": "April 2026 $170M Series A; filed with the FCC for up to 88,000 satellites"
+          },
+          {
+            "stat": "24/7 solar",
+            "label": "space solar + free radiative cooling = the pitch to skip the grid queue, transformer wait & water draw"
+          }
+        ]
+      },
+      "sections": [
+        {
+          "title": "1 · The power wall — why electricity is the new ceiling",
+          "paragraphs": [
+            "Each retrospective in this series has chased the real constraint one layer deeper, and it has finally landed on something you can measure in watts. The IEA projects global data-centre electricity roughly doubling from ~485 TWh in 2025 to ~945 TWh by 2030 — about Japan's total consumption and ~3% of world demand — with AI-specific demand tripling. The squeeze is geographic concentration: data centres drive more than 20% of electricity-demand growth across advanced economies and nearly half of all US demand growth to 2030, at which point the US will burn more power running data centres than producing steel, aluminium, cement, chemicals and every other energy-intensive good combined.",
+            "US data-centre load already jumped from ~23 GW (2023) to ~42 GW (2026). And the binding constraint is not FLOPs, or even chips — it is getting the electrons to the rack. Grid-interconnection waits run 4–7 years in major markets and power-transformer lead times have stretched to 128–144 weeks. You can take delivery of 450,000 GPUs far faster than you can energise them; the chip is no longer the long pole in the tent. The reframe: the chip shortage of 2024 has become the electron shortage of 2026. A site with permits, land and GPUs but no grid connection is a stranded asset — the scarce unit in the agent economy is now a megawatt-hour delivered to a specific rack, on a specific date."
+          ]
+        },
+        {
+          "title": "2 · The gigawatt land-grab — compute deals are now power deals",
+          "paragraphs": [
+            "The clearest tell that power is the real currency: the marquee 2026 deals are quoted in gigawatts, not dollars or FLOPs. When a lab raises $35–50B it is not buying intelligence — it is buying secured electricity and a place in the interconnection queue. Read the financing structures below as instruments whose underlying asset is power.",
+            "OpenAI's Stargate program targets 10 GW of NVIDIA systems; Meta's Hyperion alone will draw roughly half of New York City's electricity at full build. Anthropic has committed $50B to US infrastructure and, in June 2026, sealed the Apollo/Blackstone facility on top of a multi-gigawatt Google/Broadcom TPU deal for 2027+. The dollar figures are enormous, but the operative number in every one of these is the GW — and when it actually energises."
+          ],
+          "table": {
+            "headers": [
+              "Campus / deal",
+              "Player",
+              "Power",
+              "What it tells you"
+            ],
+            "rows": [
+              [
+                "Stargate I (Abilene, TX)",
+                "OpenAI + NVIDIA",
+                "~1.2 GW",
+                "450,000+ GB200 GPUs; first GW of a 10 GW NVIDIA build lands H2 2026"
+              ],
+              [
+                "Hyperion (Louisiana)",
+                "Meta + Blue Owl",
+                "2 → 5 GW",
+                "$27B JV; ~half of NYC's power at peak from a dedicated 2 GW gas plant; +6 GW nuclear PPAs separately"
+              ],
+              [
+                "$35B private credit (Jun 2026)",
+                "Anthropic + Apollo/Blackstone",
+                "+~1 GW",
+                "SPV buys Google TPUs and leases them back; atop a $50B US commitment + 12 LOIs for >1 GW of leases"
+              ],
+              [
+                "'AI XPV' platform (to 2028)",
+                "Broadcom + Apollo/Blackstone",
+                "20+ GW",
+                "One financing vehicle wiring compute for Anthropic AND OpenAI — the scale is denominated in GW"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3 · The scramble for electrons — behind-the-meter, gas, nuclear & the phantom queue",
+          "paragraphs": [
+            "With the grid years behind, operators are going around it. 62% of data centres now weigh on-site generation, and behind-the-meter capacity is projected to reach 35 GW by 2030 — gas turbines have gone from backup to primary power for AI campuses. Each source below helps on a very different clock.",
+            "And the demand signal itself is badly distorted by a phantom queue. In ERCOT (Texas), data centres make up ~73% of a ~226 GW large-load interconnection queue, and total requests have ballooned to roughly 438 GW — more than five times the entire state's record peak — much of it speculative projects that will never be built. ERCOT expects a >92 GW summer peak in 2026, Texas is planning $30B+ in transmission upgrades, and on June 17 the operator moved to a new process to vet which data-centre requests are genuine. The lesson for anyone modelling agent capacity: announced gigawatts are not delivered gigawatts — and the near-term ceiling is interconnection and transformers, so on-site generation is where capacity actually appears in 2026–27."
+          ],
+          "table": {
+            "headers": [
+              "Power source",
+              "Reality in 2026",
+              "When it actually helps"
+            ],
+            "rows": [
+              [
+                "Grid interconnection",
+                "4–7 yr waits; transformers 128–144 wks; ERCOT large-load queue ~226 GW, ~73% data centres",
+                "The default — and the bottleneck; years behind demand"
+              ],
+              [
+                "Behind-the-meter gas",
+                "62% of DCs weighing on-site gen; mobile + aeroderivative turbines now primary, not backup",
+                "Now — the only thing fast enough for 2026–27 campuses"
+              ],
+              [
+                "Nuclear / SMR",
+                "Meta inks ~6 GW of nuclear PPAs; small modular reactors realistically 2032–2035, 5+ yr to permit",
+                "Durable but slow — a 2030s answer, not a 2026 one"
+              ],
+              [
+                "Orbital (space solar)",
+                "NVIDIA Space-1, Google Suncatcher, Starcloud; 24/7 solar + free radiative cooling, no water",
+                "Moonshot — 2027 demos, 2030s maybe; escapes the grid entirely"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "4 · The escape hatch — orbit, and why power is the moat now",
+          "paragraphs": [
+            "If you cannot beat the grid queue, leave the planet. The most striking 2026 response is orbital compute: in space you get 24/7 solar with no night-side losses and free radiative cooling — no water, no transformer wait, no NIMBY. NVIDIA debuted its Space-1 Vera Rubin Module at GTC 2026 (up to ~25x more AI compute for space inferencing); Google's Project Suncatcher is studying TPU-laden solar-satellite constellations with a Planet-flown demo slated for early 2027; and Starcloud has already trained an LLM and run Gemma in orbit. It is early — Amazon's cloud chief calls orbital data centres 'nowhere close' to practical, and launch cost, latency and servicing are real — but that serious capital is chasing it at all tells you how hard the terrestrial wall has become.",
+            "Algorithms → atoms. Stack the retrospectives: model capability is a near-tie (Day 80), the token is nearly free (Day 85), the rails are commodity (Day 86). The scarce, defensible input left is energy. The durable moat in the agent economy is shifting from clever software to secured power-purchase agreements, queue position, behind-the-meter generation, and access to cheap, abundant, clean electrons. This also reframes the IPO-era race: the labs filing to go public are valued on how much intelligence they can deliver, and delivery is now gated by megawatts. PPAs, interconnection priority and on-site generation have become strategic balance-sheet assets — the part of the agent stack money can buy but cannot conjure overnight, because you cannot pour a substation or stand up a reactor on a model-release cadence."
+          ]
+        }
+      ],
+      "market_signal": "The agent economy's ceiling moved from algorithms to atoms. With frontier models within ~3% and tokens down ~1,000x, the scarce input is electricity — and the grid is 4–7 years behind. Compute deals are now power deals quoted in gigawatts; labs raising $35–50B are buying secured electrons and queue position, not raw intelligence. Near-term capacity appears behind-the-meter (gas now, nuclear/SMR 2032+); the moonshot is orbit. Power, not chips or models, is the real governor on how fast agents scale.",
+      "practical_takeaway": [
+        {
+          "title": "Read compute deals in gigawatts, not dollars",
+          "body": "When a lab signs $35–50B, translate it: how many GW of secured power, and when does it energise? Announced capacity (ERCOT's ~438 GW of requests) is mostly phantom — the delivered gigawatts, gated by 4–7-year interconnection and 128–144-week transformer waits, are what actually cap how fast agent capacity can grow."
+        },
+        {
+          "title": "Make energy part of your cost-per-task",
+          "body": "The Day 83 FinOps unit (cost per successful task) now has a power floor underneath it. The Day 85 levers — model routing, prefix caching, FP8 — are not only cost optimisations, they are energy optimisations that keep you under the wall. Measure watt-hours per completed task, not just dollars."
+        },
+        {
+          "title": "Watch the unlocks on the right clock",
+          "body": "Behind-the-meter gas is the 2026–27 reality; grid and transmission is a multi-year, $30B-class build; nuclear and SMRs are 2032+; orbital is a 2027 demo and a 2030s maybe. Do not price 2030 power solutions into 2026 plans — this year the binding constraint is on-site generation and queue position."
+        }
+      ],
+      "tomorrow_preview": "Day 88: Sovereign AI & the Compute Map — once power and chips become the binding constraint, the gigawatt race goes geopolitical. EU AI gigafactories, the Gulf's Stargate-scale build-outs, India's compute mission and China's parallel stack — how compute nationalism redraws who gets to run the agent economy."
+    },
+    {
       "date": "2026-06-20",
       "display_date": "June 20, 2026",
       "issue": 86,
@@ -13820,6 +13972,6 @@
       ]
     }
   ],
-  "last_updated": "2026-06-20",
-  "total_days": 86
+  "last_updated": "2026-06-21",
+  "total_days": 87
 }
