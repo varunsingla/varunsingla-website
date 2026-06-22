@@ -6,6 +6,163 @@
   },
   "learnings": [
     {
+      "date": "2026-06-22",
+      "display_date": "June 22, 2026",
+      "issue": 88,
+      "title": "Sovereign AI & the Compute Map",
+      "focus_intro": "Day 85 found the binding constraint was silicon; Day 87 found it was the gigawatt. Day 88 follows the logic to its end: once chips and power are THE scarce strategic assets, the race to control them goes geopolitical. Nations have stopped merely buying AI and started building sovereign compute — so they don't rent their future from someone else's data centre. The 'compute map' is being redrawn along political lines: which chips you can buy, in what quantity, to run where, is now set by export licences and bilateral diplomacy, not open markets. Compute has become statecraft.",
+      "stats": [
+        {
+          "stat": "€20B",
+          "label": "EU InvestAI fund for 4–5 AI 'gigafactories' (~100,000 chips each); 76 bids came in across 60 sites in 16 member states"
+        },
+        {
+          "stat": "5 GW",
+          "label": "the UAE–US AI campus in Abu Dhabi; Stargate UAE is a 1 GW slice, first 200 MW live Q3 2026 — the Gulf buying its way to the frontier"
+        },
+        {
+          "stat": "100,000",
+          "label": "public GPUs India targets by Dec 2026 (from ~34,000 now) at ~Rs 65/GPU-hour — a subsidised national compute commons"
+        },
+        {
+          "stat": "1.6M",
+          "label": "Ascend dies Huawei aims to make in 2026 — but China's HBM memory is ~2 generations behind, the bottleneck behind its walled stack"
+        }
+      ],
+      "viral_app": {
+        "name": "Sarvam 'Indus' & the Sarvam Kaze glasses — India's sovereign AI goes consumer",
+        "description": "If sovereign AI had a face this week it was Sarvam, the Bengaluru startup chosen by the IndiaAI Mission to build the country's sovereign LLM. In February 2026 it shipped Sarvam-30B (a mixture-of-experts model) and the 105B-parameter 'Indus' (128K-token context) into a consumer app on the Apple App Store, Google Play and web — a frontier-class assistant fluent across 22 Indian languages, trained on Indian data and running on Indian compute. Then came the viral moment money can't buy: Prime Minister Modi photographed wearing Sarvam Kaze, the company's indigenous AI glasses that see and hear the world in real time (launching May 2026). The traction followed — a $250M round led by NVIDIA, Accel and HCLTech in March 2026 valuing Sarvam at $1.5B (unicorn status). It is the cleanest proof-point of this issue: a nation building its own model + app + even hardware so the AI 1.4 billion people use isn't a rental from someone else's stack. Europe's equivalent is Mistral's Le Chat (the EU 'AI darling' that hit 1M downloads in 14 days, now ~€11.7B and the sovereignty poster-child for Airbus, BMW and Stellantis). (OpenClaw still tops the raw OSS star charts at 210K+ as the borderless, local-first foil — viral, but the opposite of sovereign.)",
+        "stats": [
+          {
+            "stat": "22 languages",
+            "label": "Sarvam 'Indus' (105B, 128K ctx) — sovereign assistant on App Store, Play & web, on Indian data + compute"
+          },
+          {
+            "stat": "$1.5B",
+            "label": "unicorn valuation on a $250M round led by NVIDIA + Accel + HCLTech (Mar 2026)"
+          },
+          {
+            "stat": "PM-worn",
+            "label": "Modi sporting Sarvam Kaze AI glasses = 'viral authority' no ad budget can buy"
+          }
+        ]
+      },
+      "sections": [
+        {
+          "title": "1 · Why the compute map went geopolitical",
+          "paragraphs": [
+            "For three years the AI race was scored on model quality. In 2026 it is scored on access to compute — and access is now a political variable. Compute has become a strategic national asset, and the question 'which chips can I buy, how many, to run where?' is answered by export-licence applications, national-security reviews and bilateral diplomacy, not by a purchase order. The US set the template. The Biden-era 'Framework for AI Diffusion' (January 2025) tried to govern the global spread of AI by tiering the world: trusted allies got streamlined access, adversaries faced denial, and everyone else got compute-based quotas — capped, for the middle group, at roughly 270,000 H100-equivalent chips in 2026 and 320,000 in 2027.",
+            "The Trump administration scrapped that rule but kept the logic, swapping rigid tiers for case-by-case bilateral deals — and tightening where it mattered, with an April 2026 ban on Nvidia's China-market H20 as the most aggressive restriction yet. The clearest sign of the new order: in December 2025 nine nations (the US, UK, Japan, South Korea, Singapore, the Netherlands, Israel, the UAE and Australia) signed a framework in Washington making access to AI chips, compute and frontier models conditional on political alignment — strategic assets managed through an alliance, not an open market. The result is a fracturing global stack and three broad sovereignty strategies: buy your way in, build it with allied silicon, or build your own everything."
+          ]
+        },
+        {
+          "title": "2 · Buy your way in — the Gulf's capital-for-compute",
+          "paragraphs": [
+            "The Gulf is executing the fastest sovereignty strategy: trade capital, cheap energy and political alignment for frontier chips and a seat at the table. The UAE's vehicle is G42, anchoring a 5 GW UAE–US AI campus in Abu Dhabi; its flagship, Stargate UAE (with OpenAI, Oracle, Nvidia, Cisco and SoftBank), is a 1 GW cluster whose first 200 MW goes live in Q3 2026 on Nvidia's GB300 Grace Blackwell systems. None of it happens without Washington's say-so: in late November 2025 the US approved exports letting G42 buy up to 35,000 GB300 systems (or equivalent), with AMD and Cerebras shipments alongside. Alignment bought access.",
+            "Saudi Arabia's HUMAIN — a Public Investment Fund subsidiary spun up to own the whole AI value chain — is the parallel play, launching data centres in Riyadh and Dammam in Q2 2026, starting with an 18,000-GPU GB300 supercomputer and scaling toward 500 MW and several hundred thousand GPUs over five years; xAI is separately building a 500 MW site in the Kingdom. The model is seductive and fast, but the dependency is real: the silicon, the licences and the models are still American. The Gulf is buying a frontier seat — rented, for now, from the US stack."
+          ],
+          "table": {
+            "headers": [
+              "Project",
+              "Backers",
+              "Power / chips",
+              "Status / signal"
+            ],
+            "rows": [
+              [
+                "Stargate UAE (Abu Dhabi)",
+                "G42 + OpenAI, Oracle, Nvidia, Cisco, SoftBank",
+                "1 GW (first 200 MW); GB300",
+                "Live Q3 2026; inside the 5 GW UAE-US campus"
+              ],
+              [
+                "HUMAIN (Riyadh + Dammam)",
+                "Saudi PIF + Nvidia",
+                "→500 MW; 18,000 GB300 to start",
+                "Q2 2026; ~100s of thousands of GPUs over 5 yrs"
+              ],
+              [
+                "xAI Saudi site",
+                "xAI + HUMAIN",
+                "500 MW",
+                "Announced Nov 2025"
+              ],
+              [
+                "US export approval",
+                "Trump admin → G42",
+                "up to 35,000 GB300 systems",
+                "Licensed late Nov 2025 — alignment = access"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3 · Build it yourself, with allied silicon — Europe & India",
+          "paragraphs": [
+            "Europe and India share a different strategy: state-funded compute on home soil, but still mostly American chips. The EU's InvestAI initiative aims to mobilise €200B, with €20B earmarked for four to five 'AI gigafactories' — hyperscale public clusters of roughly 100,000 next-generation chips each, with Brussels funding 17% of capex and a political insistence (from Commissioner Henna Virkkunen) that the majority owners 'should come from Europe.' Demand is real: the January 2026 call drew 76 expressions of interest across 60 sites in 16 member states. So is the skepticism — critics already call the programme a '€20B sovereignty mirage,' citing delays and the awkward fact that the chips are Nvidia's. Mistral is the corporate champion, buying ~13,800 Nvidia GPUs for a data centre near Paris and targeting ~200 MW of European compute by 2027.",
+            "India is running the most frugal version: a subsidised national compute commons. The ~$1.25B IndiaAI Mission has put roughly 34,000 GPUs online at about Rs 65 per GPU-hour for startups, researchers and government, and is racing to 100,000 public GPUs by December 2026 — with private build-outs from Reliance and Tata expected to push national capacity past 200,000. On top sits a sovereign-model layer (Sarvam, Krutrim) tuned for India's languages. It won't train a frontier model from scratch, but it is enough for fine-tuning, inference at scale and research — a deliberately affordable path to not renting your AI future."
+          ],
+          "table": {
+            "headers": [
+              "Programme",
+              "Who",
+              "Commitment",
+              "Compute target"
+            ],
+            "rows": [
+              [
+                "InvestAI / gigafactories",
+                "EU (EuroHPC JU)",
+                "€20B of a €200B plan; EU funds 17% of capex",
+                "4–5 gigafactories, ~100,000 chips each"
+              ],
+              [
+                "IndiaAI Mission",
+                "India (MeitY)",
+                "~$1.25B; ~Rs 65/GPU-hour access",
+                "34,000 GPUs now → 100,000 public by Dec 2026"
+              ],
+              [
+                "Sovereign models",
+                "Sarvam, Krutrim (IN)",
+                "NVIDIA/Accel-backed (Sarvam ~$1.5B)",
+                "LLMs across 22 Indian languages"
+              ],
+              [
+                "Mistral (FR/EU champion)",
+                "Mistral AI",
+                "€830M GPU debt; ~200 MW by 2027",
+                "13,800 Nvidia GPUs near Paris + Sweden DC"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "4 · Build your own everything — China's walled stack, and the new balance of power",
+          "paragraphs": [
+            "China is pursuing the hardest strategy: full self-sufficiency behind the export-control wall. Huawei aims to make 1.6 million Ascend dies in 2026, roughly doubling output, and its latest Ascend 950PR introduces HiBL 1.0 — a self-developed memory standard rather than a licensed derivative of Korean or US HBM. But the bottleneck isn't compute, it's memory: China's domestic HBM (led by CXMT) is around two generations behind SK Hynix and Samsung, its logic node is stuck near 7nm, and stockpiles of foreign HBM are running down. The irony the controls produced is exactly what they were meant to prevent — an enormous, state-backed domestic semiconductor push. A parallel stack is being born: slower at the frontier, but increasingly independent.",
+            "Stack the whole arc: model capability is a near-tie (Day 80), the token is nearly free (Day 85), the rails are commodity (Day 86), and power is the binding physical constraint (Day 87). Day 88 adds the political layer on top: the scarce, defensible inputs are now chips, electrons and the alignment that grants access to them — atoms and allegiance. That is why a 'sovereignty premium' is being priced into EU, Gulf and Indian compute, and why a walled Chinese stack keeps growing despite the controls. The compute map is the new balance of power. For anyone building agents, the practical consequence is blunt: where your agents run, on whose silicon, under whose licence, is now a strategic decision — not an infrastructure footnote."
+          ]
+        }
+      ],
+      "market_signal": "The compute map is the new balance of power. With frontier models tied within ~3% (Day 80), tokens ~1,000x cheaper (Day 85), the rails commoditised (Day 86) and power the binding physical limit (Day 87), the scarce and defensible inputs left are chips, gigawatts and the political alignment that unlocks them. Nations are paying a 'sovereignty premium' to build compute on home soil — the Gulf buying frontier seats, the EU and India funding public clusters, China walling off a parallel stack — and who gets to run the agent economy is increasingly decided by export licence and bilateral deal, not by who has the best model. Compute is statecraft now; track gigawatt deals and chip licences the way you used to track benchmark scores.",
+      "practical_takeaway": [
+        {
+          "title": "Pick your jurisdiction before you scale",
+          "body": "Data-residency law (EU AI Act, Day 81) and chip-export rules together decide where your agents can legally run and on whose silicon. Know which bloc's compute you are renting, and whether a single licence change could strand you. Sovereignty is now a deployment variable, not a nice-to-have — design for it early."
+        },
+        {
+          "title": "Treat 'sovereign' as a spectrum, not a badge",
+          "body": "Almost every sovereign programme — EU gigafactories, Gulf campuses, IndiaAI — still runs mostly on Nvidia under US licence. Real independence needs chips + HBM + power + models, and nearly no one has all four. Before you pay the sovereignty premium, ask which layer is actually sovereign and which is still rented."
+        },
+        {
+          "title": "Watch chips-power-alignment, not the leaderboard",
+          "body": "The 2026 differentiator is not another benchmark point — it is secured GPUs, secured gigawatts (Day 87) and the political standing to keep both. Follow export-licence decisions, bilateral chip deals and gigawatt build-outs as closely as you used to follow model releases; that is where the agent economy's real constraints now move."
+        }
+      ],
+      "tomorrow_preview": "Day 89: The Agentic AI Cooling & Water Wall — after the gigawatt (Day 87) and the compute map (Day 88), the other physical limit. Liquid cooling, water draw and heat rejection: why the densest AI racks are hitting a thermal ceiling, what direct-to-chip and immersion cooling change, and how the water footprint of inference is becoming the next sustainability — and siting — battleground."
+    },
+    {
       "date": "2026-06-21",
       "display_date": "June 21, 2026",
       "issue": 87,
@@ -13972,6 +14129,6 @@
       ]
     }
   ],
-  "last_updated": "2026-06-21",
-  "total_days": 87
+  "last_updated": "2026-06-22",
+  "total_days": 88
 }
