@@ -6,6 +6,175 @@
   },
   "learnings": [
     {
+      "date": "2026-06-23",
+      "display_date": "June 23, 2026",
+      "issue": 89,
+      "title": "The Agentic AI Cooling & Water Wall",
+      "focus_intro": "Day 87 found the binding constraint was the gigawatt; Day 88 found it was geopolitical access to chips and power. Day 89 closes the physical-constraint trilogy with the two ceilings that arrive right behind electricity: heat and water. The densest AI racks now run so hot that air cooling is simply dead — and the liquid and immersion systems that replace it, plus the cooling towers that reject all that heat, are drinking water in regions that are running dry. After the watt, the next limits on how fast agents scale are thermal and hydrological.",
+      "stats": [
+        {
+          "stat": "~600 kW",
+          "label": "the 2027 NVIDIA Rubin Ultra 'Kyber' rack — up from ~120 kW for today's Blackwell; 1 MW racks next. Air cooling died at ~35 kW"
+        },
+        {
+          "stat": "264B gallons",
+          "label": "water AI data centres consumed worldwide in 2025 (~1 trillion litres / ~550M gallons a day), much of it evaporated"
+        },
+        {
+          "stat": "60.9%",
+          "label": "of the lower-48 US in drought in May 2026 — yet data-centre builds in water-stressed zones are up ~70% in three years"
+        },
+        {
+          "stat": "Zero-water",
+          "label": "Microsoft's new closed-loop cooling: as little water a year as one restaurant, saving ~125M litres per design"
+        }
+      ],
+      "viral_app": {
+        "name": "Ferveret — nuclear-reactor physics to cool AI chips with no water",
+        "description": "The week's viral infrastructure story was Ferveret, an MIT spin-out that borrows from nuclear reactors to cool chips. Founded by former MIT nuclear-engineering postdoc Reza Azizian and Professor Matteo Bucci, Ferveret's Adaptive Phase Cooling (APC) submerges servers in a dielectric liquid and exploits 'subcooled boiling' — the same physics used to cool reactor cores — to generate much smaller bubbles that detach faster from the chip surface, accelerating heat transfer. The result is cooling that uses no water and significantly less electricity, delivered in modular boxes that each house a single server. Profiled by MIT News on June 10, the system went viral on the claim that it lets data centres 'extract ~35% more tokens from the same power.' It is already being tested with CleanSpark, AI-accelerator maker FuriosaAI and data-centre operator Switch, and sits inside NVIDIA's Inception programme (backed by Y Combinator and Climate Capital). It is the cleanest proof of this issue's thesis: when heat and water are the ceiling, the breakthrough comes from physics, not from a bigger model. (OpenClaw still tops the raw OSS star charts at 210K+ as the borderless software foil — viral, but not the thing keeping the racks cool.)",
+        "stats": [
+          {
+            "stat": "+35% tokens",
+            "label": "what Ferveret's Adaptive Phase Cooling claims to extract from the same power — no water, less electricity"
+          },
+          {
+            "stat": "Nuclear-inspired",
+            "label": "'subcooled boiling' from reactor cores → smaller, faster-detaching bubbles = faster heat transfer"
+          },
+          {
+            "stat": "Switch · CleanSpark · Furiosa",
+            "label": "early testers; in NVIDIA Inception, backed by Y Combinator + Climate Capital"
+          }
+        ]
+      },
+      "sections": [
+        {
+          "title": "1 · The thermal wall — heat is the new ceiling",
+          "paragraphs": [
+            "Every watt that goes into a GPU comes back out as heat, and AI racks have crossed the point where a fan can carry it away. The rule of thumb: air cooling runs out somewhere around 35 kW per rack, direct-to-chip liquid becomes mandatory by 80–100 kW, and above 100 kW you are into immersion territory. Today's flagship — NVIDIA's GB200 NVL72 — already draws roughly 120–132 kW in a single rack, enough heat to warm dozens of homes. It is only the start of the curve.",
+            "NVIDIA's roadmap turns the thermal dial sharply. The Vera Rubin VR200 NVL72, shipping in the second half of 2026, lands around 190–230 kW. The 2027 Rubin Ultra 'Kyber' rack (NVL576, 576 GPU dies) is specified at ~600 kW — 100% liquid-cooled, no fans at all, and fed over a new 800-volt DC architecture that NVIDIA and Google are rolling out by Q3 2026 because copper at lower voltages simply can't deliver the current. A Feynman-class 1 MW rack sits on the roadmap behind it. Each step makes air cooling more impossible and liquid more non-negotiable — the thermal envelope, not the transistor, is becoming the design constraint."
+          ],
+          "table": {
+            "headers": [
+              "Rack / system",
+              "Power per rack",
+              "Cooling required",
+              "Timeline"
+            ],
+            "rows": [
+              [
+                "Air-cooled legacy rack",
+                "up to ~35 kW",
+                "Air (fans) — the old ceiling",
+                "Pre-2024"
+              ],
+              [
+                "GB200 NVL72 (Blackwell)",
+                "~120–132 kW",
+                "Direct-to-chip liquid",
+                "Shipping now"
+              ],
+              [
+                "VR200 NVL72 (Vera Rubin)",
+                "~190–230 kW",
+                "Direct-to-chip liquid",
+                "H2 2026"
+              ],
+              [
+                "Rubin Ultra 'Kyber' NVL576",
+                "~600 kW",
+                "100% liquid, no fans, 800VDC",
+                "2027"
+              ],
+              [
+                "Feynman-class",
+                "~1 MW",
+                "Liquid + immersion territory",
+                "Roadmap"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "2 · Cooling the beast — direct-to-chip vs immersion",
+          "paragraphs": [
+            "Two architectures are absorbing the heat. Direct-to-chip (cold-plate) liquid cooling pipes coolant straight onto the hottest components and is the mature, dominant choice — about 65% of the liquid-cooling market in 2026 — because it bolts onto existing halls with the least disruption. Immersion cooling submerges whole servers in a non-conductive dielectric fluid; single-phase and two-phase variants push efficiency further, reaching a PUE as low as ~1.02 and making sense above ~100 kW where cold plates start to struggle.",
+            "The money is following the heat. Liquid cooling in new builds has climbed to roughly 22% of facilities in 2026, and the broader liquid-cooling market is compounding at ~28.7% a year; the immersion segment alone is forecast to grow at 18–27% CAGR depending on the analyst, from low-single-digit billions today toward five-plus billion by the early 2030s. The new design discipline is convergence: you can no longer engineer power and thermal systems separately — an 800VDC, 600 kW rack is one integrated power-and-cooling problem, and the firms that master it first get to host the densest models."
+          ]
+        },
+        {
+          "title": "3 · The water wall — when cooling meets drought",
+          "paragraphs": [
+            "Heat has to go somewhere, and for most data centres it goes into water. Evaporative cooling towers are cheap and energy-efficient, but they drink: AI data centres consumed an estimated 264 billion gallons of water worldwide in 2025 — close to a trillion litres, around 550 million gallons every day. A single large site can use up to 5 million gallons a day, the household water of a town of 10,000 to 50,000 people. The industry's yardstick is WUE — Water Usage Effectiveness, litres of water per kWh of compute — which averages a deceptively small 0.5–0.7 L/kWh until you multiply it by gigawatts.",
+            "The problem is where that water is being drawn. US direct-cooling consumption was about 17 billion gallons in 2023 and is projected to double or quadruple by 2028 — and much of the build-out is landing in exactly the wrong places. In May 2026 roughly 61% of the lower-48 United States was in drought, with Lake Mead 32% full and Lake Powell 24% full, yet data-centre construction in water-stressed zones has risen about 70% over three years. Phoenix, the high desert, west Texas: the cheap land and sunshine that attract campuses are often where the aquifer is already stressed. Water is becoming a siting constraint as hard as the power grid."
+          ]
+        },
+        {
+          "title": "4 · Closing the loop — zero-water cooling and waste heat",
+          "paragraphs": [
+            "The fixes are arriving fast. The biggest is closed-loop cooling: fill the system with water once during construction, then recirculate it indefinitely with no evaporative loss. Microsoft is rolling out zero-water-evaporation designs at sites including Phoenix and Mount Pleasant, saving an estimated 125 million litres a year per design — CEO Satya Nadella claims the newest AI data centres now use about as much water in a year as a single restaurant, with over 90% of cooling on the closed loop. Oracle announced closed-loop cooling for its AI data centres in early 2026; Google has pledged to replenish 120% of the water it consumes by 2030, and Microsoft to be water-positive by the same year.",
+            "The more ambitious idea is to stop treating heat as waste. Liquid-cooled racks produce hot water that can warm buildings: Germany's Energy Efficiency Act already mandates 10% heat reuse in data centres by 2026 (rising to 20–30% by 2028), and EU data-centre waste heat could in principle supply ~300 TWh — roughly a tenth of Europe's space heating — by 2030. A March 2026 EU analysis went further, showing waste heat could drive water purification and carbon capture, so that a single kWh of compute might remove half a kilogram of CO2 and generate half a kilogram of water — turning a data centre from a drain into, potentially, a carbon-negative, water-positive utility. The catch the whole issue keeps circling: water and power pull against each other — evaporative cooling saves electricity but spends water, sealed closed loops save water but spend electricity. There is no free lunch, only a trade-off you tune to whichever your site is short of."
+          ],
+          "table": {
+            "headers": [
+              "Approach",
+              "Who / example",
+              "What it does",
+              "Trade-off / signal"
+            ],
+            "rows": [
+              [
+                "Closed-loop / zero-water",
+                "Microsoft (Phoenix, Mt Pleasant)",
+                "Fill once, recirculate — no evaporation",
+                "~125M L/yr saved per design; can cost power"
+              ],
+              [
+                "Closed-loop AI DCs",
+                "Oracle (early 2026)",
+                "Sealed liquid loops for AI racks",
+                "Water cut; cost + energy trade-off"
+              ],
+              [
+                "Water replenishment",
+                "Google (120% by 2030)",
+                "Restore more water than consumed",
+                "Offset, not on-site reduction"
+              ],
+              [
+                "Waste-heat reuse",
+                "Germany / EU mandate",
+                "Heat homes, purify water, capture CO2",
+                "10% reuse by 2026 (DE); ~300 TWh EU potential"
+              ],
+              [
+                "Immersion (two-phase)",
+                "Ferveret & others",
+                "Dielectric fluid, PUE ~1.02, no water",
+                "Best >100 kW; uses less electricity"
+              ]
+            ]
+          }
+        }
+      ],
+      "market_signal": "After the model (a near-tie, Day 80), the token (nearly free, Day 85), the rails (commodity, Day 86), the gigawatt (Day 87) and the compute map (geopolitical, Day 88), the next limits on the agent economy are thermal and hydrological. The densest AI racks have blown past air cooling — ~120 kW today, ~600 kW by 2027, 1 MW on the roadmap — so liquid and immersion cooling become gating capabilities, not upgrades. And the heat they reject is drawing water in regions that are running dry, turning WUE and water rights into siting constraints as binding as the power queue. The edge shifts to whoever can cool the densest racks and site where water and power both exist; cost-per-task now has a thermal and a water floor underneath the energy one. Track cooling architecture and water rights the way you track chips and gigawatts.",
+      "practical_takeaway": [
+        {
+          "title": "Treat cooling as a gating capability, not a line item",
+          "body": "The chip you can run is limited by the heat you can remove. Direct-to-chip liquid is already table stakes; immersion is the >100 kW future; an 800VDC, 600 kW rack is one integrated power-and-cooling problem. Choose a thermal architecture before you choose a GPU — if you can't cool it, you can't host it."
+        },
+        {
+          "title": "Put water on the cost-per-task ledger",
+          "body": "Extend the FinOps unit (Day 83) and the energy floor (Day 87): track WUE (litres/kWh) next to watt-hours per completed task. Closed-loop and zero-evaporation designs cut water but can raise power, so optimise the water-versus-energy trade-off for whichever your site is actually short of — there is no free lunch, only a tuned one."
+        },
+        {
+          "title": "Site for scarcity, and turn heat into an asset",
+          "body": "Drought maps and water rights now gate siting as hard as the grid queue — diligence the aquifer, not just the substation. Where regulation already mandates it (Germany, the EU), design for waste-heat reuse: district heating, water purification, even carbon capture turn a liability into a revenue line. Watch each unlock on its real clock."
+        }
+      ],
+      "tomorrow_preview": "Day 90: Agentic AI in Telecom & Networks — after five days down in the physical infrastructure (silicon, protocols, power, sovereignty, cooling), a pivot back to where agents do the work. How autonomous agents are reshaping the telco: self-healing networks and autonomous RAN, AI-native BSS/OSS and customer operations, 5G monetisation, and the Telco-to-TechCo shift — with the trust, identity and governance lessons of the infrastructure series applied to carrier-grade systems."
+    },
+    {
       "date": "2026-06-22",
       "display_date": "June 22, 2026",
       "issue": 88,
@@ -14129,6 +14298,6 @@
       ]
     }
   ],
-  "last_updated": "2026-06-22",
-  "total_days": 88
+  "last_updated": "2026-06-23",
+  "total_days": 89
 }
