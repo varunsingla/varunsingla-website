@@ -6,6 +6,162 @@
   },
   "learnings": [
     {
+      "date": "2026-06-26",
+      "display_date": "June 26, 2026",
+      "issue": 90,
+      "title": "Agentic AI in Telecom & Networks",
+      "focus_intro": "After five days down in the physical infrastructure — silicon, protocols, power, sovereignty, cooling — Day 90 pivots back to where agents do the work, and lands on the vertical that is leading enterprise agentic adoption (and a domain close to home for anyone in telecoms). Telecom is moving from automation (task-based, human-correlated) to autonomy: TM Forum Level 4 'Zero-X' networks that self-configure, self-heal and self-optimise. DTW Ignite 2026 in Copenhagen this week (June 23–25) made it official — the whole vendor stack shipped agentic platforms. As NVIDIA put it: 'automation is no longer the finish line — it's the launchpad to autonomy.'",
+      "stats": [
+        {
+          "stat": "48%",
+          "label": "of telco enterprises ran agentic AI in ≥1 core function in Q1 2026 — about 2× the 26% cross-industry average"
+        },
+        {
+          "stat": "70%",
+          "label": "of inquiries Vodafone's TOBi resolves with no human — 10M+/mo across 15 markets, ~€680M/yr saved, +12 NPS"
+        },
+        {
+          "stat": "62%",
+          "label": "fraud-loss cut by Singtel's AI — 2B network events/day, flagged in ~200ms, false positives down 45%"
+        },
+        {
+          "stat": "$1B",
+          "label": "NVIDIA's equity stake in Nokia to build AI-native RAN for 5G/6G on Grace Blackwell + BlueField"
+        }
+      ],
+      "viral_app": {
+        "name": "AI reaches the dial tone — Deutsche Telekom's network-embedded call assistant",
+        "description": "The week's most telling consumer story was not an app you download — it was Deutsche Telekom's network-embedded AI call assistant. Demonstrated at MWC 2026 and built with ElevenLabs voice technology, it puts an agent inside the phone call itself: real-time in-call translation and smart assistance delivered by the network, with nothing to install. It is the clearest proof that agentic telecom is not a NOC-only story — the autonomy wave reaches all the way to the dial tone, in a customer's own language. It rides the Global Telco AI Alliance push (Korean, English, German, Arabic, Bahasa and more across ~1.3 billion customers in 50 countries). On the enterprise side, Microsoft's new 'Autopilots' category and its always-on Scout agent — powered by OpenClaw and given a governed Entra identity — were the breakout; OpenClaw itself still tops the raw OSS charts at 374K+ GitHub stars as the borderless local-first foil.",
+        "stats": [
+          {
+            "stat": "In the network",
+            "label": "AI built into the call itself — not an app you install; delivered by the carrier"
+          },
+          {
+            "stat": "Real-time",
+            "label": "live in-call translation + smart assistance, debuted at MWC 2026 with ElevenLabs voice"
+          },
+          {
+            "stat": "1.3B / 50",
+            "label": "customers / countries reachable via the Global Telco AI Alliance multilingual push"
+          }
+        ]
+      },
+      "sections": [
+        {
+          "title": "1 · The autonomy ladder — why telecom went first",
+          "paragraphs": [
+            "TM Forum grades network autonomy on a 0–5 scale, the way the auto industry grades self-driving. Level 4 is the inflection: across a defined domain the network can sense, think and act on its own — self-configuring, self-healing, self-optimising — while humans set the intent and policy rather than execute the steps. The target operators now use is 'Zero-X': zero wait, zero touch, zero trouble. In a June 2026 report, TM Forum called the shift a point of 'significant change' — more operators declared and validated Level 4 in specific domains across late 2025 and early 2026 than in all prior years combined.",
+            "Telecom leads enterprise agentic adoption for structural reasons: networks generate enormous volumes of clean, structured telemetry (Singtel alone processes ~2 billion network events a day); operations are repetitive and high-volume; the industry has three decades of OSS/BSS automation and intent-based-networking heritage to build on; and the ROI is unambiguous. The result is the 48% adoption figure above — roughly double the cross-industry rate. DTW Ignite 2026 organised the whole conversation around three mission summits — Autonomous Networks, Composable IT & Ecosystems, and Trustworthy AI & Data — and TM Forum members launched an AI-native ODA roadmap plus an 'Agentic NOC' blueprint for the autonomous telco. The reframe: task automation speeds up steps a human still strings together; an agent owns the whole loop — watch, decide, act, verify — across network, IT and business systems."
+          ]
+        },
+        {
+          "title": "2 · Three battlefronts where telco agents already work",
+          "paragraphs": [
+            "Agentic telecom is not one product — it is three layers, each with live 2026 deployments. On the network layer, AI-RAN puts AI inside the radio: Nokia's $1B NVIDIA partnership runs AI-native RAN on Grace Blackwell, with field trials at T-Mobile, BT, Vodafone and NTT DOCOMO, while Ericsson teamed with Mistral AI to build network-operations agents into its NetCloud platform. On the operations / NOC layer, long-running agents watch for trouble and drive the fix — ServiceNow's Project Arc runs the full incident lifecycle from alert to work order, NTT DATA's anomaly agents escalate silent degradation to deeper research agents, and AdaptKey pilots security-hardened self-healing 5G. On the customer / BSS layer, agents handle care, billing, ordering, proactive offers and fraud at scale — the fastest-returning of the three (Vodafone TOBi, Amdocs aOS/CES26, Salesforce Agentforce for Communications with Lumen reclaiming 300+ hours a week)."
+          ],
+          "table": {
+            "headers": [
+              "Battlefront",
+              "What the agents do",
+              "Live proof points (2026)",
+              "The human still owns"
+            ],
+            "rows": [
+              [
+                "Network (RAN / IP / optical)",
+                "Tune, self-heal & energy-optimise the radio; auto antenna-tilt",
+                "AI-RAN: Nokia+NVIDIA $1B; Ericsson+Mistral NetCloud; AT&T Geo Modeler −40% downtime",
+                "Spectrum policy & live-change approval"
+              ],
+              [
+                "Operations / NOC",
+                "Detect degradation, run the full incident lifecycle alert→work-order",
+                "ServiceNow Project Arc; NTT DATA anomaly→research agents; AdaptKey self-healing 5G",
+                "Escalation thresholds & SLAs"
+              ],
+              [
+                "Customer / BSS",
+                "Resolve care, billing, ordering, proactive offers & fraud",
+                "Vodafone TOBi 70%; Amdocs aOS / CES26; Salesforce Agentforce (Lumen 300+ hrs/wk)",
+                "Brand voice & which actions are in-policy"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3 · The secure-autonomy stack — the whole series, applied",
+          "paragraphs": [
+            "Here is where the infrastructure series pays off. A carrier cannot let an autonomous agent touch a live network unless it is provably contained — a bad action is an outage for millions. NVIDIA's DTW framing names the deal exactly: agents must understand operator intent, act safely across business and network domains, and keep humans in control of policy. That demands a stack the daily series has been building for months: privacy-safe data (SoftBank generates synthetic, anonymised telecom data to fine-tune telco models — 54% of operators cite data sensitivity as their #1 barrier); scoped, sandboxed runtimes (NVIDIA OpenShell + NemoClaw give agents policy guardrails and auditable, least-privilege access); simulate-before-act in a RAN digital twin (Forsk's AI propagation model hits ray-tracing accuracy ~200× faster on Blackwell GPUs, so an agent validates a change in the twin before it touches the live network); and govern + audit everything (ServiceNow's AI Control Tower keeps every Project Arc action contained, logged and within policy).",
+            "The seam: the agent senses, diagnoses, proposes and even rehearses the fix in a digital twin; a human owns the policy and signs off the change that touches the production network. EU AI Act enforcement (Aug 2, T-37 days) treats network operations as critical infrastructure — kill switch, audit trail and human oversight are not optional."
+          ],
+          "table": {
+            "headers": [
+              "Layer",
+              "Telecom example (DTW '26)",
+              "What it secures",
+              "Series callback"
+            ],
+            "rows": [
+              [
+                "Private data",
+                "SoftBank — NeMo Safe Synthesizer + Anonymizer",
+                "Synthetic, privacy-safe data to fine-tune telco models",
+                "Day 81 residency"
+              ],
+              [
+                "Scoped identity + runtime",
+                "NVIDIA OpenShell + NemoClaw blueprints",
+                "Sandboxed, policy-guarded, auditable, least-privilege actions",
+                "Day 54 SPIFFE / KYA"
+              ],
+              [
+                "Simulate before act",
+                "Forsk / VIAVI / KDDI RAN digital twins",
+                "Validate a change in the twin before the live network",
+                "Day 23 evaluator"
+              ],
+              [
+                "Govern + audit",
+                "ServiceNow AI Control Tower (Project Arc)",
+                "Every action contained, logged and within policy",
+                "Day 22 / 50 OTEL→WORM"
+              ],
+              [
+                "Human owns policy",
+                "Operator intent & live-change sign-off",
+                "Sub-second kill switch + approval on any live change",
+                "Day 48 / 49 HITL + SLOs"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "4 · Telco-to-TechCo — and what is still hard",
+          "paragraphs": [
+            "Two strategic shifts sit underneath the demos. First, the model layer commoditised. The Global Telco AI Alliance — SK Telecom, Deutsche Telekom, e&, Singtel and SoftBank, ~1.3 billion customers across 50 countries — set out to build a multilingual telco-specific LLM, but has quietly stepped back as general foundation models improved. The lesson mirrors Day 80: with base models within a few points of each other, the moat is no longer the model — it is the telco-specific agents, data and workflows stacked on top. Second, AI-RAN is dual-use: the same accelerated infrastructure that runs the radio can rent out AI inference, so the network becomes AI infrastructure and the operator becomes a 'TechCo' (NVIDIA + T-Mobile are already piloting physical-AI workloads on AI-RAN-ready sites).",
+            "What is still hard is the honest part. Data sensitivity gates everything (hence the synthetic-data rush). Multi-domain orchestration — getting network, IT and business agents to coordinate without stepping on each other — is the genuinely unsolved problem, not single-agent skill. The reliability bar is carrier-grade: a hallucinated config push is a regional outage, which is why Day 49's SLOs, kill switches and digital-twin rehearsal matter more here than anywhere. And the brownfield reality — agents riding on top of decades-old BSS/OSS from many vendors (the explicit thesis behind Amdocs' aOS) — means progress is real but early: Amdocs itself guides 'no significant revenue' from aOS this fiscal year. Live Level 4 demos at DTW Ignite are not yet Level 4 production at national scale. Telecom is being rebuilt as a software system — but carefully, under SLA, with a human on the policy. Breaking the same week: Anthropic's confidential S-1 (filed June 1) targets an October 2026 Nasdaq debut at a $965B valuation while OpenAI leans toward delaying its IPO to 2027; Google's Gemini 3.5 Pro slipped to July (3.5 Flash shipped with 'frontier performance for agents and coding'); and an intensifying talent war saw two Gemini contributors move to Anthropic and Transformer co-author Noam Shazeer move to OpenAI."
+          ]
+        }
+      ],
+      "market_signal": "Telecom is the clearest sign that agentic AI has crossed from pilot to production — 48% of telco enterprises run agents in a core function, roughly double the cross-industry rate, and the entire vendor stack (NVIDIA, Nokia, Ericsson, Amdocs, ServiceNow, Salesforce, NTT DATA, TCS) shipped agentic platforms at DTW Ignite 2026 this week. The shift is automation → autonomy: TM Forum Level 4 'Zero-X' networks that self-configure, self-heal and self-optimise while humans hold the policy. But the moat is no longer the model — with the Global Telco AI Alliance stepping back from a telco-specific LLM, value moves to telco-specific agents, data and workflows on top of general models, and to the AI-RAN dual-use play that turns the network into rentable AI infrastructure (Telco-to-TechCo). The decisive capability is the secure-autonomy stack: scoped identity, sandboxed runtimes, simulate-before-act in a digital twin, and audited governance with a sub-second kill switch — the difference between a Level 4 demo and a Level 4 you can run under SLA. With EU AI Act enforcement at T-37 days treating network ops as critical infrastructure, governance evidence is becoming the telecom procurement question.",
+      "practical_takeaway": [
+        {
+          "title": "Start where the loop is observable and reversible",
+          "body": "The proven first deployments are customer/BSS agents (care, billing, fraud) and NOC anomaly-detection — high-volume, well-instrumented, fast ROI (Vodafone TOBi 70% resolution, Singtel fraud −62%, AT&T −40% downtime). Measure on resolution rate, MTTR and downtime, not on dashboards. Keep a human on policy and on any change that touches the live network."
+        },
+        {
+          "title": "Apply the infrastructure series' trust stack to carrier-grade systems",
+          "body": "Scoped agent identity (SPIFFE/SVID, Day 54) + a sandboxed policy-guarded runtime (OpenShell-style) + simulate-before-act in a digital twin (Day 23) + OTEL→WORM audit (Day 22/50) + a sub-second kill switch (Day 49) is the difference between a Level 4 demo and a Level 4 you can actually run. EU AI Act enforcement (Aug 2, T-37) treats network ops as critical infrastructure."
+        },
+        {
+          "title": "The moat moved up the stack — build skills and governance, not a base model",
+          "body": "With the Global Telco AI Alliance stepping back from a telco-specific LLM, value sits in telco-specific agents, data and workflows on top of general models — and in the AI-RAN dual-use play that turns the network into AI infrastructure (Telco-to-TechCo). Orchestrating many agents across network + IT + business is the unsolved hard part; own that and you own the autonomy."
+        }
+      ],
+      "tomorrow_preview": "Day 91: Agentic AI in Insurance & Underwriting — the next high-value vertical: agentic claims triage and fraud detection, AI underwriting and risk modelling, and the regulatory guardrails (fairness, explainability, audit) that decide what an insurer can let an agent actually decide."
+    },
+    {
       "date": "2026-06-23",
       "display_date": "June 23, 2026",
       "issue": 89,
@@ -14298,6 +14454,6 @@
       ]
     }
   ],
-  "last_updated": "2026-06-23",
-  "total_days": 89
+  "last_updated": "2026-06-26",
+  "total_days": 90
 }
