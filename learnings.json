@@ -6,531 +6,160 @@
   },
   "learnings": [
     {
-      "date": "2026-06-27",
-      "display_date": "June 27, 2026",
-      "issue": 93,
-      "title": "The Agentic Enterprise Reality Check — Production, the Governance Gap & the ROI Paradox",
-      "focus_intro": "This catch-up week ran from the network (Day 90) to the clinic (Day 91) to the models under both (Day 92). Day 93 is the capstone and asks the only question a board really cares about: is any of this paying off? The 2026 data says the agentic enterprise is unmistakably real and unevenly governed. Multi-agent systems have crossed into production at scale, but deployment has outrun the guardrails and the returns, and the gap between the two is where this year's winners and stallers separate.",
-      "stats": [
-        {
-          "stat": "40% by EOY26",
-          "label": "Gartner: share of enterprise apps embedding task-specific agents by end-2026, up from <5% in 2025; the agent market is ~$11–12B at ~45% CAGR"
-        },
-        {
-          "stat": "21% governed",
-          "label": "Deloitte (N=3,235, 24 countries): only 21% have mature agent governance and 84% haven't redesigned roles — yet ~75% plan agentic AI within two years"
-        },
-        {
-          "stat": "25% vs 74%",
-          "label": "the ROI split: only ~25% of AI initiatives hit expected ROI and 16% reach enterprise scale — vs Google Cloud's 74% of agent deployers seeing ROI within a year"
-        },
-        {
-          "stat": "$19.8B",
-          "label": "JPMorgan reclassified AI as core infrastructure inside its tech budget — a signal of how decisively the largest enterprises are committing"
-        }
-      ],
-      "viral_app": {
-        "name": "Claude Code — the clearest proof of where agentic ROI is realest",
-        "description": "If you want the single datapoint that says agents are paying off somewhere, it's agentic coding. Claude Code's annualised run-rate revenue crossed $2.5 billion in early 2026, more than doubling since the start of the year, and Claude became the fastest-growing major AI assistant by web traffic — up roughly 306% in a quarter, from about 203M visits in January to 824M in April 2026. The reason it matters for this issue is not the logo; it's the shape. Software engineering is the workflow where agent ROI is least ambiguous: the task is bounded, the output is verifiable (it compiles, the tests pass), and the value is measurable in shipped code. That is exactly the profile — tight scope, a number that moves, a verifiable result — that separates the AI initiatives delivering returns from the 75% that don't. The broader market is rhyming with it: the fastest-growing AI products of 2026 are mostly specialised tools doing one thing exceptionally well, not general-purpose everything-assistants. Agents win first where the work is scoped and the result is checkable.",
-        "stats": [
-          {
-            "stat": "$2.5B run-rate",
-            "label": "Claude Code's annualised revenue in early 2026, more than doubling since January — agentic coding is the clearest ROI"
-          },
-          {
-            "stat": "+306% / quarter",
-            "label": "Claude's web-traffic growth (203M→824M visits, Jan→Apr 2026), the fastest-growing major AI assistant"
-          },
-          {
-            "stat": "Scoped & verifiable",
-            "label": "coding wins because the task is bounded and the output checks itself — the profile of every ROI-positive agent deployment"
-          }
-        ]
-      },
-      "sections": [
-        {
-          "title": "1 · The breakout is real — multi-agent goes to production",
-          "paragraphs": [
-            "The adoption numbers are no longer aspirational. Gartner forecasts 40% of enterprise applications will embed task-specific AI agents by the end of 2026, up from under 5% in 2025, with the agent market reaching roughly $11–12 billion at a ~45% CAGR. In this year's surveys, 97% of executives say their company deployed agents in the past year, 52% of employees already use them, and around 72% of large enterprises report production-level deployments. Forrester and Gartner both call 2026 the breakthrough year for multi-agent systems, where specialised agents collaborate under central coordination.",
-            "The commitment at the top end is structural, not experimental. JPMorgan reclassified AI as core infrastructure inside a $19.8B technology budget — a line-item change that says the largest enterprises now treat agents the way they treat the network and the data centre: as something you build on, not something you pilot."
-          ]
-        },
-        {
-          "title": "2 · The governance gap — agents scaling faster than guardrails",
-          "paragraphs": [
-            "The uncomfortable counterpart to that adoption is governance, and the data is stark. Deloitte's 2026 State of AI study (N=3,235, director-to-C-suite, 24 countries) finds only 21% of companies have a mature AI-agent governance model and 84% have not redesigned roles around AI — even as roughly 75% plan to deploy agentic AI within two years. Deloitte's own framing is that agents are 'scaling faster than their guardrails,' and more than half of C-suite leaders say AI is straining how their organisation runs.",
-            "This is the through-line of the whole week made visible at the org level. Telecom's answer was a secure runtime (NemoClaw/OpenShell); healthcare's was the trust bar (safety records, human-in-loop); the model layer's was a governed wrapper around fungible capability. At enterprise scale the same lesson lands as governance: identity, audit, sandboxing and role redesign are the gate to scaling agents, and most organisations have not built it yet."
-          ]
-        },
-        {
-          "title": "3 · The ROI paradox — two true stories",
-          "paragraphs": [
-            "The returns data looks contradictory until you read it correctly. On one side, only about 25% of AI initiatives deliver their expected ROI, just 16% reach enterprise-wide scale, and only 29% report significant returns from generative AI (23% from agents specifically). On the other, Google Cloud's ROI study found 74% of organisations deploying AI agents achieved a return within the first year, with 39% reporting doubled productivity in specific workflows.",
-            "Both are true because ROI is bimodal. It concentrates where scope is bounded, a metric actually moves, and governance and senior ownership exist — and it evaporates in broad, unscoped 'AI transformation' with no owner and no number. The spend reflects conviction regardless: 65% of enterprises raised AI budgets in 2026, a median increase of 22%. The question has shifted from whether to invest to whether you can convert investment into a measurable result."
-          ],
-          "table": {
-            "headers": [
-              "The two narratives",
-              "What the data says",
-              "What separates them"
-            ],
-            "rows": [
-              [
-                "ROI is disappointing",
-                "~25% hit target ROI; 16% reach enterprise scale",
-                "Broad, unscoped, no owner, no metric"
-              ],
-              [
-                "ROI is excellent",
-                "74% see return in year one; 39% double productivity",
-                "Bounded scope, a number that moves"
-              ],
-              [
-                "Adoption is universal",
-                "97% deployed; 72% in production; 40% of apps by EOY",
-                "Easy to start, hard to scale"
-              ],
-              [
-                "Governance is missing",
-                "Only 21% mature; 84% haven't redesigned roles",
-                "The gate to scaling, mostly unbuilt"
-              ]
-            ]
-          }
-        },
-        {
-          "title": "4 · What separates the winners — governance, scope, leadership",
-          "paragraphs": [
-            "Three factors recur in the organisations getting returns. First, governance owned at the top: enterprises where senior leadership actively shapes AI governance capture significantly more value than those that delegate it to technical teams. Second, bounded, measurable scope: agents deployed against a specific workflow with a number attached (MTTR, hours saved, cost-per-task, code shipped) rather than a vague mandate. Third, customisation: 85% of companies expect to tailor agents to their own processes rather than deploy them off the shelf.",
-            "Put the week together and it converges on one sentence. Telecom's autonomy ladder, healthcare's trust bar, the model layer's portfolio routing and the enterprise's governance gap are the same problem viewed from four heights: the constraint is no longer whether agents can work — it is whether the organisation can govern, scope and measure them. The winners treat governance not as the brake on scale but as its enabler."
-          ]
-        }
-      ],
-      "market_signal": "The agentic enterprise has crossed decisively into production — 40% of apps by end-2026, 72% of large enterprises live, AI reclassified as core infrastructure — but its value is bimodal. Returns concentrate where scope is bounded, a metric moves, and senior-owned governance exists (Google Cloud's 74%-in-a-year, agentic coding's measurable ROI), and they vanish in broad, unscoped programmes (only ~25% hit target ROI). The binding constraint has shifted from 'can agents work?' to 'can the org govern, scope and measure them?' — and with only 21% maturely governed, that gap is the differentiator. Govern, scope and measure: treat governance as the enabler of scale, not its brake, and chase the bounded workflows where a number actually moves.",
-      "practical_takeaway": [
-        {
-          "title": "Close the governance gap before you scale",
-          "body": "Only 21% of firms have mature agent governance, yet it's the single clearest predictor of value. Stand up identity, audit, sandboxing and role redesign as the gate to scaling agents — not as compliance overhead. If senior leadership doesn't own it, returns won't show up."
-        },
-        {
-          "title": "Chase bounded, measurable workflows",
-          "body": "ROI is bimodal: it appears where scope is tight and a number moves (MTTR, hours/day, cost-per-task, code shipped) and disappears in unscoped 'AI transformation.' Agentic coding is the proof. Pick workflows where the result is checkable, attach a metric, and scale the ones that move it."
-        },
-        {
-          "title": "Run agents as a leadership-owned portfolio",
-          "body": "Tie the week together: governed runtime (Day 90), data-and-trust moat (Day 91) and model routing on cost-per-task (Day 92), owned at the top and customised to your processes (85% will). Senior ownership plus bounded scope plus per-task economics beats a hundred scattered pilots."
-        }
-      ],
-      "tomorrow_preview": "Day 94: Agentic AI in Financial Services — the bank as an agent network. After this week's verticals, models and the enterprise reality check, a deep dive into where the money is moving fastest: autonomous back-office and reconciliation, agentic fraud and risk, the JPMorgan 'AI-as-core-infrastructure' playbook, and the compliance-and-governance bar that finance — like telecom and healthcare — makes the real product."
-    },
-    {
       "date": "2026-06-26",
       "display_date": "June 26, 2026",
-      "issue": 92,
-      "title": "The Model Wars of June 2026 — Open Weights Catch the Frontier",
-      "focus_intro": "Two days of verticals (telecom, healthcare) ran on engines this issue puts under the microscope. June 2026 has been one of the densest release months on record, and three shifts cut across the noise: hyperscalers are building their own frontier models to cut their dependence on a single lab, context windows have normalised at 1–2 million tokens, and open-weight models — most of them from Chinese labs — have caught the proprietary frontier and, on agentic coding, passed it. Capability is commoditising; the moat is moving to distribution, cost and integration.",
-      "stats": [
-        {
-          "stat": "7 MAI models",
-          "label": "Microsoft's 2 June in-house suite — MAI-Thinking-1 (reasoning) and MAI-Code-1-Flash — built to cut reliance on OpenAI and lower developer cost"
-        },
-        {
-          "stat": "2M tokens",
-          "label": "Google Gemini 3.5 Pro context window, with a 'Deep Think' mode; Gemini 3.5 Flash covers the speed tier"
-        },
-        {
-          "stat": "744B · MIT",
-          "label": "Zhipu's GLM-5.2 (13 June) — open weights now leading the Artificial Analysis Intelligence Index among open models"
-        },
-        {
-          "stat": "Beats proprietary",
-          "label": "GLM-5.2 scores 73.33 agentic-coding on LiveBench — topping every proprietary model on that metric, under an MIT licence"
-        }
-      ],
-      "viral_app": {
-        "name": "GLM-5.2 — the open, MIT-licensed model that out-agents the proprietary frontier",
-        "description": "The model that went viral in June wasn't from a US lab. Zhipu / Z.ai released GLM-5.2 on 13 June — a 744-billion-parameter Mixture-of-Experts model with a usable 1-million-token context window, shipped under a permissive MIT licence. It now leads the Artificial Analysis Intelligence Index among open weights, and on LiveBench it posts 79.65 coding and 73.33 agentic-coding averages — the strongest open-source results on both, with the agentic-coding number beating every proprietary model in the table. The viral charge came from the combination: frontier-class agentic capability, fully open weights, and a licence that lets anyone run or fine-tune it commercially with no strings. It crystallised the month's storyline — that the gap between 'best model you can call' and 'best model you can own' has effectively closed for agentic work — and it did not arrive alone: DeepSeek V4 reset the cost floor in April and Qwen 3.6 made strong tool-use and vision run on a single GPU under Apache 2.0. The open frontier is now a Chinese-led pace car.",
-        "stats": [
-          {
-            "stat": "744B MoE · 1M ctx",
-            "label": "leads the Artificial Analysis Intelligence Index among open-weight models, MIT-licensed"
-          },
-          {
-            "stat": "73.33 agentic coding",
-            "label": "tops every proprietary model on LiveBench's agentic-coding metric; 79.65 coding average"
-          },
-          {
-            "stat": "MIT licence",
-            "label": "run, fine-tune and ship commercially with no usage restrictions — the open frontier for agents"
-          }
-        ]
-      },
-      "sections": [
-        {
-          "title": "1 · Microsoft cuts the cord — the MAI suite",
-          "paragraphs": [
-            "On 2 June, Microsoft AI announced seven in-house models under the MAI banner — led by MAI-Thinking-1, a reasoning model built to match premium logical output at a sharply lower token cost, and MAI-Code-1-Flash, its first coding model. Microsoft described the programme as a 'hill-climbing machine': a self-improvement loop intended to keep shipping rather than land one hero model.",
-            "The strategy underneath is the story. After years of building on OpenAI, Microsoft is reducing single-vendor dependence, owning its own cost curve, and giving Azure and Copilot a default that it controls end-to-end. When the company that co-built the modern LLM era starts shipping its own frontier-tier suite, the message to every large enterprise is blunt: model supply is something you can — and increasingly should — diversify."
-          ]
-        },
-        {
-          "title": "2 · The proprietary frontier — GPT-5.5 and Gemini 3.5",
-          "paragraphs": [
-            "The incumbents didn't stand still. OpenAI shipped GPT-5.5 in Pro and Instant variants, segmenting the frontier by latency and depth rather than offering one monolith. Google expanded fastest on context and cognition: Gemini 3.5 Pro pairs a 2-million-token context window with a 'Deep Think' mode for hard multi-step problems, while Gemini 3.5 Flash takes the high-volume, low-latency tier.",
-            "The pattern is feature-segmentation of the frontier. There is no longer a single 'best model'; there is a best model for deep reasoning, another for cheap high-throughput calls, another for million-token context. For anyone building agents, that turns model selection from a brand choice into an engineering one — route the task to the tier that fits its economics and horizon."
-          ]
-        },
-        {
-          "title": "3 · Open weights catch up — GLM-5.2, DeepSeek V4, Qwen 3.6",
-          "paragraphs": [
-            "The month's real shock came from open weights. Zhipu's GLM-5.2 (13 June, 744B MoE, 1M context, MIT) now leads the open-weight Intelligence Index and beats every proprietary model on LiveBench's agentic-coding metric. DeepSeek V4, out in late April in Pro and Flash variants, bet on price and algorithmic reasoning and reset the cost floor while leading competitive-programming benchmarks. Qwen 3.6 went the other way — a compact MoE that runs on a single GPU with strong tool-calling and vision, under a fully permissive Apache 2.0 licence.",
-            "Read together, the three say the same thing: for agentic work — tool use, multi-step coding, long-horizon tasks — open weights have caught the frontier, and they did it from Chinese labs setting the release pace. Capability is no longer the scarce thing. What you pay, what you can run on your own hardware, and what licence governs it are now the differentiators."
-          ],
-          "table": {
-            "headers": [
-              "Model",
-              "Lab / licence",
-              "Headline",
-              "Signal"
-            ],
-            "rows": [
-              [
-                "GLM-5.2",
-                "Zhipu / Z.ai · MIT",
-                "744B MoE, 1M ctx",
-                "#1 open; beats proprietary on agentic coding"
-              ],
-              [
-                "DeepSeek V4",
-                "DeepSeek · open",
-                "Pro + Flash, reasoning",
-                "Reset the cost floor; comp-programming lead"
-              ],
-              [
-                "Qwen 3.6",
-                "Alibaba · Apache 2.0",
-                "Compact MoE, vision",
-                "Runs on a single GPU; strong tool-calling"
-              ],
-              [
-                "MAI suite",
-                "Microsoft · proprietary",
-                "7 models, MAI-Thinking-1",
-                "Hyperscaler self-reliance, low token cost"
-              ],
-              [
-                "Gemini 3.5 / GPT-5.5",
-                "Google / OpenAI",
-                "2M ctx + Deep Think / Pro+Instant",
-                "Frontier segments by depth, speed, context"
-              ]
-            ]
-          }
-        },
-        {
-          "title": "4 · What it means — commoditisation, the cost floor & the agentic lens",
-          "paragraphs": [
-            "Three consequences follow for anyone building on top. First, model portability is now a design requirement, not a nicety — the best choice will change month to month, and DeepSeek-style price resets can rewrite the build-versus-buy maths overnight. Second, open weights are genuinely viable for agentic coding and tooling, which matters most where cost, control or data residency rule out a hosted API. Third, the locus of advantage has moved up the stack: when everyone can call a frontier-class model, the edge is in orchestration, data, evals and the governed runtime around the model — exactly the themes of the last two issues.",
-            "This connects straight back to the inference-economics arc (Day 85): if capability is roughly fungible, the discipline is routing and cost-per-task, not vendor loyalty. The teams that win treat models as a portfolio — frontier for the hard 5%, open weights and flash tiers for the rest — and measure everything in cents per completed task."
-          ]
-        }
-      ],
-      "market_signal": "June 2026 marks the month the open frontier caught the proprietary one for agentic work. GLM-5.2 (open, MIT) tops proprietary models on agentic coding; DeepSeek V4 reset the cost floor; Qwen 3.6 put real tool-use on a single GPU — all Chinese-led — while Microsoft's MAI suite signalled hyperscaler self-reliance and Google/OpenAI segmented the frontier by depth, speed and 1–2M-token context. The takeaway for builders: capability is commoditising, so the moat moves to distribution, cost, data and the governed runtime around the model. Model choice becomes a portfolio and routing decision measured in cost-per-task — the inference-economics discipline of Day 85, now forced by the market.",
-      "practical_takeaway": [
-        {
-          "title": "Design for model portability",
-          "body": "Don't hard-wire one vendor. Put an abstraction between your agents and the model so you can route across proprietary and open weights as the leaderboard and prices move — which, in this market, is monthly. Portability is now an architecture requirement, not a hedge."
-        },
-        {
-          "title": "Put open weights on the evaluation list — especially for agents",
-          "body": "GLM-5.2, DeepSeek V4 and Qwen 3.6 are viable for agentic coding and tool use today, and they win decisively where cost, control or data residency matter. Benchmark them on your own tasks; an MIT/Apache model you can run and fine-tune may beat a hosted API on total cost and governance."
-        },
-        {
-          "title": "Measure cost-per-task, not benchmark scores",
-          "body": "Tie back to inference economics (Day 85): route the hard 5% to the frontier and everything else to flash/open tiers, and judge the system on cents per completed task. A DeepSeek-style price reset can change your build-versus-buy maths faster than any benchmark."
-        }
-      ],
-      "tomorrow_preview": "Day 93: The Agentic Enterprise Reality Check — the capstone. After two verticals and the model wars, the question every board is asking: is it paying off? Multi-agent has hit production (Gartner's 40% by end-2026), but adoption has outrun governance (Deloitte: only 21% mature) and ROI is bimodal (25% hit target vs Google Cloud's 74%-within-a-year). What separates the winners — and how the whole week's thread ties together."
-    },
-    {
-      "date": "2026-06-25",
-      "display_date": "June 25, 2026",
-      "issue": 91,
-      "title": "Agentic AI in Healthcare — From Ambient Scribe to Clinical Reasoning",
-      "focus_intro": "Day 90 put governed agents on the network; Day 91 puts them in the clinic. Healthcare is the second vertical in this catch-up arc and the one with the highest trust bar, which makes 2026's progress striking: the hype of 2025 is giving way to real deployments. The headline dropped on 2 June — Microsoft and Mayo Clinic are co-developing a frontier AI model purpose-built for healthcare — but the quieter story is that agents have already found their beachhead in the least glamorous place imaginable: the medical note. From ambient documentation outward, the clinic is being rebuilt around AI.",
-      "stats": [
-        {
-          "stat": "Mayo × Microsoft",
-          "label": "2 June 2026: a provider-owned frontier healthcare model — Mayo owns it, Microsoft distributes via Azure Foundry APIs worldwide"
-        },
-        {
-          "stat": "115M",
-          "label": "patient interactions handled by Hippocratic AI's patient-facing voice agents — the largest safety record for autonomous patient-facing AI"
-        },
-        {
-          "stat": "1–2 hrs/day",
-          "label": "clinician documentation time saved by ambient scribes (Abridge, Nuance DAX) — the clearest unambiguous ROI in health AI"
-        },
-        {
-          "stat": "Every VA center",
-          "label": "the US Dept. of Veterans Affairs is rolling AI scribes to every medical center in 2026 — the largest government healthcare AI deployment in US history"
-        }
-      ],
-      "viral_app": {
-        "name": "Hippocratic AI — autonomous patient-facing voice agents at 115M interactions",
-        "description": "The viral proof point that agents can run autonomously in healthcare — not draft text for a human, but actually talk to patients — is Hippocratic AI. Its constellation of patient-facing voice agents has now crossed 115 million interactions and holds the largest safety record for autonomous patient-facing AI, with the company adding nursing and intake tools through 2026. The model is deliberately conservative: agents handle high-volume, lower-acuity work — pre-op and post-discharge check-ins, medication reminders, appointment prep, intake — and escalate anything clinical to a human, with a safety-tuned model layer designed to refuse rather than improvise. That design is the whole point. Hippocratic's bet, increasingly validated, is that the path to autonomy in medicine runs through provable safety at scale, not raw capability: the agent that says 'I'll get a nurse' at the right moment is worth more than the one that answers everything. It is the clinical mirror of Day 90's telecom thesis — the breakthrough is the guardrail, not the model.",
-        "stats": [
-          {
-            "stat": "115M interactions",
-            "label": "largest safety record for autonomous patient-facing AI; nursing + intake tools added in 2026"
-          },
-          {
-            "stat": "Safety-first design",
-            "label": "agents handle high-volume lower-acuity tasks and escalate anything clinical to a human"
-          },
-          {
-            "stat": "Voice-native",
-            "label": "pre-op and post-discharge check-ins, reminders and intake by phone at population scale"
-          }
-        ]
-      },
-      "sections": [
-        {
-          "title": "1 · The headline — Mayo Clinic × Microsoft's provider-owned frontier model",
-          "paragraphs": [
-            "On 2 June, Mayo Clinic and Microsoft announced they will jointly develop and deploy a frontier AI model purpose-built for healthcare — built to support the broadest scope of clinical reasoning rather than a single task. The collaboration pairs Mayo's de-identified clinical data, longitudinal patient insights and clinical expertise with Microsoft's AI, cloud and engineering, aiming to synthesise diverse clinical data into earlier diagnoses, more personalised treatment decisions and better outcomes.",
-            "The structural detail is the real signal: Mayo Clinic owns the model, and Microsoft distributes it through Azure Foundry APIs to healthcare organisations worldwide. It deploys first inside Mayo's own clinical environment for continuous testing and refinement before it goes wider. A leading provider keeping ownership of a frontier model trained on its data — and a hyperscaler taking the distribution role — is a template other large systems will copy. In healthcare, whoever owns the data owns the model."
-          ]
-        },
-        {
-          "title": "2 · Ambient AI goes mainstream — the scribe as beachhead",
-          "paragraphs": [
-            "The deployment that actually scaled is the ambient scribe: an agent that listens to the visit and writes the note. It works because the ROI is unambiguous — platforms like Abridge and Nuance DAX consistently save clinicians one to two hours of documentation a day, attacking burnout and throughput at once. Abridge began with documentation and is now moving into medical coding, clinical documentation integrity (CDI) and billing workflow automation, embedded natively in Epic so it rides the existing clinical system rather than fighting it.",
-            "Scale arrived this year. The US Department of Veterans Affairs is expanding AI scribe technology to every VA medical center nationwide in 2026 — the largest government healthcare AI deployment in US history. The scribe is a trojan horse: once an agent is trusted to capture the encounter accurately, the same captured structure feeds coding, orders, prior-auth and quality reporting. Documentation is where agents earn trust; the workflow behind it is where they earn money."
-          ],
-          "table": {
-            "headers": [
-              "Player",
-              "What it does",
-              "Signal"
-            ],
-            "rows": [
-              [
-                "Mayo × Microsoft",
-                "Provider-owned frontier clinical-reasoning model",
-                "Mayo owns; MSFT distributes via Azure Foundry"
-              ],
-              [
-                "Abridge",
-                "Ambient docs → coding, CDI, billing",
-                "Native in Epic; expanding up the workflow"
-              ],
-              [
-                "Nuance DAX",
-                "Ambient clinical documentation",
-                "1–2 hrs/clinician/day saved"
-              ],
-              [
-                "Hippocratic AI",
-                "Patient-facing voice agents (intake, follow-up)",
-                "115M interactions; largest safety record"
-              ],
-              [
-                "VA (federal)",
-                "AI scribes across every medical center",
-                "Largest US govt healthcare AI rollout"
-              ]
-            ]
-          }
-        },
-        {
-          "title": "3 · From documentation to agents — autonomous clinical & admin workflows",
-          "paragraphs": [
-            "Beyond the note, the value is concentrating in administrative agents, where the work is high-volume, rule-bound and safe to automate. CMS's electronic prior-authorization rules take effect in 2026, and agents are lining up to handle prior-auth, eligibility, scheduling and intake — the friction that consumes clinician and staff time without touching diagnosis. Hippocratic AI's 115M patient-facing interactions sit here: structured, escalation-gated, autonomous at scale.",
-            "Clinical reasoning is the frontier above it, and the trust bar rises steeply. This is where the Mayo–Microsoft model is aimed — decision support that synthesises labs, imaging, history and guidelines — but it arrives as a co-pilot under clinician sign-off, not an autonomous diagnostician. The honest 2026 picture is a split: admin and ambient agents are delivering ROI now; clinical-reasoning agents are advancing fast but governed tightly, with a human holding the pen on anything that changes care."
-          ]
-        },
-        {
-          "title": "4 · The trust bar — safety, regulation and why it's the product",
-          "paragraphs": [
-            "Healthcare's constraints look like friction and function like a moat. De-identification, auditability, safety records, human-in-the-loop escalation and alignment with CMS electronic prior-auth, ONC information-blocking enforcement and TEFCA interoperability are exactly what let an agent operate at all. Far from slowing adoption, this regulatory push toward standardised, digital workflows is what gives agents clean, structured surfaces to act on.",
-            "The winning posture treats the trust bar as a feature. Hippocratic competes on its safety record; Mayo's moat is owning a model trained on its own governed data; Abridge wins by being accurate enough to live inside Epic. The lesson rhymes with Day 90: the model is necessary but not sufficient — the deployable asset is a governed system a regulated institution can actually switch on."
-          ]
-        }
-      ],
-      "market_signal": "Healthcare resolves the agent question into two clocks. On the fast clock, ambient documentation and administrative agents (Abridge, Nuance DAX, Hippocratic AI, VA-scale scribes) are delivering unambiguous ROI today — hours per clinician per day, millions of safe patient interactions — because the work is high-volume and escalation-gated. On the slow clock, clinical-reasoning frontier models (Mayo × Microsoft) advance under a much higher trust bar and arrive as governed co-pilots, not autonomous diagnosticians. The durable lesson for any regulated vertical: data ownership is the moat (Mayo owns its model), the trust bar is the product (safety records, human-in-loop), and the beachhead is the boring workflow, not the heroic one.",
-      "practical_takeaway": [
-        {
-          "title": "Win on the boring workflow first",
-          "body": "The ROI in health AI is not the diagnosis — it's the note, the prior-auth, the intake. Target ambient documentation and rule-bound admin where an hour saved per clinician per day is measurable on day one, then ride the captured structure up into coding, billing and orders."
-        },
-        {
-          "title": "Own the data, own the model",
-          "body": "Mayo keeping ownership of a frontier model trained on its de-identified data — with the hyperscaler as distributor — is the template. In any regulated vertical, the defensible asset is a model trained on governed proprietary data, not a generic API you rent."
-        },
-        {
-          "title": "Treat the trust bar as a feature",
-          "body": "Safety records, human-in-the-loop escalation and regulatory alignment (CMS e-prior-auth, ONC, TEFCA) aren't compliance overhead — they're what lets the agent run at all. Design escalation and auditability as product surfaces, the way Hippocratic competes on safety and Abridge on Epic-grade accuracy."
-        }
-      ],
-      "tomorrow_preview": "Day 92: The Model Wars of June 2026 — zoom out from the verticals to the engines under them. Microsoft cuts the cord with its in-house MAI suite, OpenAI ships GPT-5.5 and Google ships Gemini 3.5 (2M-token context, Deep Think), while open weights — Zhipu's GLM-5.2, DeepSeek V4, Qwen 3.6 — catch and in places beat the proprietary frontier on agentic coding. What it means when capability commoditises and model choice becomes a portfolio decision."
-    },
-    {
-      "date": "2026-06-24",
-      "display_date": "June 24, 2026",
       "issue": 90,
-      "title": "Agentic AI in Telecom & the Autonomous Network",
-      "focus_intro": "After five days down in the physical infrastructure — silicon, protocols, power, sovereignty and cooling (Days 85–89) — Day 90 pivots back to where agents do the work, and lands on the industry that has to run them at carrier scale: the telco. The timing is not an accident. This week's DTW Ignite 2026 in Copenhagen (23–25 June) turned into a referendum on a single idea: the network should stop being automated and start being autonomous. The shift is from task-based automation — scripts that speed up predetermined steps while humans correlate and decide — to AI-native networks engineered to sense, decide and act on their own, with humans supervising rather than steering.",
+      "title": "Agentic AI in Telecom & Networks",
+      "focus_intro": "After five days down in the physical infrastructure — silicon, protocols, power, sovereignty, cooling — Day 90 pivots back to where agents do the work, and lands on the vertical that is leading enterprise agentic adoption (and a domain close to home for anyone in telecoms). Telecom is moving from automation (task-based, human-correlated) to autonomy: TM Forum Level 4 'Zero-X' networks that self-configure, self-heal and self-optimise. DTW Ignite 2026 in Copenhagen this week (June 23–25) made it official — the whole vendor stack shipped agentic platforms. As NVIDIA put it: 'automation is no longer the finish line — it's the launchpad to autonomy.'",
       "stats": [
         {
-          "stat": "~38% CAGR",
-          "label": "growth of the AI-in-telecom market through 2030; 89% of operators say their AI budget will rise in the next 12 months, up from 65% a year ago"
+          "stat": "48%",
+          "label": "of telco enterprises ran agentic AI in ≥1 core function in Q1 2026 — about 2× the 26% cross-industry average"
         },
         {
-          "stat": "30–50%",
-          "label": "MTTR reduction reported from agentic network operations, alongside 20–25% OPEX savings as closed-loop control replaces manual correlation"
+          "stat": "70%",
+          "label": "of inquiries Vodafone's TOBi resolves with no human — 10M+/mo across 15 markets, ~€680M/yr saved, +12 NPS"
         },
         {
-          "stat": "40% fewer",
-          "label": "call-centre interactions where AI-native customer operations are deployed — automation has overtaken CX as the #1 investment use case"
+          "stat": "62%",
+          "label": "fraud-loss cut by Singtel's AI — 2B network events/day, flagged in ~200ms, false positives down 45%"
         },
         {
-          "stat": "DTW Ignite '26",
-          "label": "Copenhagen, 23–25 June: NVIDIA and partners rally telcos around trusted, 24/7 AI agents for autonomous network operations"
+          "stat": "$1B",
+          "label": "NVIDIA's equity stake in Nokia to build AI-native RAN for 5G/6G on Grace Blackwell + BlueField"
         }
       ],
       "viral_app": {
-        "name": "NVIDIA's telecom agent stack — NemoClaw + OpenShell, the 'AI-native telco' goes governed",
-        "description": "The week's viral infrastructure story in telecom was not a model but a runtime. At DTW Ignite, NVIDIA put a full agentic stack in front of operators: NeMo synthetic data to train where real network data is scarce, NemoClaw secure-runtime blueprints, the OpenShell sandbox for policy-based, sandboxed access to live telecom systems, and RTX PRO 6000-accelerated digital twins to rehearse changes before they touch the network. The pitch that travelled: long-running agents that are predictable, auditable and governed — guardrails first — so operators can actually let them act. Early movers gave it teeth. NTT DATA is using NVIDIA Nemotron open models with NemoClaw to build long-running agents that proactively detect network degradation; AdaptKey is piloting security-hardened agents for self-healing 5G operations; SoftBank and Amdocs are wiring agents across network and BSS. It is the cleanest proof of this issue's thesis: in telecom the breakthrough is not a smarter model, it is a runtime safe enough to give an agent the keys to a national network.",
+        "name": "AI reaches the dial tone — Deutsche Telekom's network-embedded call assistant",
+        "description": "The week's most telling consumer story was not an app you download — it was Deutsche Telekom's network-embedded AI call assistant. Demonstrated at MWC 2026 and built with ElevenLabs voice technology, it puts an agent inside the phone call itself: real-time in-call translation and smart assistance delivered by the network, with nothing to install. It is the clearest proof that agentic telecom is not a NOC-only story — the autonomy wave reaches all the way to the dial tone, in a customer's own language. It rides the Global Telco AI Alliance push (Korean, English, German, Arabic, Bahasa and more across ~1.3 billion customers in 50 countries). On the enterprise side, Microsoft's new 'Autopilots' category and its always-on Scout agent — powered by OpenClaw and given a governed Entra identity — were the breakout; OpenClaw itself still tops the raw OSS charts at 374K+ GitHub stars as the borderless local-first foil.",
         "stats": [
           {
-            "stat": "Guardrails-first",
-            "label": "NemoClaw secure runtime + OpenShell sandbox give agents policy-based, auditable, sandboxed access to live network systems"
+            "stat": "In the network",
+            "label": "AI built into the call itself — not an app you install; delivered by the carrier"
           },
           {
-            "stat": "Digital twins",
-            "label": "RTX PRO 6000-accelerated twins let agents rehearse RAN/core changes before they touch production"
+            "stat": "Real-time",
+            "label": "live in-call translation + smart assistance, debuted at MWC 2026 with ElevenLabs voice"
           },
           {
-            "stat": "NTT DATA · SoftBank · Amdocs",
-            "label": "early partners moving from task automation to long-running, self-healing network agents"
+            "stat": "1.3B / 50",
+            "label": "customers / countries reachable via the Global Telco AI Alliance multilingual push"
           }
         ]
       },
       "sections": [
         {
-          "title": "1 · From automation to autonomy — the AI-native network",
+          "title": "1 · The autonomy ladder — why telecom went first",
           "paragraphs": [
-            "Telcos have spent two years getting real returns from generative AI, but almost all of it has been task-based: automation that accelerates a known step while a human correlates the insight and directs what happens next. DTW Ignite 2026 marked the line being crossed. The new target is the autonomous network — a system that continuously senses operating conditions, decides, executes and then adapts, closing the loop without a human in the middle for routine work. The industry frames this as a maturity ladder (TM Forum's L0–L5 autonomous-network levels); most operators sit at partial automation today and are now reaching for conditional and high autonomy in bounded domains.",
-            "Two signals show the money following the thesis. The AI-in-telecom market is compounding at roughly 38% a year through 2030, and in this year's operator survey 89% said their AI budget will increase over the next 12 months — up from 65% a year ago. Just as telling, network automation has overtaken customer experience as the leading use case for new investment. The centre of gravity has moved from the call centre to the core."
+            "TM Forum grades network autonomy on a 0–5 scale, the way the auto industry grades self-driving. Level 4 is the inflection: across a defined domain the network can sense, think and act on its own — self-configuring, self-healing, self-optimising — while humans set the intent and policy rather than execute the steps. The target operators now use is 'Zero-X': zero wait, zero touch, zero trouble. In a June 2026 report, TM Forum called the shift a point of 'significant change' — more operators declared and validated Level 4 in specific domains across late 2025 and early 2026 than in all prior years combined.",
+            "Telecom leads enterprise agentic adoption for structural reasons: networks generate enormous volumes of clean, structured telemetry (Singtel alone processes ~2 billion network events a day); operations are repetitive and high-volume; the industry has three decades of OSS/BSS automation and intent-based-networking heritage to build on; and the ROI is unambiguous. The result is the 48% adoption figure above — roughly double the cross-industry rate. DTW Ignite 2026 organised the whole conversation around three mission summits — Autonomous Networks, Composable IT & Ecosystems, and Trustworthy AI & Data — and TM Forum members launched an AI-native ODA roadmap plus an 'Agentic NOC' blueprint for the autonomous telco. The reframe: task automation speeds up steps a human still strings together; an agent owns the whole loop — watch, decide, act, verify — across network, IT and business systems."
+          ]
+        },
+        {
+          "title": "2 · Three battlefronts where telco agents already work",
+          "paragraphs": [
+            "Agentic telecom is not one product — it is three layers, each with live 2026 deployments. On the network layer, AI-RAN puts AI inside the radio: Nokia's $1B NVIDIA partnership runs AI-native RAN on Grace Blackwell, with field trials at T-Mobile, BT, Vodafone and NTT DOCOMO, while Ericsson teamed with Mistral AI to build network-operations agents into its NetCloud platform. On the operations / NOC layer, long-running agents watch for trouble and drive the fix — ServiceNow's Project Arc runs the full incident lifecycle from alert to work order, NTT DATA's anomaly agents escalate silent degradation to deeper research agents, and AdaptKey pilots security-hardened self-healing 5G. On the customer / BSS layer, agents handle care, billing, ordering, proactive offers and fraud at scale — the fastest-returning of the three (Vodafone TOBi, Amdocs aOS/CES26, Salesforce Agentforce for Communications with Lumen reclaiming 300+ hours a week)."
           ],
           "table": {
             "headers": [
-              "Autonomy level",
-              "What the network does",
-              "Human role",
-              "Where telcos are"
+              "Battlefront",
+              "What the agents do",
+              "Live proof points (2026)",
+              "The human still owns"
             ],
             "rows": [
               [
-                "L1–L2 Assisted/Partial",
-                "Scripts + dashboards speed known steps",
-                "Operator drives every change",
-                "Mature / legacy baseline"
+                "Network (RAN / IP / optical)",
+                "Tune, self-heal & energy-optimise the radio; auto antenna-tilt",
+                "AI-RAN: Nokia+NVIDIA $1B; Ericsson+Mistral NetCloud; AT&T Geo Modeler −40% downtime",
+                "Spectrum policy & live-change approval"
               ],
               [
-                "L3 Conditional",
-                "Closed-loop optimisation in a domain",
-                "Approves, sets policy & guardrails",
-                "Live in RAN energy, congestion"
+                "Operations / NOC",
+                "Detect degradation, run the full incident lifecycle alert→work-order",
+                "ServiceNow Project Arc; NTT DATA anomaly→research agents; AdaptKey self-healing 5G",
+                "Escalation thresholds & SLAs"
               ],
               [
-                "L4 High autonomy",
-                "Agents detect, decide & act, cross-domain",
-                "Supervises exceptions only",
-                "2026 pilots (self-healing 5G)"
-              ],
-              [
-                "L5 Full autonomy",
-                "Network self-runs end-to-end",
-                "Sets intent & outcomes",
-                "Aspiration / narrow slices"
+                "Customer / BSS",
+                "Resolve care, billing, ordering, proactive offers & fraud",
+                "Vodafone TOBi 70%; Amdocs aOS / CES26; Salesforce Agentforce (Lumen 300+ hrs/wk)",
+                "Brand voice & which actions are in-policy"
               ]
             ]
           }
         },
         {
-          "title": "2 · The agentic network stack — a runtime you can trust",
+          "title": "3 · The secure-autonomy stack — the whole series, applied",
           "paragraphs": [
-            "The hard part of carrier-grade agents was never intelligence; it was permission. An agent that can retune a radio or reroute traffic can also take down a region, so operators need behaviour that is predictable, auditable and governed before they grant access. That is exactly what the DTW announcements targeted. NVIDIA's blueprint pairs NeMo synthetic data (to train where real telemetry is sparse or sensitive), NemoClaw secure-runtime blueprints, and the OpenShell sandbox that gives agents policy-based, sandboxed access to production systems — every action logged, scoped and reversible.",
-            "Digital twins close the safety loop: RTX PRO 6000-accelerated replicas of the network let agents rehearse a change and observe its blast radius before it touches anything live. The pattern rhymes with the whole infrastructure series — trust, identity and governance are the gating capability, not the model. It is why the partner roster reads like an operating model, not a demo: SoftBank, Amdocs and NTT DATA are building on the same governed runtime so an agent's authority is bounded by policy, not by hope."
-          ]
-        },
-        {
-          "title": "3 · Self-healing RAN & autonomous operations",
-          "paragraphs": [
-            "Down at the radio, agents are already earning their keep. Closed-loop systems detect congestion patterns, tune RAN parameters, trigger small-cell activation, adjust power levels and resize network slices in response to live demand — the work that used to mean a 2 a.m. page and an hour of manual correlation. NTT DATA's long-running agents watch for network degradation and intervene before customers feel it; AdaptKey's security-hardened agents are piloting self-healing 5G operations. The reported envelope across early deployments — 30–50% lower mean-time-to-repair and 20–25% OPEX savings — comes precisely from removing the human from the routine detect-decide-act loop while keeping them on the exceptions.",
-            "The reframe for an operator is that reliability becomes a software property. A self-healing network is not one with fewer faults; it is one where the median fault is detected, diagnosed and resolved by an agent inside a guardrail, and only the genuinely novel reaches a human. Energy is the cleanest first domain: agents that sleep and wake cells against real traffic cut the single biggest controllable cost in the RAN without touching the customer experience."
-          ]
-        },
-        {
-          "title": "4 · AI-native BSS/OSS, customer ops & the Telco-to-TechCo shift",
-          "paragraphs": [
-            "Above the network, the same agentic pattern is rewriting the business stack. AI-native customer operations are deflecting up to 40% of call-centre interactions where deployed, while agents in BSS/OSS handle provisioning, order orchestration, billing disputes and field-service dispatch end-to-end. This is the operational core of the Telco-to-TechCo shift: a carrier that exposes its network as programmable, agent-callable capability — congestion, location, quality-on-demand via network APIs (the CAMARA effort) — stops selling only connectivity and starts selling outcomes that other people's agents can buy.",
-            "For an operator-side strategist the monetisation lens matters more than the cost-out one. Autonomous operations defend margin; agent-callable network APIs and AI-native customer journeys create new revenue. The winners treat the autonomous network not as a cheaper NOC but as the substrate of a platform business — which is precisely why the governance, identity and trust lessons from the infrastructure series are the unlock, not the friction."
+            "Here is where the infrastructure series pays off. A carrier cannot let an autonomous agent touch a live network unless it is provably contained — a bad action is an outage for millions. NVIDIA's DTW framing names the deal exactly: agents must understand operator intent, act safely across business and network domains, and keep humans in control of policy. That demands a stack the daily series has been building for months: privacy-safe data (SoftBank generates synthetic, anonymised telecom data to fine-tune telco models — 54% of operators cite data sensitivity as their #1 barrier); scoped, sandboxed runtimes (NVIDIA OpenShell + NemoClaw give agents policy guardrails and auditable, least-privilege access); simulate-before-act in a RAN digital twin (Forsk's AI propagation model hits ray-tracing accuracy ~200× faster on Blackwell GPUs, so an agent validates a change in the twin before it touches the live network); and govern + audit everything (ServiceNow's AI Control Tower keeps every Project Arc action contained, logged and within policy).",
+            "The seam: the agent senses, diagnoses, proposes and even rehearses the fix in a digital twin; a human owns the policy and signs off the change that touches the production network. EU AI Act enforcement (Aug 2, T-37 days) treats network operations as critical infrastructure — kill switch, audit trail and human oversight are not optional."
           ],
           "table": {
             "headers": [
-              "Domain",
-              "What agents do",
-              "Signal / payoff"
+              "Layer",
+              "Telecom example (DTW '26)",
+              "What it secures",
+              "Series callback"
             ],
             "rows": [
               [
-                "Self-healing RAN",
-                "Detect congestion, tune params, sleep/wake cells, slice",
-                "30–50% MTTR cut; OPEX -20–25%"
+                "Private data",
+                "SoftBank — NeMo Safe Synthesizer + Anonymizer",
+                "Synthetic, privacy-safe data to fine-tune telco models",
+                "Day 81 residency"
               ],
               [
-                "Network ops / core",
-                "Proactive degradation detection, cross-domain change",
-                "NTT DATA, AdaptKey self-healing 5G"
+                "Scoped identity + runtime",
+                "NVIDIA OpenShell + NemoClaw blueprints",
+                "Sandboxed, policy-guarded, auditable, least-privilege actions",
+                "Day 54 SPIFFE / KYA"
               ],
               [
-                "Customer operations",
-                "Care, retention, dispute resolution end-to-end",
-                "Up to 40% fewer call-centre touches"
+                "Simulate before act",
+                "Forsk / VIAVI / KDDI RAN digital twins",
+                "Validate a change in the twin before the live network",
+                "Day 23 evaluator"
               ],
               [
-                "BSS/OSS",
-                "Provisioning, order orchestration, field dispatch",
-                "Faster fulfilment, lower error rates"
+                "Govern + audit",
+                "ServiceNow AI Control Tower (Project Arc)",
+                "Every action contained, logged and within policy",
+                "Day 22 / 50 OTEL→WORM"
               ],
               [
-                "Monetisation",
-                "Expose network as agent-callable APIs (CAMARA)",
-                "Telco-to-TechCo revenue, not just cost"
+                "Human owns policy",
+                "Operator intent & live-change sign-off",
+                "Sub-second kill switch + approval on any live change",
+                "Day 48 / 49 HITL + SLOs"
               ]
             ]
           }
+        },
+        {
+          "title": "4 · Telco-to-TechCo — and what is still hard",
+          "paragraphs": [
+            "Two strategic shifts sit underneath the demos. First, the model layer commoditised. The Global Telco AI Alliance — SK Telecom, Deutsche Telekom, e&, Singtel and SoftBank, ~1.3 billion customers across 50 countries — set out to build a multilingual telco-specific LLM, but has quietly stepped back as general foundation models improved. The lesson mirrors Day 80: with base models within a few points of each other, the moat is no longer the model — it is the telco-specific agents, data and workflows stacked on top. Second, AI-RAN is dual-use: the same accelerated infrastructure that runs the radio can rent out AI inference, so the network becomes AI infrastructure and the operator becomes a 'TechCo' (NVIDIA + T-Mobile are already piloting physical-AI workloads on AI-RAN-ready sites).",
+            "What is still hard is the honest part. Data sensitivity gates everything (hence the synthetic-data rush). Multi-domain orchestration — getting network, IT and business agents to coordinate without stepping on each other — is the genuinely unsolved problem, not single-agent skill. The reliability bar is carrier-grade: a hallucinated config push is a regional outage, which is why Day 49's SLOs, kill switches and digital-twin rehearsal matter more here than anywhere. And the brownfield reality — agents riding on top of decades-old BSS/OSS from many vendors (the explicit thesis behind Amdocs' aOS) — means progress is real but early: Amdocs itself guides 'no significant revenue' from aOS this fiscal year. Live Level 4 demos at DTW Ignite are not yet Level 4 production at national scale. Telecom is being rebuilt as a software system — but carefully, under SLA, with a human on the policy. Breaking the same week: Anthropic's confidential S-1 (filed June 1) targets an October 2026 Nasdaq debut at a $965B valuation while OpenAI leans toward delaying its IPO to 2027; Google's Gemini 3.5 Pro slipped to July (3.5 Flash shipped with 'frontier performance for agents and coding'); and an intensifying talent war saw two Gemini contributors move to Anthropic and Transformer co-author Noam Shazeer move to OpenAI."
+          ]
         }
       ],
-      "market_signal": "After the physical-infrastructure arc (silicon, protocols, power, sovereignty, cooling), telecom is the first vertical to put governed, long-running agents on carrier-grade systems — and the constraint is exactly the one the infra series flagged: not model capability but a runtime safe enough to act. The market is voting (38% CAGR, 89% raising budgets, automation now the #1 use case), and the early payoff is concrete (30–50% MTTR, 20–25% OPEX, 40% fewer call-centre touches). The strategic prize, though, is not a cheaper NOC; it is the Telco-to-TechCo pivot, where agent-callable network APIs turn the autonomous network into a platform other agents pay to use. Track autonomy-ladder level and API exposure the way you track spectrum and coverage.",
+      "market_signal": "Telecom is the clearest sign that agentic AI has crossed from pilot to production — 48% of telco enterprises run agents in a core function, roughly double the cross-industry rate, and the entire vendor stack (NVIDIA, Nokia, Ericsson, Amdocs, ServiceNow, Salesforce, NTT DATA, TCS) shipped agentic platforms at DTW Ignite 2026 this week. The shift is automation → autonomy: TM Forum Level 4 'Zero-X' networks that self-configure, self-heal and self-optimise while humans hold the policy. But the moat is no longer the model — with the Global Telco AI Alliance stepping back from a telco-specific LLM, value moves to telco-specific agents, data and workflows on top of general models, and to the AI-RAN dual-use play that turns the network into rentable AI infrastructure (Telco-to-TechCo). The decisive capability is the secure-autonomy stack: scoped identity, sandboxed runtimes, simulate-before-act in a digital twin, and audited governance with a sub-second kill switch — the difference between a Level 4 demo and a Level 4 you can run under SLA. With EU AI Act enforcement at T-37 days treating network ops as critical infrastructure, governance evidence is becoming the telecom procurement question.",
       "practical_takeaway": [
         {
-          "title": "Start closed-loop on a bounded, measurable domain",
-          "body": "Don't chase L5. Pick one domain where a number moves and the blast radius is contained — RAN energy (sleep/wake), congestion tuning, or tier-1 care deflection — and run a true closed loop there. MTTR and OPEX are the scoreboard; prove autonomy where you can measure it before you widen it."
+          "title": "Start where the loop is observable and reversible",
+          "body": "The proven first deployments are customer/BSS agents (care, billing, fraud) and NOC anomaly-detection — high-volume, well-instrumented, fast ROI (Vodafone TOBi 70% resolution, Singtel fraud −62%, AT&T −40% downtime). Measure on resolution rate, MTTR and downtime, not on dashboards. Keep a human on policy and on any change that touches the live network."
         },
         {
-          "title": "Make the runtime, not the model, your day-one decision",
-          "body": "Carrier-grade means an agent's authority is bounded by policy. Treat a NemoClaw/OpenShell-style secure runtime — sandboxed access, full audit, digital-twin rehearsal — as the gating requirement. If you can't sandbox, log and reverse an agent's action, it doesn't get the keys to the network."
+          "title": "Apply the infrastructure series' trust stack to carrier-grade systems",
+          "body": "Scoped agent identity (SPIFFE/SVID, Day 54) + a sandboxed policy-guarded runtime (OpenShell-style) + simulate-before-act in a digital twin (Day 23) + OTEL→WORM audit (Day 22/50) + a sub-second kill switch (Day 49) is the difference between a Level 4 demo and a Level 4 you can actually run. EU AI Act enforcement (Aug 2, T-37) treats network ops as critical infrastructure."
         },
         {
-          "title": "Frame it as Telco-to-TechCo, not cost-out",
-          "body": "Autonomous operations defend margin; agent-callable network APIs (CAMARA) create revenue. Put the monetisation lens on the roadmap from the start — expose congestion, location and quality-on-demand as capabilities other agents can buy, and the autonomous network becomes a platform, not just a cheaper NOC."
+          "title": "The moat moved up the stack — build skills and governance, not a base model",
+          "body": "With the Global Telco AI Alliance stepping back from a telco-specific LLM, value sits in telco-specific agents, data and workflows on top of general models — and in the AI-RAN dual-use play that turns the network into AI infrastructure (Telco-to-TechCo). Orchestrating many agents across network + IT + business is the unsolved hard part; own that and you own the autonomy."
         }
       ],
-      "tomorrow_preview": "Day 91: Agentic AI in Healthcare & Life Sciences — from the autonomous network to the clinic. Microsoft and Mayo Clinic's new provider-owned frontier model, the ambient-scribe beachhead (Abridge, Nuance DAX, the VA going nationwide), Hippocratic AI's 115M patient interactions, and why healthcare's higher safety and governance bar is the product, not the friction."
+      "tomorrow_preview": "Day 91: Agentic AI in Insurance & Underwriting — the next high-value vertical: agentic claims triage and fraud detection, AI underwriting and risk modelling, and the regulatory guardrails (fairness, explainability, audit) that decide what an insurer can let an agent actually decide."
     },
     {
       "date": "2026-06-23",
@@ -14825,6 +14454,6 @@
       ]
     }
   ],
-  "last_updated": "2026-06-27",
-  "total_days": 93
+  "last_updated": "2026-06-26",
+  "total_days": 90
 }
