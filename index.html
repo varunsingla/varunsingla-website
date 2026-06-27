@@ -123,6 +123,7 @@ function classify(e){
 /* ---- helpers ---- */
 function esc(s){ if(s==null) return ''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 function parseISO(iso){ const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(iso||''); if(!m) return null; return new Date(+m[1], +m[2]-1, +m[3]); }
+function fmtLong(e){ const d=parseISO(e.date); return d ? d.toLocaleString('en-US',{month:'long',day:'numeric',year:'numeric'}) : (e.display_date||''); }
 function firstSentences(text, max){
   if(!text) return '';
   text = text.replace(/\s+/g,' ').trim();
@@ -260,7 +261,7 @@ function renderHome(){
         <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:22px;">
           <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:${ACCENT};font-weight:500;">Day ${featured._day}</span>
           <span style="width:4px;height:4px;border-radius:50%;background:#C9C2B2;"></span>
-          <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#8A857B;">${esc(featured.display_date)}</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#8A857B;">${esc(fmtLong(featured))}</span>
           <span style="width:4px;height:4px;border-radius:50%;background:#C9C2B2;"></span>
           <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#8A857B;">${featured._read} min read</span>
         </div>
@@ -425,7 +426,7 @@ function renderArticle(){
         <div style="display:flex;align-items:center;gap:13px;flex-wrap:wrap;margin-bottom:22px;">
           <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:${ACCENT};font-weight:500;">Day ${e._day}</span>
           <span style="width:4px;height:4px;border-radius:50%;background:#C9C2B2;"></span>
-          <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#8A857B;">${esc(e.display_date)}</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#8A857B;">${esc(fmtLong(e))}</span>
           <span style="width:4px;height:4px;border-radius:50%;background:#C9C2B2;"></span>
           <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#8A857B;">${e._read} min read</span>
         </div>
