@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -87,194 +87,195 @@
   }
   </script>
 
-  <meta name="theme-color" content="#7c3aed" />
+  <meta name="theme-color" content="#F7F4ED" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&display=swap" rel="stylesheet">
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #07070f; --surface: #0d0d1c; --surface2: #111127;
-      --border: rgba(255,255,255,0.07); --border-h: rgba(124,58,237,0.4);
-      --p1: #7c3aed; --p2: #2563eb; --p3: #06b6d4;
-      --text: #eeeeff; --muted: #8888aa; --dim: #44445a;
-      --green: #10b981; --yellow: #f59e0b;
+      --bg: #F7F4ED; --surface: #FBF9F3; --surface2: #F3ECDD;
+      --border: #E4DECF; --border-soft: #EEE9DC; --border-strong: #CBB8A0;
+      --text: #1B1A17; --text2: #2C2A24; --muted: #56524B; --muted2: #6B6760;
+      --faint: #8A857B; --faintest: #A8A294;
+      --accent: #CC3F2A; --accent-dark: #A83120; --accent-tint: #F4E7E2;
+      --serif: 'Newsreader', Georgia, serif;
+      --sans: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      --mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
     }
-    [data-theme="light"] {
-      --bg: #f4f4ff; --surface: #eaeaf8; --surface2: #e2e2f4;
-      --border: rgba(0,0,0,0.09); --border-h: rgba(109,40,217,0.35);
-      --p1: #6d28d9; --p2: #1d4ed8; --p3: #0891b2;
-      --text: #0e0e1c; --muted: #4a4a70; --dim: #9090b8;
-      --green: #059669; --yellow: #d97706;
-    }
-    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; scroll-padding-top: 80px; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-      background: var(--bg); color: var(--text); line-height: 1.7;
-      min-height: 100vh; transition: background 0.25s, color 0.25s;
+      font-family: var(--sans); background: var(--bg); color: var(--text);
+      line-height: 1.6; min-height: 100vh; overflow-x: hidden;
     }
-    a { color: var(--p3); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    /* Ambient */
-    .ambient {
-      position: fixed; inset: 0; pointer-events: none; z-index: 0;
-      background:
-        radial-gradient(ellipse 60% 50% at 15% 10%, rgba(124,58,237,.10) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 60% at 85% 85%, rgba(37,99,235,.10) 0%, transparent 60%);
-      transition: opacity 0.3s;
-    }
-    [data-theme="light"] .ambient { opacity: 0.25; }
+    a { color: var(--accent); text-decoration: none; transition: color 0.15s; }
+    a:hover { color: var(--accent-dark); }
+    ::selection { background: var(--accent); color: #fff; }
+    ::-webkit-scrollbar { width: 9px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 5px; }
 
     /* Nav */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(7,7,15,0.88); backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border); transition: background 0.25s;
+      background: rgba(247,244,237,0.86);
+      backdrop-filter: saturate(140%) blur(12px);
+      -webkit-backdrop-filter: saturate(140%) blur(12px);
+      border-bottom: 1px solid var(--border); transition: box-shadow 0.2s ease;
     }
-    [data-theme="light"] nav { background: rgba(244,244,255,0.92); }
     .nav-inner {
-      max-width: 860px; margin: 0 auto; padding: 0.65rem 1.5rem;
-      display: flex; align-items: center; gap: 1rem;
+      max-width: 960px; margin: 0 auto; padding: 0.7rem 1.75rem;
+      display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
     }
-    .nav-logo {
-      display: flex; align-items: center; gap: 0.55rem;
-      font-weight: 700; font-size: 0.88rem; color: var(--text); flex-shrink: 0;
-    }
+    .nav-logo { display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0; }
+    .nav-logo:hover { color: var(--text); }
     .logo-vs {
-      width: 28px; height: 28px; border-radius: 6px;
-      background: linear-gradient(135deg, var(--p1), var(--p2));
+      width: 30px; height: 30px; border-radius: 7px;
+      background: var(--text); color: var(--bg);
       display: flex; align-items: center; justify-content: center;
-      font-size: 0.72rem; font-weight: 900; color: white;
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.02em; flex-shrink: 0;
     }
-    .nav-links { display: flex; gap: 1.25rem; margin-left: auto; align-items: center; }
-    .nav-links a { font-size: 0.8rem; color: var(--muted); transition: color 0.15s; }
-    .nav-links a:hover { color: var(--text); text-decoration: none; }
-    .nav-links a.active { color: var(--p3); }
-    .theme-toggle-btn {
-      width: 32px; height: 32px; border-radius: 7px;
-      display: flex; align-items: center; justify-content: center;
-      background: transparent; border: 1px solid var(--border); color: var(--muted);
-      cursor: pointer; transition: all 0.15s;
+    .logo-name { font-family: var(--mono); font-size: 0.84rem; color: var(--text); letter-spacing: -0.01em; }
+    .nav-links { display: flex; gap: 0.35rem; margin-left: auto; align-items: center; flex-wrap: wrap; }
+    .nav-links a {
+      font-size: 0.84rem; font-weight: 500; color: var(--muted2);
+      padding: 0.45rem 0.7rem; border-radius: 8px; transition: color 0.15s, background 0.15s;
     }
-    .theme-toggle-btn:hover { color: var(--text); background: var(--surface); border-color: var(--border-h); }
+    .nav-links a:hover { color: var(--text); background: var(--surface2); }
+    .nav-links a.active { color: var(--text); font-weight: 600; }
 
     /* Page */
-    .page { max-width: 860px; margin: 0 auto; padding: 100px 1.5rem 5rem; position: relative; z-index: 1; }
+    .page { max-width: 960px; margin: 0 auto; padding: 120px 1.75rem 5rem; position: relative; }
 
     /* Hero */
-    .about-hero { text-align: center; margin-bottom: 4rem; }
+    .about-hero { text-align: center; margin-bottom: 4.5rem; }
     .about-avatar {
-      width: 88px; height: 88px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--p1), var(--p2));
+      width: 92px; height: 92px; border-radius: 50%;
+      background: var(--text); color: var(--bg);
       display: flex; align-items: center; justify-content: center;
-      font-size: 2rem; font-weight: 900; color: white;
-      margin: 0 auto 1.5rem; border: 3px solid rgba(124,58,237,0.3);
+      font-size: 2rem; font-weight: 700; letter-spacing: 0.02em;
+      margin: 0 auto 1.75rem;
     }
     .about-name {
-      font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 900;
-      background: linear-gradient(135deg, var(--text) 50%, var(--p3));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-      margin-bottom: 0.5rem;
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(2.4rem, 6vw, 3.8rem); line-height: 1.02; letter-spacing: -0.025em;
+      color: var(--text); margin-bottom: 0.85rem;
     }
-    .about-role {
-      font-size: 1rem; color: var(--muted); margin-bottom: 1.25rem;
-    }
-    .about-role strong { color: var(--p3); }
-    .about-badges { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin-bottom: 1.5rem; }
+    .about-role { font-size: 1.02rem; color: var(--muted); margin-bottom: 1.6rem; }
+    .about-role strong { color: var(--accent); font-weight: 600; }
+    .about-badges { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin-bottom: 1.9rem; }
     .badge {
-      font-size: 0.72rem; font-weight: 700; padding: 0.3rem 0.8rem;
-      border-radius: 9999px; border: 1px solid var(--border-h);
-      background: rgba(124,58,237,0.1); color: var(--p3);
+      font-family: var(--mono); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.02em;
+      padding: 0.4rem 0.85rem; border-radius: 999px;
+      border: 1px solid var(--border); background: var(--surface); color: var(--muted2);
     }
-    .about-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .about-links { display: flex; gap: 0.85rem; justify-content: center; flex-wrap: wrap; }
     .about-link {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      padding: 0.55rem 1.1rem; border-radius: 9999px;
-      font-size: 0.82rem; font-weight: 700; border: 1px solid var(--border);
-      color: var(--text); transition: all 0.15s; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      padding: 0.7rem 1.4rem; border-radius: 999px;
+      font-size: 0.9rem; font-weight: 600; border: 1px solid var(--border-strong);
+      color: var(--text); background: var(--surface);
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
     }
-    .about-link:hover { border-color: var(--border-h); background: var(--surface); text-decoration: none; }
+    .about-link:hover { color: var(--text); border-color: var(--text); transform: translateY(-2px); }
     .about-link.primary {
-      background: linear-gradient(135deg, var(--p1), var(--p2));
-      border-color: transparent; color: white;
+      background: var(--accent); border-color: transparent; color: #fff;
+      box-shadow: 0 14px 30px -14px rgba(204,63,42,0.55);
     }
-    .about-link.primary:hover { opacity: 0.88; background: linear-gradient(135deg, var(--p1), var(--p2)); }
+    .about-link.primary:hover { color: #fff; background: var(--accent-dark); transform: translateY(-2px); }
 
     /* Sections */
-    .about-section { margin-bottom: 3rem; }
+    .about-section { margin-bottom: 3.5rem; }
     .about-section h2 {
-      font-size: 1.15rem; font-weight: 800; margin-bottom: 1.25rem;
-      color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 0.6rem;
+      font-family: var(--serif); font-weight: 500;
+      font-size: clamp(1.5rem, 3vw, 2rem); letter-spacing: -0.01em;
+      color: var(--text); margin-bottom: 1.5rem;
+      padding-bottom: 0.85rem; border-bottom: 1px solid var(--border);
+      display: flex; align-items: baseline; gap: 0.6rem;
     }
-    .about-section h2 span { color: var(--p3); }
-    .about-section p { font-size: 0.95rem; color: var(--muted); margin-bottom: 1rem; }
-    .about-section p strong { color: var(--text); }
+    .about-section h2 span {
+      font-family: var(--mono); font-size: 0.8rem; font-weight: 500;
+      color: var(--accent); letter-spacing: 0.05em;
+    }
+    .about-section > p {
+      font-family: var(--serif); font-size: clamp(1.08rem, 1.6vw, 1.22rem);
+      line-height: 1.65; color: var(--muted); margin-bottom: 1.1rem; max-width: 70ch;
+    }
+    .about-section > p strong { color: var(--text); font-weight: 600; }
 
     /* Expertise grid */
-    .expertise-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; }
+    .expertise-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.25rem; }
     @media (max-width: 600px) { .expertise-grid { grid-template-columns: 1fr; } }
     .expertise-card {
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: 14px; padding: 1.25rem;
-      transition: border-color 0.15s;
+      border-radius: 16px; padding: 1.5rem;
+      transition: border-color 0.18s, box-shadow 0.18s, transform 0.18s;
     }
-    .expertise-card:hover { border-color: var(--border-h); }
-    .expertise-card h3 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text); }
-    .expertise-card p { font-size: 0.8rem; color: var(--muted); margin: 0; }
-    .expertise-icon { font-size: 1.4rem; margin-bottom: 0.5rem; }
+    .expertise-card:hover { border-color: var(--border-strong); box-shadow: 0 12px 30px -20px rgba(27,26,23,0.35); transform: translateY(-3px); }
+    .expertise-icon { font-size: 1.6rem; margin-bottom: 0.7rem; }
+    .expertise-card h3 { font-family: var(--sans); font-size: 1rem; font-weight: 700; margin-bottom: 0.55rem; color: var(--text); }
+    .expertise-card p { font-size: 0.88rem; color: var(--muted); margin: 0; line-height: 1.55; }
 
     /* Skills tags */
-    .skills-wrap { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .skills-wrap { display: flex; flex-wrap: wrap; gap: 0.55rem; }
     .skill-tag {
-      font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.75rem;
-      border-radius: 9999px; background: var(--surface2);
+      font-size: 0.8rem; font-weight: 500; padding: 0.4rem 0.85rem;
+      border-radius: 999px; background: var(--surface);
       border: 1px solid var(--border); color: var(--muted);
+      transition: border-color 0.15s, color 0.15s;
     }
+    .skill-tag:hover { border-color: var(--border-strong); color: var(--text); }
 
     /* Timeline */
-    .timeline { display: flex; flex-direction: column; gap: 1.25rem; }
-    .timeline-item { display: flex; gap: 1rem; align-items: flex-start; }
-    .timeline-dot {
-      flex-shrink: 0; width: 10px; height: 10px; border-radius: 50%;
-      background: var(--p1); margin-top: 6px;
+    .timeline { display: flex; flex-direction: column; gap: 0.25rem; }
+    .timeline-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 0.95rem 0; border-bottom: 1px solid var(--border-soft);
     }
-    .timeline-item strong { display: block; font-size: 0.9rem; font-weight: 700; color: var(--text); }
-    .timeline-item span { font-size: 0.8rem; color: var(--muted); }
+    .timeline-item:last-child { border-bottom: none; }
+    .timeline-dot {
+      flex-shrink: 0; width: 9px; height: 9px; border-radius: 50%;
+      background: var(--accent); margin-top: 9px;
+    }
+    .timeline-item strong { display: block; font-family: var(--sans); font-size: 0.98rem; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+    .timeline-item span { font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
 
     /* CTA */
     .about-cta {
-      text-align: center; padding: 2.5rem; background: var(--surface);
-      border: 1px solid var(--border); border-radius: 20px; margin-top: 4rem;
+      text-align: center; padding: 3rem 2rem; background: var(--surface2);
+      border: 1px solid var(--border); border-radius: 20px; margin-top: 4.5rem;
     }
-    .about-cta h2 { font-size: 1.3rem; font-weight: 800; margin-bottom: 0.75rem; }
-    .about-cta p { font-size: 0.88rem; color: var(--muted); margin-bottom: 1.5rem; }
+    .about-cta h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.8rem, 3.5vw, 2.4rem); letter-spacing: -0.015em; margin-bottom: 0.85rem; }
+    .about-cta h2 em { font-style: italic; color: var(--accent); }
+    .about-cta p { font-size: 1rem; color: var(--muted); margin-bottom: 1.75rem; max-width: 56ch; margin-inline: auto; }
 
     /* Footer */
     footer {
-      text-align: center; padding: 2rem 1.5rem; border-top: 1px solid var(--border);
-      font-size: 0.78rem; color: var(--dim); position: relative; z-index: 1;
+      text-align: center; padding: 2.5rem 1.75rem; border-top: 1px solid var(--border);
+      background: var(--surface2);
     }
-    footer a { color: var(--p3); }
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--p1); border-radius: 3px; }
+    footer p { font-size: 0.82rem; color: var(--faint); }
+    footer a { color: var(--muted2); }
+    footer a:hover { color: var(--accent); }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+    @media (max-width: 560px) { .nav-links { gap: 0.1rem; } .nav-links a { padding: 0.4rem 0.5rem; font-size: 0.8rem; } }
   </style>
 </head>
 <body>
-  <div class="ambient"></div>
 
   <nav>
     <div class="nav-inner">
       <a href="/" class="nav-logo">
         <div class="logo-vs">VS</div>
-        <span>varunsingla.com</span>
+        <span class="logo-name">varunsingla.com</span>
       </a>
       <div class="nav-links">
         <a href="/">Journal</a>
         <a href="/ai-tokenomics/">Tokenomics</a>
         <a href="/tools/model-team-evaluator.html">Model Evaluator</a>
         <a href="/about/" class="active">About</a>
-        <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle theme">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-        </button>
       </div>
     </div>
   </nav>
@@ -285,7 +286,7 @@
     <div class="about-hero">
       <div class="about-avatar">VS</div>
       <h1 class="about-name">Varun Singla</h1>
-      <p class="about-role"><strong>Technology Consultant &amp; Agentic AI Researcher</strong> · </p>
+      <p class="about-role"><strong>Technology Consultant &amp; Agentic AI Researcher</strong> · Singapore</p>
       <div class="about-badges">
         <span class="badge">Agentic AI</span>
         <span class="badge">Enterprise AI</span>
@@ -296,14 +297,13 @@
       </div>
       <div class="about-links">
         <a href="/" class="about-link primary">← AI Research Journal</a>
-        
-
+        <a href="/ai-tokenomics/" class="about-link">AI Tokenomics Guide</a>
       </div>
     </div>
 
     <!-- BIO -->
     <div class="about-section">
-      <h2><span>01</span> — Who I Am</h2>
+      <h2><span>01</span> Who I Am</h2>
       <p>
         I'm <strong>Varun Singla</strong>, a technology consultant and agentic AI researcher. My work sits at the intersection of enterprise AI strategy, agentic AI architecture, Tech platform implementation, and digital transformation.
       </p>
@@ -317,7 +317,7 @@
 
     <!-- EXPERTISE -->
     <div class="about-section">
-      <h2><span>02</span> — Expertise Areas</h2>
+      <h2><span>02</span> Expertise Areas</h2>
       <div class="expertise-grid">
         <div class="expertise-card">
           <div class="expertise-icon">🤖</div>
@@ -344,47 +344,47 @@
 
     <!-- RESEARCH TOPICS -->
     <div class="about-section">
-      <h2><span>03</span> — Research Journal Topics</h2>
+      <h2><span>03</span> Research Journal Topics</h2>
       <p>Since March 2026, I've documented 20+ deep-dive research sessions covering:</p>
       <div class="timeline">
         <div class="timeline-item">
           <div class="timeline-dot"></div>
-          <div><strong>Agent Orchestration Frameworks 2026</strong><span> — LangGraph vs CrewAI vs AutoGen vs OpenAI Agents SDK vs Google ADK</span></div>
+          <div><strong>Agent Orchestration Frameworks 2026</strong><span>LangGraph vs CrewAI vs AutoGen vs OpenAI Agents SDK vs Google ADK</span></div>
         </div>
         <div class="timeline-item">
           <div class="timeline-dot"></div>
-          <div><strong>Production Agent Memory Systems</strong><span> — 6 memory types, Mem0, Zep/Graphiti, Cognee, vector databases, GDPR patterns</span></div>
+          <div><strong>Production Agent Memory Systems</strong><span>6 memory types, Mem0, Zep/Graphiti, Cognee, vector databases, GDPR patterns</span></div>
         </div>
         <div class="timeline-item">
           <div class="timeline-dot"></div>
-          <div><strong>AI FinOps &amp; Tokenomics</strong><span> — Prompt caching (90% reduction), semantic caching, model routing, RAG compression, AI factory TCO</span></div>
+          <div><strong>AI FinOps &amp; Tokenomics</strong><span>Prompt caching (90% reduction), semantic caching, model routing, RAG compression, AI factory TCO</span></div>
         </div>
         <div class="timeline-item">
           <div class="timeline-dot"></div>
-          <div><strong>Agent Governance &amp; EU AI Act</strong><span> — NIST CAISI framework, Kill Switch architecture, 90-day compliance roadmap</span></div>
+          <div><strong>Agent Governance &amp; EU AI Act</strong><span>NIST CAISI framework, Kill Switch architecture, 90-day compliance roadmap</span></div>
         </div>
         <div class="timeline-item">
           <div class="timeline-dot"></div>
-          <div><strong>MCP Protocol Deep Dive</strong><span> — Host/Client/Server, JSON-RPC, 97M installs, enterprise governance</span></div>
+          <div><strong>MCP Protocol Deep Dive</strong><span>Host/Client/Server, JSON-RPC, 97M installs, enterprise governance</span></div>
         </div>
         <div class="timeline-item">
           <div class="timeline-dot"></div>
-          <div><strong>A2A Protocol &amp; Agent Economy</strong><span> — Agent Cards, Task Lifecycle, Machine Payments Protocol, Visa Agentic Ready</span></div>
+          <div><strong>A2A Protocol &amp; Agent Economy</strong><span>Agent Cards, Task Lifecycle, Machine Payments Protocol, Visa Agentic Ready</span></div>
         </div>
         <div class="timeline-item">
           <div class="timeline-dot"></div>
-          <div><strong>Enterprise Agentic AI Strategy</strong><span> — CoE 5-layer architecture, Salesforce Agentforce, ServiceNow Autonomous Workforce</span></div>
+          <div><strong>Enterprise Agentic AI Strategy</strong><span>CoE 5-layer architecture, Salesforce Agentforce, ServiceNow Autonomous Workforce</span></div>
         </div>
         <div class="timeline-item">
           <div class="timeline-dot"></div>
-          <div><strong>Agentic RAG Systems</strong><span> — ReAct loop, CRAG, Hierarchical RAG, Speculative RAG, multi-modal agents</span></div>
+          <div><strong>Agentic RAG Systems</strong><span>ReAct loop, CRAG, Hierarchical RAG, Speculative RAG, multi-modal agents</span></div>
         </div>
       </div>
     </div>
 
     <!-- SKILLS -->
     <div class="about-section">
-      <h2><span>04</span> — Skills &amp; Technologies</h2>
+      <h2><span>04</span> Skills &amp; Technologies</h2>
       <div class="skills-wrap">
         <span class="skill-tag">Agentic AI</span>
         <span class="skill-tag">LangGraph</span>
@@ -416,20 +416,19 @@
 
     <!-- CTA -->
     <div class="about-cta">
-      <h2>Follow the Research</h2>
+      <h2>Follow the <em>Research</em></h2>
       <p>I publish new AI research every day. Topics range from agentic AI architecture to token economics, enterprise AI governance, and production deployment patterns.</p>
-      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <div class="about-links">
         <a href="/" class="about-link primary">Read the Journal →</a>
         <a href="/ai-tokenomics/" class="about-link">AI Tokenomics Guide</a>
-        <a href=
       </div>
     </div>
 
   </main>
 
   <footer>
-    <p>Varun Singla · Technology Consultant &amp; AI Researcher · </p>
-    <p style="margin-top:0.4rem;">
+    <p>Varun Singla · Technology Consultant &amp; AI Researcher · Singapore</p>
+    <p style="margin-top:0.45rem;">
       <a href="/">Home</a> &nbsp;·&nbsp;
       <a href="/ai-tokenomics/">AI Tokenomics</a> &nbsp;·&nbsp;
       <a href="/tools/model-team-evaluator.html">Model Evaluator</a>
@@ -437,29 +436,11 @@
   </footer>
 
   <script>
-    // Theme toggle — shared preference with main site
-    (function() {
-      const html = document.documentElement;
-      const btn = document.getElementById('themeToggle');
-      let stored; try { stored = localStorage.getItem('vs-theme'); } catch(e) {}
-      let theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      const MOON = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
-      const SUN = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
-      function sync(t) {
-        html.setAttribute('data-theme', t);
-        if (btn) { btn.innerHTML = t === 'dark' ? SUN : MOON; btn.title = t === 'dark' ? 'Light mode' : 'Dark mode'; }
-      }
-      sync(theme);
-      if (btn) btn.addEventListener('click', () => {
-        theme = theme === 'dark' ? 'light' : 'dark';
-        try { localStorage.setItem('vs-theme', theme); } catch(e) {}
-        sync(theme);
-      });
-    })();
-
     // Nav scroll shadow
     const nav = document.querySelector('nav');
-    window.addEventListener('scroll', () => { nav.style.boxShadow = window.scrollY > 40 ? '0 4px 20px rgba(0,0,0,0.2)' : ''; }, { passive: true });
+    window.addEventListener('scroll', () => {
+      nav.style.boxShadow = window.scrollY > 40 ? '0 6px 24px -16px rgba(27,26,23,0.35)' : '';
+    }, { passive: true });
   </script>
 </body>
 </html>
