@@ -6,6 +6,168 @@
   },
   "learnings": [
     {
+      "date": "2026-06-28",
+      "display_date": "June 28, 2026",
+      "issue": 94,
+      "title": "Agentic AI in Real Estate & PropTech",
+      "focus_intro": "Real estate is the original multi-party transaction — and that is exactly what makes it the next agentic vertical. A single deal threads a chain of handoffs: listing and marketing, lead qualification, showing and scheduling, offer and negotiation, mortgage and underwriting, title and closing, document orchestration — across an agent, a lender, an appraiser, a title company and an escrow officer. In 2026 those handoffs are collapsing into one orchestrated agent loop, while automated valuation (AVMs) and mortgage underwriting form the high-judgement counterpart. The binding constraint is fair-housing, appraisal-bias and disclosure law: an agent can search, qualify, value and orchestrate a great deal, but every adverse or steering-adjacent decision — a valuation, a denial, who sees which listing — needs a reasoning trail a regulator and a consumer can read.",
+      "stats": [
+        {
+          "stat": "3–5%",
+          "label": "median error of agentic AVMs in data-rich markets — on par with or better than human appraisers; a 500-home portfolio valued in under an hour, not weeks"
+        },
+        {
+          "stat": "82%",
+          "label": "of real estate agents now use AI daily (2026); ~89% of top agents on AI CRMs, lifting conversion ~67%"
+        },
+        {
+          "stat": "22→45 hrs",
+          "label": "manual title-close time (standard → complex) now collapsing as agents automate it; mortgage processing ~90% faster"
+        },
+        {
+          "stat": "31% vs 12%",
+          "label": "expected 2026 portfolio growth for property managers using AI broadly vs those that do not"
+        }
+      ],
+      "viral_app": {
+        "name": "Zillow 'AI Mode' — the AI home search everyone is using",
+        "description": "The clearest consumer proof that agentic real estate has gone mainstream is the assistant tens of millions of house-hunters opened this spring. Zillow's 'AI Mode' (launched March 25, 2026, rolling out in phases through the year) turns the search box into a conversation: a renter can ask 'Can I afford this apartment if I move in June?' and a buyer can say 'find similar homes within my budget closer to light rail', and the assistant compares listings, estimates renovation costs, analyses affordability, surfaces negotiation insights, and schedules a tour or connects a local agent — all in one thread. What makes it a governance exemplar rather than just a demo is that Zillow wired its Fair Housing Classifier in as a real-time guardrail, so the assistant will not answer in ways that would violate fair-housing protections — exactly the 'governance by construction' this issue argues for. The enterprise breakouts of the moment are Zillow AI Mode and Redfin conversational search on the consumer side, and Compass's agent studio plus the agentic mortgage and title platforms on the transaction side. OpenClaw still tops the raw OSS charts at 374K+ GitHub stars as the borderless local-first foil — viral, but with none of the fair-housing guardrail or audit trail a real-estate decision demands.",
+        "stats": [
+          {
+            "stat": "Mar 25, 2026",
+            "label": "Zillow 'AI Mode' launches; phased rollout, 'Ask Zillow' at the bottom of every search"
+          },
+          {
+            "stat": "Fair Housing Classifier",
+            "label": "wired in as a real-time guardrail so the assistant cannot violate fair-housing protections"
+          },
+          {
+            "stat": "82% / last",
+            "label": "of agents use AI daily, yet real estate ranks last in AI-search visibility — the AEO land-grab is open"
+          }
+        ]
+      },
+      "sections": [
+        {
+          "title": "1 · The transaction is the agentic loop",
+          "paragraphs": [
+            "Real estate has always been a relay race: a buyer or seller hands off to an agent, who hands off to a lender, an appraiser, a title company and an escrow officer, with documents and deadlines flying between them. That structure — many repeatable steps, many parties, mountains of documents — is exactly what an orchestration agent is good at. 2026 is the year the tooling grows up: AI in real estate moves from writing listing descriptions and follow-up emails to acting as a teammate that coordinates a whole workflow — extracting key dates, comparing a checklist against the documents on file, flagging a missing signature, drafting the client update and routing the question to the right party. The lifecycle splits into a high-volume pipeline (listing → lead qualification → showing → offer → mortgage → title and closing) and a high-judgement core (valuation and the credit decision).",
+            "McKinsey and PwC frame the endpoint as 'propOS' — autonomous agents running routine operations, digital twins monitoring buildings in real time, and generative AI exploring options at superhuman speed. The early evidence is in the numbers: property managers using AI broadly across core workflows expect 31% portfolio growth in 2026 versus 12% for those who do not, because an agent lets one back office oversee a far larger book by handling routine interactions across every channel. The shift in 2026–27 is from AI-assisted work, where a person uses AI tools, to AI-orchestrated work, where the agent runs the relay and the human reviews the outcomes that matter."
+          ]
+        },
+        {
+          "title": "2 · The front door — consumer search goes conversational",
+          "paragraphs": [
+            "The most visible shift is at the top of the funnel, where the consumer meets the agent, and every major portal shipped generative search inside 18 months. Zillow launched 'AI Mode' in March 2026 — an 'Ask Zillow' assistant that lets buyers compare listings, estimate renovation costs, analyse affordability, get negotiation insights and schedule tours in plain language — with Zillow's Fair Housing Classifier wired in as a real-time guardrail. Redfin's conversational search lets buyers describe what they want instead of setting filters, and buyers are increasingly choosing AI-suggested homes over ones they find themselves. Compass built agent-side tools that write listings, schedule showings, predict which buyers will close, and auto-generate marketing videos. On the agent side, 24/7 voice and text agents (Ylopo, Lofty, Lindy) pre-screen budget and intent and book tours around the clock — roughly 89% of top agents are projected to run AI CRMs in 2026. The seam: the agent qualifies and schedules; a licensed human owns the relationship and the advice.",
+            "A surprising counter-stat hides in plain sight: real estate ranks last among all industries in AI-search visibility even as 82% of agents use AI daily. When the buyer's assistant is doing the looking, being discoverable to it — the practice now called AEO, agent/answer-engine optimisation — is the new SEO, and that land-grab is wide open."
+          ],
+          "table": {
+            "headers": [
+              "Funnel stage",
+              "What the agent does",
+              "Live in 2026",
+              "The human still owns"
+            ],
+            "rows": [
+              [
+                "Discover & search",
+                "Conversational home search, comps, affordability",
+                "Zillow 'AI Mode' / Ask Zillow; Redfin conversational search",
+                "Fair-housing guardrail & the advice"
+              ],
+              [
+                "Qualify leads",
+                "Pre-screen budget & intent; score behaviour",
+                "Ylopo / Lofty / Lindy voice + text, 24/7",
+                "Fiduciary duty & client trust"
+              ],
+              [
+                "Schedule & tour",
+                "Book showings, route, follow up automatically",
+                "AI CRMs used by ~89% of top agents",
+                "The in-person relationship"
+              ],
+              [
+                "Market the listing",
+                "Write copy, generate video tours & ads",
+                "Compass AI studio; HeyGen / Luma video tours",
+                "Brand, accuracy & disclosure"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "3 · The deep loop — valuation, underwriting, title & closing",
+          "paragraphs": [
+            "Behind the search bar sits the harder half of the transaction: deciding what a home is worth and whether a loan should be made. Automated valuation models (AVMs) are the high-judgement counterpart to the consumer funnel — and they have become genuinely good. Agentic valuation platforms report median absolute errors of 3–5% in data-rich markets, on par with or better than human appraisers, and London PropTech firms now value a 500-property portfolio in under an hour, a job that used to take weeks. On the lending side, agentic mortgage underwriting runs the multi-step loop autonomously — pulling data, running risk models, flagging anomalies and routing exceptions to humans without a handoff at every step — and uses APIs to connect the orchestrator to appraisers, title companies and closing agents; lenders report processing roughly 90% faster. Title and escrow, historically about 22 hours of manual work for a standard close and 45 for a complex one, are collapsing as agents retrieve tax data, verify entities and coordinate payoffs. The pattern across all three: the agent reads, structures and recommends; a human owns the valuation sign-off, the credit decision and the binding signature."
+          ]
+        },
+        {
+          "title": "4 · The binding constraint — fairness, bias & disclosure",
+          "paragraphs": [
+            "Real estate is where an AI decision can quietly steer who gets to live where — which is why fairness law is the gating constraint, not an afterthought. AVMs trained on historical sales can carry forward appraisal bias: Freddie Mac found homes in predominantly Black and Latino neighbourhoods more likely to be undervalued, and a biased model perpetuates it. The US response is already in force — the six-agency AVM Quality Control Rule (CFPB, OCC, Federal Reserve, FDIC, NCUA, FHFA), effective October 1, 2025, requires lenders to ensure AVM accuracy, guard against data manipulation, avoid conflicts of interest, run random sample testing, and — as a standalone factor — comply with nondiscrimination laws. The Fair Housing Act adds a steering risk at the front door: an assistant that decides which listings a buyer sees can illegally shape choices (which is exactly why Zillow built its Fair Housing Classifier guardrail). In the EU, AI used for creditworthiness in a mortgage is Annex III high-risk under the AI Act, whose obligations bite August 2 (now T-35 days, with a proposed Omnibus deferral to December 2027 still unadopted — hold two clocks).",
+            "The common denominator is a reasoning trail per adverse or steering-adjacent decision — the same stack the series has been building: scoped agent identity (Day 54), an OTEL→WORM audit trail (Day 22/50), human-in-the-loop approval gates (Day 48), and continuous bias evals against a golden set (Day 45/49). 'Glass-box' algorithmic audits make the bias measurable — and correctable. Wire it once and the same telemetry answers the federal examiner, the fair-housing complaint and the buyer who asks why the model valued their home the way it did."
+          ],
+          "table": {
+            "headers": [
+              "What the rule wants",
+              "Real-estate specific",
+              "How the agent provides it",
+              "Series callback"
+            ],
+            "rows": [
+              [
+                "Valuation integrity",
+                "AVM accuracy + anti-manipulation + random testing (6-agency rule, Oct 2025)",
+                "Versioned model, logged comps, sampled back-testing",
+                "Day 93 underwriting audit"
+              ],
+              [
+                "Non-discrimination",
+                "No undervaluing minority neighbourhoods; no steering (Fair Housing Act)",
+                "Bias evals vs golden set + fair-housing classifier guardrail",
+                "Day 45 / 49 evals"
+              ],
+              [
+                "Creditworthiness",
+                "EU AI Act: mortgage credit scoring = high-risk (Annex III)",
+                "Inventory & register; reasoning trail per decline",
+                "Day 81 two clocks"
+              ],
+              [
+                "Audit & oversight",
+                "Document the decision; explain it to the consumer",
+                "OTEL→WORM log + HITL gate + scoped SVID",
+                "Day 22 / 50 / 54"
+              ]
+            ]
+          }
+        },
+        {
+          "title": "5 · Viral spotlight — the AI home search everyone is using",
+          "paragraphs": [
+            "The clearest consumer proof that agentic real estate has gone mainstream is the assistant tens of millions of house-hunters opened this spring. Zillow's 'AI Mode' (launched March 25, 2026, rolling out in phases through the year) turns the search box into a conversation: a renter can ask 'Can I afford this apartment if I move in June?' and a buyer can say 'find similar homes within my budget closer to light rail', and the assistant compares listings, estimates renovation costs, analyses affordability, surfaces negotiation insights, and schedules a tour or connects a local agent — all in one thread. What makes it a governance exemplar rather than just a demo is that Zillow wired its Fair Housing Classifier in as a real-time guardrail, so the assistant will not answer in ways that would violate fair-housing protections — exactly the 'governance by construction' this issue argues for. The enterprise breakouts of the moment are Zillow AI Mode and Redfin conversational search on the consumer side, and Compass's agent studio plus the agentic mortgage and title platforms on the transaction side. OpenClaw still tops the raw OSS charts at 374K+ GitHub stars as the borderless local-first foil — viral, but with none of the fair-housing guardrail or audit trail a real-estate decision demands."
+          ]
+        }
+      ],
+      "market_signal": "Real estate is following financial services, healthcare and insurance from pilot into production — and it splits the same way: a high-volume coordination pipeline plus a high-judgement valuation-and-credit core. The value, though, is concentrating at two layers the model does not own: the consumer front door (Zillow AI Mode, Redfin, Compass) and the governed transaction rails (AVMs, mortgage underwriting and title/escrow that emit an audit trail). With frontier models within ~3% of each other and the market mood shifting from 'tokenmaxxing' to ROI (CNBC, June 26), whoever owns the conversation with the buyer — and can prove every valuation and decline is fair and documented — captures the margin. A telling gap: 82% of agents use AI daily, yet real estate ranks dead last in AI-search visibility, so the AEO land-grab (making listings discoverable to the buyer's AI agent) is wide open. With EU AI Act enforcement at T-35 days and the US six-agency AVM rule already in force, 'show me the audit trail for that valuation' is becoming the procurement question.",
+      "practical_takeaway": [
+        {
+          "title": "Automate the relay, keep a human on the price and the advice",
+          "body": "Lead qualification, scheduling, marketing and document orchestration are the proven, low-risk starting points; let agents run them end to end. Keep the valuation sign-off, the credit decision and any steering-adjacent recommendation with a licensed human. Measure on cycle time, conversion and time-to-close — not on dashboards."
+        },
+        {
+          "title": "Make the reasoning trail the product",
+          "body": "Before you scale, wire OTEL→WORM once and the same evidence satisfies the six-agency AVM rule, the Fair Housing Act and the EU AI Act simultaneously. Bias-test AVMs continuously with glass-box audits (not just at launch), and put a fair-housing classifier in front of any consumer-facing search so the model cannot steer."
+        },
+        {
+          "title": "Win the front door — go AEO",
+          "body": "Real estate ranks dead last in AI-search visibility even as 82% of agents use AI daily. Structure listings and property data so the buyer's AI agent can find, compare and recommend them. Agent-readiness is the new SEO — and the land-grab is still wide open."
+        }
+      ],
+      "tomorrow_preview": "Day 95: Agentic AI in Travel & Hospitality — agents that plan, book and re-book trips end to end, dynamic pricing and revenue management, concierge and guest-service automation, and the payment + duty-of-care guardrails that decide what an agent can book unsupervised."
+    },
+    {
       "date": "2026-06-27",
       "display_date": "June 27, 2026",
       "issue": 93,
@@ -14868,6 +15030,6 @@
       ]
     }
   ],
-  "last_updated": "2026-06-27",
-  "total_days": 93
+  "last_updated": "2026-06-28",
+  "total_days": 94
 }
