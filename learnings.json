@@ -7,40 +7,59 @@
   "learnings": [
     {
       "date": "2026-06-29",
-      "display_date": "JUNE 29, 2026",
+      "display_date": "June 29, 2026",
       "issue": 95,
       "title": "Agentic AI in Travel & Hospitality",
-      "focus_intro": "Travel is the original multi-step, multi-party transaction -- and that is exactly what makes it a",
+      "focus_intro": "Travel is the original multi-step, multi-party transaction — and that is exactly what makes it a natural agentic vertical. One trip threads a chain of handoffs across many suppliers: search and inspiration, itinerary building, flight and hotel booking, payment, and re-booking when a flight cancels — spanning an airline, a hotel, an OTA, a payment provider and ground transport. In 2026 those steps are collapsing into one orchestrated chat, while dynamic pricing and revenue management form the high-judgement counterpart. The binding constraint is payment authority and duty-of-care / consumer-protection law: an agent can plan, compare, book and re-book a great trip, but every booking or charge it makes needs a scoped spend limit, an authenticated checkout and an audit trail — and when something goes wrong, a human-readable reason a traveller and a regulator can read.",
       "stats": [
         {
           "stat": "80% vs 2%",
-          "label": "of travel executives plan to deploy autonomous booking agents at scale -- vs only ~2% of US consumers willing to fully trust one to book today (the trust gap)"
+          "label": "of travel executives plan to deploy autonomous booking agents at scale — vs only ~2% of US consumers willing to fully trust one to book today (the trust gap)"
         },
         {
-          "stat": "3-10%",
-          "label": "hotel revenue lift from AI dynamic pricing + personalisation with no extra occupancy; +10-15% cluster RevPAR across a multi-property portfolio (McKinsey)"
+          "stat": "3–10%",
+          "label": "hotel revenue lift from AI dynamic pricing + personalisation with no extra occupancy; +10–15% cluster RevPAR across a multi-property portfolio (McKinsey)"
         },
         {
           "stat": "420+ / 2M+",
           "label": "airlines and lodging options now bookable end to end in a single chat (search → select → pay) via travel's first all-in-one agentic flight booking"
         },
         {
-          "stat": "20-30%",
+          "stat": "20–30%",
           "label": "fewer travel support tickets from agentic exception handling; disrupted trips re-booked in minutes, not hours"
         }
       ],
+      "viral_app": {
+        "name": "Mindtrip — the AI that books your flight in the chat (Sabre + PayPal)",
+        "description": "The clearest consumer proof that agentic travel has crossed from demo to product is Mindtrip — one of the most popular AI trip planners and a Fast Company Most Innovative honoree — which in May 2026 shipped what it and its partners call travel's first all-in-one agentic flight booking. A traveller can describe a trip, get a personalised itinerary, then search, select and pay for the flight without leaving the conversation, drawing on Sabre Mosaic's 420+ airlines and 2M+ stays and checking out through PayPal. What makes it a governance exemplar rather than just a slick demo is that it tackles this issue's binding constraint — payment authority — by construction: the booking executes against Sabre's real inventory (not a hallucinated fare) and the charge runs through PayPal's identity verification and trusted checkout. The enterprise breakouts of the moment are Google AI Mode travel (Canvas planning plus announced agentic booking with Booking.com, Expedia and Marriott), Kayak AI, Expedia's B2B agentic MCP server and Trip.com's TripGenie. OpenClaw still tops the raw OSS charts at 374K+ GitHub stars as the borderless local-first foil — viral, but with none of the scoped checkout or audit trail a real booking demands.",
+        "stats": [
+          {
+            "stat": "May 6, 2026",
+            "label": "Mindtrip launches all-in-one agentic flight booking — search, select & pay inside the chat (Sabre + PayPal)"
+          },
+          {
+            "stat": "PayPal checkout",
+            "label": "identity verification + trusted, capped checkout solves payment authority by construction, not by guesswork"
+          },
+          {
+            "stat": "420+ / 2M+",
+            "label": "airlines and lodging options from Sabre Mosaic bookable in one conversation, incl. Buy-Now-Pay-Later"
+          }
+        ]
+      },
       "sections": [
         {
           "title": "1 · The trip is the agentic loop",
           "paragraphs": [
-            "A trip has always been a relay race: a traveller hands off to a search engine, which hands off to an airline, a hotel, an OTA, a payment provider and a ground-transport app, with prices and availability changing by the second. That structure -- many repeatable steps, many suppliers, live inventory and real money -- is exactly what an orchestration agent is good at. 2026 is the year the tooling grows up: travel AI moves from recommending (here are ten flights, you pick) to transacting (book the one that fits my rules, pay for it, and fix it if it breaks). OAG called March 2026 'the month agentic travel got real', and the lifecycle now splits into a high-volume pipeline (search → itinerary → booking → payment → re-booking) and a high-judgement core: the",
-            "But enthusiasm is running ahead of trust. Roughly 80% of travel executives plan to deploy autonomous booking agents at scale, yet only about 2% of US consumers say they would let one book a trip fully unsupervised today; 90% have heard of AI trip planning, ~38% have tried it, and just ~33% expect to use it regularly in 2026. Business travel is leading -- corporate policy already supplies the guardrails (spend caps, approval chains, preferred suppliers) an agent needs -- while leisure lags on trust and accountability. The shift in 2026-27 is from AI-assisted planning, where a person uses AI tools, to AI-orchestrated travel, where the agent runs the relay and the human owns the moments that bind: the price and the spend. The reframe: the agent runs the relay; a human (or a hard rule) owns the price, the open-ended spend and the complex re-book. Everything else -- search, comparison, itinerary, routine booking and payment within a cap -- is coordination an agent can carry, which is why travel, with its many handoffs and live inventory, is such a natural fit."
+            "A trip has always been a relay race: a traveller hands off to a search engine, which hands off to an airline, a hotel, an OTA, a payment provider and a ground-transport app, with prices and availability changing by the second. That structure — many repeatable steps, many suppliers, live inventory and real money — is exactly what an orchestration agent is good at. 2026 is the year the tooling grows up: travel AI moves from recommending (here are ten flights, you pick) to transacting (book the one that fits my rules, pay for it, and fix it if it breaks). OAG called March 2026 'the month agentic travel got real', and the lifecycle now splits into a high-volume pipeline (search → itinerary → booking → payment → re-booking) and a high-judgement core: the price itself, set by revenue management.",
+            "But enthusiasm is running ahead of trust. Roughly 80% of travel executives plan to deploy autonomous booking agents at scale, yet only about 2% of US consumers say they would let one book a trip fully unsupervised today; 90% have heard of AI trip planning, ~38% have tried it, and just ~33% expect to use it regularly in 2026. Business travel is leading — corporate policy already supplies the guardrails (spend caps, approval chains, preferred suppliers) an agent needs — while leisure lags on trust and accountability. The shift in 2026–27 is from AI-assisted planning, where a person uses AI tools, to AI-orchestrated travel, where the agent runs the relay and the human owns the moments that bind: the price and the spend."
           ]
         },
         {
-          "title": "2 · The front door -- discovery & booking go conversational",
+          "title": "2 · The front door — discovery & booking go conversational",
           "paragraphs": [
-            "The most visible shift is at the top of the funnel, where the traveller meets the agent, and every major player shipped conversational search inside 18 months. Consumer apps lead: Mindtrip (a Fast Company Most Innovative honoree) and Layla build complete personalised itineraries -- flights, hotels, activities, dining -- in a single thread, and Trip.com's TripGenie generates an itinerary and completes the booking in the same flow. The platforms are racing in: Google's AI Mode already does conversational trip planning in Canvas and has announced agentic flight and hotel booking with Booking.com, Expedia and Marriott (Marriott says AI Mode will process the booking, not just hand off a link), though the full booking flow is not yet live as of late June; Kayak opened its 'Kayak AI' agentic testbed in April; and ChatGPT opened to travel apps in late 2025 but still leans toward routing the purchase to the supplier rather than completing it itself. The seam: the agent plans, compares and books; the supplier -- and a human for anything complex -- owns fulfilment and the relationship. A familiar counter-stat applies: just as real estate ranks last in AI-search visibility, the travel suppliers that win the next cycle are the ones an agent can read and transact against -- structured, real-time fares, availability and policies exposed through an MCP or agentic-commerce endpoint. Expedia is making exactly that bet with a B2B agentic server that gives partner agents direct inventory access; the OTA or hotel that is not agent-callable simply will not appear in the traveller's assistant. Agent-readiness is the new distribution."
+            "The most visible shift is at the top of the funnel, where the traveller meets the agent, and every major player shipped conversational search inside 18 months. Consumer apps lead: Mindtrip (a Fast Company Most Innovative honoree) and Layla build complete personalised itineraries — flights, hotels, activities, dining — in a single thread, and Trip.com's TripGenie generates an itinerary and completes the booking in the same flow. The platforms are racing in: Google's AI Mode already does conversational trip planning in Canvas and has announced agentic flight and hotel booking with Booking.com, Expedia and Marriott (Marriott says AI Mode will process the booking, not just hand off a link), though the full booking flow is not yet live as of late June; Kayak opened its 'Kayak AI' agentic testbed in April; and ChatGPT opened to travel apps in late 2025 but still leans toward routing the purchase to the supplier rather than completing it itself. The seam: the agent plans, compares and books; the supplier — and a human for anything complex — owns fulfilment and the relationship.",
+            "A familiar counter-stat applies: just as real estate ranks last in AI-search visibility, the travel suppliers that win the next cycle are the ones an agent can read and transact against — structured, real-time fares, availability and policies exposed through an MCP or agentic-commerce endpoint. Expedia is making exactly that bet with a B2B agentic server that gives partner agents direct inventory access; the OTA or hotel that is not agent-callable simply will not appear in the traveller's assistant. Agent-readiness is the new distribution."
           ],
           "table": {
             "headers": [
@@ -78,56 +97,16 @@
           }
         },
         {
-          "title": "3 · The deep loop -- book, pay, re-book & revenue management",
+          "title": "3 · The deep loop — book, pay, re-book & revenue management",
           "paragraphs": [
-            "Behind the chat sits the harder half of the transaction: actually moving money and recovering a broken trip. End-to-end agentic booking is now real -- Sabre, PayPal and Mindtrip launched what they call travel's first all-in-one agentic flight booking, where a traveller searches, selects and pays entirely inside the chat. Sabre's AI-native platform (Sabre Mosaic) supplies real-time shopping, pricing and servicing across 420+ airlines (150 low-cost carriers) and 2M+ lodging options, while PayPal supplies identity verification and a trusted checkout, including Buy-Now-Pay-Later. The killer use case is re-booking on disruption: an agent wired to live inventory can rebook a cancelled flight across better alternatives in minutes instead of hours, and partners report exception handling alone could cut support tickets 20-30% -- though multi-carrier, codeshare and international itineraries still need a human. The high-judgement counterpart is revenue management: AI pricing engines adjust rates in real time on demand, pace and competitor signals, and McKinsey estimates AI dynamic pricing plus personalisation can lift hotel revenue 3-10% with no extra occupancy, and cluster RevPAR 10-15% across a portfolio. The pattern: the agent searches, books and pays within a cap and proposes prices; a human owns the price commit, the complex re-book and the exception."
-          ],
-          "table": {
-            "headers": [
-              "Trip stage",
-              "What the agent does",
-              "Live in 2026",
-              "The human still owns"
-            ],
-            "rows": [
-              [
-                "Inspire & search",
-                "Conversational discovery; compare fares, stays, activities",
-                "Mindtrip, Layla, Trip.com TripGenie; Google AI Mode (Canvas)",
-                "Taste & the 'why this trip'"
-              ],
-              [
-                "Build itinerary",
-                "Multi-city plan to budget, dates & preferences",
-                "Kayak AI testbed; consumer trip-planner apps",
-                "Final call on the plan"
-              ],
-              [
-                "Book & pay",
-                "Search → select → pay end to end, within a cap",
-                "Mindtrip + Sabre Mosaic + PayPal (first all-in-one)",
-                "Payment authority & the cap"
-              ],
-              [
-                "Re-book on disruption",
-                "Auto-rebook across live inventory in minutes",
-                "Expedia B2B MCP server (launching); OTA exception agents",
-                "Multi-carrier / codeshare / intl cases"
-              ]
-            ]
-          }
-        },
-        {
-          "title": "3. Win the front door -- go agent-ready.",
-          "paragraphs": [
-            "Publish real-time inventory, structured fares, availability and policies through an MCP or agentic-commerce endpoint so the traveller's assistant can find and transact against you. Expedia's B2B server is the template -- the OTA or hotel that is not agent-callable is invisible to the buyer's AI, and that land-grab is open now. Tomorrow (Day 96): Agentic AI in Agriculture & Food Systems -- agents that sense, decide and act across the farm and the food chain (crop monitoring, irrigation and input optimisation, autonomous machinery, yield and supply forecasting), with the physical-world safety and food-traceability guardrails that decide what an agent can do without a human in the field."
+            "Behind the chat sits the harder half of the transaction: actually moving money and recovering a broken trip. End-to-end agentic booking is now real — Sabre, PayPal and Mindtrip launched what they call travel's first all-in-one agentic flight booking, where a traveller searches, selects and pays entirely inside the chat. Sabre's AI-native platform (Sabre Mosaic) supplies real-time shopping, pricing and servicing across 420+ airlines (150 low-cost carriers) and 2M+ lodging options, while PayPal supplies identity verification and a trusted checkout, including Buy-Now-Pay-Later. The killer use case is re-booking on disruption: an agent wired to live inventory can rebook a cancelled flight across better alternatives in minutes instead of hours, and partners report exception handling alone could cut support tickets 20–30% — though multi-carrier, codeshare and international itineraries still need a human. The high-judgement counterpart is revenue management: AI pricing engines adjust rates in real time on demand, pace and competitor signals, and McKinsey estimates AI dynamic pricing plus personalisation can lift hotel revenue 3–10% with no extra occupancy, and cluster RevPAR 10–15% across a portfolio. The pattern: the agent searches, books and pays within a cap and proposes prices; a human owns the price commit, the complex re-book and the exception."
           ]
         },
         {
-          "title": "4 · The binding constraint -- payment authority, duty of care &",
+          "title": "4 · The binding constraint — payment authority, duty of care & disclosure",
           "paragraphs": [
-            "Travel is where an agent spends the traveller's money and is on the hook when the trip breaks -- so payment authority and consumer-protection law are the gating constraint, not an afterthought. Every booking or charge needs a scoped spend limit, an authenticated checkout and an audit trail: this is the Day 28 / 54 agent-payments-and-KYA pattern, and it is exactly why the Mindtrip flow runs payment through PayPal's identity verification and trusted checkout rather than letting the model improvise -- governance by construction. Consumer-protection law raises the bar further. New US DOT rules mandate automatic refunds for cancellations and major delays (funds back to the original method within days; ~98% of airlines met the timelines in Q1 2026), and EU261 adds compensation rights -- but an agent that hallucinates a refund or compensation promise creates a chargeback and a liability, because eligibility turns on fare class, route, DOT-vs-EU261 jurisdiction and whether the carrier caused the disruption. Refund and re-booking answers must",
-            "On the EU AI Act, most travel use is limited-risk -- the live obligation is Article 50 disclosure (tell the traveller they are dealing with an AI) -- but the moment an agent runs a creditworthiness check for Buy-Now-Pay-Later it crosses into Annex III high-risk, whose obligations bite August 2 (now T-34 days, with a proposed Omnibus deferral to December 2027 still unadopted -- hold two clocks, per Day 81). DOT and EU regulators have not yet issued AI-specific guidance, but explainability or human-review mandates for denied refunds could land in the 2026-27 cycle. The common denominator is a reasoning trail per booking, charge or denial -- the same stack the series keeps reusing: scoped agent identity (Day 54), an OTELfiWORM audit trail (Day 22/50), human-in-the-loop approval on anything that binds (Day 48). Wire it once and the same telemetry answers the chargeback dispute, the DOT / EU261 refund claim and the Article 50 disclosure check."
+            "Travel is where an agent spends the traveller's money and is on the hook when the trip breaks — so payment authority and consumer-protection law are the gating constraint, not an afterthought. Every booking or charge needs a scoped spend limit, an authenticated checkout and an audit trail: this is the Day 28 / 54 agent-payments-and-KYA pattern, and it is exactly why the Mindtrip flow runs payment through PayPal's identity verification and trusted checkout rather than letting the model improvise — governance by construction. Consumer-protection law raises the bar further. New US DOT rules mandate automatic refunds for cancellations and major delays (funds back to the original method within days; ~98% of airlines met the timelines in Q1 2026), and EU261 adds compensation rights — but an agent that hallucinates a refund or compensation promise creates a chargeback and a liability, because eligibility turns on fare class, route, DOT-vs-EU261 jurisdiction and whether the carrier caused the disruption. Refund and re-booking answers must be grounded in policy, not guessed.",
+            "On the EU AI Act, most travel use is limited-risk — the live obligation is Article 50 disclosure (tell the traveller they are dealing with an AI) — but the moment an agent runs a creditworthiness check for Buy-Now-Pay-Later it crosses into Annex III high-risk, whose obligations bite August 2 (now T-34 days, with a proposed Omnibus deferral to December 2027 still unadopted — hold two clocks, per Day 81). DOT and EU regulators have not yet issued AI-specific guidance, but explainability or human-review mandates for denied refunds could land in the 2026–27 cycle. The common denominator is a reasoning trail per booking, charge or denial — the same stack the series keeps reusing: scoped agent identity (Day 54), an OTEL→WORM audit trail (Day 22/50), human-in-the-loop approval on anything that binds (Day 48). Wire it once and the same telemetry answers the chargeback dispute, the DOT / EU261 refund claim and the Article 50 disclosure check."
           ],
           "table": {
             "headers": [
@@ -158,27 +137,35 @@
               [
                 "Disclosure & audit",
                 "Tell the traveller it's AI; explain what it did",
-                "Article 50 banner + OTELfiWORM log + HITL gate",
+                "Article 50 banner + OTEL→WORM log + HITL gate",
                 "Day 22 / 48 / 50"
-              ],
-              [
-                "The seam: the agent searches, plans, books and pays within a cap and re-books the routine cases; a human (or a hard rule) owns the price commit, the open-ended spend and the complex disruption. Every booking, charge and refund ships with an explanation grounded in policy. That line separates a travel agent you can run from one you can only demo.",
-                "",
-                "",
-                ""
               ]
             ]
           }
         },
         {
-          "title": "5 · Viral spotlight -- the AI that books your flight in the chat",
+          "title": "5 · Viral spotlight — the AI that books your flight in the chat",
           "paragraphs": [
-            "The clearest consumer proof that agentic travel has crossed from demo to product is Mindtrip -- one of the most popular AI trip planners and a Fast Company Most Innovative honoree -- which in May 2026 shipped what it and its partners call travel's first all-in-one agentic flight booking. A traveller can describe a trip, get a personalised itinerary, then search, select and pay for the flight without leaving the conversation, drawing on Sabre Mosaic's 420+ airlines and 2M+ stays and checking out through PayPal. What makes it a governance exemplar rather than just a slick demo is that it tackles this issue's binding constraint -- payment authority -- by construction: the booking executes against Sabre's real inventory (not a hallucinated fare) and the charge runs through PayPal's identity verification and trusted checkout. The enterprise breakouts of the moment are Google AI Mode travel (Canvas planning plus announced agentic booking with Booking.com, Expedia and Marriott), Kayak AI, Expedia's B2B agentic MCP server and Trip.com's TripGenie. OpenClaw still tops the raw OSS charts at 374K+ GitHub stars as the borderless local-first foil -- viral, but with none of the scoped checkout or audit trail",
-            "Breaking this week: the IPO race stayed the headline -- Anthropic's confidential S-1 (filed June 1, $965B post-money) still targets an October Nasdaq debut, while OpenAI has also filed confidentially (~$920B) with reports split on timing, from a September target to weighing a slip toward 2027 (Bloomberg, June 26) as the market mood shifts from 'tokenmaxxing' to demanding clear ROI (CNBC, June 26). Anthropic is shipping on Opus 4.8 and the public, safeguarded Fable 5; Google is pushing price-performance with Gemini 3.5 Flash at roughly a third the cost of frontier rivals and expanded its Gemini Enterprise Agent Platform at Cloud Next '26. In travel specifically, Expedia's B2B agentic (MCP) server is set to launch within months and Revolut acquired AI-travel startup Swifty -- agentic commerce moving from feature to distribution layer."
+            "The clearest consumer proof that agentic travel has crossed from demo to product is Mindtrip — one of the most popular AI trip planners and a Fast Company Most Innovative honoree — which in May 2026 shipped what it and its partners call travel's first all-in-one agentic flight booking. A traveller can describe a trip, get a personalised itinerary, then search, select and pay for the flight without leaving the conversation, drawing on Sabre Mosaic's 420+ airlines and 2M+ stays and checking out through PayPal. What makes it a governance exemplar rather than just a slick demo is that it tackles this issue's binding constraint — payment authority — by construction: the booking executes against Sabre's real inventory (not a hallucinated fare) and the charge runs through PayPal's identity verification and trusted checkout. The enterprise breakouts of the moment are Google AI Mode travel (Canvas planning plus announced agentic booking with Booking.com, Expedia and Marriott), Kayak AI, Expedia's B2B agentic MCP server and Trip.com's TripGenie. OpenClaw still tops the raw OSS charts at 374K+ GitHub stars as the borderless local-first foil — viral, but with none of the scoped checkout or audit trail a real booking demands."
           ]
         }
       ],
-      "practical_takeaway": []
+      "market_signal": "Travel is following financial services, healthcare, insurance and real estate from pilot into production — and it splits the same way: a high-volume booking pipeline (search → itinerary → book → pay → re-book) plus a high-judgement pricing-and-revenue-management core. The value is concentrating at two layers the model does not own: the front door (the assistant the traveller actually talks to — Mindtrip, Google AI Mode, Kayak AI, Trip.com) and the governed payment rails (a scoped, identity-verified checkout plus an audit trail, the way Sabre + PayPal wired the Mindtrip flow). With frontier models within ~3% of each other and the market mood shifting from 'tokenmaxxing' to ROI (CNBC, June 26), whoever owns the conversation with the traveller — and can prove every charge and refund was authorised and documented — captures the margin. The bottleneck is trust: 80% of executives want autonomous booking but only ~2% of consumers will allow it unsupervised today, and suppliers that are not agent-callable are already invisible to the buyer's assistant. With EU AI Act enforcement at T-34 days and new US DOT auto-refund rules already in force, 'show me the spend cap and the audit trail for that booking' is becoming the procurement question.",
+      "practical_takeaway": [
+        {
+          "title": "Automate the relay, keep a human on the price and the complex re-book",
+          "body": "Search, itinerary building, routine booking, in-policy payment and simple re-booking are the proven starting points; let agents run them end to end. Keep the dynamic-price commit, open-ended spend, multi-carrier disruption and the exception with a human. Measure on look-to-book, cost-to-serve and time-to-rebook — not on dashboards."
+        },
+        {
+          "title": "Make payment authority and the reasoning trail the product",
+          "body": "Give every agent a scoped spend cap and an identity-verified checkout (the PayPal pattern), and wire OTEL→WORM once: the same evidence defends a chargeback, answers a DOT / EU261 refund claim and satisfies EU AI Act Article 50. Never let an agent invent a refund or compensation promise — ground every refund and charge in fare and route policy."
+        },
+        {
+          "title": "Win the front door — go agent-ready",
+          "body": "Publish real-time inventory, structured fares, availability and policies through an MCP or agentic-commerce endpoint so the traveller's assistant can find and transact against you. Expedia's B2B server is the template — the OTA or hotel that is not agent-callable is invisible to the buyer's AI, and that land-grab is open now."
+        }
+      ],
+      "tomorrow_preview": "Day 96: Agentic AI in Agriculture & Food Systems — agents that sense, decide and act across the farm and the food chain (crop monitoring, irrigation and input optimisation, autonomous machinery, yield and supply forecasting), with the physical-world safety and food-traceability guardrails that decide what an agent can do without a human in the field."
     },
     {
       "date": "2026-06-28",
