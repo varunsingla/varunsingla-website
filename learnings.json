@@ -10,7 +10,7 @@
       "display_date": "JULY 2, 2026",
       "issue": 96,
       "title": "Agentic AI in Agriculture & Food Systems",
-      "focus_intro": "becomes the agentic loop. Agents now sense (satellite, drone, soil IoT), decide (agronomy,",
+      "focus_intro": "In 2026 the farm itself becomes the agentic loop — agents sense (satellite, drone, soil IoT), decide (agronomy, irrigation, input optimisation) and act (autonomous tractors, laser weeders, irrigation valves) across the crop cycle, with traceability law and physical-world safety as the binding constraints.",
       "viral_app": {
         "name": "LaserWeeder",
         "description": "The agri-tech breakout of 2026 is Carbon Robotics, whose LaserWeeder rigs kill weeds with lasers -- no herbicide -- cutting weed-control costs by ~80% while improving yield and quality. In February the company shipped what it calls the world's first Large Plant Model (LPM): a foundation model trained on 150M+ plant images collected by its own machines across 100+ farms in 15 countries, able to distinguish crops from weeds and -- the viral hook -- learn a completely new weed in real time ('this is a new weed, kill this'), collapsing adaptation cycles from weeks to minutes. Its Autonomous Tractor Kit converts existing tractors to autonomy with the governance twist built in: a remote operator c",
@@ -41,6 +41,10 @@
         {
           "stat": "18 states",
           "label": "where John Deere field-tested fully autonomous 8R tractors ahead of the 2026 US-wide rollout -- 16-camera 360-degree vision, sub-inch GPS, supervised from a phone"
+        },
+        {
+          "stat": "~$77B",
+          "label": "AI-in-agriculture market projected by 2036 (from ~$3B in 2026, 26.3% CAGR) — driven by labour shortages, food-security pressure, and edge-AI hardware cost collapse"
         }
       ],
       "sections": [
@@ -192,7 +196,22 @@
           ]
         }
       ],
-      "practical_takeaway": []
+      "practical_takeaway": [
+        {
+          "title": "Start with the advisory loop, not the sprayer",
+          "body": "Conversational agronomy, scouting and disease detection are observable, reversible and proven at 2M-farmer scale. Ground every recommendation in label data and local regulation — a hallucinated dose is a lost crop or an unsafe residue. Measure on yield lift, input savings and water saved."
+        },
+        {
+          "title": "Gate every actuation in hardware",
+          "body": "Scoped per-machine identity: sense, diagnose and propose freely; actuate only inside a geofence with speed/rate caps and chemical whitelists. Default to remote-operator takeover (the Carbon ATK pattern) and engineer the sub-second E-stop as a physical relay with its own safety case — the EU Machinery Regulation makes this a certification requirement from January 2027."
+        },
+        {
+          "title": "Make the trace the product",
+          "body": "Wire one OTEL→WORM log per lot and reuse it three ways: FSMA 204 traceability compliance, recall defence in hours instead of weeks, and the ESG/carbon evidence buyers now price into contracts. The same pipeline that satisfies the regulator defends the recall and closes the sustainability report."
+        }
+      ],
+      "market_signal": "Models commoditise by the week — the agri moat is the proprietary data flywheel (Carbon LPM trained on 150M+ plants from its own fleet, Syngenta's 2M-farmer corpus, Deere's decades of field telemetry) plus the actuation trust layer and traceability evidence. Distribution + data + governance, now with lasers.",
+      "tomorrow_preview": "Day 97 — Agentic AI in Logistics & Last-Mile Delivery: agents that quote, route, dispatch and hand off freight across carriers, warehouses and the doorstep, with autonomous trucks and delivery robots as the actuation layer and delivery-promise liability as the binding constraint."
     },
     {
       "date": "2026-06-29",
