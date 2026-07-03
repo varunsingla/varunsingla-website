@@ -15398,8 +15398,103 @@
         "2026 (Gartner) 40% (vs",
         "5% in 2025) Orgs planning to increase AI budgets 86% Practical Takeaway The most valuable me"
       ]
+    },
+    {
+      "date": "2026-07-03",
+      "display_date": "July 3, 2026",
+      "issue": 97,
+      "title": "Agentic AI in Logistics & Last-Mile Delivery",
+      "focus_intro": "Logistics is the original multi-hop, multi-party relay — freight quote to doorstep crosses brokers, carriers, warehouses, customs, and couriers — and in 2026 that entire relay is collapsing into one orchestrated agent loop. Agents now quote, book, route, dispatch, and hand off shipments autonomously; the binding constraint is promise authority: scoped actuation authority, a promise trail a regulator can read, and a sub-second kill switch a safety engineer can certify.",
+      "stats": [
+        {
+          "stat": "$2.0T+",
+          "label": "global logistics market 2026, AI-disrupting"
+        },
+        {
+          "stat": "40%",
+          "label": "reduction in dispatch costs via AI routing"
+        },
+        {
+          "stat": "50M+",
+          "label": "autonomous last-mile deliveries in 2025"
+        },
+        {
+          "stat": "73%",
+          "label": "of 3PLs deploying AI agents in 2026"
+        }
+      ],
+      "viral_app": {
+        "name": "project44 Movement Intelligence Platform",
+        "description": "Chicago-based logistics visibility leader (Series F $3.2B valuation, 500K+ carriers connected across ocean/air/road/rail); in 2026 layered an agentic intelligence layer that monitors shipments 24/7, detects exceptions autonomously, drafts carrier and customer notifications, proposes re-route or re-tender options ranked by cost+SLA, and escalates to human dispatchers only above a pre-configured threshold (value-at-risk, customer tier, penalty exposure). 40% reduction in exception-handling labour at beta customers including CHEP, Michelin, and Electrolux. Governance-by-construction: every agent action is scoped (monitor/notify/propose) and the commit stays with a human — exactly the promise-authority pattern the day's binding constraint demands.",
+        "stats": [
+          {
+            "stat": "500K+",
+            "label": "carriers connected"
+          },
+          {
+            "stat": "40%",
+            "label": "exception-handling labour cut"
+          },
+          {
+            "stat": "$3.2B",
+            "label": "valuation at Series F"
+          }
+        ]
+      },
+      "sections": [
+        {
+          "title": "§1  The Relay Is the Agentic Loop",
+          "paragraphs": [
+            "Logistics was always a pipeline of handoffs — shipper to broker, broker to carrier, carrier to warehouse, warehouse to last-mile courier — with each seam a fax, an email, or a phone call. That seam is the opportunity: every step is repetitive, document-heavy, and time-sensitive, exactly the profile where agent orchestration outperforms human coordination.",
+            "Flexport's AI Quoting Agent (GA April 2026), Uber Freight's autonomous quoting, and Amazon's internal routing-optimisation agents all passed the quote-to-tender milestone in H1 2026. The seam that remains human is the COMMIT — the moment a price is tendered or a truck dispatched on a lane where a mistake means a $50,000 penalty clause."
+          ]
+        },
+        {
+          "title": "§2  The Front Door: Quoting, Booking & Track-and-Trace",
+          "paragraphs": [
+            "The quoting and booking surface is where adoption is fastest because the loop is information-dense but low-stakes (a quote is a proposal, not a contract). Flexport's AI Quoting Agent pulls live ocean and air rates, applies shipper-specific contract lanes and surcharges, and returns a ranked list of options with CO2 estimates and transit times in under 3 seconds. Human freight-ops staff review and click Book; the agent handles carrier tender, confirmation, and initial track-and-trace setup automatically."
+          ]
+        },
+        {
+          "title": "§3  The Deep Loop: Routing, Dispatch & Last-Mile",
+          "paragraphs": [
+            "Amazon's last-mile routing AI re-plans driver routes every 5 minutes incorporating live traffic, package priorities, locker capacity, and failed-delivery history — contributing to a 40% reduction in cost-per-delivery on AI-managed routes. Autonomous delivery is scaling fast: Nuro completed 50M+ deliveries in 2025; Starship sidewalk robots operate in 100+ cities; Wing drones crossed 500,000 deliveries annually; Waymo Via expanded autonomous trucking to 8 US corridors.",
+            "Common architecture: a dispatch agent orchestrates routing and monitoring while the vehicle's onboard safety system handles real-world navigation. The dispatch agent can issue remote holds or route changes but NOT override the vehicle's onboard collision-avoidance hard stops — the promise-authority boundary at the physical layer."
+          ]
+        },
+        {
+          "title": "§4  Binding Constraint: Promise Authority & Road Safety",
+          "paragraphs": [
+            "Every logistics agent hits two walls. First, PROMISE AUTHORITY: an agent that commits a delivery window, tenders a freight rate, or promises 2-hour arrival has made a legally binding representation. When that promise breaks, penalty clauses and consumer-protection law (EU Consumer Rights Directive, US FTC Mail/Telephone Order Rule) determine who pays. The Day 28 x402 pattern applies directly: scoped spending authority + per-commitment audit trail + human gate above threshold.",
+            "Second, ROAD AND PUBLIC-SPACE SAFETY. The EU AI Act Annex III flags AI controlling vehicles in public spaces as high-risk; the EU Machinery Regulation (Jan 2027) treats AI-controlled safety components as machinery requiring notified-body certification. The practical implication: the software kill switch is NOT sufficient as a safety case; a hardware E-stop certified to ISO 26262 or IEC 61508 is a SEPARATE deliverable from the agent's T4 memory kill."
+          ]
+        },
+        {
+          "title": "§5  Stack, Governance & Regulatory Checklist",
+          "paragraphs": [
+            "Each agent in the fleet — Quoting, Dispatch, Customs, Promise — gets its own SPIFFE SVID scoped to exactly the actions it needs (rates:read + quote:propose for quoting; dispatch:assign + route:set for dispatch; never vehicle:override or estop:release). OTEL gen_ai spans capture every tool call and every commitment — the same trace feeds EU AI Act Annex III evidence, FMCSA AV audit trails, and carrier-contract penalty defence.",
+            "Regulatory timeline: EU AI Act Annex III Aug 2 2026 (T-30 days) for transport AI — conformity assessment, tech docs, human oversight, Article 50 disclosure, WORM audit. The May 7 Omnibus proposes deferring stand-alone Annex III to Dec 2027 but is NOT yet law (OJ publication pending) — hold two clocks and build to Aug 2. EU Machinery Regulation Jan 2027 adds notified-body certification for AI-controlled safety components."
+          ]
+        }
+      ],
+      "market_signal": "With models compressing <3% across Sonnet 5 / Opus 4.8 / GPT-5.6 Terra / Gemini 3.5 Flash, the moat in logistics AI is real-time carrier connectivity (project44 500K+ carriers, Flexport network), promise-trail architecture (OTEL->WORM per commitment), and certified vehicle-safety integration (ISO 26262 E-stop) — not raw model performance.",
+      "practical_takeaway": [
+        {
+          "title": "1. Start with the visibility + exception loop, not the dispatch",
+          "body": "Deploy a control-tower agent (project44 pattern) to monitor, notify, and propose — observable and reversible. Measure on exception-handling labour reduced and time-to-re-route, not dashboards. Gate autonomous dispatch behind a proven quoting-agent stage first."
+        },
+        {
+          "title": "2. Make the promise trail the product",
+          "body": "Scope every agent's SPIFFE SVID to rates:read + quote:propose + notify:send; human owns every committed delivery window and every re-tender above a $ threshold. One OTEL->WORM trace per commitment satisfies EU AI Act Annex III + FMCSA AV audit + carrier-contract penalty defence simultaneously."
+        },
+        {
+          "title": "3. Certify the E-stop separately from the kill switch",
+          "body": "The software T1-T4 kill switch handles agent-loop termination. For any vehicle in public space, a hardware E-stop certified to ISO 26262 or IEC 61508 is a SEPARATE safety case. EU Machinery Regulation Jan 2027 requires notified-body review; start the technical file now."
+        }
+      ],
+      "tomorrow_preview": "Day 98: Construction & the Built Environment — agents that plan, procure, and supervise building sites, with safety compliance and materials traceability as the binding constraints."
     }
   ],
   "last_updated": "2026-07-02",
-  "total_days": 96
+  "total_days": 97
 }
