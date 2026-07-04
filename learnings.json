@@ -10,7 +10,7 @@
       "display_date": "JULY 4, 2026",
       "issue": 98,
       "title": "Agentic AI in Construction & the Built Environment",
-      "focus_intro": "Construction is the last giant analogue industry -- roughly $13T of global output, productivity nearly flat for",
+      "focus_intro": "Construction is the last giant analogue industry -- roughly $13T of global output, productivity nearly flat for decades, and a project that still moves hand-to-hand through drawings, RFIs, submittals and change orders. In 2026 the build itself becomes the agentic loop: agents read the drawing set, answer field questions with citations, run procurement, verify progress against the BIM model, and increasingly drive the machines. The binding constraints are physical-world safety (machinery law now covers AI) and materials traceability (the EU's Digital Product Passports arrive for concrete, steel and insulation this year). Same two-loop pattern as agriculture and insurance: a high-volume document loop and a high-stakes actuation loop -- and the seam between them is where governance lives.",
       "viral_app": {
         "name": "Bedrock Robotics / Bedrock Operator",
         "description": "Retrofit-not-replace autonomous earthmoving startup (Waymo veterans, founded 2024). $270M Series B Feb 2026; launched industry largest supervised-autonomy earthmoving deployment with Sundt Construction on a 130-acre site. Operator kit (LiDAR + GPS + HD cameras + onboard compute) turns existing excavators/dozers/loaders into autonomous assets. Partners: Austin Bridge & Road, Zachry, Champion Site Prep, Capitol Aggregates. First operator-less excavator deployments targeted 2026. Governance-by-construction exemplar: supervised autonomy + remote takeover as default + geofenced dig envelopes + earthmoving-telemetry data flywheel.",
@@ -2644,7 +2644,7 @@
       "display_date": "JUNE 13, 2026",
       "issue": 79,
       "title": "Agentic AI in Media & Entertainment",
-      "focus_intro": "Media is the vertical where the agent's output is the product. In every other industry an agent",
+      "focus_intro": "Media is the vertical where the agent's output is the product.",
       "stats": [
         {
           "stat": "4,000+",
@@ -3097,7 +3097,7 @@
       "display_date": "JUNE 11, 2026",
       "issue": 77,
       "title": "Agentic AI in Energy & Climate",
-      "focus_intro": "Energy is the vertical where agentic AI confronts its own footprint. The same autonomy that lets",
+      "focus_intro": "Energy is the vertical where agentic AI confronts its own footprint.",
       "stats": [
         {
           "stat": "5-10%",
@@ -3274,7 +3274,7 @@
       "display_date": "JUNE 10, 2026",
       "issue": 76,
       "title": "Agentic AI in Scientific Research &",
-      "focus_intro": "After walking the enterprise verticals -- finance, healthcare, legal, the public sector -- the series",
+      "focus_intro": "",
       "stats": [
         {
           "stat": "10×",
@@ -3460,7 +3460,7 @@
       "display_date": "JUNE 9, 2026",
       "issue": 74,
       "title": "Agentic AI in the Public Sector & GovTech",
-      "focus_intro": "Government is the vertical with the widest gap between ambition and readiness. Capgemini finds",
+      "focus_intro": "Government is the vertical with the widest gap between ambition and readiness.",
       "stats": [],
       "sections": [
         {
@@ -3631,7 +3631,7 @@
       "display_date": "JUNE 8, 2026",
       "issue": 75,
       "title": "Agentic AI in Education & EdTech",
-      "focus_intro": "Education is the vertical where the agent touches the most vulnerable user of all: a child. The",
+      "focus_intro": "Education is the vertical where the agent touches the most vulnerable user of all: a child.",
       "viral_app": {
         "name": "GitHub Copilot App (agent-native desktop) -- GitHub shipped a standalone desktop 'control center' for",
         "description": "agentic development this week, moving Copilot from in-editor assistant to a surface where you dispatch, watch and steer multiple coding agents at once. It lands amid a fortnight where a new agent repo went viral almost weekly -- OpenClaw (past 210K stars, fastest-growing OSS in GitHub history), Hermes Agent (100K+ stars, self-improving 'grows-with-you' memory + a new desktop app), and mattpocock/skills ('skills for real engineers', ~91K stars in a week). The education lesson is the same one that runs through this whole series: the most viral agents are the most autonomous, and many ship with no kill switch, no audit trail and no scoped identity -- the exact opposite of what an agent touching",
@@ -3843,7 +3843,7 @@
       "date": "2026-06-07",
       "display_date": "JUNE 7, 2026",
       "title": "June 7, 2026 | Agentic AI Era Intensifies",
-      "focus_intro": "The Inflection: With Claude Opus 4.8 (88.6% SWE-bench Verified), GPT-5.5 (78.7% OSWorld-Verified), and",
+      "focus_intro": "",
       "viral_app": {
         "name": "Status: #1 GitHub Trending May 13-16. 5,600+ stars in first week. Rust+Tauri, MIT license. GitHub:",
         "description": "github.com/tinyhumansai/openhuman Most AI agents start with a blank slate and a prompt. OpenHuman inverts this: Pre-load your entire digital past on day one. Via one-click OAuth, it vacuum-extracts 1 billion tokens of context from 118 services (Gmail, GitHub, Slack, Notion, Stripe, Calendar, Drive, Linear, Jira, etc.). Then every 20 minutes, a 'subconscious loop' runs autonomously--reading your to-dos, recent actions, calendar events--and deciding what to act on without you typing anything. A desktop mascot can join your Google Meet as a separate participant, transcribing meeting notes into your Memory Tree + summarizing key decisions. 100% local-first: all data encrypted in SQLite on your m",
@@ -4013,7 +4013,7 @@
       "display_date": "JUNE 6, 2026",
       "issue": 74,
       "title": "Agentic AI in the Public Sector & GovTech",
-      "focus_intro": "Government is the vertical with the widest gap between ambition and readiness. Capgemini finds",
+      "focus_intro": "Government is the vertical with the widest gap between ambition and readiness.",
       "stats": [],
       "sections": [
         {
@@ -4184,7 +4184,7 @@
       "display_date": "JUNE 5, 2026",
       "issue": 73,
       "title": "Agentic AI in Legal & Contracts",
-      "focus_intro": "Legal is the vertical where agentic AI has crossed from drafting assistant to workflow operator --",
+      "focus_intro": "",
       "stats": [
         {
           "stat": "25,000+",
@@ -4365,7 +4365,7 @@
       "display_date": "JUNE 4, 2026",
       "issue": 72,
       "title": "Agentic AI in HR & People Operations",
-      "focus_intro": "HR is the vertical where agentic AI moves fastest and where the law watches most closely. By",
+      "focus_intro": "HR is the vertical where agentic AI moves fastest and where the law watches most closely.",
       "stats": [],
       "sections": [
         {
@@ -4541,7 +4541,7 @@
       "display_date": "JUNE 3, 2026",
       "issue": 71,
       "title": "Agentic AI in Finance & FP&A",
-      "focus_intro": "The office of the CFO is where agentic AI meets the hardest constraint in the enterprise: the",
+      "focus_intro": "",
       "stats": [
         {
           "stat": "44%",
@@ -4717,7 +4717,7 @@
       "display_date": "JUNE 2, 2026",
       "issue": 70,
       "title": "Agentic AI in Customer Success & Retention",
-      "focus_intro": "If sales is the cleanest feedback loop in the enterprise (Day 69), customer success is the one",
+      "focus_intro": "",
       "stats": [
         {
           "stat": "15-20%",
@@ -4891,7 +4891,7 @@
       "display_date": "MAY 31, 2026",
       "issue": 69,
       "title": "Agentic AI in Sales & Revenue Operations",
-      "focus_intro": "Sales is the function with the cleanest feedback loop in the enterprise -- every action has a price",
+      "focus_intro": "Sales is the function with the cleanest feedback loop in the enterprise -- every action has a price and a close date -- so it is becoming the proving ground for a fleet-of-agents revenue motion.",
       "stats": [
         {
           "stat": "$540M",
@@ -5059,7 +5059,7 @@
       "display_date": "MAY 30, 2026",
       "issue": 68,
       "title": "Agentic AI in Marketing & Customer",
-      "focus_intro": "The marketing funnel is being rewritten into a continuous agent loop. In a single fortnight Klarna",
+      "focus_intro": "The marketing funnel is being rewritten into a continuous agent loop.",
       "stats": [
         {
           "stat": "119%",
@@ -5234,7 +5234,7 @@
       "display_date": "MAY 29, 2026",
       "issue": 67,
       "title": "The Agentic AI Supply Chain",
-      "focus_intro": "Anthropic vaults to a $965B valuation overnight on a $65B raise as Claude Opus 4.8 ships",
+      "focus_intro": "",
       "stats": [
         {
           "stat": "$965B",
@@ -5405,7 +5405,7 @@
       "display_date": "MAY 28, 2026",
       "issue": 66,
       "title": "Agentic AI in Manufacturing & Industrial",
-      "focus_intro": "Siemens and NVIDIA wire the Industrial AI Operating System, Boston Dynamics Atlas ships to",
+      "focus_intro": "",
       "stats": [
         {
           "stat": "4×",
@@ -5634,7 +5634,7 @@
       "display_date": "MAY 27, 2026",
       "issue": 65,
       "title": "Agentic AI in Healthcare & Life Sciences",
-      "focus_intro": "Innovaccer pours $250M into agentic care, Claude for Healthcare lands at Stanford and Banner,",
+      "focus_intro": "",
       "stats": [
         {
           "stat": "$250M",
@@ -5921,7 +5921,7 @@
       "display_date": "MAY 25, 2026",
       "issue": 63,
       "title": "The Agentic AI Valuation Framework",
-      "focus_intro": "How to value an agentic AI company when the model is no longer the moat -- DCF, comps, and",
+      "focus_intro": "How to value an agentic AI company when the model is no longer the moat -- DCF, comps, and the new rules driving Anthropic toward a $950B raise.",
       "stats": [
         {
           "stat": "$950B",
@@ -6275,7 +6275,7 @@
       "display_date": "MAY 24, 2026",
       "issue": 62,
       "title": "Head-to-head economics, take rates, and discovery across the five major channels where agent",
-      "focus_intro": "Head-to-head economics, take rates, and discovery across the five major channels where agent",
+      "focus_intro": "",
       "stats": [],
       "sections": [
         {
@@ -6479,7 +6479,7 @@
       "display_date": "MAY 23, 2026",
       "issue": 61,
       "title": "SKILL.md Walkthrough -- Build, Test &",
-      "focus_intro": "Day 60 made the case that SKILL.md is the new app-store unit. Today is the hands-on follow-up:",
+      "focus_intro": "Day 60 made the case that SKILL.md is the new app-store unit. Today is the hands-on follow-up: pick a narrow workflow, ship one folder, distribute to four marketplaces, monetise per call -- all in under 90 minutes. This is the playbook the Anthropic 17-skill repo, the Microsoft / OpenAI / Atlassian / Figma / Canva / Stripe / Notion / Zapier adoptions, and Google's Gemini Spark Skills (launched May 19 at I/O) all converge on.",
       "viral_app": {
         "name": "Governance, IP, Litigation) + 20+ MCP connectors (Harvey, Solve Intelligence, Definely, DocuSign, Ironclad, Thomson",
         "description": "Reuters, Midpage, Trellis, Legal Data Hunter, Descrybe, Free Law Project) -- the largest single skill-plus-connector drop in 2026. Legal is now the most engaged Cowork knowledge-work function, validating the 'one skill, four channels' playbook at vertical scale. Free Law Project + Justice Technology Association partnerships extend reach to access-to-justice users. Lesson for builders: vertical plugin bundles ship faster than horizontal frameworks and capture 6-figure enterprise deals. practice-area plugins shipped MCP connectors live embedded AI agents inside the suite 1 · The 6-Step Build (90 minutes, end-to-end) The contract-redline skill is the canonical example because it touches three p",
@@ -6673,7 +6673,7 @@
       "display_date": "MAY 22, 2026",
       "issue": 60,
       "title": "Agent Skills as the New App Store",
-      "focus_intro": "Why SKILL.md is becoming the unit of agentic value -- and the four marketplaces fighting to",
+      "focus_intro": "",
       "viral_app": {
         "name": "",
         "description": "github.com/anthropics/skills -- the open reference library for the SKILL.md standard. As of May 22 2026, the repo ships 17 official skills spanning document creation (pdf, docx, pptx, xlsx), design (canvas-design, brand-guidelines, theme-factory), engineering (claude-api-helper, mcp-builder, webapp-testing), and content (algorithmic-art, internal-comms, slack-gifs). Why it matters: every skill is a 30-line YAML+Markdown file plus optional Python -- making it the lowest-barrier agent primitive yet. Adopted by Microsoft, OpenAI, Atlassian, Figma, Canva, Stripe, Notion, and Zapier within 5 months",
@@ -6919,7 +6919,7 @@
       "display_date": "MAY 21, 2026",
       "issue": 59,
       "title": "Day 59 · The Agentic Enterprise Buyer's",
-      "focus_intro": "Yesterday we mapped how Anthropic, OpenAI, Apple and Meta are counter-moving against Google",
+      "focus_intro": "",
       "stats": [
         {
           "stat": "78%",
@@ -6999,7 +6999,7 @@
       "display_date": "MAY 20, 2026",
       "issue": 58,
       "title": "Day 58 · The Hyperscaler Counter-Move --",
-      "focus_intro": "Twenty-four hours after Google planted its flag on consumer-scale agentic AI at I/O 2026 (Day 57),",
+      "focus_intro": "",
       "stats": [
         {
           "stat": "$570B",
@@ -7075,7 +7075,7 @@
       "display_date": "MAY 19, 2026",
       "issue": 57,
       "title": "Day 57 · Google I/O 2026 -- Gemini Spark & the",
-      "focus_intro": "Day 48 talked about a leaked Google codename 'Remy' as the answer to OpenClaw + Claude",
+      "focus_intro": "",
       "viral_app": {
         "name": "Gemini Spark by Google",
         "description": "Officially unveiled at I/O 2026, Spark is Google's everyday agentic assistant inside the Gemini app: an 'always-on' agent that clears your inbox, drafts meeting briefs, generates personalised ews digests, and runs scheduled tasks proactively (not just on demand). Users can create reusable 'skills' (e.g. 'my weekly report format') that Spark applies across Gmail, Drive, Docs, Calendar, Maps, and Chrome. Unlike Claude Cowork or OpenClaw it does not get full computer access -- it operates inside the Google graph and the browser, which is its trust boundary. Spark is the consumer-scale answer to OpenClaw's 302K-star OSS wave and Claude Cowork's The keynote was at 10am PT today. The two-day event",
@@ -7135,7 +7135,7 @@
       "display_date": "MAY 18, 2026",
       "issue": 56,
       "title": "Agent Skills & the Skills Economy",
-      "focus_intro": "Day 55 nailed down the data plane for agents (streaming MVs, MCP, vectors-in-SQL). Today we tackle the behaviour plane. Five months after Anthropic published SKILL.md on 18 December 2025, 32 vendors read the same Markdown format, two competing marketplaces (skills.sh 83K skills, SkillsMP 800K skills) list more packages than npm did in 10 years, and the Snyk ToxicSkills audit just shipped a number that should terrify every CISO: 1 in 7 skills has a critical security",
+      "focus_intro": "Day 55 nailed down the data plane for agents (streaming MVs, MCP, vectors-in-SQL). Today we tackle the behaviour plane.",
       "viral_app": {
         "name": "",
         "description": "",
@@ -7328,7 +7328,7 @@
       "display_date": "MAY 17, 2026",
       "issue": 55,
       "title": "Agent-Native Data Infrastructure",
-      "focus_intro": "Six independent announcements from Databricks, Confluent, RisingWave, CockroachDB, ClickHouse and",
+      "focus_intro": "",
       "viral_app": {
         "name": "OpenHuman by tinyhumansai",
         "description": "Open-source desktop AI agent (Rust + Tauri, MIT, github.com/tinyhumansai/openhuman, 5.6K+ GitHub stars in days, #1 GitHub Trending May 13-16). Inverts the playbook: instead of waiting for your first prompt, it pre-loads a 1B-token Memory Tree from 118+ services (Gmail, GitHub, Slack, Notion, Stripe, Calendar, Drive, Linear, Jira) via one-click OAuth. A 'subconscious loop' runs without user input -- reads your to-dos and recent memory, decides what to act on next. A desktop mascot can join Google Meet as a separate participant, transcribe into the Memory Tree, speak back. All local-first: SQLite + Markdown Obsidian wiki, no data egress. First credible consumer surface for the 'agent that know",
@@ -7421,7 +7421,7 @@
       "display_date": "MAY 16, 2026",
       "issue": 54,
       "title": "Agent Identity 3.0 -- SPIFFE Hits Prod, KYA",
-      "focus_intro": "Three forcing functions converged this week to make agent identity the most important infra layer of",
+      "focus_intro": "",
       "stats": [
         {
           "stat": "63%",
@@ -7621,7 +7621,7 @@
       "display_date": "MAY 15, 2026",
       "issue": 53,
       "title": "The Workspace Becomes the Control Plane",
-      "focus_intro": "Notion's External Agent API and the multi-agent workspace era",
+      "focus_intro": "",
       "stats": [
         {
           "stat": "4",
@@ -7849,7 +7849,7 @@
       "display_date": "MAY 14, 2026",
       "issue": 52,
       "title": "From SPIFFE workload identity to Know Your Agent (KYA), the IETF AIMS framework, and the Five",
-      "focus_intro": "From SPIFFE workload identity to Know Your Agent (KYA), the IETF AIMS framework, and the Five",
+      "focus_intro": "",
       "stats": [],
       "sections": [
         {
@@ -8056,7 +8056,7 @@
       "display_date": "MAY 13, 2026",
       "issue": 51,
       "title": "Agentic Browser Wars 2.0",
-      "focus_intro": "Through Day 50 we covered agents in chat surfaces (Microsoft Agent 365, Mistral Vibe, IBM Bob, Cursor",
+      "focus_intro": "",
       "viral_app": {
         "name": "",
         "description": "Chrome DevTools MCP Released this week on GitHub + NPM, chrome-devtools-mcp gives any MCP-compatible coding agent direct access to Chrome's DevTools - DOM inspection, network requests, console messages, performance traces, memory profiles, JS execution in the page context. Claude Code, Cursor, Codex CLI and Gemini CLI can now debug a live page the same way a senior frontend engineer would. Combined with claude-context (Day 50's viral app), an agent now has both semantic codebase search AND live runtime introspection inside the browser it is automating. Most significant developer release of the",
@@ -8114,7 +8114,7 @@
       "display_date": "MAY 12, 2026",
       "issue": 50,
       "title": "The Agentic Eval Stack 3.0",
-      "focus_intro": "Closed self-healing dataset loops · Phoenix Agent Evals MCP · Braintrust eval-as-code ·",
+      "focus_intro": "",
       "viral_app": {
         "name": "By the Milvus team. Drops into any MCP-compatible coding agent (Claude Code, Cursor, Windsurf, VS Code,",
         "description": "Codex CLI, Gemini CLI, Qwen Code). AST-based parsing + BM25 hybrid retrieval = 40% fewer tokens at the same quality. Why it matters for Day 50: cleanest example of eval-as-IDE-action -- the same MCP that gives the agent context can also expose Phoenix Agent Evals as a tool. Repo: github.com/zilliztech/claude-context. By June 2026 the competitive frontier in production agents is the speed of the feedback loop between prod failure and golden-set test. Three actions this week: Ship one OTEL gen_ai span from your highest-traffic agent endpoint to Phoenix or Braintrust. Free Pull 50 real failed traces from the last week and label expected trajectory by hand. That is your Wire Braintrust or prompt",
@@ -8522,7 +8522,7 @@
       "display_date": "MAY 11, 2026",
       "issue": 49,
       "title": "Agent Reliability Engineering",
-      "focus_intro": "Frontier models all pass OSWorld-V-75% and SWE-Bench-87%. The bottleneck has moved. What",
+      "focus_intro": "Frontier models all pass OSWorld-V-75% and SWE-Bench-87%. The bottleneck has moved.",
       "stats": [],
       "sections": [
         {
@@ -8758,7 +8758,7 @@
       "display_date": "MAY 10, 2026",
       "issue": 48,
       "title": "just shipped AG-UI compatibility, Cursor 3 is rebuilding around an Agents Window, IBM Bob ships with a",
-      "focus_intro": "just shipped AG-UI compatibility, Cursor 3 is rebuilding around an Agents Window, IBM Bob ships with a",
+      "focus_intro": "",
       "viral_app": {
         "name": "Google Remy",
         "description": "Codename for Google's new agentic super-assistant (CNBC, May 8 2026). Runs natively inside the Gemini app, ties together Search + Gmail + Calendar + Drive + Maps into a single round-the-clock task agent. Internal testing now, public Q3. Direct response to the OpenClaw viral wave (3.2M users in weeks earlier this year). Significance: this is the moment Big Tech roadmaps openly pivot from search to action -- Sundar Pichai's framing on the Q1 earnings call. Remy will likely ship as L4 on the maturity curve (generative UI cards for flights, restaurants, calendar holds) with Article 50 disclosure baked in. Watch for: AG-UI compatibility (almost certain), MCP server adoption, and pricing -- Remy i",
@@ -9019,7 +9019,7 @@
       "display_date": "MAY 9, 2026",
       "issue": 47,
       "title": "Day 47 -- The Enterprise AI Operating Model",
-      "focus_intro": "From standalone agents → agentic control planes. How IBM, Mistral, Coder & Snyk re-shaped",
+      "focus_intro": "",
       "stats": [
         {
           "stat": "77.6%",
@@ -9149,7 +9149,7 @@
       "display_date": "MAY 8, 2026",
       "issue": 46,
       "title": "Anthropic Finance Agents -- Wall Street's",
-      "focus_intro": "important enterprise AI launch of the year: ten production-ready agent templates for financial services, full",
+      "focus_intro": "",
       "viral_app": {
         "name": "Claude Finance Agents (Anthropic) -- but not the way you'd expect",
         "description": "The most viral AI moment of the week wasn't a consumer app -- it was the Anthropic Finance Agents launch itself. Within 48 hours: every CFO/CIO newsletter ran it as the lead story, the Big 4 internal Slack channels lit up, and a wave of LinkedIn posts from finance leaders went up asking 'how do we get on the pilot?'. Bloomberg, Fortune, Yahoo Finance, and InvestmentNews all ran it the same day. What to actually look at: The agent templates are public on the Anthropic cookbook repo (open-licensed scaffolds -- you can fork them today). Even if you're not in financial services, the Pitch builder is a cleanly-engineered example of: Three-Agent Harness + multi-source MCP fan-out + M365 cross-app ",
@@ -9302,7 +9302,7 @@
       "display_date": "MAY 7, 2026",
       "issue": 45,
       "title": "Beyond LLM-as-Judge: Trajectory Evals, Continuous Production Monitoring & The New",
-      "focus_intro": "Beyond LLM-as-Judge: Trajectory Evals, Continuous Production Monitoring & The New",
+      "focus_intro": "",
       "viral_app": {
         "name": "STARS, #2 TRENDING) Originally launched October 2025, the Superpowers framework has now hit 121,000 GitHub stars and is",
         "description": "sitting at #2 on GitHub Trending as of May 2026 (40K stars in January, tripled in four months). It is a ode-based visual editor where you wire pre-built 'superpowers' (web browsing, file I/O, MCP tool calls, structured output) into autonomous agent workflows -- the visual equivalent of LangGraph nodes for on-developers. The viral hook is the 'skills' marketplace: community members publish reusable skill packs (web scraping, data cleaning, outreach), and any agent can install one with a click. It rides exactly the same 'skills as the new APIs' wave that powered Hermes Agent (47K stars in 8 weeks) and APM by Microsoft. Why it matters for evals: Superpowers ships built-in trace export to LangSm",
@@ -9349,7 +9349,7 @@
       "display_date": "MAY 6, 2026",
       "issue": 44,
       "title": "Agent Memory at Scale 3.0",
-      "focus_intro": "Three things converged this week. MemRL moved from research paper to production-shipped feature inside",
+      "focus_intro": "",
       "viral_app": {
         "name": "OTHER BREAKING -- WEEK OF 5 MAY 2026 Accenture invests in Netomi -- coordinated multi-agent CX platform. Same playbook as Salesforce",
         "description": "Agentforce, sold via the systems-integrator channel. TurboQuant goes mainstream -- Google's KV-cache compression algorithm from ICLR 2026 is now in Gemini 3.1 Pro inference, cutting long-context cost ~40%. Translation: longer agent sessions get cheaper, and the gap between in-context memory and external memory narrows for medium-horizon tasks. Mem0 State of AI Agent Memory 2026 report -- names the four open problems for the year: staleness detection, privacy governance, consent frameworks, cross-session identity resolution. Same four show up in EU AI Act Annex III audit checklists -- not a coincidence. PRACTICAL TAKEAWAYS -- WHAT TO DO THIS WEEK 1. Audit your agent's memory. If you don't hav",
@@ -9470,7 +9470,7 @@
       "display_date": "MAY 5, 2026",
       "issue": 43,
       "title": "Multi-Model Routing & Cost-Optimal Agent",
-      "focus_intro": "Yesterday we covered how to debug multi-agent systems in production. Today is the next",
+      "focus_intro": "Yesterday we covered how to debug multi-agent systems in production.",
       "viral_app": {
         "name": "High-performance multi-session coding agent harness on GitHub Trending May 2026. Single-server",
         "description": "multi-client architecture: one server manages all sessions; TUI clients connect over a Unix socket and reconnect transparently. Spawn 2+ agents in the same repo and the server brokers live collaboration -- when agent A edits a file agent B has read, B is auto-notified. Renders at 1000+ fps (no flicker), inline mermaid diagram support, side panel diff viewer. MIT license, written for low RAM and fast boot vs Cursor/Claude Code/Codex CLI. The lesson: the next agent UX layer is multi-agent coordination as a first-class server primitive, not an after-thought. GitHub stars Render rate License Practical takeaway: 5-step routing rollout Wire OTEL gen_ai spans on every call. Capture input_tokens, ou",
@@ -9670,7 +9670,7 @@
       "display_date": "MAY 4, 2026",
       "issue": 42,
       "title": "Multi-Agent Debugging in Production",
-      "focus_intro": "Day 42 · The 5 hardest agent bugs, the OTEL trace patterns to catch them, and the 3-step",
+      "focus_intro": "",
       "viral_app": {
         "name": "Why it went viral: Google accidentally shipped COSMO to the Play Store on May 1 and pulled it within",
         "description": "hours -- but not before screenshots, APK extracts, and demos hit Reddit, X, and YouTube. By May 2 it was a top Google Trend. The leaked app reveals Google's answer to the OpenAI×Qualcomm×MediaTek What's notable architecturally: COSMO is built on Gemini Nano running on-device. It is proactive, not reactive -- it observes context and offers help without being asked. Six built-in agents (List Tracker, Document Writer, Calendar Event Suggester, Browser Agent, Deep Research, Quick Photo Lookup) plus on-device retrieval. This is the edge-inference stack from Day 40 hitting consumer scale through Android On-device models + a proactive agent loop + the OS as the surface = the next consumer AI form f",
@@ -9994,7 +9994,7 @@
       "display_date": "MAY 2, 2026",
       "issue": 40,
       "title": "DAY 40 | AGENTIC AI LEARNING SERIES varunsingla.com",
-      "focus_intro": "For the first 39 days of this series we treated agents as cloud-native: LangGraph in Kubernetes, frontier models",
+      "focus_intro": "",
       "stats": [],
       "sections": [
         {
@@ -10187,7 +10187,7 @@
       "display_date": "MAY 1, 2026",
       "issue": 39,
       "title": "The New Competitive Moat for Agentic AI",
-      "focus_intro": "As AI agents become production reality, prompt engineering alone is no longer enough. Gartner has formally",
+      "focus_intro": "As AI agents become production reality, prompt engineering alone is no longer enough.",
       "viral_app": {
         "name": "Microsoft Agent 365 -- Enterprise's First Native Agent Control Plane",
         "description": "While not a consumer app, Agent 365's GA today is the most consequential launch of the week for enterprise practitioners. This is Microsoft's answer to the Shadow AI problem: only 24.4% of organisations have visibility into agent-to-agent traffic (Day 22). Agent 365 closes that gap with a centralised registry, real-time monitoring, and instant kill switches -- all delivered as part of the M365 stack enterprises already pay for. The apm.yml pattern (Day 7) is the config backbone. For Varun: every enterprise agent deployment recommendation should now start with 'register in Context Engineering is rapidly becoming a formal job function. Gartner's formal definition, Anthropic's official guide, a",
@@ -10392,7 +10392,7 @@
       "display_date": "APRIL 29, 2026",
       "issue": 37,
       "title": "Which roles are exploding in demand -- and how to position",
-      "focus_intro": "The agentic AI wave is no longer just reshaping what software does -- it is reshaping who gets hired and",
+      "focus_intro": "",
       "viral_app": {
         "name": "V4 comes in two flavours: V4 Flash (fast, cheap, designed for agentic loops) and V4 Pro (frontier-class The agentic upgrade is the real story: V4 was built for autonomous task execution. Coding benchmarks",
         "description": "One year after DeepSeek R1 upended Silicon Valley, Hangzhou's most audacious AI lab dropped a reasoning and coding). Both support 1 million token context windows and introduce a Hybrid Attention show it closing the gap with Western frontier models -- at a fraction of the cost. For developers preview of DeepSeek V4 on April 24, 2026 -- instantly dominating 3 of the top 5 Weibo hot-search Architecture for better long-conversation memory. V4 Pro achieves near-frontier performance at prices building agent stacks, V4 Flash at $0.14/M input tokens vs GPT-5.4 Mini means model routing slots and sending shockwaves through Western AI labs. that undercut GPT-5.5, Claude Opus 4.7, and Gemini 3.1 Pro sim",
@@ -10657,7 +10657,7 @@
       "display_date": "APRIL 28, 2026",
       "issue": 36,
       "title": "The Agent Economy Meets Climate &",
-      "focus_intro": "How AI Agents Are Fighting the Environmental Crisis They Helped Create",
+      "focus_intro": "",
       "viral_app": {
         "name": "Watershed AI Agents -- Carbon Accounting Goes Agentic",
         "description": "Launched April 21, 2026 at SF Climate Week, Watershed's AI agents represent the most significant production deployment of agentic AI in the sustainability space. What makes this viral-worthy: they didn't just add AI to a dashboard -- they rebuilt the entire data ingestion and analysis workflow as an agent loop. The agents use the same patterns you've learned: Write-Aside memory (activity data → emission factor vector DB fi structured audit output), parallel fan-out (multiple data sources processed simultaneously), and LLM-as-Judge for ESG report quality scoring. One client completed a 5-hour data cleaning project in Why it matters for you: Sustainability is now a board-level mandatory functi",
@@ -10710,7 +10710,7 @@
       "display_date": "APRIL 27, 2026",
       "issue": 35,
       "title": "Agentic AI is crossing from tech labs into hospital wards, pharma pipelines, and clinical",
-      "focus_intro": "workflows. From AI agents that cut prior authorisation from 45 minutes to under a minute, to the first fully AI-designed drug now in Phase IIa trials, to cancer-metastasis prediction at 80% accuracy -- today you learn how the agentic stack you've been building connects directly to medicine's biggest unsolved problems.",
+      "focus_intro": "From AI agents that cut prior authorisation from 45 minutes to under a minute, to the first fully AI-designed drug now in Phase IIa trials, to cancer-metastasis prediction at 80% accuracy -- today you learn how the agentic stack you've been building connects directly to medicine's biggest unsolved problems.",
       "viral_app": {
         "name": "What is it? Cursor 3 (April 2, 2026) is a complete ground-up rebuild of the Cursor IDE -- now described as an",
         "description": "'agent-first interface' rather than an AI code editor. The headline feature is the Agents Window: run unlimited parallel coding agents across local files, git worktrees, SSH servers, and cloud environments simultaneously. Multi-repo layout, seamless local-to-cloud handoff, and a plugin marketplace ship in v3.0. Why it matters for your agentic AI journey: Cursor 3 and Claude Code together account for 95.6% of all AI agent traffic in developer documentation (Mintlify March 2026). Cursor 3's architecture directly implements the parallel fan-out orchestration pattern from Day 24 -- multiple agents working simultaneously in isolated worktrees, with a human-managed coordination layer. The communit",
@@ -10989,7 +10989,7 @@
       "display_date": "APRIL 25, 2026",
       "issue": 34,
       "title": "The Multimodal Agent Layer",
-      "focus_intro": "For the first 30+ days of this series, agents read the world (text, screenshots, web pages) but mostly",
+      "focus_intro": "",
       "viral_app": {
         "name": "Until early 2026, multimodal mostly meant multimodal input -- feed an image, get text back. The 2026",
         "description": "shift is on the output side. An agent's deliverable can now be a video clip, an avatar explainer, a custom soundtrack, an annotated UI screenshot or a dubbed voice-over -- generated, synchronised and cited inside the same orchestration loop as its tool calls and database writes. This matters because consumers and enterprise users now expect agentic outputs that match the channel: a marketing agent that produces a 15-sec TikTok with synced foley, a sales agent whose follow-up email contains a 60-sec personalised avatar pitch, a compliance agent that returns a narrated walk-through of a flagged transaction. Text-only agents will start to feel quaint. 2 · The 2026 multimodal agent stack Six lay",
@@ -11053,7 +11053,7 @@
       "date": "2026-04-24",
       "display_date": "APRIL 24, 2026",
       "title": "If the last 32 days taught us how agents think, plan, pay, and protect themselves, today we answer a",
-      "focus_intro": "quieter but equally critical question: where do agents remember? The database has become the new",
+      "focus_intro": "",
       "viral_app": {
         "name": "Google Deep Research Max -- Autonomous Research as an API Launched: April 22, 2026 · Platform: Gemini API (developers) + Gemini app (consumers) · Status: n Trending",
         "description": "Deep Research Max is the most viral developer tool of the week -- not because of its UI, but because it turns research into a composable API primitive. Feed it a question, a PDF corpus, and your company's internal data endpoint, and it returns a fully cited, chart-embedded report in under 20 minutes. For agentic AI builders, this is the 'research sub-agent' that was missing from every Three-Agent Harness The '160 web searches + private data + native charts in one API call' capability is something no other vendor has shipped at this level of integration. Teams are replacing entire internal research workflows (human analyst + Notion + Perplexity + manual charts) with a single Python function c",
@@ -11359,7 +11359,7 @@
       "display_date": "APRIL 22, 2026",
       "issue": 31,
       "title": "How CFOs, CIOs & Legal Teams Think About Autonomous AI",
-      "focus_intro": "T-102 days to the EU AI Act enforcement deadline. Boards are no longer asking 'should we use AI",
+      "focus_intro": "",
       "viral_app": {
         "name": "Perplexity Comet -- The AI-Native Browser That Went #3 on the App Store",
         "description": "Perplexity's Comet browser launched publicly on iOS in March 2026 and hit #3 Overall on the US App Store within 48 hours -- over 430,000 global downloads in its first week. What makes Comet different from Chrome or Safari is that it's an agentic browser: the AI knows what page you're on, can autonomously book flights, manage email, fill forms, and execute multi-step tasks without switching apps. By April 2026, Comet Enterprise is live, powered by Claude Opus 4.6, and handling research, summarisation, and autonomous multi-step workflows for enterprise teams. Why it matters for enterprise: Comet is the first mass-market proof point that an agentic browser -- ot just a chat interface -- can go ",
@@ -11424,7 +11424,7 @@
       "display_date": "APRIL 21, 2026",
       "issue": 30,
       "title": "The Open-Source Agent",
-      "focus_intro": "How Hermes Agent, Claw Code, MemOS, MiniMax M2.7, and the rising",
+      "focus_intro": "",
       "viral_app": {
         "name": "OpenHands v1.6 by All-Hands-AI -- The World's Most Popular",
         "description": "70K+ GitHub stars, MIT licence, $18.8M Series A. OpenHands v1.6.0 (Mar 30, 2026) shipped Kubernetes support + Planning Mode beta. It resolves 53%+ of real GitHub issues autonomously on SWE-bench Verified when paired with Claude 4.5. Connects to any LLM via OpenRouter, direct API, or local Ollama. The new OpenHands SDK lets developers embed autonomous coding agents in their own products. This is not a toy: 490+ contributors and enterprise deployments confirm production-grade quality. A fully autonomous, self-hostable software engineer is now MIT-licensed and free. Every enterprise that has not evaluated this is leaving significant developer productivity on the 1. Pick Your OSS Stack This Week",
@@ -11607,7 +11607,7 @@
       "display_date": "APRIL 20, 2026",
       "issue": 29,
       "title": "The Future of Work in an Agentic",
-      "focus_intro": "How AI agents are restructuring jobs, new roles emerging, skills that remain",
+      "focus_intro": "",
       "viral_app": {
         "name": "Meta AI App -- #5 US App Store (April 2026) Meta's AI app went from US App Store rank #57 to #5 in a single day after the launch of Muse Spark",
         "description": "-- their first model from the new Meta Superintelligence Labs. Muse Spark is natively multimodal (voice, text, images), features Contemplating Mode that spawns parallel sub-agents simultaneously (one plans, one compares, one sources), and is rolling to WhatsApp, Instagram, Facebook, and Messenger -- reaching 3 billion+ users. Why it matters: This is the clearest proof that agentic AI is leaving the developer stack and entering everyday life. When a casual WhatsApp user unknowingly triggers a multi-agent orchestration to book a restaurant -- agentic AI has crossed the mainstream chasm. McKinsey projects agent-driven commerce will reach $3-5 trillion by 2030, with US B2C retail alone at $1T AI",
@@ -11675,7 +11675,7 @@
       "display_date": "APRIL 19, 2026",
       "issue": 29,
       "title": "Day 28 -- The Agent Economy in Practice",
-      "focus_intro": "Today we go hands-on with the Agent Economy. After 27 days of understanding protocols, architectures,",
+      "focus_intro": "",
       "viral_app": {
         "name": "Hermes Agent -- The Self-Improving AI Agent (65K+ GitHub",
         "description": "Hermes Agent is an open-source, self-improving AI agent built by Nous Research that runs on your own infrastructure, remembers everything it learns across sessions, and becomes measurably more capable the longer you use it. Launched in February 2026, it hit 65,000+ GitHub stars by mid-April -- driven by its v0.8.0 release on April 8 which added Browser Use integration, remote backend support (runs on a $5 VPS), and worktree parallelism for multi-agent teams. The core breakthrough: after completing any complex task (5+ tool calls), Hermes autonomously generates a \"skill\" -- a structured document capturing the procedure, known pitfalls, and verification steps. On the next similar task, it load",
@@ -11979,7 +11979,7 @@
       "display_date": "APRIL 16, 2026",
       "issue": 26,
       "title": "Day 26 -- The Frontier Race",
-      "focus_intro": "The frontier AI race has never been tighter. Three models -- Claude Mythos (Anthropic's restricted",
+      "focus_intro": "",
       "viral_app": {
         "name": "XChat by xAI",
         "description": "",
@@ -12131,7 +12131,7 @@
       "display_date": "APRIL 14, 2026",
       "issue": 24,
       "title": "Today we go deep on one of the most critical production challenges: what happens when",
-      "focus_intro": "Today we go deep on one of the most critical production challenges: what happens when",
+      "focus_intro": "",
       "viral_app": {
         "name": "PixVerse v5.6 PixVerse has taken over social media in April 2026 with its AI video effects that let anyone create",
         "description": "cinematic, shareable videos in seconds. Effects like AI Kiss, AI Hug, AI Muscle, and AI Fighting have generated millions of social interactions across TikTok, Instagram, and X. Backed by Alibaba, PixVerse launched a real-time video generation tool in January 2026 and has since iterated to v5.6, with significantly improved audio-visual synchronization and prompt adherence. Why it matters for agentic AI: PixVerse's architecture is a preview of the coming wave of agentic video creation. Their v4.5+ models run as microservices with automatic quality retry loops -- a primitive form of self-healing for media generation. MCP server integration for PixVerse is expected by Q3 2026, which will make hi",
@@ -12195,7 +12195,7 @@
       "display_date": "APRIL 13, 2026",
       "issue": 23,
       "title": "Building Your First Production Agent",
-      "focus_intro": "Day 23: End-to-End Walkthrough -- LangGraph Scaffold fi Memory Stack fi OTEL",
+      "focus_intro": "",
       "viral_app": {
         "name": "HeyGen Avatar V -- The 15-Second Digital Twin",
         "description": "HeyGen launched Avatar V on April 8 to 472,000 views on X in 48 hours. The breakthrough: build a photorealistic, multilingual digital twin of your face, voice, and gestures from a single 15-second webcam recording -- no studio, no crew, no camera setup required. Previous AI avatars suffered from identity drift -- the avatar looked vaguely like you but lost your micro-expressions and lip geometry over time. Avatar V solves this with a new neural architecture that locks your unique facial silhouette and natural movement pattern, maintaining identity across every generated video regardless of length, angle, outfit, or scene. Why This Matters for Agentic AI Avatar V is more than a video tool -- ",
@@ -12389,7 +12389,7 @@
       "display_date": "APRIL 12, 2026",
       "issue": 22,
       "title": "Agent Observability at Scale",
-      "focus_intro": "Building Production-Grade OTEL Dashboards · Drift Detection · The Agent SRE",
+      "focus_intro": "",
       "viral_app": {
         "name": "",
         "description": "",
@@ -14060,7 +14060,7 @@
       "display_date": "April 1, 2026",
       "issue": 11,
       "title": "Enterprise Agentic AI -- CoE Strategy, Shadow IT & ROI",
-      "focus_intro": "shadow IT risks, and TCO/ROI measurement for AI agents. This is where AI theory meets board-level",
+      "focus_intro": "",
       "viral_app": {
         "name": "Spotlight: AlphaEvolve by Google DeepMind What Makes AlphaEvo",
         "description": ""
@@ -14156,7 +14156,7 @@
       "date": "2026-03-30",
       "display_date": "March 30, 2026",
       "title": "Advanced Agent Patterns: Agentic RAG, Tool Optimisation, Multi-Modal Agents &",
-      "focus_intro": "MCP SDK Downloads MCP Servers MCP Growth (16mo) GitLab Duo Users",
+      "focus_intro": "",
       "viral_app": {
         "name": "OF THE DAY: DEALSEEK 7 KEY TAKEAWAYS & WHAT'S NEXT • Agentic",
         "description": ""
@@ -14622,7 +14622,7 @@
       "display_date": "March 23, 2026",
       "issue": 3,
       "title": "Agent-to-Agent (A2A) Protocol Deep Dive",
-      "focus_intro": "The Agent2Agent (A2A) Protocol is an open standard created by Google in April 2025 and now governed by the Linux Foundation. It gives AI agents a universal language to discover each other, delegate tasks, and collaborate -- even when built on completely different frameworks by different vendors. Think of it as HTTP for AI agents: just as HTTP allowed any browser to talk to any web server, A2A allows any agent to talk to any other agent. Why Does A2A Exist? (The Problem It Solves) Before A2A, agents were siloed. A Salesforce agent couldn't hand off a task to a SAP agent without custom point-to-point integrations. As enterprises deploy dozens -- and soon hundreds -- of specialised agents, you need a standardised handshake. A2A provides exactly that: a common protocol so agents from Adobe, SAP, Zoom, and thousands of vendors can collaborate out of the box. A2A vs MCP -- The Two Pillars of Agentic AI",
+      "focus_intro": "The Agent2Agent (A2A) Protocol is an open standard created by Google in April 2025 and now governed by the Linux Foundation. It gives AI agents a universal language to discover each other, delegate tasks, and collaborate -- even when built on completely different frameworks by different vendors. Think of it as HTTP for AI agents: just as HTTP allowed any browser to talk to any web server, A2A allows any agent to talk to any other agent. Why Does A2A Exist? (The Problem It Solves) Before A2A, agents were siloed. A Salesforce agent couldn't hand off a task to a SAP agent without custom point-to-point integrations. As enterprises deploy dozens -- and soon hundreds -- of specialised agents, you need a standardised handshake. A2A provides exactly that: a common protocol so agents from Adobe, SAP, Zoom, and thousands of vendors can collaborate out of the box.",
       "viral_app": {
         "name": "Moltbot",
         "description": "Moltbot is the consumer face of everything you've been learning. It uses MCP servers for tool connections, supports A2A for multi-agent delegation, and demonstrates how personal AI can move from cloud-dependent chatbot to a sovereign, always-on agent running on your own hardware. The ClawdHub marketplace mirrors what app stores did for smartphones -- but for agent capabilities. • INDUSTRY FLASH --"
@@ -14793,7 +14793,7 @@
       "date": "2026-03-21",
       "display_date": "March 21, 2026",
       "title": "Major Agentic AI OpenClaw GitHub Enterprise Apps with Codex Weekly",
-      "focus_intro": "coding agents to physical AI in robotics, from inference cost collapse to multi-agent orchestration standards -- the industry is transforming at breakneck speed. This edition covers the 7 breakthroughs reshaping the landscape, viral tools you should know, and what it all means for your AI journey. AI Daily Learning | March 21, 2026 | For Varun Singla Page 1 7 Agentic AI Breakthroughs Reshaping March 2026",
+      "focus_intro": "This edition covers the 7 breakthroughs reshaping the landscape, viral tools you should know, and what it all means for your AI journey.",
       "sections": [
         {
           "title": "1. Agentic AI & Autonomous Workflows",
@@ -15414,7 +15414,7 @@
       "date": "2026-03-17",
       "display_date": "March 17, 2026",
       "title": "The Microservices Revolution of AI",
-      "focus_intro": "where teams of specialised AI agents collaborate to automate entire business workflows end-to-end. Gartner recorded a 1,445% surge in multi-agent system enquiries in just 12 months. This edition gives you a thorough grounding in what they are, how they work, why they matter, and where to go deeper. Daily AI Learning · March 17, 2026 · Multi-Agent Systems · Page 1",
+      "focus_intro": "Gartner recorded a 1,445% surge in multi-agent system enquiries in just 12 months. This edition gives you a thorough grounding in what they are, how they work, why they matter, and where to go deeper.",
       "sections": [
         {
           "title": "What Are Multi-Agent Systems?",
@@ -15503,7 +15503,7 @@
       "date": "2026-03-15",
       "display_date": "March 15, 2026",
       "title": "The Multi-Agent Revolution -- How AI is Moving from \"Talking\" to \"Doing\"",
-      "focus_intro": "The Multi-Agent Revolution -- How AI is Moving from \"Talking\" to \"Doing\"",
+      "focus_intro": "",
       "sections": [
         {
           "title": "2. The Plan-and-Execute Pattern",

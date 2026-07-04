@@ -486,6 +486,28 @@ def _find_viral_app_in_tables(page_tables: list[dict]) -> dict | None:
     return None
 
 
+_SENT_END = re.compile(r"[.!?…][\"'”’)\]]*$")
+
+
+def _ends_sentence(text: str) -> bool:
+    return bool(_SENT_END.search(text.strip()))
+
+
+def _trim_to_sentence(text: str, min_len: int = 50) -> str:
+    """Cut text back to its last complete sentence; '' if none long enough.
+    Sentence ends are terminal punctuation followed by whitespace, so
+    decimals ("78.7%") and version numbers ("GPT-5.5") don't count."""
+    text = text.strip()
+    if not text or _ends_sentence(text):
+        return text
+    end = None
+    for m in re.finditer(r"[.!?…][\"'”’)\]]*(?=\s)", text):
+        end = m.end()
+    if end and end >= min_len:
+        return text[:end].strip()
+    return ""
+
+
 def parse_pdf(pdf_path: Path) -> dict:
     """Parse a daily AI learning PDF into a rich structured dict.
 
@@ -686,20 +708,40 @@ def parse_pdf(pdf_path: Path) -> dict:
                 focus_intro = " ".join(intro_parts)
             break
 
-    # Fallback: use PDF subtitle line as intro (line after title)
+    # Fallback: use the PDF lede paragraph (lines after the title). The lede
+    # wraps across several PDF lines, so keep appending continuation lines
+    # until the text reads as complete sentences or a heading interrupts.
     if not focus_intro:
         p1_lines = page_data[0]['lines']
-        for ln in p1_lines[1:6]:
-            ln = re.sub(r'^[n•]+\s*', '', ln).strip()
+        for k in range(1, min(6, len(p1_lines))):
+            ln = re.sub(r'^[n•]+\s*', '', p1_lines[k]).strip()
             if len(ln) > 60 and not _title_skip.search(ln) and not re.search(r'\d{4}', ln):
-                focus_intro = ln
+                parts = [ln]
+                for nxt in p1_lines[k + 1:k + 12]:
+                    nxt = nxt.strip()
+                    if (is_section_heading(nxt) or re.search(r"what.s inside", nxt, re.I)
+                            or len(nxt) < 25):
+                        break
+                    parts.append(nxt)
+                    if _ends_sentence(nxt):
+                        break
+                focus_intro = " ".join(parts)
                 break
 
-    # Fallback: use first section paragraph
+    # Fallback: use first section paragraph (same continuation handling)
     if not focus_intro:
-        for l in all_flat_lines[5:30]:
+        for idx in range(5, min(30, len(all_flat_lines))):
+            l = all_flat_lines[idx]
             if len(l) > 80 and not is_section_heading(l) and not _title_skip.search(l):
-                focus_intro = l
+                parts = [l]
+                for nxt in all_flat_lines[idx + 1:idx + 12]:
+                    nxt = nxt.strip()
+                    if is_section_heading(nxt) or len(nxt) < 25:
+                        break
+                    parts.append(nxt)
+                    if _ends_sentence(nxt):
+                        break
+                focus_intro = " ".join(parts)
                 break
 
     # ── Stats box ─────────────────────────────────────────────────────────────
@@ -1111,6 +1153,18 @@ def parse_pdf(pdf_path: Path) -> dict:
             if sec.get("paragraphs"):
                 focus_intro = sec["paragraphs"][0]
                 break
+
+    # Never let a mid-sentence fragment through: trim back to the last
+    # complete sentence, else fall back to the first section paragraph.
+    if focus_intro and not _ends_sentence(focus_intro):
+        trimmed = _trim_to_sentence(focus_intro)
+        if not trimmed:
+            for sec in sections:
+                paras = sec.get("paragraphs") or []
+                if paras and _ends_sentence(paras[0]):
+                    trimmed = paras[0]
+                    break
+        focus_intro = trimmed
 
     # ── Validation ────────────────────────────────────────────────────────────
     warnings = []
