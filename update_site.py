@@ -486,6 +486,28 @@ def _find_viral_app_in_tables(page_tables: list[dict]) -> dict | None:
     return None
 
 
+_SENT_END = re.compile(r"[.!?…][\"'”’)\]]*$")
+
+
+def _ends_sentence(text: str) -> bool:
+    return bool(_SENT_END.search(text.strip()))
+
+
+def _trim_to_sentence(text: str, min_len: int = 50) -> str:
+    """Cut text back to its last complete sentence; '' if none long enough.
+    Sentence ends are terminal punctuation followed by whitespace, so
+    decimals ("78.7%") and version numbers ("GPT-5.5") don't count."""
+    text = text.strip()
+    if not text or _ends_sentence(text):
+        return text
+    end = None
+    for m in re.finditer(r"[.!?…][\"'”’)\]]*(?=\s)", text):
+        end = m.end()
+    if end and end >= min_len:
+        return text[:end].strip()
+    return ""
+
+
 def parse_pdf(pdf_path: Path) -> dict:
     """Parse a daily AI learning PDF into a rich structured dict.
 
@@ -686,20 +708,40 @@ def parse_pdf(pdf_path: Path) -> dict:
                 focus_intro = " ".join(intro_parts)
             break
 
-    # Fallback: use PDF subtitle line as intro (line after title)
+    # Fallback: use the PDF lede paragraph (lines after the title). The lede
+    # wraps across several PDF lines, so keep appending continuation lines
+    # until the text reads as complete sentences or a heading interrupts.
     if not focus_intro:
         p1_lines = page_data[0]['lines']
-        for ln in p1_lines[1:6]:
-            ln = re.sub(r'^[n•]+\s*', '', ln).strip()
+        for k in range(1, min(6, len(p1_lines))):
+            ln = re.sub(r'^[n•]+\s*', '', p1_lines[k]).strip()
             if len(ln) > 60 and not _title_skip.search(ln) and not re.search(r'\d{4}', ln):
-                focus_intro = ln
+                parts = [ln]
+                for nxt in p1_lines[k + 1:k + 12]:
+                    nxt = nxt.strip()
+                    if (is_section_heading(nxt) or re.search(r"what.s inside", nxt, re.I)
+                            or len(nxt) < 25):
+                        break
+                    parts.append(nxt)
+                    if _ends_sentence(nxt):
+                        break
+                focus_intro = " ".join(parts)
                 break
 
-    # Fallback: use first section paragraph
+    # Fallback: use first section paragraph (same continuation handling)
     if not focus_intro:
-        for l in all_flat_lines[5:30]:
+        for idx in range(5, min(30, len(all_flat_lines))):
+            l = all_flat_lines[idx]
             if len(l) > 80 and not is_section_heading(l) and not _title_skip.search(l):
-                focus_intro = l
+                parts = [l]
+                for nxt in all_flat_lines[idx + 1:idx + 12]:
+                    nxt = nxt.strip()
+                    if is_section_heading(nxt) or len(nxt) < 25:
+                        break
+                    parts.append(nxt)
+                    if _ends_sentence(nxt):
+                        break
+                focus_intro = " ".join(parts)
                 break
 
     # ── Stats box ─────────────────────────────────────────────────────────────
@@ -1112,6 +1154,18 @@ def parse_pdf(pdf_path: Path) -> dict:
                 focus_intro = sec["paragraphs"][0]
                 break
 
+    # Never let a mid-sentence fragment through: trim back to the last
+    # complete sentence, else fall back to the first section paragraph.
+    if focus_intro and not _ends_sentence(focus_intro):
+        trimmed = _trim_to_sentence(focus_intro)
+        if not trimmed:
+            for sec in sections:
+                paras = sec.get("paragraphs") or []
+                if paras and _ends_sentence(paras[0]):
+                    trimmed = paras[0]
+                    break
+        focus_intro = trimmed
+
     # ── Validation ────────────────────────────────────────────────────────────
     warnings = []
     if not issue:
@@ -1201,8 +1255,8 @@ def _push_file(api_base: str, headers: dict, filename: str, content_bytes: bytes
         return False
 
 
-def github_push(config: dict, data: dict) -> bool:
-    """Push learnings.json (and sitemap.xml if present) to GitHub via REST API."""
+def github_push(config: dict, data: dict, extra_files: list | None = None) -> bool:
+    """Push learnings.json plus any changed generated GEO files via REST API."""
     import urllib.error
     import urllib.request
 
@@ -1231,12 +1285,18 @@ def github_push(config: dict, data: dict) -> bool:
         print(f"   ✅  Pushed to github.com/{user}/{repo}")
         print(f"       Live at: https://varunsingla.com")
 
-    # Push sitemap.xml (keeps lastmod fresh for Google)
-    sitemap_path = SCRIPT_DIR / "sitemap.xml"
-    if sitemap_path.exists():
-        _push_file(api_base, headers, "sitemap.xml",
-                   sitemap_path.read_bytes(), f"SEO: update sitemap lastmod {today}")
-        print(f"   ✅  sitemap.xml updated")
+    # Push regenerated GEO files (static entry pages, llms.txt, feed.xml,
+    # sitemap.xml, index.html static block) — only the ones that changed.
+    pushed = 0
+    for rel in extra_files or []:
+        fpath = SCRIPT_DIR / rel
+        if fpath.exists():
+            rel_posix = str(rel).replace(os.sep, "/")
+            if _push_file(api_base, headers, rel_posix,
+                          fpath.read_bytes(), f"GEO: update {rel_posix} ({today})"):
+                pushed += 1
+    if pushed:
+        print(f"   ✅  {pushed} GEO file(s) updated (sitemap, llms.txt, entry pages …)")
 
     return ok
 
@@ -1294,17 +1354,23 @@ def main():
     LEARNINGS_JSON.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"   ✅  Entry {action} ({len(data['learnings'])} total days)")
 
-    # ── Update sitemap.xml with today's date ──────────────────────────────────
-    sitemap_path = SCRIPT_DIR / "sitemap.xml"
-    if sitemap_path.exists():
-        sitemap = sitemap_path.read_text(encoding="utf-8")
-        today = datetime.now().strftime("%Y-%m-%d")
-        sitemap = re.sub(r"<lastmod>[^<]+</lastmod>", f"<lastmod>{today}</lastmod>", sitemap)
-        sitemap_path.write_text(sitemap, encoding="utf-8")
+    # ── Regenerate GEO artifacts ──────────────────────────────────────────────
+    # Static entry pages, entries/index.html, llms.txt, llms-full.txt,
+    # feed.xml, sitemap.xml and the static-fallback block in index.html —
+    # this is what AI crawlers (GPTBot, ClaudeBot, PerplexityBot, …) and
+    # search engines actually read, since they don't execute JavaScript.
+    print("🌐  Regenerating GEO files (static entries, llms.txt, feed, sitemap) …")
+    geo_changed: list = []
+    try:
+        import generate_geo
+        geo_changed = generate_geo.generate(SCRIPT_DIR)
+        print(f"   ✅  {len(geo_changed)} generated file(s) changed")
+    except Exception as e:
+        print(f"   ⚠️  GEO generation failed (site still updates): {e}")
 
     # ── Push to GitHub ────────────────────────────────────────────────────────
     print("🚀  Pushing to GitHub …")
-    github_push(config, data)
+    github_push(config, data, geo_changed)
 
     print("─" * 54)
     print("✅  Done!\n")

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Topic of the Day: Multi-Agent AI Systems — Day 5 | Varun Singla · AI Learning Journal</title>
+<meta name="description" content="A top-level orchestrator decomposes the goal and delegates sub-tasks to worker agents. Workers report back, the orchestrator synthesises results.">
+<meta name="author" content="Varun Singla">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://varunsingla.com/entries/2026-03-19.html">
+<link rel="next" href="https://varunsingla.com/entries/2026-03-20.html">
+<link rel="prev" href="https://varunsingla.com/entries/2026-03-18.html">
+<link rel="alternate" type="application/rss+xml" title="Varun Singla · AI Learning Journal" href="https://varunsingla.com/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Varun Singla · AI Learning Journal">
+<meta property="og:title" content="Topic of the Day: Multi-Agent AI Systems">
+<meta property="og:description" content="A top-level orchestrator decomposes the goal and delegates sub-tasks to worker agents. Workers report back, the orchestrator synthesises results.">
+<meta property="og:url" content="https://varunsingla.com/entries/2026-03-19.html">
+<meta property="og:image" content="https://varunsingla.com/og-image.png">
+<meta property="article:published_time" content="2026-03-19T21:00:00+08:00">
+<meta property="article:author" content="https://varunsingla.com/about/">
+<meta property="article:tag" content="Foundations &amp; Protocols"><meta property="article:tag" content="Governance &amp; Safety">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Topic of the Day: Multi-Agent AI Systems">
+<meta name="twitter:description" content="A top-level orchestrator decomposes the goal and delegates sub-tasks to worker agents. Workers report back, the orchestrator synthesises results.">
+<meta name="twitter:image" content="https://varunsingla.com/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "@id": "https://varunsingla.com/entries/2026-03-19.html#post", "headline": "Topic of the Day: Multi-Agent AI Systems", "description": "A top-level orchestrator decomposes the goal and delegates sub-tasks to worker agents. Workers report back, the orchestrator synthesises results.", "datePublished": "2026-03-19T21:00:00+08:00", "dateModified": "2026-03-19T21:00:00+08:00", "url": "https://varunsingla.com/entries/2026-03-19.html", "mainEntityOfPage": "https://varunsingla.com/entries/2026-03-19.html", "wordCount": 740, "inLanguage": "en", "articleSection": ["Foundations & Protocols", "Governance & Safety"], "keywords": ["Foundations & Protocols", "Governance & Safety", "agentic AI", "AI learning journal", "Varun Singla"], "isPartOf": {"@type": "Blog", "@id": "https://varunsingla.com/#blog", "name": "Varun Singla · AI Learning Journal"}, "author": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla", "url": "https://varunsingla.com/about/"}, "publisher": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Journal", "item": "https://varunsingla.com/"}, {"@type": "ListItem", "position": 2, "name": "Archive", "item": "https://varunsingla.com/entries/"}, {"@type": "ListItem", "position": 3, "name": "Topic of the Day: Multi-Agent AI Systems", "item": "https://varunsingla.com/entries/2026-03-19.html"}]}</script>
+<style>*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#F7F4ED;}
+body{font-family:'Hanken Grotesk',sans-serif;color:#1B1A17;-webkit-font-smoothing:antialiased;}
+::selection{background:#CC3F2A;color:#fff;}
+a{color:inherit;}
+.mast{position:sticky;top:0;z-index:50;background:rgba(247,244,237,.9);backdrop-filter:blur(12px);border-bottom:1px solid #E4DECF;}
+.mast-in{max-width:1120px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;}
+.brand-mark{width:30px;height:30px;border-radius:7px;background:#1B1A17;color:#F7F4ED;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;}
+.brand-name{font-family:'JetBrains Mono',monospace;font-size:13.5px;color:#1B1A17;}
+.nav-link{font-size:14.5px;font-weight:500;color:#6B6760;text-decoration:none;padding:7px 12px;border-radius:8px;}
+.nav-link:hover{color:#1B1A17;background:#EEE9DC;}
+.meta-row{display:flex;align-items:center;gap:13px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:13px;color:#8A857B;}
+.meta-row .day{color:#CC3F2A;font-weight:500;}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.04em;color:#6B6760;border:1px solid #E4DECF;border-radius:999px;padding:5px 12px;background:#FBF9F3;text-decoration:none;}
+article h1{font-family:'Newsreader',serif;font-weight:400;font-size:clamp(32px,5.5vw,52px);line-height:1.07;letter-spacing:-.018em;margin:0 0 22px;}
+article h2{font-family:'Newsreader',serif;font-weight:500;font-size:clamp(23px,3.4vw,30px);line-height:1.18;margin:0 0 18px;}
+article p{font-family:'Newsreader',serif;font-size:clamp(18px,2.3vw,20px);line-height:1.65;color:#2C2A24;margin:0 0 20px;}
+article ul{margin:4px 0 20px;padding-left:20px;}
+article li{font-family:'Newsreader',serif;font-size:clamp(17px,2.2vw,19px);line-height:1.6;color:#2C2A24;margin:0 0 10px;}
+.intro{font-size:clamp(20px,3vw,24px)!important;line-height:1.5!important;color:#3A372F!important;font-style:italic;margin:0 0 40px!important;}
+.callout{border:1px solid #E4DECF;border-left:3px solid #CC3F2A;border-radius:12px;background:#FBF9F3;padding:22px 24px;margin:0 0 40px;}
+.callout p{font-size:clamp(17px,2.2vw,19px);margin:0;}
+.kicker{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#CC3F2A;margin-bottom:14px;}
+.highlight{font-family:'Newsreader',serif;font-style:italic;font-size:clamp(18px,2.4vw,20px);line-height:1.55;color:#3A372F;border-left:3px solid #CC3F2A;padding:6px 0 6px 16px;margin:8px 0 20px;}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:#E4DECF;border:1px solid #E4DECF;border-radius:12px;overflow:hidden;margin:0 0 40px;}
+.stat-cell{background:#FBF9F3;padding:18px 20px;}
+.stat-big{font-family:'Newsreader',serif;font-size:clamp(24px,4vw,32px);line-height:1.05;color:#1B1A17;}
+.stat-small{font-size:13px;line-height:1.45;color:#56524B;margin-top:8px;}
+.table-wrap{overflow-x:auto;border:1px solid #E4DECF;border-radius:12px;background:#FBF9F3;margin:0 0 20px;}
+table{width:100%;border-collapse:collapse;}
+th{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#8A857B;text-align:left;padding:9px 12px;border-bottom:1px solid #CBB8A0;font-weight:500;}
+td{font-size:14.5px;color:#2C2A24;padding:9px 12px;border-bottom:1px solid #EEE9DC;vertical-align:top;line-height:1.45;font-family:'Hanken Grotesk',sans-serif;}
+tr:last-child td{border-bottom:none;}
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:680px;margin:0 auto;padding:20px 28px 90px;}
+.pn a{border:1px solid #E4DECF;border-radius:12px;padding:18px 20px;background:#FBF9F3;text-decoration:none;display:block;}
+.pn a:hover{border-color:#1B1A17;}
+.pn .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#A8A294;margin-bottom:9px;}
+.pn .ttl{font-family:'Newsreader',serif;font-size:18px;line-height:1.2;color:#1B1A17;}
+footer{border-top:1px solid #E4DECF;background:#FBF9F3;}
+.foot-in{max-width:1120px;margin:0 auto;padding:34px 28px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#6B6760;}</style>
+</head>
+<body>
+<header class="mast"><div class="mast-in">
+  <a class="brand" href="../"><span class="brand-mark">VS</span><span class="brand-name">varunsingla.com</span></a>
+  <nav style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+    <a class="nav-link" href="../">Journal</a>
+    <a class="nav-link" href="../entries/">Archive</a>
+    <a class="nav-link" href="../about/">About</a>
+    <a class="nav-link" href="../ai-tokenomics/">Tokenomics</a>
+    <a class="nav-link" href="../tools/model-team-evaluator.html">Model Evaluator</a>
+  </nav>
+</div></header>
+<article style="max-width:680px;margin:0 auto;padding:48px 28px 30px;">
+  <p style="margin:0 0 38px;"><a href="./" style="font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.04em;color:#6B6760;text-decoration:none;">← All entries</a></p>
+  <div class="meta-row" style="margin-bottom:22px;">
+    <span class="day">Day 5</span><span>·</span>
+    <time datetime="2026-03-19">March 19, 2026</time><span>·</span>
+    <span>4 min read</span>
+  </div>
+  <h1>Topic of the Day: Multi-Agent AI Systems</h1>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:34px;padding-bottom:34px;border-bottom:1px solid #E4DECF;"><span class="tag">Foundations &amp; Protocols</span> <span class="tag">Governance &amp; Safety</span> </div>
+  <section><h2>1. Hierarchical (Manager-Worker)</h2><p>A top-level orchestrator decomposes the goal and delegates sub-tasks to worker agents. Workers report back, the orchestrator synthesises results. Best for: complex tasks with clear decomposition (e.g. multi-chapter research reports, end-to-end software features).</p><div class="table-wrap"><table><thead><tr><th>Company</th><th>Use Case</th><th>Outcome</th></tr></thead><tbody><tr><td>Google DeepMind</td><td>AlphaCode 2: multi-agent system where one agent g</td><td>enSeurraptaesss ceodd 8e5 athn dp earncoetnhteilre c orif</td></tr></tbody></table></div></section>
+<section><h2>1. Single agent fi team of agents</h2><p>Just as great companies hire specialists instead of one generalist, great AI systems use specialised</p></section>
+<section><h2>2. Orchestrator = the brain</h2><p>One agent plans and delegates; others execute. The quality of the orchestrator determines the quality of</p></section>
+<section><h2>2. Sequential Pipeline</h2><p>Agents hand off work in a fixed order -- like an assembly line. Agent A extracts data, Agent B cleans it, Agent C analyses it, Agent D writes the report. Best for: data transformation, ETL-style workflows.</p><div class="table-wrap"><table><thead><tr><th>Salesforce</th><th>Agentforce: orchestrates sales, service, and marketi</th><th>ngR aegdeunctes dfr aovme raa gsien ghlaen pdllaet ftoimr</th></tr></thead><tbody><tr><td>Microsoft</td><td>GitHub Copilot Workspace: planner + editor + tester</td><td>agReenstso lcvoelsla ~b4o0ra%te o tfo a rsessigonlveed e</td></tr><tr><td>IBM</td><td>WatsonX Orchestrate: routes tasks to the cheapest</td><td>cap9a0b%le c mosotd reeld uuscitniogn a v ms.u ultsi-inagg</td></tr></tbody></table></div></section>
+<section><h2>3. Peer-to-Peer Collaboration</h2><p>Agents communicate directly with each other based on capability, with no fixed hierarchy. Any agent can delegate to any other. Highly flexible but harder to debug. Best for: open-ended creative tasks, research</p></section>
+<section><h2>3. Plan-and-Execute = smart cost control</h2><p>Use an expensive model to plan, cheap models to execute. 90% cost savings. This will be standard</p></section>
+<section><h2>4. Plan-and-Execute</h2><p>A powerful (and expensive) frontier model creates a detailed plan. Cheap, fast models execute the individual steps. This pattern can reduce costs by up to 90% versus using a frontier model for every step. Best for: cost-sensitive production workloads. How Agents Communicate: Key Protocols in 2026 In 2026, three protocols dominate agent-to-agent communication: (cid:127) Agent2Agent (A2A) -- Google + Salesforce standard: Open protocol allowing agents from different vendors to hand off tasks, share context, and collaborate across platforms. Marks the shift from siloed agents to a true agentic internet. (cid:127) Model Context Protocol (MCP) -- Anthropic&#x27;s tool layer: Standardises how agents connect to external tools (databases, APIs, file systems). Think of it as USB-C for AI tools -- one protocol,</p><p>(cid:127) LangGraph / AutoGen message passing: Framework-specific graph-based message routing, popular in enterprise deployments for fine-grained control over agent state machines. Why it matters for you: Understanding these protocols means you can design systems where Salesforce agents, custom Python agents, and cloud provider agents all work together seamlessly -- the foundation of every major enterprise AI transformation happening right now.</p><p>Google DeepMind AlphaCode 2: multi-agent system where one agent genSeurraptaesss ceodd 8e5 athn dp earncoetnhteilre c orift icqoumesp eatnitdiv ree pfinroegsr aitmmers Salesforce Agentforce: orchestrates sales, service, and marketingR aegdeunctes dfr aovme raa gsien ghlaen pdllaet ftoimrme ubsyi n3g4 %A2 inA ppirloott odceoplloyments Microsoft GitHub Copilot Workspace: planner + editor + tester agReenstso lcvoelsla ~b4o0ra%te o tfo a rsessigonlveed e insstiuree sG aituHtuobn oismsouuessl yend-to-end IBM WatsonX Orchestrate: routes tasks to the cheapest cap9a0b%le c mosotd reeld uuscitniogn a v ms.u ultsi-inagg eGnPt rTo-u4t eforr all tasks</p></section>
+<section><h2>4. Protocols are the glue</h2><p>A2A + MCP are the emerging standards. Learn these like you learned REST APIs -- they will be</p></section>
+<section><h2>5. Governance is not optional</h2><p>As agents act autonomously, &#x27;governance agents&#x27; that audit others are becoming as important as the task</p><p>Now that you understand the fundamentals of multi-agent systems, here are the logical next topics in your</p><p>fi Memory systems for agents -- how agents retain context across long-running tasks (episodic,</p><p>fi Tool use &amp; function calling -- how agents invoke APIs, browsers, and databases autonomously fi Agent evaluation &amp; evals frameworks -- how to measure and improve agent reliability in production fi RAG (Retrieval-Augmented Generation) as agent memory -- connecting agents to your company&#x27;s</p><p>fi Security &amp; prompt injection attacks -- the biggest current vulnerability in deployed agent systems Agent Trends Report, Deloitte Tech Predictions 2026, MachineLearningMastery, IBM Think</p></section>
+<section><h2>What Is a Multi-Agent System?</h2><p>A Multi-Agent System (MAS) is an architecture where multiple specialised AI agents collaborate to complete tasks that are too complex, too long, or too broad for a single model to handle alone. Think of it like a well-run team in a company -- instead of one person doing everything, you have a manager agent that orchestrates a group of specialist worker agents, each expert at a narrow skill. The analogy to microservices in software engineering is intentional. Just as monolithic applications were replaced by distributed services in the 2010s, monolithic single-prompt AI interactions are being replaced by collaborative agent networks in the 2020s. Key insight: Multi-agent research pipelines outperformed single-agent Claude Opus by 90.2% on complex benchmarks -- not because the individual agents were smarter, but because specialisation + parallel execution + cross-checking produced dramatically better outcomes.</p><p>Orchestrator Agent Breaks the goal into sub-tasks, assigns them, traPcrkosje pcrto Mgraensasger Specialist Agents Execute narrowly-scoped tasks (research, codinDg,o rmevaiienw E, xeptec.r)ts Memory Layer Shared short-term context + long-term vector DBShared Notes / Wiki Tool Layer APIs, browsers, code interpreters, databases Team&#x27;s Toolbox</p><p>Structured messages passed between agents (JESmOaNil // AS2laAc k/ MCP)</p><div class="table-wrap"><table><thead><tr><th>Component</th><th>Role</th><th>Real-World Analogy</th></tr></thead><tbody><tr><td>Orchestrator Agent</td><td>Breaks the goal into sub-tasks, assigns them,</td><td>traPcrkosje pcrto Mgraensasger</td></tr><tr><td>Specialist Agents</td><td>Execute narrowly-scoped tasks (research, cod</td><td>inDg,o rmevaiienw E, xeptec.r)ts</td></tr><tr><td>Memory Layer</td><td>Shared short-term context + long-term vector</td><td>DBShared Notes / Wiki</td></tr><tr><td>Tool Layer</td><td>APIs, browsers, code interpreters, databases</td><td>Team&#x27;s Toolbox</td></tr><tr><td>Communication Protocol</td><td>Structured messages passed between agents</td><td>(JESmOaNil // AS2laAc k/ MCP)</td></tr></tbody></table></div></section>
+  <div style="display:flex;align-items:center;gap:13px;margin:54px 0 10px;padding-top:30px;border-top:1px solid #E4DECF;">
+    <div class="brand-mark" style="width:40px;height:40px;font-size:14px;border-radius:9px;">VS</div>
+    <div><div style="font-size:14.5px;font-weight:600;">Varun Singla</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8A857B;">Singapore · <a href="../about/" style="color:#8A857B;">About</a> · Learning in public</div></div>
+  </div>
+</article>
+<nav class="pn" aria-label="Adjacent entries"><a href="2026-03-20.html" rel="next"><div class="lbl">← Newer · Day 6</div><div class="ttl">Your 5-Minute AI Brief -- Powered by Real-Time Research</div></a><a href="2026-03-18.html" rel="prev" style="text-align:right;"><div class="lbl">Older · Day 4 →</div><div class="ttl">The Agentic AI Revolution</div></a></nav>
+<footer><div class="foot-in">
+  <span>Varun Singla · Singapore · Learning in public</span>
+  <span><a href="https://varunsingla.com/feed.xml" style="text-decoration:none;color:#6B6760;">RSS</a> · <a href="https://varunsingla.com/llms.txt" style="text-decoration:none;color:#6B6760;">llms.txt</a> · Updated daily</span>
+</div></footer>
+</body>
+</html>

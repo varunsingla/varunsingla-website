@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent Security &amp; Identity in the Economy 2.0 — Day 23 | Varun Singla · AI Learning Journal</title>
+<meta name="description" content="Today we complete the Agent Economy 2.0 arc by answering the key question every security and engineering team must answer in 2026: how do you give an AI agent an identity, scope its…">
+<meta name="author" content="Varun Singla">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://varunsingla.com/entries/2026-04-10.html">
+<link rel="next" href="https://varunsingla.com/entries/2026-04-11.html">
+<link rel="prev" href="https://varunsingla.com/entries/2026-04-09.html">
+<link rel="alternate" type="application/rss+xml" title="Varun Singla · AI Learning Journal" href="https://varunsingla.com/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Varun Singla · AI Learning Journal">
+<meta property="og:title" content="Agent Security &amp; Identity in the Economy 2.0">
+<meta property="og:description" content="Today we complete the Agent Economy 2.0 arc by answering the key question every security and engineering team must answer in 2026: how do you give an AI agent an identity, scope its…">
+<meta property="og:url" content="https://varunsingla.com/entries/2026-04-10.html">
+<meta property="og:image" content="https://varunsingla.com/og-image.png">
+<meta property="article:published_time" content="2026-04-10T21:00:00+08:00">
+<meta property="article:author" content="https://varunsingla.com/about/">
+<meta property="article:tag" content="Governance &amp; Safety"><meta property="article:tag" content="Models &amp; Frontier">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Agent Security &amp; Identity in the Economy 2.0">
+<meta name="twitter:description" content="Today we complete the Agent Economy 2.0 arc by answering the key question every security and engineering team must answer in 2026: how do you give an AI agent an identity, scope its…">
+<meta name="twitter:image" content="https://varunsingla.com/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "@id": "https://varunsingla.com/entries/2026-04-10.html#post", "headline": "Agent Security & Identity in the Economy 2.0", "description": "Today we complete the Agent Economy 2.0 arc by answering the key question every security and engineering team must answer in 2026: how do you give an AI agent an identity, scope its…", "datePublished": "2026-04-10T21:00:00+08:00", "dateModified": "2026-04-10T21:00:00+08:00", "url": "https://varunsingla.com/entries/2026-04-10.html", "mainEntityOfPage": "https://varunsingla.com/entries/2026-04-10.html", "wordCount": 719, "inLanguage": "en", "articleSection": ["Governance & Safety", "Models & Frontier"], "keywords": ["Governance & Safety", "Models & Frontier", "agentic AI", "AI learning journal", "Varun Singla"], "isPartOf": {"@type": "Blog", "@id": "https://varunsingla.com/#blog", "name": "Varun Singla · AI Learning Journal"}, "author": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla", "url": "https://varunsingla.com/about/"}, "publisher": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Journal", "item": "https://varunsingla.com/"}, {"@type": "ListItem", "position": 2, "name": "Archive", "item": "https://varunsingla.com/entries/"}, {"@type": "ListItem", "position": 3, "name": "Agent Security & Identity in the Economy 2.0", "item": "https://varunsingla.com/entries/2026-04-10.html"}]}</script>
+<style>*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#F7F4ED;}
+body{font-family:'Hanken Grotesk',sans-serif;color:#1B1A17;-webkit-font-smoothing:antialiased;}
+::selection{background:#CC3F2A;color:#fff;}
+a{color:inherit;}
+.mast{position:sticky;top:0;z-index:50;background:rgba(247,244,237,.9);backdrop-filter:blur(12px);border-bottom:1px solid #E4DECF;}
+.mast-in{max-width:1120px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;}
+.brand-mark{width:30px;height:30px;border-radius:7px;background:#1B1A17;color:#F7F4ED;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;}
+.brand-name{font-family:'JetBrains Mono',monospace;font-size:13.5px;color:#1B1A17;}
+.nav-link{font-size:14.5px;font-weight:500;color:#6B6760;text-decoration:none;padding:7px 12px;border-radius:8px;}
+.nav-link:hover{color:#1B1A17;background:#EEE9DC;}
+.meta-row{display:flex;align-items:center;gap:13px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:13px;color:#8A857B;}
+.meta-row .day{color:#CC3F2A;font-weight:500;}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.04em;color:#6B6760;border:1px solid #E4DECF;border-radius:999px;padding:5px 12px;background:#FBF9F3;text-decoration:none;}
+article h1{font-family:'Newsreader',serif;font-weight:400;font-size:clamp(32px,5.5vw,52px);line-height:1.07;letter-spacing:-.018em;margin:0 0 22px;}
+article h2{font-family:'Newsreader',serif;font-weight:500;font-size:clamp(23px,3.4vw,30px);line-height:1.18;margin:0 0 18px;}
+article p{font-family:'Newsreader',serif;font-size:clamp(18px,2.3vw,20px);line-height:1.65;color:#2C2A24;margin:0 0 20px;}
+article ul{margin:4px 0 20px;padding-left:20px;}
+article li{font-family:'Newsreader',serif;font-size:clamp(17px,2.2vw,19px);line-height:1.6;color:#2C2A24;margin:0 0 10px;}
+.intro{font-size:clamp(20px,3vw,24px)!important;line-height:1.5!important;color:#3A372F!important;font-style:italic;margin:0 0 40px!important;}
+.callout{border:1px solid #E4DECF;border-left:3px solid #CC3F2A;border-radius:12px;background:#FBF9F3;padding:22px 24px;margin:0 0 40px;}
+.callout p{font-size:clamp(17px,2.2vw,19px);margin:0;}
+.kicker{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#CC3F2A;margin-bottom:14px;}
+.highlight{font-family:'Newsreader',serif;font-style:italic;font-size:clamp(18px,2.4vw,20px);line-height:1.55;color:#3A372F;border-left:3px solid #CC3F2A;padding:6px 0 6px 16px;margin:8px 0 20px;}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:#E4DECF;border:1px solid #E4DECF;border-radius:12px;overflow:hidden;margin:0 0 40px;}
+.stat-cell{background:#FBF9F3;padding:18px 20px;}
+.stat-big{font-family:'Newsreader',serif;font-size:clamp(24px,4vw,32px);line-height:1.05;color:#1B1A17;}
+.stat-small{font-size:13px;line-height:1.45;color:#56524B;margin-top:8px;}
+.table-wrap{overflow-x:auto;border:1px solid #E4DECF;border-radius:12px;background:#FBF9F3;margin:0 0 20px;}
+table{width:100%;border-collapse:collapse;}
+th{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#8A857B;text-align:left;padding:9px 12px;border-bottom:1px solid #CBB8A0;font-weight:500;}
+td{font-size:14.5px;color:#2C2A24;padding:9px 12px;border-bottom:1px solid #EEE9DC;vertical-align:top;line-height:1.45;font-family:'Hanken Grotesk',sans-serif;}
+tr:last-child td{border-bottom:none;}
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:680px;margin:0 auto;padding:20px 28px 90px;}
+.pn a{border:1px solid #E4DECF;border-radius:12px;padding:18px 20px;background:#FBF9F3;text-decoration:none;display:block;}
+.pn a:hover{border-color:#1B1A17;}
+.pn .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#A8A294;margin-bottom:9px;}
+.pn .ttl{font-family:'Newsreader',serif;font-size:18px;line-height:1.2;color:#1B1A17;}
+footer{border-top:1px solid #E4DECF;background:#FBF9F3;}
+.foot-in{max-width:1120px;margin:0 auto;padding:34px 28px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#6B6760;}</style>
+</head>
+<body>
+<header class="mast"><div class="mast-in">
+  <a class="brand" href="../"><span class="brand-mark">VS</span><span class="brand-name">varunsingla.com</span></a>
+  <nav style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+    <a class="nav-link" href="../">Journal</a>
+    <a class="nav-link" href="../entries/">Archive</a>
+    <a class="nav-link" href="../about/">About</a>
+    <a class="nav-link" href="../ai-tokenomics/">Tokenomics</a>
+    <a class="nav-link" href="../tools/model-team-evaluator.html">Model Evaluator</a>
+  </nav>
+</div></header>
+<article style="max-width:680px;margin:0 auto;padding:48px 28px 30px;">
+  <p style="margin:0 0 38px;"><a href="./" style="font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.04em;color:#6B6760;text-decoration:none;">← All entries</a></p>
+  <div class="meta-row" style="margin-bottom:22px;">
+    <span class="day">Day 23</span><span>·</span>
+    <time datetime="2026-04-10">April 10, 2026</time><span>·</span>
+    <span>3 min read</span>
+  </div>
+  <h1>Agent Security &amp; Identity in the Economy 2.0</h1>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:34px;padding-bottom:34px;border-bottom:1px solid #E4DECF;"><span class="tag">Governance &amp; Safety</span> <span class="tag">Models &amp; Frontier</span> </div>
+  <p class="intro">Today we complete the Agent Economy 2.0 arc by answering the key question every security and engineering team must answer in 2026: how do you give an AI agent an identity, scope its spending, detect fraud, and kill it in under a second?</p>
+<div class="callout"><div class="kicker">Viral app of the day</div><p style="font-family:'Newsreader',serif;font-size:22px;font-weight:500;margin:0 0 10px;">Project Glasswing by Anthropic — The World&#x27;s First Autonomous Zero-Day Hunter</p><p>Project Glasswing is simultaneously the most impressive and most terrifying demonstration of agentic AI in 2026. Claude Mythos Preview operates as a fully autonomous security researcher: it reads codebases, reasons about attack vectors, crafts exploits, validates them, and generates patches -- without human guidance on each step. The fact that Anthropic restricted public access while deploying it offensively for defence is itself a governance blueprint: high-capability agents must operate within curated trust boundaries, not open-internet free-for-all. Why it matters for agent security learners: Glasswing is a live implementation of every principle we&#x27;ve covered -- SPIFFE identity, task-scoped OAuth, audit trails, kill switches, kill-switch-as-protocol not button. It also raises the bar: if Mythos can find 17-year-old OS vulnerabilities autonomously, so can adversarial agents. Your agent security stack needs to assume attacker-grade AI. Key Takeaways Identity first, governance follows n 63% of orgs can&#x27;t stop their agents because they never gave them proper identity. Deploy SPIFFE/SPIRE before you deploy agents in production.</p><ul style="margin-bottom:0;"><li>40+ — Partner orgs (Apple, MSFT, Cisco…)</li><li>1000s — Zero-days found week 1</li><li>$100M — Usage credits committed</li><li>17yrs — Oldest bug found (CVE-2026-4747)</li></ul></div>
+<div style="margin:0 0 40px;"><div class="kicker">By the numbers</div><div class="stat-grid"><div class="stat-cell"><div class="stat-big">63%</div><div class="stat-small">orgs can&#x27;t stop their own agent</div></div><div class="stat-cell"><div class="stat-big">33%</div><div class="stat-small">lack audit trails entirely</div></div><div class="stat-cell"><div class="stat-big">$600M+</div><div class="stat-small">x402 protocol transaction vol</div></div><div class="stat-cell"><div class="stat-big">40+</div><div class="stat-small">Project Glasswing partner orgs</div></div></div></div>
+<section><h2>1. The Agent Identity Crisis of 2026</h2><p>Traditional identity was built for humans and static servers. AI agents are ephemeral, non-human, multi-hop -- they spawn, complete tasks, and vanish in seconds. That renders API keys and long-lived credentials dangerously obsolete.</p><p>Identity Maturity Ladder Stage 1 -- Static API Keys n Long-lived, shared, no context binding Stage 2 -- SPIFFE/SPIRE Workload Identity n Short-lived SVIDs, mTLS, NIST + EU AI Act compliant Stage 3 -- W3C DID Self-Sovereign (2027+) n ANP protocol, decentralised, open-internet agents</p><ul><li>80% of orgs have seen risky agent behaviour: data exposure, privilege escalation</li><li>63% cannot enforce purpose limitations on agents</li><li>60% cannot terminate a misbehaving agent (kill switch gap)</li><li>33% lack any audit trail -- strongest predictor of governance immaturity</li><li>An agent doesn&#x27;t own credentials -- it holds verifiable identity</li><li>Each task invocation should get a fresh, time-boxed credential (seconds-minutes)</li><li>Multi-hop delegation chains: Orchestrator → Sub-agent → Tool -- each hop must attest</li><li>48% of cybersecurity professionals: agentic AI = #1 dangerous attack vector 2026</li></ul></section>
+<section><h2>2. SPIFFE/SPIRE &amp; IETF AIMS: Workload Identity for Paying Agents</h2><p>SPIFFE (Secure Production Identity Framework For Everyone) is the dominant standard for agent-to-agent authentication in 2026, extended by the IETF AIMS framework (WIMSE + SPIFFE + OAuth 2.0) to cover multi-hop agent delegation chains.</p><ul><li>WIMSE identifier: URI uniquely identifying an agent workload</li><li>SPIFFE SVID: most-deployed WIMSE implementation -- X.509</li><li>OAuth 2.0: scoped authorisation tokens that travel with the</li><li>AuthZEN (OpenID, Jan 2026 Final): any PEP can query any</li></ul><div class="table-wrap"><table><thead><tr><th>Step</th><th>Description</th></tr></thead><tbody><tr><td>1. Boot</td><td>SPIRE Agent on the host attests the workload (kernel, container hash, environment)</td></tr><tr><td>2. SVID</td><td>SPIFFE Verifiable Identity Document issued -- X.509 cert or JWT, TTL: 30-300 seconds</td></tr><tr><td>3. mTLS</td><td>Agent presents SVID to MPP endpoint; mutual TLS confirms both sides are who they claim</td></tr><tr><td>4. Scope</td><td>OAuth 2.0 scope embedded in SVID: max spend $500, merchant category = travel, 15 min window</td></tr><tr><td>5. Rotate</td><td>On TTL expiry SPIRE auto-rotates; stale SVIDs are cryptographically rejected</td></tr></tbody></table></div></section>
+<section><h2>3. Agentic Wallet Security Stack &amp; Programmable Constraints</h2><p>Payment agents need a 6-layer wallet security stack. Programmable spending constraints include per-task transaction limits, merchant category (MCC) whitelists, time-windowed credentials, and velocity hard stops.</p><ul><li>Max single transaction: configurable per task context (e.g. $500 for travel booking)</li><li>Merchant category locks: whitelist only approved MCCs (Merchant Category Codes)</li><li>Time windows: credential scoped to task duration, auto-revoke on completion</li><li>Velocity limits: max N transactions/hour, max $X/day -- hard stops, not soft warnings Know Your Agent (KYA)</li><li>Emerging standard replacing static KYC for autonomous entities</li><li>Continuous behavioural monitoring: expected vs actual spending patterns</li><li>ML algorithms distinguish legitimate agent bursts from malicious automation</li><li>Traditional fraud systems flag machine-speed purchases as suspicious -- KYA fixes this</li><li>Rule-based systems flag velocity (machine-speed = suspicious by old rules)</li><li>Geolocation rules break: agents can book globally in milliseconds legitimately</li><li>Device fingerprinting doesn&#x27;t apply: agents have no browser/device</li><li>Traditional MFA: humans can&#x27;t approve each agent micro-transaction at scale Agent-Native Fraud Signals</li><li>SVID mismatch: agent&#x27;s workload identity doesn&#x27;t match task context</li><li>Scope creep attempt: agent requests wider OAuth scope than task declared</li><li>Delegation chain break: sub-agent claims permissions not granted by orchestrator</li><li>Merchant drift: MCC codes outside whitelisted categories for the task type</li><li>Nonce replay: x402/MPP nonce presented more than once</li></ul><div class="table-wrap"><table><thead><tr><th>Layer</th><th>Description</th></tr></thead><tbody><tr><td>Agentic Wallet Security Stack Layer 1 -- Identity: SPIFFE SVID per transaction Layer 2 -- Auth: OAuth 2.0 scoped token + biometric anchor Layer 3 -- Tokenisation: SPT (Shared Payment Token) -- never raw card Layer 4 -- Constraints: programmable spend limits + MCC whitelist Layer 5 -- Monitoring: KYA behavioural ML + velocity rules Layer 6 -- Kill Switch: Universal Logout revokes all tokens instantly</td><td></td></tr></tbody></table></div></section>
+<section><h2>4. Agent-Native Fraud Detection &amp; Know Your Agent (KYA)</h2><p>Autonomous agent transactions are now entering regulated payment rails. Three frameworks are shaping what compliance looks like in 2026: EU PSD3 / PSR Political agreement Nov 27 2025; formal adoption early 2026; 18-24 month transposition. Agent Exemption Tightened: commercial agent exemption now only applies in very limited circumstances -- most agent payments must comply with full PSR. SCA for agents: strong customer authentication must be anchored to human principal, not the agent itself. EBA </p></section>
+<section><h2>8. Breaking: Project Glasswing &amp; Claude Mythos Preview</h2><p>Anthropic officially launched Project Glasswing (Apr 7 2026) using the preview of Claude Mythos as an autonomous cybersecurity agent to find and fix zero-day vulnerabilities at scale.</p><div class="table-wrap"><table><thead><tr><th>Aspect</th><th>Detail</th></tr></thead><tbody><tr><td>Zero-Days Found</td><td>Mythos Preview identified thousands of critical zero-days across every major OS and every major web browser autonomously -- including CVE-2026-4747: a 17-year-old FreeBSD RCE exploit allowing full root access via NFS.</td></tr><tr><td>Partner Network</td><td>40+ partners including Amazon, Apple, Broadcom, Cisco, CrowdStrike, Linux Foundation, Microsoft, Palo Alto Networks receiving early access under strict safety controls.</td></tr><tr><td>Financial Commitment</td><td>Anthropic committed $100M in Mythos Preview usage credits + $4M direct donations to open-source security organisations.</td></tr><tr><td>Why Restricted</td><td>Mythos is capable of identifying AND exploiting zero-days autonomously. Anthropic decided it is too dangerous for public release -- hence Project Glasswing&#x27;s curated partnership model as a &#x27;use for defence before attackers use for offence&#x27; strategy.</td></tr><tr><td>Agent Security Relevance</td><td>Mythos Preview running autonomously = the highest-stakes agentic AI deployment in 2026. It operationalises SPIFFE identity, task-scoped permissions, kill switches, and full audit trails -- a live blueprint for agent security in the economy.</td></tr></tbody></table></div></section>
+<div class="callout"><div class="kicker">Practical takeaways</div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">Payment agents need scoped, short-lived credentials SVI</div><p style="font-size:17px;margin:3px 0 0;">Ds (30-300s TTL) + OAuth scopes + MCC whitelists = the minimum viable security stack for any agent that can spend money.</p></div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">Fraud detection must be agent-native</div><p style="font-size:17px;margin:3px 0 0;">Classic velocity rules and device fingerprinting don&#x27;t apply. Use SVID mismatch, scope creep attempts, and delegation chain breaks as your fraud signals.</p></div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">Regulators are catching up fast EU PSD3/PSR (2026), UK FCA A</div><p style="font-size:17px;margin:3px 0 0;">I guidelines, and US AB 316 all make the human principal liable for agent actions -- know your compliance obligations now.</p></div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">Kill switch = identity protocol Universal</div><p style="font-size:17px;margin:3px 0 0;">Logout proves it: you can only kill what you can identify. T1→T4 kill switch works only if SPIFFE SVIDs and OAuth tokens are revocable in &lt;1s.</p></div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">Glasswing sets the new threat level</div><p style="font-size:17px;margin:3px 0 0;">Mythos autonomously finds and exploits zero-days. Your agents will face adversarial AI in 2026 -- not just script kiddies.</p></div></div>
+  <div style="display:flex;align-items:center;gap:13px;margin:54px 0 10px;padding-top:30px;border-top:1px solid #E4DECF;">
+    <div class="brand-mark" style="width:40px;height:40px;font-size:14px;border-radius:9px;">VS</div>
+    <div><div style="font-size:14.5px;font-weight:600;">Varun Singla</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8A857B;">Singapore · <a href="../about/" style="color:#8A857B;">About</a> · Learning in public</div></div>
+  </div>
+</article>
+<nav class="pn" aria-label="Adjacent entries"><a href="2026-04-11.html" rel="next"><div class="lbl">← Newer · Day 24</div><div class="ttl">Advanced Agent Testing &amp; Red Teaming</div></a><a href="2026-04-09.html" rel="prev" style="text-align:right;"><div class="lbl">Older · Day 22 →</div><div class="ttl">The Agent Economy 2.0</div></a></nav>
+<footer><div class="foot-in">
+  <span>Varun Singla · Singapore · Learning in public</span>
+  <span><a href="https://varunsingla.com/feed.xml" style="text-decoration:none;color:#6B6760;">RSS</a> · <a href="https://varunsingla.com/llms.txt" style="text-decoration:none;color:#6B6760;">llms.txt</a> · Updated daily</span>
+</div></footer>
+</body>
+</html>

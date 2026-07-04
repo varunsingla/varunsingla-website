@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Day 47 -- The Enterprise AI Operating Model — Day 51 | Varun Singla · AI Learning Journal</title>
+<meta name="description" content="Up until April 2026, enterprise agents were point solutions -- Salesforce Agentforce, ServiceNow Autonomous Workforce, JP Morgan COiN. Each lived in its own silo.">
+<meta name="author" content="Varun Singla">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://varunsingla.com/entries/2026-05-09.html">
+<link rel="next" href="https://varunsingla.com/entries/2026-05-10.html">
+<link rel="prev" href="https://varunsingla.com/entries/2026-05-08.html">
+<link rel="alternate" type="application/rss+xml" title="Varun Singla · AI Learning Journal" href="https://varunsingla.com/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Varun Singla · AI Learning Journal">
+<meta property="og:title" content="Day 47 -- The Enterprise AI Operating Model">
+<meta property="og:description" content="Up until April 2026, enterprise agents were point solutions -- Salesforce Agentforce, ServiceNow Autonomous Workforce, JP Morgan COiN. Each lived in its own silo.">
+<meta property="og:url" content="https://varunsingla.com/entries/2026-05-09.html">
+<meta property="og:image" content="https://varunsingla.com/og-image.png">
+<meta property="article:published_time" content="2026-05-09T21:00:00+08:00">
+<meta property="article:author" content="https://varunsingla.com/about/">
+<meta property="article:tag" content="Enterprise &amp; Strategy">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Day 47 -- The Enterprise AI Operating Model">
+<meta name="twitter:description" content="Up until April 2026, enterprise agents were point solutions -- Salesforce Agentforce, ServiceNow Autonomous Workforce, JP Morgan COiN. Each lived in its own silo.">
+<meta name="twitter:image" content="https://varunsingla.com/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "@id": "https://varunsingla.com/entries/2026-05-09.html#post", "headline": "Day 47 -- The Enterprise AI Operating Model", "description": "Up until April 2026, enterprise agents were point solutions -- Salesforce Agentforce, ServiceNow Autonomous Workforce, JP Morgan COiN. Each lived in its own silo.", "datePublished": "2026-05-09T21:00:00+08:00", "dateModified": "2026-05-09T21:00:00+08:00", "url": "https://varunsingla.com/entries/2026-05-09.html", "mainEntityOfPage": "https://varunsingla.com/entries/2026-05-09.html", "wordCount": 831, "inLanguage": "en", "articleSection": ["Enterprise & Strategy"], "keywords": ["Enterprise & Strategy", "agentic AI", "AI learning journal", "Varun Singla"], "isPartOf": {"@type": "Blog", "@id": "https://varunsingla.com/#blog", "name": "Varun Singla · AI Learning Journal"}, "author": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla", "url": "https://varunsingla.com/about/"}, "publisher": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Journal", "item": "https://varunsingla.com/"}, {"@type": "ListItem", "position": 2, "name": "Archive", "item": "https://varunsingla.com/entries/"}, {"@type": "ListItem", "position": 3, "name": "Day 47 -- The Enterprise AI Operating Model", "item": "https://varunsingla.com/entries/2026-05-09.html"}]}</script>
+<style>*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#F7F4ED;}
+body{font-family:'Hanken Grotesk',sans-serif;color:#1B1A17;-webkit-font-smoothing:antialiased;}
+::selection{background:#CC3F2A;color:#fff;}
+a{color:inherit;}
+.mast{position:sticky;top:0;z-index:50;background:rgba(247,244,237,.9);backdrop-filter:blur(12px);border-bottom:1px solid #E4DECF;}
+.mast-in{max-width:1120px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;}
+.brand-mark{width:30px;height:30px;border-radius:7px;background:#1B1A17;color:#F7F4ED;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;}
+.brand-name{font-family:'JetBrains Mono',monospace;font-size:13.5px;color:#1B1A17;}
+.nav-link{font-size:14.5px;font-weight:500;color:#6B6760;text-decoration:none;padding:7px 12px;border-radius:8px;}
+.nav-link:hover{color:#1B1A17;background:#EEE9DC;}
+.meta-row{display:flex;align-items:center;gap:13px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:13px;color:#8A857B;}
+.meta-row .day{color:#CC3F2A;font-weight:500;}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.04em;color:#6B6760;border:1px solid #E4DECF;border-radius:999px;padding:5px 12px;background:#FBF9F3;text-decoration:none;}
+article h1{font-family:'Newsreader',serif;font-weight:400;font-size:clamp(32px,5.5vw,52px);line-height:1.07;letter-spacing:-.018em;margin:0 0 22px;}
+article h2{font-family:'Newsreader',serif;font-weight:500;font-size:clamp(23px,3.4vw,30px);line-height:1.18;margin:0 0 18px;}
+article p{font-family:'Newsreader',serif;font-size:clamp(18px,2.3vw,20px);line-height:1.65;color:#2C2A24;margin:0 0 20px;}
+article ul{margin:4px 0 20px;padding-left:20px;}
+article li{font-family:'Newsreader',serif;font-size:clamp(17px,2.2vw,19px);line-height:1.6;color:#2C2A24;margin:0 0 10px;}
+.intro{font-size:clamp(20px,3vw,24px)!important;line-height:1.5!important;color:#3A372F!important;font-style:italic;margin:0 0 40px!important;}
+.callout{border:1px solid #E4DECF;border-left:3px solid #CC3F2A;border-radius:12px;background:#FBF9F3;padding:22px 24px;margin:0 0 40px;}
+.callout p{font-size:clamp(17px,2.2vw,19px);margin:0;}
+.kicker{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#CC3F2A;margin-bottom:14px;}
+.highlight{font-family:'Newsreader',serif;font-style:italic;font-size:clamp(18px,2.4vw,20px);line-height:1.55;color:#3A372F;border-left:3px solid #CC3F2A;padding:6px 0 6px 16px;margin:8px 0 20px;}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:#E4DECF;border:1px solid #E4DECF;border-radius:12px;overflow:hidden;margin:0 0 40px;}
+.stat-cell{background:#FBF9F3;padding:18px 20px;}
+.stat-big{font-family:'Newsreader',serif;font-size:clamp(24px,4vw,32px);line-height:1.05;color:#1B1A17;}
+.stat-small{font-size:13px;line-height:1.45;color:#56524B;margin-top:8px;}
+.table-wrap{overflow-x:auto;border:1px solid #E4DECF;border-radius:12px;background:#FBF9F3;margin:0 0 20px;}
+table{width:100%;border-collapse:collapse;}
+th{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#8A857B;text-align:left;padding:9px 12px;border-bottom:1px solid #CBB8A0;font-weight:500;}
+td{font-size:14.5px;color:#2C2A24;padding:9px 12px;border-bottom:1px solid #EEE9DC;vertical-align:top;line-height:1.45;font-family:'Hanken Grotesk',sans-serif;}
+tr:last-child td{border-bottom:none;}
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:680px;margin:0 auto;padding:20px 28px 90px;}
+.pn a{border:1px solid #E4DECF;border-radius:12px;padding:18px 20px;background:#FBF9F3;text-decoration:none;display:block;}
+.pn a:hover{border-color:#1B1A17;}
+.pn .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#A8A294;margin-bottom:9px;}
+.pn .ttl{font-family:'Newsreader',serif;font-size:18px;line-height:1.2;color:#1B1A17;}
+footer{border-top:1px solid #E4DECF;background:#FBF9F3;}
+.foot-in{max-width:1120px;margin:0 auto;padding:34px 28px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#6B6760;}</style>
+</head>
+<body>
+<header class="mast"><div class="mast-in">
+  <a class="brand" href="../"><span class="brand-mark">VS</span><span class="brand-name">varunsingla.com</span></a>
+  <nav style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+    <a class="nav-link" href="../">Journal</a>
+    <a class="nav-link" href="../entries/">Archive</a>
+    <a class="nav-link" href="../about/">About</a>
+    <a class="nav-link" href="../ai-tokenomics/">Tokenomics</a>
+    <a class="nav-link" href="../tools/model-team-evaluator.html">Model Evaluator</a>
+  </nav>
+</div></header>
+<article style="max-width:680px;margin:0 auto;padding:48px 28px 30px;">
+  <p style="margin:0 0 38px;"><a href="./" style="font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.04em;color:#6B6760;text-decoration:none;">← All entries</a></p>
+  <div class="meta-row" style="margin-bottom:22px;">
+    <span class="day">Day 51</span><span>·</span>
+    <time datetime="2026-05-09">May 9, 2026</time><span>·</span>
+    <span>4 min read</span>
+  </div>
+  <h1>Day 47 -- The Enterprise AI Operating Model</h1>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:34px;padding-bottom:34px;border-bottom:1px solid #E4DECF;"><span class="tag">Enterprise &amp; Strategy</span> </div>
+  <div style="margin:0 0 40px;"><div class="kicker">By the numbers</div><div class="stat-grid"><div class="stat-cell"><div class="stat-big">77.6%</div><div class="stat-small">Mistral Medium 3.5 SWE-Bench Verified</div></div><div class="stat-cell"><div class="stat-big">65-70%</div><div class="stat-small">production code now AI-generated (Snyk)</div></div><div class="stat-cell"><div class="stat-big">$1.5/$7.5</div><div class="stat-small">per M tokens -- Mistral 3.5 vs $5/$25 GPT-5.5</div></div></div></div>
+<section><h2>1. Why this week is the inflection point</h2><p>Up until April 2026, enterprise agents were point solutions -- Salesforce Agentforce, ServiceNow Autonomous Workforce, JP Morgan COiN. Each lived in its own silo. The week of May 5 collapsed that pattern. Three structural shifts happened in parallel: (a) IBM made the operating model itself the product -- watsonx Orchestrate became a control plane that runs agents from any source under one policy fabric; (b) Mistral made the frontier model open-weight at 1/3rd of GPT-5.5 cost while matching agentic benchmarks; (c) Snyk + Coder + Cognizant made governance, security, and self-hosting table-stakes. Together they answered the CIO&#x27;s biggest 2026 question: &#x27;How do I deploy agents at scale</p><div class="table-wrap"><table><thead><tr><th>Pillar</th><th>Product</th><th>Role in stack</th></tr></thead><tbody><tr><td>Multi-agent orchestration</td><td>watsonx Orchestrate next-gen (private preview)</td><td>Agentic control plane -- registers, routes, governs agents from any vendor</td></tr><tr><td>Agentic dev partner</td><td>IBM Bob (GA) + Concert Secure Coder</td><td>In-IDE agent that ships code with security + cost guard-rails baked in</td></tr><tr><td>Real-time data fabric</td><td>IBM Confluent</td><td>Streams operational data to agents -- replaces stale batch ETL</td></tr><tr><td>Sovereignty + governance</td><td>IBM Sovereign Core</td><td>Operational independence: data residency, key isolation, EU AI Act-ready</td></tr></tbody></table></div></section>
+<section><h2>2. IBM Think 2026 -- the four-pillar operating model</h2><p>Announced May 5 at Think 2026, IBM&#x27;s blueprint frames enterprise AI as four cooperating planes: Why it matters: watsonx Orchestrate is the first enterprise control plane explicitly designed for the multi-vendor agent reality -- Salesforce Agentforce, ServiceNow, custom LangGraph, and Microsoft Copilot agents all run under one policy fabric. That solves the Shadow-AI problem (Day 31, only 24.4% orgs see agent-to-agent traffic) at the operating-model level.</p><div class="table-wrap"><table><thead><tr><th>Pillar</th><th>Product</th><th>Role in stack</th></tr></thead><tbody><tr><td>Multi-agent orchestration</td><td>watsonx Orchestrate next-gen (private preview)</td><td>Agentic control plane -- registers, routes, governs agents from any vendor</td></tr><tr><td>Agentic dev partner</td><td>IBM Bob (GA) + Concert Secure Coder</td><td>In-IDE agent that ships code with security + cost guard-rails baked in</td></tr><tr><td>Real-time data fabric</td><td>IBM Confluent</td><td>Streams operational data to agents -- replaces stale batch ETL</td></tr><tr><td>Sovereignty + governance</td><td>IBM Sovereign Core</td><td>Operational independence: data residency, key isolation, EU AI Act-ready</td></tr></tbody></table></div></section>
+<section><h2>3. Mistral Vibe Remote Agents + Medium 3.5 -- Europe&#x27;s</h2><p>Announced May 2, generally rolled out through May 8. The most viral developer story of the week.</p><p>licence. 77.6% SWE-Bench Verified (beats Devstral 2 and Qwen 3.5 397B A17B). Reasoning effort</p><p>4.7 at parity-class agentic performance. New mid-tier default in model-routing strategies (Day 43).</p><p>on completion. In-flight local sessions can be &#x27;teleported&#x27; to cloud with full state (history, tasks, approvals)</p><p>existing dev workflows -- no separate agent UI required.</p><p>Claude Code triad for European enterprises bound by data-residency rules.</p><ul><li>Model: Mistral Medium 3.5 -- 128B dense, 256K context, multimodal, licence. 77.6% SWE-Bench Verified (beats Devstral 2 and Qwen configurable per request.</li><li>Pricing: $1.5 / $7.50 per M input/output tokens -- roughly 1/3rd 4.7 at parity-class agentic performance. New mid-tier default</li><li>Vibe Remote Agents: coding sessions migrate from local CLI on completion. In-flight local sessions can be &#x27;teleported&#x27; to cloud preserved.</li><li>Native integrations: GitHub (auto-opens PRs), Linear, Jira, existing dev workflows -- no separate agent UI required.</li><li>EU sovereignty angle: open-weight + EU-hosted = first credible Claude Code triad for European enterprises bound by data-residency</li><li>Native AI coding agent designed to run entirely on self-hosted no data egress.</li><li>Model-agnostic: Anthropic Claude, OpenAI, Google Gemini, Centralised model access + policy enforcement + per-agent</li><li>Free full-access beta through September 2026 -- direct play Cursor or Vibe cloud. Snyk × Anthropic Claude (May 8):</li><li>Claude embedded into Snyk&#x27;s AI Security Platform -- automated developer-ready fixes across code, dependencies, containers, agents, tool-call graphs).</li><li>Evo by Snyk: red-teams running agents for prompt injection chain for hidden capabilities, enforces runtime policy on tool of the Day 21 red-teaming + Day 32 productivity-paradox findings.</li><li>Sobering data point: 65-70% of production code is now AI-generated, vulnerabilities, and 82% of enterprise AI tools come from governance -- exactly the gap Evo + watsonx Orchestrate close.</li></ul></section>
+<section><h2>5. The 2026 enterprise reference architecture</h2><p>Putting this week&#x27;s pieces together with everything we&#x27;ve learned from Days 1-46:</p><p>Mistral Vibe Remote Agents -- Europe&#x27;s open-weight Copilot challenger Why it&#x27;s viral: Mistral became the first open-weight provider to ship a credible, cloud-native, PR-opening coding agent at frontier-class quality (77.6% SWE-Bench Verified) for one-third of GPT-5.5&#x27;s price. Within 72 hours of launch, Vibe trended on European Hacker News equivalents, French enterprise Twitter, and r/LocalLLaMA. Three things make it different: (1) Cloud parallelism without lock-in -- open weights mean you can self-host the same model later; (2) Teleport sessions -- you can start a task locally in the CLI, push it to cloud, and pick up exactly where you left off; (3) Native PR workflow -- the agent opens GitHub PRs, files Jira tickets, posts Sentry triage to Slack, all without you babysitting.</p></section>
+<div class="callout"><div class="kicker">Practical takeaways</div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">3 Treat the operating model -- not the model -- as the produ</div><p style="font-size:17px;margin:3px 0 0;">3 Treat the operating model -- not the model -- as the product Stop pitching individual agents. Frame your next deck around the four-plane control model (Orchestrate, Agentic Dev, Real-Time Data, Sovereign Core) -- that&#x27;s the language CIOs now buy. 3 Add Mistral 3.5 as the new mid-tier in any routing config At $1.5/$7.50 per M tokens with open weights and 77.6% SWE-Bench, it&#x27;s the new default for the 25% mid-tier slot in the 70/25/5 routing rule. Cuts coding-agent cost ~40% with no quality loss. 3 Shadow-AI is now governable -- there&#x27;s no excuse left Microsoft Agent 365 (May 1) + IBM watsonx Orchestrate (May 5) + Snyk Evo (May 8) close the 24.4% agent-to-agent visibility gap. EU AI Act T-85 days. Audit your agent inventory this week. 3 Self-hosted is now table-stakes for regulated industries Coder Agents + open-weight Mistral 3.5 = the first complete air-gapped agentic coding stack. Telco, healthcare, defence, public-sector deals you couldn&#x27;t close before are now closeable. Coming on Day 48 (May 10): Agent UX &amp; The AG-UI Maturity Curve -- how Microsoft Agent 365, Mistral Vibe, IBM Bob, and Cursor 3 are converging on a shared front-end pattern (STATE_SNAPSHOT + 16 AG-UI events + human-on-the-loop toggles) and what that means for anyone designing or evaluating consumer + enterprise agentic products.</p></div></div>
+  <div style="display:flex;align-items:center;gap:13px;margin:54px 0 10px;padding-top:30px;border-top:1px solid #E4DECF;">
+    <div class="brand-mark" style="width:40px;height:40px;font-size:14px;border-radius:9px;">VS</div>
+    <div><div style="font-size:14.5px;font-weight:600;">Varun Singla</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8A857B;">Singapore · <a href="../about/" style="color:#8A857B;">About</a> · Learning in public</div></div>
+  </div>
+</article>
+<nav class="pn" aria-label="Adjacent entries"><a href="2026-05-10.html" rel="next"><div class="lbl">← Newer · Day 52</div><div class="ttl">just shipped AG-UI compatibility, Cursor 3 is rebuilding around an Agents Window, IBM Bob ships with a</div></a><a href="2026-05-08.html" rel="prev" style="text-align:right;"><div class="lbl">Older · Day 50 →</div><div class="ttl">Anthropic Finance Agents -- Wall Street&#x27;s</div></a></nav>
+<footer><div class="foot-in">
+  <span>Varun Singla · Singapore · Learning in public</span>
+  <span><a href="https://varunsingla.com/feed.xml" style="text-decoration:none;color:#6B6760;">RSS</a> · <a href="https://varunsingla.com/llms.txt" style="text-decoration:none;color:#6B6760;">llms.txt</a> · Updated daily</span>
+</div></footer>
+</body>
+</html>

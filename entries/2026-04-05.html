@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent Orchestration Frameworks Deep Dive 2026 — Day 19 | Varun Singla · AI Learning Journal</title>
+<meta name="description" content="Day 15: Real benchmark numbers — no marketing fluff. LangGraph vs CrewAI vs OpenAI Agents SDK vs Google ADK vs Rust challengers.">
+<meta name="author" content="Varun Singla">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://varunsingla.com/entries/2026-04-05.html">
+<link rel="next" href="https://varunsingla.com/entries/2026-04-06.html">
+<link rel="prev" href="https://varunsingla.com/entries/2026-04-04.html">
+<link rel="alternate" type="application/rss+xml" title="Varun Singla · AI Learning Journal" href="https://varunsingla.com/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Varun Singla · AI Learning Journal">
+<meta property="og:title" content="Agent Orchestration Frameworks Deep Dive 2026">
+<meta property="og:description" content="Day 15: Real benchmark numbers — no marketing fluff. LangGraph vs CrewAI vs OpenAI Agents SDK vs Google ADK vs Rust challengers.">
+<meta property="og:url" content="https://varunsingla.com/entries/2026-04-05.html">
+<meta property="og:image" content="https://varunsingla.com/og-image.png">
+<meta property="article:published_time" content="2026-04-05T21:00:00+08:00">
+<meta property="article:author" content="https://varunsingla.com/about/">
+<meta property="article:tag" content="Foundations &amp; Protocols"><meta property="article:tag" content="Industry Verticals">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Agent Orchestration Frameworks Deep Dive 2026">
+<meta name="twitter:description" content="Day 15: Real benchmark numbers — no marketing fluff. LangGraph vs CrewAI vs OpenAI Agents SDK vs Google ADK vs Rust challengers.">
+<meta name="twitter:image" content="https://varunsingla.com/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "@id": "https://varunsingla.com/entries/2026-04-05.html#post", "headline": "Agent Orchestration Frameworks Deep Dive 2026", "description": "Day 15: Real benchmark numbers — no marketing fluff. LangGraph vs CrewAI vs OpenAI Agents SDK vs Google ADK vs Rust challengers.", "datePublished": "2026-04-05T21:00:00+08:00", "dateModified": "2026-04-05T21:00:00+08:00", "url": "https://varunsingla.com/entries/2026-04-05.html", "mainEntityOfPage": "https://varunsingla.com/entries/2026-04-05.html", "wordCount": 842, "inLanguage": "en", "articleSection": ["Foundations & Protocols", "Industry Verticals"], "keywords": ["Foundations & Protocols", "Industry Verticals", "agentic AI", "AI learning journal", "Varun Singla"], "isPartOf": {"@type": "Blog", "@id": "https://varunsingla.com/#blog", "name": "Varun Singla · AI Learning Journal"}, "author": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla", "url": "https://varunsingla.com/about/"}, "publisher": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Journal", "item": "https://varunsingla.com/"}, {"@type": "ListItem", "position": 2, "name": "Archive", "item": "https://varunsingla.com/entries/"}, {"@type": "ListItem", "position": 3, "name": "Agent Orchestration Frameworks Deep Dive 2026", "item": "https://varunsingla.com/entries/2026-04-05.html"}]}</script>
+<style>*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#F7F4ED;}
+body{font-family:'Hanken Grotesk',sans-serif;color:#1B1A17;-webkit-font-smoothing:antialiased;}
+::selection{background:#CC3F2A;color:#fff;}
+a{color:inherit;}
+.mast{position:sticky;top:0;z-index:50;background:rgba(247,244,237,.9);backdrop-filter:blur(12px);border-bottom:1px solid #E4DECF;}
+.mast-in{max-width:1120px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;}
+.brand-mark{width:30px;height:30px;border-radius:7px;background:#1B1A17;color:#F7F4ED;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;}
+.brand-name{font-family:'JetBrains Mono',monospace;font-size:13.5px;color:#1B1A17;}
+.nav-link{font-size:14.5px;font-weight:500;color:#6B6760;text-decoration:none;padding:7px 12px;border-radius:8px;}
+.nav-link:hover{color:#1B1A17;background:#EEE9DC;}
+.meta-row{display:flex;align-items:center;gap:13px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:13px;color:#8A857B;}
+.meta-row .day{color:#CC3F2A;font-weight:500;}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.04em;color:#6B6760;border:1px solid #E4DECF;border-radius:999px;padding:5px 12px;background:#FBF9F3;text-decoration:none;}
+article h1{font-family:'Newsreader',serif;font-weight:400;font-size:clamp(32px,5.5vw,52px);line-height:1.07;letter-spacing:-.018em;margin:0 0 22px;}
+article h2{font-family:'Newsreader',serif;font-weight:500;font-size:clamp(23px,3.4vw,30px);line-height:1.18;margin:0 0 18px;}
+article p{font-family:'Newsreader',serif;font-size:clamp(18px,2.3vw,20px);line-height:1.65;color:#2C2A24;margin:0 0 20px;}
+article ul{margin:4px 0 20px;padding-left:20px;}
+article li{font-family:'Newsreader',serif;font-size:clamp(17px,2.2vw,19px);line-height:1.6;color:#2C2A24;margin:0 0 10px;}
+.intro{font-size:clamp(20px,3vw,24px)!important;line-height:1.5!important;color:#3A372F!important;font-style:italic;margin:0 0 40px!important;}
+.callout{border:1px solid #E4DECF;border-left:3px solid #CC3F2A;border-radius:12px;background:#FBF9F3;padding:22px 24px;margin:0 0 40px;}
+.callout p{font-size:clamp(17px,2.2vw,19px);margin:0;}
+.kicker{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#CC3F2A;margin-bottom:14px;}
+.highlight{font-family:'Newsreader',serif;font-style:italic;font-size:clamp(18px,2.4vw,20px);line-height:1.55;color:#3A372F;border-left:3px solid #CC3F2A;padding:6px 0 6px 16px;margin:8px 0 20px;}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:#E4DECF;border:1px solid #E4DECF;border-radius:12px;overflow:hidden;margin:0 0 40px;}
+.stat-cell{background:#FBF9F3;padding:18px 20px;}
+.stat-big{font-family:'Newsreader',serif;font-size:clamp(24px,4vw,32px);line-height:1.05;color:#1B1A17;}
+.stat-small{font-size:13px;line-height:1.45;color:#56524B;margin-top:8px;}
+.table-wrap{overflow-x:auto;border:1px solid #E4DECF;border-radius:12px;background:#FBF9F3;margin:0 0 20px;}
+table{width:100%;border-collapse:collapse;}
+th{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#8A857B;text-align:left;padding:9px 12px;border-bottom:1px solid #CBB8A0;font-weight:500;}
+td{font-size:14.5px;color:#2C2A24;padding:9px 12px;border-bottom:1px solid #EEE9DC;vertical-align:top;line-height:1.45;font-family:'Hanken Grotesk',sans-serif;}
+tr:last-child td{border-bottom:none;}
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:680px;margin:0 auto;padding:20px 28px 90px;}
+.pn a{border:1px solid #E4DECF;border-radius:12px;padding:18px 20px;background:#FBF9F3;text-decoration:none;display:block;}
+.pn a:hover{border-color:#1B1A17;}
+.pn .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#A8A294;margin-bottom:9px;}
+.pn .ttl{font-family:'Newsreader',serif;font-size:18px;line-height:1.2;color:#1B1A17;}
+footer{border-top:1px solid #E4DECF;background:#FBF9F3;}
+.foot-in{max-width:1120px;margin:0 auto;padding:34px 28px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#6B6760;}</style>
+</head>
+<body>
+<header class="mast"><div class="mast-in">
+  <a class="brand" href="../"><span class="brand-mark">VS</span><span class="brand-name">varunsingla.com</span></a>
+  <nav style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+    <a class="nav-link" href="../">Journal</a>
+    <a class="nav-link" href="../entries/">Archive</a>
+    <a class="nav-link" href="../about/">About</a>
+    <a class="nav-link" href="../ai-tokenomics/">Tokenomics</a>
+    <a class="nav-link" href="../tools/model-team-evaluator.html">Model Evaluator</a>
+  </nav>
+</div></header>
+<article style="max-width:680px;margin:0 auto;padding:48px 28px 30px;">
+  <p style="margin:0 0 38px;"><a href="./" style="font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.04em;color:#6B6760;text-decoration:none;">← All entries</a></p>
+  <div class="meta-row" style="margin-bottom:22px;">
+    <span class="day">Day 19</span><span>·</span>
+    <time datetime="2026-04-05">April 5, 2026</time><span>·</span>
+    <span>4 min read</span>
+  </div>
+  <h1>Agent Orchestration Frameworks Deep Dive 2026</h1>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:34px;padding-bottom:34px;border-bottom:1px solid #E4DECF;"><span class="tag">Foundations &amp; Protocols</span> <span class="tag">Industry Verticals</span> </div>
+  <p class="intro">Day 15: Real benchmark numbers — no marketing fluff. LangGraph vs CrewAI vs OpenAI Agents SDK vs Google ADK vs Rust challengers. The most surprising finding: architecture choices outperform model upgrades by 2×. Plus, Gemma 4 changes the local agent equation entirely.</p>
+<div class="callout"><div class="kicker">Viral app of the day</div><p style="font-family:'Newsreader',serif;font-size:22px;font-weight:500;margin:0 0 10px;">ElevenMusic by ElevenLabs</p><p>ElevenLabs launches ElevenMusic (iOS, April 1 2026) — text-to-song with full vocals and instrumentation, remix AI-generated tracks, browse community creations. Free 7 songs/day. Key agentic angle: ElevenLabs voice API is already embedded in thousands of agent pipelines — ElevenMusic is the consumer front-end to infrastructure agent builders already depend on. Expect an MCP tool within weeks, enabling agents to generate music, audio summaries, and personalised audio content programmatically.</p></div>
+<div style="margin:0 0 40px;"><div class="kicker">By the numbers</div><div class="stat-grid"><div class="stat-cell"><div class="stat-small" style="margin-top:0;font-family:'Newsreader',serif;font-size:15px;">44% CrewAI failure rate under load</div></div><div class="stat-cell"><div class="stat-small" style="margin-top:0;font-family:'Newsreader',serif;font-size:15px;">5× Rust vs Python memory advantage</div></div><div class="stat-cell"><div class="stat-small" style="margin-top:0;font-family:'Newsreader',serif;font-size:15px;">42%→78% score lift from better architecture</div></div><div class="stat-cell"><div class="stat-small" style="margin-top:0;font-family:'Newsreader',serif;font-size:15px;">4 major frameworks benchmarked</div></div><div class="stat-cell"><div class="stat-small" style="margin-top:0;font-family:'Newsreader',serif;font-size:15px;">$12–18/day LangGraph optimised (1K tasks)</div></div></div></div>
+<section><h2>1. The Benchmark Numbers — No Marketing Fluff</h2><p>Real 2026 benchmark on a single-tool ReAct task (GPT-4o pricing assumed):</p><p>AutoAgents (Rust): 5,714ms avg, 9,652ms P95, 4.97 rps, 1,046MB peak — Category winner. Rig (Rust): 6,065ms avg, 10,131ms P95, 4.44 rps, 1,019MB — Best CPU efficiency. LangChain (Python): 6,046ms avg, 5,706MB peak — High ecosystem value. PydanticAI (Python): 6,592ms avg, 4,875MB — Type-safe, strict. LlamaIndex (Python): 6,990ms avg — Best for RAG hybrid. LangGraph (Python): 10,155ms avg — Slowest but most production-mature. CrewAI: Excluded — 44% failure rate under load.</p><p>Key insight: Rust frameworks use 5× less memory than Python on identical tasks. Cold start: 4ms (Rust) vs 54–63ms (Python). At high-concurrency agent workloads, the language choice alone can slash your infrastructure bill.</p><div class="table-wrap"><table><thead><tr><th>Framework</th><th>Avg Latency</th><th>Throughput</th><th>Peak Mem</th><th>Production Readiness</th></tr></thead><tbody><tr><td>AutoAgents (Rust)</td><td>5,714 ms</td><td>4.97 rps</td><td>1,046 MB</td><td>★★★☆ Early</td></tr><tr><td>Rig (Rust)</td><td>6,065 ms</td><td>4.44 rps</td><td>1,019 MB</td><td>★★★☆ Early</td></tr><tr><td>LangChain</td><td>6,046 ms</td><td>4.26 rps</td><td>5,706 MB</td><td>★★★★ High</td></tr><tr><td>LangGraph</td><td>10,155 ms</td><td>2.70 rps</td><td>5,570 MB</td><td>★★★★★ Highest</td></tr><tr><td>CrewAI</td><td>N/A</td><td>N/A</td><td>N/A</td><td>★★☆☆ Caution (44% fail)</td></tr></tbody></table></div></section>
+<section><h2>2. Framework Decision Matrix — Choose Your Weapon</h2><p>LangGraph: Best for complex conditional graph workflows, regulated industries needing state rollback, multi-model orchestration (Claude + GPT + custom), and long-running tasks with human-in-the-loop gates.</p><p>CrewAI: Best for rapid prototyping with role-based agent teams, MCP integration as a top priority, and teams wanting readable role/goal configs. The 100K+ certified developer community is a real asset. Do NOT use in production without load testing.</p><p>OpenAI Agents SDK: Best when fully committed to OpenAI models, linear handoff chains under 100 lines of code, minimal infrastructure overhead. Fastest onboarding: working in 2–3 days.</p><p>Google ADK: Best for Gemini-native multi-modal pipelines, A2A protocol as core architecture, Android/on-device deployment with Gemma 4, and Google Cloud Vertex AI ecosystem.</p></section>
+<section><h2>3. The CrewAI Warning: Popularity ≠ Reliability</h2><p>CrewAI is the most popular agent framework by GitHub stars (44,600+) and certified developers (100,000+). But the 2026 benchmarks delivered a stark warning: 44% task failure rate under production load — the only framework excluded from the primary benchmark suite due to instability.</p><p>Root cause: CrewAI&#x27;s multi-step verification approach uses chat-heavy &#x27;consensus building&#x27; between agents. Each agent re-reads the full conversation history, causing context drift and token explosion at scale. This results in nearly 2× token usage and 3× longer task completion vs LangGraph for equivalent tasks.</p><p>When it&#x27;s OK: Small teams, quick prototyping, under 5 agents, non-critical workloads. CrewAI&#x27;s role-based DSL is genuinely developer-friendly for greenfield projects.</p></section>
+<section><h2>4. Cost Per Task — Production Numbers</h2><p>Assuming GPT-4o pricing ($2.50/M input, $10.00/M output) at 1,000 tasks/day: LangGraph optimised: ~4,800 tokens/task = $12–18/day. OpenAI Agents SDK: ~5,200 tokens/task = $13–20/day. LangChain/PydanticAI: ~6,000 tokens/task = $15–22/day. CrewAI (when stable): ~9,500 tokens/task = $24–36/day. AutoAgents (Rust): ~4,500 tokens/task = $11–16/day.</p><p>The single biggest cost lever isn&#x27;t framework choice — it&#x27;s model routing. Using a nano/small model for classification, a mid-tier model for generation, and frontier models only for complex reasoning can cut total token spend by 50–70% regardless of which framework you use.</p></section>
+<section><h2>5. Gemma 4 Changes the Local Agent Equation</h2><p>Google&#x27;s Gemma 4 (reviewed in Day 14) has a direct impact on which framework to choose for local or on-device deployment.</p><p>What changed: Native function-calling and structured JSON output built into all 4 sizes (E2B, E4B, 26B MoE, 31B Dense). Day-0 support in llama.cpp, Ollama, MLX, Transformers, and mistral.rs. On Android: next-gen Gemini Nano (Gemma 4-based) is 4× faster, 60% less battery. 31B Dense = #3 open model globally on Arena AI leaderboard (Apache 2.0).</p><p>Framework implications: Google ADK is now the obvious choice for Android or local Gemma 4 deployment — native integration from day one. LangGraph users: Gemma 4 drops in via HuggingFace transformers, no changes needed. Rust frameworks (AutoAgents/Rig): Gemma 4 + Rust = lowest possible total infrastructure cost. Gemma 4 + Google ADK is the new default recommendation for on-device agents.</p></section>
+<section><h2>6. Breaking: AI Headlines — April 5, 2026</h2><p>Claude Mythos API Expanding: Anthropic confirms Mythos (Opus 5) is now in expanded API access. Step-change in cybersecurity and reasoning. Extremely compute-heavy. Expected to anchor the Oct 2026 IPO narrative.</p><p>MemOS v1.0.0 GA: MemTensor&#x27;s MemOS hits v1.0.0. First framework treating memory as OS-level primitive. MemCube modular architecture, 100% on-device SQLite option, outperforms Mem0/Zep/Memobase. OpenClaw plugin delivers 72% token reduction.</p><p>MemRL — Self-Improving Agents: Companion paper to MemOS — agents self-improve via runtime reinforcement learning on their own episodic memory, no base model retraining. The beginning of truly self-evolving production agents.</p><p>MolmoWeb: Allen AI&#x27;s open-weight web agent (4B + 8B) navigates browsers via screenshots — not HTML — and beats proprietary model agents on 4 benchmarks. Released with MolmoWebMix training dataset.</p><p>SpendHQ × Sligo AI: Agentic AI enters enterprise procurement with autonomous spend analysis, contract review, and supplier negotiation. B2B SaaS signal that the agent economy is hitting back-office workflows.</p></section>
+<div class="callout"><div class="kicker">Practical takeaways</div><p>5 takeaways: (1) Don&#x27;t use CrewAI in production without load testing — 44% failure rate is a red flag. (2) LangGraph is the production king, not the speed king — optimise your graph structure. (3) Architecture beats model upgrades: the 42%→78% improvement from scaffolding changes is the most important finding of the year. (4) Watch Rust frameworks (AutoAgents, Rig) — 5× memory efficiency and 14× faster cold starts will be impossible to ignore at scale. (5) Gemma 4 + Google ADK = the new default local agent stack — Apache 2.0, agentic-native, 60% less battery on Android.</p></div>
+  <div style="display:flex;align-items:center;gap:13px;margin:54px 0 10px;padding-top:30px;border-top:1px solid #E4DECF;">
+    <div class="brand-mark" style="width:40px;height:40px;font-size:14px;border-radius:9px;">VS</div>
+    <div><div style="font-size:14.5px;font-weight:600;">Varun Singla</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8A857B;">Singapore · <a href="../about/" style="color:#8A857B;">About</a> · Learning in public</div></div>
+  </div>
+</article>
+<nav class="pn" aria-label="Adjacent entries"><a href="2026-04-06.html" rel="next"><div class="lbl">← Newer · Day 20</div><div class="ttl">DAY 16 · APRIL 6, 2026</div></a><a href="2026-04-04.html" rel="prev" style="text-align:right;"><div class="lbl">Older · Day 18 →</div><div class="ttl">Production-Grade Agent Memory Systems</div></a></nav>
+<footer><div class="foot-in">
+  <span>Varun Singla · Singapore · Learning in public</span>
+  <span><a href="https://varunsingla.com/feed.xml" style="text-decoration:none;color:#6B6760;">RSS</a> · <a href="https://varunsingla.com/llms.txt" style="text-decoration:none;color:#6B6760;">llms.txt</a> · Updated daily</span>
+</div></footer>
+</body>
+</html>

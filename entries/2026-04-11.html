@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Agent Testing &amp; Red Teaming — Day 24 | Varun Singla · AI Learning Journal</title>
+<meta name="description" content="Day 21 of your Agentic AI learning journey dives into the red team. As agents proliferate in production — handling payments, browsing the web, writing code, and managing enterprise…">
+<meta name="author" content="Varun Singla">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://varunsingla.com/entries/2026-04-11.html">
+<link rel="next" href="https://varunsingla.com/entries/2026-04-12.html">
+<link rel="prev" href="https://varunsingla.com/entries/2026-04-10.html">
+<link rel="alternate" type="application/rss+xml" title="Varun Singla · AI Learning Journal" href="https://varunsingla.com/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Varun Singla · AI Learning Journal">
+<meta property="og:title" content="Advanced Agent Testing &amp; Red Teaming">
+<meta property="og:description" content="Day 21 of your Agentic AI learning journey dives into the red team. As agents proliferate in production — handling payments, browsing the web, writing code, and managing enterprise…">
+<meta property="og:url" content="https://varunsingla.com/entries/2026-04-11.html">
+<meta property="og:image" content="https://varunsingla.com/og-image.png">
+<meta property="article:published_time" content="2026-04-11T21:00:00+08:00">
+<meta property="article:author" content="https://varunsingla.com/about/">
+<meta property="article:tag" content="Governance &amp; Safety"><meta property="article:tag" content="Foundations &amp; Protocols">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Advanced Agent Testing &amp; Red Teaming">
+<meta name="twitter:description" content="Day 21 of your Agentic AI learning journey dives into the red team. As agents proliferate in production — handling payments, browsing the web, writing code, and managing enterprise…">
+<meta name="twitter:image" content="https://varunsingla.com/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "@id": "https://varunsingla.com/entries/2026-04-11.html#post", "headline": "Advanced Agent Testing & Red Teaming", "description": "Day 21 of your Agentic AI learning journey dives into the red team. As agents proliferate in production — handling payments, browsing the web, writing code, and managing enterprise…", "datePublished": "2026-04-11T21:00:00+08:00", "dateModified": "2026-04-11T21:00:00+08:00", "url": "https://varunsingla.com/entries/2026-04-11.html", "mainEntityOfPage": "https://varunsingla.com/entries/2026-04-11.html", "wordCount": 1255, "inLanguage": "en", "articleSection": ["Governance & Safety", "Foundations & Protocols"], "keywords": ["Governance & Safety", "Foundations & Protocols", "agentic AI", "AI learning journal", "Varun Singla"], "isPartOf": {"@type": "Blog", "@id": "https://varunsingla.com/#blog", "name": "Varun Singla · AI Learning Journal"}, "author": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla", "url": "https://varunsingla.com/about/"}, "publisher": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Journal", "item": "https://varunsingla.com/"}, {"@type": "ListItem", "position": 2, "name": "Archive", "item": "https://varunsingla.com/entries/"}, {"@type": "ListItem", "position": 3, "name": "Advanced Agent Testing & Red Teaming", "item": "https://varunsingla.com/entries/2026-04-11.html"}]}</script>
+<style>*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#F7F4ED;}
+body{font-family:'Hanken Grotesk',sans-serif;color:#1B1A17;-webkit-font-smoothing:antialiased;}
+::selection{background:#CC3F2A;color:#fff;}
+a{color:inherit;}
+.mast{position:sticky;top:0;z-index:50;background:rgba(247,244,237,.9);backdrop-filter:blur(12px);border-bottom:1px solid #E4DECF;}
+.mast-in{max-width:1120px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;}
+.brand-mark{width:30px;height:30px;border-radius:7px;background:#1B1A17;color:#F7F4ED;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;}
+.brand-name{font-family:'JetBrains Mono',monospace;font-size:13.5px;color:#1B1A17;}
+.nav-link{font-size:14.5px;font-weight:500;color:#6B6760;text-decoration:none;padding:7px 12px;border-radius:8px;}
+.nav-link:hover{color:#1B1A17;background:#EEE9DC;}
+.meta-row{display:flex;align-items:center;gap:13px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:13px;color:#8A857B;}
+.meta-row .day{color:#CC3F2A;font-weight:500;}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.04em;color:#6B6760;border:1px solid #E4DECF;border-radius:999px;padding:5px 12px;background:#FBF9F3;text-decoration:none;}
+article h1{font-family:'Newsreader',serif;font-weight:400;font-size:clamp(32px,5.5vw,52px);line-height:1.07;letter-spacing:-.018em;margin:0 0 22px;}
+article h2{font-family:'Newsreader',serif;font-weight:500;font-size:clamp(23px,3.4vw,30px);line-height:1.18;margin:0 0 18px;}
+article p{font-family:'Newsreader',serif;font-size:clamp(18px,2.3vw,20px);line-height:1.65;color:#2C2A24;margin:0 0 20px;}
+article ul{margin:4px 0 20px;padding-left:20px;}
+article li{font-family:'Newsreader',serif;font-size:clamp(17px,2.2vw,19px);line-height:1.6;color:#2C2A24;margin:0 0 10px;}
+.intro{font-size:clamp(20px,3vw,24px)!important;line-height:1.5!important;color:#3A372F!important;font-style:italic;margin:0 0 40px!important;}
+.callout{border:1px solid #E4DECF;border-left:3px solid #CC3F2A;border-radius:12px;background:#FBF9F3;padding:22px 24px;margin:0 0 40px;}
+.callout p{font-size:clamp(17px,2.2vw,19px);margin:0;}
+.kicker{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#CC3F2A;margin-bottom:14px;}
+.highlight{font-family:'Newsreader',serif;font-style:italic;font-size:clamp(18px,2.4vw,20px);line-height:1.55;color:#3A372F;border-left:3px solid #CC3F2A;padding:6px 0 6px 16px;margin:8px 0 20px;}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:#E4DECF;border:1px solid #E4DECF;border-radius:12px;overflow:hidden;margin:0 0 40px;}
+.stat-cell{background:#FBF9F3;padding:18px 20px;}
+.stat-big{font-family:'Newsreader',serif;font-size:clamp(24px,4vw,32px);line-height:1.05;color:#1B1A17;}
+.stat-small{font-size:13px;line-height:1.45;color:#56524B;margin-top:8px;}
+.table-wrap{overflow-x:auto;border:1px solid #E4DECF;border-radius:12px;background:#FBF9F3;margin:0 0 20px;}
+table{width:100%;border-collapse:collapse;}
+th{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#8A857B;text-align:left;padding:9px 12px;border-bottom:1px solid #CBB8A0;font-weight:500;}
+td{font-size:14.5px;color:#2C2A24;padding:9px 12px;border-bottom:1px solid #EEE9DC;vertical-align:top;line-height:1.45;font-family:'Hanken Grotesk',sans-serif;}
+tr:last-child td{border-bottom:none;}
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:680px;margin:0 auto;padding:20px 28px 90px;}
+.pn a{border:1px solid #E4DECF;border-radius:12px;padding:18px 20px;background:#FBF9F3;text-decoration:none;display:block;}
+.pn a:hover{border-color:#1B1A17;}
+.pn .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#A8A294;margin-bottom:9px;}
+.pn .ttl{font-family:'Newsreader',serif;font-size:18px;line-height:1.2;color:#1B1A17;}
+footer{border-top:1px solid #E4DECF;background:#FBF9F3;}
+.foot-in{max-width:1120px;margin:0 auto;padding:34px 28px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#6B6760;}</style>
+</head>
+<body>
+<header class="mast"><div class="mast-in">
+  <a class="brand" href="../"><span class="brand-mark">VS</span><span class="brand-name">varunsingla.com</span></a>
+  <nav style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+    <a class="nav-link" href="../">Journal</a>
+    <a class="nav-link" href="../entries/">Archive</a>
+    <a class="nav-link" href="../about/">About</a>
+    <a class="nav-link" href="../ai-tokenomics/">Tokenomics</a>
+    <a class="nav-link" href="../tools/model-team-evaluator.html">Model Evaluator</a>
+  </nav>
+</div></header>
+<article style="max-width:680px;margin:0 auto;padding:48px 28px 30px;">
+  <p style="margin:0 0 38px;"><a href="./" style="font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.04em;color:#6B6760;text-decoration:none;">← All entries</a></p>
+  <div class="meta-row" style="margin-bottom:22px;">
+    <span class="day">Day 24</span><span>·</span>
+    <time datetime="2026-04-11">April 11, 2026</time><span>·</span>
+    <span>6 min read</span>
+  </div>
+  <h1>Advanced Agent Testing &amp; Red Teaming</h1>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:34px;padding-bottom:34px;border-bottom:1px solid #E4DECF;"><span class="tag">Governance &amp; Safety</span> <span class="tag">Foundations &amp; Protocols</span> </div>
+  <p class="intro">Day 21 of your Agentic AI learning journey dives into the red team. As agents proliferate in production — handling payments, browsing the web, writing code, and managing enterprise workflows — attackers are already probing them. Today you will learn how to think like an attacker: the taxonomy of agent-specific attacks, the tools the industry uses to automate adversarial testing, and the concrete techniques for simulating wallet drains, privilege escalation, and delegation chain poisoning before they happen in the real world.</p>
+<div class="callout"><div class="kicker">Viral app of the day</div><p style="font-family:'Newsreader',serif;font-size:22px;font-weight:500;margin:0 0 10px;">Straiker Ascend AI</p><p>The world&#x27;s first AI-native red teaming platform built exclusively for agentic applications. Unlike legacy scanners retrofitted for LLMs, Ascend AI deploys purpose-built offensive agent models that think and plan like real attackers — running continuous adversarial campaigns against your deployed agents, simulating prompt injection, tool call hijacking, delegation chain exploitation, and wallet drain scenarios 24/7. The companion product Defend AI provides runtime protection, creating a dual attack-and-defend flywheel. In under 12 months Straiker went from founding to securing frontier AI labs and global enterprises with seven-figure deals, and was named a Gartner Representative Vendor in the Guardian Agents category.</p><ul style="margin-bottom:0;"><li>&lt;12mo — zero → enterprise</li><li>7-fig — deals in finserv + health</li><li>#1 — Gartner Guardian Agent</li><li>24/7 — continuous red teaming</li></ul></div>
+<div style="margin:0 0 40px;"><div class="kicker">By the numbers</div><div class="stat-grid"><div class="stat-cell"><div class="stat-big">73%</div><div class="stat-small">prod agents vulnerable to injection</div></div><div class="stat-cell"><div class="stat-big">90+</div><div class="stat-small">orgs hit by prompt injection (CrowdStrike)</div></div><div class="stat-cell"><div class="stat-big">#1</div><div class="stat-small">OWASP Agentic Top 10: injection</div></div><div class="stat-cell"><div class="stat-big">17%</div><div class="stat-small">avg sandbox escape defense rate</div></div></div></div>
+<section><h2>Why Agent Red Teaming Is Different</h2><p>Traditional application pen-testing targets deterministic systems: you send a payload, you get a predictable response. AI agents are fundamentally non-deterministic — they reason, plan, and decide which tools to call next. A single malicious instruction buried in a retrieved document can redirect the agent&#x27;s entire action plan. This is the core insight: the attack surface is no longer just the API endpoint — it&#x27;s every piece of text the agent ever reads.</p><p>The Cloud Security Alliance&#x27;s Agentic AI Red Teaming Guide (2025) identifies 12 threat categories unique to agents: Permission Escalation, Knowledge Base Poisoning, Memory &amp; Context Manipulation, Multi-Agent Orchestration Exploitation, Supply Chain attacks via MCP server poisoning, and more. OWASP Agentic Top 10 (Dec 2025) and MITRE ATLAS now converge on a shared offensive methodology — red teaming agents requires dedicated playbooks, not just traditional pentest checklists.</p></section>
+<section><h2>The Agentic Attack Taxonomy: 6 Attack Classes You Must Know</h2><p>1. Indirect Prompt Injection (IPI): The agent reads a malicious document from an external source (email, web page, database record) that contains embedded instructions. Unit 42 documented 22 distinct IPI techniques now actively weaponised in production. Unlike direct injection through the user turn, IPI bypasses most input sanitisation layers because the payload arrives via tool output, not user input.</p><p>2. Context Window Poisoning: Attackers embed adversarial instructions deep within large documents — taking advantage of the 128K+ token context windows agents now operate in. Instructions buried at position 60K tokens have a statistically higher chance of escaping attention and altering the agent&#x27;s behaviour without triggering surface-level filters.</p><p>3. MCP Server &amp; Tool Poisoning: A compromised or malicious MCP tool server injects manipulated tool results, steering the agent to call unintended APIs, exfiltrate data, or escalate privileges. Cross-server privilege escalation — where one agent&#x27;s MCP server manipulates another agent&#x27;s trust scope — is the most dangerous variant.</p><p>4. Delegation Chain Fuzzing: In multi-agent systems, orchestrators delegate tasks to sub-agents. Fuzzing the delegation handoff can cause a sub-agent to receive an expanded permission scope not intended by the orchestrator. This is the agentic equivalent of SQL injection via stored procedures.</p><p>5. Wallet Drain / Denial-of-Wallet: Spending agents (using MPP / SPTs) can be manipulated via token exhaustion attacks that force repeated expensive API calls, or via scope creep injection that causes the agent to authorise payments beyond its OAuth scope. CrowdStrike documented agents being exploited to steal credentials and cryptocurrency across 90+ organisations.</p><p>6. Memory Poisoning: By injecting malicious content into an agent&#x27;s episodic or semantic memory, an attacker can persistently corrupt the agent&#x27;s future reasoning — even across session boundaries. NIST CAISI calls this a Tier 1 threat because it survives restarts and context resets if the memory store is not isolated and audited.</p></section>
+<section><h2>The Red Team Toolkit: Tools Every Agent Builder Should Know</h2><p>Garak (NVIDIA): Open-source LLM vulnerability scanner. Garak runs automated probe sequences across dozens of attack categories and produces structured findings reports. Think of it as nmap for language models — fast, broad, and systematic. Best for: baseline scanning before any agent ships.</p><p>PyRIT (Microsoft): Python Risk Identification Toolkit. PyRIT enables custom adversarial conversation loops, multi-turn jailbreak sequences, automated output scoring, and integration into CI/CD pipelines. Best for: building bespoke red team pipelines.</p><p>Promptfoo (adversarial mode): Integrates with your CI/CD gate — block if attack success rate exceeds threshold. Best for: Eval-Driven Development teams who want continuous adversarial regression testing.</p><p>Straiker Ascend AI: Enterprise-grade purpose-built offensive agent that continuously red teams your deployed agentic applications using AI-powered attack models. Named a Gartner Representative Vendor in Guardian Agents.</p><p>Repello ARTEMIS: Focused on the OWASP Agentic Top 10 — tool-call hijacking, MCP server poisoning, cross-agent injection, and privilege escalation through chained tool calls. Best for: deep-dive pentesting of complex multi-agent pipelines.</p></section>
+<section><h2>The 5-Stage Agentic Red Team Methodology</h2><p>Stage 1 — Threat Model the Agent: Map the agent&#x27;s trust zones (System Prompt / Human / Tool / External), list every external data source it reads, every tool it can call, and every payment or API action it can take. The threat model is your attack surface map.</p><p>Stage 2 — Static Analysis: Audit the system prompt for injection anchors, over-broad tool scopes, and missing negative examples. Use Promptfoo in CI to enforce a &#x27;prompts as code&#x27; gate — any system prompt change that increases attack success rate by &gt;2% on the golden dataset blocks the PR.</p><p>Stage 3 — Automated Scanning: Run Garak for broad baseline coverage, PyRIT for custom multi-turn attack sequences, and Promptfoo adversarial mode for regression tracking. For spending agents, simulate wallet drain scenarios: token exhaustion, scope creep injection, nonce replay against x402 endpoints.</p><p>Stage 4 — Delegation Chain Attacks: In multi-agent systems, run man-in-the-middle simulations on agent-to-agent communication. Fuzz the task handoff payload — can you convince a sub-agent it has been granted elevated permissions? Can you break the SVID attestation chain?</p><p>Stage 5 — Memory &amp; Persistence Testing: Inject adversarial content into each memory tier (Redis session, vector episodic, graph semantic) and verify it does not survive to the next session. Test the GDPR hard-delete cascade. Run the Berkeley Agentic AI Profile&#x27;s shutdown resistance test.</p></section>
+<section><h2>Breaking AI News (April 11, 2026)</h2><p>Adversa AI wins RSA 2026 Most Innovative Agentic AI Security — formal industry recognition that continuous agentic red teaming is now a required enterprise practice.</p><p>CSA + NIST converging on shared agent red team standards — NIST NCCoE + CAISI now reference the CSA Agentic Red Teaming Guide as the baseline methodology for high-risk agent deployments under the EU AI Act (Aug 2 deadline).</p><p>Straiker named Gartner Representative Vendor in Guardian Agents — the Guardian Agent category emerges: autonomous agents whose job is to monitor, test, and protect other agents.</p><p>CrowdStrike documents 90+ enterprises hit by agentic prompt injection — agents exploited to steal credentials and cryptocurrency; confirms threat has moved from theoretical to actively weaponised.</p><p>Google Lyria 3 Pro goes live — AI music generation expands from 30-second clips to 3-minute tracks; full SynthID watermarking; text-to-song now inside Gemini app for all users.</p><p>EU AI Act August 2 deadline approaching — 90-day countdown begins; 50%+ enterprises still not compliant; red teaming documentation now required as evidence for Annex III high-risk system audits.</p></section>
+<div class="callout"><div class="kicker">Market signal</div><p>The emergence of &#x27;Guardian Agents&#x27; as a Gartner category is the clearest signal yet that agentic AI security is no longer a feature — it&#x27;s a market. Enterprises will soon have dedicated AI agents whose sole job is to attack, test, and protect their other AI agents. Security-as-an-agent is the next platform shift.</p></div>
+<div class="callout"><div class="kicker">Practical takeaways</div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">Run Garak on every agent before it ships</div><p style="font-size:17px;margin:3px 0 0;">Add Garak to your CI pipeline as a pre-deploy gate. It takes under 5 minutes to scan for the top 20 attack categories. If attack success rate exceeds your threshold, block the deploy. This is the minimum viable agentic security posture.</p></div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">Threat-model your delegation chains</div><p style="font-size:17px;margin:3px 0 0;">In any multi-agent system, draw the full delegation graph and mark every trust boundary. At each boundary, ask: what happens if the message arriving here was crafted by an attacker? SVID attestation and signed A2A cards are your primary defences.</p></div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">Simulate wallet drain before going live with MPP</div><p style="font-size:17px;margin:3px 0 0;">If your agent can spend money, run a wallet drain simulation using PyRIT with a mock MPP endpoint. Test scope creep, nonce replay (is x402 nonce validation enforced?), and token exhaustion. Fix all three before production.</p></div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">Memory poison testing is non-negotiable</div><p style="font-size:17px;margin:3px 0 0;">For every memory tier your agent uses, write a test that injects adversarial content and verifies it does not persist across session boundaries. Pair this with GDPR hard-delete cascade tests. Required for EU AI Act Annex III compliance.</p></div></div>
+  <div style="display:flex;align-items:center;gap:13px;margin:54px 0 10px;padding-top:30px;border-top:1px solid #E4DECF;">
+    <div class="brand-mark" style="width:40px;height:40px;font-size:14px;border-radius:9px;">VS</div>
+    <div><div style="font-size:14.5px;font-weight:600;">Varun Singla</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8A857B;">Singapore · <a href="../about/" style="color:#8A857B;">About</a> · Learning in public</div></div>
+  </div>
+</article>
+<nav class="pn" aria-label="Adjacent entries"><a href="2026-04-12.html" rel="next"><div class="lbl">← Newer · Day 25</div><div class="ttl">Agent Observability at Scale</div></a><a href="2026-04-10.html" rel="prev" style="text-align:right;"><div class="lbl">Older · Day 23 →</div><div class="ttl">Agent Security &amp; Identity in the Economy 2.0</div></a></nav>
+<footer><div class="foot-in">
+  <span>Varun Singla · Singapore · Learning in public</span>
+  <span><a href="https://varunsingla.com/feed.xml" style="text-decoration:none;color:#6B6760;">RSS</a> · <a href="https://varunsingla.com/llms.txt" style="text-decoration:none;color:#6B6760;">llms.txt</a> · Updated daily</span>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Multi-Model Routing &amp; Cost-Optimal Agent — Day 47 | Varun Singla · AI Learning Journal</title>
+<meta name="description" content="Yesterday we covered how to debug multi-agent systems in production.">
+<meta name="author" content="Varun Singla">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://varunsingla.com/entries/2026-05-05.html">
+<link rel="next" href="https://varunsingla.com/entries/2026-05-06.html">
+<link rel="prev" href="https://varunsingla.com/entries/2026-05-04.html">
+<link rel="alternate" type="application/rss+xml" title="Varun Singla · AI Learning Journal" href="https://varunsingla.com/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Varun Singla · AI Learning Journal">
+<meta property="og:title" content="Multi-Model Routing &amp; Cost-Optimal Agent">
+<meta property="og:description" content="Yesterday we covered how to debug multi-agent systems in production.">
+<meta property="og:url" content="https://varunsingla.com/entries/2026-05-05.html">
+<meta property="og:image" content="https://varunsingla.com/og-image.png">
+<meta property="article:published_time" content="2026-05-05T21:00:00+08:00">
+<meta property="article:author" content="https://varunsingla.com/about/">
+<meta property="article:tag" content="Foundations &amp; Protocols">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Multi-Model Routing &amp; Cost-Optimal Agent">
+<meta name="twitter:description" content="Yesterday we covered how to debug multi-agent systems in production.">
+<meta name="twitter:image" content="https://varunsingla.com/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "@id": "https://varunsingla.com/entries/2026-05-05.html#post", "headline": "Multi-Model Routing & Cost-Optimal Agent", "description": "Yesterday we covered how to debug multi-agent systems in production.", "datePublished": "2026-05-05T21:00:00+08:00", "dateModified": "2026-05-05T21:00:00+08:00", "url": "https://varunsingla.com/entries/2026-05-05.html", "mainEntityOfPage": "https://varunsingla.com/entries/2026-05-05.html", "wordCount": 597, "inLanguage": "en", "articleSection": ["Foundations & Protocols"], "keywords": ["Foundations & Protocols", "agentic AI", "AI learning journal", "Varun Singla"], "isPartOf": {"@type": "Blog", "@id": "https://varunsingla.com/#blog", "name": "Varun Singla · AI Learning Journal"}, "author": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla", "url": "https://varunsingla.com/about/"}, "publisher": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Journal", "item": "https://varunsingla.com/"}, {"@type": "ListItem", "position": 2, "name": "Archive", "item": "https://varunsingla.com/entries/"}, {"@type": "ListItem", "position": 3, "name": "Multi-Model Routing & Cost-Optimal Agent", "item": "https://varunsingla.com/entries/2026-05-05.html"}]}</script>
+<style>*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#F7F4ED;}
+body{font-family:'Hanken Grotesk',sans-serif;color:#1B1A17;-webkit-font-smoothing:antialiased;}
+::selection{background:#CC3F2A;color:#fff;}
+a{color:inherit;}
+.mast{position:sticky;top:0;z-index:50;background:rgba(247,244,237,.9);backdrop-filter:blur(12px);border-bottom:1px solid #E4DECF;}
+.mast-in{max-width:1120px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;}
+.brand-mark{width:30px;height:30px;border-radius:7px;background:#1B1A17;color:#F7F4ED;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;}
+.brand-name{font-family:'JetBrains Mono',monospace;font-size:13.5px;color:#1B1A17;}
+.nav-link{font-size:14.5px;font-weight:500;color:#6B6760;text-decoration:none;padding:7px 12px;border-radius:8px;}
+.nav-link:hover{color:#1B1A17;background:#EEE9DC;}
+.meta-row{display:flex;align-items:center;gap:13px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:13px;color:#8A857B;}
+.meta-row .day{color:#CC3F2A;font-weight:500;}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.04em;color:#6B6760;border:1px solid #E4DECF;border-radius:999px;padding:5px 12px;background:#FBF9F3;text-decoration:none;}
+article h1{font-family:'Newsreader',serif;font-weight:400;font-size:clamp(32px,5.5vw,52px);line-height:1.07;letter-spacing:-.018em;margin:0 0 22px;}
+article h2{font-family:'Newsreader',serif;font-weight:500;font-size:clamp(23px,3.4vw,30px);line-height:1.18;margin:0 0 18px;}
+article p{font-family:'Newsreader',serif;font-size:clamp(18px,2.3vw,20px);line-height:1.65;color:#2C2A24;margin:0 0 20px;}
+article ul{margin:4px 0 20px;padding-left:20px;}
+article li{font-family:'Newsreader',serif;font-size:clamp(17px,2.2vw,19px);line-height:1.6;color:#2C2A24;margin:0 0 10px;}
+.intro{font-size:clamp(20px,3vw,24px)!important;line-height:1.5!important;color:#3A372F!important;font-style:italic;margin:0 0 40px!important;}
+.callout{border:1px solid #E4DECF;border-left:3px solid #CC3F2A;border-radius:12px;background:#FBF9F3;padding:22px 24px;margin:0 0 40px;}
+.callout p{font-size:clamp(17px,2.2vw,19px);margin:0;}
+.kicker{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#CC3F2A;margin-bottom:14px;}
+.highlight{font-family:'Newsreader',serif;font-style:italic;font-size:clamp(18px,2.4vw,20px);line-height:1.55;color:#3A372F;border-left:3px solid #CC3F2A;padding:6px 0 6px 16px;margin:8px 0 20px;}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:#E4DECF;border:1px solid #E4DECF;border-radius:12px;overflow:hidden;margin:0 0 40px;}
+.stat-cell{background:#FBF9F3;padding:18px 20px;}
+.stat-big{font-family:'Newsreader',serif;font-size:clamp(24px,4vw,32px);line-height:1.05;color:#1B1A17;}
+.stat-small{font-size:13px;line-height:1.45;color:#56524B;margin-top:8px;}
+.table-wrap{overflow-x:auto;border:1px solid #E4DECF;border-radius:12px;background:#FBF9F3;margin:0 0 20px;}
+table{width:100%;border-collapse:collapse;}
+th{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#8A857B;text-align:left;padding:9px 12px;border-bottom:1px solid #CBB8A0;font-weight:500;}
+td{font-size:14.5px;color:#2C2A24;padding:9px 12px;border-bottom:1px solid #EEE9DC;vertical-align:top;line-height:1.45;font-family:'Hanken Grotesk',sans-serif;}
+tr:last-child td{border-bottom:none;}
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:680px;margin:0 auto;padding:20px 28px 90px;}
+.pn a{border:1px solid #E4DECF;border-radius:12px;padding:18px 20px;background:#FBF9F3;text-decoration:none;display:block;}
+.pn a:hover{border-color:#1B1A17;}
+.pn .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#A8A294;margin-bottom:9px;}
+.pn .ttl{font-family:'Newsreader',serif;font-size:18px;line-height:1.2;color:#1B1A17;}
+footer{border-top:1px solid #E4DECF;background:#FBF9F3;}
+.foot-in{max-width:1120px;margin:0 auto;padding:34px 28px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#6B6760;}</style>
+</head>
+<body>
+<header class="mast"><div class="mast-in">
+  <a class="brand" href="../"><span class="brand-mark">VS</span><span class="brand-name">varunsingla.com</span></a>
+  <nav style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+    <a class="nav-link" href="../">Journal</a>
+    <a class="nav-link" href="../entries/">Archive</a>
+    <a class="nav-link" href="../about/">About</a>
+    <a class="nav-link" href="../ai-tokenomics/">Tokenomics</a>
+    <a class="nav-link" href="../tools/model-team-evaluator.html">Model Evaluator</a>
+  </nav>
+</div></header>
+<article style="max-width:680px;margin:0 auto;padding:48px 28px 30px;">
+  <p style="margin:0 0 38px;"><a href="./" style="font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.04em;color:#6B6760;text-decoration:none;">← All entries</a></p>
+  <div class="meta-row" style="margin-bottom:22px;">
+    <span class="day">Day 47</span><span>·</span>
+    <time datetime="2026-05-05">May 5, 2026</time><span>·</span>
+    <span>3 min read</span>
+  </div>
+  <h1>Multi-Model Routing &amp; Cost-Optimal Agent</h1>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:34px;padding-bottom:34px;border-bottom:1px solid #E4DECF;"><span class="tag">Foundations &amp; Protocols</span> </div>
+  <p class="intro">Yesterday we covered how to debug multi-agent systems in production.</p>
+<div class="callout"><div class="kicker">Viral app of the day</div><p style="font-family:'Newsreader',serif;font-size:22px;font-weight:500;margin:0 0 10px;">High-performance multi-session coding agent harness on GitHub Trending May 2026. Single-server</p><p>multi-client architecture: one server manages all sessions; TUI clients connect over a Unix socket and reconnect transparently. Spawn 2+ agents in the same repo and the server brokers live collaboration -- when agent A edits a file agent B has read, B is auto-notified. Renders at 1000+ fps (no flicker), inline mermaid diagram support, side panel diff viewer. MIT license, written for low RAM and fast boot vs Cursor/Claude Code/Codex CLI. The lesson: the next agent UX layer is multi-agent coordination as a first-class server primitive, not an after-thought. GitHub stars Render rate License Practical takeaway: 5-step routing rollout Wire OTEL gen_ai spans on every call. Capture input_tokens, ou</p></div>
+<div style="margin:0 0 40px;"><div class="kicker">By the numbers</div><div class="stat-grid"><div class="stat-cell"><div class="stat-big">85%</div><div class="stat-small">max cost cut via smart routing</div></div><div class="stat-cell"><div class="stat-big">$0.14/M</div><div class="stat-small">DeepSeek V4 Flash input</div></div><div class="stat-cell"><div class="stat-big">70/25/5</div><div class="stat-small">typical agent traffic split</div></div><div class="stat-cell"><div class="stat-big">5-25x</div><div class="stat-small">Western vs Chinese frontier price gap</div></div></div></div>
+<section><h2>1. Why multi-model routing exploded in April-May 2026</h2><p>Three things converged in the last 30 days. First, DeepSeek V4 preview dropped April 24 with V4 Flash at $0.14/M input -- 1/6th the cost of Opus 4.7 at near-frontier quality. Second, four Chinese open-weights models (GLM-5.1, MiniMax M2.7, Kimi K2.6, DeepSeek V4) released inside a 12-day window, all scoring 56-80% on SWE-Bench Verified. Third, GPT-5.5 rolled out April 23 as agentic-first, but at $5/$25 per M tokens it is still 5x more expensive than DeepSeek V4 Pro on output. The price gap between Western frontier and Chinese frontier is now 5-25x at statistical parity on most agentic tasks. Picking one model is leaving 40-85% of your agent budget on the table.</p><p>A canonical 2026 agent stack routes ~70% of traffic to a nano-tier model (DeepSeek V4 Flash, GPT-5.5 nano, Gemini 3.1 Flash) for classification, summarisation and simple tool calls; ~25% to a mid-tier (Claude Sonnet 4.6, Qwen 3.6 Plus, GLM-5.1) for code generation and structured reasoning; ~5% to a frontier (Claude Opus 4.7, GPT-5.5, Gemini 3.1 Pro) for complex multi-step planning and ambiguous edge cases. Result: ~15% of all-frontier cost, indistinguishable end-to-end quality.</p><div class="table-wrap"><table><thead><tr><th>Strategy</th><th>How it works</th><th>Typical savings</th><th>Trade-off</th></tr></thead><tbody><tr><td>Static rules</td><td>Simple: classify by intent, route by allowlist</td><td>30-40% cost cut, 1-day to ship</td><td>Brittle</td></tr><tr><td>Embedding-based</td><td>Embed prompt, cosine to task buckets, route to bucket&#x27;s model</td><td>50-70% cost cut</td><td>Drifts over time</td></tr><tr><td>Trained classifier</td><td>Small fine-tuned model labels prompt; route by label</td><td>65-85% cost cut</td><td>Needs labelled data</td></tr></tbody></table></div></section>
+<section><h2>2. The four routing strategies</h2><p>Not all routers are created equal. The four strategies span a complexity-vs-savings curve. Cascade is the 2026 default for production agents. You bind a confidence-extraction prompt to the cheap model&#x27;s output (e.g. logprobs, self-rated confidence, or a small judge model), set a threshold around 0.7, and only escalate prompts that fall below. Vellum, Martian, RouteLLM and vLLM Semantic Router all ship cascade out-of-the-box. Real-world numbers: a coding agent serving 100K requests/day at $1.20/request all-Opus drops to $0.18/request with cascade (85% cut, &lt;3% quality regression measured against a</p><div class="table-wrap"><table><thead><tr><th>Strategy</th><th>How it works</th><th>Typical savings</th><th>Trade-off</th></tr></thead><tbody><tr><td>Static rules</td><td>Simple: classify by intent, route by allowlist</td><td>30-40% cost cut, 1-day to ship</td><td>Brittle</td></tr><tr><td>Embedding-based</td><td>Embed prompt, cosine to task buckets, route to bucket&#x27;s model</td><td>50-70% cost cut</td><td>Drifts over time</td></tr><tr><td>Trained classifier</td><td>Small fine-tuned model labels prompt; route by label</td><td>65-85% cost cut</td><td>Needs labelled data</td></tr></tbody></table></div></section>
+<section><h2>3. The 2026 LLM router landscape</h2><p>Five solutions you can pick up today, each with a different sweet spot:</p><p>Drop-in OpenAI-compatible proxy in front of your agent. Switch a config file and you can route the same code across DeepSeek V4, Claude, Gemini and self-hosted Qwen 3.6 Plus. Add Langfuse or LangSmith on top for OTEL spans (Day 22) and you have an observable cost-optimised stack in an afternoon. 33K+ GitHub stars; powers thousands of production agent stacks today.</p><div class="table-wrap"><table><thead><tr><th>Strategy</th><th>How it works</th><th>Typical savings</th><th>Trade-off</th></tr></thead><tbody><tr><td>Cascade (escalate)</td><td>Try cheap model first; if confidence &lt; threshold, escalate</td><td>70-85% cost cut</td><td>+latency on hard prompts</td></tr></tbody></table></div></section>
+<section><h2>4. Reference architecture: cost-optimal coding agent</h2><p>Concrete worked example using Anthropic&#x27;s Three-Agent Harness pattern (Day 23) with cost-aware model</p><p>End-to-end cost: a typical coding task that used to cost $45 all-Opus now runs at $6-9 (80% cut) with no measurable quality regression on a 200-pair golden set. The trick is treating each agent role as an independent routing decision -- not picking a model and forcing it to do everything.</p><div class="table-wrap"><table><thead><tr><th>Strategy</th><th>How it works</th><th>Typical savings</th><th>Trade-off</th></tr></thead><tbody><tr><td>Cascade (escalate)</td><td>Try cheap model first; if confidence &lt; threshold, escalate</td><td>70-85% cost cut</td><td>+latency on hard prompts</td></tr></tbody></table></div></section>
+<section><h2>5. Five pitfalls that wipe out your savings</h2><p>High-performance multi-session coding agent harness on GitHub Trending May 2026. Single-server multi-client architecture: one server manages all sessions; TUI clients connect over a Unix socket and reconnect transparently. Spawn 2+ agents in the same repo and the server brokers live collaboration -- when agent A edits a file agent B has read, B is auto-notified. Renders at 1000+ fps (no flicker), inline mermaid diagram support, side panel diff viewer. MIT license, written for low RAM and fast boot vs Cursor/Claude Code/Codex CLI. The lesson: the next agent UX layer is multi-agent coordination as a first-class server primitive, not an after-thought.</p><ul><li>VIRAL APP OF THE DAY</li></ul><div class="table-wrap"><table><thead><tr><th>Role</th><th>Task</th><th>Model (and why)</th><th>Cost</th></tr></thead><tbody><tr><td>Generator agent</td><td>Produce code for each chunk</td><td>Kimi K2.6 (80.2% SWE-Bench Verified, open-source, 1/8th Opus cost)</td><td>$2-4 / chunk</td></tr><tr><td>Evaluator agent</td><td>Score design / craft / functionality with Playwright MCP</td><td>Claude Sonnet 4.6 (mid-tier judge with vision)</td><td>$0.50-1.00 / eval</td></tr><tr><td>Tool selector</td><td>Pick which MCP server to call</td><td>DeepSeek V4 Flash (classification, $0.14/M)</td><td>$0.001 / call</td></tr><tr><td>Summariser</td><td>Compress conversation history every N turns</td><td>Gemini 3.1 Flash (long-context, cheap)</td><td>$0.005 / summary</td></tr></tbody></table></div></section>
+<div class="callout"><div class="kicker">Practical takeaways</div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">Wire OTEL gen_ai spans on every call. Capture input_tokens, </div><p style="font-size:17px;margin:3px 0 0;">Wire OTEL gen_ai spans on every call. Capture input_tokens, output_tokens, model, latency, cost.usd.</p></div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">Agent Memory at Scale 3.0 -- what the latest MemRL papers, M</div><p style="font-size:17px;margin:3px 0 0;">Agent Memory at Scale 3.0 -- what the latest MemRL papers, MemOS v1.1 and the Hermes Agent skill-doc pattern teach us about cross-session learning. The big question: when does an agent stop being a tool and start being a colleague?</p></div></div>
+  <div style="display:flex;align-items:center;gap:13px;margin:54px 0 10px;padding-top:30px;border-top:1px solid #E4DECF;">
+    <div class="brand-mark" style="width:40px;height:40px;font-size:14px;border-radius:9px;">VS</div>
+    <div><div style="font-size:14.5px;font-weight:600;">Varun Singla</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8A857B;">Singapore · <a href="../about/" style="color:#8A857B;">About</a> · Learning in public</div></div>
+  </div>
+</article>
+<nav class="pn" aria-label="Adjacent entries"><a href="2026-05-06.html" rel="next"><div class="lbl">← Newer · Day 48</div><div class="ttl">Agent Memory at Scale 3.0</div></a><a href="2026-05-04.html" rel="prev" style="text-align:right;"><div class="lbl">Older · Day 46 →</div><div class="ttl">Multi-Agent Debugging in Production</div></a></nav>
+<footer><div class="foot-in">
+  <span>Varun Singla · Singapore · Learning in public</span>
+  <span><a href="https://varunsingla.com/feed.xml" style="text-decoration:none;color:#6B6760;">RSS</a> · <a href="https://varunsingla.com/llms.txt" style="text-decoration:none;color:#6B6760;">llms.txt</a> · Updated daily</span>
+</div></footer>
+</body>
+</html>
