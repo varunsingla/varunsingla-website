@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Agentic AI Valuation Framework — Day 67 | Varun Singla · AI Learning Journal</title>
+<meta name="description" content="How to value an agentic AI company when the model is no longer the moat -- DCF, comps, and">
+<meta name="author" content="Varun Singla">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://varunsingla.com/entries/2026-05-25.html">
+<link rel="next" href="https://varunsingla.com/entries/2026-05-26.html">
+<link rel="prev" href="https://varunsingla.com/entries/2026-05-24.html">
+<link rel="alternate" type="application/rss+xml" title="Varun Singla · AI Learning Journal" href="https://varunsingla.com/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Varun Singla · AI Learning Journal">
+<meta property="og:title" content="The Agentic AI Valuation Framework">
+<meta property="og:description" content="How to value an agentic AI company when the model is no longer the moat -- DCF, comps, and">
+<meta property="og:url" content="https://varunsingla.com/entries/2026-05-25.html">
+<meta property="og:image" content="https://varunsingla.com/og-image.png">
+<meta property="article:published_time" content="2026-05-25T21:00:00+08:00">
+<meta property="article:author" content="https://varunsingla.com/about/">
+<meta property="article:tag" content="Enterprise &amp; Strategy"><meta property="article:tag" content="Foundations &amp; Protocols">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Agentic AI Valuation Framework">
+<meta name="twitter:description" content="How to value an agentic AI company when the model is no longer the moat -- DCF, comps, and">
+<meta name="twitter:image" content="https://varunsingla.com/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "@id": "https://varunsingla.com/entries/2026-05-25.html#post", "headline": "The Agentic AI Valuation Framework", "description": "How to value an agentic AI company when the model is no longer the moat -- DCF, comps, and", "datePublished": "2026-05-25T21:00:00+08:00", "dateModified": "2026-05-25T21:00:00+08:00", "url": "https://varunsingla.com/entries/2026-05-25.html", "mainEntityOfPage": "https://varunsingla.com/entries/2026-05-25.html", "wordCount": 801, "inLanguage": "en", "articleSection": ["Enterprise & Strategy", "Foundations & Protocols"], "keywords": ["Enterprise & Strategy", "Foundations & Protocols", "agentic AI", "AI learning journal", "Varun Singla"], "isPartOf": {"@type": "Blog", "@id": "https://varunsingla.com/#blog", "name": "Varun Singla · AI Learning Journal"}, "author": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla", "url": "https://varunsingla.com/about/"}, "publisher": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Journal", "item": "https://varunsingla.com/"}, {"@type": "ListItem", "position": 2, "name": "Archive", "item": "https://varunsingla.com/entries/"}, {"@type": "ListItem", "position": 3, "name": "The Agentic AI Valuation Framework", "item": "https://varunsingla.com/entries/2026-05-25.html"}]}</script>
+<style>*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#F7F4ED;}
+body{font-family:'Hanken Grotesk',sans-serif;color:#1B1A17;-webkit-font-smoothing:antialiased;}
+::selection{background:#CC3F2A;color:#fff;}
+a{color:inherit;}
+.mast{position:sticky;top:0;z-index:50;background:rgba(247,244,237,.9);backdrop-filter:blur(12px);border-bottom:1px solid #E4DECF;}
+.mast-in{max-width:1120px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;}
+.brand-mark{width:30px;height:30px;border-radius:7px;background:#1B1A17;color:#F7F4ED;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;}
+.brand-name{font-family:'JetBrains Mono',monospace;font-size:13.5px;color:#1B1A17;}
+.nav-link{font-size:14.5px;font-weight:500;color:#6B6760;text-decoration:none;padding:7px 12px;border-radius:8px;}
+.nav-link:hover{color:#1B1A17;background:#EEE9DC;}
+.meta-row{display:flex;align-items:center;gap:13px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:13px;color:#8A857B;}
+.meta-row .day{color:#CC3F2A;font-weight:500;}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.04em;color:#6B6760;border:1px solid #E4DECF;border-radius:999px;padding:5px 12px;background:#FBF9F3;text-decoration:none;}
+article h1{font-family:'Newsreader',serif;font-weight:400;font-size:clamp(32px,5.5vw,52px);line-height:1.07;letter-spacing:-.018em;margin:0 0 22px;}
+article h2{font-family:'Newsreader',serif;font-weight:500;font-size:clamp(23px,3.4vw,30px);line-height:1.18;margin:0 0 18px;}
+article p{font-family:'Newsreader',serif;font-size:clamp(18px,2.3vw,20px);line-height:1.65;color:#2C2A24;margin:0 0 20px;}
+article ul{margin:4px 0 20px;padding-left:20px;}
+article li{font-family:'Newsreader',serif;font-size:clamp(17px,2.2vw,19px);line-height:1.6;color:#2C2A24;margin:0 0 10px;}
+.intro{font-size:clamp(20px,3vw,24px)!important;line-height:1.5!important;color:#3A372F!important;font-style:italic;margin:0 0 40px!important;}
+.callout{border:1px solid #E4DECF;border-left:3px solid #CC3F2A;border-radius:12px;background:#FBF9F3;padding:22px 24px;margin:0 0 40px;}
+.callout p{font-size:clamp(17px,2.2vw,19px);margin:0;}
+.kicker{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#CC3F2A;margin-bottom:14px;}
+.highlight{font-family:'Newsreader',serif;font-style:italic;font-size:clamp(18px,2.4vw,20px);line-height:1.55;color:#3A372F;border-left:3px solid #CC3F2A;padding:6px 0 6px 16px;margin:8px 0 20px;}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:#E4DECF;border:1px solid #E4DECF;border-radius:12px;overflow:hidden;margin:0 0 40px;}
+.stat-cell{background:#FBF9F3;padding:18px 20px;}
+.stat-big{font-family:'Newsreader',serif;font-size:clamp(24px,4vw,32px);line-height:1.05;color:#1B1A17;}
+.stat-small{font-size:13px;line-height:1.45;color:#56524B;margin-top:8px;}
+.table-wrap{overflow-x:auto;border:1px solid #E4DECF;border-radius:12px;background:#FBF9F3;margin:0 0 20px;}
+table{width:100%;border-collapse:collapse;}
+th{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#8A857B;text-align:left;padding:9px 12px;border-bottom:1px solid #CBB8A0;font-weight:500;}
+td{font-size:14.5px;color:#2C2A24;padding:9px 12px;border-bottom:1px solid #EEE9DC;vertical-align:top;line-height:1.45;font-family:'Hanken Grotesk',sans-serif;}
+tr:last-child td{border-bottom:none;}
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:680px;margin:0 auto;padding:20px 28px 90px;}
+.pn a{border:1px solid #E4DECF;border-radius:12px;padding:18px 20px;background:#FBF9F3;text-decoration:none;display:block;}
+.pn a:hover{border-color:#1B1A17;}
+.pn .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#A8A294;margin-bottom:9px;}
+.pn .ttl{font-family:'Newsreader',serif;font-size:18px;line-height:1.2;color:#1B1A17;}
+footer{border-top:1px solid #E4DECF;background:#FBF9F3;}
+.foot-in{max-width:1120px;margin:0 auto;padding:34px 28px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#6B6760;}</style>
+</head>
+<body>
+<header class="mast"><div class="mast-in">
+  <a class="brand" href="../"><span class="brand-mark">VS</span><span class="brand-name">varunsingla.com</span></a>
+  <nav style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+    <a class="nav-link" href="../">Journal</a>
+    <a class="nav-link" href="../entries/">Archive</a>
+    <a class="nav-link" href="../about/">About</a>
+    <a class="nav-link" href="../ai-tokenomics/">Tokenomics</a>
+    <a class="nav-link" href="../tools/model-team-evaluator.html">Model Evaluator</a>
+  </nav>
+</div></header>
+<article style="max-width:680px;margin:0 auto;padding:48px 28px 30px;">
+  <p style="margin:0 0 38px;"><a href="./" style="font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.04em;color:#6B6760;text-decoration:none;">← All entries</a></p>
+  <div class="meta-row" style="margin-bottom:22px;">
+    <span class="day">Day 67</span><span>·</span>
+    <time datetime="2026-05-25">May 25, 2026</time><span>·</span>
+    <span>4 min read</span>
+  </div>
+  <h1>The Agentic AI Valuation Framework</h1>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:34px;padding-bottom:34px;border-bottom:1px solid #E4DECF;"><span class="tag">Enterprise &amp; Strategy</span> <span class="tag">Foundations &amp; Protocols</span> </div>
+  <p class="intro">How to value an agentic AI company when the model is no longer the moat -- DCF, comps, and</p>
+<div style="margin:0 0 40px;"><div class="kicker">By the numbers</div><div class="stat-grid"><div class="stat-cell"><div class="stat-big">$950B</div><div class="stat-small">Anthropic talks valuation</div></div><div class="stat-cell"><div class="stat-big">$44B</div><div class="stat-small">Anthropic ARR (80x Q1 &#x27;25)</div></div><div class="stat-cell"><div class="stat-big">10-50x</div><div class="stat-small">AI startup ARR multiple</div></div><div class="stat-cell"><div class="stat-big">99.9%</div><div class="stat-small">Reliability that unlocks 20x</div></div></div></div>
+<section><h2>1 · Why valuation suddenly matters</h2><p>Anthropic is in talks to raise $30-50B at a pre-money valuation of $900-950B -- pushing it past OpenAI&#x27;s $850B and within sight of a $1T mark OpenAI itself just targeted in its May 22 S-1 filing. Anthropic&#x27;s ARR has compressed from $9B (late 2025) to $44B (May 2026), an 80x lift in five quarters. Cowork, Claude Code, and the 10-agent Finance pack have collapsed the per-seat SaaS model into per-task economics -- and that breaks every valuation framework built around DAU and ARPU. So what: Every CFO, investor, and founder is being asked the same question this quarter -- what is an agentic AI company actually worth, and how do you defend the multiple when the underlying</p><div class="table-wrap"><table><thead><tr><th>Primitive</th><th>Definition</th><th>2026 benchmark</th></tr></thead><tbody><tr><td>Active Agents (AA)</td><td>Distinct agent identities (SVID/DID) calling your platform per month.</td><td>Anthropic: ~1.5M Claude Code dev agents, Cowork undisclosed</td></tr><tr><td>Tasks per Agent (TPA)</td><td>Completed multi-step tasks per agent per month. 5-50x richer than chat turns.</td><td>Salesforce Agentforce: 18,500 customers, ~190 tasks/agent/mo</td></tr><tr><td>Revenue per Task (RPT)</td><td>Blended price across model routing tiers (nano/mid/frontier).</td><td>$0.05-$0.50 typical; legal redline $2.00; payroll recon $0.30</td></tr><tr><td>Task Completion Rate (TCR)</td><td>% of attempted tasks completed without human escalation. The 99.9% threshold.</td><td>Best-in-class: 98-99.5%. The 9.9% gap is where 90% of valuation lives.</td></tr></tbody></table></div></section>
+<section><h2>2 · DCF rebuilt for per-task economics</h2><p>The classic SaaS DCF leans on seats × ARPU × net retention. Agentic businesses don&#x27;t sell seats -- they sell completed tasks. Rebuild the model around four primitives: Forward revenue then becomes AA × TPA × RPT × TCR. Discount it at 12-15% (frontier model risk + EU AI Act enforcement risk + agent-economy regulatory tail). The terminal multiple is no longer 8-10x SaaS FCF; it&#x27;s anchored to the marketplace position you&#x27;ve earned in the skills ecosystem (Day 60-62) -- typically 15-25x for</p><div class="table-wrap"><table><thead><tr><th>Primitive</th><th>Definition</th><th>2026 benchmark</th></tr></thead><tbody><tr><td>Active Agents (AA)</td><td>Distinct agent identities (SVID/DID) calling your platform per month.</td><td>Anthropic: ~1.5M Claude Code dev agents, Cowork undisclosed</td></tr><tr><td>Tasks per Agent (TPA)</td><td>Completed multi-step tasks per agent per month. 5-50x richer than chat turns.</td><td>Salesforce Agentforce: 18,500 customers, ~190 tasks/agent/mo</td></tr><tr><td>Revenue per Task (RPT)</td><td>Blended price across model routing tiers (nano/mid/frontier).</td><td>$0.05-$0.50 typical; legal redline $2.00; payroll recon $0.30</td></tr><tr><td>Task Completion Rate (TCR)</td><td>% of attempted tasks completed without human escalation. The 99.9% threshold.</td><td>Best-in-class: 98-99.5%. The 9.9% gap is where 90% of valuation lives.</td></tr></tbody></table></div></section>
+<section><h2>3 · The 2026 comp sheet</h2><p>ARR multiples have widened -- investors have stopped paying 50x just for the AI label. The new ceiling is reserved for companies that own a workflow and the data feedback loop that makes the agent uniquely reliable. Two patterns are visible. First, frontier-lab valuations have decoupled from current ARR and re-anchored to distribution surface (OpenAI&#x27;s 900M WAU, Anthropic&#x27;s enterprise share). Second, EU-sovereign players (Mistral) trade at extreme premiums on geography alone -- a direct consequence of the August 2 EU AI Act</p><div class="table-wrap"><table><thead><tr><th>Primitive</th><th>Definition</th><th>2026 benchmark</th></tr></thead><tbody><tr><td>Active Agents (AA)</td><td>Distinct agent identities (SVID/DID) calling your platform per month.</td><td>Anthropic: ~1.5M Claude Code dev agents, Cowork undisclosed</td></tr><tr><td>Tasks per Agent (TPA)</td><td>Completed multi-step tasks per agent per month. 5-50x richer than chat turns.</td><td>Salesforce Agentforce: 18,500 customers, ~190 tasks/agent/mo</td></tr><tr><td>Revenue per Task (RPT)</td><td>Blended price across model routing tiers (nano/mid/frontier).</td><td>$0.05-$0.50 typical; legal redline $2.00; payroll recon $0.30</td></tr><tr><td>Task Completion Rate (TCR)</td><td>% of attempted tasks completed without human escalation. The 99.9% threshold.</td><td>Best-in-class: 98-99.5%. The 9.9% gap is where 90% of valuation lives.</td></tr></tbody></table></div></section>
+<section><h2>4 · The new moat: skills + governance, not model</h2><p>Model performance has compressed to under 3% across Claude Opus 4.7, GPT-5.5, Gemini 3.5 Flash, and Qwen3.7-Max. That means the model is no longer a moat -- it&#x27;s a commodity component inside model-routing stacks (Day 43). The valuation multiple now lives in three places:</p><div class="table-wrap"><table><thead><tr><th>Company</th><th>ARR (run-rate)</th><th>Implied valuation</th><th>ARR multiple</th></tr></thead><tbody><tr><td>OpenAI</td><td>$25B</td><td>$850B-$1T (S-1)</td><td>~34-40x</td></tr><tr><td>xAI</td><td>~$5B</td><td>$250B (SpaceX deal)</td><td>~50x</td></tr><tr><td>Cursor</td><td>$2B</td><td>$50B (rumoured)</td><td>~25x</td></tr><tr><td>Databricks</td><td>$4.8B</td><td>$134B</td><td>~27.9x</td></tr><tr><td>DeepSeek</td><td>Undisclosed</td><td>China-only ~$80B</td><td>n/a</td></tr><tr><td>Cohere</td><td>$200M</td><td>$5B</td><td>~25x</td></tr><tr><td>Mistral</td><td>$120M</td><td>$11.5B</td><td>~96x (sovereignty premium)</td></tr></tbody></table></div></section>
+<section><h2>5 · Treating agents as customers with LTV</h2><p>The biggest break with SaaS valuation is that agents are now customers. Coinbase reports 165M x402 transactions across 69K active agent wallets in April 2026; $600M+ now sits in 500K+ active agent wallets. These agents pay, renew, churn, and refer other agents -- and they need their own LTV/CAC model:</p><div class="table-wrap"><table><thead><tr><th>Company</th><th>ARR (run-rate)</th><th>Implied valuation</th><th>ARR multiple</th></tr></thead><tbody><tr><td>OpenAI</td><td>$25B</td><td>$850B-$1T (S-1)</td><td>~34-40x</td></tr><tr><td>xAI</td><td>~$5B</td><td>$250B (SpaceX deal)</td><td>~50x</td></tr><tr><td>Cursor</td><td>$2B</td><td>$50B (rumoured)</td><td>~25x</td></tr><tr><td>Databricks</td><td>$4.8B</td><td>$134B</td><td>~27.9x</td></tr><tr><td>DeepSeek</td><td>Undisclosed</td><td>China-only ~$80B</td><td>n/a</td></tr><tr><td>Cohere</td><td>$200M</td><td>$5B</td><td>~25x</td></tr><tr><td>Mistral</td><td>$120M</td><td>$11.5B</td><td>~96x (sovereignty premium)</td></tr></tbody></table></div></section>
+<section><h2>6 · Pure-skill, pure-marketplace, pure-orchestration</h2><p>Three new startup archetypes need bespoke valuation frames:</p><div class="table-wrap"><table><thead><tr><th>Metric</th><th>Human SaaS analogue</th><th>Agent-economy translation</th></tr></thead><tbody><tr><td>Net retention</td><td>Expansion / churn</td><td>Tool-call expansion as orchestrator agents discover more of your skills</td></tr><tr><td>Churn signal</td><td>Login drop-off, NPS</td><td>OTEL gen_ai span drop, cosine&lt;0.7 drift, model rotation by orchestrator</td></tr></tbody></table></div></section>
+<section><h2>7 · Public market read-through</h2><p>Three public tape signals validate the framework: (a) Microsoft&#x27;s M365 E7 tier -- the first new enterprise SKU since E5 (2015) -- added a measurable ARPU lift credited explicitly to Agent 365 in MSFT&#x27;s Q3 FY26 call. (b) Salesforce traded to a fresh agentic premium after Agentforce 3.0 crossed $500M ARR with 18,500+ customers. (c) ServiceNow&#x27;s Autonomous Workforce drove gross margin expansion of ~180 bps QoQ as 90%+ of IT tickets moved off human agents. Public markets are now paying explicitly for the same three moats -- skills ecosystem, governance evidence, and distribution lock -- that private agentic comps trade on.</p><div class="table-wrap"><table><thead><tr><th>Metric</th><th>Human SaaS analogue</th><th>Agent-economy translation</th></tr></thead><tbody><tr><td>Net retention</td><td>Expansion / churn</td><td>Tool-call expansion as orchestrator agents discover more of your skills</td></tr><tr><td>Churn signal</td><td>Login drop-off, NPS</td><td>OTEL gen_ai span drop, cosine&lt;0.7 drift, model rotation by orchestrator</td></tr></tbody></table></div></section>
+<section><h2>8 · Viral AI app of the day</h2><p>OpenHuman by tinyhumansai -- climbed to #1 on GitHub Trending May 13-16 by inverting the agent UX playbook. Instead of waiting for a first prompt, it pre-loads a 1B-token Memory Tree from 118+ services via one-click OAuth (Gmail, GitHub, Slack, Calendar, Drive, Stripe, Linear, Jira). A &#x27;subconscious loop&#x27; runs every 20 minutes without user input, reading to-dos and recent memory to decide what to act on. The desktop mascot can join Google Meets as a separate participant, transcribing into the Memory Tree and speaking back. All local-first (Rust + Tauri, MIT, SQLite + Obsidian wiki) -- no data egress unless explicitly escalated. Valuation read: OpenHuman is a pure-skill / pure-orchestration hybrid with zero ARR today -- but the 1B-token Memory Tree is exactly the kind of data feedback loop investors are paying 15-20x ARR for. Watch for a paid SaaS tier or A2A registry play within 90 days.</p><div class="table-wrap"><table><thead><tr><th>Metric</th><th>Human SaaS analogue</th><th>Agent-economy translation</th></tr></thead><tbody><tr><td>Net retention</td><td>Expansion / churn</td><td>Tool-call expansion as orchestrator agents discover more of your skills</td></tr><tr><td>Churn signal</td><td>Login drop-off, NPS</td><td>OTEL gen_ai span drop, cosine&lt;0.7 drift, model rotation by orchestrator</td></tr></tbody></table></div></section>
+<section><h2>9 · Practical takeaway for tomorrow</h2><p>If you&#x27;re a CFO, build a one-page agentic valuation deck with five blocks: (1) AA × TPA × RPT × TCR forward revenue, (2) ARR multiple anchored to 22x (Anthropic comp) discounted by your skills ecosystem position, (3) Skills + governance + distribution moat scorecard, (4) Agent-LTV/CAC for any third-party agent integrations, (5) Annex III governance evidence as a discount-rate reducer. If you&#x27;re a founder, publish a SKILL.md into all four marketplaces this week -- the asymmetry window closes in 2027 when revenue shares formalise. Tomorrow (Day 64): Agentic AI in Financial Services -- Anthropic&#x27;s 10 finance agents in production, JP Morgan&#x27;s COiN at scale, and the new FinCEN AML rules landing Q3 2026.</p><div class="table-wrap"><table><thead><tr><th>Metric</th><th>Human SaaS analogue</th><th>Agent-economy translation</th></tr></thead><tbody><tr><td>Net retention</td><td>Expansion / churn</td><td>Tool-call expansion as orchestrator agents discover more of your skills</td></tr><tr><td>Churn signal</td><td>Login drop-off, NPS</td><td>OTEL gen_ai span drop, cosine&lt;0.7 drift, model rotation by orchestrator</td></tr></tbody></table></div></section>
+<div class="callout"><div class="kicker">Practical takeaways</div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">multi-agent customer by 5-20x. Re-slice by tasks billed and </div><p style="font-size:17px;margin:3px 0 0;">multi-agent customer by 5-20x. Re-slice by tasks billed and agent identities served -- the same artefact that produces your EU AI Act Annex III audit pack.</p></div></div>
+  <div style="display:flex;align-items:center;gap:13px;margin:54px 0 10px;padding-top:30px;border-top:1px solid #E4DECF;">
+    <div class="brand-mark" style="width:40px;height:40px;font-size:14px;border-radius:9px;">VS</div>
+    <div><div style="font-size:14.5px;font-weight:600;">Varun Singla</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8A857B;">Singapore · <a href="../about/" style="color:#8A857B;">About</a> · Learning in public</div></div>
+  </div>
+</article>
+<nav class="pn" aria-label="Adjacent entries"><a href="2026-05-26.html" rel="next"><div class="lbl">← Newer · Day 68</div><div class="ttl">Agentic AI in Financial Services</div></a><a href="2026-05-24.html" rel="prev" style="text-align:right;"><div class="lbl">Older · Day 66 →</div><div class="ttl">Head-to-head economics, take rates, and discovery across the five major channels where agent</div></a></nav>
+<footer><div class="foot-in">
+  <span>Varun Singla · Singapore · Learning in public</span>
+  <span><a href="https://varunsingla.com/feed.xml" style="text-decoration:none;color:#6B6760;">RSS</a> · <a href="https://varunsingla.com/llms.txt" style="text-decoration:none;color:#6B6760;">llms.txt</a> · Updated daily</span>
+</div></footer>
+</body>
+</html>

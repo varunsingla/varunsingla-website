@@ -1201,8 +1201,8 @@ def _push_file(api_base: str, headers: dict, filename: str, content_bytes: bytes
         return False
 
 
-def github_push(config: dict, data: dict) -> bool:
-    """Push learnings.json (and sitemap.xml if present) to GitHub via REST API."""
+def github_push(config: dict, data: dict, extra_files: list | None = None) -> bool:
+    """Push learnings.json plus any changed generated GEO files via REST API."""
     import urllib.error
     import urllib.request
 
@@ -1231,12 +1231,18 @@ def github_push(config: dict, data: dict) -> bool:
         print(f"   ✅  Pushed to github.com/{user}/{repo}")
         print(f"       Live at: https://varunsingla.com")
 
-    # Push sitemap.xml (keeps lastmod fresh for Google)
-    sitemap_path = SCRIPT_DIR / "sitemap.xml"
-    if sitemap_path.exists():
-        _push_file(api_base, headers, "sitemap.xml",
-                   sitemap_path.read_bytes(), f"SEO: update sitemap lastmod {today}")
-        print(f"   ✅  sitemap.xml updated")
+    # Push regenerated GEO files (static entry pages, llms.txt, feed.xml,
+    # sitemap.xml, index.html static block) — only the ones that changed.
+    pushed = 0
+    for rel in extra_files or []:
+        fpath = SCRIPT_DIR / rel
+        if fpath.exists():
+            rel_posix = str(rel).replace(os.sep, "/")
+            if _push_file(api_base, headers, rel_posix,
+                          fpath.read_bytes(), f"GEO: update {rel_posix} ({today})"):
+                pushed += 1
+    if pushed:
+        print(f"   ✅  {pushed} GEO file(s) updated (sitemap, llms.txt, entry pages …)")
 
     return ok
 
@@ -1294,17 +1300,23 @@ def main():
     LEARNINGS_JSON.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"   ✅  Entry {action} ({len(data['learnings'])} total days)")
 
-    # ── Update sitemap.xml with today's date ──────────────────────────────────
-    sitemap_path = SCRIPT_DIR / "sitemap.xml"
-    if sitemap_path.exists():
-        sitemap = sitemap_path.read_text(encoding="utf-8")
-        today = datetime.now().strftime("%Y-%m-%d")
-        sitemap = re.sub(r"<lastmod>[^<]+</lastmod>", f"<lastmod>{today}</lastmod>", sitemap)
-        sitemap_path.write_text(sitemap, encoding="utf-8")
+    # ── Regenerate GEO artifacts ──────────────────────────────────────────────
+    # Static entry pages, entries/index.html, llms.txt, llms-full.txt,
+    # feed.xml, sitemap.xml and the static-fallback block in index.html —
+    # this is what AI crawlers (GPTBot, ClaudeBot, PerplexityBot, …) and
+    # search engines actually read, since they don't execute JavaScript.
+    print("🌐  Regenerating GEO files (static entries, llms.txt, feed, sitemap) …")
+    geo_changed: list = []
+    try:
+        import generate_geo
+        geo_changed = generate_geo.generate(SCRIPT_DIR)
+        print(f"   ✅  {len(geo_changed)} generated file(s) changed")
+    except Exception as e:
+        print(f"   ⚠️  GEO generation failed (site still updates): {e}")
 
     # ── Push to GitHub ────────────────────────────────────────────────────────
     print("🚀  Pushing to GitHub …")
-    github_push(config, data)
+    github_push(config, data, geo_changed)
 
     print("─" * 54)
     print("✅  Done!\n")

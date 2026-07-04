@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Agent Patterns: Agentic RAG, Tool Optimisation, Multi-Modal Agents &amp; — Day 14 | Varun Singla · AI Learning Journal</title>
+<meta name="description" content="MCP SDK Downloads MCP Servers MCP Growth (16mo) GitLab Duo Users">
+<meta name="author" content="Varun Singla">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://varunsingla.com/entries/2026-03-30.html">
+<link rel="next" href="https://varunsingla.com/entries/2026-04-01.html">
+<link rel="prev" href="https://varunsingla.com/entries/2026-03-29.html">
+<link rel="alternate" type="application/rss+xml" title="Varun Singla · AI Learning Journal" href="https://varunsingla.com/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Varun Singla · AI Learning Journal">
+<meta property="og:title" content="Advanced Agent Patterns: Agentic RAG, Tool Optimisation, Multi-Modal Agents &amp;">
+<meta property="og:description" content="MCP SDK Downloads MCP Servers MCP Growth (16mo) GitLab Duo Users">
+<meta property="og:url" content="https://varunsingla.com/entries/2026-03-30.html">
+<meta property="og:image" content="https://varunsingla.com/og-image.png">
+<meta property="article:published_time" content="2026-03-30T21:00:00+08:00">
+<meta property="article:author" content="https://varunsingla.com/about/">
+<meta property="article:tag" content="Foundations &amp; Protocols"><meta property="article:tag" content="Models &amp; Frontier">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Advanced Agent Patterns: Agentic RAG, Tool Optimisation, Multi-Modal Agents &amp;">
+<meta name="twitter:description" content="MCP SDK Downloads MCP Servers MCP Growth (16mo) GitLab Duo Users">
+<meta name="twitter:image" content="https://varunsingla.com/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "@id": "https://varunsingla.com/entries/2026-03-30.html#post", "headline": "Advanced Agent Patterns: Agentic RAG, Tool Optimisation, Multi-Modal Agents &", "description": "MCP SDK Downloads MCP Servers MCP Growth (16mo) GitLab Duo Users", "datePublished": "2026-03-30T21:00:00+08:00", "dateModified": "2026-03-30T21:00:00+08:00", "url": "https://varunsingla.com/entries/2026-03-30.html", "mainEntityOfPage": "https://varunsingla.com/entries/2026-03-30.html", "wordCount": 1074, "inLanguage": "en", "articleSection": ["Foundations & Protocols", "Models & Frontier"], "keywords": ["Foundations & Protocols", "Models & Frontier", "agentic AI", "AI learning journal", "Varun Singla"], "isPartOf": {"@type": "Blog", "@id": "https://varunsingla.com/#blog", "name": "Varun Singla · AI Learning Journal"}, "author": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla", "url": "https://varunsingla.com/about/"}, "publisher": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Journal", "item": "https://varunsingla.com/"}, {"@type": "ListItem", "position": 2, "name": "Archive", "item": "https://varunsingla.com/entries/"}, {"@type": "ListItem", "position": 3, "name": "Advanced Agent Patterns: Agentic RAG, Tool Optimisation, Multi-Modal Agents &", "item": "https://varunsingla.com/entries/2026-03-30.html"}]}</script>
+<style>*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#F7F4ED;}
+body{font-family:'Hanken Grotesk',sans-serif;color:#1B1A17;-webkit-font-smoothing:antialiased;}
+::selection{background:#CC3F2A;color:#fff;}
+a{color:inherit;}
+.mast{position:sticky;top:0;z-index:50;background:rgba(247,244,237,.9);backdrop-filter:blur(12px);border-bottom:1px solid #E4DECF;}
+.mast-in{max-width:1120px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;}
+.brand-mark{width:30px;height:30px;border-radius:7px;background:#1B1A17;color:#F7F4ED;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;}
+.brand-name{font-family:'JetBrains Mono',monospace;font-size:13.5px;color:#1B1A17;}
+.nav-link{font-size:14.5px;font-weight:500;color:#6B6760;text-decoration:none;padding:7px 12px;border-radius:8px;}
+.nav-link:hover{color:#1B1A17;background:#EEE9DC;}
+.meta-row{display:flex;align-items:center;gap:13px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:13px;color:#8A857B;}
+.meta-row .day{color:#CC3F2A;font-weight:500;}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.04em;color:#6B6760;border:1px solid #E4DECF;border-radius:999px;padding:5px 12px;background:#FBF9F3;text-decoration:none;}
+article h1{font-family:'Newsreader',serif;font-weight:400;font-size:clamp(32px,5.5vw,52px);line-height:1.07;letter-spacing:-.018em;margin:0 0 22px;}
+article h2{font-family:'Newsreader',serif;font-weight:500;font-size:clamp(23px,3.4vw,30px);line-height:1.18;margin:0 0 18px;}
+article p{font-family:'Newsreader',serif;font-size:clamp(18px,2.3vw,20px);line-height:1.65;color:#2C2A24;margin:0 0 20px;}
+article ul{margin:4px 0 20px;padding-left:20px;}
+article li{font-family:'Newsreader',serif;font-size:clamp(17px,2.2vw,19px);line-height:1.6;color:#2C2A24;margin:0 0 10px;}
+.intro{font-size:clamp(20px,3vw,24px)!important;line-height:1.5!important;color:#3A372F!important;font-style:italic;margin:0 0 40px!important;}
+.callout{border:1px solid #E4DECF;border-left:3px solid #CC3F2A;border-radius:12px;background:#FBF9F3;padding:22px 24px;margin:0 0 40px;}
+.callout p{font-size:clamp(17px,2.2vw,19px);margin:0;}
+.kicker{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#CC3F2A;margin-bottom:14px;}
+.highlight{font-family:'Newsreader',serif;font-style:italic;font-size:clamp(18px,2.4vw,20px);line-height:1.55;color:#3A372F;border-left:3px solid #CC3F2A;padding:6px 0 6px 16px;margin:8px 0 20px;}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:#E4DECF;border:1px solid #E4DECF;border-radius:12px;overflow:hidden;margin:0 0 40px;}
+.stat-cell{background:#FBF9F3;padding:18px 20px;}
+.stat-big{font-family:'Newsreader',serif;font-size:clamp(24px,4vw,32px);line-height:1.05;color:#1B1A17;}
+.stat-small{font-size:13px;line-height:1.45;color:#56524B;margin-top:8px;}
+.table-wrap{overflow-x:auto;border:1px solid #E4DECF;border-radius:12px;background:#FBF9F3;margin:0 0 20px;}
+table{width:100%;border-collapse:collapse;}
+th{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#8A857B;text-align:left;padding:9px 12px;border-bottom:1px solid #CBB8A0;font-weight:500;}
+td{font-size:14.5px;color:#2C2A24;padding:9px 12px;border-bottom:1px solid #EEE9DC;vertical-align:top;line-height:1.45;font-family:'Hanken Grotesk',sans-serif;}
+tr:last-child td{border-bottom:none;}
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:680px;margin:0 auto;padding:20px 28px 90px;}
+.pn a{border:1px solid #E4DECF;border-radius:12px;padding:18px 20px;background:#FBF9F3;text-decoration:none;display:block;}
+.pn a:hover{border-color:#1B1A17;}
+.pn .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#A8A294;margin-bottom:9px;}
+.pn .ttl{font-family:'Newsreader',serif;font-size:18px;line-height:1.2;color:#1B1A17;}
+footer{border-top:1px solid #E4DECF;background:#FBF9F3;}
+.foot-in{max-width:1120px;margin:0 auto;padding:34px 28px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#6B6760;}</style>
+</head>
+<body>
+<header class="mast"><div class="mast-in">
+  <a class="brand" href="../"><span class="brand-mark">VS</span><span class="brand-name">varunsingla.com</span></a>
+  <nav style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+    <a class="nav-link" href="../">Journal</a>
+    <a class="nav-link" href="../entries/">Archive</a>
+    <a class="nav-link" href="../about/">About</a>
+    <a class="nav-link" href="../ai-tokenomics/">Tokenomics</a>
+    <a class="nav-link" href="../tools/model-team-evaluator.html">Model Evaluator</a>
+  </nav>
+</div></header>
+<article style="max-width:680px;margin:0 auto;padding:48px 28px 30px;">
+  <p style="margin:0 0 38px;"><a href="./" style="font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.04em;color:#6B6760;text-decoration:none;">← All entries</a></p>
+  <div class="meta-row" style="margin-bottom:22px;">
+    <span class="day">Day 14</span><span>·</span>
+    <time datetime="2026-03-30">March 30, 2026</time><span>·</span>
+    <span>5 min read</span>
+  </div>
+  <h1>Advanced Agent Patterns: Agentic RAG, Tool Optimisation, Multi-Modal Agents &amp;</h1>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:34px;padding-bottom:34px;border-bottom:1px solid #E4DECF;"><span class="tag">Foundations &amp; Protocols</span> <span class="tag">Models &amp; Frontier</span> </div>
+  <p class="intro">MCP SDK Downloads MCP Servers MCP Growth (16mo) GitLab Duo Users</p>
+<div class="callout"><div class="kicker">Viral app of the day</div><p style="font-family:'Newsreader',serif;font-size:22px;font-weight:500;margin:0 0 10px;">OF THE DAY: DEALSEEK 7 KEY TAKEAWAYS &amp; WHAT&#x27;S NEXT • Agentic</p></div>
+<div style="margin:0 0 40px;"><div class="kicker">By the numbers</div><div class="stat-grid"><div class="stat-cell"><div class="stat-small" style="margin-top:0;font-family:'Newsreader',serif;font-size:15px;">30-50% reduction in wrong-tool calls</div></div><div class="stat-cell"><div class="stat-small" style="margin-top:0;font-family:'Newsreader',serif;font-size:15px;">40-60% fewer redundant API calls</div></div><div class="stat-cell"><div class="stat-small" style="margin-top:0;font-family:'Newsreader',serif;font-size:15px;">20-40% token savings</div></div><div class="stat-cell"><div class="stat-small" style="margin-top:0;font-family:'Newsreader',serif;font-size:15px;">90%+ tool success rate</div></div><div class="stat-cell"><div class="stat-small" style="margin-top:0;font-family:'Newsreader',serif;font-size:15px;">2026 State of Art</div></div><div class="stat-cell"><div class="stat-small" style="margin-top:0;font-family:'Newsreader',serif;font-size:15px;">600% download surge in March 2026, climbed to #5 on App Store</div></div></div></div>
+<section><h2>Real-World Debugging</h2><p>MCP SDK Downloads MCP Servers MCP Growth (16mo) GitLab Duo Users</p><p>that separate toy demos from real-world systems. You will learn: (1) Agentic RAG - how agents now control their own retrieval, (2) Tool Use Optimisation - making agents faster and cheaper, (3) Multi-Modal Agents - vision + audio + text in one loop, and (4) Real-World Agent Debugging - tracing failures in non-deterministic systems. Plus: Samsung&#x27;s agentic browser, GitLab&#x27;s 7-agent DevOps platform, and</p><p>1 AGENTIC RAG: AGENTS THAT CONTROL THEIR OWN Traditional RAG (Retrieval-Augmented Generation) follows a rigid pipeline: embed the query, retrieve top-k chunks, stuff them into a prompt, and generate. It works for simple questions but collapses on multi-hop by putting an AI agent in control of the entire retrieval process. The Core Shift: From Pipeline to Agent Loop In Agentic RAG, the LLM is no longer a passive consumer of retrieved chunks. Instead, it becomes an active decision-maker that plans what to retrieve, evaluates results, and iterates until it has enough grounded evidence to answer. Think of it as giving the agent an &#x27;open-book exam&#x27; where it decides which books to open, which pages to read, and when it has studied enough. A-RAG: The Breakthrough Framework (Feb 2026) A-RAG (published February 2026) is the first framework to achieve true agentic autonomy in retrieval by satisfying three principles simultaneously: Key Insight: Information in a corpus is inherently multi-granular - from fine-grained keyword signals to coarser sentence-level and chunk-level representations. A-RAG exposes all three granularities as tools, letting the agent adaptively choose the right level for each sub-question. 2 TOOL USE OPTIMISATION: MAKING AGENTS FASTER The biggest cost and latency driver in production agents is not the LLM itself - it is unnecessary, redundant, or poorly structured tool calls. Tool use optimisation is the discipline of minimising tool invocations while maximising task completion quality.</p><p>Real-World Pattern: The &quot;Tool Budget&quot; Guardrail Production systems now implement tool budgets alongside token budgets. For each agent task, you define: max tool calls per turn (e.g., 5), max total tool calls per task (e.g., 20), max cost per tool invocation (e.g., $0.01), and a total tool-cost ceiling. If the agent exceeds its tool budget, it must either complete with current information or escalate to a human. This prevents runaway costs from agent loops while maintaining 3 MULTI-MODAL AGENTS: VISION + AUDIO + TEXT IN Multi-modal agents can perceive and act across multiple data types - text, images, audio, video, and structured data - within a single reasoning loop. This is not just about &#x27;understanding images&#x27;; it is about agents that can watch a video, listen to a call, read a document, and take coordinated action across all</p><p>Browser for Windows. Understands page context, searches across tabs, finds moments inside videos, and takes action (e.g., &#x27;create a 4-day Seoul trip plan from this page&#x27;). Available in US and South</p><p>4 REAL-WORLD AGENT DEBUGGING: TRACING THE</p><p>Agent debugging is fundamentally different from traditional software debugging. Agents are non-deterministic: the same input can produce different tool call sequences, different reasoning chains, and different outputs. There are no stack traces for &#x27;the agent hallucinated a customer ID&#x27; or &#x27;the agent called the wrong API because it misunderstood context&#x27;. The 5 Agent Failure Modes You Must Detect</p><p>Pro Tip: OpenTelemetry (OTEL) is emerging as the standard telemetry layer for agents. Instrument your agent with OTEL spans for each LLM call, tool invocation, and memory access. This gives you distributed tracing across multi-agent systems, regardless of which</p><p>The Model Context Protocol has reached 97 million monthly SDK downloads (TypeScript + Python), up from 2 million at launch in Nov 2024 - a staggering 4,750% growth in 16 months. The ecosystem now includes 5,800+ community and enterprise servers. Every major AI provider ships MCP-compatible tooling. MCP was donated to the Linux Foundation&#x27;s Agentic AI Foundation in Dec 2025, making it</p><p>Samsung Agentic Browser Launches on Windows Samsung Browser for Windows exits beta (Mar 26) with a Perplexity-powered AI assistant that understands page context, searches across tabs, finds video moments, and takes agentic action. This is the first major browser to embed agentic AI natively rather than as an extension. Currently available in US</p><p>GitLab Duo Agent Platform Goes GA (v18.8) GitLab 18.8 brings 7 AI agents for DevOps automation: Planner, Security Analyst, Code Reviewer, and more. Agents chain together in &#x27;Flows&#x27; for complex automation (e.g., issue-to-merge-request). 1.5M+ developers using Duo agents report 30% CI/CD time reduction. Usage-based billing via GitLab Credits</p><p>Gartner: 1,445% Surge in Multi-Agent System Inquiries Gartner reports a 1,445% increase in enterprise inquiries about multi-agent AI systems from Q1 2024 to Q2 2025, signalling massive enterprise interest. The transition from &#x27;intelligence to agency&#x27; - from models that know things to systems that change things - defines the 2025-to-2026 leap.</p><p>GitLab&#x27;s Duo platform all demonstrate agents that perceive and act across multiple modalities in</p><p>With 5,800+ servers and vendor-neutral governance under the Linux Foundation, MCP is the TCP/IP of</p><ul><li>Samsung Agentic Browser (launched Mar 26): Perplexity-powered AI assistant built into Samsung</li><li>Anthropic Computer Use: Claude can now grab your mouse - pointing, clicking, scrolling, and navigating your screen to finish tasks when no direct API integration exists. True multi-modal agency: sees the screen, reasons about UI, acts physically.</li><li>GitLab Duo Agent Platform (v18.8, GA): Seven AI agents automate DevOps from planning to security. The Planner Agent structures tasks via RICE/MoSCoW; the Security Analyst triages vulnerabilities in natural language. 1.5M+ developers now using Duo, reporting 30% CI/CD time</li><li>Audio-Aware Customer Service: Agents trained to detect vocal intonation, stress levels, and hesitation in real-time calls. Visual agents analyse facial micro-expressions in video support. Enables</li><li>Agentic RAG is the new standard - Traditional RAG is being replaced by agent-controlled retrieval that dynamically chooses strategies, iterates, and self-corrects. A-RAG&#x27;s hierarchical tools (keyword +</li><li>Tool optimisation is a first-class discipline - Description engineering, caching, batching, routing, and fallback chains can cut agent costs by 50-70% while improving quality. Implement tool budgets</li><li>Multi-modal agents have arrived - Samsung&#x27;s agentic browser, Anthropic&#x27;s Computer Use, and</li><li>Agent debugging requires new tooling - Non-deterministic systems need specialised observability: trace-level analysis, tool call auditing, and simulation-based testing. OpenTelemetry is the emerging</li><li>MCP at 97M downloads is infrastructure - The Model Context Protocol is no longer experimental. beyond accuracy (task completion rate, cost efficiency, latency budgets, safety scores), the emerging agent leaderboards, and how enterprises are A/B testing agent versions in production.</li></ul><div class="table-wrap"><table><thead><tr><th>Dimension</th><th>Traditional RAG</th><th>Agentic RAG</th></tr></thead><tbody><tr><td>Retrieval Strategy</td><td>Fixed: embed query, top-k similarity</td><td>Dynamic: agent chooses keyword, semantic, or chunk-level</td></tr><tr><td>Iteration</td><td>Single-shot (one retrieval pass)</td><td>Multi-turn loop until answer is grounded</td></tr><tr><td>Tool Use</td><td>None (pipeline only)</td><td>Agent calls search, SQL, APIs, calculators</td></tr><tr><td>Multi-Source</td><td>Single vector store</td><td>Orchestrates across DBs, APIs, docs, web</td></tr><tr><td>Self-Correction</td><td>No (garbage in, garbage out)</td><td>Yes: evaluates, re-queries, filters noise</td></tr><tr><td>Cost</td><td>Low (1 LLM call)</td><td>Higher (multiple calls, but far more accurate)</td></tr></tbody></table></div></section>
+  <div style="display:flex;align-items:center;gap:13px;margin:54px 0 10px;padding-top:30px;border-top:1px solid #E4DECF;">
+    <div class="brand-mark" style="width:40px;height:40px;font-size:14px;border-radius:9px;">VS</div>
+    <div><div style="font-size:14.5px;font-weight:600;">Varun Singla</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8A857B;">Singapore · <a href="../about/" style="color:#8A857B;">About</a> · Learning in public</div></div>
+  </div>
+</article>
+<nav class="pn" aria-label="Adjacent entries"><a href="2026-04-01.html" rel="next"><div class="lbl">← Newer · Day 15</div><div class="ttl">Enterprise Agentic AI -- CoE Strategy, Shadow IT &amp; ROI</div></a><a href="2026-03-29.html" rel="prev" style="text-align:right;"><div class="lbl">Older · Day 13 →</div><div class="ttl">Building Your First AI Agent</div></a></nav>
+<footer><div class="foot-in">
+  <span>Varun Singla · Singapore · Learning in public</span>
+  <span><a href="https://varunsingla.com/feed.xml" style="text-decoration:none;color:#6B6760;">RSS</a> · <a href="https://varunsingla.com/llms.txt" style="text-decoration:none;color:#6B6760;">llms.txt</a> · Updated daily</span>
+</div></footer>
+</body>
+</html>

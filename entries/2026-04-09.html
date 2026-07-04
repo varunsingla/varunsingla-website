@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Agent Economy 2.0 — Day 22 | Varun Singla · AI Learning Journal</title>
+<meta name="description" content="MPP + SPTs + MoonPay Wallets + Visa/Mastercard rails = the full payment stack for agents is now live in production.">
+<meta name="author" content="Varun Singla">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://varunsingla.com/entries/2026-04-09.html">
+<link rel="next" href="https://varunsingla.com/entries/2026-04-10.html">
+<link rel="prev" href="https://varunsingla.com/entries/2026-04-08.html">
+<link rel="alternate" type="application/rss+xml" title="Varun Singla · AI Learning Journal" href="https://varunsingla.com/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Varun Singla · AI Learning Journal">
+<meta property="og:title" content="The Agent Economy 2.0">
+<meta property="og:description" content="MPP + SPTs + MoonPay Wallets + Visa/Mastercard rails = the full payment stack for agents is now live in production.">
+<meta property="og:url" content="https://varunsingla.com/entries/2026-04-09.html">
+<meta property="og:image" content="https://varunsingla.com/og-image.png">
+<meta property="article:published_time" content="2026-04-09T21:00:00+08:00">
+<meta property="article:author" content="https://varunsingla.com/about/">
+<meta property="article:tag" content="Enterprise &amp; Strategy"><meta property="article:tag" content="Governance &amp; Safety">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Agent Economy 2.0">
+<meta name="twitter:description" content="MPP + SPTs + MoonPay Wallets + Visa/Mastercard rails = the full payment stack for agents is now live in production.">
+<meta name="twitter:image" content="https://varunsingla.com/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "@id": "https://varunsingla.com/entries/2026-04-09.html#post", "headline": "The Agent Economy 2.0", "description": "MPP + SPTs + MoonPay Wallets + Visa/Mastercard rails = the full payment stack for agents is now live in production.", "datePublished": "2026-04-09T21:00:00+08:00", "dateModified": "2026-04-09T21:00:00+08:00", "url": "https://varunsingla.com/entries/2026-04-09.html", "mainEntityOfPage": "https://varunsingla.com/entries/2026-04-09.html", "wordCount": 784, "inLanguage": "en", "articleSection": ["Enterprise & Strategy", "Governance & Safety"], "keywords": ["Enterprise & Strategy", "Governance & Safety", "agentic AI", "AI learning journal", "Varun Singla"], "isPartOf": {"@type": "Blog", "@id": "https://varunsingla.com/#blog", "name": "Varun Singla · AI Learning Journal"}, "author": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla", "url": "https://varunsingla.com/about/"}, "publisher": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Journal", "item": "https://varunsingla.com/"}, {"@type": "ListItem", "position": 2, "name": "Archive", "item": "https://varunsingla.com/entries/"}, {"@type": "ListItem", "position": 3, "name": "The Agent Economy 2.0", "item": "https://varunsingla.com/entries/2026-04-09.html"}]}</script>
+<style>*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#F7F4ED;}
+body{font-family:'Hanken Grotesk',sans-serif;color:#1B1A17;-webkit-font-smoothing:antialiased;}
+::selection{background:#CC3F2A;color:#fff;}
+a{color:inherit;}
+.mast{position:sticky;top:0;z-index:50;background:rgba(247,244,237,.9);backdrop-filter:blur(12px);border-bottom:1px solid #E4DECF;}
+.mast-in{max-width:1120px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;}
+.brand-mark{width:30px;height:30px;border-radius:7px;background:#1B1A17;color:#F7F4ED;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;}
+.brand-name{font-family:'JetBrains Mono',monospace;font-size:13.5px;color:#1B1A17;}
+.nav-link{font-size:14.5px;font-weight:500;color:#6B6760;text-decoration:none;padding:7px 12px;border-radius:8px;}
+.nav-link:hover{color:#1B1A17;background:#EEE9DC;}
+.meta-row{display:flex;align-items:center;gap:13px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:13px;color:#8A857B;}
+.meta-row .day{color:#CC3F2A;font-weight:500;}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.04em;color:#6B6760;border:1px solid #E4DECF;border-radius:999px;padding:5px 12px;background:#FBF9F3;text-decoration:none;}
+article h1{font-family:'Newsreader',serif;font-weight:400;font-size:clamp(32px,5.5vw,52px);line-height:1.07;letter-spacing:-.018em;margin:0 0 22px;}
+article h2{font-family:'Newsreader',serif;font-weight:500;font-size:clamp(23px,3.4vw,30px);line-height:1.18;margin:0 0 18px;}
+article p{font-family:'Newsreader',serif;font-size:clamp(18px,2.3vw,20px);line-height:1.65;color:#2C2A24;margin:0 0 20px;}
+article ul{margin:4px 0 20px;padding-left:20px;}
+article li{font-family:'Newsreader',serif;font-size:clamp(17px,2.2vw,19px);line-height:1.6;color:#2C2A24;margin:0 0 10px;}
+.intro{font-size:clamp(20px,3vw,24px)!important;line-height:1.5!important;color:#3A372F!important;font-style:italic;margin:0 0 40px!important;}
+.callout{border:1px solid #E4DECF;border-left:3px solid #CC3F2A;border-radius:12px;background:#FBF9F3;padding:22px 24px;margin:0 0 40px;}
+.callout p{font-size:clamp(17px,2.2vw,19px);margin:0;}
+.kicker{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#CC3F2A;margin-bottom:14px;}
+.highlight{font-family:'Newsreader',serif;font-style:italic;font-size:clamp(18px,2.4vw,20px);line-height:1.55;color:#3A372F;border-left:3px solid #CC3F2A;padding:6px 0 6px 16px;margin:8px 0 20px;}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:#E4DECF;border:1px solid #E4DECF;border-radius:12px;overflow:hidden;margin:0 0 40px;}
+.stat-cell{background:#FBF9F3;padding:18px 20px;}
+.stat-big{font-family:'Newsreader',serif;font-size:clamp(24px,4vw,32px);line-height:1.05;color:#1B1A17;}
+.stat-small{font-size:13px;line-height:1.45;color:#56524B;margin-top:8px;}
+.table-wrap{overflow-x:auto;border:1px solid #E4DECF;border-radius:12px;background:#FBF9F3;margin:0 0 20px;}
+table{width:100%;border-collapse:collapse;}
+th{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#8A857B;text-align:left;padding:9px 12px;border-bottom:1px solid #CBB8A0;font-weight:500;}
+td{font-size:14.5px;color:#2C2A24;padding:9px 12px;border-bottom:1px solid #EEE9DC;vertical-align:top;line-height:1.45;font-family:'Hanken Grotesk',sans-serif;}
+tr:last-child td{border-bottom:none;}
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:680px;margin:0 auto;padding:20px 28px 90px;}
+.pn a{border:1px solid #E4DECF;border-radius:12px;padding:18px 20px;background:#FBF9F3;text-decoration:none;display:block;}
+.pn a:hover{border-color:#1B1A17;}
+.pn .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#A8A294;margin-bottom:9px;}
+.pn .ttl{font-family:'Newsreader',serif;font-size:18px;line-height:1.2;color:#1B1A17;}
+footer{border-top:1px solid #E4DECF;background:#FBF9F3;}
+.foot-in{max-width:1120px;margin:0 auto;padding:34px 28px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#6B6760;}</style>
+</head>
+<body>
+<header class="mast"><div class="mast-in">
+  <a class="brand" href="../"><span class="brand-mark">VS</span><span class="brand-name">varunsingla.com</span></a>
+  <nav style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+    <a class="nav-link" href="../">Journal</a>
+    <a class="nav-link" href="../entries/">Archive</a>
+    <a class="nav-link" href="../about/">About</a>
+    <a class="nav-link" href="../ai-tokenomics/">Tokenomics</a>
+    <a class="nav-link" href="../tools/model-team-evaluator.html">Model Evaluator</a>
+  </nav>
+</div></header>
+<article style="max-width:680px;margin:0 auto;padding:48px 28px 30px;">
+  <p style="margin:0 0 38px;"><a href="./" style="font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.04em;color:#6B6760;text-decoration:none;">← All entries</a></p>
+  <div class="meta-row" style="margin-bottom:22px;">
+    <span class="day">Day 22</span><span>·</span>
+    <time datetime="2026-04-09">April 9, 2026</time><span>·</span>
+    <span>4 min read</span>
+  </div>
+  <h1>The Agent Economy 2.0</h1>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:34px;padding-bottom:34px;border-bottom:1px solid #E4DECF;"><span class="tag">Enterprise &amp; Strategy</span> <span class="tag">Governance &amp; Safety</span> </div>
+  <div class="callout"><div class="kicker">Viral app of the day</div><p style="font-family:'Newsreader',serif;font-size:22px;font-weight:500;margin:0 0 10px;">of the day: Shopify isn&#x27;t just building an AI feature -- it&#x27;s</p></div>
+<div style="margin:0 0 40px;"><div class="kicker">By the numbers</div><div class="stat-grid"><div class="stat-cell"><div class="stat-small" style="margin-top:0;font-family:'Newsreader',serif;font-size:15px;">140M+ Agent Payments in 2025</div></div><div class="stat-cell"><div class="stat-small" style="margin-top:0;font-family:'Newsreader',serif;font-size:15px;">$0.31 Avg agent transaction</div></div><div class="stat-cell"><div class="stat-small" style="margin-top:0;font-family:'Newsreader',serif;font-size:15px;">16+ Visa banking partners</div></div><div class="stat-cell"><div class="stat-small" style="margin-top:0;font-family:'Newsreader',serif;font-size:15px;">100+ MPP-integrated services</div></div><div class="stat-cell"><div class="stat-small" style="margin-top:0;font-family:'Newsreader',serif;font-size:15px;">16+ Banking partners signed</div></div><div class="stat-cell"><div class="stat-small" style="margin-top:0;font-family:'Newsreader',serif;font-size:15px;">2026 H2</div></div><div class="stat-cell"><div class="stat-small" style="margin-top:0;font-family:'Newsreader',serif;font-size:15px;">97M MCP installs; first monetised servers live Q1 2026 on MPP rails</div></div><div class="stat-cell"><div class="stat-small" style="margin-top:0;font-family:'Newsreader',serif;font-size:15px;">97M installs -- foundational</div></div><div class="stat-cell"><div class="stat-small" style="margin-top:0;font-family:'Newsreader',serif;font-size:15px;">150+ org adoption, production</div></div><div class="stat-cell"><div class="stat-small" style="margin-top:0;font-family:'Newsreader',serif;font-size:15px;">15x AI-driven order growth YoY (2025)</div></div></div></div>
+<section><h2>1. The Infrastructure Layer is Complete</h2><p>MPP + SPTs + MoonPay Wallets + Visa/Mastercard rails = the full payment stack for agents is now live in production. This is not a future vision -- real money is moving through these systems today.</p><div class="table-wrap"><table><thead><tr><th>Date</th><th>Event</th><th>Detail</th></tr></thead><tbody><tr><td>Feb 2026</td><td>MoonPay Agents</td><td>Non-custodial software wallet layer + CLI; agent-native key management</td></tr><tr><td>Mar 17</td><td>Visa Agentic Ready</td><td>Global programme launch; 16+ banking partners; Europe first phase</td></tr><tr><td>Mar 18</td><td>MPP Launch</td><td>Stripe + Tempo; 100+ services; Visa, Lightspark extensions live on day 1</td></tr></tbody></table></div></section>
+<section><h2>2. Agents are Becoming Economic Actors</h2><p>The paradigm shift: AI moves from &#x27;doing tasks&#x27; to &#x27;spending money.&#x27; An agent can now decide what</p><div class="table-wrap"><table><thead><tr><th>Mar 23</th><th>MoonPay Open Wallet</th><th>Open-source standard; 8 chain families; backed by PayPal, Ripple, Solana, Circle</th></tr></thead><tbody><tr><td>Mar 2026</td><td>SPT Expansion</td><td>Klarna + Affirm integrate SPTs; Mastercard Agent Pay live; Visa Intelligent Commerce</td></tr><tr><td>Mar 2026</td><td>Santander + Mastercard</td><td>Europe&#x27;s first live end-to-end agent payment on regulated banking rails</td></tr><tr><td>Mar 2026</td><td>Shopify Storefronts</td><td>3x conversion lift; agents sell in ChatGPT, Google AI Mode, Copilot via MCP + MPP</td></tr><tr><td>2026 H2</td><td>Circle Nanopayments</td><td>Gas-free USDC; $0.000001 minimum; x402 standard; mainnet target H2 2026</td></tr></tbody></table></div></section>
+<section><h2>3. New Business Models Need New Governance</h2><p>Every agent that can spend money is a liability. Your kill switch architecture (T1-T4), NIST CAISI audit trails, and spending limits aren&#x27;t just compliance -- they&#x27;re risk management. Budget caps per agent are</p><div class="table-wrap"><table><thead><tr><th>Model</th><th>How it works</th><th>Live examples</th></tr></thead><tbody><tr><td>Pay-per-API-call</td><td>Agents pay micro-fees to access premium APIs, data, or compute -- priced per call, not subscription</td><td>Alchemy, Dune Analytics on MPP; Circle Nanopayments for &lt;$0.001 calls</td></tr><tr><td>Monetised MCP Servers</td><td>Any MCP server can gate access behind a payment -- agent pays to use the tool, revenue flows to the server owner</td><td>97M MCP installs; first monetised servers live Q1 2026 on MPP rails</td></tr><tr><td>Agent-to-Agent Commerce</td><td>Orchestrator agents spawn sub-agents and pay them per task completed -- autonomous contractor economy</td><td>Shopify agentic checkout; JP Morgan LOXM sub-agent payments; Genspark MoA internal billing</td></tr><tr><td>Autonomous SaaS Management</td><td>Agents negotiate, purchase, and cancel SaaS subscriptions on behalf of enterprises -- replacing procurement workflows</td><td>SpendHQ x Sligo AI agentic procurement live; J.P. Morgan Mirakl partnership announced</td></tr></tbody></table></div></section>
+<section><h2>4. The Open vs Closed Battle</h2><p>MPP (Stripe, open) vs proprietary agent checkout (Amazon, Apple) is the defining commercial battle of</p><div class="table-wrap"><table><thead><tr><th>Layer</th><th>Protocol</th><th>Role</th><th>Status</th></tr></thead><tbody><tr><td>Tools</td><td>MCP</td><td>Agent accesses APIs, data, compute tools</td><td>97M installs -- foundational</td></tr><tr><td>Communication</td><td>A2A</td><td>Agent-to-agent task delegation and coordination</td><td>150+ org adoption, production</td></tr><tr><td>Payments</td><td>MPP + SPTs</td><td>Agent pays for resources, services, sub-agents</td><td>Live: Stripe, Visa, Mastercard, Circle</td></tr><tr><td>User Interface</td><td>AG-UI</td><td>Human oversight, approval gates, state snapshots</td><td>GA: AWS Bedrock, AG2, CopilotKit</td></tr></tbody></table></div></section>
+<section><h2>5. Practical Action</h2><p>If you&#x27;re building agents: add MPP client libraries to your stack today. If you&#x27;re buying SaaS: ask your vendors about agent payment APIs. If you&#x27;re in enterprise: set spending limits in your agent governance</p><p>Day 19 of 30 · Varun&#x27;s Daily AI Briefing · April 9, 2026 | Topics covered: 19 days · Next: Agent Security &amp; Identity in the Economy 2.0</p></section>
+<section><h2>What is the Agent Economy 2.0?</h2><p>The Agent Economy 1.0 was about AI doing tasks -- summarising emails, writing code, answering questions. The Agent Economy 2.0 is about AI spending money. In 2026, agents are becoming first-class economic participants: they hold wallets, initiate payments, buy APIs, and transact with other agents -- autonomously, at sub-second speed, for fractions of a cent. Three foundational layers make this possible: payment protocols (MPP, SPTs), wallet standards (MoonPay Open Wallet), and network rails (Visa, Mastercard, Stripe, Circle). Machine Payments Protocol (MPP) -- Now in Production Launched March 18, 2026 by Stripe + Tempo, MPP is the open standard that allows AI agents to coordinate and execute payments programmatically -- with no human decision point between resource request and payment execution. It&#x27;s essentially the HTTP of agent payments. Shared Payment Tokens (SPTs) -- How Agents Pay Without</p><p>SPTs solve a critical trust problem: how can an agent pay on your behalf without ever seeing your actual card number or bank credentials? The answer: a tokenised delegation system where you authorise the agent once, and the agent uses a short-lived token tied to your identity and spending limits. This is live in</p><p>Wallet Standards: MoonPay Open Wallet + Circle</p><p>Visa Agentic Ready Programme -- Banking Goes Agent-Native Launched March 17, 2026, Visa&#x27;s Agentic Ready Programme gives banks a structured validation pathway for accepting agent-initiated transactions. This is the &#x27;compliance stamp&#x27; that lets conservative financial institutions say yes to agentic payments without rewriting their risk frameworks. Key partners include: Barclays, HSBC UK, Nationwide, Revolut, Banco Santander, Commerzbank, Erste Bank, Raiffeisen Bank International, Nexi Group, and 10+ more across Europe, Middle East, and Latin America. Trust layer: Tokenisation + biometric auth ensures every agentic transaction is tied to a</p><p>Agent Economy 2.0: Key Milestones Timeline</p><p>The agent payment stack unlocks business models that were impossible 12 months ago. Here are the four</p><p>Just as the web stack (HTTP + HTML + CSS + JS) enabled the consumer internet, the agentic commerce stack is consolidating around four interoperable layers:</p><p>Anthropic&#x27;s step-change model (93.9% SWE-bench, 94.6% GPQA Diamond) continues rolling out to enterprise customers. Described as &#x27;step change in cybersecurity + reasoning.&#x27; Positioned to anchor</p><p>Gemini 3.1 Ultra -- 2M Token Context Native Multimodal Google&#x27;s latest leads 13/16 major benchmarks. Handles text, image, audio, video in one model. New sandboxed Code Execution tool enables safer agentic deployments. Grok 4.20 -- 78% Non-Hallucination Record xAI&#x27;s Grok 4.20 introduces 4 reasoning modes (Auto/Fast/Expert/Heavy), 2M token context, 60% cheaper than Grok 3. Built-in multi-agent orchestration.</p><p>All-time record quarter. OpenAI raised $122B. Anthropic closed $30B Series G. xAI acquired by SpaceX for $250B. AI is absorbing an unprecedented share of global venture capital. Gemma 4 Ecosystem: 400M Downloads, 100K+ Variants Google&#x27;s open-source Gemma 4 (Apache 2.0) has 400M downloads and 100K+ community fine-tuned variants. 31B Dense model ranks #3 globally on Arena AI leaderboard. Purpose-built for agentic</p><p>Selling inside AI -- 3x conversion lift, powering the MPP + MCP commerce stack Shopify&#x27;s Agentic Storefronts represent the most commercially validated implementation of the Agent Economy 2.0 stack. Rather than directing users to shopify.com, merchants using Agentic Storefronts can sell directly inside AI assistants -- ChatGPT, Google AI Mode, Microsoft Copilot, and Gemini. Shopify co-developed the Universal Commerce Protocol (UCP) with Google to standardise how agents browse catalogs, compare products, and complete transactions. Why this is the viral app of the day: Shopify isn&#x27;t just building an AI feature -- it&#x27;s building the first large-scale consumer-facing proof point that the agent commerce stack (MCP + MPP + A2A) works in the real world at scale. Every merchant using Shopify is now one configuration away from having an AI agent sell their products autonomously inside the apps 1 billion users already open every day.</p><div class="table-wrap"><table><thead><tr><th>Feature</th><th>Detail</th></tr></thead><tbody><tr><td>Token Lifecycle</td><td>Issued per-session, short-lived (seconds to minutes), bound to agent identity + spending limit + merchant category</td></tr><tr><td>Klarna + Affirm</td><td>Both BNPL giants integrated SPTs in March 2026 -- agents can now &#x27;buy now, pay later&#x27; on your behalf within predefined limits</td></tr><tr><td>Mastercard Agent Pay</td><td>Mastercard&#x27;s implementation of SPTs -- powers the Santander live agent payment (Europe&#x27;s first)</td></tr><tr><td>Visa Intelligent Commerce</td><td>Tokenisation + biometric auth ensuring every agentic transaction is tied to a real, consenting human</td></tr><tr><td>Security Model</td><td>Agents never see actual payment credentials. Full audit trail. Human can revoke at any time. GDPR-compliant by design.</td></tr></tbody></table></div></section>
+  <div style="display:flex;align-items:center;gap:13px;margin:54px 0 10px;padding-top:30px;border-top:1px solid #E4DECF;">
+    <div class="brand-mark" style="width:40px;height:40px;font-size:14px;border-radius:9px;">VS</div>
+    <div><div style="font-size:14.5px;font-weight:600;">Varun Singla</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8A857B;">Singapore · <a href="../about/" style="color:#8A857B;">About</a> · Learning in public</div></div>
+  </div>
+</article>
+<nav class="pn" aria-label="Adjacent entries"><a href="2026-04-10.html" rel="next"><div class="lbl">← Newer · Day 23</div><div class="ttl">Agent Security &amp; Identity in the Economy 2.0</div></a><a href="2026-04-08.html" rel="prev" style="text-align:right;"><div class="lbl">Older · Day 21 →</div><div class="ttl">Multi-Agent Communication</div></a></nav>
+<footer><div class="foot-in">
+  <span>Varun Singla · Singapore · Learning in public</span>
+  <span><a href="https://varunsingla.com/feed.xml" style="text-decoration:none;color:#6B6760;">RSS</a> · <a href="https://varunsingla.com/llms.txt" style="text-decoration:none;color:#6B6760;">llms.txt</a> · Updated daily</span>
+</div></footer>
+</body>
+</html>

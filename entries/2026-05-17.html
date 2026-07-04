@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent-Native Data Infrastructure — Day 59 | Varun Singla · AI Learning Journal</title>
+<meta name="description" content="Six independent announcements from Databricks, Confluent, RisingWave, CockroachDB, ClickHouse and">
+<meta name="author" content="Varun Singla">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://varunsingla.com/entries/2026-05-17.html">
+<link rel="next" href="https://varunsingla.com/entries/2026-05-18.html">
+<link rel="prev" href="https://varunsingla.com/entries/2026-05-16.html">
+<link rel="alternate" type="application/rss+xml" title="Varun Singla · AI Learning Journal" href="https://varunsingla.com/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Varun Singla · AI Learning Journal">
+<meta property="og:title" content="Agent-Native Data Infrastructure">
+<meta property="og:description" content="Six independent announcements from Databricks, Confluent, RisingWave, CockroachDB, ClickHouse and">
+<meta property="og:url" content="https://varunsingla.com/entries/2026-05-17.html">
+<meta property="og:image" content="https://varunsingla.com/og-image.png">
+<meta property="article:published_time" content="2026-05-17T21:00:00+08:00">
+<meta property="article:author" content="https://varunsingla.com/about/">
+<meta property="article:tag" content="Foundations &amp; Protocols"><meta property="article:tag" content="Governance &amp; Safety">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Agent-Native Data Infrastructure">
+<meta name="twitter:description" content="Six independent announcements from Databricks, Confluent, RisingWave, CockroachDB, ClickHouse and">
+<meta name="twitter:image" content="https://varunsingla.com/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "@id": "https://varunsingla.com/entries/2026-05-17.html#post", "headline": "Agent-Native Data Infrastructure", "description": "Six independent announcements from Databricks, Confluent, RisingWave, CockroachDB, ClickHouse and", "datePublished": "2026-05-17T21:00:00+08:00", "dateModified": "2026-05-17T21:00:00+08:00", "url": "https://varunsingla.com/entries/2026-05-17.html", "mainEntityOfPage": "https://varunsingla.com/entries/2026-05-17.html", "wordCount": 1079, "inLanguage": "en", "articleSection": ["Foundations & Protocols", "Governance & Safety"], "keywords": ["Foundations & Protocols", "Governance & Safety", "agentic AI", "AI learning journal", "Varun Singla"], "isPartOf": {"@type": "Blog", "@id": "https://varunsingla.com/#blog", "name": "Varun Singla · AI Learning Journal"}, "author": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla", "url": "https://varunsingla.com/about/"}, "publisher": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Journal", "item": "https://varunsingla.com/"}, {"@type": "ListItem", "position": 2, "name": "Archive", "item": "https://varunsingla.com/entries/"}, {"@type": "ListItem", "position": 3, "name": "Agent-Native Data Infrastructure", "item": "https://varunsingla.com/entries/2026-05-17.html"}]}</script>
+<style>*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#F7F4ED;}
+body{font-family:'Hanken Grotesk',sans-serif;color:#1B1A17;-webkit-font-smoothing:antialiased;}
+::selection{background:#CC3F2A;color:#fff;}
+a{color:inherit;}
+.mast{position:sticky;top:0;z-index:50;background:rgba(247,244,237,.9);backdrop-filter:blur(12px);border-bottom:1px solid #E4DECF;}
+.mast-in{max-width:1120px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;}
+.brand-mark{width:30px;height:30px;border-radius:7px;background:#1B1A17;color:#F7F4ED;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;}
+.brand-name{font-family:'JetBrains Mono',monospace;font-size:13.5px;color:#1B1A17;}
+.nav-link{font-size:14.5px;font-weight:500;color:#6B6760;text-decoration:none;padding:7px 12px;border-radius:8px;}
+.nav-link:hover{color:#1B1A17;background:#EEE9DC;}
+.meta-row{display:flex;align-items:center;gap:13px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:13px;color:#8A857B;}
+.meta-row .day{color:#CC3F2A;font-weight:500;}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.04em;color:#6B6760;border:1px solid #E4DECF;border-radius:999px;padding:5px 12px;background:#FBF9F3;text-decoration:none;}
+article h1{font-family:'Newsreader',serif;font-weight:400;font-size:clamp(32px,5.5vw,52px);line-height:1.07;letter-spacing:-.018em;margin:0 0 22px;}
+article h2{font-family:'Newsreader',serif;font-weight:500;font-size:clamp(23px,3.4vw,30px);line-height:1.18;margin:0 0 18px;}
+article p{font-family:'Newsreader',serif;font-size:clamp(18px,2.3vw,20px);line-height:1.65;color:#2C2A24;margin:0 0 20px;}
+article ul{margin:4px 0 20px;padding-left:20px;}
+article li{font-family:'Newsreader',serif;font-size:clamp(17px,2.2vw,19px);line-height:1.6;color:#2C2A24;margin:0 0 10px;}
+.intro{font-size:clamp(20px,3vw,24px)!important;line-height:1.5!important;color:#3A372F!important;font-style:italic;margin:0 0 40px!important;}
+.callout{border:1px solid #E4DECF;border-left:3px solid #CC3F2A;border-radius:12px;background:#FBF9F3;padding:22px 24px;margin:0 0 40px;}
+.callout p{font-size:clamp(17px,2.2vw,19px);margin:0;}
+.kicker{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#CC3F2A;margin-bottom:14px;}
+.highlight{font-family:'Newsreader',serif;font-style:italic;font-size:clamp(18px,2.4vw,20px);line-height:1.55;color:#3A372F;border-left:3px solid #CC3F2A;padding:6px 0 6px 16px;margin:8px 0 20px;}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:#E4DECF;border:1px solid #E4DECF;border-radius:12px;overflow:hidden;margin:0 0 40px;}
+.stat-cell{background:#FBF9F3;padding:18px 20px;}
+.stat-big{font-family:'Newsreader',serif;font-size:clamp(24px,4vw,32px);line-height:1.05;color:#1B1A17;}
+.stat-small{font-size:13px;line-height:1.45;color:#56524B;margin-top:8px;}
+.table-wrap{overflow-x:auto;border:1px solid #E4DECF;border-radius:12px;background:#FBF9F3;margin:0 0 20px;}
+table{width:100%;border-collapse:collapse;}
+th{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#8A857B;text-align:left;padding:9px 12px;border-bottom:1px solid #CBB8A0;font-weight:500;}
+td{font-size:14.5px;color:#2C2A24;padding:9px 12px;border-bottom:1px solid #EEE9DC;vertical-align:top;line-height:1.45;font-family:'Hanken Grotesk',sans-serif;}
+tr:last-child td{border-bottom:none;}
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:680px;margin:0 auto;padding:20px 28px 90px;}
+.pn a{border:1px solid #E4DECF;border-radius:12px;padding:18px 20px;background:#FBF9F3;text-decoration:none;display:block;}
+.pn a:hover{border-color:#1B1A17;}
+.pn .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#A8A294;margin-bottom:9px;}
+.pn .ttl{font-family:'Newsreader',serif;font-size:18px;line-height:1.2;color:#1B1A17;}
+footer{border-top:1px solid #E4DECF;background:#FBF9F3;}
+.foot-in{max-width:1120px;margin:0 auto;padding:34px 28px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#6B6760;}</style>
+</head>
+<body>
+<header class="mast"><div class="mast-in">
+  <a class="brand" href="../"><span class="brand-mark">VS</span><span class="brand-name">varunsingla.com</span></a>
+  <nav style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+    <a class="nav-link" href="../">Journal</a>
+    <a class="nav-link" href="../entries/">Archive</a>
+    <a class="nav-link" href="../about/">About</a>
+    <a class="nav-link" href="../ai-tokenomics/">Tokenomics</a>
+    <a class="nav-link" href="../tools/model-team-evaluator.html">Model Evaluator</a>
+  </nav>
+</div></header>
+<article style="max-width:680px;margin:0 auto;padding:48px 28px 30px;">
+  <p style="margin:0 0 38px;"><a href="./" style="font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.04em;color:#6B6760;text-decoration:none;">← All entries</a></p>
+  <div class="meta-row" style="margin-bottom:22px;">
+    <span class="day">Day 59</span><span>·</span>
+    <time datetime="2026-05-17">May 17, 2026</time><span>·</span>
+    <span>5 min read</span>
+  </div>
+  <h1>Agent-Native Data Infrastructure</h1>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:34px;padding-bottom:34px;border-bottom:1px solid #E4DECF;"><span class="tag">Foundations &amp; Protocols</span> <span class="tag">Governance &amp; Safety</span> </div>
+  <p class="intro">Six independent announcements from Databricks, Confluent, RisingWave, CockroachDB, ClickHouse and</p>
+<div class="callout"><div class="kicker">Viral app of the day</div><p style="font-family:'Newsreader',serif;font-size:22px;font-weight:500;margin:0 0 10px;">OpenHuman by tinyhumansai</p><p>Open-source desktop AI agent (Rust + Tauri, MIT, github.com/tinyhumansai/openhuman, 5.6K+ GitHub stars in days, #1 GitHub Trending May 13-16). Inverts the playbook: instead of waiting for your first prompt, it pre-loads a 1B-token Memory Tree from 118+ services (Gmail, GitHub, Slack, Notion, Stripe, Calendar, Drive, Linear, Jira) via one-click OAuth. A &#x27;subconscious loop&#x27; runs without user input -- reads your to-dos and recent memory, decides what to act on next. A desktop mascot can join Google Meet as a separate participant, transcribe into the Memory Tree, speak back. All local-first: SQLite + Markdown Obsidian wiki, no data egress. First credible consumer surface for the &#x27;agent that know</p><ul style="margin-bottom:0;"><li>1B — tokens in local Memory Tree</li><li>118+ — OAuth integrations one-click</li><li>20m — subconscious loop cadence</li><li>#1 — GitHub Trending May 13-16</li></ul></div>
+<div style="margin:0 0 40px;"><div class="kicker">By the numbers</div><div class="stat-grid"><div class="stat-cell"><div class="stat-big">90%</div><div class="stat-small">new TiDB Cloud clusters created by AI agents, not humans</div></div><div class="stat-cell"><div class="stat-big">77.1%</div><div class="stat-small">Genie Code success on real-world data tasks vs 32.1% prior leader</div></div><div class="stat-cell"><div class="stat-big">6</div><div class="stat-small">vendors converged on agent-native data infra in 60 days</div></div><div class="stat-cell"><div class="stat-big">100+</div><div class="stat-small">MCP tools in RisingWave&#x27;s official agent server</div></div></div></div>
+<section><h2>1. Why agent-native data infrastructure is a thing now</h2><p>For thirty years databases optimised for two consumers: humans writing SQL in a console, and applications running parameterised queries. In 2026 the third consumer became dominant: AI agents that discover schemas at runtime, issue thousands of exploratory queries per task, spin up isolated workspaces for trial-and-error, and need fresh full-fidelity context -- not sampled, not rolled up. PingCAP reports 90% of new TiDB Cloud clusters in Q2 2026 are created by AI agents. That single number changes everything about how a database should be designed. Six 2026 launches independently codified the shift: Databricks Genie Code (autonomous data engineering agent, March 11), Confluent Streaming Agents (Flink + MCP + Real-time Context Engine), RisingWave v2.6 (native vector + HNSW + official MCP server with 100+ tools), CockroachDB managed MCP server + agent-ready ccloud CLI (March), ClickHouse clickhousectl beta with agent skills installer (April 9), and PingCAP TiDB positioning as &#x27;the database for agentic workloads&#x27;. Six vendors, same six design principles, no coordination -- that is what tectonic shifts look like.</p></section>
+<section><h2>3. The 2026 reference architecture -- four layers</h2><p>Layer 1 -- Transactional write layer (Postgres / MySQL / TiDB). The system of record. Your agent does not write here directly; humans, apps and downstream agents do. Layer 2 -- Streaming compute (RisingWave or Confluent Flink). CDC-ingests Layer 1, runs continuously-updated SQL materialised views over the stream, joins with reference data, computes embeddings inline. This is where the agent&#x27;s working memory lives -- fresh by construction, no batch lag. Layer 3 -- Serving layer (Postgres protocol + MCP). The agent queries Layer 2 via standard SQL over the Postgres wire protocol, OR via the MCP server exposing the same data as tools. Same data, two surfaces -- code agents pick SQL, conversational agents pick MCP. Layer 4 -- Vector + semantic search. Lives inside the streaming layer (RisingWave native vector(n) + HNSW + cosine + L2), not as a separate Pinecone-shaped system. One less data plane to govern, one less consistency model to reason about, one less place for memory to go stale. Mapping to the Day-44 Write-Aside pattern: Valkey/Redis is still your L1 hot cache (&lt;5ms), but L2 changes -- instead of an async flush into pgvector, your L2 becomes a RisingWave or Confluent materialised view that is automatically maintained against your transactional store. The agent never sees stale memory, and you remove an entire class of write-aside race conditions. MemOS L3 sits on top as the unified API. This is the single biggest unlock in agent memory architecture this quarter.</p></section>
+<section><h2>4. Genie Code, Streaming Agents, and what they actually do</h2><p>Databricks Genie Code (GA at FabCon 2026) is a fully agentic data engineering partner inside Lakeflow. It builds pipelines, debugs failures, ships dashboards, monitors AI models in the background, triages anomalies, autonomously analyses agent traces to fix hallucinations, tunes resource allocation before a human intervenes. On Databricks&#x27; real-world data science benchmark it more than doubles the success rate of the leading coding agent (77.1% vs 32.1%). Integrated with Unity Catalog so it enforces existing governance + access controls and understands business semantics + audit requirements -- Annex III</p><p>Confluent Streaming Agents (GA in Confluent Cloud for Apache Flink) is the event-driven counterpart. Agents are first-class Flink objects: they monitor real-time topics, reason via embedded LLM calls, act through MCP tool calls -- with every tool interaction logged into Kafka for replayability + auditability. The Real-time Context Engine continuously materialises enriched enterprise data sets into a fast in-memory cache and serves them via MCP, all fully managed. Event-driven by design -- agents communicate without rigid dependencies, collaborate with other agents, adapt to real-time inputs. This is the substrate the Day-49 Agent SRE will actually monitor in production. RisingWave v2.6 is the open-source third leg. Streaming SQL + CDC + incremental materialised views + native vector(n) + HNSW + an official MCP server (risingwavelabs/risingwave-mcp) exposing 100+ tools. openai_embedding() runs inside a SQL query or MV definition so embeddings stay fresh automatically. Apache 2.0, self-hostable -- the EU-AI-Act-safe default for agent memory when data residency matters.</p></section>
+<section><h2>5. Governance, EU AI Act, and the next 12 months</h2><p>EU AI Act Annex III enforces Aug 2 (T-77 days). The audit checklist mandates reconstructable reasoning: what the agent did, why, with what data, in what order. A streaming substrate makes this near-trivial -- every materialised view update, every MCP tool call, every vector lookup is already a logged event with timestamp + SVID + nonce. Compare to a batch-ETL world where evidence is reconstructed retroactively from logs in three different systems, often inconsistently. The streaming agent stack converts an audit nightmare into a Kafka topic. Mapping back to Day 54 (SPIFFE + KYA): each agent SVID becomes the natural scope key for its streaming materialised views and MCP server namespaces. Per-agent isolation at the data plane, not just the app plane. Combined with Microsoft Agent 365 (control plane), AWS Bedrock AgentCore Payments (commerce) and Confluent / RisingWave / Genie Code (data), the 2026 enterprise agent operating model is now complete. Expectation for Day 56+: data-plane primitives become the locus of competitive differentiation as model performance plateaus and the moat shifts to context freshness + retrieval</p></section>
+<section><h2>MARKET SIGNAL</h2><p>Anthropic in talks for a $30-50B raise at a ~$950B valuation; PwC announces firm-wide Claude deployment for client work; Anthropic + Gates Foundation form a $200M partnership. OpenAI grants EU access to GPT-5.5-Cyber in limited preview while Anthropic still withholds Mythos. US CAISI now pre-tests Microsoft, Google and xAI models before launch. Translation: data-plane and model-plane consolidation is happening at the same time -- pick your governance substrate before the regulator</p></section>
+<section><h2>Viral App of the Week</h2><p>Open-source desktop AI agent (Rust + Tauri, MIT, github.com/tinyhumansai/openhuman, 5.6K+ GitHub stars in days, #1 GitHub Trending May 13-16). Inverts the playbook: instead of waiting for your first prompt, it pre-loads a 1B-token Memory Tree from 118+ services (Gmail, GitHub, Slack, Notion, Stripe, Calendar, Drive, Linear, Jira) via one-click OAuth. A &#x27;subconscious loop&#x27; runs without user input -- reads your to-dos and recent memory, decides what to act on next. A desktop mascot can join Google Meet as a separate participant, transcribe into the Memory Tree, speak back. All local-first: SQLite + Markdown Obsidian wiki, no data egress. First credible consumer surface for the &#x27;agent that knows you on day one&#x27; pattern.</p></section>
+<div class="callout"><div class="kicker">Market signal</div><p>Anthropic in talks for a $30-50B raise at a ~$950B valuation; PwC announces firm-wide Claude deployment for client work; Anthropic + Gates Foundation form a $200M partnership. OpenAI grants EU access to GPT-5.5-Cyber in limited preview while Anthropic still withholds Mythos. US CAISI now pre-tests Microsoft, Google and xAI models before launch.</p></div>
+<div class="callout"><div class="kicker">Practical takeaways</div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">Day 56 (2026-05-18): Agent Skills &amp; the Skills Economy -- ho</div><p style="font-size:17px;margin:3px 0 0;">Day 56 (2026-05-18): Agent Skills &amp; the Skills Economy -- how reusable skill packages (APM by Microsoft, Claude Skills, Superpowers, Hermes Agent skill docs, MMX-CLI command groups) are becoming the npm of the agent era, and what it means for vendor lock-in, governance, and IP.</p></div></div>
+  <div style="display:flex;align-items:center;gap:13px;margin:54px 0 10px;padding-top:30px;border-top:1px solid #E4DECF;">
+    <div class="brand-mark" style="width:40px;height:40px;font-size:14px;border-radius:9px;">VS</div>
+    <div><div style="font-size:14.5px;font-weight:600;">Varun Singla</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8A857B;">Singapore · <a href="../about/" style="color:#8A857B;">About</a> · Learning in public</div></div>
+  </div>
+</article>
+<nav class="pn" aria-label="Adjacent entries"><a href="2026-05-18.html" rel="next"><div class="lbl">← Newer · Day 60</div><div class="ttl">Agent Skills &amp; the Skills Economy</div></a><a href="2026-05-16.html" rel="prev" style="text-align:right;"><div class="lbl">Older · Day 58 →</div><div class="ttl">Agent Identity 3.0 -- SPIFFE Hits Prod, KYA</div></a></nav>
+<footer><div class="foot-in">
+  <span>Varun Singla · Singapore · Learning in public</span>
+  <span><a href="https://varunsingla.com/feed.xml" style="text-decoration:none;color:#6B6760;">RSS</a> · <a href="https://varunsingla.com/llms.txt" style="text-decoration:none;color:#6B6760;">llms.txt</a> · Updated daily</span>
+</div></footer>
+</body>
+</html>
