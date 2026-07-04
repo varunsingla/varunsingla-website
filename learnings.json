@@ -12,8 +12,8 @@
       "title": "Agentic AI in Construction & the Built Environment",
       "focus_intro": "Construction is the last giant analogue industry -- roughly $13T of global output, productivity nearly flat for",
       "viral_app": {
-        "name": "The enterprise breakout of the construction wave. Founded in 2024 by Waymo veterans, Bedrock raised a",
-        "description": "$270M Series B in February 2026 and launched the industry's largest supervised-autonomy earthmoving deployment with Sundt Construction on a 130-acre manufacturing site. Its bet is retrofit-not-replace: the Operator kit (LiDAR, GPS, HD cameras, onboard compute) turns the excavators, dozers and loaders a contractor already owns into autonomous assets, with partners including Austin Bridge & Road, Zachry, Champion Site Prep and Capitol Aggregates -- and first fully operator-less excavator deployments targeted for 2026. It is the day's governance-by-construction exemplar: supervised autonomy with remote takeover as the default, geofenced dig envelopes, and a data flywheel of earthmoving telemetr",
+        "name": "Bedrock Robotics / Bedrock Operator",
+        "description": "Retrofit-not-replace autonomous earthmoving startup (Waymo veterans, founded 2024). $270M Series B Feb 2026; launched industry largest supervised-autonomy earthmoving deployment with Sundt Construction on a 130-acre site. Operator kit (LiDAR + GPS + HD cameras + onboard compute) turns existing excavators/dozers/loaders into autonomous assets. Partners: Austin Bridge & Road, Zachry, Champion Site Prep, Capitol Aggregates. First operator-less excavator deployments targeted 2026. Governance-by-construction exemplar: supervised autonomy + remote takeover as default + geofenced dig envelopes + earthmoving-telemetry data flywheel.",
         "stats": [
           {
             "stat": "$270M",
@@ -80,8 +80,22 @@
           ]
         }
       ],
-      "market_signal": "Construction is the last $13T analogue industry, and the moat mirrors agriculture (Day 96): proprietary site-data flywheels (Buildots' imagery corpus, Bedrock's earthmoving telemetry, Trunk Tools' document graph) + an actuation trust layer + traceability evidence beat model choice. With frontier access itself now government-mediated -- GPT-5.6 in approved preview, Fable 5 credit-gated -- distribution, data and governance compound while models commoditise by the week. Practical Takeaways",
-      "practical_takeaway": []
+      "market_signal": "Construction is the last $13T analogue industry, and the moat mirrors agriculture (Day 96): proprietary site-data flywheels (Buildots imagery corpus, Bedrock earthmoving telemetry, Trunk Tools document graph) + an actuation trust layer + traceability evidence beat model choice. With frontier access now government-mediated -- GPT-5.6 in approved preview, Fable 5 credit-gated -- distribution, data and governance compound while models commoditise by the week.",
+      "practical_takeaway": [
+        {
+          "title": "Start with the document grind, not the excavator",
+          "body": "RFIs, submittals and schedule review are observable and reversible -- Gilbane proves the scale. Measure on RFI turnaround, schedule slips caught and rework avoided. Ground every answer in the drawing set; hallucinated spec = poured in concrete."
+        },
+        {
+          "title": "Gate every machine in hardware",
+          "body": "Scoped per-machine SPIFFE identity, geofenced dig envelopes with grade and speed caps, remote-supervisor takeover as the default, and a sub-second physical E-stop maintained as its own IEC 61508 safety case -- this becomes a CE certification requirement under the EU Machinery Regulation in January 2027."
+        },
+        {
+          "title": "Make the material trail the product",
+          "body": "Let the procurement agent write the EU Digital Product Passport evidence per lot by construction. One OTEL-to-WORM trail doubles as CPR compliance, embodied-carbon ledger and defect defence. A human signs the PO -- that is the Day 67 firewall."
+        }
+      ],
+      "tomorrow_preview": "Day 99: Agentic AI in Gaming & Interactive Entertainment -- agent-driven NPCs with persistent memory, AI game-dev copilots, and generative worlds, with content moderation and player safety as the binding constraint. Then Day 100: the 100-day milestone retrospective grading every major call the series made."
     },
     {
       "date": "2026-07-03",
