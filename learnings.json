@@ -6,6 +6,102 @@
   },
   "learnings": [
     {
+      "date": "2026-07-05",
+      "display_date": "July 5, 2026",
+      "issue": 99,
+      "title": "The July 2026 Model Wave — Under the Hood",
+      "focus_intro": "Day 99 marks a course-correction: after 22 industry verticals, this series returns to what it was built for — teaching new AI technology in depth. And the timing could not be better, because the biggest model wave since GPT-5 is breaking right now. In the span of five weeks: Claude Sonnet 5 shipped with a native 1M-token context and a new tokenizer, Claude Fable 5 came back from a 19-day safety suspension with a classifier-gated architecture, OpenAI unveiled the GPT-5.6 family (Sol, Terra, Luna) in a government-vetted preview, and Gemini 3.5 Pro slipped to a July window with a 2M-token context. Today we go under the hood: what actually changed in these models, the long-horizon agentic RL technique that powers them, and how to rebuild your 70/25/5 routing stack around the new tiers.",
+      "stats": [
+        {
+          "stat": "1M",
+          "label": "tokens — Sonnet 5's native context, default and only size"
+        },
+        {
+          "stat": "19 days",
+          "label": "Fable 5 offline (Jun 12–Jul 1) before safeguarded redeploy"
+        },
+        {
+          "stat": "~20 orgs",
+          "label": "government-vetted partners in the GPT-5.6 preview"
+        },
+        {
+          "stat": "750 tok/s",
+          "label": "GPT-5.6 Sol on Cerebras hardware this July"
+        }
+      ],
+      "viral_app": {
+        "name": "X Hosted MCP Server (api.x.com/mcp)",
+        "description": "On June 30, X shipped a hosted Model Context Protocol server — one endpoint that lets Grok, Cursor, Claude Desktop, or any MCP client read X through your own developer credentials. 200+ tools: search live posts, pull trends as they form, read full conversations, manage bookmarks. X's wedge over a GitHub or Notion MCP is the corpus — the live public conversation, something no other connector has. Read-only for now (no autonomous posting: the Write API isn't wired in), the MCP layer is free but the API underneath is metered (~$0.015 per post, $0.20 with a link — priced to curb spam). The strategic read: the protocol Anthropic open-sourced in 2024 is now how a major consumer platform courts distribution — X is betting on agent traffic over user growth. When agents are the readers, being agent-callable is the new being indexed.",
+        "stats": [
+          {
+            "stat": "200+",
+            "label": "tools exposed to any MCP client"
+          },
+          {
+            "stat": "Jun 30",
+            "label": "hosted server went live"
+          },
+          {
+            "stat": "$0.015",
+            "label": "per post via the underlying X API"
+          }
+        ]
+      },
+      "sections": [
+        {
+          "title": "Claude Sonnet 5 — the 1M-token workhorse, and a tokenizer gotcha",
+          "paragraphs": [
+            "Sonnet 5 (shipped June 30, default for Free and Pro plans and in Claude Code) is Anthropic's most agentic Sonnet, and three architectural changes matter more than any benchmark. First, the 1M-token context window is now NATIVE and the only size — there is no smaller variant, no beta flag, no long-context surcharge tier to opt into. Second, adaptive thinking is the default: on Sonnet 4.6, a request without a thinking field ran without thinking; on Sonnet 5, the same request runs WITH adaptive thinking — the model decides how much reasoning each request deserves. Third, max output jumped to 128K tokens, enough to emit an entire refactored module or a full report in one call.",
+            "The gotcha is the new tokenizer. Sonnet 5 tokenizes the same text into roughly 30% MORE tokens than Sonnet 4.6. Per-token pricing looks familiar ($2/$10 per M input/output introductory through August 31, then $3/$15), but an equivalent request can cost meaningfully more than the price sheet implies. This is the sharpest lesson of the wave: price sheets are no longer comparable across models — only cost-per-completed-task on your own golden set is honest. On capability, Sonnet 5 in some cases matches Opus 4.8 — which collapses the mid/frontier boundary the 70/25/5 routing stack was built on (more in section 5)."
+          ]
+        },
+        {
+          "title": "Fable 5 vs Mythos 5 — capability gating becomes the release architecture",
+          "paragraphs": [
+            "Claude Fable 5 and Claude Mythos 5 are the SAME underlying model; the entire difference is the safeguard layer. That makes this pair the clearest example yet of capability gating as a release architecture: ship the intelligence to everyone, gate the dangerous capabilities by construction. Fable 5 is the public, safeguarded version ($10/$50 per M tokens); Mythos 5, with safeguards lifted in specific domains, remains restricted to approved US organisations through Project Glasswing.",
+            "The gating mechanism is worth learning. A classifier sits in front of the model at better than 99% accuracy; when a query trips it — cyber-offence, bio, chem, and model-distillation domains — the request is silently rerouted to Opus 4.8 instead. Tuned conservatively, it triggers in under 5% of sessions. The US government's AI standards body (CAISI) called the safeguards 'extraordinarily strong'. The architecture was battle-tested the hard way: after Amazon researchers found a jailbreak that let Fable 5 surface software vulnerabilities, Anthropic pulled the model entirely on June 12 and redeployed it on July 1 — a 19-day gap that is the strongest availability argument for multi-provider routing you will ever see. The economics changed too: access through July 7 is capped at 50% of weekly limits, after which Fable 5 moves to usage credits — metered frontier access, not all-you-can-eat subscription. Expect this pattern (classifier gate + fallback model + usage credits + revocable deployment) to become the standard frontier release template."
+          ]
+        },
+        {
+          "title": "GPT-5.6 Sol, Terra, Luna — the tiered frontier and the government clock",
+          "paragraphs": [
+            "OpenAI's answer is a three-tier family released as one wave. Sol is the flagship — long-horizon agentic work, software engineering, scientific research, cybersecurity — at $5/$30 per M tokens. Terra delivers near-flagship capability at half the price ($2.50/$15). Luna is the fastest and cheapest ($1/$6), built for the high-volume classification and triage work that dominates agent token budgets. A hardware note that matters for agents: Sol launches on Cerebras at up to 750 tokens/second this July — an order of magnitude faster than typical frontier serving, which changes what 'interactive agent' means for multi-step loops.",
+            "The release process is the bigger story. As of this week, GPT-5.6 is available to only ~20 government-vetted organisations via API and Codex — not in ChatGPT at all — after the White House asked OpenAI to stage the rollout while national-security cybersecurity capability reviews complete. General availability is promised in 'coming weeks'. Put the two labs side by side and the pattern is unmistakable: Anthropic gates capabilities with classifiers (Fable/Mythos), OpenAI gates access with a government-mediated preview window, and the White House is drafting voluntary release standards with both labs plus Google. Frontier model releases are now a negotiated, government-adjacent process — plan launches and dependencies around that clock."
+          ]
+        },
+        {
+          "title": "The technique underneath — long-horizon agentic RL",
+          "paragraphs": [
+            "Every model in this wave advertises the same phrase — 'long-horizon agentic' — and it comes from one training technique. Classic RLHF optimised single responses: one prompt, one output, one reward. Long-horizon agentic RL moves the optimisation target to the CUMULATIVE RETURN OF ENTIRE TRAJECTORIES — multi-hour runs where the consequences of an early tool call propagate through hundreds of subsequent steps. The model is no longer rewarded for a good answer; it is rewarded for a completed task, however many steps that takes. This is what produced Qwen3.7-Max's documented 35-hour, 1,158-tool-call autonomous run, and it is what Sol's 'long-horizon' claim rests on.",
+            "Three mechanisms make it work. (1) Hierarchical factorisation: frameworks like HiPER split the agent into a high-level planner and a low-level executor and optimise them with Hierarchical Advantage Estimation — solving the credit-assignment problem of 'which of my 1,000 actions earned the reward?'. (2) Process rewards on top of outcome rewards: instead of one sparse signal at the end of a 4-hour trajectory, auxiliary judges and programmatic rules score intermediate progress (found the right file, wrote a passing test), giving dense signal throughout. (3) Behavioural reward bands: progress rewards plus efficiency bonuses (fewer searches, cheaper paths) plus a hard separation between successful and failed trajectories — which is why new models feel less 'thrashy' in tool loops. The practical implication for your own evals: score trajectories, not just outputs (Day 45's argument, now baked into how the models themselves are trained), and expect models tuned this way to keep going much longer before asking for help — budget caps and loop detection matter MORE, not less."
+          ]
+        },
+        {
+          "title": "Rebuilding the 70/25/5 routing stack for the new tiers",
+          "paragraphs": [
+            "The routing framework survives; every tier assignment changes. Nano tier (≈70% of calls — classification, extraction, triage): GPT-5.6 Luna at $1/$6 joins DeepSeek V4 Flash ($0.14/M) and Gemini 3.5 Flash as the volume workhorses. Mid tier (≈25% — code generation, structured reasoning, drafting): Claude Sonnet 5 at $2/$10 promo is the headline — with a native 1M context it also absorbs the long-context summariser role that used to need a separate model — alongside GPT-5.6 Terra ($2.50/$15). Frontier tier (≈5% — ambiguous planning, novel problems): Fable 5 ($10/$50, usage-credited), Sol ($5/$30, gated preview), Opus 4.8 Fast Mode ($10/$50), and Gemini 3.5 Pro when it lands this July with its 2M-token context and Deep Think reasoning mode (it already missed the June target — hold it loosely).",
+            "Two disciplines before you re-route. First, re-benchmark with the new tokenizer in the loop: Sonnet 5's ~30% token inflation means a straight price-sheet comparison against 4.6 or Terra is wrong — run your 200-pair golden set and compare cost-per-successful-task (the Day 83 unit). Second, treat availability as a routing input, not an assumption: Fable 5 vanished for 19 days; GPT-5.6 is government-gated; classifier reroutes can silently swap the model answering your query. Multi-provider fallback chains stop being a nice-to-have and become the only way to promise your own users an SLO."
+          ]
+        }
+      ],
+      "market_signal": "The frontier is now government-mediated: GPT-5.6 ships first to ~20 government-vetted orgs, Fable 5 returns only after CAISI-endorsed safeguards, and the White House is drafting voluntary release standards with OpenAI, Google, and Anthropic. At the same time, tokenizer changes and usage-credit metering have made price sheets incomparable across vendors. Both point the same way: the durable skills are measuring cost-per-successful-task on your own golden set and architecting for model substitution — because the model answering your query can change (classifier reroute), be re-priced (credits), or disappear (19-day suspension) without your consent.",
+      "practical_takeaway": [
+        {
+          "title": "Re-route on evidence, not price sheets",
+          "body": "Re-run your 200-pair golden set across the new tiers (Luna/Sonnet 5/Terra/Fable 5) and compare cost-per-successful-task, not per-token price — Sonnet 5's tokenizer emits ~30% more tokens for the same text, so the $2/$10 promo (ends Aug 31) is cheaper than it looks on paper only if your tasks complete. Wire OTEL gen_ai spans before switching so the comparison is measured, not vibes."
+        },
+        {
+          "title": "Exploit the 1M-token default deliberately",
+          "body": "Sonnet 5's native 1M context changes the RAG-vs-context math for repo-scale and long-trajectory work — but context engineering (Day 39) still wins: structured retrieval plus a curated context beats stuffing a million tokens of noise, and at 30% token inflation, stuffing is also expensive. Use the window for what only it can do: whole-codebase reasoning, full multi-hour trajectory replays, and long-document synthesis with adaptive thinking deciding the effort."
+        },
+        {
+          "title": "Design for gated, revocable frontiers",
+          "body": "Assume any frontier model can be suspended (Fable's 19 days), gated (GPT-5.6's government preview), or silently rerouted (the <5% classifier fallback to Opus 4.8). Build multi-provider fallback chains with a tested degradation path to your mid tier, keep budget caps and loop detection tight (long-horizon-RL models run longer before giving up), and watch the White House voluntary-release-standards announcement expected within days — it will set the clock every future release runs on."
+        }
+      ],
+      "tomorrow_preview": "Day 100 — the milestone retrospective: '100 Days of Agentic AI'. We grade the series' biggest calls (the compression thesis, the Aug 2 countdown, the IPO race, the protocol stack), and distil the 10 technologies that mattered most in 100 days — plus what to learn next."
+    },
+    {
       "date": "2026-07-04",
       "display_date": "JULY 4, 2026",
       "issue": 98,
@@ -15587,6 +15683,6 @@
       ]
     }
   ],
-  "last_updated": "2026-07-02",
-  "total_days": 98
+  "last_updated": "2026-07-05",
+  "total_days": 99
 }
