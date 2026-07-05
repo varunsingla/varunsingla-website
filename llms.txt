@@ -1,13 +1,14 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 104 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 105 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 104 — "Agentic AI in Construction & the Built Environment" (July 4, 2026).
+Latest entry: Day 105 — "The July 2026 Model Wave — Under the Hood" (July 5, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Journal entries
 
+- [Day 105: The July 2026 Model Wave — Under the Hood](https://varunsingla.com/entries/2026-07-05.html): Day 99 marks a course-correction: after 22 industry verticals, this series returns to what it was built for — teaching new AI technology in depth.
 - [Day 104: Agentic AI in Construction & the Built Environment](https://varunsingla.com/entries/2026-07-04.html): Construction is the last giant analogue industry -- roughly $13T of global output, productivity nearly flat for decades, and a project that still…
 - [Day 103: Agentic AI in Logistics & Last-Mile Delivery](https://varunsingla.com/entries/2026-07-03.html): Logistics is the original multi-hop, multi-party relay — freight quote to doorstep crosses brokers, carriers, warehouses, customs, and couriers — and…
 - [Day 102: Agentic AI in Agriculture & Food Systems](https://varunsingla.com/entries/2026-07-02.html): In 2026 the farm itself becomes the agentic loop — agents sense (satellite, drone, soil IoT), decide (agronomy, irrigation, input optimisation) and…
