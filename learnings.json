@@ -10,11 +10,24 @@
       "display_date": "JULY 7, 2026",
       "issue": 101,
       "title": "Claude Science & the Lab-in-the-Loop",
-      "focus_intro": "Pick a step where the experiment is cheap, fast and reversible (literature triage, hypothesis enumeration, an analysis pipeline) and close a hypothesis -> run -> analyse -> refine loop around it. Keep a human on the physical experiment and the 'is it real?' judgement. That is where the Level 2-3 systems actually deliver. Next in the tech pipeline: Self-improving agents 2.0 -- MemRL in production, skill-library evolution, and the Darwin-Godel line -- how an agent gets better without retraining the base model.",
+      "focus_intro": "Claude Science (beta, June 30) ships the six-layer AI-for-science stack as a product: 60+ curated skills into UniProt, PDB, Ensembl and ChEMBL; a reviewer agent that flags bad citations and untraceable numbers; every result bundled with its exact code, environment and message history for full reproducibility. The FutureHouse Kosmos system runs the same lab-in-the-loop pattern independently -- ~1,500 papers, ~42,000 lines of analysis code, 7 validated discoveries. The technique that transfers to any domain: model proposes experiment, human or hardware runs it, result returns, model proposes next. Automate the loop, not the robot.",
       "viral_app": {
-        "name": "THE ONE RULE The autonomy is in the LOOP, not the robot. Automate one tight loop where the experiment is cheap, fast and reversible",
-        "description": "-- and keep a human on the physical step and on the 'is this real?' call. A reality check keeps this honest. Most 'self-driving labs' today sit at Level 2-3 on a five-level autonomy scale -- closed-loop optimisation on narrow tasks (reaction optimisation, materials screening), not general-purpose science. Materials and chemistry lead; drug discovery is close behind (Recursion, Arctoris); synthetic biology is the most ambitious, with Ginkgo committing all R&D; to autonomous infrastructure by end-2026. The lesson for builders: don't try to automate the whole scientific method. Automate one tight loop where the experiment is cheap, fast and reversible, and keep a human on the physical step and ",
-        "stats": []
+        "name": "FutureHouse Kosmos + the Robin lab-in-the-loop system",
+        "description": "FutureHouse (nonprofit, spun Edison Scientific out late 2025) put publicly usable AI scientist agents on the web and an API. Kosmos runs ~6 months of research in a day: reads ~1,500 papers, writes ~42,000 lines of analysis code, stays coherent across tens of millions of tokens, with ~80% of findings judged accurate and 7 validated discoveries across neuroscience, materials and genetics. Its sibling Robin (Nature, 2026) is the clearest public example of the lab-in-the-loop technique: three agents -- Crow (fast literature search), Falcon (deep review) and Finch (data analysis) -- iterate hypothesis -> experiment -> analysis -> refined hypothesis, with humans running the physical assays. Applied to dry AMD, Robin proposed boosting RPE-cell phagocytosis, nominated ripasudil, and surfaced ABCA1 as a target -- concept to submitted paper in ~2.5 months. Secondary call-outs: NVIDIA BioNeMo Agent Toolkit and Ginkgo Bioworks committing all R&D to autonomous infrastructure by end-2026.",
+        "stats": [
+          {
+            "stat": "~1,500",
+            "label": "papers per run"
+          },
+          {
+            "stat": "7",
+            "label": "validated discoveries"
+          },
+          {
+            "stat": "~2.5 mo",
+            "label": "concept-to-paper (Robin/AMD)"
+          }
+        ]
       },
       "stats": [
         {
@@ -23,11 +36,15 @@
         },
         {
           "stat": "2 yrs -> weeks",
-          "label": "Allen Institute review-writing time cut"
+          "label": "Allen Institute review time cut"
         },
         {
-          "stat": "1,500",
+          "stat": "~1,500",
           "label": "papers read in a single Kosmos run"
+        },
+        {
+          "stat": "~80%",
+          "label": "Kosmos findings judged accurate"
         }
       ],
       "sections": [
@@ -78,7 +95,21 @@
         }
       ],
       "market_signal": "With frontier model performance compressed to a near-tie (Day 80), the AI-for-science race is not being won on raw benchmark points -- it is being won on the stack around the model: callable specialist models (BioNeMo), reproducible auditable artifacts, on-prem data boundaries, and reviewer agents that make outputs trustworthy. Claude Science, FutureHouse Kosmos and the BioNeMo toolkit all landed inside two weeks; the moat is the lab-in-the-loop harness plus governance evidence, not the base model. Anthropic, now past OpenAI on revenue (~$47B run-rate) and courting scientists with a 50-project AI-for-Science fund, is planting the same open-protocol flag in science that MCP planted in tooling.",
-      "practical_takeaway": []
+      "practical_takeaway": [
+        {
+          "title": "Automate one tight loop, not the scientific method",
+          "body": "Pick a step where the experiment is cheap, fast and reversible -- literature triage, hypothesis enumeration, an analysis pipeline -- close a loop around it, and keep a human on the physical step and the 'is this real?' judgement. That is where Level 2-3 self-driving labs already deliver."
+        },
+        {
+          "title": "Wrap your best domain models as callable skills",
+          "body": "The BioNeMo pattern: containerise specialist models (Evo 2, Boltz-2, OpenFold3) as NIM microservices, expose via MCP, and let a generalist agent route to them. Specialist capability arrives as a tool, not a bigger brain -- and the pattern ports to any technical domain."
+        },
+        {
+          "title": "Make the artifact trail the product",
+          "body": "Code + environment + message history per result = reproducibility + dual-use audit + EU AI Act Annex III evidence at once. Aug 2 = T-26 days. Claude Science ships this by construction; build it in from day one."
+        }
+      ],
+      "tomorrow_preview": "Day 102: Self-improving agents 2.0 -- MemRL in production, skill-library evolution, and the Darwin-Godel line: how an agent improves without retraining the base model."
     },
     {
       "date": "2026-07-06",
