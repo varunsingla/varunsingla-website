@@ -8,15 +8,19 @@ Complete text of all 107 journal entries by Varun Singla (https://varunsingla.co
 
 Date: July 7, 2026 · Author: Varun Singla · URL: https://varunsingla.com/entries/2026-07-07.html · Themes: Foundations & Protocols
 
-Pick a step where the experiment is cheap, fast and reversible (literature triage, hypothesis enumeration, an analysis pipeline) and close a hypothesis -> run -> analyse -> refine loop around it. Keep a human on the physical experiment and the 'is it real?' judgement. That is where the Level 2-3 systems actually deliver. Next in the tech pipeline: Self-improving agents 2.0 -- MemRL in production, skill-library evolution, and the Darwin-Godel line -- how an agent gets better without retraining the base model.
+Claude Science (beta, June 30) ships the six-layer AI-for-science stack as a product: 60+ curated skills into UniProt, PDB, Ensembl and ChEMBL; a reviewer agent that flags bad citations and untraceable numbers; every result bundled with its exact code, environment and message history for full reproducibility. The FutureHouse Kosmos system runs the same lab-in-the-loop pattern independently -- ~1,500 papers, ~42,000 lines of analysis code, 7 validated discoveries. The technique that transfers to any domain: model proposes experiment, human or hardware runs it, result returns, model proposes next. Automate the loop, not the robot.
 
-**Viral app of the day: THE ONE RULE The autonomy is in the LOOP, not the robot. Automate one tight loop where the experiment is cheap, fast and reversible**
--- and keep a human on the physical step and on the 'is this real?' call. A reality check keeps this honest. Most 'self-driving labs' today sit at Level 2-3 on a five-level autonomy scale -- closed-loop optimisation on narrow tasks (reaction optimisation, materials screening), not general-purpose science. Materials and chemistry lead; drug discovery is close behind (Recursion, Arctoris); synthetic biology is the most ambitious, with Ginkgo committing all R&D; to autonomous infrastructure by end-2026. The lesson for builders: don't try to automate the whole scientific method. Automate one tight loop where the experiment is cheap, fast and reversible, and keep a human on the physical step and 
+**Viral app of the day: FutureHouse Kosmos + the Robin lab-in-the-loop system**
+FutureHouse (nonprofit, spun Edison Scientific out late 2025) put publicly usable AI scientist agents on the web and an API. Kosmos runs ~6 months of research in a day: reads ~1,500 papers, writes ~42,000 lines of analysis code, stays coherent across tens of millions of tokens, with ~80% of findings judged accurate and 7 validated discoveries across neuroscience, materials and genetics. Its sibling Robin (Nature, 2026) is the clearest public example of the lab-in-the-loop technique: three agents -- Crow (fast literature search), Falcon (deep review) and Finch (data analysis) -- iterate hypothesis -> experiment -> analysis -> refined hypothesis, with humans running the physical assays. Applied to dry AMD, Robin proposed boosting RPE-cell phagocytosis, nominated ripasudil, and surfaced ABCA1 as a target -- concept to submitted paper in ~2.5 months. Secondary call-outs: NVIDIA BioNeMo Agent Toolkit and Ginkgo Bioworks committing all R&D to autonomous infrastructure by end-2026.
+- ~1,500 — papers per run
+- 7 — validated discoveries
+- ~2.5 mo — concept-to-paper (Robin/AMD)
 
 **By the numbers:**
 - 60+ — scientific skills & connectors in Claude Science
-- 2 yrs -> weeks — Allen Institute review-writing time cut
-- 1,500 — papers read in a single Kosmos run
+- 2 yrs -> weeks — Allen Institute review time cut
+- ~1,500 — papers read in a single Kosmos run
+- ~80% — Kosmos findings judged accurate
 
 ## 1. Automate one tight loop, not the scientific method
 
@@ -53,6 +57,11 @@ Claude Sonnet 5 went GA and, after US Commerce lifted export controls on Jun 30,
 FutureHouse Kosmos + the Robin lab-in-the-loop system The independent counterpart to Claude Science and the AI-for-science tool that went viral this year. FutureHouse (nonprofit, spun its for-profit Edison Scientific out in late 2025) put publicly usable 'AI scientist' agents on the web and an API. Kosmos runs what users estimate is six months of research in a single day: one run reads ~1,500 papers, writes ~42,000 lines of analysis code, and stays coherent across tens of millions of tokens, with roughly 80% of findings judged accurate and 7 validated discoveries across neuroscience, materials science and genetics. Its sibling Robin (Nature, 2026) is the cleanest public example of the day's technique: three language agents -- Crow (fast literature search), Falcon (deep review) and Finch (experimental-data analysis) -- iterate hypothesis -> experiment -> analysis -> refined hypothesis, with human scientists running the physical assays. Applied to dry age-related macular degeneration, Robin proposed boosting RPE-cell phagocytosis, nominated the drug ripasudil, and surfaced ABCA1 as a target -- concept to submitted paper in ~2.5 months. Secondary call-outs: NVIDIA BioNeMo Agent Toolkit (github.com/NVIDIA-BioNeMo/bionemo-agent-toolkit -- 'turn any agent into a life-science expert', now the callable-model layer under both Claude Science and OpenAI) and Ginkgo Bioworks committing all R&D; to autonomous infrastructure by end-2026.
 
 **Market signal:** With frontier model performance compressed to a near-tie (Day 80), the AI-for-science race is not being won on raw benchmark points -- it is being won on the stack around the model: callable specialist models (BioNeMo), reproducible auditable artifacts, on-prem data boundaries, and reviewer agents that make outputs trustworthy. Claude Science, FutureHouse Kosmos and the BioNeMo toolkit all landed inside two weeks; the moat is the lab-in-the-loop harness plus governance evidence, not the base model. Anthropic, now past OpenAI on revenue (~$47B run-rate) and courting scientists with a 50-project AI-for-Science fund, is planting the same open-protocol flag in science that MCP planted in tooling.
+
+**Practical takeaways:**
+- Automate one tight loop, not the scientific method — Pick a step where the experiment is cheap, fast and reversible -- literature triage, hypothesis enumeration, an analysis pipeline -- close a loop around it, and keep a human on the physical step and the 'is this real?' judgement. That is where Level 2-3 self-driving labs already deliver.
+- Wrap your best domain models as callable skills — The BioNeMo pattern: containerise specialist models (Evo 2, Boltz-2, OpenFold3) as NIM microservices, expose via MCP, and let a generalist agent route to them. Specialist capability arrives as a tool, not a bigger brain -- and the pattern ports to any technical domain.
+- Make the artifact trail the product — Code + environment + message history per result = reproducibility + dual-use audit + EU AI Act Annex III evidence at once. Aug 2 = T-26 days. Claude Science ships this by construction; build it in from day one.
 
 ---
 
