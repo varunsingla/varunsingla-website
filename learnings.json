@@ -12,8 +12,8 @@
       "title": "100 Days of Agentic AI -- The Milestone",
       "focus_intro": "protocols, memory, identity, evals, economics, twenty-two industry verticals and a frontier that reorganised itself along the way. Today we grade our own calls -- what the series got right and what it under-called -- distil the ten technologies that mattered most, and set the curriculum for the next hundred days.",
       "viral_app": {
-        "name": "The pipeline, technology-first per the standing rule: AI-for-science architectures (Claude Science and",
-        "description": "lab-in-the-loop agents -- promoted to next issue by this week's launch); self-improving agents 2.0 (MemRL in production, skill-library evolution, Darwin-Godel updates); world models and simulation-first agents; MCP 2.x / A2A 1.x and the interop spec; context engineering at native 1M tokens; neuro-symbolic and 100x energy-efficient inference; on-device agent hardware and agent-first phones; frontier-safety tech; and the next The watchlist that decides H2: August 2 enforcement (T-27) and whether the Omnibus reaches the Official Journal in time; Anthropic's October Nasdaq debut and whether OpenAI holds 2026; the first Skills-marketplace supply-chain incident (this series' standing call for H2);",
+        "name": "caveman by JuliusBrussee",
+        "description": "84K+ GitHub stars, #2 GitHub Trending; one-file SKILL.md for Claude Code/Codex/Gemini/Cursor + 30 more tools that cuts ~65-75% output tokens by making the agent talk like a caveman -- same answers, never touches code; used by devs at Nvidia + GitHub; perfect Day-100 punchline after tokenizer inflation and tokenmaxxing: 'why use many token when few token do trick'",
         "stats": [
           {
             "stat": "84K+",
@@ -41,6 +41,14 @@
         {
           "stat": "97M",
           "label": "MCP monthly SDK downloads (~970x in 18 mo)"
+        },
+        {
+          "stat": "~37%",
+          "label": "lab-to-prod performance gap (real vs benchmark)"
+        },
+        {
+          "stat": "~1,000x",
+          "label": "inference cost collapse over 3 years"
         }
       ],
       "sections": [
@@ -238,7 +246,8 @@
           "title": "Tomorrow -- Day 101: Claude Science and the lab-in-the-loop ",
           "body": "Tomorrow -- Day 101: Claude Science and the lab-in-the-loop stack: how AI-for-science architectures actually work -- agentic literature synthesis, hypothesis generation, self-driving-lab integration, and what a drug-discovery agent for neglected diseases does under the hood."
         }
-      ]
+      ],
+      "tomorrow_preview": "Day 101: Claude Science + the lab-in-the-loop stack -- agentic literature synthesis, hypothesis generation, self-driving-lab integration, and the drug-discovery agent architecture under the hood."
     },
     {
       "date": "2026-07-05",
