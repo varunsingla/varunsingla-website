@@ -1,13 +1,14 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 107 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 108 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 107 — "Claude Science & the Lab-in-the-Loop" (July 7, 2026).
+Latest entry: Day 108 — "Self-Improving Agents 2.0 -- Getting Better Without Retraining the Base Model" (July 8, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Journal entries
 
+- [Day 108: Self-Improving Agents 2.0 -- Getting Better Without Retraining the Base Model](https://varunsingla.com/entries/2026-07-08.html): Day 100 promised it and Day 101 set it up: today is the technique for how an agent improves itself without ever touching model weights.
 - [Day 107: Claude Science & the Lab-in-the-Loop](https://varunsingla.com/entries/2026-07-07.html): Claude Science (beta, June 30) ships the six-layer AI-for-science stack as a product: 60+ curated skills into UniProt, PDB, Ensembl and ChEMBL; a…
 - [Day 106: 100 Days of Agentic AI -- The Milestone](https://varunsingla.com/entries/2026-07-06.html): protocols, memory, identity, evals, economics, twenty-two industry verticals and a frontier that reorganised itself along the way.
 - [Day 105: The July 2026 Model Wave — Under the Hood](https://varunsingla.com/entries/2026-07-05.html): Day 99 marks a course-correction: after 22 industry verticals, this series returns to what it was built for — teaching new AI technology in depth.
