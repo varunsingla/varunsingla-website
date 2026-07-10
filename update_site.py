@@ -340,13 +340,45 @@ def _extract_stat_box_tables(raw_tables: list[list]) -> list[str]:
 
 def _page_tables_with_bbox(page) -> list[dict]:
     """Return all tables on a page with their bounding boxes and extracted data.
-    Each item: {'bbox': (x0,top,x1,bottom), 'data': [[cell, …], …]}"""
+    Each item: {'bbox': (x0,top,x1,bottom), 'data': [[cell, …], …], 'row_bboxes': [...]}"""
     results = []
     for ft in page.find_tables():
         extracted = ft.extract()
         if extracted:
-            results.append({'bbox': ft.bbox, 'data': extracted})
+            try:
+                row_bboxes = [r.bbox for r in ft.rows]
+            except Exception:
+                row_bboxes = []
+            results.append({'bbox': ft.bbox, 'data': extracted, 'row_bboxes': row_bboxes})
     return results
+
+
+# Standalone box headers ("VIRAL / OPEN-SOURCE SPOTLIGHT", "MARKET SIGNAL", …) that
+# pdfplumber sometimes groups into a bordered-box table as a header-only row, with
+# the actual title/body text left as ordinary paragraph text outside the table.
+# When that happens the header text never reaches `lines`, so downstream parsing
+# (which finds these sections by searching for the header string) sees nothing and
+# either drops the section or misattributes a neighboring table cell to it.
+_SPECIAL_HEADER_RE = re.compile(
+    r'^(viral app(\s+of\s+the\s+day)?|viral\s*/\s*open.source spotlight|open.source spotlight|'
+    r'viral spotlight|oss spotlight|market signal|practical takeaways|tomorrow)$', re.I
+)
+
+
+def _text_lines_with_y(page, not_in_table) -> list[tuple[float, str]]:
+    """Group words outside detected tables into visual lines, each tagged with its
+    top y-position, so they can be interleaved with orphan table-header markers."""
+    rows: dict[int, list[tuple[float, str]]] = {}
+    for w in page.extract_words(x_tolerance=3, y_tolerance=3):
+        if not not_in_table(w):
+            continue
+        y_key = int(w['top'] / 4) * 4
+        rows.setdefault(y_key, []).append((w['x0'], w['text']))
+    out = []
+    for y in sorted(rows):
+        words = sorted(rows[y], key=lambda x: x[0])
+        out.append((float(y), ' '.join(ww[1] for ww in words)))
+    return out
 
 
 def _left_col_lines(page, top_skip: float = 0.0) -> list[str]:
@@ -620,13 +652,29 @@ def parse_pdf(pdf_path: Path) -> dict:
                         return False
                 return True
 
+            # Detect orphan box-headers: a table row whose entire cell content
+            # (no attached body text) is just a known section header. Their
+            # actual title/body lives in the plain text that follows, outside
+            # the table, so we reinsert the header at its true y-position.
+            orphan_markers: list[tuple[float, str]] = []
+            for t in tbls:
+                row_bboxes = t.get('row_bboxes') or []
+                for ri, row in enumerate(t['data']):
+                    cell_text = clean(' '.join(str(c) for c in row if c))
+                    if _SPECIAL_HEADER_RE.match(cell_text.strip()) and ri < len(row_bboxes) and row_bboxes[ri]:
+                        orphan_markers.append((row_bboxes[ri][1], cell_text.upper()))
+
             # Full-page text outside tables
-            if table_bboxes:
+            if orphan_markers:
+                word_lines = _text_lines_with_y(page, _not_in_table)
+                merged = sorted(word_lines + orphan_markers, key=lambda x: x[0])
+                lines = [clean(t) for (_, t) in merged if clean(t) and len(clean(t)) > 1]
+            elif table_bboxes:
                 page_text = page.filter(_not_in_table).extract_text(x_tolerance=3, y_tolerance=3) or ""
+                lines = [clean(ln) for ln in page_text.split('\n') if clean(ln) and len(clean(ln)) > 1]
             else:
                 page_text = page.extract_text(x_tolerance=3, y_tolerance=3) or ""
-
-            lines = [clean(ln) for ln in page_text.split('\n') if clean(ln) and len(clean(ln)) > 1]
+                lines = [clean(ln) for ln in page_text.split('\n') if clean(ln) and len(clean(ln)) > 1]
             all_flat_lines.extend(lines)
 
             # Left-column lines for bullet extraction (skip top 15% = header region)

@@ -1,6 +1,60 @@
 # Varun Singla · AI Learning Journal — full text
 
-Complete text of all 109 journal entries by Varun Singla (https://varunsingla.com), newest first. Index: https://varunsingla.com/llms.txt
+Complete text of all 110 journal entries by Varun Singla (https://varunsingla.com), newest first. Index: https://varunsingla.com/llms.txt
+
+---
+
+# Day 110: Agentic AI in Automotive & Autonomous
+
+Date: July 10, 2026 · Author: Varun Singla · URL: https://varunsingla.com/entries/2026-07-10.html · Themes: Models & Frontier
+
+Waymo's playbook is a geofenced, employee-first rollout, city by city: run the driving agent with Alphabet staff as riders first, then open to the public once the local safety record holds up, then repeat in the next metro. That pattern is how a handful of Phoenix pilots became roughly 15 U.S. cities by this week. Notably, Waymo also just ended its long-running Uber partnership in Phoenix, pulling its fleet off the ride-hailing app entirely to run its own app directly -- a sign the category is now big enough that operators want to own the rider relationship, not just supply the driving stack underneath someone else's app. The compute and manufacturing choices are diverging just as sharply. Uber, Lucid, and Nuro are betting on partnership: a shared NVIDIA DRIVE AGX Thor / DRIVE Hyperion compute platform, with Lucid building the car and Nuro supplying the driving agent. Zoox is betting on vertical integration: a dedicated serial-production factory building its own purpose-built vehicle from scratch. Both, though, lean on the same sim-to-real discipline from Day 103 -- Nuro validates its end-to-end AI foundation model through closed-course testing and simulation before any autonomous on-road testing begins, the same real-world validation gate that governs every world-model deployment.
+
+**Viral app of the day: Waymo goes driverless in four more cities -- and the app becomes a mainstream habit**
+On July 8, Waymo pulled the human safety driver and opened fully autonomous rides in San Diego, Las Vegas, Tampa, and Denver, starting with Alphabet employees before expanding to the public in each city -- the same pattern that took it from a handful of Phoenix pilots to roughly 15 U.S. metros. The Waymo app works exactly like Uber or Lyft: open it, request a ride, watch an empty driver's seat pull up. It is spreading the way consumer apps go viral without a marketing budget -- through millions of people's own phone footage of a car with nobody in the front seat, posted and reposted because it still looks like the future. What is actually driving the expansion, though, isn't hype: it's the same real-world validation gate from Day 103 -- every city gets its own employee-only proving period before the public is let in, because a model that is safe on Phoenix asphalt isn't automatically safe on Denver ice or Tampa downpours.
+- 15 — U.S. metros with driverless Waymo service
+- 4 — new cities added July 8: San Diego, Las Vegas, Tampa, Denver
+- 3 — domestic robotaxi operators racing at scale: Waymo, Tesla, Zoox
+
+**By the numbers:**
+- 20,000+ — Lucid robotaxis Uber will deploy via Nuro Driver over 6 yrs
+- 100/wk — Zoox robotaxi production target, new Hayward, CA factory
+- 15 — U.S. metros with driverless Waymo rides (as of July 8)
+- $50.1B — projected 2035 size of the in-cabin AI cockpit market
+
+## 1) The three agents riding in every AI-native vehicle
+
+"Agentic AI in cars" is really three separate agent stacks stitched together, each with a different job, latency budget, and tolerance for error. The driving agent perceives, plans, and controls the vehicle in real time -- it is the safety-critical one, and it is the one trained largely inside the world models and simulators from Day
+
+| Agent type | Job | Example | Trained / built on |
+|---|---|---|---|
+| Driving agent | Perceive, plan, and control the car in real time | Nuro Driver (Lucid/Uber), Waymo Driver | End-to-end foundation model, trained largely on simulated miles |
+| Cabin copilot | Multi-step conversational tasks for occupants | Sony Honda Afeela agent, Cerence xUI | LLM (e.g. Azure OpenAI) plus live vehicle context and APIs |
+
+## 2) How the robotaxi land-grab actually scaled in H1 2026
+
+Waymo's playbook is a geofenced, employee-first rollout, city by city: run the driving agent with Alphabet staff as riders first, then open to the public once the local safety record holds up, then repeat in the next metro. That pattern is how a handful of Phoenix pilots became roughly 15 U.S. cities by this week. Notably, Waymo also just ended its long-running Uber partnership in Phoenix, pulling its fleet off the ride-hailing app entirely to run its own app directly -- a sign the category is now big enough that operators want to own the rider relationship, not just supply the driving stack underneath someone else's app. The compute and manufacturing choices are diverging just as sharply. Uber, Lucid, and Nuro are betting on partnership: a shared NVIDIA DRIVE AGX Thor / DRIVE Hyperion compute platform, with Lucid building the car and Nuro supplying the driving agent. Zoox is betting on vertical integration: a dedicated serial-production factory building its own purpose-built vehicle from scratch. Both, though, lean on the same sim-to-real discipline from Day 103 -- Nuro validates its end-to-end AI foundation model through closed-course testing and simulation before any autonomous on-road testing begins, the same real-world validation gate that governs every world-model deployment.
+
+| Agent type | Job | Example | Trained / built on |
+|---|---|---|---|
+| Fleet / service agent | Dispatch, scheduling, predictive maintenance | Dealership service bots, fleet dispatch | Vehicle telemetry plus guardrailed scheduling automation |
+
+## 3) Which automotive AI agent to build or buy
+
+A decision guide. Reach for a driving-agent partner (Waymo Driver-, Nuro Driver-, or Zoox-class) rather than building Level-4 autonomy in-house -- the safety validation burden alone makes this a buy, not build, decision for almost everyone. Reach for a cabin-copilot platform when the job is richer occupant interaction -- navigation, media, multi-step tasks -- but keep it out of the control loop entirely. Reach for a predictive-maintenance and scheduling agent when the goal is fewer breakdowns and fewer missed service appointments, not fancier chat. And choose vertical integration over partnership only when you need tighter quality control and can absorb the capital cost of owning the factory.
+
+| When to reach for it | Use | Guardrail |
+|---|---|---|
+| Need Level-4 driving capability | Partner with a driving-agent provider rather than build in-house | Validate against your specific city's roads and weather -- a stack proven in Phoenix isn't proven in Denver snow |
+| Need richer occupant interaction | Cabin-copilot platform (Cerence xUI, Afeela-style agent) | Keep the cabin agent's actions out of the safety-critical control loop entirely |
+| Need fewer breakdowns / no-shows | Predictive-maintenance and scheduling agent on vehicle telemetry | A human still confirms any parts or cost decision the agent recommends |
+
+**Market signal:** Waymo ending its multi-year Uber partnership in Phoenix -- choosing to run its own app and own the rider relationship directly -- is the clearest signal yet that robotaxi economics have flipped from "prove the driving stack works" to "who owns the customer." The same divergence shows up in how each company is scaling: Zoox is building a dedicated, 100-vehicle-a-week factory in Hayward, CA rather than retrofitting existing cars, while Uber is going the opposite direction, committing to 20,000+ Lucid vehicles running someone else's driving stack (Nuro) instead of building its own. Tesla, meanwhile, is pushing outward from Austin toward Miami on its own stack. Three different bets on vertical integration versus partnership, running in parallel, in the same category -- the exact build-vs-partner split the frontier-LLM race settled months ago (Day 80), now playing out in physical AI.
+
+**Practical takeaways:**
+- Separate your driving/safety-critical agent from your conversational agent, architecturally — If you're building anything in a vehicle software stack, keep the perception/planning/control loop and the cabin copilot as two genuinely separate systems with different failure budgets. The industry has converged on this split (Nuro Driver vs. Cerence/Afeela-style copilots) because blending them makes both harder to certify and harder to debug when something goes wrong.
+- Gate any new market or deployment on a real-world validation record specific to that market — Whether it's a robotaxi entering a new city or an agent entering a new customer segment, borrow Waymo's employee-first pattern: run a closed pilot under real conditions before opening to the public, and don't assume performance transfers automatically from your first market.
+- When evaluating vendors, ask whether they're vertically integrating or partnering — It changes what you're buying. A Zoox-style vertically integrated stack gives you less flexibility but tighter quality control; a DRIVE Thor-style partnership (Uber/Lucid/Nuro) gives you speed but makes you dependent on someone else's simulation and validation pipeline.
 
 ---
 
