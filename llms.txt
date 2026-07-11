@@ -1,13 +1,14 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 110 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 111 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 110 — "Agentic AI in Automotive & Autonomous" (July 10, 2026).
+Latest entry: Day 111 — "The Super-App Wars: ChatGPT Work -- Vs. Claude Cowork" (July 11, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Journal entries
 
+- [Day 111: The Super-App Wars: ChatGPT Work -- Vs. Claude Cowork](https://varunsingla.com/entries/2026-07-11.html): July 9 became the first day three frontier labs shipped at once -- and the real fight moved from chatbot to always-on work agent On July 9, something…
 - [Day 110: Agentic AI in Automotive & Autonomous](https://varunsingla.com/entries/2026-07-10.html): Waymo's playbook is a geofenced, employee-first rollout, city by city: run the driving agent with Alphabet staff as riders first, then open to the…
 - [Day 109: World Models & Simulation-First Agents](https://varunsingla.com/entries/2026-07-09.html): Learning by rehearsing inside a model of the world, before touching the real one Day 100-102 closed out the self-improvement arc: memory (MemRL),…
 - [Day 108: Self-Improving Agents 2.0 -- Getting Better Without Retraining the Base Model](https://varunsingla.com/entries/2026-07-08.html): Day 100 promised it and Day 101 set it up: today is the technique for how an agent improves itself without ever touching model weights.
