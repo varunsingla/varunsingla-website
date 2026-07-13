@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formal Verification Meets LLMs -- Proving Code Correct, Not Just Tested — Day 113 | Varun Singla · AI Learning Journal</title>
+<meta name="description" content="Leanstral 1.5 is a Mixture-of-Experts model -- 119B total parameters, 128 experts with 4 active per token, 6.5B activated per inference -- trained in three stages: mid-training on proof…">
+<meta name="author" content="Varun Singla">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://varunsingla.com/entries/2026-07-13.html">
+<link rel="prev" href="https://varunsingla.com/entries/2026-07-12.html">
+<link rel="alternate" type="application/rss+xml" title="Varun Singla · AI Learning Journal" href="https://varunsingla.com/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Varun Singla · AI Learning Journal">
+<meta property="og:title" content="Formal Verification Meets LLMs -- Proving Code Correct, Not Just Tested">
+<meta property="og:description" content="Leanstral 1.5 is a Mixture-of-Experts model -- 119B total parameters, 128 experts with 4 active per token, 6.5B activated per inference -- trained in three stages: mid-training on proof…">
+<meta property="og:url" content="https://varunsingla.com/entries/2026-07-13.html">
+<meta property="og:image" content="https://varunsingla.com/og-image.png">
+<meta property="article:published_time" content="2026-07-13T21:00:00+08:00">
+<meta property="article:author" content="https://varunsingla.com/about/">
+<meta property="article:tag" content="Foundations &amp; Protocols">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Formal Verification Meets LLMs -- Proving Code Correct, Not Just Tested">
+<meta name="twitter:description" content="Leanstral 1.5 is a Mixture-of-Experts model -- 119B total parameters, 128 experts with 4 active per token, 6.5B activated per inference -- trained in three stages: mid-training on proof…">
+<meta name="twitter:image" content="https://varunsingla.com/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "@id": "https://varunsingla.com/entries/2026-07-13.html#post", "headline": "Formal Verification Meets LLMs -- Proving Code Correct, Not Just Tested", "description": "Leanstral 1.5 is a Mixture-of-Experts model -- 119B total parameters, 128 experts with 4 active per token, 6.5B activated per inference -- trained in three stages: mid-training on proof…", "datePublished": "2026-07-13T21:00:00+08:00", "dateModified": "2026-07-13T21:00:00+08:00", "url": "https://varunsingla.com/entries/2026-07-13.html", "mainEntityOfPage": "https://varunsingla.com/entries/2026-07-13.html", "wordCount": 725, "inLanguage": "en", "articleSection": ["Foundations & Protocols"], "keywords": ["Foundations & Protocols", "agentic AI", "AI learning journal", "Varun Singla"], "isPartOf": {"@type": "Blog", "@id": "https://varunsingla.com/#blog", "name": "Varun Singla · AI Learning Journal"}, "author": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla", "url": "https://varunsingla.com/about/"}, "publisher": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Journal", "item": "https://varunsingla.com/"}, {"@type": "ListItem", "position": 2, "name": "Archive", "item": "https://varunsingla.com/entries/"}, {"@type": "ListItem", "position": 3, "name": "Formal Verification Meets LLMs -- Proving Code Correct, Not Just Tested", "item": "https://varunsingla.com/entries/2026-07-13.html"}]}</script>
+<style>*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#F7F4ED;}
+body{font-family:'Hanken Grotesk',sans-serif;color:#1B1A17;-webkit-font-smoothing:antialiased;}
+::selection{background:#CC3F2A;color:#fff;}
+a{color:inherit;}
+.mast{position:sticky;top:0;z-index:50;background:rgba(247,244,237,.9);backdrop-filter:blur(12px);border-bottom:1px solid #E4DECF;}
+.mast-in{max-width:1120px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;}
+.brand-mark{width:30px;height:30px;border-radius:7px;background:#1B1A17;color:#F7F4ED;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;}
+.brand-name{font-family:'JetBrains Mono',monospace;font-size:13.5px;color:#1B1A17;}
+.nav-link{font-size:14.5px;font-weight:500;color:#6B6760;text-decoration:none;padding:7px 12px;border-radius:8px;}
+.nav-link:hover{color:#1B1A17;background:#EEE9DC;}
+.meta-row{display:flex;align-items:center;gap:13px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:13px;color:#8A857B;}
+.meta-row .day{color:#CC3F2A;font-weight:500;}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.04em;color:#6B6760;border:1px solid #E4DECF;border-radius:999px;padding:5px 12px;background:#FBF9F3;text-decoration:none;}
+article h1{font-family:'Newsreader',serif;font-weight:400;font-size:clamp(32px,5.5vw,52px);line-height:1.07;letter-spacing:-.018em;margin:0 0 22px;}
+article h2{font-family:'Newsreader',serif;font-weight:500;font-size:clamp(23px,3.4vw,30px);line-height:1.18;margin:0 0 18px;}
+article p{font-family:'Newsreader',serif;font-size:clamp(18px,2.3vw,20px);line-height:1.65;color:#2C2A24;margin:0 0 20px;}
+article ul{margin:4px 0 20px;padding-left:20px;}
+article li{font-family:'Newsreader',serif;font-size:clamp(17px,2.2vw,19px);line-height:1.6;color:#2C2A24;margin:0 0 10px;}
+.intro{font-size:clamp(20px,3vw,24px)!important;line-height:1.5!important;color:#3A372F!important;font-style:italic;margin:0 0 40px!important;}
+.callout{border:1px solid #E4DECF;border-left:3px solid #CC3F2A;border-radius:12px;background:#FBF9F3;padding:22px 24px;margin:0 0 40px;}
+.callout p{font-size:clamp(17px,2.2vw,19px);margin:0;}
+.kicker{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#CC3F2A;margin-bottom:14px;}
+.highlight{font-family:'Newsreader',serif;font-style:italic;font-size:clamp(18px,2.4vw,20px);line-height:1.55;color:#3A372F;border-left:3px solid #CC3F2A;padding:6px 0 6px 16px;margin:8px 0 20px;}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:#E4DECF;border:1px solid #E4DECF;border-radius:12px;overflow:hidden;margin:0 0 40px;}
+.stat-cell{background:#FBF9F3;padding:18px 20px;}
+.stat-big{font-family:'Newsreader',serif;font-size:clamp(24px,4vw,32px);line-height:1.05;color:#1B1A17;}
+.stat-small{font-size:13px;line-height:1.45;color:#56524B;margin-top:8px;}
+.table-wrap{overflow-x:auto;border:1px solid #E4DECF;border-radius:12px;background:#FBF9F3;margin:0 0 20px;}
+table{width:100%;border-collapse:collapse;}
+th{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#8A857B;text-align:left;padding:9px 12px;border-bottom:1px solid #CBB8A0;font-weight:500;}
+td{font-size:14.5px;color:#2C2A24;padding:9px 12px;border-bottom:1px solid #EEE9DC;vertical-align:top;line-height:1.45;font-family:'Hanken Grotesk',sans-serif;}
+tr:last-child td{border-bottom:none;}
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:680px;margin:0 auto;padding:20px 28px 90px;}
+.pn a{border:1px solid #E4DECF;border-radius:12px;padding:18px 20px;background:#FBF9F3;text-decoration:none;display:block;}
+.pn a:hover{border-color:#1B1A17;}
+.pn .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#A8A294;margin-bottom:9px;}
+.pn .ttl{font-family:'Newsreader',serif;font-size:18px;line-height:1.2;color:#1B1A17;}
+footer{border-top:1px solid #E4DECF;background:#FBF9F3;}
+.foot-in{max-width:1120px;margin:0 auto;padding:34px 28px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#6B6760;}</style>
+</head>
+<body>
+<header class="mast"><div class="mast-in">
+  <a class="brand" href="../"><span class="brand-mark">VS</span><span class="brand-name">varunsingla.com</span></a>
+  <nav style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+    <a class="nav-link" href="../">Journal</a>
+    <a class="nav-link" href="../entries/">Archive</a>
+    <a class="nav-link" href="../about/">About</a>
+    <a class="nav-link" href="../ai-tokenomics/">Tokenomics</a>
+    <a class="nav-link" href="../tools/model-team-evaluator.html">Model Evaluator</a>
+  </nav>
+</div></header>
+<article style="max-width:680px;margin:0 auto;padding:48px 28px 30px;">
+  <p style="margin:0 0 38px;"><a href="./" style="font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.04em;color:#6B6760;text-decoration:none;">← All entries</a></p>
+  <div class="meta-row" style="margin-bottom:22px;">
+    <span class="day">Day 113</span><span>·</span>
+    <time datetime="2026-07-13">July 13, 2026</time><span>·</span>
+    <span>3 min read</span>
+  </div>
+  <h1>Formal Verification Meets LLMs -- Proving Code Correct, Not Just Tested</h1>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:34px;padding-bottom:34px;border-bottom:1px solid #E4DECF;"><span class="tag">Foundations &amp; Protocols</span> </div>
+  <p class="intro">Leanstral 1.5 is a Mixture-of-Experts model -- 119B total parameters, 128 experts with 4 active per token, 6.5B activated per inference -- trained in three stages: mid-training on proof corpora, supervised fine-tuning, then reinforcement learning through a method Mistral calls CISPO across two environments, a multiturn theorem-proving loop with live compiler feedback and a code-agent environment that simulates a real developer&#x27;s filesystem and language-server access. The headline number isn&#x27;t the benchmark score -- it&#x27;s the price. Producing a competition-grade proof used to be the kind of task you&#x27;d hire a specialist for; Leanstral 1.5 gets there for roughly $4 a problem.</p>
+<div class="callout"><div class="kicker">Viral app of the day</div><p style="font-family:'Newsreader',serif;font-size:22px;font-weight:500;margin:0 0 10px;">Glorb: the anonymous AI rapper nobody can identify</p><p>Glorb is a pseudonymous AI-generated rap act: an exaggerated 3D cartoon character rapping in a voice modeled on SpongeBob SquarePants, over absurdist, meme-dense lyrics engineered squarely for Gen Z&#x27;s sense of humor. A single track went from nothing to more than 60 million TikTok views in two weeks and triggered over 500,000 user remixes; the account has since built 811,000 TikTok followers and nearly a million monthly Spotify listeners, with its most popular song topping 11 million streams. Nobody official has confirmed who is actually behind Glorb -- fans have pieced together clues pointing to a musician from Canberra, Australia, but the creator has never come forward. That deliberate anonymity is doing real work: it turns &quot;who made this&quot; into its own participatory mystery, on top of a format -- a beloved children&#x27;s character doing unhinged rap bars, cheap to generate and endlessly remixable -- that was already built to spread. It&#x27;s the same mechanic behind every low-effort, high-output AI trend: strip out the cost and skill of production, keep the shareability, and let the audience do the rest.</p><ul style="margin-bottom:0;"><li>60M — TikTok views on the breakout track in two weeks</li><li>500K+ — User-generated remixes triggered by the track</li><li>811K — TikTok followers, ~1M monthly Spotify listeners</li></ul></div>
+<div style="margin:0 0 40px;"><div class="kicker">By the numbers</div><div class="stat-grid"><div class="stat-cell"><div class="stat-big">100%</div><div class="stat-small">Score on the miniF2F formal- math benchmark -- saturated</div></div><div class="stat-cell"><div class="stat-big">587/672</div><div class="stat-small">PutnamBench competition-level problems solved</div></div><div class="stat-cell"><div class="stat-big">$4</div><div class="stat-small">Cost per PutnamBench proof, vs $300+ for Seed-Prover 1.5</div></div><div class="stat-cell"><div class="stat-big">5</div><div class="stat-small">Previously unknown bugs found across 57 open-source repos</div></div></div></div>
+<section><h2>1) What &quot;formal verification&quot; actually means -- and why tests can&#x27;t do it</h2><p>A unit test checks that your code behaves correctly on the specific inputs you thought to try. Run 10,000 tests and you&#x27;ve confirmed 10,000 cases -- out of a space that&#x27;s usually infinite. Formal verification is a different kind of claim entirely: instead of trying inputs, you write a mathematical property (&quot;this function never divides by zero,&quot; &quot;this counter never overflows its integer type&quot;) and a tool like Lean 4 either constructs an airtight proof that the property holds for every possible input, or it fails and tells you exactly where the logic breaks. It&#x27;s the difference between &quot;we tried a lot of cases and nothing broke&quot; and &quot;it is mathematically impossible for this specific thing to break.&quot; The catch, historically, is that writing those proofs took PhD-level expertise and days of human effort per property -- which is exactly the bottleneck</p></section>
+<section><h2>2) Leanstral 1.5: the numbers that make this practical, not just academic</h2><p>Leanstral 1.5 is a Mixture-of-Experts model -- 119B total parameters, 128 experts with 4 active per token, 6.5B activated per inference -- trained in three stages: mid-training on proof corpora, supervised fine-tuning, then reinforcement learning through a method Mistral calls CISPO across two environments, a multiturn theorem-proving loop with live compiler feedback and a code-agent environment that simulates a real developer&#x27;s filesystem and language-server access. The headline number isn&#x27;t the benchmark score -- it&#x27;s the price. Producing a competition-grade proof used to be the kind of task you&#x27;d hire a specialist for; Leanstral 1.5 gets there for roughly $4 a problem.</p></section>
+<section><h2>3) The five bugs it actually found -- and the limits of what it can prove</h2><p>Mistral pointed Leanstral 1.5 at 57 ordinary open-source repositories -- not math libraries, everyday infrastructure code. The model flagged 47 violated properties; 11 of those turned out to be genuine bugs, and five had never been reported on GitHub at all. The most concrete find was a sign-function overflow in the Rust library varinteger: an edge case that crashes the program outright in debug builds and, worse, silently corrupts data in release builds -- exactly the kind of bug that testing tends to miss, because nobody wrote a test for the specific integer that triggers it. That&#x27;s the real limit worth naming, though: Leanstral proves only the properties someone bothered to specify. It didn&#x27;t audit &quot;is this library correct&quot; in some general sense -- it checked a defined list of invariants (no overflow, no out-of-bounds access, and similar) against the code, and found real violations of those specific claims. A library can pass every property Leanstral checks and still have a business-logic bug nobody thought to formalize.</p><p>Testing tells you the code didn&#x27;t fail on the inputs you tried; a Lean 4 proof tells you it can&#x27;t fail on any input matching the property you wrote. Leanstral 1.5&#x27;s real contribution is making that second thing affordable -- $4 instead of hundreds of dollars per proof -- but it only covers what you specified. The riskiest bug is still</p><div class="table-wrap"><table><thead><tr><th>Model</th><th>Cost per PutnamBench proof</th><th>License</th></tr></thead><tbody><tr><td>Leanstral 1.5</td><td>~$4</td><td>Apache 2.0 (open weights)</td></tr><tr><td>Aleph Prover</td><td>~$54-$68</td><td>Proprietary</td></tr><tr><td>Seed-Prover 1.5</td><td>~$300+</td><td>Proprietary</td></tr></tbody></table></div></section>
+<div class="callout"><div class="kicker">Market signal</div><p>Day 106 called trust a two-axis problem for language models -- do you trust its facts, and do you trust its neutrality. Leanstral 1.5 opens a third axis, specific to code: do you trust the logic because someone proved it, or only because it happened to pass the tests you thought to write. At $300-plus a proof, formal verification stayed an academic tool for aerospace and cryptography teams who could justify the cost. At roughly $4 a proof, it crosses into territory a normal engineering team can point at everyday infrastructure -- and Leanstral already found bugs nobody had reported in libraries people assumed were fine, precisely because they&#x27;d never crashed in testing. The economics of proof just crossed the line where &quot;we tested it&quot; stops being sufficient for code that actually matters.</p></div>
+<div class="callout"><div class="kicker">Practical takeaways</div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">Reach for formal verification only where the property is narrow and nameable</div><p style="font-size:17px;margin:3px 0 0;">Memory safety, integer overflow, and protocol invariants are provable claims; &quot;the checkout flow behaves correctly&quot; is not something you can hand to Lean 4. Match the tool to specifications precise enough to formalize, not to fuzzy product requirements.</p></div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">A cheap proof is still only as good as the property you wrote</div><p style="font-size:17px;margin:3px 0 0;">Leanstral&#x27;s ~$4 PutnamBench cost is a floor for math problems with existing formal statements; writing the specification for your own code is the expensive part that benchmark numbers don&#x27;t show -- budget time for it, not just compute.</p></div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">Treat &quot;found 5 bugs in 57 repos&quot; as a base rate, not a one-off</div><p style="font-size:17px;margin:3px 0 0;">Widely-used, well-tested open-source libraries still hid an unreported overflow bug. If formal verification is this cheap now, assume your own dependencies have similar gaps nobody has looked for yet -- and that finding them is now within reach.</p></div></div>
+  <div style="display:flex;align-items:center;gap:13px;margin:54px 0 10px;padding-top:30px;border-top:1px solid #E4DECF;">
+    <div class="brand-mark" style="width:40px;height:40px;font-size:14px;border-radius:9px;">VS</div>
+    <div><div style="font-size:14.5px;font-weight:600;">Varun Singla</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8A857B;">Singapore · <a href="../about/" style="color:#8A857B;">About</a> · Learning in public</div></div>
+  </div>
+</article>
+<nav class="pn" aria-label="Adjacent entries"><span></span><a href="2026-07-12.html" rel="prev" style="text-align:right;"><div class="lbl">Older · Day 112 →</div><div class="ttl">Grok 4.5 Under the Hood -- Token Efficiency Vs. Trust</div></a></nav>
+<footer><div class="foot-in">
+  <span>Varun Singla · Singapore · Learning in public</span>
+  <span><a href="https://varunsingla.com/feed.xml" style="text-decoration:none;color:#6B6760;">RSS</a> · <a href="https://varunsingla.com/llms.txt" style="text-decoration:none;color:#6B6760;">llms.txt</a> · Updated daily</span>
+</div></footer>
+</body>
+</html>

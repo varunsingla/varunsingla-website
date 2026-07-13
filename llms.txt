@@ -1,13 +1,14 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 112 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 113 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 112 — "Grok 4.5 Under the Hood -- Token Efficiency Vs. Trust" (July 12, 2026).
+Latest entry: Day 113 — "Formal Verification Meets LLMs -- Proving Code Correct, Not Just Tested" (July 13, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Journal entries
 
+- [Day 113: Formal Verification Meets LLMs -- Proving Code Correct, Not Just Tested](https://varunsingla.com/entries/2026-07-13.html): Leanstral 1.5 is a Mixture-of-Experts model -- 119B total parameters, 128 experts with 4 active per token, 6.5B activated per inference -- trained in…
 - [Day 112: Grok 4.5 Under the Hood -- Token Efficiency Vs. Trust](https://varunsingla.com/entries/2026-07-12.html): The launch that split into two separate stories -- a genuine cost-math breakthrough for agentic work, and an unresolved fight over who controls what…
 - [Day 111: The Super-App Wars: ChatGPT Work -- Vs. Claude Cowork](https://varunsingla.com/entries/2026-07-11.html): July 9 became the first day three frontier labs shipped at once -- and the real fight moved from chatbot to always-on work agent On July 9, something…
 - [Day 110: Agentic AI in Automotive & Autonomous](https://varunsingla.com/entries/2026-07-10.html): Waymo's playbook is a geofenced, employee-first rollout, city by city: run the driving agent with Alphabet staff as riders first, then open to the…
