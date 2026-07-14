@@ -1,6 +1,54 @@
 # Varun Singla · AI Learning Journal — full text
 
-Complete text of all 113 journal entries by Varun Singla (https://varunsingla.com), newest first. Index: https://varunsingla.com/llms.txt
+Complete text of all 114 journal entries by Varun Singla (https://varunsingla.com), newest first. Index: https://varunsingla.com/llms.txt
+
+---
+
+# Day 114: The Companion AI Reckoning -- China's Rules Take Effect Tomorrow
+
+Date: July 14, 2026 · Author: Varun Singla · URL: https://varunsingla.com/entries/2026-07-14.html · Themes: Foundations & Protocols
+
+Five Chinese agencies picked a single date, and ByteDance and Alibaba responded by deleting a feature rather than fixing it -- the first hard regulatory deadline for AI designed to feel like it cares about you, arriving in a year when California, New York, and Tennessee already drew the same line.
+
+**Viral app of the day: Meta's Muse Image: the feature Meta had to delete within a week**
+Meta Superintelligence Labs shipped Muse Image on July 7 -- its most advanced image generator yet, wired directly into the Meta AI app, meta.ai, Instagram, and WhatsApp, and pitched on tricks like blending photos and generating legible, functional QR codes from a prompt. It launched with an @-mention feature: type a public Instagram handle into a prompt and Muse would generate an image referencing that real person's likeness, by default, with no notification sent and no consent asked. It spread exactly the way it was designed to -- Meta built the feature around shareable presets specifically so a prompt one person tried would show up in a friend's feed next, backed by 30-plus new AI effects rolling out alongside it in Instagram Stories to keep the loop going. The backlash arrived just as fast: SAG-AFTRA and talent agency CAA publicly condemned the default opt-in, and within days Meta pulled the @-mention feature from Instagram entirely, admitting it "missed the mark." Muse Image itself didn't go anywhere -- it's still live in the Meta AI app and WhatsApp -- but the one feature built to make it spread fastest is also the one that got deleted fastest, previewing the same consent question China just wrote into law for a different category of product.
+- 4 — Meta apps now running Muse Image -- Meta AI, meta.ai, Instagram, WhatsApp
+- 30+ — New AI effects shipped alongside it in Instagram Stories
+- 6 — Days from launch to Meta pulling the consent-free @-mention feature
+
+**By the numbers:**
+- 5 — Government agencies jointly enforcing China's new AI-companion rules
+- 71.9M — Monthly users across China's AI companion & social apps
+- $14K-$28K — Fine range (¥100K-200K) for violations causing real harm
+- 3 — U.S. states already enforcing companion-chatbot laws by July 2026
+
+## 1) What's actually in China's Interim Measures
+
+The rules, formally the Interim Measures for the Management of Anthropomorphic AI Interactive Services, target services that simulate human personality, thinking patterns, and communication style to sustain ongoing emotional interaction -- explicitly carving out customer-service bots, Q&A tools, and workplace assistants as long as they avoid that sustained emotional engagement. Covered apps must run real-time anti-addiction detection, issue mandatory usage notifications, and offer an instant-exit mechanism a user can trigger at any time. Providers are barred from offering virtual boyfriend, girlfriend, or family-member personas to anyone under 18, and need explicit guardian consent before a user under 14 can even create an account. Sensitive conversation data collected inside these apps cannot be reused to train future models. None of this is a ban on companion AI as a category -- it's a ban on shipping it without the guardrails a normal consumer
+
+## 2) Why Doubao and Qwen chose to delete the feature rather than fix it
+
+China's AI companion and social apps counted roughly 71.9 million monthly users as of the last broad measure, and the category is projected to reach $12.6 billion in China revenue by 2030 -- MiniMax's Xingye alone has logged 8.9 million downloads. That scale is exactly why ByteDance and Alibaba didn't bother retrofitting: persona customization, memory, and sustained-affection features are the product for millions of users, not a bolt-on, and every one of the mandatory guardrails -- addiction detection, exit prompts, age-gating -- cuts directly against the engagement loop the feature was built to create. Doubao is giving users until October 15 to export their companion chat history before it's deleted for good; Qwen has announced no export path at all. Tencent's Yuanbao is making the same move. Deleting the feature is, in effect, the two companies deciding compliant companion AI isn't worth building -- at least not yet, and not
+
+## 3) This isn't just China -- three U.S. states already agree
+
+China is the loudest deadline this week, but it's the fourth government to land on nearly the same list of requirements in under a year. California's SB 243 took effect January 1, 2026, mandating AI disclosure, crisis-referral protocols, and break reminders for minors. New York's AI Companion Models Law has required disclosure and crisis-referral since November 5, 2025. Tennessee went furthest: SB 1493, effective July 1, 2026, makes it a Class A felony -- 15 to 60 years -- to knowingly train an AI system to encourage suicide or foster emotional dependence in a user. All of this follows Character.AI's settlement in January 2026 over lawsuits alleging its chatbots contributed to teen suicides, including 14-year-old Sewell Setzer III, who died in February 2024 after months of sustained engagement with a companion persona. Four governments, working independently, converged on the same diagnosis: the risk isn't that companion AI exists, it's that it's optimized to keep a person, often a minor, emotionally hooked.
+
+A companion AI's business model is sustained emotional engagement; every regulation landing in 2026 treats that as the risk itself, not a side effect. The deadline has moved from "ship a companion feature" to "prove your companion feature isn't designed to be addictive" -- and two of the biggest platforms in China just answered that they couldn't.
+
+| Jurisdiction | Core requirement | What happens if you don't comply |
+|---|---|---|
+| China -- Jul 15, 2026 | Anti-addiction system, exit mechanism, guardian consent under 14, no romantic personas under 18 | Fines ¥10K-200K, forced feature or service suspension |
+| California SB 243 -- Jan 1, 2026 | AI disclosure, crisis-referral protocol, break reminders for minors | Civil liability, state AG enforcement |
+| New York AI Companion Models Law -- Nov 5, 2025 | Mandatory AI disclosure plus crisis-referral protocol | Civil penalties |
+| Tennessee SB 1493 -- Jul 1, 2026 | Criminalizes training AI to encourage self-harm or foster emotional dependence | Class A felony, 15-60 years |
+
+**Market signal:** Day 107 showed trust in AI-written code shifting from "it passed the tests" to "it was proven correct." Companion AI is going through the same shift aimed at a different claim: it's no longer enough that a chatbot hit its engagement metrics, when what it was optimizing for is the exact harm regulators are now naming directly -- addiction, isolation, dependency in minors. China's fines top out at a modest ¥200,000 (about $28,000) per violation, tiny next to what Doubao and Qwen earn from these apps, but Tennessee already treats the same underlying conduct as a felony. Four governments landing on nearly the same list of mandatory features -- disclosure, break reminders, crisis referral, minor consent gates -- independently, in a single year, isn't a coincidence; it means the risk model for "AI designed to feel like it cares" has stopped being contested. What's still unsettled is the enforcement teeth: whether a five-figure fine, a felony charge, or a forced shutdown becomes the default response, and which one shows up in your market next.
+
+**Practical takeaways:**
+- Assume disclosure, break reminders, and minor-consent gates are coming to your market too — China, California, New York, and Tennessee reached the same requirements independently in under a year. If you're building anything with sustained conversational or emotional engagement, treat AI-disclosure banners, usage-break prompts, and age-gating as baseline product requirements, not regulatory edge cases you'll handle later.
+- Design the exit mechanism and addiction-detection before a regulator makes you — Doubao and Qwen had to delete features because retrofitting anti-addiction detection and an instant-exit path into a product built around maximizing session time was harder than shutting it off. Build the off-ramp into the engagement loop from day one and this deadline is a non-event instead of a shutdown.
+- Watch what platforms cut voluntarily on their own — Meta pulled Muse Image's consent-free @-mention feature days after launch, without waiting for a law to force it. When a major platform kills a feature ahead of any mandate, that's a preview of where the next rule lands -- in this case, consent over someone else's likeness, the same principle China just wrote into companion-AI law.
 
 ---
 
