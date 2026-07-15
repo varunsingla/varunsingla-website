@@ -6,6 +6,89 @@
   },
   "learnings": [
     {
+      "date": "2026-07-15",
+      "display_date": "July 15, 2026",
+      "issue": 109,
+      "title": "The Good, Better, Best Playbook -- OpenAI Ships Three Models at Once With GPT-5.6 -- and Why Every",
+      "focus_intro": "OpenAI didn't ship \"GPT-5.6\" as a single model -- it shipped a family. Sol is the flagship: built for frontier reasoning and long-horizon agentic work, the tier you'd point at a hard multi-step coding task, a scientific-reasoning problem, or a security research job where getting it right matters more than getting it fast. Terra is the workhorse: OpenAI pitches it as matching the previous flagship's (GPT-5.5) performance at roughly half the cost, aimed at the high-volume business tasks most companies actually run all day -- customer support, internal tools, document analysis. Luna is the cheapest and fastest: tuned for summarization, drafting, classification, and routine automation, where latency and price matter more than reasoning depth. Think of it as good/better/best, except the \"best\" option isn't the default anymore -- Terra and Luna exist precisely so most calls never touch Sol at all.",
+      "viral_app": {
+        "name": "Maoxiang: the app about to absorb millions of orphaned Doubao companions",
+        "description": "Today is the exact deadline Day 108 previewed: China's anti-addiction rules for anthropomorphic AI took effect this morning, and Doubao -- a 350-million-user app -- pulled its companion-agent feature on schedule. ByteDance isn't abandoning the category; it's redirecting users to Maoxiang (猫箱), a separate standalone app it already runs, built around the compliance architecture the new rules require -- anti- addiction detection, an instant-exit mechanism, usage notifications -- baked in from the start rather than",
+        "stats": []
+      },
+      "stats": [
+        {
+          "stat": "3",
+          "label": "Models shipped in a single GPT-5.6 release -- Sol, Terra, Luna"
+        },
+        {
+          "stat": "$5 → $1",
+          "label": "Input price spread per million tokens, Sol (flagship) down to Luna (budget)"
+        },
+        {
+          "stat": "2x",
+          "label": "Terra's claimed cost efficiency vs. GPT-5.5 at comparable everyday-task performance"
+        },
+        {
+          "stat": "$2 / $6",
+          "label": "Grok 4.5's flat per-million- token price -- one tier, undercutting rivals by 60%+"
+        }
+      ],
+      "sections": [
+        {
+          "title": "1) Three tiers, one release: what Sol, Terra, and Luna actually do",
+          "paragraphs": [
+            "OpenAI didn't ship \"GPT-5.6\" as a single model -- it shipped a family. Sol is the flagship: built for frontier reasoning and long-horizon agentic work, the tier you'd point at a hard multi-step coding task, a scientific-reasoning problem, or a security research job where getting it right matters more than getting it fast. Terra is the workhorse: OpenAI pitches it as matching the previous flagship's (GPT-5.5) performance at roughly half the cost, aimed at the high-volume business tasks most companies actually run all day -- customer support, internal tools, document analysis. Luna is the cheapest and fastest: tuned for summarization, drafting, classification, and routine automation, where latency and price matter more than reasoning depth. Think of it as good/better/best, except the \"best\" option isn't the default anymore -- Terra and Luna exist precisely so most calls never touch Sol at all."
+          ]
+        },
+        {
+          "title": "2) The other new thing: agents that write their own coordination code",
+          "paragraphs": [
+            "Buried inside the release is a feature that matters more than the tiering: Programmatic Tool Calling in the Responses API. Normally an agent calling tools works one step at a time -- call a tool, wait, read the result, decide the next call, repeat. Programmatic Tool Calling lets the model instead write a small in- memory program that coordinates several tool calls and processes their intermediate results itself, without round-tripping every step back through the model. In plain terms: instead of a chef shouting one instruction to the kitchen at a time and waiting for each dish before ordering the next, the chef hands over a full recipe card the kitchen can run start to finish. OpenAI is also pitching a multi-agent pattern where Sol can spin up sub-agents for parallel, focused work -- the orchestrator/specialist split this series has covered before as agent orchestration frameworks matured, now built into the core API rather than"
+          ]
+        },
+        {
+          "title": "3) Why every lab is doing this now",
+          "paragraphs": [
+            "GPT-5.6's three-tier shape isn't new -- it's OpenAI catching up to a pattern Anthropic has run for over a year with Opus, Sonnet, and Haiku, and that Google runs with its Gemini tiers. What's new is how tightly labs are now pricing each rung to force a routing decision: call the expensive model only when the cheap one demonstrably fails. xAI took the opposite bet on July 8, a day before GPT-5.6 landed -- Grok 4.5 ships as one model, priced at $2/$6 per million tokens, positioned as \"Opus-class but faster and cheaper\" rather than split into rungs at all. Whether tiering or flat pricing wins depends entirely on whether most of your traffic is actually simple (tiering wins, most calls hit the cheap rung) or most of it needs frontier reasoning anyway (flat pricing wins, you're paying flagship rates either way).",
+            "A frontier lab no longer sells you one model -- it sells you a menu, and the menu is designed to make you default to the cheap end. The skill that matters now isn't picking the smartest model available; it's building the routing logic that calls the cheapest tier that clears the bar for each task, and escalates only",
+            "Anthropic -- Opus 4.8 -- $5 / $25 Sonnet 5 -- $2 / $10 (intro, through Aug Haiku 4.5 -- $1 / $5"
+          ],
+          "table": {
+            "headers": [
+              "Lab",
+              "Flagship (in / out per 1M)",
+              "Mid-tier (in / out per 1M)",
+              "Budget (in / out per 1M)"
+            ],
+            "rows": [
+              [
+                "OpenAI -- GPT- 5.6",
+                "Sol -- $5 / $30",
+                "Terra -- $2.50 / $15",
+                "Luna -- $1 / $6"
+              ]
+            ]
+          }
+        }
+      ],
+      "market_signal": "Day 108 tracked regulators converging on companion AI's business model as the risk itself. Today's signal is about a different business model -- inference pricing. Three frontier releases landed inside ten days (Sonnet 5, Grok 4.5, GPT-5.6), and every one of them is a pricing move as much as a capability one: Anthropic held Sonnet 5 at intro pricing through August, xAI undercut everyone by shipping one model instead of three, and OpenAI answered by widening its own tier spread to $1-$30 per million tokens. When three labs reprice within the same fortnight, that's not routine -- it's a live price war over exactly the workloads Terra, Sonnet 5, and Grok 4.5 are all fighting for: the high-volume, not-that-hard business tasks that make up most real usage. The flagship tiers barely moved; the mid-and-budget tiers are where the war is actually happening.",
+      "practical_takeaway": [
+        {
+          "title": "Default to the middle tier, and route up only on failure",
+          "body": "Terra, Sonnet 5, and Grok 4.5 all exist because most of what you actually call an LLM for -- support replies, document summaries, internal tools -- doesn't need flagship reasoning. Build your default call at the mid tier and escalate to Sol or Opus only when the cheap path demonstrably fails, rather than reaching for the smartest model out of habit."
+        },
+        {
+          "title": "If your pipeline chains more than two or three tool calls, look at programmatic tool calling",
+          "body": "Round-tripping every tool call back through the model adds latency and tokens you're paying for on every hop. If you're hand-wiring a loop of \"call tool, read result, decide next call,\" check whether your provider's API now lets the model write that coordination logic once instead -- it's the same win hand- built multi-agent orchestration frameworks were already solving for."
+        },
+        {
+          "title": "Don't lock into one lab's tier structure -- the pricing is still moving",
+          "body": "Three repricings in ten days means whatever tier math you did last month is already stale. Keep your routing logic provider-agnostic enough that swapping which lab handles your \"cheap tier\" traffic is a config change, not a rebuild, because the cheapest adequate model is going to keep changing this year."
+        }
+      ]
+    },
+    {
       "date": "2026-07-14",
       "display_date": "July 14, 2026",
       "issue": 108,

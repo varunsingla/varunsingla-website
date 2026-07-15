@@ -1,13 +1,14 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 114 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 115 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 114 — "The Companion AI Reckoning -- China's Rules Take Effect Tomorrow" (July 14, 2026).
+Latest entry: Day 115 — "The Good, Better, Best Playbook -- OpenAI Ships Three Models at Once With GPT-5.6 -- and Why Every" (July 15, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Journal entries
 
+- [Day 115: The Good, Better, Best Playbook -- OpenAI Ships Three Models at Once With GPT-5.6 -- and Why Every](https://varunsingla.com/entries/2026-07-15.html): OpenAI didn't ship "GPT-5.6" as a single model -- it shipped a family. Sol is the flagship: built for frontier reasoning and long-horizon agentic…
 - [Day 114: The Companion AI Reckoning -- China's Rules Take Effect Tomorrow](https://varunsingla.com/entries/2026-07-14.html): Five Chinese agencies picked a single date, and ByteDance and Alibaba responded by deleting a feature rather than fixing it -- the first hard…
 - [Day 113: Formal Verification Meets LLMs -- Proving Code Correct, Not Just Tested](https://varunsingla.com/entries/2026-07-13.html): Leanstral 1.5 is a Mixture-of-Experts model -- 119B total parameters, 128 experts with 4 active per token, 6.5B activated per inference -- trained in…
 - [Day 112: Grok 4.5 Under the Hood -- Token Efficiency Vs. Trust](https://varunsingla.com/entries/2026-07-12.html): The launch that split into two separate stories -- a genuine cost-math breakthrough for agentic work, and an unresolved fight over who controls what…
