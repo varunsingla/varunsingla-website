@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Tokenomics — Understand & Optimise Token Spend (June 2026 Update)</title>
-  <meta name="description" content="A practical guide to AI token cost models, the latest June 2026 provider pricing (GPT-5.5, Claude Fable 5 &amp; Opus 4.8, Gemini 3.1 Pro, DeepSeek V4), and the 10 levers + agentic patterns to cut token spend by 70–85% without sacrificing quality." />
+  <title>AI Tokenomics — Understand & Optimise Token Spend (July 2026 Update)</title>
+  <meta name="description" content="A practical guide to AI token cost models, the latest July 2026 provider pricing (GPT-5.6 Sol/Terra/Luna, Claude Sonnet 5 &amp; Fable 5, Grok 4.5, Gemini 3.5 Flash, DeepSeek V4), the July price war, and the 10 levers + agentic patterns to cut token spend by 70–85% without sacrificing quality." />
   <meta name="author" content="Varun Singla" />
   <meta name="theme-color" content="#F7F4ED" />
   <link rel="canonical" href="https://varunsingla.com/ai-tokenomics/" />
@@ -53,7 +53,7 @@
       <div class="hero-grid"></div>
     </div>
     <div class="container hero-content">
-      <div class="hero-badge">AI FinOps · Precision Economics · June 2026 Update</div>
+      <div class="hero-badge">AI FinOps · Precision Economics · July 2026 Update</div>
       <h1 class="hero-heading">The New Currency<br/><em>of Enterprise AI</em></h1>
       <p class="hero-sub">Every AI interaction costs tokens. Every token carries a price. And in the agentic era, a single user request can fan out into 5–50 LLM calls. This guide breaks down 2026 token economics — and gives you the exact levers to cut spend by 70–85% without sacrificing quality.</p>
       <div class="hero-cta">
@@ -116,8 +116,8 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
             </div>
             <div>
-              <strong>1 token ≈ ¾ of an English word</strong>
-              <p>Common words are 1 token. Complex or rare words split into multiple tokens. Code is densest — often 1 token per character.</p>
+              <strong>1 token ≈ ¾ of an English word — but tokenisers now diverge</strong>
+              <p>Common words are 1 token; rare words split into multiple. Code is densest. And as of 2026, tokenisers differ materially by model: Claude Opus 4.7+, Fable 5 and Sonnet 5 produce ~30% more tokens for the same text than earlier Claude models — so $/MTok is not comparable across tokenizer generations.</p>
             </div>
           </div>
           <div class="fact-item">
@@ -125,8 +125,8 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
             </div>
             <div>
-              <strong>Output tokens cost 4–10× more</strong>
-              <p>GPT-5.5: $5 input vs $30 output per MTok. Claude Opus 4.8: $5 vs $25. A model that writes a lot costs far more than one that reads a lot.</p>
+              <strong>Output tokens cost 2–6× more</strong>
+              <p>GPT-5.6 Sol: $5 input vs $30 output per MTok. Claude Opus 4.8: $5 vs $25. Sonnet 5: $2 vs $10. A model that writes a lot costs far more than one that reads a lot — though the July price war has compressed the ratio from the old 4–10×.</p>
             </div>
           </div>
           <div class="fact-item">
@@ -183,10 +183,10 @@
           <div class="flow-arrow">→</div>
           <div class="flow-step highlight-step">
             <div class="flow-num">4</div>
-            <span class="flow-badge output">OUTPUT 4–10×</span>
+            <span class="flow-badge output">OUTPUT 2–6×</span>
             <div class="flow-content">
               <strong>Model Response</strong>
-              <p>What the model writes back. Billed at 4–10× the input rate. Longer responses = exponentially higher cost. The most expensive component per token.</p>
+              <p>What the model writes back. Billed at 2–6× the input rate. Longer responses = exponentially higher cost. The most expensive component per token.</p>
             </div>
           </div>
         </div>
@@ -222,7 +222,14 @@
     <div class="container">
       <div class="section-label">02 — Market Pricing</div>
       <h2 class="section-heading">Token Prices Across Providers</h2>
-      <p class="section-intro">USD per million tokens (MTok) — June 2026. The frontier has bifurcated: Western flagships span $2–$30 (input) / $12–$180 (output) — with Anthropic's new Claude Fable 5 topping the range at $10/$50 — while Chinese open-weight models like DeepSeek V4 Flash undercut at $0.14/$0.28 with near-parity quality. Output still costs 4–10× input — always model the ratio for your workload.</p>
+      <p class="section-intro">USD per million tokens (MTok) — July 2026. Three labs repriced within a single fortnight: Anthropic shipped Claude Sonnet 5 at $2/$10 introductory pricing (June 30), xAI answered with one flat-priced Grok 4.5 tier at $2/$6 (July 8), and OpenAI widened its spread to $1–$30 with the three-tier GPT-5.6 Sol/Terra/Luna family (GA July 9). This is a live price war over exactly the mid-tier workloads where most production traffic lives. Output still costs 3–6× input — always model the ratio for your workload.</p>
+
+      <div style="background:var(--color-primary-light);border:1px solid color-mix(in oklch, var(--color-primary) 30%, transparent);border-radius:var(--radius-xl);padding:var(--space-6);margin-bottom:var(--space-8);">
+        <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin:0;">
+          <strong style="color:var(--color-primary)">⚠️ Tokenizer caveat (new):</strong>
+          $/MTok is no longer directly comparable across models. Claude Opus 4.7+, Fable 5 and Sonnet 5 use a new tokenizer that produces roughly 1.0–1.35× (typically ~30%) <em>more</em> tokens for the same text than earlier Claude models. Grok 4.5 goes the other way — it completes SWE-bench Pro tasks in ~4.2× fewer output tokens than Opus 4.8. List price × tokens-consumed-per-task is the only honest comparison: benchmark <strong>cost per completed task</strong>, not price per million tokens.
+        </p>
+      </div>
 
       <div class="filter-row">
         <button class="filter-btn active" data-filter="all">All Models</button>
@@ -260,6 +267,16 @@
               <td>Hardest reasoning, executive tasks</td>
             </tr>
             <tr data-tier="flagship">
+              <td><span class="model-name">GPT-5.6 Sol</span></td>
+              <td><span class="provider openai">OpenAI</span></td>
+              <td><span class="tier-badge flagship">Flagship</span></td>
+              <td class="price high">$5.00</td>
+              <td class="price high">$30.00</td>
+              <td class="price">$0.50</td>
+              <td>1M</td>
+              <td>New OpenAI flagship (GA Jul 9). Top of the Sol/Terra/Luna good-better-best family</td>
+            </tr>
+            <tr data-tier="flagship">
               <td><span class="model-name">GPT-5.5</span></td>
               <td><span class="provider openai">OpenAI</span></td>
               <td><span class="tier-badge flagship">Flagship</span></td>
@@ -267,7 +284,7 @@
               <td class="price high">$30.00</td>
               <td class="price">$0.50</td>
               <td>1M</td>
-              <td>Agentic-first default, 78.7% OSWorld-V</td>
+              <td>Previous flagship, still available. Agentic-first default, 78.7% OSWorld-V</td>
             </tr>
             <tr data-tier="flagship">
               <td><span class="model-name">Claude Fable 5</span></td>
@@ -297,7 +314,17 @@
               <td class="price">$12.00</td>
               <td class="price">$0.20</td>
               <td>1M</td>
-              <td>Price-perf winner. Leads 13/16 benchmarks at 1/2 the cost</td>
+              <td>Price-perf flagship — but note tiered long-context pricing: $4/$18 above 200K input</td>
+            </tr>
+            <tr data-tier="flagship">
+              <td><span class="model-name">Grok 4.5</span></td>
+              <td><span class="provider xai">xAI</span></td>
+              <td><span class="tier-badge flagship">Flagship</span></td>
+              <td class="price">$2.00</td>
+              <td class="price">$6.00</td>
+              <td class="price">$0.50</td>
+              <td>500K</td>
+              <td>One flat tier (Jul 8), "Opus-class, cheaper". 4.2× token-efficiency on SWE-bench Pro — but verify outputs (elevated hallucination rate)</td>
             </tr>
             <!-- Reasoning -->
             <tr data-tier="reasoning">
@@ -322,6 +349,36 @@
             </tr>
             <!-- Mid-tier -->
             <tr data-tier="mid">
+              <td><span class="model-name">Claude Sonnet 5</span></td>
+              <td><span class="provider anthropic">Anthropic</span></td>
+              <td><span class="tier-badge mid">Mid-Tier</span></td>
+              <td class="price good">$2.00</td>
+              <td class="price good">$10.00</td>
+              <td class="price">$0.20</td>
+              <td>1M</td>
+              <td>Launched Jun 30. Intro pricing through Aug 31 ($3/$15 after). Beats Opus 4.8 on Terminal-Bench 2.1 (80.4% vs 74.6%). New mid-tier default</td>
+            </tr>
+            <tr data-tier="mid">
+              <td><span class="model-name">GPT-5.6 Terra</span></td>
+              <td><span class="provider openai">OpenAI</span></td>
+              <td><span class="tier-badge mid">Mid-Tier</span></td>
+              <td class="price">$2.50</td>
+              <td class="price">$15.00</td>
+              <td class="price">$0.25</td>
+              <td>1M</td>
+              <td>The "better" rung — OpenAI claims 2× cost efficiency vs GPT-5.5 on everyday tasks</td>
+            </tr>
+            <tr data-tier="mid">
+              <td><span class="model-name">Gemini 3.5 Flash</span></td>
+              <td><span class="provider google">Google</span></td>
+              <td><span class="tier-badge mid">Mid-Tier</span></td>
+              <td class="price">$1.50</td>
+              <td class="price">$9.00</td>
+              <td class="price">$0.15</td>
+              <td>1M</td>
+              <td>I/O 2026 launch (May 19). 3× the old Flash price but beats 3.1 Pro on coding/agentic — a mid-tier in Flash clothing</td>
+            </tr>
+            <tr data-tier="mid">
               <td><span class="model-name">Claude Sonnet 4.6</span></td>
               <td><span class="provider anthropic">Anthropic</span></td>
               <td><span class="tier-badge mid">Mid-Tier</span></td>
@@ -329,7 +386,7 @@
               <td class="price">$15.00</td>
               <td class="price">$0.30</td>
               <td>1M</td>
-              <td>Enterprise copilots, the default mid-tier for coding agents</td>
+              <td>Previous mid-tier default for coding agents (older tokenizer — cheaper per task than $/MTok suggests vs Sonnet 5)</td>
             </tr>
             <tr data-tier="mid">
               <td><span class="model-name">Mistral Medium 3.5</span></td>
@@ -347,9 +404,9 @@
               <td><span class="tier-badge mid">Mid-Tier</span></td>
               <td class="price good">$0.435</td>
               <td class="price good">$0.87</td>
-              <td class="price">$0.0036</td>
+              <td class="price">$0.145</td>
               <td>1M</td>
-              <td>Best dollar-per-quality at frontier-adjacent tier (new official rate, was $1.74/$3.48)</td>
+              <td>Best dollar-per-quality at frontier-adjacent tier. ⚠️ Official V4 launch (mid-July) adds 2× peak-hour pricing</td>
             </tr>
             <tr data-tier="mid">
               <td><span class="model-name">Qwen 3.6 Plus</span></td>
@@ -383,6 +440,16 @@
               <td>High-volume summarisation, long-context cheap (Flash-Lite is cheaper at $0.25/$1.50)</td>
             </tr>
             <tr data-tier="fast">
+              <td><span class="model-name">GPT-5.6 Luna</span></td>
+              <td><span class="provider openai">OpenAI</span></td>
+              <td><span class="tier-badge fast">Fast &amp; Cheap</span></td>
+              <td class="price good">$1.00</td>
+              <td class="price good">$6.00</td>
+              <td class="price">$0.10</td>
+              <td>1M</td>
+              <td>The "good" rung — summarisation, drafting, classification with a 1M window</td>
+            </tr>
+            <tr data-tier="fast">
               <td><span class="model-name">GPT-5.4 Mini</span></td>
               <td><span class="provider openai">OpenAI</span></td>
               <td><span class="tier-badge fast">Fast &amp; Cheap</span></td>
@@ -393,14 +460,24 @@
               <td>Automation, high-volume batch</td>
             </tr>
             <tr data-tier="fast">
+              <td><span class="model-name">Grok 4.1 Fast</span></td>
+              <td><span class="provider xai">xAI</span></td>
+              <td><span class="tier-badge fast">Fast &amp; Cheap</span></td>
+              <td class="price good">$0.20</td>
+              <td class="price good">$0.50</td>
+              <td class="price">$0.05</td>
+              <td>2M</td>
+              <td>Volume tier with the largest context window on the market (2M)</td>
+            </tr>
+            <tr data-tier="fast">
               <td><span class="model-name">DeepSeek V4 Flash</span></td>
               <td><span class="provider deepseek">DeepSeek</span></td>
               <td><span class="tier-badge fast">Fast &amp; Cheap</span></td>
               <td class="price good">$0.14</td>
               <td class="price good">$0.28</td>
-              <td class="price">$0.003</td>
+              <td class="price">$0.0028</td>
               <td>1M</td>
-              <td>The new 2026 nano-tier default. 30–70% routing cost cut</td>
+              <td>The 2026 nano-tier default. ⚠️ 2× peak-hour pricing from official V4 launch — batch off-peak</td>
             </tr>
             <tr data-tier="fast">
               <td><span class="model-name">GPT-5.4 Nano</span></td>
@@ -413,6 +490,16 @@
               <td>Cheapest OpenAI option, simple classification + extraction</td>
             </tr>
             <!-- Open Source -->
+            <tr data-tier="opensource">
+              <td><span class="model-name">GLM-5.2</span></td>
+              <td><span class="provider zai">Z.ai</span></td>
+              <td><span class="tier-badge opensource">Open Source</span></td>
+              <td class="price good">Free*</td>
+              <td class="price good">Free*</td>
+              <td class="price">—</td>
+              <td>200K</td>
+              <td>MIT license, 744B MoE (~40B active/token). Built for multi-hour engineering work. *Self-host (rack-scale VRAM) or hosted providers</td>
+            </tr>
             <tr data-tier="opensource">
               <td><span class="model-name">Qwen 3.6 (open weights)</span></td>
               <td><span class="provider qwen">Alibaba</span></td>
@@ -459,19 +546,20 @@
 
       <div class="pricing-note">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-        Prices verified against official provider pages (June 2026): <a href="https://platform.claude.com/docs/en/about-claude/pricing" target="_blank">Anthropic</a>, <a href="https://developers.openai.com/api/docs/pricing" target="_blank">OpenAI</a>, <a href="https://ai.google.dev/gemini-api/docs/pricing" target="_blank">Google Gemini</a>, <a href="https://api-docs.deepseek.com/quick_start/pricing" target="_blank">DeepSeek</a>, <a href="https://docs.x.ai/developers/models" target="_blank">xAI Grok</a>. Prices change frequently — verify directly with each provider before budgeting.
+        Prices verified against official provider pages (July 2026): <a href="https://platform.claude.com/docs/en/about-claude/pricing" target="_blank">Anthropic</a>, <a href="https://developers.openai.com/api/docs/pricing" target="_blank">OpenAI</a>, <a href="https://ai.google.dev/gemini-api/docs/pricing" target="_blank">Google Gemini</a>, <a href="https://api-docs.deepseek.com/quick_start/pricing" target="_blank">DeepSeek</a>, <a href="https://docs.x.ai/developers/models" target="_blank">xAI Grok</a>. Prices change frequently — verify directly with each provider before budgeting.
       </div>
 
       <!-- Cost scenarios -->
       <h3 class="subsection-heading" style="margin-top:var(--space-16)">Real-World Cost Scenarios</h3>
       <div class="scenario-grid">
         <div class="scenario-card">
-          <div class="scenario-label">Chatbot — 800 in / 400 out tokens/turn · 10K users · 20 turns/day</div>
+          <div class="scenario-label">Chatbot — 800 in / 400 out tokens/turn · 2,000 turns/day</div>
           <div class="scenario-rows">
-            <div class="scenario-row"><span>DeepSeek V4 Flash</span><strong>$15/mo</strong></div>
-            <div class="scenario-row"><span>GPT-5.4 Nano</span><strong>$48/mo</strong></div>
-            <div class="scenario-row"><span>Gemini 3 Flash</span><strong>$95/mo</strong></div>
-            <div class="scenario-row"><span>Claude Haiku 4.5</span><strong>$192/mo</strong></div>
+            <div class="scenario-row"><span>DeepSeek V4 Flash</span><strong>$13/mo</strong></div>
+            <div class="scenario-row"><span>GPT-5.4 Nano</span><strong>$40/mo</strong></div>
+            <div class="scenario-row"><span>GPT-5.6 Luna</span><strong>$192/mo</strong></div>
+            <div class="scenario-row"><span>Claude Haiku 4.5</span><strong>$168/mo</strong></div>
+            <div class="scenario-row"><span>Claude Sonnet 5 (intro)</span><strong>$336/mo</strong></div>
             <div class="scenario-row"><span>Claude Sonnet 4.6</span><strong>$504/mo</strong></div>
           </div>
         </div>
@@ -481,7 +569,8 @@
             <div class="scenario-row"><span>DeepSeek V4 Flash</span><strong>$67/mo</strong></div>
             <div class="scenario-row"><span>Gemini 3 Flash</span><strong>$320/mo</strong></div>
             <div class="scenario-row"><span>GPT-5.4 Mini</span><strong>$480/mo</strong></div>
-            <div class="scenario-row"><span>Gemini 3.1 Pro</span><strong>$1,280/mo</strong></div>
+            <div class="scenario-row"><span>Gemini 3.5 Flash</span><strong>$960/mo</strong></div>
+            <div class="scenario-row"><span>Claude Sonnet 5 (intro)</span><strong>$1,200/mo</strong></div>
             <div class="scenario-row"><span>Claude Sonnet 4.6</span><strong>$1,800/mo</strong></div>
           </div>
         </div>
@@ -490,20 +579,20 @@
           <div class="scenario-rows">
             <div class="scenario-row"><span>DeepSeek V4 Flash</span><strong>$8/mo</strong></div>
             <div class="scenario-row"><span>DeepSeek V4 Pro</span><strong>$33/mo</strong></div>
-            <div class="scenario-row"><span>Qwen 3.6 Plus</span><strong>$66/mo</strong></div>
-            <div class="scenario-row"><span>Claude Sonnet 4.6</span><strong>$427/mo</strong></div>
+            <div class="scenario-row"><span>Grok 4.5</span><strong>$195/mo</strong></div>
+            <div class="scenario-row"><span>Claude Sonnet 5 (intro)</span><strong>$285/mo</strong></div>
             <div class="scenario-row"><span>Claude Opus 4.8</span><strong>$712/mo</strong></div>
-            <div class="scenario-row"><span>GPT-5.5</span><strong>$825/mo</strong></div>
+            <div class="scenario-row"><span>GPT-5.6 Sol</span><strong>$825/mo</strong></div>
           </div>
         </div>
         <div class="scenario-card">
           <div class="scenario-label">Agentic Workflow — 1 user task = 25 LLM+MCP calls · 500K tokens/task · 1K tasks/day</div>
           <div class="scenario-rows">
             <div class="scenario-row"><span>DeepSeek V4 Flash (all calls)</span><strong>$1,260/mo</strong></div>
-            <div class="scenario-row"><span>70/25/5 routing (V4 Flash + Sonnet + Opus)</span><strong>$5,400/mo</strong></div>
-            <div class="scenario-row"><span>All Sonnet 4.6</span><strong>$22,500/mo</strong></div>
+            <div class="scenario-row"><span>70/25/5 routing (V4 Flash + Sonnet 5 + Opus)</span><strong>$5,100/mo</strong></div>
+            <div class="scenario-row"><span>All Sonnet 5 (intro pricing)</span><strong>$15,000/mo</strong></div>
             <div class="scenario-row"><span>All Opus 4.8 (worst case)</span><strong>$37,500/mo</strong></div>
-            <div class="scenario-row"><span>All GPT-5.5</span><strong>$45,000/mo</strong></div>
+            <div class="scenario-row"><span>All GPT-5.6 Sol</span><strong>$45,000/mo</strong></div>
           </div>
         </div>
       </div>
@@ -527,18 +616,18 @@
           <h3>Prompt Caching (KV Cache)</h3>
           <p>Providers cache the key-value matrices of repeated prompt prefixes. This is the single highest-impact optimisation — up to 90% cheaper on cached input tokens with minimal code changes.</p>
           <div class="lever-example">
-            <div class="example-label">June 2026 Provider Cache Pricing</div>
+            <div class="example-label">July 2026 Provider Cache Pricing</div>
             <ul>
-              <li>Anthropic Opus 4.8 / Sonnet 4.6: $3.00 → <strong>$0.30/MTok cached (90% off)</strong></li>
-              <li>OpenAI GPT-5.5 (auto-caching): <strong>50% off input</strong>, no code change</li>
-              <li>DeepSeek V4 Flash: $0.14 → <strong>$0.003/MTok cached (98% off)</strong> — most aggressive in market</li>
-              <li>Gemini 3.1 Pro: $2.00 → $0.20/MTok cached (90% off)</li>
+              <li>Anthropic cache reads: <strong>0.1× base input (90% off)</strong> — Sonnet 5: $2.00 → $0.20 · Opus 4.8: $5.00 → $0.50. Cache writes cost 1.25× (5-min) / 2× (1-hour TTL)</li>
+              <li>OpenAI GPT-5.6 family: cache reads <strong>90% off input</strong>, 30-min minimum cache life; cache writes 1.25×</li>
+              <li>DeepSeek V4 Flash: $0.14 → <strong>$0.0028/MTok cached (98% off)</strong> — most aggressive in market</li>
+              <li>Gemini 3.1 Pro / 3.5 Flash: cache reads 10% of base input (90% off)</li>
               <li>AWS Bedrock AgentCore: 90% cost cut, 85% latency cut, MCP-aware</li>
               <li>Min 1,024 tokens; TTL 5 min standard, 1 hour Anthropic extended</li>
             </ul>
           </div>
           <div class="lever-tip">
-            <strong>Implementation:</strong> Place stable content first — system prompt, docs, tool definitions, MCP tool schemas. Place dynamic content last — user queries, session data. Anthropic: use <code>cache_control</code> parameter for explicit breakpoints. Target 80–95% hit rate. At 95% hit rate, Anthropic caching delivers a 82% effective input-cost reduction versus OpenAI's 55% — a key reason cache-adjusted pricing often favours Claude despite higher list prices.
+            <strong>Implementation:</strong> Place stable content first — system prompt, docs, tool definitions, MCP tool schemas. Place dynamic content last — user queries, session data. Anthropic: use <code>cache_control</code> parameter for explicit breakpoints. Target 80–95% hit rate. July 2026 note: OpenAI's GPT-5.6 family moved from 50%-off auto-caching to 90%-off cache reads, matching Anthropic's read discount — the differentiator is now cache-write cost (1.25× on both, 2× for Anthropic's 1-hour TTL) and hit-rate engineering, not the headline discount.
           </div>
           <div class="lever-savings">Up to <strong>90–98% off input tokens</strong></div>
         </div>
@@ -549,7 +638,7 @@
             <div class="impact-badge impact-high">High Impact</div>
           </div>
           <h3>Multi-Model Routing — The 70/25/5 Rule</h3>
-          <p>The 2026 default architecture. Send 70% of traffic to nano-tier (DeepSeek V4 Flash / GPT-5.4 Nano / Gemini 3 Flash) for classification + simple tool calls, 25% to mid-tier (Sonnet 4.6 / Qwen 3.6 / GLM-5.2) for structured reasoning, and only 5% to frontier (Opus 4.8 / Fable 5 / GPT-5.5 / Gemini 3.1 Pro) for ambiguous planning. Cost runs at ~15% of all-frontier, with statistically indistinguishable quality on 200-pair golden sets.</p>
+          <p>The 2026 default architecture. Send 70% of traffic to nano-tier (DeepSeek V4 Flash / GPT-5.4 Nano / Grok 4.1 Fast) for classification + simple tool calls, 25% to mid-tier (Sonnet 5 / GPT-5.6 Terra / Gemini 3.5 Flash / Qwen 3.6) for structured reasoning, and only 5% to frontier (Opus 4.8 / Fable 5 / GPT-5.6 Sol / Gemini 3.1 Pro) for ambiguous planning. Cost runs at ~15% of all-frontier, with statistically indistinguishable quality on 200-pair golden sets. Note the July twist: labs now price <em>to force</em> this routing decision — OpenAI's Sol/Terra/Luna tiering is a routing architecture sold as a product family, while Grok 4.5's one flat tier bets most of your traffic needs frontier reasoning anyway.</p>
           <div class="lever-example">
             <div class="example-label">2026 routing strategies (production-validated)</div>
             <ul>
@@ -639,7 +728,7 @@
             <div class="impact-badge impact-medium">Medium Impact</div>
           </div>
           <h3>Constrain Output Length &amp; Format</h3>
-          <p>Output tokens cost 4–10× more than input. Setting <code>max_tokens</code> limits and requesting structured JSON instead of prose cuts the most expensive part of every call.</p>
+          <p>Output tokens cost 2–6× more than input. Setting <code>max_tokens</code> limits and requesting structured JSON instead of prose cuts the most expensive part of every call.</p>
           <div class="lever-example">
             <div class="example-label">Control techniques</div>
             <ul>
@@ -690,7 +779,9 @@
             <div class="example-label">Batch API discount (2026)</div>
             <ul>
               <li>OpenAI Batch API: <strong>50% off</strong> all token costs</li>
-              <li>Anthropic Message Batches: <strong>50% off</strong> standard pricing</li>
+              <li>Anthropic Message Batches: <strong>50% off</strong> standard pricing (stacks with prompt caching)</li>
+              <li>Google Gemini Batch: <strong>50% off</strong> every model</li>
+              <li>DeepSeek V4: new <strong>2× peak-hour pricing</strong> — off-peak scheduling is now a batch-style lever in its own right</li>
               <li>Use cases: doc processing, bulk tagging, analytics, embeddings</li>
               <li>Processing time: minutes to 24 hours (vs milliseconds sync)</li>
             </ul>
@@ -872,7 +963,7 @@
             </div>
             <div>
               <strong>Cost-per-Task replaces cost-per-token</strong>
-              <p>The 2026 SLO unit: cost-per-resolved-task, not cost-per-token. Agent SREs alarm when OTEL <code>cost.per_task</code> p95 exceeds 2× baseline, auto-rolling back via Argo Rollouts.</p>
+              <p>The 2026 SLO unit: cost-per-resolved-task, not cost-per-token. July's proof point: Grok 4.5 finishes SWE-bench Pro tasks in ~15,954 output tokens vs ~67,020 for Opus 4.8 — a 4.2× token-efficiency gap that list prices never show. Agent SREs alarm when OTEL <code>cost.per_task</code> p95 exceeds 2× baseline, auto-rolling back via Argo Rollouts.</p>
             </div>
           </div>
         </div>
@@ -1260,7 +1351,7 @@
       </div>
 
       <!-- Monitoring tools -->
-      <h3 class="subsection-heading" style="margin-top:var(--space-16)">Monitoring &amp; Observability Tools (June 2026)</h3>
+      <h3 class="subsection-heading" style="margin-top:var(--space-16)">Monitoring &amp; Observability Tools (July 2026)</h3>
       <div class="tools-grid">
         <div class="tool-card">
           <div class="tool-name">Microsoft Agent 365</div>
@@ -1317,23 +1408,30 @@
         <div class="calc-inputs">
           <h3>Your Workload</h3>
           <div class="calc-group">
-            <label for="calcModel">Model <small>(June 2026 pricing)</small></label>
+            <label for="calcModel">Model <small>(July 2026 pricing)</small></label>
             <select id="calcModel">
               <option value="gpt55pro" data-in="30" data-out="180">GPT-5.5 Pro ($30/$180 per MTok)</option>
               <option value="fable5" data-in="10" data-out="50">Claude Fable 5 ($10/$50 per MTok)</option>
+              <option value="gpt56sol" data-in="5" data-out="30">GPT-5.6 Sol ($5/$30 per MTok)</option>
               <option value="gpt55" data-in="5" data-out="30">GPT-5.5 ($5/$30 per MTok)</option>
               <option value="opus48" data-in="5" data-out="25">Claude Opus 4.8 ($5/$25 per MTok)</option>
               <option value="sonnet46" data-in="3" data-out="15">Claude Sonnet 4.6 ($3/$15 per MTok)</option>
+              <option value="gpt56terra" data-in="2.5" data-out="15">GPT-5.6 Terra ($2.50/$15 per MTok)</option>
               <option value="gpt54" data-in="2.5" data-out="15">GPT-5.4 ($2.50/$15 per MTok)</option>
-              <option value="gemini31pro" data-in="2" data-out="12" selected>Gemini 3.1 Pro ($2/$12 per MTok)</option>
+              <option value="sonnet5" data-in="2" data-out="10" selected>Claude Sonnet 5 ($2/$10 per MTok — intro to Aug 31)</option>
+              <option value="gemini31pro" data-in="2" data-out="12">Gemini 3.1 Pro ($2/$12 per MTok, ≤200K input)</option>
+              <option value="grok45" data-in="2" data-out="6">xAI Grok 4.5 ($2/$6 per MTok)</option>
               <option value="mistral35" data-in="1.50" data-out="7.50">Mistral Medium 3.5 ($1.50/$7.50 per MTok)</option>
+              <option value="gemini35flash" data-in="1.50" data-out="9.00">Gemini 3.5 Flash ($1.50/$9.00 per MTok)</option>
               <option value="grok43" data-in="1.25" data-out="2.50">xAI Grok 4.3 ($1.25/$2.50 per MTok)</option>
+              <option value="gpt56luna" data-in="1.00" data-out="6.00">GPT-5.6 Luna ($1/$6 per MTok)</option>
               <option value="haiku45" data-in="1.00" data-out="5.00">Claude Haiku 4.5 ($1.00/$5.00 per MTok)</option>
               <option value="gpt54mini" data-in="0.75" data-out="4.50">GPT-5.4 Mini ($0.75/$4.50 per MTok)</option>
               <option value="gemini3flash" data-in="0.50" data-out="3.00">Gemini 3 Flash ($0.50/$3.00 per MTok)</option>
               <option value="dsv4pro" data-in="0.435" data-out="0.87">DeepSeek V4 Pro ($0.435/$0.87 per MTok)</option>
               <option value="minimaxm3" data-in="0.30" data-out="1.20">MiniMax M3 ($0.30/$1.20 per MTok)</option>
               <option value="gpt54nano" data-in="0.20" data-out="1.25">GPT-5.4 Nano ($0.20/$1.25 per MTok)</option>
+              <option value="grok41fast" data-in="0.20" data-out="0.50">xAI Grok 4.1 Fast ($0.20/$0.50 per MTok)</option>
               <option value="llama4mav" data-in="0.15" data-out="0.60">Llama 4 Maverick ($0.15/$0.60 per MTok)</option>
               <option value="dsv4flash" data-in="0.14" data-out="0.28">DeepSeek V4 Flash ($0.14/$0.28 per MTok) — nano-tier</option>
             </select>
@@ -1458,7 +1556,7 @@
         <a href="https://www.microsoft.com/en-us/research/publication/how-do-ai-agents-spend-your-money-analyzing-and-predicting-token-consumption-in-agentic-coding-tasks/" target="_blank">MS Research: Agent Token Consumption</a>
         <a href="https://redis.io/blog/large-language-model-operations-guide/" target="_blank">Redis LLMOps Guide</a>
       </div>
-      <p class="footer-note">Updated June 2026. Built from FinOps Foundation State of FinOps 2026, Deloitte's "The Pivot to Tokenomics", current provider pricing (Anthropic, OpenAI, Google, DeepSeek, Mistral, Alibaba), and Microsoft Research on agentic token consumption. For reference only — verify pricing with providers before committing budgets.</p>
+      <p class="footer-note">Updated July 2026 — reflecting the June 30–July 9 repricing wave (Claude Sonnet 5, Grok 4.5, GPT-5.6 Sol/Terra/Luna), DeepSeek V4's new peak-hour pricing, and the tokenizer divergence that makes cost-per-task the honest comparison metric. Built from FinOps Foundation State of FinOps 2026, Deloitte's "The Pivot to Tokenomics", current provider pricing (Anthropic, OpenAI, Google, xAI, DeepSeek, Mistral, Alibaba, Z.ai), and Microsoft Research on agentic token consumption. For reference only — verify pricing with providers before committing budgets.</p>
     </div>
   </footer>
 
