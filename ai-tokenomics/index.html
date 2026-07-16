@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Tokenomics — Understand & Optimise Token Spend (July 2026 Update)</title>
-  <meta name="description" content="A practical guide to AI token cost models, the latest July 2026 provider pricing (GPT-5.6 Sol/Terra/Luna, Claude Sonnet 5 &amp; Fable 5, Grok 4.5, Gemini 3.5 Flash, DeepSeek V4), the July price war, and the 10 levers + agentic patterns to cut token spend by 70–85% without sacrificing quality." />
+  <meta name="description" content="A practical guide to AI token cost models, the latest July 2026 provider pricing (GPT-5.6 Sol/Terra/Luna, Claude Sonnet 5 &amp; Fable 5, Grok 4.5, Gemini 3.5 Flash, DeepSeek V4), the July price war, the 10 levers + agentic patterns to cut token spend by 70–85%, and a practitioner's do/don't playbook with a 30-day runbook." />
   <meta name="author" content="Varun Singla" />
   <meta name="theme-color" content="#F7F4ED" />
   <link rel="canonical" href="https://varunsingla.com/ai-tokenomics/" />
@@ -35,6 +35,7 @@
         <a href="#advanced">Advanced</a>
         <a href="#hosting">Hosting</a>
         <a href="#finops">FinOps</a>
+        <a href="#playbook">Playbook</a>
         <a href="#calculator">Calculator</a>
       </div>
       <div class="nav-actions">
@@ -1397,10 +1398,68 @@
     </div>
   </section>
 
-  <!-- 07 CALCULATOR -->
-  <section class="section" id="calculator">
+  <!-- 07 PLAYBOOK: DO'S & DON'TS -->
+  <section class="section" id="playbook">
     <div class="container">
-      <div class="section-label">07 — Calculator</div>
+      <div class="section-label">07 — The Playbook</div>
+      <h2 class="section-heading">How to Do Tokenomics: Do's &amp; Don'ts</h2>
+      <p class="section-intro">Everything above, distilled into an operating doctrine — July 2026 edition. The through-line: architecture beats prompt tweaks, measurement beats intuition, and cost-per-completed-task beats every per-token metric. A cheaper path that silently drops quality is the most expensive mistake in this entire guide.</p>
+
+      <div class="hosting-grid">
+        <div class="hosting-card hosting-highlight">
+          <div class="hosting-header"><span class="hosting-icon">✅</span><h3>Do</h3></div>
+          <div class="hosting-meta"><span class="meta-tag">Proven in production</span></div>
+          <ul class="hosting-pros">
+            <li>✓ <strong>Instrument before you optimise.</strong> OTEL <code>gen_ai</code> spans; tag every call with model, team &amp; use-case. You cannot cut what you cannot see</li>
+            <li>✓ <strong>Benchmark cost-per-completed-task,</strong> not $/MTok — tokenizers diverge ~30% and token-efficiency gaps run 4×+ between models</li>
+            <li>✓ <strong>Build an eval harness first.</strong> A 200-pair golden set is the licence to downshift models — without evals you can't tell whether the cheaper path held quality</li>
+            <li>✓ <strong>Cache what repeats.</strong> Prompt caching first (90–98% off input), semantic caching second. Stable prefix first, dynamic content last</li>
+            <li>✓ <strong>Route by task difficulty</strong> — 70/25/5 cascade with a confidence threshold, and re-tier monthly while the price war lasts</li>
+            <li>✓ <strong>Engineer context just-in-time.</strong> Retrieve the snippet, not the repo: 2–3 tight chunks beat 8 long documents at over half the input cost</li>
+            <li>✓ <strong>Batch what can wait</strong> — 50% off at every major provider, and schedule DeepSeek work off-peak to dodge the 2× surge window</li>
+            <li>✓ <strong>Set budget caps &amp; circuit breakers before launch</strong> — $ per agent per session, loop detection, kill switches. Day one, not after the first bill</li>
+            <li>✓ <strong>Model both rates of intro pricing</strong> — budget Sonnet 5 at $3/$15 (Sep 1), not the $2/$10 promo</li>
+            <li>✓ <strong>Keep an exit path.</strong> An OpenAI-compatible gateway (LiteLLM, Portkey, Bifrost) makes a lab's repricing a config change, not a rewrite</li>
+          </ul>
+        </div>
+
+        <div class="hosting-card">
+          <div class="hosting-header"><span class="hosting-icon">🚫</span><h3>Don't</h3></div>
+          <div class="hosting-meta"><span class="meta-tag">The 2026 failure modes</span></div>
+          <ul class="hosting-cons">
+            <li>✗ <strong>Don't compare $/MTok across tokenizers.</strong> The same text costs ~30% more tokens on Claude Opus 4.7+/Fable 5/Sonnet 5 than on earlier Claude models</li>
+            <li>✗ <strong>Don't project agentic costs from chatbot benchmarks</strong> — the 5–30× fan-out multiplier is why 73% of enterprises blew their AI budget</li>
+            <li>✗ <strong>Don't assume more context = better answers.</strong> Context bloat dilutes quality <em>and</em> costs more — it's the single biggest source of token waste</li>
+            <li>✗ <strong>Don't run reasoning models on simple tasks</strong> — classification, FAQ and summarisation on extended thinking pays 5–20× for invisible chain-of-thought</li>
+            <li>✗ <strong>Don't let an uncapped budget meet a stuck loop.</strong> A runaway ReAct loop on a frontier model burns $50/min</li>
+            <li>✗ <strong>Don't chase the cheapest sticker price without a verification budget</strong> — if outputs need a human or a checker model to trust, that cost belongs in the comparison (the Grok 4.5 lesson)</li>
+            <li>✗ <strong>Don't lock into one lab's tier structure.</strong> Three repricings in ten days means last month's tier math is already stale</li>
+            <li>✗ <strong>Don't assume open-weight = free or price-stable.</strong> GLM-5.2 needs rack-scale VRAM to self-host, and DeepSeek just added electricity-grid-style surge pricing</li>
+            <li>✗ <strong>Don't treat intro pricing as permanent</strong> in any projection a CFO will see</li>
+            <li>✗ <strong>Don't hand-polish prompts before fixing architecture.</strong> System prompts, history, tool schemas and retrieval dominate spend — not user phrasing</li>
+          </ul>
+        </div>
+
+        <div class="hosting-card">
+          <div class="hosting-header"><span class="hosting-icon">🗓️</span><h3>Your First 30 Days</h3></div>
+          <div class="hosting-meta"><span class="meta-tag">Sequenced runbook</span></div>
+          <ul class="hosting-pros">
+            <li><strong>Week 1 — Baseline.</strong> Wire OTEL <code>gen_ai</code> spans, tag by model/team/use-case, stand up a cost-per-task dashboard. No optimisation yet — you need a before picture</li>
+            <li><strong>Week 2 — Free wins.</strong> Turn on prompt caching and shift non-real-time work to batch endpoints. Zero quality risk, typically 50–70% off eligible spend</li>
+            <li><strong>Week 3 — Route.</strong> Build the 200-pair golden set, then pilot cascade routing on your single highest-volume intent. Measure quality deltas, not vibes</li>
+            <li><strong>Week 4 — Govern.</strong> Budget hard caps per agent, circuit breakers, loop detection, and a monthly re-tier review. The price war makes the review cadence load-bearing</li>
+            <li><strong>Ongoing.</strong> Alarm on <code>cost.per_task</code> p95 &gt; 2× baseline; re-shop the pricing table monthly; re-run the golden set on every model or prompt change</li>
+          </ul>
+          <div class="hosting-verdict">Typical outcome: <strong>70–85% spend reduction</strong> at held quality</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 CALCULATOR -->
+  <section class="section section-alt" id="calculator">
+    <div class="container">
+      <div class="section-label">08 — Calculator</div>
       <h2 class="section-heading">Token Cost Calculator</h2>
       <p class="section-intro">Estimate your monthly API spend and see how the optimisation levers reduce it in real time. Toggle each lever to build your optimisation roadmap.</p>
 
