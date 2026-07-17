@@ -284,7 +284,7 @@ def _extract_text_outside_tables(page) -> str:
     """
     found_tables = page.find_tables()
     if not found_tables:
-        return page.extract_text(x_tolerance=3, y_tolerance=3) or ""
+        return page.extract_text(x_tolerance=1.5, y_tolerance=3) or ""
 
     table_bboxes = [t.bbox for t in found_tables]
 
@@ -299,7 +299,7 @@ def _extract_text_outside_tables(page) -> str:
                 return False
         return True
 
-    return page.filter(_not_in_any_table).extract_text(x_tolerance=3, y_tolerance=3) or ""
+    return page.filter(_not_in_any_table).extract_text(x_tolerance=1.5, y_tolerance=3) or ""
 
 
 def _is_toc_table(table: list[list]) -> bool:
@@ -369,7 +369,7 @@ def _text_lines_with_y(page, not_in_table) -> list[tuple[float, str]]:
     """Group words outside detected tables into visual lines, each tagged with its
     top y-position, so they can be interleaved with orphan table-header markers."""
     rows: dict[int, list[tuple[float, str]]] = {}
-    for w in page.extract_words(x_tolerance=3, y_tolerance=3):
+    for w in page.extract_words(x_tolerance=1.5, y_tolerance=3):
         if not not_in_table(w):
             continue
         y_key = int(w['top'] / 4) * 4
@@ -388,7 +388,7 @@ def _left_col_lines(page, top_skip: float = 0.0) -> list[str]:
     pw = page.width
     col_limit = pw * 0.55
     rows: dict[int, list[tuple[float, str]]] = {}
-    for w in page.extract_words(x_tolerance=3, y_tolerance=3):
+    for w in page.extract_words(x_tolerance=1.5, y_tolerance=3):
         if w['top'] < top_skip:
             continue
         if w['x0'] > col_limit:
@@ -670,10 +670,10 @@ def parse_pdf(pdf_path: Path) -> dict:
                 merged = sorted(word_lines + orphan_markers, key=lambda x: x[0])
                 lines = [clean(t) for (_, t) in merged if clean(t) and len(clean(t)) > 1]
             elif table_bboxes:
-                page_text = page.filter(_not_in_table).extract_text(x_tolerance=3, y_tolerance=3) or ""
+                page_text = page.filter(_not_in_table).extract_text(x_tolerance=1.5, y_tolerance=3) or ""
                 lines = [clean(ln) for ln in page_text.split('\n') if clean(ln) and len(clean(ln)) > 1]
             else:
-                page_text = page.extract_text(x_tolerance=3, y_tolerance=3) or ""
+                page_text = page.extract_text(x_tolerance=1.5, y_tolerance=3) or ""
                 lines = [clean(ln) for ln in page_text.split('\n') if clean(ln) and len(clean(ln)) > 1]
             all_flat_lines.extend(lines)
 
