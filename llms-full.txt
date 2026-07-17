@@ -1,6 +1,52 @@
 # Varun Singla · AI Learning Journal — full text
 
-Complete text of all 116 journal entries by Varun Singla (https://varunsingla.com), newest first. Index: https://varunsingla.com/llms.txt
+Complete text of all 117 journal entries by Varun Singla (https://varunsingla.com), newest first. Index: https://varunsingla.com/llms.txt
+
+---
+
+# Day 117: Meet the Model Router -- Gemini 3.5 Pro Landed Today and Pushed the Live Model Count
+
+Date: July 17, 2026 · Author: Varun Singla · URL: https://varunsingla.com/entries/2026-07-17.html · Themes: Models & Frontier, Foundations & Protocols
+
+racing to control the layer beneath the model -- the chips, the governance rules, the routing decisions -- because that's where the actual cost and control now live, not on the leaderboard.
+
+**Viral app of the day: RouteLLM: the open-source router that turned model-picking into a**
+RouteLLM's GitHub repo is getting a fresh wave of attention this week, as teams staring down seven live price tiers go looking for something better than hand-picking a model per project. Its pitch is almost aggressively simple: train a lightweight classifier on human preference data, then let it decide, for each incoming prompt, whether a cheap model will do or a strong one is worth the money. The ICLR 2025 result behind it holds up -- 85% lower cost on MT Bench while keeping 95% of GPT-4 Turbo-level quality, sending only 14% of traffic to the expensive model. It's popular for the same reason OpenRouter's Auto Router is spreading through developer circles this week: neither one asks a team to become a routing-research lab first. One is open-source and self-hosted, the other is a hosted dial -- but both let you stop reading
+
+**By the numbers:**
+- 7 — Live price-and-capability tiers across frontier and open-weight labs as of today's Gemini launch
+- 85% — RouteLLM's peer-reviewed cost cut on MT Bench, keeping 95% of GPT-4 Turbo-level quality
+- 14% — Share of queries RouteLL classifier actually sends to the strong, expensive model
+- 0-10 — M's OpenRouter's Auto Router dial -- 0 always picks the best model, 10 always picks the cheapest
+
+## 1) Seven tiers is one too many to pick by hand
+
+Gemini 3.5 Pro arrives after Google reportedly scrapped an earlier version outright, after engineers found structural failures in recursive tool-calling and SVG generation, and rebuilt it on an entirely new pretraining run. The result ships a 2-million-token context window -- double Gemini 3.5 Flash's 1 million -- a Deep Think reasoning layer for multi-step problems, and autonomous workflow capability, at a reported $12-15 per million input tokens and $36-45 per million output tokens: roughly double Sonnet 5's introductory rate and in the same range as
+
+That lands on top of a field that was already crowded. GLM-5.2, DeepSeek V4, and Qwen 3.6 shipped inside the same ten-day window Day 110 covered; Sonnet 5, Grok 4.5, and GPT-5.6 shipped the ten days before that. Seven models, seven different specialties, none of them dominant at everything -- which means benchmarking every new release against your own workload before every project no longer scales. That's exactly the gap a routing layer exists to
+
+## 2) How a routing layer actually decides
+
+RouteLLM, built by the LMSYS team behind Chatbot Arena, trains lightweight classifiers -- a matrix-factorization model and a BERT-based variant -- on human preference data to predict which model wins a given prompt, then routes accordingly. It's open-source, peer-reviewed at ICLR 2025, and self-hosted, which means the routing logic lives in your own infrastructure rather
+
+OpenRouter's Auto Router, powered by NotDiamond, takes the hosted route: it analyzes each incoming prompt, selects a model from a curated pool, forwards the request, and returns metadata showing which model actually answered. It pins the chosen model and provider for the rest of a conversation to keep behavior consistent and prompt-cache hits intact, charges no fee of its own beyond the selected model's standard rate, and exposes a single cost_quality_tradeoff dial from 0 (always the most capable model) to 10 (always the cheapest). Martian takes a third approach -- a proxy layer that routes in real time behind one model-agnostic endpoint, so the application never has to know which model actually ran. The frontier is already moving past static classifiers: bandit-feedback online-learning routers like BaRP and PILOT adapt from live traffic instead of a training set frozen at launch, MCP Gateways are emerging as a single control plane in front of an entire tool-plus-model stack, and vLLM's Iris project is pushing the routing decision below the application layer entirely, into the inference
+
+## 3) The catch: routing is a new dependency, not a free lunch
+
+RouteLLM's 85% figure is real but pair-specific -- GPT-4 Turbo versus Mixtral 8x7B, scored on MT Bench. Run the same idea with a simpler BERT classifier on MMLU instead, and the savings drop to 45%. Martian's advertised "up to 98%" is explicitly an upper bound, not a typical result. None of these numbers travel to your workload unmodified; they're proof the technique works,
+
+A router that misjudges a prompt doesn't throw an error -- it silently sends a hard question to a cheap model and returns a worse answer with total confidence. That makes the router's own accuracy something you now have to monitor, on top of monitoring the models it's choosing between. It also adds a dependency to the request path: if a hosted router's curated model pool or classifier goes stale, quality can drift without a single line of your own code changing. In production, teams that actually tune a routing layer report bill cuts in the 40-85% range -- a wide band, because it depends entirely on how much of your traffic ever needed the expensive model
+
+RouteLLM (LMSYS) Open-source router 85% cost cut (MT Bench, Self-hosted, 95% GPT-4 Turbo quality) research-grade routing OpenRouter Auto Router Hosted router $0 routing fee -- pays One-dial cost/quality (NotDiamond) selected model's rate tuning (0-10) Martian Hosted proxy router Up to 98% claimed (upper Real-time routing with
+
+Gemini 3.5 Pro (ref., new Frontier model $12-15 in / $36-45 out per 2M context, Deep Think
+
+**Market signal:** Today is also the opening day of Shanghai's World AI Conference, and for the first time since it launched in 2018, Xi Jinping is delivering the keynote in person -- China's clearest signal yet that it wants to help write AI's governance rules, not just follow them, including a push for a Shanghai-headquartered World AI Cooperation Organization as a counterweight to Western-led governance bodies. It lands the same week Anthropic confirmed early talks with Samsung over custom Claude inference chips, aimed squarely at its own $1.25-billion-a-month compute bill. Put next to today's topic, it's the same pattern routing exists to manage: every lab, East or West, is racing to control the layer beneath the model -- the chips, the governance rules, the routing decisions -- because that's where the actual cost and control now live, not on the leaderboard.
+
+**Practical takeaways:**
+- Don't trust a routing benchmark you haven't run on your own traffic — RouteLLM's 85% figure is real but specific to one model pair on one benchmark; a BERT-based version of the same idea only cleared 45% on a different one. Test any router against a sample of your actual prompts before trusting its savings number.
+- Start with a dial, not a black box — Tools like OpenRouter's Auto Router expose a single cost_quality_tradeoff parameter (0-10) instead of hiding the decision entirely. Keep that kind of manual override while you build confidence in a router's judgment, rather than adopting one you can't audit.
+- Budget for an eighth tier, then a ninth — Gemini 3.5 Pro is this week's new price tier; six labs shipped inside the last two weeks alone. Whatever routing setup you build should assume the model list keeps growing, not that today's seven options are the final list.
 
 ---
 

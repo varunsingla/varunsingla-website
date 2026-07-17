@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meet the Model Router -- Gemini 3.5 Pro Landed Today and Pushed the Live Model Count — Day 117 | Varun Singla · AI Learning Journal</title>
+<meta name="description" content="racing to control the layer beneath the model -- the chips, the governance rules, the routing decisions -- because that&#x27;s where the actual cost and control now live, not on the leaderboard.">
+<meta name="author" content="Varun Singla">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://varunsingla.com/entries/2026-07-17.html">
+<link rel="prev" href="https://varunsingla.com/entries/2026-07-16.html">
+<link rel="alternate" type="application/rss+xml" title="Varun Singla · AI Learning Journal" href="https://varunsingla.com/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Varun Singla · AI Learning Journal">
+<meta property="og:title" content="Meet the Model Router -- Gemini 3.5 Pro Landed Today and Pushed the Live Model Count">
+<meta property="og:description" content="racing to control the layer beneath the model -- the chips, the governance rules, the routing decisions -- because that&#x27;s where the actual cost and control now live, not on the leaderboard.">
+<meta property="og:url" content="https://varunsingla.com/entries/2026-07-17.html">
+<meta property="og:image" content="https://varunsingla.com/og-image.png">
+<meta property="article:published_time" content="2026-07-17T21:00:00+08:00">
+<meta property="article:author" content="https://varunsingla.com/about/">
+<meta property="article:tag" content="Models &amp; Frontier"><meta property="article:tag" content="Foundations &amp; Protocols">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Meet the Model Router -- Gemini 3.5 Pro Landed Today and Pushed the Live Model Count">
+<meta name="twitter:description" content="racing to control the layer beneath the model -- the chips, the governance rules, the routing decisions -- because that&#x27;s where the actual cost and control now live, not on the leaderboard.">
+<meta name="twitter:image" content="https://varunsingla.com/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "@id": "https://varunsingla.com/entries/2026-07-17.html#post", "headline": "Meet the Model Router -- Gemini 3.5 Pro Landed Today and Pushed the Live Model Count", "description": "racing to control the layer beneath the model -- the chips, the governance rules, the routing decisions -- because that's where the actual cost and control now live, not on the leaderboard.", "datePublished": "2026-07-17T21:00:00+08:00", "dateModified": "2026-07-17T21:00:00+08:00", "url": "https://varunsingla.com/entries/2026-07-17.html", "mainEntityOfPage": "https://varunsingla.com/entries/2026-07-17.html", "wordCount": 811, "inLanguage": "en", "articleSection": ["Models & Frontier", "Foundations & Protocols"], "keywords": ["Models & Frontier", "Foundations & Protocols", "agentic AI", "AI learning journal", "Varun Singla"], "isPartOf": {"@type": "Blog", "@id": "https://varunsingla.com/#blog", "name": "Varun Singla · AI Learning Journal"}, "author": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla", "url": "https://varunsingla.com/about/"}, "publisher": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Journal", "item": "https://varunsingla.com/"}, {"@type": "ListItem", "position": 2, "name": "Archive", "item": "https://varunsingla.com/entries/"}, {"@type": "ListItem", "position": 3, "name": "Meet the Model Router -- Gemini 3.5 Pro Landed Today and Pushed the Live Model Count", "item": "https://varunsingla.com/entries/2026-07-17.html"}]}</script>
+<style>*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#F7F4ED;}
+body{font-family:'Hanken Grotesk',sans-serif;color:#1B1A17;-webkit-font-smoothing:antialiased;}
+::selection{background:#CC3F2A;color:#fff;}
+a{color:inherit;}
+.mast{position:sticky;top:0;z-index:50;background:rgba(247,244,237,.9);backdrop-filter:blur(12px);border-bottom:1px solid #E4DECF;}
+.mast-in{max-width:1120px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;}
+.brand-mark{width:30px;height:30px;border-radius:7px;background:#1B1A17;color:#F7F4ED;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;}
+.brand-name{font-family:'JetBrains Mono',monospace;font-size:13.5px;color:#1B1A17;}
+.nav-link{font-size:14.5px;font-weight:500;color:#6B6760;text-decoration:none;padding:7px 12px;border-radius:8px;}
+.nav-link:hover{color:#1B1A17;background:#EEE9DC;}
+.meta-row{display:flex;align-items:center;gap:13px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:13px;color:#8A857B;}
+.meta-row .day{color:#CC3F2A;font-weight:500;}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.04em;color:#6B6760;border:1px solid #E4DECF;border-radius:999px;padding:5px 12px;background:#FBF9F3;text-decoration:none;}
+article h1{font-family:'Newsreader',serif;font-weight:400;font-size:clamp(32px,5.5vw,52px);line-height:1.07;letter-spacing:-.018em;margin:0 0 22px;}
+article h2{font-family:'Newsreader',serif;font-weight:500;font-size:clamp(23px,3.4vw,30px);line-height:1.18;margin:0 0 18px;}
+article p{font-family:'Newsreader',serif;font-size:clamp(18px,2.3vw,20px);line-height:1.65;color:#2C2A24;margin:0 0 20px;}
+article ul{margin:4px 0 20px;padding-left:20px;}
+article li{font-family:'Newsreader',serif;font-size:clamp(17px,2.2vw,19px);line-height:1.6;color:#2C2A24;margin:0 0 10px;}
+.intro{font-size:clamp(20px,3vw,24px)!important;line-height:1.5!important;color:#3A372F!important;font-style:italic;margin:0 0 40px!important;}
+.callout{border:1px solid #E4DECF;border-left:3px solid #CC3F2A;border-radius:12px;background:#FBF9F3;padding:22px 24px;margin:0 0 40px;}
+.callout p{font-size:clamp(17px,2.2vw,19px);margin:0;}
+.kicker{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#CC3F2A;margin-bottom:14px;}
+.highlight{font-family:'Newsreader',serif;font-style:italic;font-size:clamp(18px,2.4vw,20px);line-height:1.55;color:#3A372F;border-left:3px solid #CC3F2A;padding:6px 0 6px 16px;margin:8px 0 20px;}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:#E4DECF;border:1px solid #E4DECF;border-radius:12px;overflow:hidden;margin:0 0 40px;}
+.stat-cell{background:#FBF9F3;padding:18px 20px;}
+.stat-big{font-family:'Newsreader',serif;font-size:clamp(24px,4vw,32px);line-height:1.05;color:#1B1A17;}
+.stat-small{font-size:13px;line-height:1.45;color:#56524B;margin-top:8px;}
+.table-wrap{overflow-x:auto;border:1px solid #E4DECF;border-radius:12px;background:#FBF9F3;margin:0 0 20px;}
+table{width:100%;border-collapse:collapse;}
+th{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#8A857B;text-align:left;padding:9px 12px;border-bottom:1px solid #CBB8A0;font-weight:500;}
+td{font-size:14.5px;color:#2C2A24;padding:9px 12px;border-bottom:1px solid #EEE9DC;vertical-align:top;line-height:1.45;font-family:'Hanken Grotesk',sans-serif;}
+tr:last-child td{border-bottom:none;}
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:680px;margin:0 auto;padding:20px 28px 90px;}
+.pn a{border:1px solid #E4DECF;border-radius:12px;padding:18px 20px;background:#FBF9F3;text-decoration:none;display:block;}
+.pn a:hover{border-color:#1B1A17;}
+.pn .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#A8A294;margin-bottom:9px;}
+.pn .ttl{font-family:'Newsreader',serif;font-size:18px;line-height:1.2;color:#1B1A17;}
+footer{border-top:1px solid #E4DECF;background:#FBF9F3;}
+.foot-in{max-width:1120px;margin:0 auto;padding:34px 28px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#6B6760;}</style>
+</head>
+<body>
+<header class="mast"><div class="mast-in">
+  <a class="brand" href="../"><span class="brand-mark">VS</span><span class="brand-name">varunsingla.com</span></a>
+  <nav style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+    <a class="nav-link" href="../">Journal</a>
+    <a class="nav-link" href="../entries/">Archive</a>
+    <a class="nav-link" href="../about/">About</a>
+    <a class="nav-link" href="../ai-tokenomics/">Tokenomics</a>
+    <a class="nav-link" href="../tools/model-team-evaluator.html">Model Evaluator</a>
+  </nav>
+</div></header>
+<article style="max-width:680px;margin:0 auto;padding:48px 28px 30px;">
+  <p style="margin:0 0 38px;"><a href="./" style="font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.04em;color:#6B6760;text-decoration:none;">← All entries</a></p>
+  <div class="meta-row" style="margin-bottom:22px;">
+    <span class="day">Day 117</span><span>·</span>
+    <time datetime="2026-07-17">July 17, 2026</time><span>·</span>
+    <span>4 min read</span>
+  </div>
+  <h1>Meet the Model Router -- Gemini 3.5 Pro Landed Today and Pushed the Live Model Count</h1>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:34px;padding-bottom:34px;border-bottom:1px solid #E4DECF;"><span class="tag">Models &amp; Frontier</span> <span class="tag">Foundations &amp; Protocols</span> </div>
+  <p class="intro">racing to control the layer beneath the model -- the chips, the governance rules, the routing decisions -- because that&#x27;s where the actual cost and control now live, not on the leaderboard.</p>
+<div class="callout"><div class="kicker">Viral app of the day</div><p style="font-family:'Newsreader',serif;font-size:22px;font-weight:500;margin:0 0 10px;">RouteLLM: the open-source router that turned model-picking into a</p><p>RouteLLM&#x27;s GitHub repo is getting a fresh wave of attention this week, as teams staring down seven live price tiers go looking for something better than hand-picking a model per project. Its pitch is almost aggressively simple: train a lightweight classifier on human preference data, then let it decide, for each incoming prompt, whether a cheap model will do or a strong one is worth the money. The ICLR 2025 result behind it holds up -- 85% lower cost on MT Bench while keeping 95% of GPT-4 Turbo-level quality, sending only 14% of traffic to the expensive model. It&#x27;s popular for the same reason OpenRouter&#x27;s Auto Router is spreading through developer circles this week: neither one asks a team to become a routing-research lab first. One is open-source and self-hosted, the other is a hosted dial -- but both let you stop reading</p></div>
+<div style="margin:0 0 40px;"><div class="kicker">By the numbers</div><div class="stat-grid"><div class="stat-cell"><div class="stat-big">7</div><div class="stat-small">Live price-and-capability tiers across frontier and open-weight labs as of today&#x27;s Gemini launch</div></div><div class="stat-cell"><div class="stat-big">85%</div><div class="stat-small">RouteLLM&#x27;s peer-reviewed cost cut on MT Bench, keeping 95% of GPT-4 Turbo-level quality</div></div><div class="stat-cell"><div class="stat-big">14%</div><div class="stat-small">Share of queries RouteLL classifier actually sends to the strong, expensive model</div></div><div class="stat-cell"><div class="stat-big">0-10</div><div class="stat-small">M&#x27;s OpenRouter&#x27;s Auto Router dial -- 0 always picks the best model, 10 always picks the cheapest</div></div></div></div>
+<section><h2>1) Seven tiers is one too many to pick by hand</h2><p>Gemini 3.5 Pro arrives after Google reportedly scrapped an earlier version outright, after engineers found structural failures in recursive tool-calling and SVG generation, and rebuilt it on an entirely new pretraining run. The result ships a 2-million-token context window -- double Gemini 3.5 Flash&#x27;s 1 million -- a Deep Think reasoning layer for multi-step problems, and autonomous workflow capability, at a reported $12-15 per million input tokens and $36-45 per million output tokens: roughly double Sonnet 5&#x27;s introductory rate and in the same range as</p><p>That lands on top of a field that was already crowded. GLM-5.2, DeepSeek V4, and Qwen 3.6 shipped inside the same ten-day window Day 110 covered; Sonnet 5, Grok 4.5, and GPT-5.6 shipped the ten days before that. Seven models, seven different specialties, none of them dominant at everything -- which means benchmarking every new release against your own workload before every project no longer scales. That&#x27;s exactly the gap a routing layer exists to</p></section>
+<section><h2>2) How a routing layer actually decides</h2><p>RouteLLM, built by the LMSYS team behind Chatbot Arena, trains lightweight classifiers -- a matrix-factorization model and a BERT-based variant -- on human preference data to predict which model wins a given prompt, then routes accordingly. It&#x27;s open-source, peer-reviewed at ICLR 2025, and self-hosted, which means the routing logic lives in your own infrastructure rather</p><p>OpenRouter&#x27;s Auto Router, powered by NotDiamond, takes the hosted route: it analyzes each incoming prompt, selects a model from a curated pool, forwards the request, and returns metadata showing which model actually answered. It pins the chosen model and provider for the rest of a conversation to keep behavior consistent and prompt-cache hits intact, charges no fee of its own beyond the selected model&#x27;s standard rate, and exposes a single cost_quality_tradeoff dial from 0 (always the most capable model) to 10 (always the cheapest). Martian takes a third approach -- a proxy layer that routes in real time behind one model-agnostic endpoint, so the application never has to know which model actually ran. The frontier is already moving past static classifiers: bandit-feedback online-learning routers like BaRP and PILOT adapt from live traffic instead of a training set frozen at launch, MCP Gateways are emerging as a single control plane in front of an entire tool-plus-model stack, and vLLM&#x27;s Iris project is pushing the routing decision below the application layer entirely, into the inference</p></section>
+<section><h2>3) The catch: routing is a new dependency, not a free lunch</h2><p>RouteLLM&#x27;s 85% figure is real but pair-specific -- GPT-4 Turbo versus Mixtral 8x7B, scored on MT Bench. Run the same idea with a simpler BERT classifier on MMLU instead, and the savings drop to 45%. Martian&#x27;s advertised &quot;up to 98%&quot; is explicitly an upper bound, not a typical result. None of these numbers travel to your workload unmodified; they&#x27;re proof the technique works,</p><p>A router that misjudges a prompt doesn&#x27;t throw an error -- it silently sends a hard question to a cheap model and returns a worse answer with total confidence. That makes the router&#x27;s own accuracy something you now have to monitor, on top of monitoring the models it&#x27;s choosing between. It also adds a dependency to the request path: if a hosted router&#x27;s curated model pool or classifier goes stale, quality can drift without a single line of your own code changing. In production, teams that actually tune a routing layer report bill cuts in the 40-85% range -- a wide band, because it depends entirely on how much of your traffic ever needed the expensive model</p><p>RouteLLM (LMSYS) Open-source router 85% cost cut (MT Bench, Self-hosted, 95% GPT-4 Turbo quality) research-grade routing OpenRouter Auto Router Hosted router $0 routing fee -- pays One-dial cost/quality (NotDiamond) selected model&#x27;s rate tuning (0-10) Martian Hosted proxy router Up to 98% claimed (upper Real-time routing with</p><p>Gemini 3.5 Pro (ref., new Frontier model $12-15 in / $36-45 out per 2M context, Deep Think</p></section>
+<div class="callout"><div class="kicker">Market signal</div><p>Today is also the opening day of Shanghai&#x27;s World AI Conference, and for the first time since it launched in 2018, Xi Jinping is delivering the keynote in person -- China&#x27;s clearest signal yet that it wants to help write AI&#x27;s governance rules, not just follow them, including a push for a Shanghai-headquartered World AI Cooperation Organization as a counterweight to Western-led governance bodies. It lands the same week Anthropic confirmed early talks with Samsung over custom Claude inference chips, aimed squarely at its own $1.25-billion-a-month compute bill. Put next to today&#x27;s topic, it&#x27;s the same pattern routing exists to manage: every lab, East or West, is racing to control the layer beneath the model -- the chips, the governance rules, the routing decisions -- because that&#x27;s where the actual cost and control now live, not on the leaderboard.</p></div>
+<div class="callout"><div class="kicker">Practical takeaways</div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">Don&#x27;t trust a routing benchmark you haven&#x27;t run on your own traffic</div><p style="font-size:17px;margin:3px 0 0;">RouteLLM&#x27;s 85% figure is real but specific to one model pair on one benchmark; a BERT-based version of the same idea only cleared 45% on a different one. Test any router against a sample of your actual prompts before trusting its savings number.</p></div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">Start with a dial, not a black box</div><p style="font-size:17px;margin:3px 0 0;">Tools like OpenRouter&#x27;s Auto Router expose a single cost_quality_tradeoff parameter (0-10) instead of hiding the decision entirely. Keep that kind of manual override while you build confidence in a router&#x27;s judgment, rather than adopting one you can&#x27;t audit.</p></div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">Budget for an eighth tier, then a ninth</div><p style="font-size:17px;margin:3px 0 0;">Gemini 3.5 Pro is this week&#x27;s new price tier; six labs shipped inside the last two weeks alone. Whatever routing setup you build should assume the model list keeps growing, not that today&#x27;s seven options are the final list.</p></div></div>
+  <div style="display:flex;align-items:center;gap:13px;margin:54px 0 10px;padding-top:30px;border-top:1px solid #E4DECF;">
+    <div class="brand-mark" style="width:40px;height:40px;font-size:14px;border-radius:9px;">VS</div>
+    <div><div style="font-size:14.5px;font-weight:600;">Varun Singla</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8A857B;">Singapore · <a href="../about/" style="color:#8A857B;">About</a> · Learning in public</div></div>
+  </div>
+</article>
+<nav class="pn" aria-label="Adjacent entries"><span></span><a href="2026-07-16.html" rel="prev" style="text-align:right;"><div class="lbl">Older · Day 116 →</div><div class="ttl">The Open-Weight Counter-Punch -- GLM-5.2, DeepSeek V4 &amp; Qwen 3.6 Landed Days After Sonnet</div></a></nav>
+<footer><div class="foot-in">
+  <span>Varun Singla · Singapore · Learning in public</span>
+  <span><a href="https://varunsingla.com/feed.xml" style="text-decoration:none;color:#6B6760;">RSS</a> · <a href="https://varunsingla.com/llms.txt" style="text-decoration:none;color:#6B6760;">llms.txt</a> · Updated daily</span>
+</div></footer>
+</body>
+</html>
