@@ -1,13 +1,14 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 117 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 118 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 117 — "Meet the Model Router -- Gemini 3.5 Pro Landed Today and Pushed the Live Model Count" (July 17, 2026).
+Latest entry: Day 118 — "The Governance Body Without Teeth" (July 18, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Journal entries
 
+- [Day 118: The Governance Body Without Teeth](https://varunsingla.com/entries/2026-07-18.html): 29 Nations Signed China's World AI Cooperation Organization in Shanghai This Week -- Here's What It Actually Promises to Do, Who Isn't in the Room,…
 - [Day 117: Meet the Model Router -- Gemini 3.5 Pro Landed Today and Pushed the Live Model Count](https://varunsingla.com/entries/2026-07-17.html): racing to control the layer beneath the model -- the chips, the governance rules, the routing decisions -- because that's where the actual cost and…
 - [Day 116: The Open-Weight Counter-Punch -- GLM-5.2, DeepSeek V4 & Qwen 3.6 Landed Days After Sonnet](https://varunsingla.com/entries/2026-07-16.html): None of this month's open-weight releases is trying to be the same thing. Z.ai's GLM-5.2 ships under an MIT license with roughly 744 billion total…
 - [Day 115: The Good, Better, Best Playbook -- OpenAI Ships Three Models at Once With GPT-5.6 -- and Why Every](https://varunsingla.com/entries/2026-07-15.html): OpenAI didn't ship "GPT-5.6" as a single model -- it shipped a family. Sol is the flagship: built for frontier reasoning and long-horizon agentic…
