@@ -1,6 +1,48 @@
 # Varun Singla · AI Learning Journal — full text
 
-Complete text of all 118 journal entries by Varun Singla (https://varunsingla.com), newest first. Index: https://varunsingla.com/llms.txt
+Complete text of all 119 journal entries by Varun Singla (https://varunsingla.com), newest first. Index: https://varunsingla.com/llms.txt
+
+---
+
+# Day 119: Physical AI Leaves the Demo Stage
+
+Date: July 19, 2026 · Author: Varun Singla · URL: https://varunsingla.com/entries/2026-07-19.html · Themes: Models & Frontier
+
+Figure's Humanoid Just Finished a Year on BMW's Line, Boston Dynamics and Tesla Are Shipping Fleets, and China's WAIC Floor Is Betting the Same Thing -- What Actually Has to Be True Before a Robot Clocks In Day 112 closed with a promise: WAIC's later days are billed around agent breakthroughs and robot industrialization, since humanoid robots and dexterous hands already had floor space in Shanghai this week. Today that promise has real numbers behind it, and they aren't from the conference floor -- they're from a production line in South Carolina. Figure AI's humanoid robots just finished nearly a year working BMW's Spartanburg plant, and this week the company retired the model that did it in favor of one built to scale. Put next to Boston Dynamics, Tesla, and Agility Robotics all moving fleets into production in the same stretch, 2026 is turning into the year physical AI stops performing for cameras and starts clocking in.
+
+**Viral app of the day: Inkling: Mira Murati's First Model Bets on Customizable Over Smartest**
+Mira Murati's Thinking Machines released Inkling on July 15, its first model since she left OpenAI as CTO to found the lab in 2023 -- open-weight, a mixture-of-experts system with 975 billion total parameters that draws on roughly 41 billion for any given task. The company is upfront that Inkling isn't the strongest model available: according to Artificial Analysis, it's currently the most capable U.S. open-weights model on agentic tasks, beating Kimi K2.6 and DeepSeek V4 Flash Max with strong token efficiency -- and it also carries a 63 percent hallucination rate, notably higher than comparable Chinese releases, at a higher cost to run. The bet isn't raw intelligence, it's customization: Inkling ships alongside Tinker, Thinking Machines' fine-tuning platform, aimed at enterprises that want a model they can make their own rather than rent from a frontier lab. Thinking Machines went from founding to a shipped model in about nine months -- OpenAI took roughly five years to do the same, Anthropic about three.
+
+## 1) From walking demos to a line that shipped 30,000 cars
+
+Figure AI's F.02 humanoids worked BMW's Spartanburg plant for close to a year -- not a pilot, a production job with a real spec: picking sheet-metal parts and placing them into welding fixtures with 5-millimeter precision inside a 2-second cycle time, contributing to production of more than 30,000 BMW X3s and loading over 90,000 parts. This week Figure retired F.02 in favor of Figure 03, its newer model, and opened BotQ, a dedicated humanoid factory built to produce up to 12,000 units a year. That's the actual gap between 2024's demo era and now: a defined precision-and-cycle-time number, sustained on a live line, for months -- not a highlight reel of a robot walking across a stage.
+
+## 2) Who else is actually shipping fleets right now
+
+Boston Dynamics' Atlas 2026 is in fully committed production, with initial fleets going to Hyundai's RMAC group (its own parent company) and Google DeepMind as a research partner. Tesla's Optimus Gen 3 is ramping low-volume, full-body production at Fremont this month, aimed at factory tasks and line conversion. Agility Robotics is going public via a $2.5 billion SPAC merger, reporting more than $300 million in contracted orders for Digit v5 -- a "cooperatively safe" model designed to work fence-free alongside people, with a 50-pound lift and swappable hands. A separate startup, Humanoid, has a deal with auto-parts maker Schaeffler to go live in German production environments before the end of 2026. Across the Pacific, WAIC's exhibition floor is running the same argument physically: Zhiyuan brought a 1:1 replica of an industrial assembly-and-logistics line specifically to counter skepticism that robots can do real work, and Pudu Robotics showed a "one brain, multiple embodiments" architecture meant to run the same AI system across several different robot bodies.
+
+## 3) What actually has to be true before a robot leaves the stage
+
+Four things, and none of them is "can it walk." Perception means reliably understanding an unstructured, constantly changing environment, not a fixed staged set. Manipulation means dexterity under a real tolerance spec -- Figure's 5-millimeter, 2-second number is the kind of figure that matters, not "it can pick something up." Safety means certified to work fence-free next to people, which is the actual unlock for factory-floor deployment -- robots that stay behind a cage have existed for decades. And economics means the cost per unit and uptime beat a human wage plus benefits plus turnover, at real production volumes -- which is why financing events like Agility's SPAC and Figure's 12,000-unit-a-year factory are signals in their
+
+It's the same sim-to-real logic Day 103 covered for world models, just relocated: the gap that matters isn't showroom to shop floor, it's a validation record from a live production line, not a demo reel.
+
+A robot demo proves the capability exists. A production SLA -- a defined precision number, a cycle time, a safety certification, and months of uptime on a live line -- proves it's ready to leave the stage.
+
+| Company | Robot | Status | Proof Point |
+|---|---|---|---|
+| Figure AI | Figure 03 | Live production | 30,000+ BMW X3s, 90,000+ parts, 5mm/2s precision |
+| Boston Dynamics | Atlas 2026 | Fleets shipping | Hyundai RMAC, Google DeepMind |
+| Tesla | Optimus Gen 3 | Low-volume ramp | Fremont, factory tasks, Jul-Aug 2026 |
+| Agility Robotics | Digit v5 | Going public (SPAC) | $2.5B valuation, $300M+ contracted orders |
+| Humanoid | (unnamed) | Deploying late 2026 | Schaeffler, live production in Germany |
+
+**Market signal:** Agility Robotics pricing itself at $2.5 billion with a $300 million-plus order backlog, the same week Figure's BotQ factory came online at 12,000 units a year, is the clearest signal yet that capital is treating humanoid robots as a manufacturing bet with a backlog number -- not a moonshot research story anymore. That's a different kind of proof than a benchmark score: it's investors and industrial buyers underwriting a delivery schedule, which only happens once the SLA numbers in section one are real enough to put in a contract.
+
+**Practical takeaways:**
+- Judge physical AI by the SLA, not the demo reel — Ask a robotics vendor for the same numbers Figure has: precision tolerance, cycle time, safety certification, and months of uptime on a live line -- a walking demo tells you almost nothing about production readiness.
+- Separate "biggest open model" from "most customizable" — Inkling's bet on fine-tunability is a different value proposition from yesterday's Kimi K3 story about raw parameter count -- check the hallucination rate yourself before trusting either headline number.
+- If you're on a Claude subscription, note tonight's deadline — Fable 5's free access under the weekly usage pool ends today, July 19, at 11:59pm PT; pay-per-use pricing ($10/M input, $50/M output tokens) takes over after that for anyone who wants to keep using it beyond the subscription.
 
 ---
 
