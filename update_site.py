@@ -1082,6 +1082,34 @@ def parse_pdf(pdf_path: Path) -> dict:
         if not app_name and name_parts:
             app_name = ' '.join(name_parts)
 
+        # Boxed-table fallback: pdfplumber sometimes merges the whole spotlight box
+        # (header + title in row 0, body text in row 1) into its own bordered table,
+        # distinct from neighboring boxes like MARKET SIGNAL. That content never
+        # reaches `lines` (it's inside a table bbox), so the loop above finds
+        # nothing and the generic "longest cell wins" fallback below would
+        # misattribute a neighboring box's text instead. Detect the shape directly.
+        if not app_name:
+            _viral_hdr_prefix = re.compile(
+                r'^(viral app(\s+of\s+the\s+day)?|viral\s*/\s*open.source spotlight|'
+                r'open.source spotlight|viral spotlight|oss spotlight)\b[:\s]*',
+                re.I,
+            )
+            for tbl2 in pd['tables']:
+                tdata = tbl2['data']
+                if not tdata or not tdata[0] or not tdata[0][0]:
+                    continue
+                first_cell_raw = str(tdata[0][0])
+                m_hdr = _viral_hdr_prefix.match(first_cell_raw.strip())
+                if not m_hdr:
+                    continue
+                title_raw = first_cell_raw[m_hdr.end():].strip()
+                if title_raw:
+                    app_name = clean(title_raw)
+                desc_cells = [clean(str(c)) for row in tdata[1:] for c in (row or []) if c]
+                if desc_cells:
+                    app_desc = ' '.join(desc_cells)[:1400]
+                break
+
         # Stat box tables on this page
         for tbl2 in pd['tables']:
             if _is_stat_box(tbl2['data']):

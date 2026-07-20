@@ -1,13 +1,14 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 119 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 120 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 119 — "Physical AI Leaves the Demo Stage" (July 19, 2026).
+Latest entry: Day 120 — "WAIC Closes With a Phone That Uses Itself" (July 20, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Journal entries
 
+- [Day 120: WAIC Closes With a Phone That Uses Itself](https://varunsingla.com/entries/2026-07-20.html): Nubia and ByteDance Shipped the First OS-Level AI Agent Phone on Shanghai's Closing Day, Huawei Unveiled an 8,192-Chip Supernode Behind It, and a…
 - [Day 119: Physical AI Leaves the Demo Stage](https://varunsingla.com/entries/2026-07-19.html): Figure's Humanoid Just Finished a Year on BMW's Line, Boston Dynamics and Tesla Are Shipping Fleets, and China's WAIC Floor Is Betting the Same Thing…
 - [Day 118: The Governance Body Without Teeth](https://varunsingla.com/entries/2026-07-18.html): 29 Nations Signed China's World AI Cooperation Organization in Shanghai This Week -- Here's What It Actually Promises to Do, Who Isn't in the Room,…
 - [Day 117: Meet the Model Router -- Gemini 3.5 Pro Landed Today and Pushed the Live Model Count](https://varunsingla.com/entries/2026-07-17.html): racing to control the layer beneath the model -- the chips, the governance rules, the routing decisions -- because that's where the actual cost and…

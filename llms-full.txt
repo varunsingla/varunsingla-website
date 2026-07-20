@@ -1,6 +1,39 @@
 # Varun Singla · AI Learning Journal — full text
 
-Complete text of all 119 journal entries by Varun Singla (https://varunsingla.com), newest first. Index: https://varunsingla.com/llms.txt
+Complete text of all 120 journal entries by Varun Singla (https://varunsingla.com), newest first. Index: https://varunsingla.com/llms.txt
+
+---
+
+# Day 120: WAIC Closes With a Phone That Uses Itself
+
+Date: July 20, 2026 · Author: Varun Singla · URL: https://varunsingla.com/entries/2026-07-20.html · Themes: Enterprise & Strategy
+
+Nubia and ByteDance Shipped the First OS-Level AI Agent Phone on Shanghai's Closing Day, Huawei Unveiled an 8,192-Chip Supernode Behind It, and a Fresh $1.8B in Agent Startup Funding Shows Why Everyone's Betting the Same Way -- What China's Full Agent Stack Actually Reveals Day 113 closed on a promise: WAIC's final day in Shanghai was billed specifically around agent breakthroughs, the half of the conference this series hadn't gotten to yet after covering the humanoid-robot story. Today that promise landed, and it landed as a phone. Nubia and ByteDance unveiled the NaviX Ultra, an AI agent smartphone that operates apps at the operating-system level without you touching the screen -- and it didn't arrive alone.
+
+**Viral app of the day: Nubia NaviX Ultra: the Phone That Shops So You Don't Have To**
+The NaviX Ultra is the device WAIC's closing day was building toward: an AI agent smartphone running ByteDance's Doubao Mobile Assistant at the operating-system level, not inside a single app. Its GUI agent reads the screen like a person would, then can open apps, compare prices across them, fill in checkout details, and complete a purchase without a single tap. It's taking off for a simple reason -- the predecessor technology preview, the Nubia M153, sold out its entire first batch of 30,000 units on day one, proof that an agent that acts instead of just answering is a feature people will pay for immediately, not just a lab demo. It also puts a very concrete question in front of every phone maker: once an agent can operate any app on your behalf, does the app ecosystem itself start to matter less than the agent operating it?
+
+**By the numbers:**
+- 1M — tokens
+
+## 1) The phone that doesn't wait for you to tap anything
+
+The Nubia NaviX Ultra, unveiled at WAIC on ByteDance's Doubao Mobile Assistant, runs its agent at the operating system level rather than inside a single app: a GUI agent reads the screen the way a person would, then opens apps, compares prices, fills in your details, and completes purchases on its own. That's a meaningfully different design than an AI keyboard or a chatbot bolted onto a phone -- the agent has the same access a human finger would, across every app, not just the ones with an API partnership. This isn't a paper demo either: the predecessor device, the Nubia M153 technology preview, sold out its initial batch of 30,000 units on its first day on sale.
+
+## 2) The supernode and the open model built for the same job
+
+An OS-level agent that watches a screen and reasons about what to click needs a lot more inference throughput than a chat window, and WAIC's closing day showed the infrastructure side of that bet too. Huawei unveiled the physical unit of its Atlas 950 SuperPoD, linking 8,192 Ascend 950DT processors over its own UnifiedBus 2.0 interconnect into a single system rated at 1 EFLOPS of FP8 compute and 256 TB of unified memory -- Huawei's own figures put that at 6.7 times the throughput of Nvidia's comparable NVL144 pod. It ships in Q4 2026. Alongside it, MiniMax released M3, which it's billing as the first open-weight model to combine a 1-million-token context window, native multimodal input, and computer-use capability in one package -- three things previously only bundled together in closed frontier models. Put together, that's a full stack aimed at exactly one job: an agent that can hold a long task in context, see what's on a screen, and act on it.
+
+## 3) Why enterprises are actually paying for this now
+
+The consumer agent phone and the open agentic model both sit on top of a spending shift that's already showing up in enterprise budgets. Gartner is forecasting $206.5 billion in AI agent software spending for 2026, on pace to reach $376.3 billion in 2027, and expects 40 percent of enterprise applications to embed task-specific agents by year end, up from under 5 percent in 2025. Venture money is following the same signal: AI agent startups raised more than $1.8 billion in July across 12-plus deals, and 62 percent of those were Series B or later, at an average $150 million round size, backed by companies already showing $25 million-plus in annual recurring revenue -- not pre-revenue bets. Harvey AI's $200 million Series C at a $2.1 billion valuation, Lovable's $200 million Series B, Glean's $180 million Series D, and Hebbia's $130 million Series B all closed this month on that same thesis.
+
+A chatbot answers when you ask. An agent worth funding acts at the OS level, across every app, without needing a bespoke integration -- and it's real once late-stage investors are writing $150M+ checks against revenue that's already there, not against a demo.
+
+**Practical takeaways:**
+- Judge an "agent product" by where it acts, not what it answers — The NaviX Ultra's whole pitch is OS-level action across every app, not a chat window bolted onto one app -- when you evaluate any agent tool, ask what surface it actually operates on before trusting the label.
+- Check whether an open model's headline combo is really new — MiniMax M3's claim is combining 1M context, multimodal input, and computer use in one open-weight release -- each piece alone isn't new, so the useful question is always "together, in one open model, first?"
+- Late-stage, revenue-backed funding rounds are a stronger signal than seed rounds — July's agent funding wave was 62 percent Series B+ against real ARR, not pre-revenue seed bets -- that's a materially different confidence signal than a headline funding total by itself.
 
 ---
 
