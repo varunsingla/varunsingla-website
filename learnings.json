@@ -6,6 +6,82 @@
   },
   "learnings": [
     {
+      "date": "2026-07-21",
+      "display_date": "July 21, 2026",
+      "issue": 115,
+      "title": "The Governance Body With Teeth -- The EU's Two Binding DMA Decisions Force Google to Share Search Data From",
+      "focus_intro": "The EU's Two Binding DMA Decisions Force Google to Share Search Data From January 2027 and Open 11 Android AI Features to Rivals by Mid-2027 -- While Anthropic, Amazon, Microsoft and Google Quietly Agree on a Shared Scale for How Dangerous a Jailbreak Actually Is Day 115 · July 21, 2026 · 4 min read · Policy & Governance Three days ago this series covered the World AI Cooperation Organization under the headline \"The Governance Body Without Teeth\" -- a charter 29 nations signed in Shanghai with no enforcement mechanism behind it. This week produced its opposite. On July 16 the European Commission handed down two binding decisions ordering Google to open Android's AI assistant hooks and share search data with rivals, backed by fines of up to 10 percent of global revenue for non-compliance -- a governance body that actually bites.",
+      "viral_app": {
+        "name": "Kling AI: One Selfie In, One Dance Video Out",
+        "description": "Kuaishou's Kling AI app is behind July's biggest AI dance trend on TikTok: upload a single photo and it animates the person into a full AI-generated dance routine matching a trending song, with realistic motion, clothing physics, and facial consistency -- no camera, no choreography, no filming required. It's taking off because it collapses a format that used to need a phone tripod and a rehearsed routine into a 30-second upload, which is exactly the kind of friction removal that turns a niche video model into a mainstream trend. Open-source note: Moonshot AI has committed to releasing Kimi K3's weights by July 27, with DeepSeek V4's stable release landing July 24 -- watch both dates if you're tracking the open-weight side of this same video/agent capability race. 1) What the EU actually ordered, and why it has teeth The Digital Markets Act labels Google a \"gatekeeper\" -- a platform so dominant that normal competition law moves too slowly to matter, so the DMA lets Brussels issue binding technical requirements instead of waiting years for a court case. On July 16 it used that power twice. First: Google must give rival AI assistants the same access to 11 Android features that it reserves for Gemini, including letting a user summon a competitor with a voice command the way \"Hey Google\" works today -- changes required to reach users by July 2027. Second: starting January 2027, Goog",
+        "stats": [
+          {
+            "stat": "11",
+            "label": "Android AI features Google must open"
+          },
+          {
+            "stat": "5",
+            "label": "CJS jailbreak severity tiers"
+          },
+          {
+            "stat": "10%",
+            "label": "max DMA fine, share of revenue"
+          }
+        ]
+      },
+      "stats": [
+        {
+          "stat": "11",
+          "label": "Android AI features Google must open"
+        },
+        {
+          "stat": "5",
+          "label": "CJS jailbreak severity tiers"
+        },
+        {
+          "stat": "10%",
+          "label": "max DMA fine, share of revenue"
+        }
+      ],
+      "sections": [
+        {
+          "title": "1) What the EU actually ordered, and why it has teeth",
+          "paragraphs": [
+            "The Digital Markets Act labels Google a \"gatekeeper\" -- a platform so dominant that normal competition law moves too slowly to matter, so the DMA lets Brussels issue binding technical requirements instead of waiting years for a court case. On July 16 it used that power twice. First: Google must give rival AI assistants the same access to 11 Android features that it reserves for Gemini, including letting a user summon a competitor with a voice command the way \"Hey Google\" works today -- changes required to reach users by July 2027. Second: starting January 2027, Google must share anonymised search data with competing search engines and AI chatbots, the raw material it has used to make its own answers better than anyone else's. Miss either deadline and the fine is up to 10 percent of Google's global annual revenue -- not a slap, a number that shows up in guidance to shareholders. That's the difference from Monday's story about the WAIC governance charter: 29 nations signing a document with no enforcement clause is a statement of intent. A gatekeeper decision under the DMA is a standing legal obligation with a fine attached from day one. Both are \"AI governance\" in the headlines; only one of them changes what Google is allowed to ship."
+          ]
+        },
+        {
+          "title": "2) Why Android's assistant slot specifically -- and who benefits",
+          "paragraphs": [
+            "The Android default-assistant slot is the same kind of chokepoint that made Google's default-search deal with Apple worth tens of billions of dollars a year: whoever sits in that slot gets picked by users who never open a settings menu. Reserving OS-level hooks -- screen reading, voice activation, app-launch permissions -- for Gemini alone meant a rival assistant installed from the Play Store was structurally second-class no matter how good its model was. Opening those 11 hooks doesn't hand Perplexity or ChatGPT a better model; it removes the platform-level handicap that made the model",
+            "It also lands one day after this series covered Nubia's NaviX Ultra -- a phone whose entire pitch is an OS-level agent that operates every app on the user's behalf. Once rival assistants get the same OS access Google reserves for its own, the interesting question stops being \"which chatbot is smartest\" and becomes \"which agent gets the OS-level permissions to actually act\" -- and after July 2027, that's no longer Google's decision alone to make on Android."
+          ]
+        },
+        {
+          "title": "3) The rivals' other agreement: a shared scale for jailbreak danger",
+          "paragraphs": [
+            "The same four companies squaring off over Android access -- Google, Microsoft, Amazon, plus Anthropic -- spent the same stretch of July agreeing on something together: the Cyber Jailbreak Severity (CJS) framework, published by Anthropic on July 2. It's a five-tier scale, CJS-0 (informational) through CJS-4 (critical), scored on four axes -- how much capability a jailbreak actually unlocks beyond what an attacker already had, how many distinct offensive tasks it works on, how easy it is to turn into a working attack, and how easily a threat actor would find it on their own. The tiers are exponential, not linear: each level is meant to represent several times more real-world risk than the one below it, not just",
+            "Before CJS, there was no shared vocabulary for \"how bad is this jailbreak\" -- so every new technique escalated on its own, sometimes all the way to emergency export controls, because nobody had an agreed triage step in between. That's not a hypothetical: it's the same dynamic that pulled Anthropic's own Fable 5 and Mythos 5 offline earlier this year until the Commerce Department lifted the controls in July. A shared severity scale is the industry's bet that most future jailbreak findings can be triaged instead of treated as a crisis by default -- self-regulation adopted because it's in every lab's interest, with no regulator required to make it stick."
+          ]
+        }
+      ],
+      "market_signal": "A 10-percent-of-global-revenue fine and a self-imposed severity scale are both, in their own way, a price on risk -- one set by a regulator, one set by the industry pricing its own worst-case scenario before anyone forces it to. Neither is slowing down the underlying race: DeepSeek V4's stable release lands July 24 and Kimi K3's open weights follow July 27, both arriving inside the same three-week window as the DMA order and the CJS framework. Governance and competition are now running on parallel tracks, not sequential ones -- labs are shipping frontier models and voluntarily regulating their own worst-case risks at the same time regulators are forcing the platform layer open, and none of the three is waiting on the others.",
+      "practical_takeaway": [
+        {
+          "title": "Sort \"AI governance\" news into three buckets before reacting to it",
+          "body": "Binding law with fines (the DMA order), voluntary treaty with no enforcement (WAICO), and industry self-regulation with no regulator involved (CJS) look similar in a headline but behave completely differently in practice -- ask which one you're reading about before deciding it matters."
+        },
+        {
+          "title": "If you build on Android, July 2027 is now a real product-planning date",
+          "body": "The interoperability window Google must open by mid-2027 is a live deadline, not a rumor -- assistants and agents that aren't ready to use the newly opened hooks on day one start that race a step behind the ones that are."
+        },
+        {
+          "title": "Ask where a jailbreak sits on a severity scale before reacting to the headline",
+          "body": "\"Researchers found a jailbreak\" means very different things at CJS-1 versus CJS-4 -- if a disclosure doesn't cite a severity tier, that absence is itself information about how rigorously it was triaged."
+        }
+      ]
+    },
+    {
       "date": "2026-07-20",
       "display_date": "July 20, 2026",
       "issue": 114,
