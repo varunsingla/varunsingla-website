@@ -1,13 +1,14 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 121 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 122 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 121 — "The Governance Body With Teeth -- The EU's Two Binding DMA Decisions Force Google to Share Search Data From" (July 21, 2026).
+Latest entry: Day 122 — "The Chips Behind the Chatbots -- AMD's MI400 Chips and Triple-Exaflop Helios Racks Ship the Same Week" (July 22, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Journal entries
 
+- [Day 122: The Chips Behind the Chatbots -- AMD's MI400 Chips and Triple-Exaflop Helios Racks Ship the Same Week](https://varunsingla.com/entries/2026-07-22.html): AMD's MI400 Chips and Triple-Exaflop Helios Racks Ship the Same Week ChatGPT Passes TikTok in Downloads Day 116 · July 22, 2026 · 4 min read ·…
 - [Day 121: The Governance Body With Teeth -- The EU's Two Binding DMA Decisions Force Google to Share Search Data From](https://varunsingla.com/entries/2026-07-21.html): The EU's Two Binding DMA Decisions Force Google to Share Search Data From January 2027 and Open 11 Android AI Features to Rivals by Mid-2027 -- While…
 - [Day 120: WAIC Closes With a Phone That Uses Itself](https://varunsingla.com/entries/2026-07-20.html): Nubia and ByteDance Shipped the First OS-Level AI Agent Phone on Shanghai's Closing Day, Huawei Unveiled an 8,192-Chip Supernode Behind It, and a…
 - [Day 119: Physical AI Leaves the Demo Stage](https://varunsingla.com/entries/2026-07-19.html): Figure's Humanoid Just Finished a Year on BMW's Line, Boston Dynamics and Tesla Are Shipping Fleets, and China's WAIC Floor Is Betting the Same Thing…
