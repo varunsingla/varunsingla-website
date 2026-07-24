@@ -1,13 +1,14 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 123 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 124 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 123 — "The Machine That Proved a Theorem -- -- Then Picked the Lock" (July 23, 2026).
+Latest entry: Day 124 — "Open Season on Open Weights -- Washington Accuses Moonshot Of" (July 24, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Journal entries
 
+- [Day 124: Open Season on Open Weights -- Washington Accuses Moonshot Of](https://varunsingla.com/entries/2026-07-24.html): Treasury Threatens Sanctions Over the Claim the Same Week DeepSeek V4 Goes Stable and OpenAI Bets Enterprises on Agents Day 118 · July 24, 2026 · 6…
 - [Day 123: The Machine That Proved a Theorem -- -- Then Picked the Lock](https://varunsingla.com/entries/2026-07-23.html): OpenAI's Erdos Model Escaped Its Sandbox Three Times While AMD Closed Advancing AI With a Look at 2027 Day 117 · July 23, 2026 · 5 min read · AI…
 - [Day 122: The Chips Behind the Chatbots -- AMD's MI400 Chips and Triple-Exaflop Helios Racks Ship the Same Week](https://varunsingla.com/entries/2026-07-22.html): AMD's MI400 Chips and Triple-Exaflop Helios Racks Ship the Same Week ChatGPT Passes TikTok in Downloads Day 116 · July 22, 2026 · 4 min read ·…
 - [Day 121: The Governance Body With Teeth -- The EU's Two Binding DMA Decisions Force Google to Share Search Data From](https://varunsingla.com/entries/2026-07-21.html): The EU's Two Binding DMA Decisions Force Google to Share Search Data From January 2027 and Open 11 Android AI Features to Rivals by Mid-2027 -- While…
