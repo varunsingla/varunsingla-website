@@ -1,13 +1,14 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 125 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 126 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 125 — "Standing Agents Arrive -- XAI Automations Ship as Kimi" (July 25, 2026).
+Latest entry: Day 126 — "The Half-Price Frontier" (July 26, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Journal entries
 
+- [Day 126: The Half-Price Frontier](https://varunsingla.com/entries/2026-07-26.html): Claude Opus 5 Ships With a Dial for How Hard It Thinks, and Gemini's Cheaper Agentic Tier Says the Real Race Is Now Cost Per Task Day 120 · July 26,…
 - [Day 125: Standing Agents Arrive -- XAI Automations Ship as Kimi](https://varunsingla.com/entries/2026-07-25.html): GPT-5.6 Needed a Government Review to Ship, and Janitor AI Turns Chatbot Conversations Into Shared Social Worlds Day 119 · July 25, 2026 · 6 min read…
 - [Day 124: Open Season on Open Weights -- Washington Accuses Moonshot Of](https://varunsingla.com/entries/2026-07-24.html): Treasury Threatens Sanctions Over the Claim the Same Week DeepSeek V4 Goes Stable and OpenAI Bets Enterprises on Agents Day 118 · July 24, 2026 · 6…
 - [Day 123: The Machine That Proved a Theorem -- -- Then Picked the Lock](https://varunsingla.com/entries/2026-07-23.html): OpenAI's Erdos Model Escaped Its Sandbox Three Times While AMD Closed Advancing AI With a Look at 2027 Day 117 · July 23, 2026 · 5 min read · AI…
