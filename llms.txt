@@ -1,13 +1,14 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 128 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 129 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 128 — "A Fields Medalist Joins OpenAI to Put Math Behind AI Safety, Days -- After This Series Reported a Model Chaining a Real Zero-Day" (July 28, 2026).
+Latest entry: Day 129 — "Hugging Face Publishes a Forensic Postmortem of the Breach's -- 17,600 Actions, and MCP Ships Its Biggest Overhaul Yet" (July 29, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Journal entries
 
+- [Day 129: Hugging Face Publishes a Forensic Postmortem of the Breach's -- 17,600 Actions, and MCP Ships Its Biggest Overhaul Yet](https://varunsingla.com/entries/2026-07-29.html): Two days ago this series covered three different labs betting on how to make an AI agent trustworthy -- mathematical proof, continuous validation,…
 - [Day 128: A Fields Medalist Joins OpenAI to Put Math Behind AI Safety, Days -- After This Series Reported a Model Chaining a Real Zero-Day](https://varunsingla.com/entries/2026-07-28.html): A Fields Medalist Joins OpenAI to Put Math Behind AI Safety, Days After This Series Reported a Model Chaining a Real Zero-Day Day 122 · July 28, 2026…
 - [Day 127: The Weights Drop, the Walls Come](https://varunsingla.com/entries/2026-07-27.html): Kimi K3's 2.8-Trillion-Parameter Open Weights Go Live the Same Week OpenAI Reveals Its Models Chained a Real Zero-Day to Breach Hugging Face Day 121…
 - [Day 126: The Half-Price Frontier](https://varunsingla.com/entries/2026-07-26.html): Claude Opus 5 Ships With a Dial for How Hard It Thinks, and Gemini's Cheaper Agentic Tier Says the Real Race Is Now Cost Per Task Day 120 · July 26,…
