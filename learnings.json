@@ -6,6 +6,88 @@
   },
   "learnings": [
     {
+      "date": "2026-07-31",
+      "display_date": "July 31, 2026",
+      "issue": 125,
+      "title": "Gemini Robotics 2 Puts an Entire Humanoid Under -- A Single AI Policy",
+      "focus_intro": "Until now, most humanoid robots split the job: one system handled locomotion and balance, another handled arm and hand manipulation, and a hand-off layer awkwardly stitched the two together mid-task. Gemini Robotics 2, paired with a planning model called Gemini Robotics ER 2, collapses that split into a single end-to-end vision-language-action policy governing legs, torso, arms, and a 22-degree-of-freedom five-fingered hand together -- letting a humanoid on DeepMind's Apollo 2 platform walk, crouch, stretch, and manipulate objects in one continuous motion instead of switching modes. That's what makes tasks like tying a knot or sealing a ziplock bag possible: they need the whole body coordinated, not a capable arm bolted onto a separately capable pair of legs. ER 2 then acts as the planner, breaking a larger job into steps and coordinating several robots that share a common semantic understanding of the task. It's the same consolidation move this series has tracked in software all year -- many narrow specialist pieces giving way to one system trained end to end -- now showing up inside a single physical machine's own body.",
+      "viral_app": {
+        "name": "Roblox Build: Describe a Game, Get a Playable One",
+        "description": "Roblox opened a public alpha of Build in New Zealand on July 28 -- a mobile-first tool that turns a plain-language prompt into a playable game inside the Roblox app itself, complete with mechanics, environments, characters, and sound, then lets a kid keep shaping it by chatting with it instead of learning Roblox Studio. It's free for verified users nine and up, and anything that passes safety review can go live worldwide for players sixteen and up. What's spreading fast isn't the novelty of prompt-to-app -- that pattern is everywhere in 2026 -- it's that Roblox already has the distribution: hundreds of millions of people who open the app expecting to play something somebody else made, now able to become that somebody else in one sitting. Build and Roblox Studio share the same backend and chat history, so a project a nine-year-old starts on a phone during recess can get finished by a parent or older sibling on a desktop that night.",
+        "stats": [
+          {
+            "stat": "9+",
+            "label": "youngest age that can build for free on Roblox Build"
+          },
+          {
+            "stat": "22",
+            "label": "degrees of freedom in Gemini Robotics 2's dexterous hand"
+          },
+          {
+            "stat": "3",
+            "label": "binding decision tiers under China's agent law"
+          },
+          {
+            "stat": "$145B",
+            "label": "Meta's raised ceiling for 2026 AI capex"
+          }
+        ]
+      },
+      "stats": [
+        {
+          "stat": "9+",
+          "label": "youngest age that can build for free on Roblox Build"
+        },
+        {
+          "stat": "22",
+          "label": "degrees of freedom in Gemini Robotics 2's dexterous hand"
+        },
+        {
+          "stat": "3",
+          "label": "binding decision tiers under China's agent law"
+        },
+        {
+          "stat": "$145B",
+          "label": "Meta's raised ceiling for 2026 AI capex"
+        }
+      ],
+      "sections": [
+        {
+          "title": "1) Gemini Robotics 2: one policy, the whole body",
+          "paragraphs": [
+            "Until now, most humanoid robots split the job: one system handled locomotion and balance, another handled arm and hand manipulation, and a hand-off layer awkwardly stitched the two together mid-task. Gemini Robotics 2, paired with a planning model called Gemini Robotics ER 2, collapses that split into a single end-to-end vision-language-action policy governing legs, torso, arms, and a 22-degree-of-freedom five-fingered hand together -- letting a humanoid on DeepMind's Apollo 2 platform walk, crouch, stretch, and manipulate objects in one continuous motion instead of switching modes. That's what makes tasks like tying a knot or sealing a ziplock bag possible: they need the whole body coordinated, not a capable arm bolted onto a separately capable pair of legs. ER 2 then acts as the planner, breaking a larger job into steps and coordinating several robots that share a common semantic understanding of the task. It's the same consolidation move this series has tracked in software all year -- many narrow specialist pieces giving way to one system trained end to end -- now showing up inside a single physical machine's own body."
+          ]
+        },
+        {
+          "title": "2) China's agent law, two weeks into enforcement",
+          "paragraphs": [
+            "China's Implementation Opinions on the Standardized Application and Innovative Development of Intelligent Agents -- jointly issued by the Cyberspace Administration, the National Development and Reform Commission, and the Ministry of Industry and Information Technology -- became enforceable on July 15, making it the world's first binding regulatory category built specifically for AI agents. Article 6 requires every deployed agent's decision authority to be sorted into three tiers before it ships: Level 1 covers routine calls -- scheduling, data retrieval, basic customer service -- an agent can make entirely on its own. Level 2 covers decisions with material impact, such as contract modifications, pricing changes, or content moderation, where the agent may recommend but a human must approve before anything executes. Level 3 covers decisions with legal, financial, or safety consequences that the agent is not permitted to make at all, full stop. Agents operating in sensitive sectors -- healthcare, transportation, media, public safety -- face filing requirements, mandatory testing, and recall obligations under joint regulator oversight; lower-risk consumer agents lean instead on platform governance and industry self-regulation. Where yesterday's 1,100-signature letter asked Washington to build the infrastructure for a pacing mechanism someday, China already has an operating one -- untested at real scale, but running."
+          ]
+        },
+        {
+          "title": "3) Two directions, the same trade-off",
+          "paragraphs": [
+            "Gemini Robotics 2 is deliberately expanding what one AI policy is trusted to do unsupervised in physical space. China's tiered-authority law is deliberately narrowing what one AI policy is allowed to decide unsupervised in economic and legal space. Neither direction is wrong on its own, but each is a choice, and most of 2026 so far has been companies defaulting to the expand-capability choice while governments show up afterward to make the narrow-authority choice explicit -- the same pattern this series has traced from the WAICO voluntary charter, through the EU's binding DMA fines, to last week's hardware import ban. The open-weight side of the industry is running the opposite experiment in parallel: seven distinct model releases shipped in seven days last week alone, each tuned for a different job, budget, or speed target -- fragmentation by design, at the exact moment Gemini Robotics 2 is proving that consolidation into one policy is what unlocks genuinely new capability. Both bets are being placed with real money at the same time, and it isn't obvious yet which one wins more often."
+          ]
+        }
+      ],
+      "market_signal": "Meta raised its 2026 AI capex ceiling to a $130-145 billion range this week, citing the ongoing data-center buildout, while Amazon reported Q2 AWS revenue of $42.2 billion, up 37% year over year, with its AI and chips businesses each now individually running above a $25 billion annual pace. Capital is flowing into both bets from the section above at once -- the giant, unified, whole-body-style policies that need more compute per model, and the swarms of narrow, cheap, specialized agents that need more inference capacity across many models. Nobody funding this buildout is choosing a side; they're funding whichever bet wins.",
+      "practical_takeaway": [
+        {
+          "title": "Write down your own agent's decision tiers today.",
+          "body": "Borrow China's exact framing -- decisions it can make alone, decisions that need a human sign-off first, decisions it should never make -- for any agent with real write access, even with no regulator asking yet. The exercise itself tends to surface the risky path everyone quietly assumed was fine."
+        },
+        {
+          "title": "Look for \"collapse\" as a pattern, not a Gemini Robotics feature.",
+          "body": "Anywhere you've built a pipeline of narrow, specialized steps handing off to each other, check whether a single well-trained end-to-end model now beats the handoffs -- the same shift that reshaped multi-agent software orchestration is starting to happen inside individual physical-AI stacks."
+        },
+        {
+          "title": "Judge a prompt-to-app launch by its distribution, not its novelty.",
+          "body": "Roblox Build isn't a new capability -- LLM-generated code and assets have existed for years -- it's an old one attached to an audience that already opens the app. Before building a new AI feature, check whether you already have the audience it needs, or whether you'd be building both at once."
+        }
+      ]
+    },
+    {
       "date": "2026-07-30",
       "display_date": "July 30, 2026",
       "issue": 124,
