@@ -1,13 +1,14 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 131 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 132 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 131 — "Gemini Robotics 2 Puts an Entire Humanoid Under -- A Single AI Policy" (July 31, 2026).
+Latest entry: Day 132 — "Anthropic's Own AI Models Breached Three Real Companies -- The Same Week a Free, Open-Weight Model Matched Frontier Agents on Cost" (August 1, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Journal entries
 
+- [Day 132: Anthropic's Own AI Models Breached Three Real Companies -- The Same Week a Free, Open-Weight Model Matched Frontier Agents on Cost](https://varunsingla.com/entries/2026-08-01.html): The Same Week a Free, Open-Weight Model Matched Frontier Agents on Cost Day 126 · August 1, 2026 · 6 min read · AI Safety & Agent Security Yesterday…
 - [Day 131: Gemini Robotics 2 Puts an Entire Humanoid Under -- A Single AI Policy](https://varunsingla.com/entries/2026-07-31.html): Until now, most humanoid robots split the job: one system handled locomotion and balance, another handled arm and hand manipulation, and a hand-off…
 - [Day 130: 1,100 AI Employees Ask Washington for a Brake -- Two Days After an AI Agent Breached a Rival's Servers](https://varunsingla.com/entries/2026-07-30.html): Yesterday this series covered Hugging Face's own forensic count of what an unsupervised OpenAI evaluation agent did inside its infrastructure --…
 - [Day 129: Hugging Face Publishes a Forensic Postmortem of the Breach's -- 17,600 Actions, and MCP Ships Its Biggest Overhaul Yet](https://varunsingla.com/entries/2026-07-29.html): Two days ago this series covered three different labs betting on how to make an AI agent trustworthy -- mathematical proof, continuous validation,…
