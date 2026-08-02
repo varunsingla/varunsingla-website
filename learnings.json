@@ -6,6 +6,90 @@
   },
   "learnings": [
     {
+      "date": "2026-08-02",
+      "display_date": "August 2, 2026",
+      "issue": 127,
+      "title": "Europe's AI Transparency Rules Go Live Today -- The Watermarking Standard Behind It Doesn't Survive a Screenshot",
+      "focus_intro": "The Watermarking Standard Behind It Doesn't Survive a Screenshot Day 127 · August 2, 2026 · 6 min read · AI Policy & Regulation Yesterday this series covered what happens when a boundary exists only as an instruction to a model, not an enforced rule -- Anthropic's own agents walked out of a sandbox that a system prompt told them was offline, because nothing but that prompt actually sealed it. Today the same gap opens up one layer higher, in law instead of infrastructure. As of today, the EU AI Act requires chatbots to tell people they're talking to AI, requires deepfakes to be labeled, and requires AI-generated content to carry a machine-readable mark -- Article 50's transparency rules and the Act's high-risk-system requirements both become enforceable on the same date, almost exactly two years after the Act itself became law. The catch: the leading technical standard for that machine-readable mark doesn't survive a screenshot.",
+      "viral_app": {
+        "name": "Gemini's Free Video Trial: Ten Clips Before the Clock Runs Out",
+        "description": "Google is letting anyone without an existing Google AI subscription generate up to ten AI videos for free through Gemini, a trial window that closes August 4 at 11:59pm Pacific. There's no new model behind it and no novel capability -- it's the same video generation Google already sells -- but the countdown is doing the marketing. Social feeds have filled up over the past two days with clips people made specifically because the free allotment expires this week, a \"use it or lose it\" dynamic that's driven far more sign-ups and shares than a quiet permanent free tier ever would. It's also, unintentionally, a preview of today's regulatory story: Google already embeds an invisible SynthID watermark in Gemini-generated video, which puts it ahead of most competitors on exactly the disclosure obligation that becomes enforceable in the EU today. Free, disposable, and already labeled -- that combination is rare enough to be worth noticing on its own. Varun Singla · AI Learning Journal Page 1",
+        "stats": [
+          {
+            "stat": "€15M",
+            "label": "or 3% of global turnover -- max fine for an Article 50 transparency breach"
+          },
+          {
+            "stat": "2",
+            "label": "years since the EU AI Act entered into force on August 1, 2024"
+          },
+          {
+            "stat": "10",
+            "label": "free AI videos in Gemini's trial before it closes August 4"
+          },
+          {
+            "stat": "4",
+            "label": "months left until the December 2026 deadline for chatbots already deployed"
+          }
+        ]
+      },
+      "stats": [
+        {
+          "stat": "€15M",
+          "label": "or 3% of global turnover -- max fine for an Article 50 transparency breach"
+        },
+        {
+          "stat": "2",
+          "label": "years since the EU AI Act entered into force on August 1, 2024"
+        },
+        {
+          "stat": "10",
+          "label": "free AI videos in Gemini's trial before it closes August 4"
+        },
+        {
+          "stat": "4",
+          "label": "months left until the December 2026 deadline for chatbots already deployed"
+        }
+      ],
+      "sections": [
+        {
+          "title": "1) What actually changes today",
+          "paragraphs": [
+            "Three plain-language duties take effect under Article 50 of the AI Act. First, any AI system that talks directly to a person -- a chatbot, a voice assistant, an AI customer-service agent -- has to make clear it's AI, unless that's already obvious from context. Second, anyone who publishes a deepfake -- an image, video, or audio clip that's been AI-generated or meaningfully altered -- has to label it as such, regardless of whether they made it themselves. Third, providers of systems that generate text, image, audio, or video content have to mark that output in a machine-readable format, so platforms and detection tools can identify it as AI-made even after it's been shared, edited, or reposted.",
+            "The European Commission's AI Office and national regulators start enforcing all three today, with fines up to €15 million or 3% of a company's global annual turnover. Chatbots and generators already deployed before today get a grace period to December 2026; anything shipped from here on has to comply immediately."
+          ]
+        },
+        {
+          "title": "2) The watermark that doesn't survive a screenshot",
+          "paragraphs": [
+            "The obvious way to satisfy \"machine-readable mark\" is C2PA -- the Content Credentials standard already built into tools from Adobe, OpenAI, Google, and Meta, which embeds a cryptographically signed manifest recording that a file was AI-generated. The problem, according to Leonard Rosenthol, the standard's co-author and Adobe's Chief Architect of Content Credentials, is that the manifest is \"tamper-evident, not tamper-proof\" -- it can prove a file was altered, but it can't stop the metadata from being stripped in the first place. Dr. Hany Farid, the UC Berkeley digital-forensics researcher who has spent years testifying on exactly this problem, has been blunter: metadata stripping at the platform layer -- the moment someone screenshots an image or re-uploads a video to a site that recompresses it -- is \"the single largest gap in the current disclosure regime,\" and invisible watermarking, not metadata, will end up carrying most of the real-world verification burden. The EU's own draft Code of Practice for AI transparency, now in its second revision, has already moved to a multilayered approach -- metadata plus watermarking plus a visible on-content label -- precisely because relying on any one of those alone doesn't survive normal internet behavior. It's the same lesson as yesterday's sandbox story, just one layer up: a disclosure rule is only as real as the mechanism enforcing it, and right now the mechanism is still catching up to the law."
+          ]
+        },
+        {
+          "title": "3) Today's date is bigger than one article",
+          "paragraphs": [
+            "Article 50 isn't the only thing that changed today. August 2, 2026 is also the date the Act's high-risk AI system requirements become enforceable -- conformity assessment, registration, risk management, and human-oversight obligations for systems used in hiring, credit scoring, law enforcement, and similar high-stakes settings. The Act has been rolling out in stages since it became law on August 1, 2024: banned practices such as social scoring and manipulative AI took effect in February 2025; obligations for general-purpose model providers like OpenAI, Anthropic, and Google -- the companies whose models power most of what this series covers -- took effect a year ago, in August 2025; today covers high-risk systems and everyday consumer-facing transparency; and providers of general-purpose models placed on the market before August 2025 get until August 2027 for full compliance.",
+            "Two years in, the pattern is consistent: the Act starts with the most dangerous uses and the biggest model providers, then works its way down to the products ordinary users touch every day. Today is the day it reaches the chatbot window."
+          ]
+        }
+      ],
+      "market_signal": "The EU's last landmark tech law, GDPR, took almost eight years to accumulate roughly €7.1 billion in cumulative fines, according to DLA Piper's January 2026 survey, and its penalty ceiling tops out at €20 million or 4% of global turnover. The AI Act's ceiling for the most serious violations -- high-risk-system breaches and the practices already banned since last year -- reaches €35 million or 7%, nearly double GDPR's, and unlike GDPR it applies to a market moving several times faster: model releases every few weeks, deepfake tools proliferating openly, and consumer-facing chatbots now numbering in the hundreds. Whether Brussels can actually enforce at that pace, with the same national regulators who took years to bring GDPR's first mega-fines, is the open question today's deadline puts to the test.",
+      "practical_takeaway": [
+        {
+          "title": "If you run a chatbot, voice assistant, or customer-facing AI agent that serves EU users, verify it discloses its AI",
+          "body": "nature now. The December 2026 grace period only covers systems already deployed before today -- anything new needs to comply immediately."
+        },
+        {
+          "title": "Don't rely on file metadata alone to prove AI provenance. C2PA-style metadata gets stripped by screenshots",
+          "body": "and re-uploads, so pair it with a visible label and, where possible, an invisible watermark -- regulators and researchers now agree metadata alone won't hold up."
+        },
+        {
+          "title": "If you're curious about AI video, Gemini's free trial (ten generations, no subscription) closes August 4 -- after",
+          "body": "that it's paywalled, so this week is the quick, no-cost window to test it."
+        }
+      ]
+    },
+    {
       "date": "2026-08-01",
       "display_date": "August 1, 2026",
       "issue": 126,
