@@ -957,6 +957,7 @@ def parse_pdf(pdf_path: Path) -> dict:
             elif len(ln) > 40:
                 current_para.append(ln)
             elif len(ln) > 10 and current_para:
+                current_para.append(ln)
                 paragraphs.append(" ".join(current_para))
                 current_para = []
         if current_para:
