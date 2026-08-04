@@ -1,13 +1,14 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 134 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 135 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 134 — "OpenAI Just Solved Ten Math Problems No One -- Had Cracked in a Decade" (August 3, 2026).
+Latest entry: Day 135 — "xAI Force-Migrates Every Grok Voice Call -- Tomorrow, No Opt-Out Required" (August 4, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Journal entries
 
+- [Day 135: xAI Force-Migrates Every Grok Voice Call -- Tomorrow, No Opt-Out Required](https://varunsingla.com/entries/2026-08-04.html): xAI announced Grok Voice Think Fast 2.0 on July 29, its most capable speech-to-speech model yet, and starting tomorrow, August 5, every developer or…
 - [Day 134: OpenAI Just Solved Ten Math Problems No One -- Had Cracked in a Decade](https://varunsingla.com/entries/2026-08-03.html): -- The Same Week Microsoft Put Agents in Charge of Patching Live Servers Day 128 · August 3, 2026 · 7 min read · Frontier Research & Agentic Security…
 - [Day 133: Europe's AI Transparency Rules Go Live Today -- The Watermarking Standard Behind It Doesn't Survive a Screenshot](https://varunsingla.com/entries/2026-08-02.html): The Watermarking Standard Behind It Doesn't Survive a Screenshot Day 127 · August 2, 2026 · 6 min read · AI Policy & Regulation Yesterday this series…
 - [Day 132: Anthropic's Own AI Models Breached Three Real Companies -- The Same Week a Free, Open-Weight Model Matched Frontier Agents on Cost](https://varunsingla.com/entries/2026-08-01.html): The Same Week a Free, Open-Weight Model Matched Frontier Agents on Cost Day 126 · August 1, 2026 · 6 min read · AI Safety & Agent Security Yesterday…

@@ -205,9 +205,17 @@ def is_section_heading(line: str) -> bool:
     # "1 · Title" style (middle dot separator, used in some PDF layouts)
     if re.match(r"^\d{1,2}\s*[·•]\s+\S", line):
         return True
-    # "1) Title" style (Day ~100+ layout). Single digit + capital letter only,
+    # "1) Title" style (Day ~100+ layout). Requires an uppercase letter within
+    # the first word (allowing camelCase brand names like "xAI", "iPhone"),
     # so wrapped lines like "80) and Chinese models…" don't false-positive.
-    if re.match(r"^\d\)\s+[A-Z]", line):
+    if re.match(r"^\d\)\s+(?:[A-Z]|[a-z]{1,2}[A-Z])", line):
+        return True
+    # "TOMORROW" preview heading — standalone line only (with optional 'n'
+    # bullet-artifact prefix and trailing punctuation), so it doesn't
+    # false-positive on sentences/subtitles that merely start with the word
+    # "Tomorrow" (e.g. "Tomorrow, No Opt-Out Required", "tomorrow's automatic
+    # switch…" mid-takeaway continuation text).
+    if re.match(r"^(?:n\s+)?tomorrow['’]?s?\s*[:.]?$", line, re.I):
         return True
     headings = [
         "today's focus", "today's topic", "what's inside", "key announcements",
@@ -221,10 +229,10 @@ def is_section_heading(line: str) -> bool:
         "main topic", "industry flash",
         # Day ~100+ layout headings
         "viral /", "viral spotlight", "open-source spotlight", "oss spotlight",
-        "practical takeaways", "tomorrow",
+        "practical takeaways",
         # Handle 'n' bullet artifact prefix (e.g. "n Practical Takeaways for Varun", "n Market Signal")
         "n practical takeaway", "n market signal", "n viral app", "n breaking",
-        "n today's focus", "n tomorrow",
+        "n today's focus",
     ]
     low = line.lower()
     for h in headings:
@@ -977,7 +985,10 @@ def parse_pdf(pdf_path: Path) -> dict:
                     current_para = []
             elif len(ln) > 40:
                 current_para.append(ln)
-            elif len(ln) > 10 and current_para:
+            elif current_para:
+                # Short trailing/continuation line (e.g. a lone wrapped number
+                # like "54.4." between two longer lines) — keep it rather than
+                # silently dropping it, then close out the paragraph.
                 current_para.append(ln)
                 paragraphs.append(" ".join(current_para))
                 current_para = []
@@ -1085,10 +1096,14 @@ def parse_pdf(pdf_path: Path) -> dict:
                 continue
             if not found_viral_header:
                 continue
-            if re.match(r'^[\d\$£€%+K,\.\s]+$', ln_c) or len(ln_c) < 5:
-                # A stat-quad line ("10 $2K 96% 10.0") marks the end of the
-                # box's prose once we already have a name + some description —
-                # everything after it is stat labels / page footer, not body text.
+            if re.match(r'^varun singla.*page\s*\d+\s*$', ln_c, re.I):
+                # Page footer — never body text, always terminates the box.
+                break
+            if re.match(r'^([\$£€]?[\d,\.]+[a-zA-Z%]{0,3}\s*)+$', ln_c) or len(ln_c) < 5:
+                # A stat-quad line ("10 $2K 96% 10.0", "0.70s 100K $0.14 $250M")
+                # marks the end of the box's prose once we already have a name
+                # and some description — everything after it is stat labels /
+                # page footer, not body text.
                 if app_name and desc_parts:
                     break
                 continue
