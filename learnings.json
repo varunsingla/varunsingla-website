@@ -6,6 +6,93 @@
   },
   "learnings": [
     {
+      "date": "2026-08-05",
+      "display_date": "August 5, 2026",
+      "issue": 130,
+      "title": "THE UNSUPERVISED MARATHON -- Qwen3.8-Max Spent Ten Days Writing Its Own Code, No Human Steering A",
+      "focus_intro": "Alibaba unveiled Qwen3.8-Max this week, a 2.4-trillion-parameter mixture-of-experts model that activates roughly 95 billion parameters per token and reads up to a million tokens of context in one call -- close to 750,000 words. Alibaba says the model can now complete complex, multi-day projects end-to-end: in one test, Qwen3.8-Max spent more than ten days autonomously coding a self-evolving software harness from scratch, incorporating user feedback, running its own tests, and iterating through code, previews, and logs without a human touching the keyboard.",
+      "viral_app": {
+        "name": "Prompt ChatGPT for a short scene -- a breakup, a heist, a wildly ordinary argument -- give it a setting and a",
+        "description": "vibe, read the script once so everyone knows their line, then film it in a single take playing it dead straight no matter how unhinged the dialogue gets. That's the entire format, and it's spreading through group chats because it needs no editing skill, no camera work, and no planning: open the app, type a prompt, hand out lines, hit record. The comedy comes from two places -- how strange AI dialogue sounds coming out of a real person's mouth, and how committed the cast stays when the script makes no sense at all.",
+        "stats": [
+          {
+            "stat": "2.4T",
+            "label": "total parameters in Qwen3.8-Max, Alibaba's largest model yet, with 95B active per token"
+          },
+          {
+            "stat": "10 days",
+            "label": "length of the unsupervised coding run Qwen3.8-Max completed building its own test harness"
+          },
+          {
+            "stat": "82.9%",
+            "label": "Think Fast 2.0's speech-to-speech score, up from 75.7% for the model it replaces today"
+          },
+          {
+            "stat": "1M",
+            "label": "token context window on Qwen3.8-Max, roughly 750,000 words in a single call"
+          }
+        ]
+      },
+      "stats": [
+        {
+          "stat": "2.4T",
+          "label": "total parameters in Qwen3.8-Max, Alibaba's largest model yet, with 95B active per token"
+        },
+        {
+          "stat": "10 days",
+          "label": "length of the unsupervised coding run Qwen3.8-Max completed building its own test harness"
+        },
+        {
+          "stat": "82.9%",
+          "label": "Think Fast 2.0's speech-to-speech score, up from 75.7% for the model it replaces today"
+        },
+        {
+          "stat": "1M",
+          "label": "token context window on Qwen3.8-Max, roughly 750,000 words in a single call"
+        }
+      ],
+      "sections": [
+        {
+          "title": "1) Qwen3.8-Max Spent Ten Days Coding With No One Watching",
+          "paragraphs": [
+            "Alibaba unveiled Qwen3.8-Max this week, a 2.4-trillion-parameter mixture-of-experts model that activates roughly 95 billion parameters per token and reads up to a million tokens of context in one call -- close to 750,000 words. Alibaba says the model can now complete complex, multi-day projects end-to-end: in one test, Qwen3.8-Max spent more than ten days autonomously coding a self-evolving software harness from scratch, incorporating user feedback, running its own tests, and iterating through code, previews, and logs without a human touching the keyboard.",
+            "On the crowdsourced comparison platform Arena.AI, Qwen3.8-Max immediately became the highest-ranking Chinese model for text tasks, though it still trails several Anthropic models. It's available now through Alibaba Cloud's Model Studio at $2 per million input tokens and $6 per million output tokens, with cached input priced far lower at $0.25 per million -- and Alibaba says open weights follow next week, meaning anyone will be able to download, audit, or self-host the exact model behind the ten-day claim rather than take Alibaba's word for it."
+          ]
+        },
+        {
+          "title": "2) xAI's Forced Voice Migration Lands Today, Right on Schedule",
+          "paragraphs": [
+            "This series previewed it yesterday: today, August 5, is the day every developer or user calling xAI's default \"grok-voice-latest\" endpoint switches automatically to Grok Voice Think Fast 2.0, with no opt-in and no toggle. Anyone who wanted to stay on the older model needed to pin \"grok-voice-think-fast-1.0\" explicitly before today; everyone else just woke up running something different. The upgrade is real: on Artificial Analysis's speech-to-speech benchmark, Think Fast 2.0 scores 82.9%, up from 75.7% for the model it replaces, and ahead of GPT-Realtime-2.1's 79.1% and Gemini 3.1 Flash's 69.5%. Time to first audio drops to roughly 0.70 seconds, and transcription accuracy improves 1.5 to 2.0 times over specialized transcription models across 24 languages. Pricing sits at $0.08 per minute of audio -- up from Think Fast 1.0's $0.05, a jump easy to miss amid the benchmark headlines. For any product built on the default endpoint, today is the day its voice, timing, and cost per minute all changed at once, whether or not anyone asked for it."
+          ]
+        },
+        {
+          "title": "3) Google's Agents Start Calling Real Stores and Spending Real Money",
+          "paragraphs": [
+            "Google is rolling out \"Let Google Call,\" which uses Gemini to phone local stores directly, ask what's in stock, check the price, and text the shopper a summary -- no human dialing required. It's paired with agentic checkout inside Google's shopping tools: a shopper can set a condition like \"buy this when it drops under $40,\" and an agent monitors pricing and completes the purchase through Google Pay when the condition is met, with explicit shopper confirmation still required before any money moves. Both features build on the Universal Commerce Protocol Google announced in January, which lets agents complete purchases across participating merchants rather than just browse. The rollout is limited to the US with select merchants for now, but the direction is unambiguous: after a year of agents drafting text and writing code, the next frontier is agents making phone calls and spending money on a person's behalf -- with the human's tap, for now, still the last gate before anything is bought."
+          ]
+        }
+      ],
+      "market_signal": "Three systems, three different kinds of leash, loosened in the same week. Qwen3.8-Max got a longer runway -- ten days of unsupervised coding with no checkpoint requiring a human sign-off. xAI's voice model got broader reach -- switched on for every default caller at once, with no opt-in window to build confidence first. Google's shopping agents got a longer arm -- reaching past the screen to phone a real business and spend real money, with a tap as the only remaining checkpoint. None of the three shipped with the guardrail loosened all the way: Qwen3.8-Max's marathon run still happened inside a test harness, xAI's switch can still be pinned away from, and Google's agent still stops for confirmation before paying. The pattern worth watching is which of those checkpoints erodes first.",
+      "practical_takeaway": [
+        {
+          "title": "If you're evaluating flagship coding or agentic models, benchmark Qwen3.8-Max through Alibaba Cloud's",
+          "body": "Model Studio now, and plan to re-test against the open weights once they land next week -- self-hosting lets you verify the ten-day claim rather than trust a vendor's writeup."
+        },
+        {
+          "title": "If your product calls xAI's \"grok-voice-latest\" endpoint, check today whether it's already running Think Fast",
+          "body": "2.0 -- pin \"grok-voice-think-fast-1.0\" explicitly if your app depends on the exact timing, voice, or per-minute cost of the model it replaced."
+        },
+        {
+          "title": "If you run a local business, check whether you're reachable through Google's \"Let Google Call\" and the",
+          "body": "Universal Commerce Protocol -- being invisible to an agent that's calling around for stock and price comparisons is a new way to lose a sale."
+        },
+        {
+          "title": "Before adopting any agent with payment authority, confirm it still requires explicit human confirmation per",
+          "body": "transaction, the way Google's agentic checkout currently does -- that single checkpoint is the difference between an agent that shops and one that just spends."
+        }
+      ]
+    },
+    {
       "date": "2026-08-04",
       "display_date": "August 4, 2026",
       "issue": 129,
