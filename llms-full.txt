@@ -1,6 +1,47 @@
 # Varun Singla · AI Learning Journal — full text
 
-Complete text of all 136 journal entries by Varun Singla (https://varunsingla.com), newest first. Index: https://varunsingla.com/llms.txt
+Complete text of all 137 journal entries by Varun Singla (https://varunsingla.com), newest first. Index: https://varunsingla.com/llms.txt
+
+---
+
+# Day 137: AI Learning -- Day 131
+
+Date: August 6, 2026 · Author: Varun Singla · URL: https://varunsingla.com/entries/2026-08-06.html · Themes: Governance & Safety, Enterprise & Strategy
+
+Through most of 2025, companies ran AI agents the way they ran early websites -- one team automating email triage, another testing a coding assistant, each on its own island with its own tools and no shared plumbing. In late July and early August 2026, four separate signals point to that changing: Cisco, HPE (working with Nvidia), Squirro, and 8090 Labs each announced a shift from isolated agent pilots toward what they're calling "agent fleets" -- coordinated groups of agents that share one knowledge layer, one set of connectors to company systems, one compliance framework, and one governance model. Think of the difference between every employee having a personal assistant who keeps their own private notebook, versus a coordinated admin team working off one shared calendar and one shared contact list. The individual assistants can each be useful, but they don't add up to more than the sum of their parts -- and nobody can audit what any of them actually did. Gartner now forecasts that 40% of enterprise applications will ship with task-specific agents built directly in by the end of 2026, up from under 5% a year earlier -- roughly an eightfold jump in twelve months. That's the difference between AI as a bolt-on feature and AI as default infrastructure.
+
+**Viral app of the day: Inkling-Small -- Thinking Machines Lab, the startup founded by former OpenAI CTO Mira Murati,**
+released Inkling-Small on August 2. It's a scaled-down sibling to July's 975-billion-parameter Inkling model: a 276-billion-parameter Mixture-of-Experts (MoE) model with only 12 billion "active" parameters per query (versus 41 billion for the original), released open-weight on Hugging Face. Quick explainer: an MoE model is really many smaller specialist sub-networks ("experts") bundled together, with a router that activates only a few of them for any given query -- so you get much of the knowledge of a huge model at the compute cost of a small one. Why it's spreading fast: Thinking Machines has been explicit from day one that Inkling was never meant to be the strongest model available -- the bet is that companies fine-tuning it on their own data, through the company's Tinker platform, will beat a generic frontier chatbot on their specific work. Inkling-Small is that bet in miniature: about a quarter the size, open-weight, and small enough to self-host on a single high-end GPU instead of
+
+## 1) Enterprise AI Moves From Pilots to "Agent Fleets"
+
+Through most of 2025, companies ran AI agents the way they ran early websites -- one team automating email triage, another testing a coding assistant, each on its own island with its own tools and no shared plumbing. In late July and early August 2026, four separate signals point to that changing: Cisco, HPE (working with Nvidia), Squirro, and 8090 Labs each announced a shift from isolated agent pilots toward what they're calling "agent fleets" -- coordinated groups of agents that share one knowledge layer, one set of connectors to company systems, one compliance framework, and one governance model. Think of the difference between every employee having a personal assistant who keeps their own private notebook, versus a coordinated admin team working off one shared calendar and one shared contact list. The individual assistants can each be useful, but they don't add up to more than the sum of their parts -- and nobody can audit what any of them actually did. Gartner now forecasts that 40% of enterprise applications will ship with task-specific agents built directly in by the end of 2026, up from under 5% a year earlier -- roughly an eightfold jump in twelve months. That's the difference between AI as a bolt-on feature and AI as default infrastructure.
+
+## 2) Your Company's Real AI Footprint Is 3× Bigger Than Your Model
+
+A security report from Snyk published this week found that the actual AI footprint inside a typical enterprise -- agents, third-party connectors, and AI calls quietly embedded inside everyday SaaS tools -- runs about three times larger than what shows up on the company's official list of approved models. This is the same pattern as "shadow IT" a decade ago, when employees quietly used personal Dropbox instead of approved file storage because it was faster. The difference now is that shadow AI isn't just storing files without permission -- it's agents with tool-calling permissions that can read customer records, send emails, or push code, all outside anyone's visibility. Why it matters together with the next story: you cannot demonstrate oversight, under any regulation, over agents your security team doesn't know exist. The audit has to come before the policy, not after.
+
+## 3) The EU AI Act's High-Risk Rules Are Now Enforceable
+
+As of August 2, 2026, the provisions of the EU AI Act covering "high-risk" AI systems -- things like hiring tools, credit scoring, and systems touching critical infrastructure -- became legally enforceable across the bloc. That means mandatory risk management processes, documented human oversight, and formal conformity assessments before deployment, with fines reaching €15 million or 3% of global annual revenue, whichever is larger.
+
+The part worth understanding clearly: "human oversight" under the Act doesn't mean a person who could theoretically step in. It means a documented, auditable checkpoint that a regulator can inspect after the fact and see exactly when a human reviewed what the system did and why. A vague policy that "a person is in the loop" will not survive an audit; a logged review step will.
+
+## 4) Selective Activation Sparsity: Doing More Reasoning With Less
+
+A training technique gaining attention this week, called selective activation sparsity, pushes the "mixture of experts" idea a step further. A normal large model turns on most of its parameters for every single query -- like switching on every light in a building for one person working in one room. A standard mixture-of-experts model helps by only lighting a handful of rooms. Selective activation sparsity goes further still: the model is explicitly trained to learn which small subset of its parameters actually matters for a given category of task, and it lights only those. The payoff in early benchmarks: models trained this way score comparably to models three times their size on reasoning tasks, while spending a fraction of the compute per query. This is the quieter, less headline-grabbing story behind why smaller open models keep closing the gap with frontier ones -- not just bigger training runs, but smarter ones.
+
+## 5) Topics Covered So Far -- Day 1-130 Recap
+
+130 days in, this series has moved from foundational agent concepts toward real-world consequences. The early days built the vocabulary: multi-agent systems, the Model Context Protocol (MCP), and the Agent-to-Agent (A2A) protocol. Recent weeks tracked the frontier model race (GPT-5.6 Luna, Claude Sonnet 5 and Opus 5, Qwen3.8-Max, DeepSeek V4 Flash), open-weight models closing the cost gap with closed frontier ones, real agent security incidents (the Hugging Face breach postmortem, and Anthropic's own models being used to breach three separate companies), and the regulatory response building underneath all of it -- the EU AI Act's transparency rules on August 2, and now its high-risk enforcement rules. Today adds two new threads to that story: how enterprises are organizing agents at scale once the pilots succeed, and the efficiency research quietly making smaller models more capable.
+
+**Market signal:** • 40% of enterprise apps are forecast to ship with built-in agents by the end of 2026 (Gartner), up from under 5% a year ago. • 3× -- how much bigger a company's real AI footprint is than its official approved-model list (Snyk, August 2026). • €15M or 3% of global revenue -- the maximum EU AI Act fine for high-risk non-compliance, enforceable since August 2. • 80% price cut on GPT-5.6 Luna's input tokens, down to $0.20 per million, as the model price war continues. • ~1 billion weekly active users for ChatGPT as of early August 2026. • 276B total / 12B active parameters -- Inkling-Small's Mixture-of-Experts footprint.
+
+**Practical takeaways:**
+- Inventory before you govern. — Before writing any AI usage policy, run an actual audit of every agent, connector, and embedded model call touching your systems. Snyk's 3× figure means most policies today are written for roughly a third of what's actually running.
+- Treat human oversight as a paper trail, not a person. — If you operate in or serve the EU, oversight now means a documented, auditable checkpoint your agents pass through -- not just a person who could theoretically intervene if asked.
+- Design for fleets, not singletons, from day one. — Even a two-agent pilot should share a connector layer and a logging standard with whatever comes next, so it doesn't turn into an island you have to re-integrate later at real cost.
+- Don't assume bigger is the only lever. — For a narrow, repeatable workload, a smaller MoE-style model fine-tuned on your own data (the Inkling-Small approach) will often beat a frontier model on cost per correct answer.
 
 ---
 
