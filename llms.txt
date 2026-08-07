@@ -1,13 +1,14 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 137 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 138 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 137 — "AI Learning -- Day 131" (August 6, 2026).
+Latest entry: Day 138 — "AI Learning -- Day 132" (August 7, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Journal entries
 
+- [Day 138: AI Learning -- Day 132](https://varunsingla.com/entries/2026-08-07.html): Yesterday's coverage of the EU AI Act's high-risk enforcement deserves a correction, and it's a useful one.
 - [Day 137: AI Learning -- Day 131](https://varunsingla.com/entries/2026-08-06.html): Through most of 2025, companies ran AI agents the way they ran early websites -- one team automating email triage, another testing a coding…
 - [Day 136: THE UNSUPERVISED MARATHON -- Qwen3.8-Max Spent Ten Days Writing Its Own Code, No Human Steering A](https://varunsingla.com/entries/2026-08-05.html): Alibaba unveiled Qwen3.8-Max this week, a 2.4-trillion-parameter mixture-of-experts model that activates roughly 95 billion parameters per token and…
 - [Day 135: xAI Force-Migrates Every Grok Voice Call -- Tomorrow, No Opt-Out Required](https://varunsingla.com/entries/2026-08-04.html): xAI announced Grok Voice Think Fast 2.0 on July 29, its most capable speech-to-speech model yet, and starting tomorrow, August 5, every developer or…

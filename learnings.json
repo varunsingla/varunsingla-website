@@ -6,6 +6,66 @@
   },
   "learnings": [
     {
+      "date": "2026-08-07",
+      "display_date": "August 7, 2026",
+      "issue": 132,
+      "title": "AI Learning -- Day 132",
+      "focus_intro": "Yesterday's coverage of the EU AI Act's high-risk enforcement deserves a correction, and it's a useful one. What actually became enforceable on August 2, 2026 was narrower than \"high-risk AI systems\": the European Commission's enforcement powers over general-purpose AI (GPAI) model providers, plus Article 50's transparency rules -- chatbots must disclose they're AI, generated content must carry machine-readable markers, deepfakes must be labeled. The heavier machinery -- mandatory risk management systems, technical documentation, conformity assessments, and logged human-oversight checkpoints for \"high-risk\" uses like hiring tools and credit scoring -- was quietly pushed back. A \"Digital Omnibus\" simplification package, agreed by the Council and Parliament in May and signed into law as Regulation (EU) 2026/1744 just six days before the original deadline, moved those obligations to December 2, 2027 for most high-risk categories (Annex III) and August 2, 2028 for AI embedded in already-regulated products like medical devices (Annex I).",
+      "viral_app": {
+        "name": "Muse Code -- Meta's first terminal coding agent, shipped in beta on August 5, powered by a new",
+        "description": "coding-focused model, Muse Spark 1.2. It installs from a single terminal command and takes on whole engineering jobs across large repositories: planning the change, writing the code, and verifying the result -- not just autocompleting one file at a time. The technical detail worth understanding: Muse Code keeps a local event log where every model call, tool run, approval, and edit gets appended in order. That log makes the agent \"replay-exact and restart-safe\" -- if it crashes mid-task, it can resume from precisely where it stopped instead of starting over or losing state, which is the actual bottleneck for trusting an agent with a multi-hour or multi-day job. Muse Code isn't open-weight -- Meta is charging $1.25 per million input tokens and $4.25 per million output tokens for the standard tier, similar to Anthropic's and OpenAI's API pricing -- but it's the fourth major lab (after Anthropic's Claude Code, OpenAI's Codex, and Google) to bet specifically on the terminal as where serious agentic coding happens, which says something about where the industry thinks this is headed.",
+        "stats": []
+      },
+      "stats": [],
+      "sections": [
+        {
+          "title": "1) The EU AI Act's High-Risk Rules Were Delayed to December 2027",
+          "paragraphs": [
+            "Yesterday's coverage of the EU AI Act's high-risk enforcement deserves a correction, and it's a useful one. What actually became enforceable on August 2, 2026 was narrower than \"high-risk AI systems\": the European Commission's enforcement powers over general-purpose AI (GPAI) model providers, plus Article 50's transparency rules -- chatbots must disclose they're AI, generated content must carry machine-readable markers, deepfakes must be labeled. The heavier machinery -- mandatory risk management systems, technical documentation, conformity assessments, and logged human-oversight checkpoints for \"high-risk\" uses like hiring tools and credit scoring -- was quietly pushed back. A \"Digital Omnibus\" simplification package, agreed by the Council and Parliament in May and signed into law as Regulation (EU) 2026/1744 just six days before the original deadline, moved those obligations to December 2, 2027 for most high-risk categories (Annex III) and August 2, 2028 for AI embedded in already-regulated products like medical devices (Annex I).",
+            "Why this matters beyond nitpicking a date: if you build or buy AI for hiring, lending, or anything touching critical infrastructure in the EU, you have roughly 16 more months before the full compliance regime bites -- a materially different planning horizon than \"already live.\" It's also a reminder that regulatory reporting, including in this series, needs a direct-source check before treating \"enforceable\" as settled fact; simplification packages have become a recurring pattern in how the EU walks back its own aggressive timelines under industry pressure."
+          ]
+        },
+        {
+          "title": "2) Apple Finally Ships a Real Siri, and Nobody's Impressed",
+          "paragraphs": [
+            "After years of delays, Apple's rebuilt Siri arrived in the iOS 27 public beta on July 14, 2026, and by early August the verdict was in: it's genuinely capable, and almost nobody's excited. The new Siri holds natural back-and-forth conversation, understands personal context pulled from your phone, taps a real world-knowledge model for open-ended questions, and -- for the first time -- has its own dedicated app alongside adjustable voice pacing and expressivity. It requires an iPhone 15 Pro or newer. The anticlimax isn't a knock on the engineering -- reviewers call it a legitimately competent assistant. It's a lesson about timing in a fast-moving field: the capabilities Siri just gained (fluid conversation, contextual memory, general knowledge) were exactly what ChatGPT, Gemini, and Claude normalized over the previous two years. Apple didn't ship a worse product than expected; it shipped roughly the right product about two years late, into a market that had already moved its baseline for \"impressive\" somewhere else. In AI, being right eventually and being early are different races, and only one of them gets remembered as a launch."
+          ]
+        },
+        {
+          "title": "3) VC Funding Hit a Record $510B in H1 2026, and It's Concentrating",
+          "paragraphs": [
+            "Global venture funding reached $510 billion in the first half of 2026 alone, already exceeding the $440 billion deployed across all of 2025. But the headline number hides where it's actually going: mega-rounds like MGX's $49 billion AI-focused fund and Prometheus's $12 billion Series B (at a $41 billion valuation) are pulling an outsized share of that total toward a small set of frontier labs and infrastructure players. Anthropic now sits at a $965 billion valuation after its May Series H; OpenAI follows at $852 billion. Most of the remaining capital is flowing narrowly too -- into compute, chips, and a handful of regulated verticals like healthcare and legal tech.",
+            "This is a power-law market, not an evenly rising tide: a \"record year for AI funding\" can be simultaneously true and mean a harder fundraising environment for most AI startups, because the record is being set by a shrinking number of enormous checks rather than a broadening base of mid-size ones. If you're evaluating an AI vendor's staying power, or your own venture's prospects, the aggregate funding figure tells you less than who specifically is capturing it."
+          ]
+        },
+        {
+          "title": "4) Topics Covered So Far -- Day 1-131 Recap",
+          "paragraphs": [
+            "131 days in, the throughline has moved from \"what are agents and protocols\" toward \"what happens when they're actually deployed at scale, and who's watching.\" Early days built vocabulary -- multi-agent systems, the Model Context Protocol (MCP), and the Agent-to-Agent protocol. Recent weeks tracked the frontier model race (GPT-5.6, Claude Sonnet 5 and Opus 5, Qwen3.8-Max, DeepSeek V4 Flash), the efficiency wave making smaller open models competitive (selective activation sparsity, MoE routing), real security incidents (the Hugging Face breach postmortem, Anthropic's own models used to breach three companies), and the regulatory response trying to keep pace -- including, as today shows, regulators quietly slowing their own timelines under pressure. Today adds two new threads: a correction on where EU compliance deadlines actually stand, and a reminder that consumer AI's \"who's first\" narrative and \"who's actually good\" narrative don't always point the same direction."
+          ]
+        }
+      ],
+      "market_signal": "• $510B -- global VC funding in H1 2026 alone, already ahead of all of 2025's $440B. • $965B / $852B -- Anthropic's and OpenAI's valuations after their most recent funding rounds. • 16 months -- how far the EU's Digital Omnibus pushed back most high-risk AI Act obligations (Aug 2026 to Dec 2, 2027). • €35M or 7% of global turnover -- the EU AI Act's top fine tier, for prohibited AI practices. • iPhone 15 Pro or newer -- minimum hardware for Apple's new conversational Siri, live in the iOS 27 beta. • $1.25 / $4.25 per million tokens -- Meta's standard input/output pricing for Muse Spark 1.2 via Muse Code.",
+      "practical_takeaway": [
+        {
+          "title": "Verify regulatory deadlines at the source before you plan around them.",
+          "body": "\"Enforceable as of [date]\" claims -- including ones in this series -- deserve a direct check against the actual regulation text, especially for the EU AI Act, where simplification packages have repeatedly walked back aggressive timelines under industry pressure."
+        },
+        {
+          "title": "Judge coding agents on crash recovery, not just benchmarks.",
+          "body": "For any agent meant to run unsupervised for hours or days, ask whether it keeps a replayable action log it can resume from -- that's what separates a demo from something you'd actually trust with a real multi-day job."
+        },
+        {
+          "title": "Separate \"who shipped first\" from \"who's actually good\" when reading AI launches.",
+          "body": "Apple's Siri overhaul is reportedly competent, but it landed anticlimactically because the market's bar had already moved past where Apple was aiming years ago -- the lesson generalizes to any team catching up to a fast-moving category."
+        },
+        {
+          "title": "Read \"record AI funding\" headlines for concentration, not just size.",
+          "body": "A record half-year for VC funding can coincide with a harder fundraising environment for most AI startups if the record is driven by a small number of mega-rounds into frontier labs and infrastructure rather than a broadening base."
+        }
+      ]
+    },
+    {
       "date": "2026-08-06",
       "display_date": "August 6, 2026",
       "issue": 131,
