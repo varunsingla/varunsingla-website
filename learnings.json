@@ -6,6 +6,77 @@
   },
   "learnings": [
     {
+      "date": "2026-08-08",
+      "display_date": "August 8, 2026",
+      "issue": 133,
+      "title": "GPT-5.6 Luna Goes Free For Everyone -- OpenAI's Price War Just Reached Every Free User",
+      "focus_intro": "The last week has been about who gets to use the good models, and at what price. OpenAI just made its cheapest GPT-5.6 tier free and unlimited for everyone, DeepSeek undercut the whole market again with an open-weight release, and Cognizant became the latest consulting giant to package agentic AI into a sellable product line. Topics covered so far in this series include the shift from isolated agent pilots to coordinated agent fleets, the EU AI Act's delayed high-risk enforcement, Alibaba's Qwen3.8-Max ten-day unsupervised coding run, xAI's forced voice-model migration, and Meta's first terminal coding agent, Muse Code -- today's developments build directly on the pricing and access shifts those stories set up.",
+      "viral_app": {
+        "name": "DeepSeek V4-Flash-0731 Open Release",
+        "description": "Released in public beta this week as an open-weight upgrade to DeepSeek's budget model line, V4-Flash-0731 is spreading fast among developers building agents and coding tools because it pairs frontier-adjacent agentic and coding scores with the lowest price of any serious model on the market. Why it is catching on: teams that were paying premium prices just to run high-volume agent loops -- the repeated tool calls and retries that make agentic workflows expensive -- can now self-host the exact open weights, audit them, and cut that cost by an order of magnitude without switching architectures. The tradeoff is peak intelligence: it scores well above average on Artificial Analysis's Intelligence Index but trails Claude Opus 5 and GPT-5.6 Sol on the hardest reasoning tasks, which is exactly why teams are routing routine agent steps to it while keeping frontier models for the moments that need them.",
+        "stats": []
+      },
+      "stats": [
+        {
+          "stat": "80%",
+          "label": "Price cut to GPT-5.6 Luna on July 30, ahead of today's free rollout"
+        },
+        {
+          "stat": "62%",
+          "label": "Fewer factual errors vs GPT-5.5 Instant on finance, medical, and legal prompts"
+        },
+        {
+          "stat": "$0.14",
+          "label": "Cost per 1M input tokens for DeepSeek V4-Flash-0731, the cheapest agentic model on the market"
+        },
+        {
+          "stat": "61",
+          "label": "Claude Opus 5's score on Artificial Analysis's Intelligence Index, still the frontier leader"
+        }
+      ],
+      "sections": [
+        {
+          "title": "1) GPT-5.6 Luna Becomes the Default Free Model",
+          "paragraphs": [
+            "During the week of August 6, OpenAI switched every Free and Go tier ChatGPT user over to GPT-5.6 Luna as their default model, with unlimited use and no paywall. GPT-5.6 ships in three tiers, ranked from lightest to heaviest: Luna is the fastest and cheapest, Terra sits in the middle, and Sol is the full frontier model reserved for paid plans. Think of it like airline seating on the same aircraft -- everyone flies on the same underlying GPT-5.6 architecture, but Luna gets you there with less legroom and a smaller price tag.",
+            "The upgrade is not just a price change. In OpenAI's own internal evaluation of financial, medical, and legal prompts, answers containing at least one factual error were about 62 percent less common with GPT-5.6 Luna than with the older GPT-5.5 Instant it replaces. OpenAI also cut Luna's API price by 80 percent on July 30, days before flipping it on for free users -- a strong signal that OpenAI is optimizing for reach over margin on the entry tier, using it to keep casual users inside ChatGPT rather than trying a free rival, while still charging full price for Terra and Sol on the workloads that actually need them."
+          ]
+        },
+        {
+          "title": "2) The AI Price War Has a New Floor",
+          "paragraphs": [
+            "DeepSeek quietly upgraded its budget model to V4-Flash-0731 this week, and the pricing is startling: $0.14 per million input tokens and $0.28 per million output tokens, with cached input as low as $0.0028. The model is a sparse mixture-of-experts design -- 284 billion parameters in total, but only about 13 billion of them 'activate' for any single query. Picture a hospital with 284 specialists on staff: a patient only ever sees the two or three relevant ones, not the whole building, so the visit is fast and cheap even though the hospital itself is enormous. That routing trick is why DeepSeek can offer a 1-million-token context window at a fraction of what a dense model of similar size would cost to run. That puts three very different pricing philosophies side by side this week: Claude Opus 5 still leads Artificial Analysis's Intelligence Index at 61, priced at $5 input / $25 output per million tokens for buyers who need the best reasoning available; Alibaba's Qwen3.8-Max sits in the middle at $2 / $6, with open weights due imminently; and DeepSeek's V4-Flash undercuts both by 10 to 30 times for teams that will trade some peak intelligence for cost and self-hosting rights. None of these is 'the winner' -- they are three different answers to the question of what a task is actually worth paying for."
+          ]
+        },
+        {
+          "title": "3) Consulting Giants Start Packaging Agent Fleets",
+          "paragraphs": [
+            "Cognizant this week announced a dedicated EMEA AI Unit to help European, Middle Eastern, and African clients build, deploy, and run agentic AI at scale, structured around three service tiers: Foundation (strategy and readiness), Accelerate (rapid prototyping), and Transform (production-grade, multi-agent deployments). It is the same 'agent fleets' shift covered earlier this month -- companies moving from isolated agent pilots to shared, governed infrastructure -- but now a major systems integrator is turning that shift into a line item clients can simply buy rather than build themselves. The signal worth tracking is not Cognizant specifically, but the pattern: when a large SI productizes a capability into fixed-tier packages, that is usually a sign the underlying approach has moved from experimental to expected. Enterprises that were waiting to see agent-fleet governance mature before committing budget now have an off-the-shelf on-ramp."
+          ]
+        }
+      ],
+      "market_signal": "Every major lab cut prices or opened access this week, and the gap between the cheapest and most expensive frontier-adjacent model is now more than thirty-five times. Buyers are no longer choosing a single model for everything -- they are assembling a portfolio, routing the bulk of traffic to the cheapest model that clears their accuracy bar and reserving the expensive ones for the small slice of tasks that truly need them.",
+      "practical_takeaway": [
+        {
+          "title": "Benchmark GPT-5.6 Luna before upgrading tiers",
+          "body": "With factual errors down 62% versus GPT-5.5 Instant and now free and unlimited, Luna likely already handles a good share of your day-to-day drafting and Q&A; work -- trial it against whatever you use today before assuming a task needs Terra or Sol."
+        },
+        {
+          "title": "Treat DeepSeek V4-Flash-0731 as a serious backend option",
+          "body": "At $0.14 input and $0.28 output per million tokens, with open weights and a 1M-token context, it is cheap enough to self-host for internal tools where auditability and cost matter more than shaving the last few points off a benchmark score."
+        },
+        {
+          "title": "Plot cost against the Intelligence Index, not the launch date",
+          "body": "Claude Opus 5 still leads at $5/$25 per million tokens; Qwen3.8-Max and DeepSeek undercut it by 10 to 30 times. Route by task: frontier reasoning for the highest-stakes work, budget models for high-volume routine calls."
+        },
+        {
+          "title": "Watch systems integrators as a leading indicator",
+          "body": "Cognizant's new EMEA AI Unit packages agent fleets into Foundation, Accelerate, and Transform tiers -- when a major SI productizes a pattern into fixed tiers, that is usually a sign it is about to become the default way enterprises buy it, not just build it."
+        }
+      ],
+      "tomorrow_preview": "Watching whether Meta's Muse Code sees real production adoption now that it is a week old, whether Alibaba follows through on open-weighting Qwen3.8-Max, and whether any other lab answers GPT-5.6 Luna's free rollout with a price move of their own. Generated by Varun Singla · varunsingla.com · Day 133 · August 8, 2026"
+    },
+    {
       "date": "2026-08-07",
       "display_date": "August 7, 2026",
       "issue": 132,
