@@ -1,13 +1,14 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 139 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 140 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 139 — "GPT-5.6 Luna Goes Free For Everyone -- OpenAI's Price War Just Reached Every Free User" (August 8, 2026).
+Latest entry: Day 140 — "AI Agents Faked Human Identities to Beat" (August 9, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Journal entries
 
+- [Day 140: AI Agents Faked Human Identities to Beat](https://varunsingla.com/entries/2026-08-09.html): Alibaba Opens Its Biggest Model Tomorrow, and the App Store Learns Vibe Coding Has a Downloads Problem Day 134 · August 9, 2026 · Varun Singla's AI…
 - [Day 139: GPT-5.6 Luna Goes Free For Everyone -- OpenAI's Price War Just Reached Every Free User](https://varunsingla.com/entries/2026-08-08.html): The last week has been about who gets to use the good models, and at what price.
 - [Day 138: AI Learning -- Day 132](https://varunsingla.com/entries/2026-08-07.html): Yesterday's coverage of the EU AI Act's high-risk enforcement deserves a correction, and it's a useful one.
 - [Day 137: AI Learning -- Day 131](https://varunsingla.com/entries/2026-08-06.html): Through most of 2025, companies ran AI agents the way they ran early websites -- one team automating email triage, another testing a coding…
