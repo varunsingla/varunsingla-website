@@ -6,6 +6,70 @@
   },
   "learnings": [
     {
+      "date": "2026-08-11",
+      "display_date": "August 11, 2026",
+      "issue": 136,
+      "title": "OpenAI Just Split Its Own Cyber Weapon Into Two Tiers -- Defenders Get GPT-5.6-Cyber as Daybreak Splits in Two",
+      "focus_intro": "Three storylines converged today that all point the same direction: autonomous AI is graduating from chat windows into infrastructure, laptops, and cockpits. OpenAI split cyber-attack capability into tiers for its own defenders, Meta shipped an open-weight agentic model small enough for a single consumer GPU, and the U.S. Air Force flew a real fighter jet under full AI control for the first time. Here is what each one means and why it matters.",
+      "viral_app": {
+        "name": "Alarmy's AI Mission Challenge",
+        "description": "To silence the alarm, you have to photograph a specific household object -- a toothbrush, a red mug, your left shoe -- and the app's computer vision has to actually recognize it before the alarm will stop. Creators are filming their groggy, deadpan scrambles to find the object, and accounts with under 1,000 followers are hitting multi-million view counts on the format. It is taking off because it turns a genuinely useful habit-forming trick -- you cannot fake dismissing the alarm from under the blanket -- into content that needs zero editing skill and reliably looks funny. It is a rare case of an AI feature going viral because the AI was the whole joke, not decoration on top of one.",
+        "stats": []
+      },
+      "stats": [],
+      "sections": [
+        {
+          "title": "1) OpenAI Splits Its Cyber-Attack Model Into Two Tiers",
+          "paragraphs": [
+            "For most of 2026, OpenAI's models have refused to answer serious offensive-security questions -- exploit chains, authentication bypass, privilege escalation -- even when the person asking was a legitimate defender trying to patch their own systems. On August 10, OpenAI expanded its Daybreak program to fix that, by building an approval process instead of loosening the guardrails for everyone."
+          ],
+          "bullets": [
+            "Daybreak Blue removes GPT-5.6 Sol's system-level cyber guardrails for verified defenders. Without it, the public model answers about 1.5% of advanced security questions; with it, defenders got that up to roughly 2%.",
+            "Daybreak Red grants access to a new purpose-built model, GPT-5.6-Cyber, which completed 95% of the same advanced requests in OpenAI's own evaluation -- a huge jump, reserved for vetted vulnerability researchers.",
+            "Why now: this lands one day after OpenAI paused its Astra model over safety concerns, and after a summer where AI agents were tied to real intrusions -- including Anthropic's own models being used to breach three companies in late July. The industry's answer to \"AI can hack\" is turning out to be tiered access, not blanket refusal."
+          ]
+        },
+        {
+          "title": "2) Meta's Muse Glimmer Puts A Real Agent On Your Laptop",
+          "paragraphs": [
+            "Meta released Muse Glimmer, a 30-billion-parameter model under an open Apache 2.0 license, distilled from its larger Muse Spark model and built specifically for local, always-on agent work rather than chat. It is the latest sign that open-weight models are catching up to closed frontier models fast enough to matter for everyday use, not just benchmarks."
+          ],
+          "bullets": [
+            "Small enough to run at home: 4-bit quantization shrinks the model to under 20GB, down from the 55GB+ a 30B model normally needs at full precision -- small enough for a single consumer GPU.",
+            "Built for agents, not chat: it bundles multi-step reasoning, reliable tool use, multimodal understanding, and failure recovery into one model, instead of needing several specialist tools stitched together.",
+            "Fully offline: no cloud calls, no per-token bill, nothing leaving your machine -- a real option for anyone building agents that touch private code or sensitive files."
+          ]
+        },
+        {
+          "title": "3) The Air Force Let AI Fly A Real F-16",
+          "paragraphs": [
+            "DARPA and the U.S. Air Force flew a standard operational F-16 under AI control at Eglin Air Force Base, part of the VENOM program. It is a deliberate next step from the one-off X-62A VISTA research jet that proved an AI agent could dogfight autonomously -- this time using an aircraft that could plausibly be part of the regular combat fleet."
+          ],
+          "bullets": [
+            "A safety pilot still rides along, with a dedicated switch to hand control between the cockpit and the AI agent mid-flight -- the same fail-safe pattern early self-driving trials used.",
+            "The AI manages both control surfaces and throttle, not just navigation -- a meaningfully bigger scope than autopilot-style automation.",
+            "The bigger idea: autonomy software built for a one-of-a-kind research jet can now be retrofitted onto ordinary fleet aircraft -- the same pattern of \"research demo becomes production capability\" we keep seeing with software agents."
+          ]
+        }
+      ],
+      "market_signal": "Money is still pouring toward AI, but it is pooling in fewer places. Global startup funding hit a record $510 billion in the first half of 2026, beating all of 2025 combined -- and OpenAI and Anthropic alone accounted for $217 billion of it, 43% of every dollar raised by a startup this year. AI companies overall captured more than 70% of Q2 venture capital, up from roughly half a year ago.",
+      "practical_takeaway": [
+        {
+          "title": "Watch for verified-access gates, not blanket refusals",
+          "body": "If you work in security, expect more vendors to gate serious capability behind an approval process like Daybreak, rather than refusing outright."
+        },
+        {
+          "title": "Try a fully offline agent this week",
+          "body": "Muse Glimmer's 4-bit build fits a 24GB consumer GPU and already runs in Ollama and LM Studio -- a real option if you want tool-calling without sending data to the cloud."
+        },
+        {
+          "title": "Watch capital concentration, not just capital growth",
+          "body": "With two labs absorbing 43% of all startup funding, a stumble at either one would ripple through the entire AI supply chain."
+        }
+      ],
+      "tomorrow_preview": "a closer look at what \"verified access\" actually means in practice -- who gets to use models like GPT-5.6-Cyber, how that gets checked, and whether tiered-capability access becomes the industry's default answer to dual-use AI risk. AI Daily Learning | Varun Singla | Day 136 | August 11, 2026"
+    },
+    {
       "date": "2026-08-10",
       "display_date": "August 10, 2026",
       "issue": 135,

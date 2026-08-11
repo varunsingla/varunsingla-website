@@ -411,6 +411,18 @@ def _left_col_lines(page, top_skip: float = 0.0) -> list[str]:
     return lines
 
 
+def _is_list_break_heading(ln: str) -> bool:
+    """True if `ln` looks like a heading/subheading that should end whatever
+    bullet or paragraph text was accumulating (not itself list content)."""
+    return bool(
+        re.match(r'^\d+\.\s+[A-Z]', ln)
+        or re.match(r'^[A-Z][A-Za-z ]{3,40}:?\s*$', ln)
+        or re.match(r'^Stage \d', ln)
+        or re.match(r'^Layer \d', ln)
+        or re.match(r'^Step \d', ln)
+    )
+
+
 def _bullets_from_lines(lines: list[str]) -> list[str]:
     """Convert a list of visual text lines into clean bullet strings.
     Handles (cid:127) bullets, 'n ' artifacts, and multi-line continuations."""
@@ -435,13 +447,7 @@ def _bullets_from_lines(lines: list[str]) -> list[str]:
             or re.match(r'^[•▸▶◆●▪]\s', ln)
         )
         # Detect section headings / subheadings — stop accumulation
-        is_heading = bool(
-            re.match(r'^\d+\.\s+[A-Z]', ln)
-            or re.match(r'^[A-Z][A-Za-z ]{3,40}:?\s*$', ln)
-            or re.match(r'^Stage \d', ln)
-            or re.match(r'^Layer \d', ln)
-            or re.match(r'^Step \d', ln)
-        )
+        is_heading = _is_list_break_heading(ln)
         if is_start:
             flush()
             stripped = re.sub(r'^\(cid:127\)\s*|^n\s+|^[•▸▶◆●▪]\s*', '', ln)
@@ -973,9 +979,14 @@ def parse_pdf(pdf_path: Path) -> dict:
         # Get flat text lines for this section (for paragraphs)
         sec_lines = all_flat_lines[pos + 1: end_pos]
 
-        # Paragraphs: non-bullet lines > 40 chars
+        # Paragraphs: non-bullet lines > 40 chars. A bullet's wrapped
+        # continuation lines don't carry their own marker, so once a bullet
+        # starts, skip lines until the next bullet/heading — otherwise the
+        # continuation gets misread as the start of a new paragraph and the
+        # same sentence ends up duplicated (truncated) in both places.
         paragraphs: list[str] = []
         current_para: list[str] = []
+        in_bullet = False
         for ln in sec_lines:
             if skip_headings.search(ln):
                 continue
@@ -983,7 +994,14 @@ def parse_pdf(pdf_path: Path) -> dict:
                 if current_para:
                     paragraphs.append(" ".join(current_para))
                     current_para = []
-            elif len(ln) > 40:
+                in_bullet = True
+                continue
+            if in_bullet:
+                if _is_list_break_heading(ln):
+                    in_bullet = False
+                else:
+                    continue
+            if len(ln) > 40:
                 current_para.append(ln)
             elif current_para:
                 # Short trailing/continuation line (e.g. a lone wrapped number
@@ -995,10 +1013,16 @@ def parse_pdf(pdf_path: Path) -> dict:
         if current_para:
             paragraphs.append(" ".join(current_para))
 
-        # Bullets: use left-column extraction on the page where the heading appears
+        # Bullets: prefer full-width flat-text lines (sec_lines) — these come
+        # from page.extract_text() with no column cropping, so multi-line
+        # bullets on single-column layouts wrap correctly. The left-column
+        # extraction (x0 < 55% page width) is a fallback for two-column
+        # layouts, but silently truncates every wide single-column bullet
+        # line at the crop boundary, so it must not run first (Day 136 lost
+        # the second half of every bullet this way).
         page_idx = _heading_page(heading)
-        bullets: list[str] = []
-        if page_idx is not None:
+        bullets: list[str] = _bullets_from_lines(sec_lines)
+        if not bullets and page_idx is not None:
             pd = page_data[page_idx]
             # Bullets from left column (skip heading itself)
             left_lines_after_heading = []
@@ -1116,7 +1140,12 @@ def parse_pdf(pdf_path: Path) -> dict:
                     if re.search(r'[a-z]$', ln_c) or len(combined) > 80:
                         app_name = combined
                 continue
-            if len(ln_c) > 30:
+            # A short trailing continuation line (the last wrapped fragment of
+            # a sentence, e.g. "on top of one.") is still real body text once
+            # we're already mid-description — only require the >30 length
+            # bar before we have any desc_parts yet, to avoid picking up
+            # stray short labels as the start of the description.
+            if len(ln_c) > 30 or (desc_parts and len(ln_c) > 3):
                 desc_parts.append(ln_c)
 
         if desc_parts:
