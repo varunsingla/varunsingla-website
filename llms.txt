@@ -1,13 +1,14 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 142 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 143 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 142 — "OpenAI Just Split Its Own Cyber Weapon Into Two Tiers -- Defenders Get GPT-5.6-Cyber as Daybreak Splits in Two" (August 11, 2026).
+Latest entry: Day 143 — "The EU Just Forced Android Open to Rival AI Assistants -- Anthropic Answers by Buying Into Its Own Data Centers" (August 12, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Journal entries
 
+- [Day 143: The EU Just Forced Android Open to Rival AI Assistants -- Anthropic Answers by Buying Into Its Own Data Centers](https://varunsingla.com/entries/2026-08-12.html): Why this matters: three storylines today all point the same direction -- the fight over who gets to sit on your phone's home screen, who owns the…
 - [Day 142: OpenAI Just Split Its Own Cyber Weapon Into Two Tiers -- Defenders Get GPT-5.6-Cyber as Daybreak Splits in Two](https://varunsingla.com/entries/2026-08-11.html): Three storylines converged today that all point the same direction: autonomous AI is graduating from chat windows into infrastructure, laptops, and…
 - [Day 141: OpenAI Halts Astra -- The Line It Just Crossed](https://varunsingla.com/entries/2026-08-10.html): OpenAI's Preparedness Framework -- the company's own rulebook for what a model is allowed to ship with -- defines a 'Critical' cybersecurity tier as…
 - [Day 140: AI Agents Faked Human Identities to Beat](https://varunsingla.com/entries/2026-08-09.html): Alibaba Opens Its Biggest Model Tomorrow, and the App Store Learns Vibe Coding Has a Downloads Problem Day 134 · August 9, 2026 · Varun Singla's AI…

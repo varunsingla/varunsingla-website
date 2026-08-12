@@ -6,6 +6,65 @@
   },
   "learnings": [
     {
+      "date": "2026-08-12",
+      "display_date": "August 12, 2026",
+      "issue": 137,
+      "title": "The EU Just Forced Android Open to Rival AI Assistants -- Anthropic Answers by Buying Into Its Own Data Centers",
+      "focus_intro": "Why this matters: three storylines today all point the same direction -- the fight over who gets to sit on your phone's home screen, who owns the data centers AI runs on, and who gets to walk into a classroom first.",
+      "viral_app": {
+        "name": "Erly -- the AI alarm clock that makes you prove you're awake",
+        "description": "Erly is a short-form-video-native alarm app: to silence the alarm, you have to point your camera at a specific real object -- \"the fridge,\" \"your toothbrush,\" \"a window\" -- and an on-device computer-vision model has to confirm you actually photographed it before the sound stops. Snoozing means restaging the whole ritual on camera. Creators started filming themselves half-asleep, stumbling around in performative distress trying to find the right object before the alarm's jarring escalation kicks in, and posting the results. The genre now has its own name on TikTok: \"alarm rage\" content. Why it's taking off: it turns a private, mundane 6 a.m. failure (hitting snooze) into a shareable, slightly humiliating three-second clip -- the same accountability-through-audience mechanic that made habit-tracking apps sticky, but compressed into something with almost no setup cost for the viewer. The AI is invisible to the user; it's just the referee that makes the dare enforceable.",
+        "stats": []
+      },
+      "stats": [],
+      "sections": [
+        {
+          "title": "1) The EU Orders Android Open to Rivals",
+          "paragraphs": [
+            "Brussels used its Digital Markets Act (DMA) -- the EU law that forces \"gatekeeper\" platforms to stop favoring their own products -- to order Google to open Android to competing AI assistants. By August 2027, Google must let users set Claude or ChatGPT as the phone's default assistant with the same system-level access Gemini gets today: the same wake-word slot, the same home-button shortcut, the same permission to read notifications and act on them. Until now, rival assistants could be installed as ordinary apps but never fully replace Gemini at the OS level. Why it matters: default placement is worth more than most people assume -- on iOS, Apple's own defaults still drive the overwhelming majority of usage even when better third-party apps exist. Forcing Android open removes Google's biggest structural advantage over Anthropic and OpenAI: it no longer gets to decide which assistant a billion phones open by default. In simple terms: think of Android as an apartment building where Google has always owned the lobby directory. This ruling forces Google to list every competing \"concierge\" at the same size and in the same font as its own."
+          ]
+        },
+        {
+          "title": "2) Anthropic Buys Into Its Own Data Centers",
+          "paragraphs": [
+            "Anthropic, GIC (Singapore's sovereign wealth fund) and Macquarie Asset Management formed a new joint venture called Theseus Infrastructure. GIC and Macquarie's funds will own the entity and put up most of the equity; Anthropic locks in long-term guaranteed capacity in return, on top of the $50 billion in US data center commitments it already announced this year. Why it matters: every frontier lab is racing to secure compute years in advance, and the financing structure matters as much as the chips. Renting cloud GPUs leaves you exposed to price swings and other customers bidding up capacity; co-owning the buildings means fixed, predictable supply. Expect Claude API pricing and rate limits to get more stable as this kind of owned-not-rented infrastructure comes online through 2027."
+          ]
+        },
+        {
+          "title": "3) Claude for Teachers Enters the Classroom",
+          "paragraphs": [
+            "Anthropic widened its education push with Claude for Teachers, bundling Claude Code and Cowork so a teacher can hand off multi-step prep work -- building a unit plan, differentiating a worksheet for three reading levels, drafting parent emails -- and have Claude carry it forward without babysitting every step. It ships with its own K-12 privacy terms: nothing a teacher shares is used to train models, and it can incorporate academic standards from all 50 US states. It's free for verified US educators, and Detroit Public Schools is piloting it in a formal study of teacher workload and well-being. This puts Anthropic in the same race as OpenAI and Google, both of which have their own classroom pushes. The strategic logic: habits formed by teachers and students in K-12 tend to stick into college and the workplace, so the real prize is a generation's default AI habit, not this quarter's revenue."
+          ]
+        },
+        {
+          "title": "4) A Cheap Model Just Beat Its Own Flagship",
+          "paragraphs": [
+            "DeepSeek quietly retrained its budget \"Flash\" model (V4-Flash-0731) and it now outscores DeepSeek's own full-price V4-Pro on agentic coding benchmarks -- multi-step tasks like reading a codebase, planning an edit, running tests, and fixing what breaks -- while billing at Flash's much lower per-token price.",
+            "Why it matters: for the last two years, \"pay more, get a smarter agent\" was a safe assumption. That link is breaking. Training techniques (better reinforcement learning on agentic traces, not just bigger base models) are now doing more work than raw parameter count. Practically: if you picked a coding model's pricing tier six months ago and haven't rechecked it, you may be overpaying for a capability gap that no longer exists."
+          ]
+        }
+      ],
+      "market_signal": "40% of new enterprise applications are expected to ship with a task-specific AI agent built in by the end of 2026, according to Gartner -- up from under 5% a year earlier. That's an eightfold jump in twelve months, and it's the clearest sign yet that \"agent\" is moving from a marketing label to a default feature of business software, the way \"mobile app\" and \"cloud-hosted\" once did.",
+      "practical_takeaway": [
+        {
+          "title": "Don't assume Gemini stays the Android default.",
+          "body": "Watch for Claude and ChatGPT to start appearing as installable default-assistant options on Android well before the August 2027 deadline -- Google has every incentive to move early rather than be forced at the last minute. If you build on Android, start testing your app against a non-Gemini default assistant now."
+        },
+        {
+          "title": "Expect steadier Claude pricing, not cheaper Claude pricing.",
+          "body": "The Theseus data-center deal is about supply security, not cost-cutting. If your team runs on the Claude API, the practical upside over the next year is fewer rate-limit surprises during demand spikes, not a price cut."
+        },
+        {
+          "title": "Teachers: Claude for Teachers is free right now for verified US educators.",
+          "body": "Try it this week on one real task -- a unit plan or a set of differentiated worksheets -- even if your school isn't in the Detroit pilot. The K-12 privacy terms mean nothing you upload trains the model."
+        },
+        {
+          "title": "Re-check your coding model's price tier.",
+          "body": "DeepSeek's V4-Flash-0731 beating its own V4-Pro on agentic coding at flash pricing is a sign the field is shifting fast. If you locked in a \"premium\" coding model months ago, benchmark the current cheap tier before renewing that budget line."
+        }
+      ]
+    },
+    {
       "date": "2026-08-11",
       "display_date": "August 11, 2026",
       "issue": 136,
