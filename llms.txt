@@ -1,13 +1,14 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 144 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 145 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 144 — "A Single Bad Package Exposed 2,500 Companies -- Gemini Hits a Billion Users as Claude Adds Watermarks" (August 13, 2026).
+Latest entry: Day 145 — "OpenAI Just Made Its Flagship Model 14x Faster -- -- Without Retraining It" (August 14, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Journal entries
 
+- [Day 145: OpenAI Just Made Its Flagship Model 14x Faster -- -- Without Retraining It](https://varunsingla.com/entries/2026-08-14.html): Colorado becomes the first state to regulate AI companion chatbots as the power grid becomes AI's real bottleneck Day 139 · Friday, August 14, 2026…
 - [Day 144: A Single Bad Package Exposed 2,500 Companies -- Gemini Hits a Billion Users as Claude Adds Watermarks](https://varunsingla.com/entries/2026-08-13.html): Why this matters: four storylines collide today -- a supply-chain attack that shows how fragile the AI tooling stack still is, a billion-user…
 - [Day 143: The EU Just Forced Android Open to Rival AI Assistants -- Anthropic Answers by Buying Into Its Own Data Centers](https://varunsingla.com/entries/2026-08-12.html): Why this matters: three storylines today all point the same direction -- the fight over who gets to sit on your phone's home screen, who owns the…
 - [Day 142: OpenAI Just Split Its Own Cyber Weapon Into Two Tiers -- Defenders Get GPT-5.6-Cyber as Daybreak Splits in Two](https://varunsingla.com/entries/2026-08-11.html): Three storylines converged today that all point the same direction: autonomous AI is graduating from chat windows into infrastructure, laptops, and…
