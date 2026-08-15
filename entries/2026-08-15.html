@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>An Open-Weight Model Got Too Good at Hacking -- -- So Its Maker Held the Weights Back — Day 146 | Varun Singla · AI Learning Journal</title>
+<meta name="description" content="Claude Code goes autonomous by default, Manus breaks free of Meta, and the frontier model race turns into a launch-every-day sprint Day 140 · Saturday, August 15, 2026 Why this matters:…">
+<meta name="author" content="Varun Singla">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://varunsingla.com/entries/2026-08-15.html">
+<link rel="prev" href="https://varunsingla.com/entries/2026-08-14.html">
+<link rel="alternate" type="application/rss+xml" title="Varun Singla · AI Learning Journal" href="https://varunsingla.com/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Varun Singla · AI Learning Journal">
+<meta property="og:title" content="An Open-Weight Model Got Too Good at Hacking -- -- So Its Maker Held the Weights Back">
+<meta property="og:description" content="Claude Code goes autonomous by default, Manus breaks free of Meta, and the frontier model race turns into a launch-every-day sprint Day 140 · Saturday, August 15, 2026 Why this matters:…">
+<meta property="og:url" content="https://varunsingla.com/entries/2026-08-15.html">
+<meta property="og:image" content="https://varunsingla.com/og-image.png">
+<meta property="article:published_time" content="2026-08-15T21:00:00+08:00">
+<meta property="article:author" content="https://varunsingla.com/about/">
+<meta property="article:tag" content="Models &amp; Frontier">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="An Open-Weight Model Got Too Good at Hacking -- -- So Its Maker Held the Weights Back">
+<meta name="twitter:description" content="Claude Code goes autonomous by default, Manus breaks free of Meta, and the frontier model race turns into a launch-every-day sprint Day 140 · Saturday, August 15, 2026 Why this matters:…">
+<meta name="twitter:image" content="https://varunsingla.com/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "@id": "https://varunsingla.com/entries/2026-08-15.html#post", "headline": "An Open-Weight Model Got Too Good at Hacking -- -- So Its Maker Held the Weights Back", "description": "Claude Code goes autonomous by default, Manus breaks free of Meta, and the frontier model race turns into a launch-every-day sprint Day 140 · Saturday, August 15, 2026 Why this matters:…", "datePublished": "2026-08-15T21:00:00+08:00", "dateModified": "2026-08-15T21:00:00+08:00", "url": "https://varunsingla.com/entries/2026-08-15.html", "mainEntityOfPage": "https://varunsingla.com/entries/2026-08-15.html", "wordCount": 1072, "inLanguage": "en", "articleSection": ["Models & Frontier"], "keywords": ["Models & Frontier", "agentic AI", "AI learning journal", "Varun Singla"], "isPartOf": {"@type": "Blog", "@id": "https://varunsingla.com/#blog", "name": "Varun Singla · AI Learning Journal"}, "author": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla", "url": "https://varunsingla.com/about/"}, "publisher": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Journal", "item": "https://varunsingla.com/"}, {"@type": "ListItem", "position": 2, "name": "Archive", "item": "https://varunsingla.com/entries/"}, {"@type": "ListItem", "position": 3, "name": "An Open-Weight Model Got Too Good at Hacking -- -- So Its Maker Held the Weights Back", "item": "https://varunsingla.com/entries/2026-08-15.html"}]}</script>
+<style>*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#F7F4ED;}
+body{font-family:'Hanken Grotesk',sans-serif;color:#1B1A17;-webkit-font-smoothing:antialiased;}
+::selection{background:#CC3F2A;color:#fff;}
+a{color:inherit;}
+.mast{position:sticky;top:0;z-index:50;background:rgba(247,244,237,.9);backdrop-filter:blur(12px);border-bottom:1px solid #E4DECF;}
+.mast-in{max-width:1120px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;}
+.brand-mark{width:30px;height:30px;border-radius:7px;background:#1B1A17;color:#F7F4ED;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;}
+.brand-name{font-family:'JetBrains Mono',monospace;font-size:13.5px;color:#1B1A17;}
+.nav-link{font-size:14.5px;font-weight:500;color:#6B6760;text-decoration:none;padding:7px 12px;border-radius:8px;}
+.nav-link:hover{color:#1B1A17;background:#EEE9DC;}
+.meta-row{display:flex;align-items:center;gap:13px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:13px;color:#8A857B;}
+.meta-row .day{color:#CC3F2A;font-weight:500;}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.04em;color:#6B6760;border:1px solid #E4DECF;border-radius:999px;padding:5px 12px;background:#FBF9F3;text-decoration:none;}
+article h1{font-family:'Newsreader',serif;font-weight:400;font-size:clamp(32px,5.5vw,52px);line-height:1.07;letter-spacing:-.018em;margin:0 0 22px;}
+article h2{font-family:'Newsreader',serif;font-weight:500;font-size:clamp(23px,3.4vw,30px);line-height:1.18;margin:0 0 18px;}
+article p{font-family:'Newsreader',serif;font-size:clamp(18px,2.3vw,20px);line-height:1.65;color:#2C2A24;margin:0 0 20px;}
+article ul{margin:4px 0 20px;padding-left:20px;}
+article li{font-family:'Newsreader',serif;font-size:clamp(17px,2.2vw,19px);line-height:1.6;color:#2C2A24;margin:0 0 10px;}
+.intro{font-size:clamp(20px,3vw,24px)!important;line-height:1.5!important;color:#3A372F!important;font-style:italic;margin:0 0 40px!important;}
+.callout{border:1px solid #E4DECF;border-left:3px solid #CC3F2A;border-radius:12px;background:#FBF9F3;padding:22px 24px;margin:0 0 40px;}
+.callout p{font-size:clamp(17px,2.2vw,19px);margin:0;}
+.kicker{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#CC3F2A;margin-bottom:14px;}
+.highlight{font-family:'Newsreader',serif;font-style:italic;font-size:clamp(18px,2.4vw,20px);line-height:1.55;color:#3A372F;border-left:3px solid #CC3F2A;padding:6px 0 6px 16px;margin:8px 0 20px;}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:#E4DECF;border:1px solid #E4DECF;border-radius:12px;overflow:hidden;margin:0 0 40px;}
+.stat-cell{background:#FBF9F3;padding:18px 20px;}
+.stat-big{font-family:'Newsreader',serif;font-size:clamp(24px,4vw,32px);line-height:1.05;color:#1B1A17;}
+.stat-small{font-size:13px;line-height:1.45;color:#56524B;margin-top:8px;}
+.table-wrap{overflow-x:auto;border:1px solid #E4DECF;border-radius:12px;background:#FBF9F3;margin:0 0 20px;}
+table{width:100%;border-collapse:collapse;}
+th{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#8A857B;text-align:left;padding:9px 12px;border-bottom:1px solid #CBB8A0;font-weight:500;}
+td{font-size:14.5px;color:#2C2A24;padding:9px 12px;border-bottom:1px solid #EEE9DC;vertical-align:top;line-height:1.45;font-family:'Hanken Grotesk',sans-serif;}
+tr:last-child td{border-bottom:none;}
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:680px;margin:0 auto;padding:20px 28px 90px;}
+.pn a{border:1px solid #E4DECF;border-radius:12px;padding:18px 20px;background:#FBF9F3;text-decoration:none;display:block;}
+.pn a:hover{border-color:#1B1A17;}
+.pn .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#A8A294;margin-bottom:9px;}
+.pn .ttl{font-family:'Newsreader',serif;font-size:18px;line-height:1.2;color:#1B1A17;}
+footer{border-top:1px solid #E4DECF;background:#FBF9F3;}
+.foot-in{max-width:1120px;margin:0 auto;padding:34px 28px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#6B6760;}</style>
+</head>
+<body>
+<header class="mast"><div class="mast-in">
+  <a class="brand" href="../"><span class="brand-mark">VS</span><span class="brand-name">varunsingla.com</span></a>
+  <nav style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+    <a class="nav-link" href="../">Journal</a>
+    <a class="nav-link" href="../entries/">Archive</a>
+    <a class="nav-link" href="../about/">About</a>
+    <a class="nav-link" href="../ai-tokenomics/">Tokenomics</a>
+    <a class="nav-link" href="../tools/model-team-evaluator.html">Model Evaluator</a>
+  </nav>
+</div></header>
+<article style="max-width:680px;margin:0 auto;padding:48px 28px 30px;">
+  <p style="margin:0 0 38px;"><a href="./" style="font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.04em;color:#6B6760;text-decoration:none;">← All entries</a></p>
+  <div class="meta-row" style="margin-bottom:22px;">
+    <span class="day">Day 146</span><span>·</span>
+    <time datetime="2026-08-15">August 15, 2026</time><span>·</span>
+    <span>5 min read</span>
+  </div>
+  <h1>An Open-Weight Model Got Too Good at Hacking -- -- So Its Maker Held the Weights Back</h1>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:34px;padding-bottom:34px;border-bottom:1px solid #E4DECF;"><span class="tag">Models &amp; Frontier</span> </div>
+  <p class="intro">Claude Code goes autonomous by default, Manus breaks free of Meta, and the frontier model race turns into a launch-every-day sprint Day 140 · Saturday, August 15, 2026 Why this matters: three storylines today share the same undercurrent -- AI systems are outrunning the intentions of the people who build them, in ways that cut both directions. A Chinese lab trained a coding model that got unexpectedly good at chaining security exploits and chose to hold back the weights. The company behind the world&#x27;s most-used coding agent decided the safest default is now to let it act without asking first. And a Chinese regulator proved that even a $2 billion Silicon Valley acquisition isn&#x27;t final if the underlying technology never really left home.</p>
+<div class="callout"><div class="kicker">Viral app of the day</div><p style="font-family:'Newsreader',serif;font-size:22px;font-weight:500;margin:0 0 10px;">GLM-5.3 -- the model that got too good at hacking to ship openly</p><p>Z.ai released GLM-5.3 on August 14, an update to its open-weight coding model built on the same base as GLM-5.2 but with much stronger post-training. Terminal-Bench 3.0, a test of realistic multi-step terminal tasks, jumped from a score of 4.6 to 28.3. But the number that made Z.ai pause is on ExploitBench, a benchmark for chaining multiple software vulnerabilities into a working exploit: GLM-5.3&#x27;s score more than doubled, from 24.4% to 54.4%, and its CyberGym score rose from 77.2% to</p></div>
+<section><h2>1) Claude Code Now Acts First and Asks Later, by Default</h2><p>On August 14, Anthropic switched &quot;auto mode&quot; on by default for Claude Code across Pro, Max and Team accounts. Instead of pausing before every file edit or terminal command, the agent now proceeds on its own unless it judges an action to be irreversible, destructive, or aimed outside your local environment -- things like deleting a branch, pushing to production, or making an outbound network call it wasn&#x27;t asked to make. Everything short of that line just happens, with a running log instead of a permission prompt. Why it matters: Anthropic&#x27;s own controlled study is the interesting part. Researchers planted a dangerous command in a coding task and watched how often each safeguard caught it. Human reviewers, asked to approve or reject each step manually, caught the planted command 13.6% of the time -- reviewers approve fatigue-driven &quot;yes&quot; prompts far more than anyone likes to admit. Auto mode&#x27;s own judgment caught it 89% of the time. The uncomfortable conclusion Anthropic is acting on: a tired human clicking &quot;approve&quot; 40 times an hour is often a worse safety layer than a model trained specifically to recognize irreversible actions. In simple terms: think of a co-pilot who used to ask &quot;turn left here?&quot; at every single intersection, and you&#x27;d absent-mindedly say &quot;yeah, sure&quot; without really checking. Auto mode is that co-pilot driving normal streets on its own judgment, and only waking you up for the one-way street that goes the wrong way onto the highway.</p></section>
+<section><h2>2) Three Frontier Models Shipped in Four Days</h2><p>Google released Gemini 3.7 Flash on August 13 -- just 23 days after Gemini 3.6 Flash -- at roughly half its predecessor&#x27;s price and the fastest inference speed of any model tracked by Artificial Analysis, about 340 tokens per second. The same day, DeepSeek quietly pushed out DeepSeek-V4-Pro-0813, an incremental frontier update. A day later, Z.ai shipped GLM-5.3 (more on that below). Ten new models have now launched in August alone, from six different labs, and the gap between &quot;major version&quot; releases keeps shrinking toward weeks instead of quarters.</p><p>Why it matters: when release cadence compresses this much, the thing being optimized for stops being &quot;the best model&quot; and starts being &quot;the best model this week.&quot; That changes the calculus for anyone building on top of these APIs -- pinning to a specific model version, rather than &quot;whatever&#x27;s current,&quot; is quickly becoming a real engineering decision, not a formality.</p></section>
+<section><h2>3) Manus Breaks Free of Meta After Beijing Says No</h2><p>Manus, the AI-agent startup Meta agreed to acquire for roughly $2 billion in December 2025, confirmed on August 11 it will &quot;soon resume operating as an independent company.&quot; China&#x27;s National Development and Reform Commission ruled back in April that the deal had to be unwound, on the grounds that Manus&#x27;s technology and talent originated in China even though the company had relocated to Singapore -- a &quot;Singapore-washing&quot; structure the regulator explicitly said doesn&#x27;t shield a transaction from Chinese jurisdiction. Manus&#x27;s co-founders have since been barred from traveling abroad, and former investors -- reportedly including Tencent -- are now in talks to retake ownership stakes at the same $2 billion valuation. Why it matters: this is a rare, concrete data point on where the line actually sits for cross-border AI acquisitions. A company can reincorporate, relocate its headquarters, and sign a deal with a U.S. buyer -- and still get unwound eight months later if the origin of its models and its people is judged to matter more than where the paperwork was filed. Any AI company with China-origin IP shopping itself to a Western acquirer just watched exactly how that can go.</p></section>
+<section><h2>4) Washington&#x27;s AI Patch-Faster Bet Meets Its Mirror Image</h2><p>The Gold Eagle initiative -- a Treasury-housed, AI-assisted clearinghouse that lets critical infrastructure operators and government agencies find and patch software vulnerabilities faster -- has continued expanding through August under June&#x27;s executive order on AI cybersecurity, with the Pentagon, DHS and CISA all now routing vulnerability data through it. Separately, the administration has committed more than $5 billion across 15-plus federal agencies to embed AI tools directly into national scientific research pipelines. Why it matters: this is the defensive side of the same coin as today&#x27;s GLM-5.3 story below. The same model capability that lets an AI system discover and chain together software vulnerabilities can, pointed the other way, find and close them faster than human teams alone. 2026 is the year both sides of that equation went live inside the same few months, not hypothetically but as running government infrastructure.</p></section>
+<div class="callout"><div class="kicker">Market signal</div><p>ExploitBench scores for open-weight coding models have more than doubled in a single release cycle (24.4% to 54.4%), while ten new frontier or near-frontier models shipped in the first two weeks of August alone. Capability is compounding faster than release cadence is slowing down -- the two trends normally expected to offset each other are instead both accelerating at once.</p></div>
+<div class="callout"><div class="kicker">Practical takeaways</div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">If you&#x27;ve enabled Claude Code&#x27;s auto mode, read the irreversible-action boundary before you rely on it. Auto</div><p style="font-size:17px;margin:3px 0 0;">mode&#x27;s judgment beat human review in Anthropic&#x27;s own study, but it still draws its own line around what counts as destructive -- a misconfigured deploy script or an overly broad database migration may sit right on the edge of &quot;reversible&quot; depending on your setup.</p></div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">Pin model versions in production instead of tracking &quot;latest.&quot; With three frontier updates shipping in four days</div><p style="font-size:17px;margin:3px 0 0;">this week alone, an unpinned integration can silently change behavior, pricing, or output format overnight. Treat a model version like a dependency version -- upgrade deliberately, not by default.</p></div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">If your company holds China-origin AI technology or talent, don&#x27;t assume relocation solves jurisdiction.</div><p style="font-size:17px;margin:3px 0 0;">Manus&#x27;s unwind shows Chinese regulators will look through a Singapore or offshore corporate structure to the origin of the underlying technology and people -- cross-border AI M&amp;A now needs that risk priced in explicitly, not treated as a formality. Varun Singla · Daily AI Learning Page 3</p></div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">Treat emergent capabilities as a release-review checklist item, not a one-off surprise. GLM-5.3 shows a</div><p style="font-size:17px;margin:3px 0 0;">model can generalize past what it was explicitly trained for -- if you fine-tune or heavily post-train a model for one narrow skill, benchmark it on adjacent skills before shipping, since capability transfer can show up in directions nobody planned for.</p></div></div>
+  <div style="display:flex;align-items:center;gap:13px;margin:54px 0 10px;padding-top:30px;border-top:1px solid #E4DECF;">
+    <div class="brand-mark" style="width:40px;height:40px;font-size:14px;border-radius:9px;">VS</div>
+    <div><div style="font-size:14.5px;font-weight:600;">Varun Singla</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8A857B;">Singapore · <a href="../about/" style="color:#8A857B;">About</a> · Learning in public</div></div>
+  </div>
+</article>
+<nav class="pn" aria-label="Adjacent entries"><span></span><a href="2026-08-14.html" rel="prev" style="text-align:right;"><div class="lbl">Older · Day 145 →</div><div class="ttl">OpenAI Just Made Its Flagship Model 14x Faster -- -- Without Retraining It</div></a></nav>
+<footer><div class="foot-in">
+  <span>Varun Singla · Singapore · Learning in public</span>
+  <span><a href="https://varunsingla.com/feed.xml" style="text-decoration:none;color:#6B6760;">RSS</a> · <a href="https://varunsingla.com/llms.txt" style="text-decoration:none;color:#6B6760;">llms.txt</a> · Updated daily</span>
+</div></footer>
+</body>
+</html>

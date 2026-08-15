@@ -1,6 +1,43 @@
 # Varun Singla · AI Learning Journal — full text
 
-Complete text of all 145 journal entries by Varun Singla (https://varunsingla.com), newest first. Index: https://varunsingla.com/llms.txt
+Complete text of all 146 journal entries by Varun Singla (https://varunsingla.com), newest first. Index: https://varunsingla.com/llms.txt
+
+---
+
+# Day 146: An Open-Weight Model Got Too Good at Hacking -- -- So Its Maker Held the Weights Back
+
+Date: August 15, 2026 · Author: Varun Singla · URL: https://varunsingla.com/entries/2026-08-15.html · Themes: Models & Frontier
+
+Claude Code goes autonomous by default, Manus breaks free of Meta, and the frontier model race turns into a launch-every-day sprint Day 140 · Saturday, August 15, 2026 Why this matters: three storylines today share the same undercurrent -- AI systems are outrunning the intentions of the people who build them, in ways that cut both directions. A Chinese lab trained a coding model that got unexpectedly good at chaining security exploits and chose to hold back the weights. The company behind the world's most-used coding agent decided the safest default is now to let it act without asking first. And a Chinese regulator proved that even a $2 billion Silicon Valley acquisition isn't final if the underlying technology never really left home.
+
+**Viral app of the day: GLM-5.3 -- the model that got too good at hacking to ship openly**
+Z.ai released GLM-5.3 on August 14, an update to its open-weight coding model built on the same base as GLM-5.2 but with much stronger post-training. Terminal-Bench 3.0, a test of realistic multi-step terminal tasks, jumped from a score of 4.6 to 28.3. But the number that made Z.ai pause is on ExploitBench, a benchmark for chaining multiple software vulnerabilities into a working exploit: GLM-5.3's score more than doubled, from 24.4% to 54.4%, and its CyberGym score rose from 77.2% to
+
+## 1) Claude Code Now Acts First and Asks Later, by Default
+
+On August 14, Anthropic switched "auto mode" on by default for Claude Code across Pro, Max and Team accounts. Instead of pausing before every file edit or terminal command, the agent now proceeds on its own unless it judges an action to be irreversible, destructive, or aimed outside your local environment -- things like deleting a branch, pushing to production, or making an outbound network call it wasn't asked to make. Everything short of that line just happens, with a running log instead of a permission prompt. Why it matters: Anthropic's own controlled study is the interesting part. Researchers planted a dangerous command in a coding task and watched how often each safeguard caught it. Human reviewers, asked to approve or reject each step manually, caught the planted command 13.6% of the time -- reviewers approve fatigue-driven "yes" prompts far more than anyone likes to admit. Auto mode's own judgment caught it 89% of the time. The uncomfortable conclusion Anthropic is acting on: a tired human clicking "approve" 40 times an hour is often a worse safety layer than a model trained specifically to recognize irreversible actions. In simple terms: think of a co-pilot who used to ask "turn left here?" at every single intersection, and you'd absent-mindedly say "yeah, sure" without really checking. Auto mode is that co-pilot driving normal streets on its own judgment, and only waking you up for the one-way street that goes the wrong way onto the highway.
+
+## 2) Three Frontier Models Shipped in Four Days
+
+Google released Gemini 3.7 Flash on August 13 -- just 23 days after Gemini 3.6 Flash -- at roughly half its predecessor's price and the fastest inference speed of any model tracked by Artificial Analysis, about 340 tokens per second. The same day, DeepSeek quietly pushed out DeepSeek-V4-Pro-0813, an incremental frontier update. A day later, Z.ai shipped GLM-5.3 (more on that below). Ten new models have now launched in August alone, from six different labs, and the gap between "major version" releases keeps shrinking toward weeks instead of quarters.
+
+Why it matters: when release cadence compresses this much, the thing being optimized for stops being "the best model" and starts being "the best model this week." That changes the calculus for anyone building on top of these APIs -- pinning to a specific model version, rather than "whatever's current," is quickly becoming a real engineering decision, not a formality.
+
+## 3) Manus Breaks Free of Meta After Beijing Says No
+
+Manus, the AI-agent startup Meta agreed to acquire for roughly $2 billion in December 2025, confirmed on August 11 it will "soon resume operating as an independent company." China's National Development and Reform Commission ruled back in April that the deal had to be unwound, on the grounds that Manus's technology and talent originated in China even though the company had relocated to Singapore -- a "Singapore-washing" structure the regulator explicitly said doesn't shield a transaction from Chinese jurisdiction. Manus's co-founders have since been barred from traveling abroad, and former investors -- reportedly including Tencent -- are now in talks to retake ownership stakes at the same $2 billion valuation. Why it matters: this is a rare, concrete data point on where the line actually sits for cross-border AI acquisitions. A company can reincorporate, relocate its headquarters, and sign a deal with a U.S. buyer -- and still get unwound eight months later if the origin of its models and its people is judged to matter more than where the paperwork was filed. Any AI company with China-origin IP shopping itself to a Western acquirer just watched exactly how that can go.
+
+## 4) Washington's AI Patch-Faster Bet Meets Its Mirror Image
+
+The Gold Eagle initiative -- a Treasury-housed, AI-assisted clearinghouse that lets critical infrastructure operators and government agencies find and patch software vulnerabilities faster -- has continued expanding through August under June's executive order on AI cybersecurity, with the Pentagon, DHS and CISA all now routing vulnerability data through it. Separately, the administration has committed more than $5 billion across 15-plus federal agencies to embed AI tools directly into national scientific research pipelines. Why it matters: this is the defensive side of the same coin as today's GLM-5.3 story below. The same model capability that lets an AI system discover and chain together software vulnerabilities can, pointed the other way, find and close them faster than human teams alone. 2026 is the year both sides of that equation went live inside the same few months, not hypothetically but as running government infrastructure.
+
+**Market signal:** ExploitBench scores for open-weight coding models have more than doubled in a single release cycle (24.4% to 54.4%), while ten new frontier or near-frontier models shipped in the first two weeks of August alone. Capability is compounding faster than release cadence is slowing down -- the two trends normally expected to offset each other are instead both accelerating at once.
+
+**Practical takeaways:**
+- If you've enabled Claude Code's auto mode, read the irreversible-action boundary before you rely on it. Auto — mode's judgment beat human review in Anthropic's own study, but it still draws its own line around what counts as destructive -- a misconfigured deploy script or an overly broad database migration may sit right on the edge of "reversible" depending on your setup.
+- Pin model versions in production instead of tracking "latest." With three frontier updates shipping in four days — this week alone, an unpinned integration can silently change behavior, pricing, or output format overnight. Treat a model version like a dependency version -- upgrade deliberately, not by default.
+- If your company holds China-origin AI technology or talent, don't assume relocation solves jurisdiction. — Manus's unwind shows Chinese regulators will look through a Singapore or offshore corporate structure to the origin of the underlying technology and people -- cross-border AI M&A now needs that risk priced in explicitly, not treated as a formality. Varun Singla · Daily AI Learning Page 3
+- Treat emergent capabilities as a release-review checklist item, not a one-off surprise. GLM-5.3 shows a — model can generalize past what it was explicitly trained for -- if you fine-tune or heavily post-train a model for one narrow skill, benchmark it on adjacent skills before shipping, since capability transfer can show up in directions nobody planned for.
 
 ---
 
