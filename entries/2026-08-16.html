@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meta Joins the Coding-Agent Wars -- And a — Day 147 | Varun Singla · AI Learning Journal</title>
+<meta name="description" content="Google open-sources a compiler for computing on encrypted data, Qwen ships a vision-native 27B model with a million-token reach, and Anthropic&#x27;s own usage numbers say Cowork was never…">
+<meta name="author" content="Varun Singla">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://varunsingla.com/entries/2026-08-16.html">
+<link rel="prev" href="https://varunsingla.com/entries/2026-08-15.html">
+<link rel="alternate" type="application/rss+xml" title="Varun Singla · AI Learning Journal" href="https://varunsingla.com/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Varun Singla · AI Learning Journal">
+<meta property="og:title" content="Meta Joins the Coding-Agent Wars -- And a">
+<meta property="og:description" content="Google open-sources a compiler for computing on encrypted data, Qwen ships a vision-native 27B model with a million-token reach, and Anthropic&#x27;s own usage numbers say Cowork was never…">
+<meta property="og:url" content="https://varunsingla.com/entries/2026-08-16.html">
+<meta property="og:image" content="https://varunsingla.com/og-image.png">
+<meta property="article:published_time" content="2026-08-16T21:00:00+08:00">
+<meta property="article:author" content="https://varunsingla.com/about/">
+<meta property="article:tag" content="Foundations &amp; Protocols">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Meta Joins the Coding-Agent Wars -- And a">
+<meta name="twitter:description" content="Google open-sources a compiler for computing on encrypted data, Qwen ships a vision-native 27B model with a million-token reach, and Anthropic&#x27;s own usage numbers say Cowork was never…">
+<meta name="twitter:image" content="https://varunsingla.com/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "@id": "https://varunsingla.com/entries/2026-08-16.html#post", "headline": "Meta Joins the Coding-Agent Wars -- And a", "description": "Google open-sources a compiler for computing on encrypted data, Qwen ships a vision-native 27B model with a million-token reach, and Anthropic's own usage numbers say Cowork was never…", "datePublished": "2026-08-16T21:00:00+08:00", "dateModified": "2026-08-16T21:00:00+08:00", "url": "https://varunsingla.com/entries/2026-08-16.html", "mainEntityOfPage": "https://varunsingla.com/entries/2026-08-16.html", "wordCount": 1144, "inLanguage": "en", "articleSection": ["Foundations & Protocols"], "keywords": ["Foundations & Protocols", "agentic AI", "AI learning journal", "Varun Singla"], "isPartOf": {"@type": "Blog", "@id": "https://varunsingla.com/#blog", "name": "Varun Singla · AI Learning Journal"}, "author": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla", "url": "https://varunsingla.com/about/"}, "publisher": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Journal", "item": "https://varunsingla.com/"}, {"@type": "ListItem", "position": 2, "name": "Archive", "item": "https://varunsingla.com/entries/"}, {"@type": "ListItem", "position": 3, "name": "Meta Joins the Coding-Agent Wars -- And a", "item": "https://varunsingla.com/entries/2026-08-16.html"}]}</script>
+<style>*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#F7F4ED;}
+body{font-family:'Hanken Grotesk',sans-serif;color:#1B1A17;-webkit-font-smoothing:antialiased;}
+::selection{background:#CC3F2A;color:#fff;}
+a{color:inherit;}
+.mast{position:sticky;top:0;z-index:50;background:rgba(247,244,237,.9);backdrop-filter:blur(12px);border-bottom:1px solid #E4DECF;}
+.mast-in{max-width:1120px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;}
+.brand-mark{width:30px;height:30px;border-radius:7px;background:#1B1A17;color:#F7F4ED;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;}
+.brand-name{font-family:'JetBrains Mono',monospace;font-size:13.5px;color:#1B1A17;}
+.nav-link{font-size:14.5px;font-weight:500;color:#6B6760;text-decoration:none;padding:7px 12px;border-radius:8px;}
+.nav-link:hover{color:#1B1A17;background:#EEE9DC;}
+.meta-row{display:flex;align-items:center;gap:13px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:13px;color:#8A857B;}
+.meta-row .day{color:#CC3F2A;font-weight:500;}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.04em;color:#6B6760;border:1px solid #E4DECF;border-radius:999px;padding:5px 12px;background:#FBF9F3;text-decoration:none;}
+article h1{font-family:'Newsreader',serif;font-weight:400;font-size:clamp(32px,5.5vw,52px);line-height:1.07;letter-spacing:-.018em;margin:0 0 22px;}
+article h2{font-family:'Newsreader',serif;font-weight:500;font-size:clamp(23px,3.4vw,30px);line-height:1.18;margin:0 0 18px;}
+article p{font-family:'Newsreader',serif;font-size:clamp(18px,2.3vw,20px);line-height:1.65;color:#2C2A24;margin:0 0 20px;}
+article ul{margin:4px 0 20px;padding-left:20px;}
+article li{font-family:'Newsreader',serif;font-size:clamp(17px,2.2vw,19px);line-height:1.6;color:#2C2A24;margin:0 0 10px;}
+.intro{font-size:clamp(20px,3vw,24px)!important;line-height:1.5!important;color:#3A372F!important;font-style:italic;margin:0 0 40px!important;}
+.callout{border:1px solid #E4DECF;border-left:3px solid #CC3F2A;border-radius:12px;background:#FBF9F3;padding:22px 24px;margin:0 0 40px;}
+.callout p{font-size:clamp(17px,2.2vw,19px);margin:0;}
+.kicker{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#CC3F2A;margin-bottom:14px;}
+.highlight{font-family:'Newsreader',serif;font-style:italic;font-size:clamp(18px,2.4vw,20px);line-height:1.55;color:#3A372F;border-left:3px solid #CC3F2A;padding:6px 0 6px 16px;margin:8px 0 20px;}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:#E4DECF;border:1px solid #E4DECF;border-radius:12px;overflow:hidden;margin:0 0 40px;}
+.stat-cell{background:#FBF9F3;padding:18px 20px;}
+.stat-big{font-family:'Newsreader',serif;font-size:clamp(24px,4vw,32px);line-height:1.05;color:#1B1A17;}
+.stat-small{font-size:13px;line-height:1.45;color:#56524B;margin-top:8px;}
+.table-wrap{overflow-x:auto;border:1px solid #E4DECF;border-radius:12px;background:#FBF9F3;margin:0 0 20px;}
+table{width:100%;border-collapse:collapse;}
+th{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#8A857B;text-align:left;padding:9px 12px;border-bottom:1px solid #CBB8A0;font-weight:500;}
+td{font-size:14.5px;color:#2C2A24;padding:9px 12px;border-bottom:1px solid #EEE9DC;vertical-align:top;line-height:1.45;font-family:'Hanken Grotesk',sans-serif;}
+tr:last-child td{border-bottom:none;}
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:680px;margin:0 auto;padding:20px 28px 90px;}
+.pn a{border:1px solid #E4DECF;border-radius:12px;padding:18px 20px;background:#FBF9F3;text-decoration:none;display:block;}
+.pn a:hover{border-color:#1B1A17;}
+.pn .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#A8A294;margin-bottom:9px;}
+.pn .ttl{font-family:'Newsreader',serif;font-size:18px;line-height:1.2;color:#1B1A17;}
+footer{border-top:1px solid #E4DECF;background:#FBF9F3;}
+.foot-in{max-width:1120px;margin:0 auto;padding:34px 28px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#6B6760;}</style>
+</head>
+<body>
+<header class="mast"><div class="mast-in">
+  <a class="brand" href="../"><span class="brand-mark">VS</span><span class="brand-name">varunsingla.com</span></a>
+  <nav style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+    <a class="nav-link" href="../">Journal</a>
+    <a class="nav-link" href="../entries/">Archive</a>
+    <a class="nav-link" href="../about/">About</a>
+    <a class="nav-link" href="../ai-tokenomics/">Tokenomics</a>
+    <a class="nav-link" href="../tools/model-team-evaluator.html">Model Evaluator</a>
+  </nav>
+</div></header>
+<article style="max-width:680px;margin:0 auto;padding:48px 28px 30px;">
+  <p style="margin:0 0 38px;"><a href="./" style="font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.04em;color:#6B6760;text-decoration:none;">← All entries</a></p>
+  <div class="meta-row" style="margin-bottom:22px;">
+    <span class="day">Day 147</span><span>·</span>
+    <time datetime="2026-08-16">August 16, 2026</time><span>·</span>
+    <span>5 min read</span>
+  </div>
+  <h1>Meta Joins the Coding-Agent Wars -- And a</h1>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:34px;padding-bottom:34px;border-bottom:1px solid #E4DECF;"><span class="tag">Foundations &amp; Protocols</span> </div>
+  <p class="intro">Google open-sources a compiler for computing on encrypted data, Qwen ships a vision-native 27B model with a million-token reach, and Anthropic&#x27;s own usage numbers say Cowork was never really about coding Day 141 · Sunday, August 16, 2026 Why this matters: today&#x27;s stories split into two lanes that keep circling back to the same question -- who gets to see what. Meta just handed a fourth major lab&#x27;s coding agent a pricing tier that trades your prompts for a discount, right as usage data shows these &quot;coding&quot; agents are mostly being used by people who don&#x27;t code. Google shipped a serious open-source attempt at letting AI compute on data it can never actually see. And an AI notetaker that sits inside literally every meeting a company has just showed, in the most public way possible, what happens when nobody checks who&#x27;s allowed to see what.</p>
+<div class="callout"><div class="kicker">Viral app of the day</div><p style="font-family:'Newsreader',serif;font-size:22px;font-weight:500;margin:0 0 10px;">HEIR -- the compiler that lets AI compute without ever seeing your data</p><p>Google released HEIR (Homomorphic Encryption Intermediate Representation) on August 15: an open-source, Apache-licensed compiler toolchain, built on the MLIR framework it already uses for TensorFlow, that takes a normal machine-learning model and automatically rewrites it to run inference on encrypted inputs. A developer annotates which variables in a Python model are secret, and HEIR handles the fully homomorphic encryption (FHE) math underneath -- packing ciphertexts efficiently, choosing safe parameters, and lowering the program down through several layers of abstraction to run on an OpenFHE or Lattigo backend. FHE has been theoretically possible since 2009 and practically painful ever since; every team that wanted it had to hand-roll their own cryptographic plumbing. HEIR is the first attempt by a major lab to make that a compiler&#x27;s job instead of a research project&#x27;s, which is why cryptography and privacy engineers spent the weekend passing it around. 1) Meta Enters the Terminal Coding-Agent Wars With Muse Code Meta launched Muse Code in beta for macOS and Linux on August 5, a terminal-based coding agent built on its new Muse Spark 1.2 model. The headline spec is a one-million-token context window, large enough to hold an entire codebase&#x27;s dependency graph in a single session, and Muse Code can run several persistent sub-agents in parallel on different parts of a project r</p></div>
+<section><h2>1) Meta Enters the Terminal Coding-Agent Wars With Muse Code</h2><p>Meta launched Muse Code in beta for macOS and Linux on August 5, a terminal-based coding agent built on its new Muse Spark 1.2 model. The headline spec is a one-million-token context window, large enough to hold an entire codebase&#x27;s dependency graph in a single session, and Muse Code can run several persistent sub-agents in parallel on different parts of a project rather than working one file at a time. Built-in commands make the workflow explicit: /plan drafts an approval-based execution plan, /grill pressure-tests that plan before anything runs, and /goal works autonomously toward a stated objective. The pricing is the part getting the most attention: alongside the standard metered rate, Meta offers a &quot;contributor&quot; tier at a steep discount, in exchange for letting Meta train future models on your prompts and completions.</p><p>Why it matters: this lands one day after Anthropic switched Claude Code to act-first, ask-later &quot;auto mode&quot; by default, and in the same month OpenAI&#x27;s Codex and Google&#x27;s Gemini CLI have both pushed major updates. Four labs now ship terminal coding agents that compete less on &quot;can it write correct code&quot; -- most can, most of the time -- and more on how much autonomy you hand it and what you&#x27;re willing to pay with when it isn&#x27;t cash. In simple terms: Meta&#x27;s &quot;contributor tier&quot; is the same trade you make with a free email service that scans your inbox to sell ads, except the thing it&#x27;s reading is your unreleased source code.</p></section>
+<section><h2>2) A Missing Database Rule Exposed 182,000 Private Meetings</h2><p>Independent researcher bobdahacker disclosed this week that tl;dv, an AI notetaker used with Zoom, Google Meet and Microsoft Teams, had a Google Cloud Firestore database with no tenant-isolation rule. tl;dv&#x27;s architecture lets the browser talk close to directly to its database -- convenient for developers, dangerous without server-side rules -- and the missing rule meant any authenticated account could query meeting records across the entire platform: 181,874 meetings from 84,312 users spanning 35,003 email domains, including the meeting creator&#x27;s email, the timestamps, the recording status, and a conference ID that could be used to walk straight into a live call. Reported examples included a Malaysian Ministry of Education session with 157 participants and a US university class mid-demo, with no sign either meeting knew an outsider had joined. The researcher first reported the flaw in January 2026; it sat unfixed for six months, through an unresponsive CTO, until public disclosure forced the fix in August.</p><p>Why it matters: this is an ordinary access-control bug -- the kind that gets found and patched quietly every week -- except the product sitting behind it is one that records and transcribes literally everything said in every meeting a company holds. The blast radius of a basic database misconfiguration is categorically larger for an AI notetaker than for almost any other SaaS category, and &quot;we&#x27;ll fix it eventually&quot; is a much worse answer when the thing exposed is every sensitive conversation your organization has ever had on camera.</p></section>
+<section><h2>3) Qwen Ships a Vision-Native 27B Model With a Million-Token Reach</h2><p>Alibaba&#x27;s Qwen team released Qwen3.8-27B on August 14 under the permissive Apache 2.0 license: a 27-billion-parameter model with vision understanding built in natively rather than bolted on, a 262,000-token native context window that stretches to one million, and a hybrid Gated DeltaNet plus Gated Attention block layout designed to keep long-context inference fast without the usual memory blowup. It lands a week after Qwen&#x27;s own 2.4-trillion-parameter Qwen3.8-Max, giving developers a version that fits on a single high-end workstation GPU instead of a data center. Why it matters: this is the same open-weight momentum behind GLM-5.3 and DeepSeek&#x27;s recent updates, just aimed at a different buyer -- not &quot;beat the frontier lab,&quot; but &quot;be good enough to self-host, this month, on hardware a mid-size team can actually own.&quot; That&#x27;s a race closed labs releasing one flagship a quarter simply cannot run at the same pace.</p></section>
+<section><h2>4) Anthropic&#x27;s Own Usage Data Says Cowork Was Never Really About</h2><p>As Anthropic keeps expanding Claude Cowork to mobile and web -- letting a task start on a laptop, run autonomously in the background, and get reviewed later from a phone, even after the app is closed -- its own usage data reportedly shows that most Cowork users aren&#x27;t writing code at all. They&#x27;re using it for research, document drafting, and general operations work. Why it matters: read together with today&#x27;s Muse Code launch and yesterday&#x27;s Claude Code auto-mode switch, a pattern emerges. Labs built these agents for developers first because coding is a well-specified, checkable domain -- easy to earn trust in, easy to benchmark. But the actual demand turns out to be much wider: a general-purpose &quot;do computer things for me, and I&#x27;ll check in later&quot; agent for any knowledge worker, not just engineers. The mobile-review workflow only makes sense once you assume most users are checking on a task, not pair-programming through one.</p></section>
+<div class="callout"><div class="kicker">Market signal</div><p>Four labs -- Anthropic, OpenAI, Google and now Meta -- ship terminal-style coding agents within weeks of each other, yet usage data from the category leader shows non-developers are already the larger user base. The market for &quot;an autonomous agent for anyone at a computer&quot; is turning out to be bigger than the market for &quot;better autocomplete for programmers,&quot; and Meta&#x27;s data-for-discount pricing tier shows labs are already hunting for ways to monetize these agents beyond straight token metering.</p></div>
+<div class="callout"><div class="kicker">Practical takeaways</div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">Read the fine print before taking any &quot;contributor&quot; or discounted-training pricing tier on a</div><p style="font-size:17px;margin:3px 0 0;">coding agent. Muse Code&#x27;s cheaper tier is a straightforward trade of future training rights for a lower bill -- treat that as an IP and confidentiality decision made by whoever approves the tool, not a default checkbox left on by an individual developer.</p></div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">If your company uses an AI notetaker, ask the vendor directly whether meeting records are isolated per tenant on the server side.</div><p style="font-size:17px;margin:3px 0 0;">&quot;We hide it in the UI&quot; is not an answer; the only acceptable one is that database-level security rules enforce isolation, the same guarantee tl;dv was missing for at least seven months.</p></div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">If you handle regulated data -- health records, financial transactions -- prototype HEIR now,</div><p style="font-size:17px;margin:3px 0 0;">even though FHE remains slow. Varun Singla · Daily AI Learning Page 3 It&#x27;s the first standardized, open-source path to running inference on encrypted data without a custom cryptography team, which makes it worth a proof-of-concept even before it&#x27;s production-fast.</p></div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">Plan agentic-tool rollouts for non-technical staff from day one, not as a later expansion.</div><p style="font-size:17px;margin:3px 0 0;">Vendor usage data increasingly shows non-developers becoming the majority of users faster than expected -- onboarding, permissions, and training built &quot;for engineers first&quot; will already be behind where actual usage lands.</p></div></div>
+  <div style="display:flex;align-items:center;gap:13px;margin:54px 0 10px;padding-top:30px;border-top:1px solid #E4DECF;">
+    <div class="brand-mark" style="width:40px;height:40px;font-size:14px;border-radius:9px;">VS</div>
+    <div><div style="font-size:14.5px;font-weight:600;">Varun Singla</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8A857B;">Singapore · <a href="../about/" style="color:#8A857B;">About</a> · Learning in public</div></div>
+  </div>
+</article>
+<nav class="pn" aria-label="Adjacent entries"><span></span><a href="2026-08-15.html" rel="prev" style="text-align:right;"><div class="lbl">Older · Day 146 →</div><div class="ttl">An Open-Weight Model Got Too Good at Hacking -- -- So Its Maker Held the Weights Back</div></a></nav>
+<footer><div class="foot-in">
+  <span>Varun Singla · Singapore · Learning in public</span>
+  <span><a href="https://varunsingla.com/feed.xml" style="text-decoration:none;color:#6B6760;">RSS</a> · <a href="https://varunsingla.com/llms.txt" style="text-decoration:none;color:#6B6760;">llms.txt</a> · Updated daily</span>
+</div></footer>
+</body>
+</html>

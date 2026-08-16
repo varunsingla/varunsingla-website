@@ -6,6 +6,66 @@
   },
   "learnings": [
     {
+      "date": "2026-08-16",
+      "display_date": "August 16, 2026",
+      "issue": 141,
+      "title": "Meta Joins the Coding-Agent Wars -- And a",
+      "focus_intro": "Google open-sources a compiler for computing on encrypted data, Qwen ships a vision-native 27B model with a million-token reach, and Anthropic's own usage numbers say Cowork was never really about coding Day 141 · Sunday, August 16, 2026 Why this matters: today's stories split into two lanes that keep circling back to the same question -- who gets to see what. Meta just handed a fourth major lab's coding agent a pricing tier that trades your prompts for a discount, right as usage data shows these \"coding\" agents are mostly being used by people who don't code. Google shipped a serious open-source attempt at letting AI compute on data it can never actually see. And an AI notetaker that sits inside literally every meeting a company has just showed, in the most public way possible, what happens when nobody checks who's allowed to see what.",
+      "viral_app": {
+        "name": "HEIR -- the compiler that lets AI compute without ever seeing your data",
+        "description": "Google released HEIR (Homomorphic Encryption Intermediate Representation) on August 15: an open-source, Apache-licensed compiler toolchain, built on the MLIR framework it already uses for TensorFlow, that takes a normal machine-learning model and automatically rewrites it to run inference on encrypted inputs. A developer annotates which variables in a Python model are secret, and HEIR handles the fully homomorphic encryption (FHE) math underneath -- packing ciphertexts efficiently, choosing safe parameters, and lowering the program down through several layers of abstraction to run on an OpenFHE or Lattigo backend. FHE has been theoretically possible since 2009 and practically painful ever since; every team that wanted it had to hand-roll their own cryptographic plumbing. HEIR is the first attempt by a major lab to make that a compiler's job instead of a research project's, which is why cryptography and privacy engineers spent the weekend passing it around. 1) Meta Enters the Terminal Coding-Agent Wars With Muse Code Meta launched Muse Code in beta for macOS and Linux on August 5, a terminal-based coding agent built on its new Muse Spark 1.2 model. The headline spec is a one-million-token context window, large enough to hold an entire codebase's dependency graph in a single session, and Muse Code can run several persistent sub-agents in parallel on different parts of a project r",
+        "stats": []
+      },
+      "stats": [],
+      "sections": [
+        {
+          "title": "1) Meta Enters the Terminal Coding-Agent Wars With Muse Code",
+          "paragraphs": [
+            "Meta launched Muse Code in beta for macOS and Linux on August 5, a terminal-based coding agent built on its new Muse Spark 1.2 model. The headline spec is a one-million-token context window, large enough to hold an entire codebase's dependency graph in a single session, and Muse Code can run several persistent sub-agents in parallel on different parts of a project rather than working one file at a time. Built-in commands make the workflow explicit: /plan drafts an approval-based execution plan, /grill pressure-tests that plan before anything runs, and /goal works autonomously toward a stated objective. The pricing is the part getting the most attention: alongside the standard metered rate, Meta offers a \"contributor\" tier at a steep discount, in exchange for letting Meta train future models on your prompts and completions.",
+            "Why it matters: this lands one day after Anthropic switched Claude Code to act-first, ask-later \"auto mode\" by default, and in the same month OpenAI's Codex and Google's Gemini CLI have both pushed major updates. Four labs now ship terminal coding agents that compete less on \"can it write correct code\" -- most can, most of the time -- and more on how much autonomy you hand it and what you're willing to pay with when it isn't cash. In simple terms: Meta's \"contributor tier\" is the same trade you make with a free email service that scans your inbox to sell ads, except the thing it's reading is your unreleased source code."
+          ]
+        },
+        {
+          "title": "2) A Missing Database Rule Exposed 182,000 Private Meetings",
+          "paragraphs": [
+            "Independent researcher bobdahacker disclosed this week that tl;dv, an AI notetaker used with Zoom, Google Meet and Microsoft Teams, had a Google Cloud Firestore database with no tenant-isolation rule. tl;dv's architecture lets the browser talk close to directly to its database -- convenient for developers, dangerous without server-side rules -- and the missing rule meant any authenticated account could query meeting records across the entire platform: 181,874 meetings from 84,312 users spanning 35,003 email domains, including the meeting creator's email, the timestamps, the recording status, and a conference ID that could be used to walk straight into a live call. Reported examples included a Malaysian Ministry of Education session with 157 participants and a US university class mid-demo, with no sign either meeting knew an outsider had joined. The researcher first reported the flaw in January 2026; it sat unfixed for six months, through an unresponsive CTO, until public disclosure forced the fix in August.",
+            "Why it matters: this is an ordinary access-control bug -- the kind that gets found and patched quietly every week -- except the product sitting behind it is one that records and transcribes literally everything said in every meeting a company holds. The blast radius of a basic database misconfiguration is categorically larger for an AI notetaker than for almost any other SaaS category, and \"we'll fix it eventually\" is a much worse answer when the thing exposed is every sensitive conversation your organization has ever had on camera."
+          ]
+        },
+        {
+          "title": "3) Qwen Ships a Vision-Native 27B Model With a Million-Token Reach",
+          "paragraphs": [
+            "Alibaba's Qwen team released Qwen3.8-27B on August 14 under the permissive Apache 2.0 license: a 27-billion-parameter model with vision understanding built in natively rather than bolted on, a 262,000-token native context window that stretches to one million, and a hybrid Gated DeltaNet plus Gated Attention block layout designed to keep long-context inference fast without the usual memory blowup. It lands a week after Qwen's own 2.4-trillion-parameter Qwen3.8-Max, giving developers a version that fits on a single high-end workstation GPU instead of a data center. Why it matters: this is the same open-weight momentum behind GLM-5.3 and DeepSeek's recent updates, just aimed at a different buyer -- not \"beat the frontier lab,\" but \"be good enough to self-host, this month, on hardware a mid-size team can actually own.\" That's a race closed labs releasing one flagship a quarter simply cannot run at the same pace."
+          ]
+        },
+        {
+          "title": "4) Anthropic's Own Usage Data Says Cowork Was Never Really About",
+          "paragraphs": [
+            "As Anthropic keeps expanding Claude Cowork to mobile and web -- letting a task start on a laptop, run autonomously in the background, and get reviewed later from a phone, even after the app is closed -- its own usage data reportedly shows that most Cowork users aren't writing code at all. They're using it for research, document drafting, and general operations work. Why it matters: read together with today's Muse Code launch and yesterday's Claude Code auto-mode switch, a pattern emerges. Labs built these agents for developers first because coding is a well-specified, checkable domain -- easy to earn trust in, easy to benchmark. But the actual demand turns out to be much wider: a general-purpose \"do computer things for me, and I'll check in later\" agent for any knowledge worker, not just engineers. The mobile-review workflow only makes sense once you assume most users are checking on a task, not pair-programming through one."
+          ]
+        }
+      ],
+      "market_signal": "Four labs -- Anthropic, OpenAI, Google and now Meta -- ship terminal-style coding agents within weeks of each other, yet usage data from the category leader shows non-developers are already the larger user base. The market for \"an autonomous agent for anyone at a computer\" is turning out to be bigger than the market for \"better autocomplete for programmers,\" and Meta's data-for-discount pricing tier shows labs are already hunting for ways to monetize these agents beyond straight token metering.",
+      "practical_takeaway": [
+        {
+          "title": "Read the fine print before taking any \"contributor\" or discounted-training pricing tier on a",
+          "body": "coding agent. Muse Code's cheaper tier is a straightforward trade of future training rights for a lower bill -- treat that as an IP and confidentiality decision made by whoever approves the tool, not a default checkbox left on by an individual developer."
+        },
+        {
+          "title": "If your company uses an AI notetaker, ask the vendor directly whether meeting records are isolated per tenant on the server side.",
+          "body": "\"We hide it in the UI\" is not an answer; the only acceptable one is that database-level security rules enforce isolation, the same guarantee tl;dv was missing for at least seven months."
+        },
+        {
+          "title": "If you handle regulated data -- health records, financial transactions -- prototype HEIR now,",
+          "body": "even though FHE remains slow. Varun Singla · Daily AI Learning Page 3 It's the first standardized, open-source path to running inference on encrypted data without a custom cryptography team, which makes it worth a proof-of-concept even before it's production-fast."
+        },
+        {
+          "title": "Plan agentic-tool rollouts for non-technical staff from day one, not as a later expansion.",
+          "body": "Vendor usage data increasingly shows non-developers becoming the majority of users faster than expected -- onboarding, permissions, and training built \"for engineers first\" will already be behind where actual usage lands."
+        }
+      ]
+    },
+    {
       "date": "2026-08-15",
       "display_date": "August 15, 2026",
       "issue": 140,

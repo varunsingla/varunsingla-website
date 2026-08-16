@@ -1,13 +1,14 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 146 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 147 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 146 — "An Open-Weight Model Got Too Good at Hacking -- -- So Its Maker Held the Weights Back" (August 15, 2026).
+Latest entry: Day 147 — "Meta Joins the Coding-Agent Wars -- And a" (August 16, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Journal entries
 
+- [Day 147: Meta Joins the Coding-Agent Wars -- And a](https://varunsingla.com/entries/2026-08-16.html): Google open-sources a compiler for computing on encrypted data, Qwen ships a vision-native 27B model with a million-token reach, and Anthropic's own…
 - [Day 146: An Open-Weight Model Got Too Good at Hacking -- -- So Its Maker Held the Weights Back](https://varunsingla.com/entries/2026-08-15.html): Claude Code goes autonomous by default, Manus breaks free of Meta, and the frontier model race turns into a launch-every-day sprint Day 140 ·…
 - [Day 145: OpenAI Just Made Its Flagship Model 14x Faster -- -- Without Retraining It](https://varunsingla.com/entries/2026-08-14.html): Colorado becomes the first state to regulate AI companion chatbots as the power grid becomes AI's real bottleneck Day 139 · Friday, August 14, 2026…
 - [Day 144: A Single Bad Package Exposed 2,500 Companies -- Gemini Hits a Billion Users as Claude Adds Watermarks](https://varunsingla.com/entries/2026-08-13.html): Why this matters: four storylines collide today -- a supply-chain attack that shows how fragile the AI tooling stack still is, a billion-user…
