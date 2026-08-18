@@ -1,6 +1,37 @@
 # Varun Singla · AI Learning Journal — full text
 
-Complete text of all 148 journal entries by Varun Singla (https://varunsingla.com), newest first. Index: https://varunsingla.com/llms.txt
+Complete text of all 149 journal entries by Varun Singla (https://varunsingla.com), newest first. Index: https://varunsingla.com/llms.txt
+
+---
+
+# Day 149: Anthropic Turns Its First Profit -- Right As a
+
+Date: August 18, 2026 · Author: Varun Singla · URL: https://varunsingla.com/entries/2026-08-18.html · Themes: Models & Frontier
+
+A $11.5 billion quarter lands the same week Anthropic hires a former Supreme Court justice to run its foreign policy, and Alibaba's Qwen3.8-Max knocks GLM-5.2 off the open-weight coding throne Day 143 · Tuesday, August 18, 2026 Why this matters: today's three stories are about what happens after the demo phase ends.
+
+**Viral app of the day: AI Baby Dance Videos -- One Photo, Someone Else's Choreography**
+The trend dominating feeds this week needs one photo and thirty seconds. Upload a picture of a baby (yours, a friend's, a stock photo -- it doesn't matter) into Kling AI's Motion Control 3.0, pair it with a reference clip of someone dancing, and the model transfers the choreography onto the baby's face and body while keeping its identity consistent through spins, bounces, and full head turns that used to make older motion-transfer tools glitch. The results -- toddlers popping and locking with adult-level rhythm -- have racked up hundreds of millions of views across TikTok, Instagram, and YouTube. Why it's taking off: it costs nothing, takes one upload, and produces something instantly, universally shareable in a way text-based AI jokes aren't -- everyone finds a dancing baby funny, no context or inside joke required, which is exactly the kind of zero-friction format that spreads fastest. 1) Anthropic Turns Its First Operating Profit -- and Immediately Gets Accused of Gaming the Number Anthropic's preliminary Q2 2026 numbers show revenue north of $11.5 billion, up from $4.73 billion in Q1 and just $787 million in the same quarter a year ago -- a roughly 14-fold jump. More notable than the growth is the margin: Anthropic posted positive adjusted operating income for the first time ever, projected at $559 million, and said compute costs fell from 71 cents per revenue dollar in Q1 
+
+## 1) Anthropic Turns Its First Operating Profit -- and Immediately Gets Accused
+
+Anthropic's preliminary Q2 2026 numbers show revenue north of $11.5 billion, up from $4.73 billion in Q1 and just $787 million in the same quarter a year ago -- a roughly 14-fold jump. More notable than the growth is the margin: Anthropic posted positive adjusted operating income for the first time ever, projected at $559 million, and said compute costs fell from 71 cents per revenue dollar in Q1 to 56 cents in Q2. That single swing from cost to margin is effectively the entire story of how the company went from burning cash to turning a profit. Media critic Ed Zitron published a widely shared rebuttal, arguing the drop reflects a temporarily discounted compute rate rather than a durable efficiency gain, and that Anthropic's costs will rise again once that rate resets. Anthropic itself has been careful to frame the quarter as a window, not a trend, as it prepares for a possible IPO. Why it matters: private funding rounds don't get audited for spin the way public-market disclosures do. As Anthropic edges toward an IPO, "first profitable quarter" headlines will draw exactly this kind of scrutiny -- and anyone reading the number as evidence the AI business model now works should know it hinges on one input (compute pricing) that the company doesn't fully control.
+
+## 2) The Open-Weight Coding Crown Changed Hands Twice in Three Weeks
+
+Zhipu AI's GLM-5.2 held the lead among open coding models for weeks -- 82.7 on Terminal-Bench 2.1, 99.2 on AIME 2026, built on a 753-billion-parameter model with roughly 40 billion active. On August 3, Alibaba's Qwen3.8-Max (about 2.4 trillion parameters) posted 86.6 on that same Terminal-Bench test, pulling ahead. Eleven days later, Z.ai released GLM-5.3, which leads on cybersecurity and automation benchmarks -- but, echoing the capability-withholding pattern this series has already covered, its open weights are staged for later release rather than shipped immediately. Why it matters: the practical lesson isn't which lab is winning this particular week -- it's that "best open model" is now a title held for days, not months. Any team that architects around a specific open-weight model as a permanent foundation is building on a moving target; the integration layer, not the model choice, is what should be built to last.
+
+## 3) Anthropic Hires a Former State Supreme Court Justice to Run Its Foreign
+
+Mariano-Florentino "Tino" Cuéllar, a former justice of the California Supreme Court and until recently president of the Carnegie Endowment for International Peace, has joined Anthropic as its first Chief Global Affairs Officer. He already had ties to the company, having served as a trustee of Anthropic's Long-Term Benefit Trust since January before stepping down to take the role. His mandate covers engagement with heads of state and policymakers worldwide, framed around the idea that, in his words, "democracies must set the terms on which this technology advances." Why it matters: pair this with the revenue story above -- as commercial stakes rise toward an IPO and government contracts, AI labs are professionalizing government relations the way pharmaceutical and defense contractors long have. Hiring a sitting-level judicial figure to run that function is a signal the company expects years of sustained regulatory engagement, not a one-off public-relations move.
+
+**Market signal:** Anthropic's compute cost dropped from 71 cents to 56 cents per revenue dollar in a single quarter -- the entire gap between loss and profit -- while two different open-weight labs each briefly held the best-coding-model title within the same month. Read together: the cost of frontier-adjacent intelligence is falling fast enough that neither a lab's margin nor its capability lead is guaranteed to survive one quarter to the next.
+
+**Practical takeaways:**
+- Read "first profitable quarter" headlines for what's driving the number, not just the number — itself. Anthropic's swing to profit came almost entirely from a compute-cost improvement, not a revenue-per-customer jump -- know whether a margin story is durable or a one-quarter artifact before it shapes your own planning assumptions about AI pricing.
+- Don't architect around "the best open model" -- architect around swap cost. — GLM-5.2 held the open coding crown for weeks before Qwen3.8-Max took it; the model you standardize on today may not be the cheapest or strongest by the time you've finished integrating it, so keep the integration layer model-agnostic.
+- Treat a lab's new government-relations hire as a signal, not just a headline. — When a company brings in a former judge or senior policymaker to run global affairs, it's telling you it expects years of regulatory engagement ahead -- a useful cue for how much compliance overhead to plan for if you build on that platform.
+- When benchmarks disagree, test on the task you actually have. — GLM-5.2 and Qwen3.8-Max trade wins depending on whether you look at Terminal-Bench, AIME, or CyberGym; none of the public numbers tell you how a model performs on your own codebase, so run your own eval before switching.
 
 ---
 
