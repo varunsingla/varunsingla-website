@@ -1,13 +1,14 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 149 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 150 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 149 — "Anthropic Turns Its First Profit -- Right As a" (August 18, 2026).
+Latest entry: Day 150 — "OpenAI Built an Age Detector for ChatGPT -- It Can't" (August 19, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Journal entries
 
+- [Day 150: OpenAI Built an Age Detector for ChatGPT -- It Can't](https://varunsingla.com/entries/2026-08-19.html): The teen-safety rollout lands the same week an AI store manager fires its first human employee, and OpenAI's revenue crosses $40 billion while its…
 - [Day 149: Anthropic Turns Its First Profit -- Right As a](https://varunsingla.com/entries/2026-08-18.html): A $11.5 billion quarter lands the same week Anthropic hires a former Supreme Court justice to run its foreign policy, and Alibaba's Qwen3.8-Max…
 - [Day 148: The Air Force Let AI Fly a Real F-16 -- The Same](https://varunsingla.com/entries/2026-08-17.html): Google halves the price of agentic coding with Gemini 3.7 Flash, Grok 4.6 ties the frontier at a discount, and regulators press two AI labs to…
 - [Day 147: Meta Joins the Coding-Agent Wars -- And a](https://varunsingla.com/entries/2026-08-16.html): Google open-sources a compiler for computing on encrypted data, Qwen ships a vision-native 27B model with a million-token reach, and Anthropic's own…
