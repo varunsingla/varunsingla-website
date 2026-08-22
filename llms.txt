@@ -1,13 +1,14 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 152 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 153 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 152 — "A Chip No One Talks About Just Claimed 30x -- Faster AI -- Nvidia's Answer Comes in Five Days" (August 21, 2026).
+Latest entry: Day 153 — "Anthropic Races Toward the Biggest IPO in History -- -- Nvidia Quietly Trims a $105 Billion Bet on OpenAI" (August 22, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Journal entries
 
+- [Day 153: Anthropic Races Toward the Biggest IPO in History -- -- Nvidia Quietly Trims a $105 Billion Bet on OpenAI](https://varunsingla.com/entries/2026-08-22.html): Anthropic's bankers could file paperwork within days, a new open payment standard gives AI agents their own wallets, and a validated lab result shows…
 - [Day 152: A Chip No One Talks About Just Claimed 30x -- Faster AI -- Nvidia's Answer Comes in Five Days](https://varunsingla.com/entries/2026-08-21.html): Cerebras unveils its wafer-scale CS-4 inference system days before Nvidia's next earnings, Google and Anthropic split into two competing bets on…
 - [Day 151: SpaceX Tried to Buy a Second AI Coding Startup -- -- Its CEO Said No, Publicly](https://varunsingla.com/entries/2026-08-20.html): SpaceX's $60 billion acquisition of the AI coding startup Cursor became official on August 14.
 - [Day 150: OpenAI Built an Age Detector for ChatGPT -- It Can't](https://varunsingla.com/entries/2026-08-19.html): The teen-safety rollout lands the same week an AI store manager fires its first human employee, and OpenAI's revenue crosses $40 billion while its…
