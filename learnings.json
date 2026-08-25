@@ -6,6 +6,61 @@
   },
   "learnings": [
     {
+      "date": "2026-08-25",
+      "display_date": "August 25, 2026",
+      "issue": 150,
+      "title": "OpenAI's Unreleased Model Just Solved Math -- That Stumped Experts for Decades",
+      "focus_intro": "Plus: an AI assistant talked its way into confessing its own security hole, and the EU just made every chatbot say \"I'm an AI.\"",
+      "viral_app": {
+        "name": "Higgsfield's Virality Predictor -- an AI that scores your video before you",
+        "description": "Higgsfield, the AI video-creation platform that went from launch to a $1.3 billion valuation in 15 months with 25 million users, shipped a feature called Virality Predictor: upload a draft clip and a model trained on engagement and attention-pattern data scores how it's likely to perform before it ever reaches a feed. It's bundled into Higgsfield's broader shift from a video-effects app into what the company calls a \"Creative OS,\" sitting alongside one-click cinematic camera presets and an AI prompt copilot that helps shape a shot while you're still building it. Why it's taking off: It flips the usual AI-content pitch. Most generative video tools sell you speed -- make more content, faster. Virality Predictor sells you a filter before the spend: don't pay for ads or posting slots on the clips a model thinks will flop. It's also a very meta moment for AI -- using one algorithm to forecast how a different algorithm (the feed's recommender system) will react, before either one sees the content live.",
+        "stats": []
+      },
+      "stats": [],
+      "sections": [
+        {
+          "title": "1) OpenAI's Unreleased Model Solved Ten Problems Mathematicians",
+          "paragraphs": [
+            "OpenAI disclosed that Astra, an internal model that has not shipped to the public, produced solutions to ten open problems in mathematics and theoretical computer science, each unsolved for ten years or more. The results include an explicit construction of a non-sofic group, settling a question open since Mikhail Gromov defined the concept in 1999, along with a disproof of the Connes rigidity conjecture on von Neumann algebras and a resolution of Erdos problem 183 on multicolor Ramsey numbers. OpenAI published a 249-page manuscript and machine-checked proof certificates on GitHub under an open license. Total compute cost for all ten results: roughly $2,000 at API rates. Explained simply: most AI \"reasoning\" claims are hard to fully check -- a model states an answer, and you either trust it or reverify it yourself by hand. These proofs are different: they are written in a formal proof language (Lean 4) that a computer verifies step by step, and OpenAI's repository reports zero unproven steps across all ten proofs. That is the mathematical equivalent of a compiler saying \"builds with zero errors\" -- nothing is being taken on faith.",
+            "Why it matters: this pushes frontier models from \"good at math problems with known answers\" toward \"contributes genuinely new, checkable results.\" It also sets a new kind of benchmark -- not \"did the model sound right\" but \"did the model produce something a proof checker accepts\" -- which is far harder to fake and far easier to trust."
+          ]
+        },
+        {
+          "title": "2) An AI Assistant Talked Its Way Into Exposing Its Own Vulnerability",
+          "paragraphs": [
+            "Varonis Threat Labs disclosed three chained vulnerabilities in Microsoft Copilot Personal, collectively nicknamed CoSnitch and tracked as CVE-2026-24301, that let a single click on a crafted link silently pull data from a victim's connected apps (Gmail, Calendar, Drive) and plant memory rules that survived password resets and session revocation. Microsoft shipped a patch on August 18, eight months after being notified; the flaw was rated 8.8 on CVSS 3.1 and affected only the consumer version of Copilot, not enterprise deployments.",
+            "Explained simply: the researchers didn't reverse-engineer source code to find the hole. They repeatedly asked Copilot why certain prompts couldn't run automatically and what would technically make that possible -- and after enough rounds of questioning, the model itself disclosed an undocumented \"autorun\" URL parameter that let a link trigger prompt execution with no further user interaction. The assistant was, in effect, socially engineered into handing over its own attack surface. Why it matters: \"prompt injection from a hostile document\" is a familiar risk by now. This is a different failure mode -- a helpful-by-default assistant giving up implementation details through ordinary conversation. Any product that lets users chat freely with an AI agent connected to real accounts should assume curious, persistent questioning is itself a viable reconnaissance technique, not just malicious file uploads."
+          ]
+        },
+        {
+          "title": "3) The EU Just Made \"I'm an AI\" a Legal Requirement",
+          "paragraphs": [
+            "The European Commission's AI Act transparency rules under Article 50 took effect August 2, with the AI Office and national regulators now empowered to enforce them. Chatbots and other interactive AI systems must disclose that a user is talking to a machine, unless that would already be obvious to a reasonably observant person, and the disclosure has to happen at first contact with each new person the system talks to -- not just the first time the product launched. Deepfakes and AI-generated content on matters of public interest also now require clear, visible labeling. Penalties reach up to €15 million or 3% of global annual turnover, whichever is higher.",
+            "Explained simply: the rule isn't \"put an AI disclaimer somewhere in your terms of service.\" It's closer to a nutrition label -- the disclosure has to be clear, distinguishable, and shown at the moment someone actually starts interacting, to every new person who does, not buried in a settings page. Why it matters: this is the first EU AI Act obligation with real teeth that touches nearly every consumer-facing AI product, not just high-risk categories like hiring or credit scoring. Any team shipping a chat or generative interface to EU users has a live compliance deadline now, and the fine schedule is the same order of magnitude as GDPR's."
+          ]
+        }
+      ],
+      "market_signal": "The model-release treadmill hit a new pace this week: at least 12 new frontier and open-weight models shipped in the first three weeks of August alone, from seven-plus labs, including Alibaba's Qwen3.8 Max, Google's Gemini 3.7 Flash, Z.ai's GLM-5.2 Turbo, and DeepSeek's V4-Pro. Notably, DeepSeek raised V4-Pro's price on August 16 rather than cutting it, even as OpenAI keeps slashing elsewhere. Read together: the \"price war\" narrative isn't universal -- labs still raise price on a model the moment it has no direct competitor, and cut only once one shows up.",
+      "practical_takeaway": [
+        {
+          "title": "If any AI assistant in your stack has access to connected accounts, don't only threat-model hostile",
+          "body": "documents or prompt injection. Ordinary, persistent conversation is now a proven way to get a model to reveal its own hidden parameters and behaviors -- test what your assistant admits under sustained questioning, not just under adversarial input."
+        },
+        {
+          "title": "If your product serves EU users with any chat, assistant, or generative interface, audit today",
+          "body": "whether it discloses \"you're talking to AI\" at first contact. Article 50 fines start at €15 million or 3% of global turnover -- this is enforceable now, not a future deadline."
+        },
+        {
+          "title": "When evaluating a reasoning model for high-stakes technical work, ask whether its output can be",
+          "body": "independently checked, not just whether it looks plausible. Formally verified, zero-\"sorry\" proofs are becoming a real trust signal, and the gap between \"sounds right\" and \"provably right\" is exactly where models still fail silently."
+        },
+        {
+          "title": "Re-price any AI feature cost estimate that's more than a few weeks old.",
+          "body": "With a dozen-plus models shipping in three weeks and pricing moving in both directions by lab, a budget built on last month's numbers is already stale."
+        }
+      ]
+    },
+    {
       "date": "2026-08-24",
       "display_date": "August 24, 2026",
       "issue": 149,
