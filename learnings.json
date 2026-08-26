@@ -6,6 +6,61 @@
   },
   "learnings": [
     {
+      "date": "2026-08-26",
+      "display_date": "August 26, 2026",
+      "issue": 151,
+      "title": "Anthropic Knows Its AI Agent Can Read Your -- SSH Keys -- It Won't Fix It",
+      "focus_intro": "Plus: OpenAI dismantles a fake Israeli think tank built entirely by ChatGPT, and Nvidia reveals its next chip hours before an earnings report that could move the whole AI trade.",
+      "viral_app": {
+        "name": "Meta's Pocket -- an app where you describe a game and it builds it",
+        "description": "Meta expanded Pocket, its AI \"vibe-coding\" app, to all U.S. users this week after testing it in Brazil. Pocket lets anyone describe a small interactive experience -- Meta calls them \"gizmos\" -- in plain language and get a working, shareable mini-game back: something that responds to taps, phone tilt, sound effects and even clips of a favorite song. Built on Meta's acquisition of the startup Gizmo, finished gizmos post to a feed where anyone can play them, save them, or remix them into something new. Why it's taking off: it removes every step between having an idea for a tiny game and other people actually playing it -- no app store, no code, no waiting. Remixing is the multiplier: a gizmo isn't a finished, closed product, it's a starting point the next person can prompt into something different, which turns a feed of games into something closer to a feed of conversations.",
+        "stats": []
+      },
+      "stats": [],
+      "sections": [
+        {
+          "title": "1) Anthropic Won't Patch the Hole That Lets Claude Cowork Read Your",
+          "paragraphs": [
+            "Security researchers disclosed \"SharedRoot,\" a sandbox escape in Claude Cowork's local execution mode. Cowork runs coding tasks inside a Linux VM that shares the host Mac's filesystem through a writable mount; by chaining a known Linux kernel privilege-escalation flaw (CVE-2026-46331, nicknamed \"pedit COW\") the researchers escalated from a normal session user to root inside the guest, then walked straight out through that shared mount onto the real machine. About 500,000 Mac users running local Cowork sessions were exposed, with SSH private keys, cloud credentials and browser data all reachable from inside the sandbox. Explained simply: a sandbox is supposed to be a locked room -- the agent can make a mess inside it, but nothing gets out. SharedRoot found that the room shared a wall with the rest of the house. Once the researchers had root inside the VM, the \"wall\" was just a folder both sides could write to. Why it matters: Anthropic classified the report as \"informative\" rather than a vulnerability requiring a fix, and has not patched local execution mode. Its response instead was to make cloud execution the default, which sidesteps the bug for anyone who accepts that default -- but anyone still running local sessions, which is exactly the mode power users reach for when they want an agent to touch real project files, remains exposed. \"We changed the default\" and \"we fixed the bug\" are not the same statement, and the gap between them is now a live question for anyone deciding whether to trust an agent with a shared filesystem."
+          ]
+        },
+        {
+          "title": "2) OpenAI Dismantles a Fake Think Tank Built Entirely by ChatGPT",
+          "paragraphs": [
+            "OpenAI disrupted a Russian covert-influence operation that used ChatGPT, accessed through VPNs to bypass its Russia block, to build the \"International Burke Institute\" -- a fictitious research organization with a listed Israeli address and a roster of \"experts\" that falsely claimed contributions from well-known academics. Of a sample of 36 articles published under those expert names between September 2025 and May 2026, 34 turned out to be plagiarized from elsewhere online. The operation's centerpiece was a \"sovereignty index\" that scored countries in ways designed to cast Russia favorably, with reports on France, Germany, the U.S. and the EU that read as outright polemic.",
+            "Explained simply: this wasn't a bot posting slogans. The model was used to manufacture the appearance of a legitimate institution -- a name, a website, invented experts, and a body of \"research\" -- because a persuasive argument lands harder when it looks like it came from a credentialed source rather than an anonymous account. Why it matters: OpenAI says the campaign reached a relatively small audience, but the construction is the story, not the reach. Verifying a claim used to mean checking whether the author and institution were real. That check is getting less reliable by the month -- a plausible-looking think tank is now cheap enough to fabricate wholesale, citations included."
+          ]
+        },
+        {
+          "title": "3) Nvidia Reveals Its Next Chip Hours Before an Earnings Report That",
+          "paragraphs": [
+            "At Hot Chips 2026, Nvidia disclosed the internal architecture of its upcoming Vera CPU: 88 custom \"Olympus\" cores split across six chiplets on one interposer, paired with LPDDR5X memory and NVLink-C2C for tight coupling to GPUs or a second CPU. Nvidia claims roughly 1.8x faster agentic-workload throughput and up to 30x the interactivity throughput of today's Grace Blackwell platform in specific scenarios. Separately, Groq 3 LPX -- the dedicated inference accelerator born from Nvidia's $20 billion Groq acquisition -- entered full production, slotting into the Vera Rubin platform at up to 256 accelerators per rack. Nvidia reports second-quarter earnings after market close today.",
+            "Explained simply: a CPU and a GPU do different jobs -- the GPU crunches the matrix math of a model, the CPU feeds it data, manages memory and keeps an agent's many small steps moving without stalling the expensive chip next to it. Vera is Nvidia's answer to that second job for agentic workloads specifically, where a model calls tools, waits on results and juggles context far more than it does during plain chat.",
+            "Why it matters: this disclosure landed on the same day markets get Nvidia's actual numbers. Chip roadmaps are Nvidia's way of arguing demand will keep outrunning supply; the earnings call is the reality check on whether customers are still buying at the pace that story requires. The gap between those two -- the roadmap slide and the sales numbers -- is what every AI capex argument this year has come down to."
+          ]
+        }
+      ],
+      "market_signal": "Salesforce's Agentic Enterprise Index found the average number of AI agents deployed per organization nearly tripled in a year -- from five in early 2025 to thirteen by April 2026 -- and that seven in ten customer-service sessions among its surveyed customers are now handled without a human in the loop. Read against today's Nvidia earnings and Vera Rubin ramp: the demand side of the AI capex argument isn't just model labs buying compute for training runs anymore, it's ordinary enterprises running more agents in production than they were a year ago, which is a harder number to fake than a roadmap slide.",
+      "practical_takeaway": [
+        {
+          "title": "If you run Claude Cowork locally on a Mac, treat SharedRoot as unpatched, because it is.",
+          "body": "Prefer cloud execution (now the default) for any session touching real credentials, or assume anything reachable from your logged-in user is reachable from the agent."
+        },
+        {
+          "title": "Stop trusting a source because it has a name, a website and citations.",
+          "body": "The Burke Institute had all three and was still fabricated end to end -- verify independently that a cited author and organization exist outside the content citing them."
+        },
+        {
+          "title": "Watch Nvidia's guidance language today, not just the revenue beat.",
+          "body": "Vera Rubin ramp commentary on the earnings call is the number that will move chip lead times and every downstream AI infrastructure budget built on top of them."
+        },
+        {
+          "title": "Benchmark your own agent rollout against Salesforce's number: 13 agents per org on average.",
+          "body": "If your organization is running zero or one, you're behind the adoption curve this data describes, not ahead of some hype cycle."
+        }
+      ]
+    },
+    {
       "date": "2026-08-25",
       "display_date": "August 25, 2026",
       "issue": 150,

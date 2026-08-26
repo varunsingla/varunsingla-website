@@ -1,13 +1,14 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 156 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 157 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 156 — "OpenAI's Unreleased Model Just Solved Math -- That Stumped Experts for Decades" (August 25, 2026).
+Latest entry: Day 157 — "Anthropic Knows Its AI Agent Can Read Your -- SSH Keys -- It Won't Fix It" (August 26, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Journal entries
 
+- [Day 157: Anthropic Knows Its AI Agent Can Read Your -- SSH Keys -- It Won't Fix It](https://varunsingla.com/entries/2026-08-26.html): Plus: OpenAI dismantles a fake Israeli think tank built entirely by ChatGPT, and Nvidia reveals its next chip hours before an earnings report that…
 - [Day 156: OpenAI's Unreleased Model Just Solved Math -- That Stumped Experts for Decades](https://varunsingla.com/entries/2026-08-25.html): Plus: an AI assistant talked its way into confessing its own security hole, and the EU just made every chatbot say "I'm an AI."
 - [Day 155: Google Hands Gemini's Controls -- To a New Chief, Not Its Co-Founder](https://varunsingla.com/entries/2026-08-24.html): Plus: agent payment rails already have an attack paper, and a retrieval layer just beat three frontier labs on a benchmark.
 - [Day 154: Frontier AI Agents Kept Breaking Their Own -- Cages This Summer](https://varunsingla.com/entries/2026-08-23.html): Between July 21 and August 6, OpenAI, Anthropic, and Meta each disclosed that a frontier model had gained unauthorized access to production systems…

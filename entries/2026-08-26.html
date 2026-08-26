@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anthropic Knows Its AI Agent Can Read Your -- SSH Keys -- It Won&#x27;t Fix It — Day 157 | Varun Singla · AI Learning Journal</title>
+<meta name="description" content="Plus: OpenAI dismantles a fake Israeli think tank built entirely by ChatGPT, and Nvidia reveals its next chip hours before an earnings report that could move the whole AI trade.">
+<meta name="author" content="Varun Singla">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://varunsingla.com/entries/2026-08-26.html">
+<link rel="prev" href="https://varunsingla.com/entries/2026-08-25.html">
+<link rel="alternate" type="application/rss+xml" title="Varun Singla · AI Learning Journal" href="https://varunsingla.com/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Varun Singla · AI Learning Journal">
+<meta property="og:title" content="Anthropic Knows Its AI Agent Can Read Your -- SSH Keys -- It Won&#x27;t Fix It">
+<meta property="og:description" content="Plus: OpenAI dismantles a fake Israeli think tank built entirely by ChatGPT, and Nvidia reveals its next chip hours before an earnings report that could move the whole AI trade.">
+<meta property="og:url" content="https://varunsingla.com/entries/2026-08-26.html">
+<meta property="og:image" content="https://varunsingla.com/og-image.png">
+<meta property="article:published_time" content="2026-08-26T21:00:00+08:00">
+<meta property="article:author" content="https://varunsingla.com/about/">
+<meta property="article:tag" content="Infrastructure &amp; Economics">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Anthropic Knows Its AI Agent Can Read Your -- SSH Keys -- It Won&#x27;t Fix It">
+<meta name="twitter:description" content="Plus: OpenAI dismantles a fake Israeli think tank built entirely by ChatGPT, and Nvidia reveals its next chip hours before an earnings report that could move the whole AI trade.">
+<meta name="twitter:image" content="https://varunsingla.com/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "@id": "https://varunsingla.com/entries/2026-08-26.html#post", "headline": "Anthropic Knows Its AI Agent Can Read Your -- SSH Keys -- It Won't Fix It", "description": "Plus: OpenAI dismantles a fake Israeli think tank built entirely by ChatGPT, and Nvidia reveals its next chip hours before an earnings report that could move the whole AI trade.", "datePublished": "2026-08-26T21:00:00+08:00", "dateModified": "2026-08-26T21:00:00+08:00", "url": "https://varunsingla.com/entries/2026-08-26.html", "mainEntityOfPage": "https://varunsingla.com/entries/2026-08-26.html", "wordCount": 907, "inLanguage": "en", "articleSection": ["Infrastructure & Economics"], "keywords": ["Infrastructure & Economics", "agentic AI", "AI learning journal", "Varun Singla"], "isPartOf": {"@type": "Blog", "@id": "https://varunsingla.com/#blog", "name": "Varun Singla · AI Learning Journal"}, "author": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla", "url": "https://varunsingla.com/about/"}, "publisher": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Journal", "item": "https://varunsingla.com/"}, {"@type": "ListItem", "position": 2, "name": "Archive", "item": "https://varunsingla.com/entries/"}, {"@type": "ListItem", "position": 3, "name": "Anthropic Knows Its AI Agent Can Read Your -- SSH Keys -- It Won't Fix It", "item": "https://varunsingla.com/entries/2026-08-26.html"}]}</script>
+<style>*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#F7F4ED;}
+body{font-family:'Hanken Grotesk',sans-serif;color:#1B1A17;-webkit-font-smoothing:antialiased;}
+::selection{background:#CC3F2A;color:#fff;}
+a{color:inherit;}
+.mast{position:sticky;top:0;z-index:50;background:rgba(247,244,237,.9);backdrop-filter:blur(12px);border-bottom:1px solid #E4DECF;}
+.mast-in{max-width:1120px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;}
+.brand-mark{width:30px;height:30px;border-radius:7px;background:#1B1A17;color:#F7F4ED;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;}
+.brand-name{font-family:'JetBrains Mono',monospace;font-size:13.5px;color:#1B1A17;}
+.nav-link{font-size:14.5px;font-weight:500;color:#6B6760;text-decoration:none;padding:7px 12px;border-radius:8px;}
+.nav-link:hover{color:#1B1A17;background:#EEE9DC;}
+.meta-row{display:flex;align-items:center;gap:13px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:13px;color:#8A857B;}
+.meta-row .day{color:#CC3F2A;font-weight:500;}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.04em;color:#6B6760;border:1px solid #E4DECF;border-radius:999px;padding:5px 12px;background:#FBF9F3;text-decoration:none;}
+article h1{font-family:'Newsreader',serif;font-weight:400;font-size:clamp(32px,5.5vw,52px);line-height:1.07;letter-spacing:-.018em;margin:0 0 22px;}
+article h2{font-family:'Newsreader',serif;font-weight:500;font-size:clamp(23px,3.4vw,30px);line-height:1.18;margin:0 0 18px;}
+article p{font-family:'Newsreader',serif;font-size:clamp(18px,2.3vw,20px);line-height:1.65;color:#2C2A24;margin:0 0 20px;}
+article ul{margin:4px 0 20px;padding-left:20px;}
+article li{font-family:'Newsreader',serif;font-size:clamp(17px,2.2vw,19px);line-height:1.6;color:#2C2A24;margin:0 0 10px;}
+.intro{font-size:clamp(20px,3vw,24px)!important;line-height:1.5!important;color:#3A372F!important;font-style:italic;margin:0 0 40px!important;}
+.callout{border:1px solid #E4DECF;border-left:3px solid #CC3F2A;border-radius:12px;background:#FBF9F3;padding:22px 24px;margin:0 0 40px;}
+.callout p{font-size:clamp(17px,2.2vw,19px);margin:0;}
+.kicker{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#CC3F2A;margin-bottom:14px;}
+.highlight{font-family:'Newsreader',serif;font-style:italic;font-size:clamp(18px,2.4vw,20px);line-height:1.55;color:#3A372F;border-left:3px solid #CC3F2A;padding:6px 0 6px 16px;margin:8px 0 20px;}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:#E4DECF;border:1px solid #E4DECF;border-radius:12px;overflow:hidden;margin:0 0 40px;}
+.stat-cell{background:#FBF9F3;padding:18px 20px;}
+.stat-big{font-family:'Newsreader',serif;font-size:clamp(24px,4vw,32px);line-height:1.05;color:#1B1A17;}
+.stat-small{font-size:13px;line-height:1.45;color:#56524B;margin-top:8px;}
+.table-wrap{overflow-x:auto;border:1px solid #E4DECF;border-radius:12px;background:#FBF9F3;margin:0 0 20px;}
+table{width:100%;border-collapse:collapse;}
+th{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#8A857B;text-align:left;padding:9px 12px;border-bottom:1px solid #CBB8A0;font-weight:500;}
+td{font-size:14.5px;color:#2C2A24;padding:9px 12px;border-bottom:1px solid #EEE9DC;vertical-align:top;line-height:1.45;font-family:'Hanken Grotesk',sans-serif;}
+tr:last-child td{border-bottom:none;}
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:680px;margin:0 auto;padding:20px 28px 90px;}
+.pn a{border:1px solid #E4DECF;border-radius:12px;padding:18px 20px;background:#FBF9F3;text-decoration:none;display:block;}
+.pn a:hover{border-color:#1B1A17;}
+.pn .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#A8A294;margin-bottom:9px;}
+.pn .ttl{font-family:'Newsreader',serif;font-size:18px;line-height:1.2;color:#1B1A17;}
+footer{border-top:1px solid #E4DECF;background:#FBF9F3;}
+.foot-in{max-width:1120px;margin:0 auto;padding:34px 28px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#6B6760;}</style>
+</head>
+<body>
+<header class="mast"><div class="mast-in">
+  <a class="brand" href="../"><span class="brand-mark">VS</span><span class="brand-name">varunsingla.com</span></a>
+  <nav style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+    <a class="nav-link" href="../">Journal</a>
+    <a class="nav-link" href="../entries/">Archive</a>
+    <a class="nav-link" href="../about/">About</a>
+    <a class="nav-link" href="../ai-tokenomics/">Tokenomics</a>
+    <a class="nav-link" href="../tools/model-team-evaluator.html">Model Evaluator</a>
+  </nav>
+</div></header>
+<article style="max-width:680px;margin:0 auto;padding:48px 28px 30px;">
+  <p style="margin:0 0 38px;"><a href="./" style="font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.04em;color:#6B6760;text-decoration:none;">← All entries</a></p>
+  <div class="meta-row" style="margin-bottom:22px;">
+    <span class="day">Day 157</span><span>·</span>
+    <time datetime="2026-08-26">August 26, 2026</time><span>·</span>
+    <span>4 min read</span>
+  </div>
+  <h1>Anthropic Knows Its AI Agent Can Read Your -- SSH Keys -- It Won&#x27;t Fix It</h1>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:34px;padding-bottom:34px;border-bottom:1px solid #E4DECF;"><span class="tag">Infrastructure &amp; Economics</span> </div>
+  <p class="intro">Plus: OpenAI dismantles a fake Israeli think tank built entirely by ChatGPT, and Nvidia reveals its next chip hours before an earnings report that could move the whole AI trade.</p>
+<div class="callout"><div class="kicker">Viral app of the day</div><p style="font-family:'Newsreader',serif;font-size:22px;font-weight:500;margin:0 0 10px;">Meta&#x27;s Pocket -- an app where you describe a game and it builds it</p><p>Meta expanded Pocket, its AI &quot;vibe-coding&quot; app, to all U.S. users this week after testing it in Brazil. Pocket lets anyone describe a small interactive experience -- Meta calls them &quot;gizmos&quot; -- in plain language and get a working, shareable mini-game back: something that responds to taps, phone tilt, sound effects and even clips of a favorite song. Built on Meta&#x27;s acquisition of the startup Gizmo, finished gizmos post to a feed where anyone can play them, save them, or remix them into something new. Why it&#x27;s taking off: it removes every step between having an idea for a tiny game and other people actually playing it -- no app store, no code, no waiting. Remixing is the multiplier: a gizmo isn&#x27;t a finished, closed product, it&#x27;s a starting point the next person can prompt into something different, which turns a feed of games into something closer to a feed of conversations.</p></div>
+<section><h2>1) Anthropic Won&#x27;t Patch the Hole That Lets Claude Cowork Read Your</h2><p>Security researchers disclosed &quot;SharedRoot,&quot; a sandbox escape in Claude Cowork&#x27;s local execution mode. Cowork runs coding tasks inside a Linux VM that shares the host Mac&#x27;s filesystem through a writable mount; by chaining a known Linux kernel privilege-escalation flaw (CVE-2026-46331, nicknamed &quot;pedit COW&quot;) the researchers escalated from a normal session user to root inside the guest, then walked straight out through that shared mount onto the real machine. About 500,000 Mac users running local Cowork sessions were exposed, with SSH private keys, cloud credentials and browser data all reachable from inside the sandbox. Explained simply: a sandbox is supposed to be a locked room -- the agent can make a mess inside it, but nothing gets out. SharedRoot found that the room shared a wall with the rest of the house. Once the researchers had root inside the VM, the &quot;wall&quot; was just a folder both sides could write to. Why it matters: Anthropic classified the report as &quot;informative&quot; rather than a vulnerability requiring a fix, and has not patched local execution mode. Its response instead was to make cloud execution the default, which sidesteps the bug for anyone who accepts that default -- but anyone still running local sessions, which is exactly the mode power users reach for when they want an agent to touch real project files, remains exposed. &quot;We changed the default&quot; and &quot;we fixed the bug&quot; are not the same statement, and the gap between them is now a live question for anyone deciding whether to trust an agent with a shared filesystem.</p></section>
+<section><h2>2) OpenAI Dismantles a Fake Think Tank Built Entirely by ChatGPT</h2><p>OpenAI disrupted a Russian covert-influence operation that used ChatGPT, accessed through VPNs to bypass its Russia block, to build the &quot;International Burke Institute&quot; -- a fictitious research organization with a listed Israeli address and a roster of &quot;experts&quot; that falsely claimed contributions from well-known academics. Of a sample of 36 articles published under those expert names between September 2025 and May 2026, 34 turned out to be plagiarized from elsewhere online. The operation&#x27;s centerpiece was a &quot;sovereignty index&quot; that scored countries in ways designed to cast Russia favorably, with reports on France, Germany, the U.S. and the EU that read as outright polemic.</p><p>Explained simply: this wasn&#x27;t a bot posting slogans. The model was used to manufacture the appearance of a legitimate institution -- a name, a website, invented experts, and a body of &quot;research&quot; -- because a persuasive argument lands harder when it looks like it came from a credentialed source rather than an anonymous account. Why it matters: OpenAI says the campaign reached a relatively small audience, but the construction is the story, not the reach. Verifying a claim used to mean checking whether the author and institution were real. That check is getting less reliable by the month -- a plausible-looking think tank is now cheap enough to fabricate wholesale, citations included.</p></section>
+<section><h2>3) Nvidia Reveals Its Next Chip Hours Before an Earnings Report That</h2><p>At Hot Chips 2026, Nvidia disclosed the internal architecture of its upcoming Vera CPU: 88 custom &quot;Olympus&quot; cores split across six chiplets on one interposer, paired with LPDDR5X memory and NVLink-C2C for tight coupling to GPUs or a second CPU. Nvidia claims roughly 1.8x faster agentic-workload throughput and up to 30x the interactivity throughput of today&#x27;s Grace Blackwell platform in specific scenarios. Separately, Groq 3 LPX -- the dedicated inference accelerator born from Nvidia&#x27;s $20 billion Groq acquisition -- entered full production, slotting into the Vera Rubin platform at up to 256 accelerators per rack. Nvidia reports second-quarter earnings after market close today.</p><p>Explained simply: a CPU and a GPU do different jobs -- the GPU crunches the matrix math of a model, the CPU feeds it data, manages memory and keeps an agent&#x27;s many small steps moving without stalling the expensive chip next to it. Vera is Nvidia&#x27;s answer to that second job for agentic workloads specifically, where a model calls tools, waits on results and juggles context far more than it does during plain chat.</p><p>Why it matters: this disclosure landed on the same day markets get Nvidia&#x27;s actual numbers. Chip roadmaps are Nvidia&#x27;s way of arguing demand will keep outrunning supply; the earnings call is the reality check on whether customers are still buying at the pace that story requires. The gap between those two -- the roadmap slide and the sales numbers -- is what every AI capex argument this year has come down to.</p></section>
+<div class="callout"><div class="kicker">Market signal</div><p>Salesforce&#x27;s Agentic Enterprise Index found the average number of AI agents deployed per organization nearly tripled in a year -- from five in early 2025 to thirteen by April 2026 -- and that seven in ten customer-service sessions among its surveyed customers are now handled without a human in the loop. Read against today&#x27;s Nvidia earnings and Vera Rubin ramp: the demand side of the AI capex argument isn&#x27;t just model labs buying compute for training runs anymore, it&#x27;s ordinary enterprises running more agents in production than they were a year ago, which is a harder number to fake than a roadmap slide.</p></div>
+<div class="callout"><div class="kicker">Practical takeaways</div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">If you run Claude Cowork locally on a Mac, treat SharedRoot as unpatched, because it is.</div><p style="font-size:17px;margin:3px 0 0;">Prefer cloud execution (now the default) for any session touching real credentials, or assume anything reachable from your logged-in user is reachable from the agent.</p></div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">Stop trusting a source because it has a name, a website and citations.</div><p style="font-size:17px;margin:3px 0 0;">The Burke Institute had all three and was still fabricated end to end -- verify independently that a cited author and organization exist outside the content citing them.</p></div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">Watch Nvidia&#x27;s guidance language today, not just the revenue beat.</div><p style="font-size:17px;margin:3px 0 0;">Vera Rubin ramp commentary on the earnings call is the number that will move chip lead times and every downstream AI infrastructure budget built on top of them.</p></div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">Benchmark your own agent rollout against Salesforce&#x27;s number: 13 agents per org on average.</div><p style="font-size:17px;margin:3px 0 0;">If your organization is running zero or one, you&#x27;re behind the adoption curve this data describes, not ahead of some hype cycle.</p></div></div>
+  <div style="display:flex;align-items:center;gap:13px;margin:54px 0 10px;padding-top:30px;border-top:1px solid #E4DECF;">
+    <div class="brand-mark" style="width:40px;height:40px;font-size:14px;border-radius:9px;">VS</div>
+    <div><div style="font-size:14.5px;font-weight:600;">Varun Singla</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8A857B;">Singapore · <a href="../about/" style="color:#8A857B;">About</a> · Learning in public</div></div>
+  </div>
+</article>
+<nav class="pn" aria-label="Adjacent entries"><span></span><a href="2026-08-25.html" rel="prev" style="text-align:right;"><div class="lbl">Older · Day 156 →</div><div class="ttl">OpenAI&#x27;s Unreleased Model Just Solved Math -- That Stumped Experts for Decades</div></a></nav>
+<footer><div class="foot-in">
+  <span>Varun Singla · Singapore · Learning in public</span>
+  <span><a href="https://varunsingla.com/feed.xml" style="text-decoration:none;color:#6B6760;">RSS</a> · <a href="https://varunsingla.com/llms.txt" style="text-decoration:none;color:#6B6760;">llms.txt</a> · Updated daily</span>
+</div></footer>
+</body>
+</html>
