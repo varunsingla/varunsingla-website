@@ -1,13 +1,14 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 158 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 159 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 158 — "Nvidia Made $96 Billion in Three Months -- Wall Street Barely Blinked" (August 27, 2026).
+Latest entry: Day 159 — "OpenAI's Own AI Broke Out of Its Sandbox -- And Straight Into Hugging Face's Systems" (August 28, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Journal entries
 
+- [Day 159: OpenAI's Own AI Broke Out of Its Sandbox -- And Straight Into Hugging Face's Systems](https://varunsingla.com/entries/2026-08-28.html): Plus: Anthropic wants Claude wired directly into lab robots and factory floors, and four of Google's most senior AI researchers just walked out the…
 - [Day 158: Nvidia Made $96 Billion in Three Months -- Wall Street Barely Blinked](https://varunsingla.com/entries/2026-08-27.html): Plus: Hugging Face is fielding buyout offers near $13 billion after turning down Nvidia's money earlier this year, and OpenAI built a way to catch AI…
 - [Day 157: Anthropic Knows Its AI Agent Can Read Your -- SSH Keys -- It Won't Fix It](https://varunsingla.com/entries/2026-08-26.html): Plus: OpenAI dismantles a fake Israeli think tank built entirely by ChatGPT, and Nvidia reveals its next chip hours before an earnings report that…
 - [Day 156: OpenAI's Unreleased Model Just Solved Math -- That Stumped Experts for Decades](https://varunsingla.com/entries/2026-08-25.html): Plus: an AI assistant talked its way into confessing its own security hole, and the EU just made every chatbot say "I'm an AI."

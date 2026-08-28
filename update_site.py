@@ -628,9 +628,22 @@ def _extract_numbered_takeaways(all_flat_lines: list[str]) -> tuple[list[dict], 
             elif _FOOTER_RE.search(l) or (is_section_heading(l) and not re.match(r'^\d', l)):
                 break
             elif current is not None:
-                # Wrapped title continuation starts lowercase before any body
-                if not current['body'] and re.match(r'^[a-z]', l) and len(current['title']) < 90:
-                    current['title'] = clean(current['title'] + ' ' + l)
+                # Wrapped title continuation starts lowercase before any body.
+                # extract_text() can wrap a long title mid-sentence onto a line
+                # that immediately runs into the body prose with no separator
+                # (e.g. "...any other" / "perimeter. OpenAI's incident shows...").
+                # A length cap alone mis-splits these — instead keep pulling
+                # continuation text into the title only until its own sentence
+                # actually ends, then hand the remainder of that line to body.
+                title_done = bool(re.search(r'[.!?]"?$', current['title']))
+                if not current['body'] and not title_done and re.match(r'^[a-z]', l):
+                    m_end = re.match(r'^(.*?[.!?])(?:\s+(.*))?$', l)
+                    if m_end:
+                        current['title'] = clean(current['title'] + ' ' + m_end.group(1))
+                        if m_end.group(2):
+                            current['body'].append(m_end.group(2))
+                    else:
+                        current['title'] = clean(current['title'] + ' ' + l)
                 else:
                     current['body'].append(l)
             j += 1
