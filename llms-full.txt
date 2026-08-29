@@ -1,6 +1,45 @@
 # Varun Singla · AI Learning Journal — full text
 
-Complete text of all 159 journal entries by Varun Singla (https://varunsingla.com), newest first. Index: https://varunsingla.com/llms.txt
+Complete text of all 160 journal entries by Varun Singla (https://varunsingla.com), newest first. Index: https://varunsingla.com/llms.txt
+
+---
+
+# Day 160: Six Thousand Executives Found No AI Payoff -- Google's Agents Are Calling Stores Anyway
+
+Date: August 29, 2026 · Author: Varun Singla · URL: https://varunsingla.com/entries/2026-08-29.html · Themes: Foundations & Protocols
+
+Plus: Meta closes the last loophole for secretly recording with its smart glasses, and Google's A2A protocol formally joins Anthropic's MCP under one neutral governance roof.
+
+**Viral app of the day: Higgsfield -- an AI Video Startup Worth $5.4 Billion**
+Higgsfield is an AI-native creative suite for generating and editing images, video, and audio, built around one-tap cinematic and marketing-style output: feed it a product photo or a short brief and it returns a polished short-form video with camera moves, lighting, and sound already applied, remixable inside the app rather than a raw clip you still have to edit elsewhere. Its valuation quadrupled in six months, from $1.3 billion in January to $5.4 billion after a $400 million round on August 17, while its annualized revenue run rate jumped from $200 million at the end of 2025 to over $500 million -- about 70% of it
+
+## 1) The Biggest AI Productivity Survey Yet Says: Not Much, Not Yet
+
+Research teams at the Federal Reserve Bank of Atlanta, the Bank of England, the Deutsche Bundesbank, and Macquarie University fielded an identical survey to nearly 6,000 CEOs, CFOs, and senior finance managers across the US, UK, Germany, and Australia between November 2025 and January 2026, for a National Bureau of Economic Research working paper. More than 90% of executives reported no effect on their own firm's employment from three years of AI use, and 89% reported no effect on labor productivity -- even though 69% of businesses report some current AI use, rising to 78% in the US. Executives still expect the picture to change: over the next three years they forecast AI will lift productivity by 1.4% while cutting employment by 0.7%, for a net output gain of roughly 0.8%. Explained simply: economists call this the productivity paradox -- Robert Solow's 1987 line that "you can see the computer age everywhere but in the productivity statistics" described the exact same lag with personal computers. A tool can feel transformative to the person using it every day and still not move a company's top-line numbers, because the surrounding workflows, job descriptions, and org charts haven't been rebuilt around it yet. Buying the software is the easy part; redesigning the work is the part that takes years.
+
+Why it matters: this reframes the AI debate away from "does it work" and toward "has anyone actually redesigned their organization around it yet." It's a useful check on any team citing a single AI pilot as proof of company-wide ROI, and a reminder that headline model launches and bottom-line impact are running on very different clocks.
+
+## 2) Google's Shopping Agent Is Now Cold-Calling Real Stores For You
+
+Google's agentic calling feature rolled out nationwide to shoppers in the US: describe what you're looking for -- a specific hardware part, say -- and the agent dials local stores on your behalf, in sequence, to check price and stock, then reports back with a shortlist. If a store doesn't pick up, the agent doesn't leave a voicemail; it just hangs up and dials the next number while you keep doing something else. Explained simply: checking availability across a few stores normally means you calling each one yourself and sitting through hold music. The agent does the boring synchronous part -- dialing, waiting, asking the question, listening for the answer -- in the background, and only surfaces the result once it has one worth showing you.
+
+Why it matters: it's the clearest, most mainstream instance yet of an AI agent holding an unscripted phone conversation with a real person at real scale -- a capability nearly every voice-AI startup has promised and mostly not shipped. It's also a direct counterpoint to the story above: this is a concrete, individually-felt time-save that a firm-wide productivity survey would never capture, because it's happening in someone's personal errands, not inside a company's reported headcount or output.
+
+## 3) Two Rival Agent Protocols Just Moved Into the Same House
+
+On August 17, Google's A2A protocol became a hosted project of the Agentic AI Foundation (AAIF) at the Linux Foundation, joining Anthropic's Model Context Protocol (MCP) under the same neutral governance body. AAIF launched in December 2025 with Anthropic, OpenAI, and Block as founding members; its platinum members now include AWS, Anthropic, Block, Bloomberg, Cloudflare, Google, Microsoft, and OpenAI, and it has grown past 250 member organizations -- the fastest-growing project in Linux Foundation history.
+
+Explained simply: MCP is how a single AI model talks to tools and data -- pulling a file, calling an API. A2A is how separate AI agents talk to each other -- delegating a task, negotiating who does what. They solve different problems, but until now they sat under different, competing-flavored governance. Now both live under one foundation with shared members, even though each keeps its own spec and release schedule.
+
+Why it matters: it cuts the fragmentation risk that comes with every major lab pushing its own "standard" -- Microsoft, AWS, Google, and Anthropic now co-govern the same interoperability layer, so a team building on either protocol has one foundation to watch for changes rather than two rival camps to bet between.
+
+**Market signal:** Marvell's custom-chip supply deal with Google could be worth up to $120 billion in revenue over the next six years, analysts say, even as Marvell's own quarterly sales already rose 37% to $2.74 billion on AI chip demand. It's a signal that the shift from training frontier models to running them cheaply at scale is now worth as much to component suppliers as the models themselves -- and that Big Tech's push into in-house custom silicon has a real, priced second winner beyond Nvidia.
+
+**Practical takeaways:**
+- Stop citing a single AI pilot as proof of company-wide ROI. — The NBER data shows individual enthusiasm for an AI tool doesn't show up in employment or productivity numbers until the workflows and roles around it are rebuilt -- one team's win isn't evidence of a firm-wide effect.
+- Building agent-to-agent systems? Check for an AAIF-governed protocol first. — With A2A and MCP both now under the same foundation, standardizing on either is lower-risk than picking a side in a fragmented standards fight -- worth revisiting your integration roadmap.
+- Try an agentic calling feature for one real errand this week. — It's the clearest sign yet of what "agentic" looks like outside a demo -- a good way to calibrate what's actually usable today versus still vaporware.
+- If your product touches AI infrastructure, watch the shift from training spend to inference spend. — Marvell's $120 billion outlook and 37% sales growth are both driven by inference-era custom chips, not training clusters -- a leading indicator of where the next wave of infrastructure money is actually going.
 
 ---
 
