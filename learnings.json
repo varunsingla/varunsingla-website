@@ -6,6 +6,56 @@
   },
   "learnings": [
     {
+      "date": "2026-08-30",
+      "display_date": "August 30, 2026",
+      "issue": 155,
+      "title": "three stories that, together, show where the AI industry's money and attention are",
+      "focus_intro": "actually going right now -- underneath the model-release headlines. OpenAI shipped a chip built to make Nvidia sweat on cost. Anthropic is about to make its largest acquisition ever, and it isn't a language-model company.",
+      "viral_app": {
+        "name": "Higgsfield",
+        "description": "Higgsfield is an AI-native creative suite for video, image, and audio, built around one-tap cinematic camera moves and \"impossible\" visual-effects transitions -- the explosion cuts, morphs, and gravity-defying pans flooding TikTok and Instagram right now. Launched in 2025, it has grown to roughly 20-25 million users and a $1.3 billion valuation in about 15 months, with $200 million-plus in annualized revenue and around 4.5 million videos generated every day. Why it's taking off: the presets do the hard part. What used to require real visual-effects skill is now a single tap, so creators with zero production background can post clips that look professionally shot -- and the app even ships a \"Virality Predictor\" to estimate a clip's chances before it's posted. It's a clean example of how AI is compressing skill requirements, not just output volume. Worth knowing: the same aggressive viral-marketing playbook that fueled Higgsfield's growth also drew real criticism earlier this year over promotional content the company circulated -- a reminder that engineering virality carries its own reputational risk.",
+        "stats": []
+      },
+      "stats": [],
+      "sections": [
+        {
+          "title": "1) OpenAI Ships a Chip Built to Starve Nvidia's Margins",
+          "paragraphs": [
+            "OpenAI and Broadcom unveiled Jalapeno, OpenAI's first custom AI chip -- taped out in just 16 months on TSMC's N3P process. It's an inference chip, not a training chip: it doesn't help build a model, it helps serve one to millions of users cheaply, which is where the real, recurring cost of running AI actually lives. The numbers: 13.4 PFLOPs of compute at 700 watts, versus Nvidia's upcoming Rubin chip drawing 900-1,150 watts for comparable work. Independent benchmarking firm SemiAnalysis found Jalapeno delivers 1.5-1.9x more useful work per watt than Nvidia across several open models, including DeepSeek R1 and Kimi K2.5.",
+            "Why it matters: OpenAI spends more on compute than almost anyone alive. Owning its own silicon -- built around its own model architectures instead of general-purpose GPUs -- means every token it serves gets cheaper over time, and it becomes less dependent on Nvidia's supply and pricing. Expect every well-funded AI lab to now be asking the same question: build, or keep renting?"
+          ]
+        },
+        {
+          "title": "2) Anthropic's Largest-Ever Deal Chases Real-Time Video",
+          "paragraphs": [
+            "Anthropic is reportedly in talks to acquire Decart AI, an Israeli startup, for roughly $6 billion -- which would be Anthropic's biggest acquisition to date, by far. Decart was valued at under $4 billion just three months ago. Decart builds real-time \"world models\" -- Oasis and Lucy -- along with a chip-efficiency toolkit called the Decart Optimization Stack. A world model doesn't just describe or caption a video after the fact; it simulates a visual environment frame by frame, live, the way a video game engine does, so the picture can change instantly as new input arrives. Lucy, for instance, can take a live camera feed and show a person wearing different clothing in real time -- a hard problem for e-commerce and fashion tech. Why it matters: Anthropic has built its identity almost entirely around text and coding models (Claude). A deal this size signals it sees real-time, interactive video and simulation as the next battleground -- and that buying deep expertise is faster than growing it in-house, even for a company usually associated with careful, incremental moves."
+          ]
+        },
+        {
+          "title": "3) No AI Lab Scores Above a C+ on Its Own Safety Report Card",
+          "paragraphs": [
+            "The Future of Life Institute released its Summer 2026 AI Safety Index, grading the major labs on six dimensions: transparency, safety frameworks, technical safety research, governance, risk assessment, and existential safety. The results: Anthropic led with a C+ (2.66 out of 4), OpenAI and Google DeepMind followed with a C each, Meta scored a D+, and xAI, DeepSeek, and Mistral all failed outright. The more uncomfortable finding: reviewers say several labs -- Anthropic, OpenAI, Google DeepMind, and Meta among them -- have quietly walked back earlier public pledges to pause development if specific danger thresholds were crossed. The same four have also reversed prior bans on military applications of their models over the past two years.",
+            "Why it matters: this isn't a regulator's assessment -- it's the industry grading itself, and even the leader is still a C-range student, for the second report running. Useful context any time a vendor's marketing leans hard on the word \"safe.\""
+          ]
+        }
+      ],
+      "market_signal": "Inference economics are becoming the real competitive battleground. OpenAI's Jalapeno chip, Anthropic's reported bid for a chip-efficiency startup alongside a video-model maker, and Nvidia's contract manufacturers warning Microsoft, Google, and Oracle of 15%-plus price hikes on AI server systems starting in 2027, are all the same story from different angles: the cost of running AI at scale is now as strategically important as the models themselves.",
+      "practical_takeaway": [
+        {
+          "title": "Watch the chip story, not just the model story.",
+          "body": "As labs ship their own inference silicon, cost-per-token keeps falling -- that's what quietly makes today's expensive AI features affordable, or free, a year from now."
+        },
+        {
+          "title": "\"World model\" is worth learning now.",
+          "body": "Real-time, interactive video generation -- what Decart builds -- is the base layer for next-generation simulation, robotics training, and gaming. Get comfortable with the term before it shows up in every product pitch."
+        },
+        {
+          "title": "Treat AI safety self-grades as directional, not definitive.",
+          "body": "A C+ topping the field means \"better than the rest,\" not \"safe.\" Useful context before betting a workflow, or a business, on any single vendor's guardrails."
+        }
+      ]
+    },
+    {
       "date": "2026-08-29",
       "display_date": "August 29, 2026",
       "issue": 154,

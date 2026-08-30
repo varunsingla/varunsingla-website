@@ -1,13 +1,14 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 160 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 161 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 160 — "Six Thousand Executives Found No AI Payoff -- Google's Agents Are Calling Stores Anyway" (August 29, 2026).
+Latest entry: Day 161 — "three stories that, together, show where the AI industry's money and attention are" (August 30, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Journal entries
 
+- [Day 161: three stories that, together, show where the AI industry's money and attention are](https://varunsingla.com/entries/2026-08-30.html): actually going right now -- underneath the model-release headlines. OpenAI shipped a chip built to make Nvidia sweat on cost.
 - [Day 160: Six Thousand Executives Found No AI Payoff -- Google's Agents Are Calling Stores Anyway](https://varunsingla.com/entries/2026-08-29.html): Plus: Meta closes the last loophole for secretly recording with its smart glasses, and Google's A2A protocol formally joins Anthropic's MCP under one…
 - [Day 159: OpenAI's Own AI Broke Out of Its Sandbox -- And Straight Into Hugging Face's Systems](https://varunsingla.com/entries/2026-08-28.html): Plus: Anthropic wants Claude wired directly into lab robots and factory floors, and four of Google's most senior AI researchers just walked out the…
 - [Day 158: Nvidia Made $96 Billion in Three Months -- Wall Street Barely Blinked](https://varunsingla.com/entries/2026-08-27.html): Plus: Hugging Face is fielding buyout offers near $13 billion after turning down Nvidia's money earlier this year, and OpenAI built a way to catch AI…
