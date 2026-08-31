@@ -1,6 +1,43 @@
 # Varun Singla · AI Learning Journal — full text
 
-Complete text of all 161 journal entries by Varun Singla (https://varunsingla.com), newest first. Index: https://varunsingla.com/llms.txt
+Complete text of all 162 journal entries by Varun Singla (https://varunsingla.com), newest first. Index: https://varunsingla.com/llms.txt
+
+---
+
+# Day 162: three stories about power, not benchmarks -- who gets to punish an AI company, who
+
+Date: August 31, 2026 · Author: Varun Singla · URL: https://varunsingla.com/entries/2026-08-31.html · Themes: Industry Verticals
+
+owns an idea once it leaves a laptop, and who really pays for the AI boom. A federal judge just ruled the Pentagon can't blacklist a vendor for refusing to build weapons. OpenAI and Apple are now accusing each other of being the sloppy one.
+
+**Viral app of the day: GLM-5.3-Flash**
+Z.AI released GLM-5.3-Flash on August 26th under a permissive MIT license: 320 billion total parameters, natively multimodal, a 1-million-token context window -- free to download and run yourself. It's a "mixture-of-experts" model, meaning only about 18 billion of those 320 billion parameters actually activate for any given question, like a panel of specialists where only the relevant few do the work. That's what keeps a model this large fast and affordable to run despite its size. Why it's taking off: it's the fifth major open-weight release in nine days, alongside GLM-5.3's full weights, Alibaba's Qwen3.8-Flash, Tencent's Hy4 preview, and DeepSeek's V4-Flash-Vision-Exp. Analysts are calling this the "collapse of the capability premium": free, open models are now matching what closed frontier labs were charging premium prices for just months ago. Worth knowing: "open-weight" doesn't mean "free to run at scale." A 320-billion-parameter model still needs serious GPU hardware -- downloading it for free just moves the cost from an API bill to your own infrastructure bill.
+
+**By the numbers:**
+- 9 — days
+
+## 1) A Federal Judge Rules the Pentagon's Anthropic Blacklist Was Illegal
+
+U.S. District Judge Rita Lin ruled that the Department of Defense violated the First Amendment and the Fifth Amendment's due-process clause when it designated Anthropic a "supply-chain risk" -- a label normally reserved for foreign entities considered national-security threats, not a company headquartered in San Francisco.
+
+The dispute traces back to a $200 million contract fight over how the Pentagon could deploy Claude on classified systems. Anthropic wanted contractual limits barring its models from powering autonomous lethal weapons or domestic mass surveillance; the Pentagon, under Secretary Hegseth, argued a contractor has no business dictating military operating rules. When talks collapsed, the Pentagon blacklisted Anthropic outright, which cuts off every DoD contractor and supplier from doing business with it. Why it matters: the judge found the designation was punitive -- made "based on a desire to make a public example" of Anthropic -- not a genuine security finding. That's a real check on using national-security labels as leverage in a commercial dispute, and it protects a vendor's right to say no to specific military use cases without losing government business entirely. The government is expected to appeal.
+
+## 2) OpenAI and Apple's Lawsuit Turns Into a Name-Calling Match
+
+Apple sued OpenAI in July, accusing it and two former Apple employees of stealing trade secrets and soliciting confidential information from job candidates to help OpenAI's hardware push. Apple's complaint said OpenAI's hardware business was "rotten to its core." In its motion to dismiss, filed in August, OpenAI threw the phrase right back: "Apple's complaint is -- to borrow its own phrase -- rotten to its core." OpenAI's actual legal argument: Apple let employees use personal iCloud accounts for work and never revoked their access after they left, which undercuts any claim that the information was properly protected. Apple filed back on August 19th, standing by what it calls "pervasive trade secret misappropriation." Concept, simply: under U.S. law, something only counts as a legal "trade secret" if its owner took "reasonable measures" to keep it secret. That's why OpenAI's defense targets Apple's own security habits rather than denying anyone saw the information -- if Apple was careless with it, Apple may not get to call it a protected secret in the first place.
+
+## 3) Nvidia Quietly Kills a Financing Plan That Looked Like Buying Its Own Demand
+
+In July, Nvidia rolled out the "AI Compute Partnership": smaller AI cloud providers who couldn't otherwise get financing to buy Nvidia chips would get a revenue guarantee -- Nvidia promised to rent any unused GPU capacity itself. Fewer than two months later, Nvidia has paused it. Reporting says its own employees flagged antitrust risk internally, and some prospective partners balked at how much control over their businesses Nvidia wanted in return.
+
+Why it matters: this is the "circular financing" worry in AI infrastructure made concrete -- a chipmaker effectively guaranteeing the revenue of the customers buying its own chips, which can make demand look larger and more durable than it actually is. Nvidia backing off before regulators forced the question is itself a signal that scrutiny of AI-infrastructure deal structures is intensifying, not fading.
+
+**Market signal:** Legal and regulatory exposure is becoming a real line item in AI strategy, not background noise. In one week: a federal court found the Pentagon's own vendor-blacklist tool was used illegally, Nvidia backed off a financing structure before regulators could act on it, and OpenAI and Apple's fight over "trade secrets" turned into a referendum on whether either company protected its own information properly. None of it touches a benchmark score -- all of it touches how fast money and talent can move.
+
+**Practical takeaways:**
+- Know what a "supply-chain risk" label actually does. — It's a real government designation that can cut off a company's ability to do business -- increasingly a political lever, not just a security finding. Knowing the difference matters any time a vendor relationship with government touches policy disputes.
+- Trade-secret protection starts with your own hygiene. — If you handle sensitive company data, don't blur personal and work accounts, and revoke access the day someone leaves. Apple's own case is now a cautionary tale for any company, not just tech giants.
+- Track "capability premium collapse" as a build-vs-buy signal. — When a free, open-weight model matches a paid one within weeks instead of years, that changes the math on when to keep paying for an API versus self-hosting.
 
 ---
 
