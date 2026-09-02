@@ -1,13 +1,14 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 163 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 164 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 163 — "three stories about who's actually in charge as AI moves from chatbots to real-world" (September 1, 2026).
+Latest entry: Day 164 — "three stories about software dissolving into the model itself. Salesforce and Anthropic" (September 2, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Journal entries
 
+- [Day 164: three stories about software dissolving into the model itself. Salesforce and Anthropic](https://varunsingla.com/entries/2026-09-02.html): expanded their partnership so deeply that CRM data now flows into Claude and Claude's reasoning now flows into Salesforce -- each company embedding…
 - [Day 163: three stories about who's actually in charge as AI moves from chatbots to real-world](https://varunsingla.com/entries/2026-09-01.html): action. Apple just completed a rare leadership handoff explicitly framed around AI.
 - [Day 162: three stories about power, not benchmarks -- who gets to punish an AI company, who](https://varunsingla.com/entries/2026-08-31.html): owns an idea once it leaves a laptop, and who really pays for the AI boom. A federal judge just ruled the Pentagon can't blacklist a vendor for…
 - [Day 161: three stories that, together, show where the AI industry's money and attention are](https://varunsingla.com/entries/2026-08-30.html): actually going right now -- underneath the model-release headlines. OpenAI shipped a chip built to make Nvidia sweat on cost.
