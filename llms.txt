@@ -1,13 +1,14 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 165 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 166 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 165 — "three stories about pace. Anthropic and Google shipped major model updates within a day" (September 3, 2026).
+Latest entry: Day 166 — "three stories about who controls the infrastructure AI actually runs on. Nvidia confirmed it will" (September 4, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Journal entries
 
+- [Day 166: three stories about who controls the infrastructure AI actually runs on. Nvidia confirmed it will](https://varunsingla.com/entries/2026-09-04.html): buy Hugging Face -- the open-source hub for 3 million models -- for $12.9 billion, extending its grip from the chip layer up through the…
 - [Day 165: three stories about pace. Anthropic and Google shipped major model updates within a day](https://varunsingla.com/entries/2026-09-03.html): of each other -- Claude Fable 5.1, the first Claude model with mandatory invisible watermarking and a 75% cut to cached-context pricing, and Gemini…
 - [Day 164: three stories about software dissolving into the model itself. Salesforce and Anthropic](https://varunsingla.com/entries/2026-09-02.html): expanded their partnership so deeply that CRM data now flows into Claude and Claude's reasoning now flows into Salesforce -- each company embedding…
 - [Day 163: three stories about who's actually in charge as AI moves from chatbots to real-world](https://varunsingla.com/entries/2026-09-01.html): action. Apple just completed a rare leadership handoff explicitly framed around AI.

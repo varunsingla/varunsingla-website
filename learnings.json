@@ -6,6 +6,73 @@
   },
   "learnings": [
     {
+      "date": "2026-09-04",
+      "display_date": "September 4, 2026",
+      "issue": 160,
+      "title": "three stories about who controls the infrastructure AI actually runs on. Nvidia confirmed it will",
+      "focus_intro": "buy Hugging Face -- the open-source hub for 3 million models -- for $12.9 billion, extending its grip from the chip layer up through the model-sharing layer itself.",
+      "viral_app": {
+        "name": "Hugging Face's Microduck",
+        "description": "Hugging Face's Microduck is a $399 open-source robot duck from Pollen Robotics, the French robotics company Hugging Face acquired in 2025. The 9.8-inch bipedal duck walks, sits, kicks a ball, picks up small objects with its beak, and gets back on its feet after falling over. It's available to preorder now, with first deliveries expected before Christmas 2026, and it's Hugging Face's second desktop robot after 2025's Reachy Mini -- both fully open hardware and software that anyone can inspect, modify or build their own copy of. Why it's taking off: it landed the same week Nvidia agreed to pay $12.9 billion for its parent platform, so people are reading it as proof of what that money is actually buying -- not just a model-hosting website, but a company shipping tinkerable, physical AI products cheap enough for a classroom or a hobbyist desk, not just a robotics lab. Worth knowing: Microduck is a toy-scale research and education robot -- walking, balancing and simple pick-up moves, not a general household helper. That scope is the point: it's an approachable, well-documented entry into embodied AI for anyone who doesn't have an industrial robotics budget.",
+        "stats": []
+      },
+      "stats": [
+        {
+          "stat": "$12.9B",
+          "label": "Nvidia's price tag for Hugging Face, its second-largest deal ever"
+        },
+        {
+          "stat": "$150K",
+          "label": "Max statutory damages per song Sony and Warner are seeking"
+        },
+        {
+          "stat": "400M",
+          "label": "MCP SDK downloads a month now, up 4x so far this year"
+        },
+        {
+          "stat": "$399",
+          "label": "Price of Hugging Face's new open-source duck robot, Microduck"
+        }
+      ],
+      "sections": [
+        {
+          "title": "1) Nvidia Confirms $12.9 Billion Deal for Hugging Face",
+          "paragraphs": [
+            "Nvidia confirmed on September 3 that it will acquire Hugging Face for $12.9 billion -- about $11.9 billion to shareholders plus up to $1 billion in retention equity for employees who join Nvidia. It's Nvidia's second-biggest purchase ever, after roughly $20 billion for Groq's assets late last year. Hugging Face hosts 3 million models, 1 million applications and half a million datasets used by more than 18 million developers -- including the very platform an OpenAI agent breached last week. CEO Jensen Huang says the platform stays open: developers keep choosing their own frameworks, clouds and inference providers, with no requirement to run on Nvidia compute. The deal is expected to close in the first half of 2027, pending regulatory approval.",
+            "Why it matters: Nvidia already owns the compute layer that trains and runs AI models. Owning the place where nearly every open model, dataset and demo actually lives adds visibility -- and long-run influence -- over the layer just above it, the same kind of vertical integration as owning both the factory and the store everyone shops in. Huang's neutrality pledge is the thing to watch: it's easy to promise on announcement day, harder to keep once the deal closes and Nvidia's own roadmap needs somewhere to point."
+          ]
+        },
+        {
+          "title": "2) Sony and Warner Sue Anthropic -- and Name Its Founders Personally",
+          "paragraphs": [
+            "Sony Music Publishing and Warner Chappell, joined by several other publishers, sued Anthropic last week alleging a \"brazen campaign\" of torrenting, scraping and downloading tens of thousands of copyrighted songs to train Claude -- including compositions behind \"Eye of the Tiger,\" \"Uptown Funk,\" \"Hallelujah,\" Taylor Swift's \"Paper Rings\" and Mariah Carey's \"All I Want for Christmas Is You.\" The publishers are seeking a jury trial and statutory damages of up to $150,000 per infringed song -- and, unusually, they named co-founders Dario Amodei and Benjamin Mann personally alongside the company. Anthropic calls the suit a rehash of claims already before other courts and says it will defend the case as transformative fair use, pointing to the earlier Bartz ruling. Why it matters: Naming founders personally is an escalation: plaintiffs are betting that attaching individual liability increases settlement pressure and signals they see the alleged infringement as willful, not incidental. It also reads as a deliberate pivot away from re-litigating fair use head-on -- after Bartz went against them on that question -- toward how the training data was obtained in the first place, a theory a \"fair use\" defense doesn't automatically answer."
+          ]
+        },
+        {
+          "title": "3) Google Rewrites How Much AI You're Allowed to Use",
+          "paragraphs": [
+            "Google began rolling out compute-based usage limits for Gemini Notebook on September 2, replacing its old features you use -- a quick factual question costs almost nothing, while a multi-source Video Overview or Slide Deck can burn through a meaningful share of it. Limits refresh every five hours toward a weekly ceiling, a live usage meter sits under the chat box, and the app will suggest a cheaper output or let you defer a heavy one to later. Google is the third major AI product to restructure its usage limits in the space of two weeks.",
+            "Why it matters: Flat \"N prompts a day\" limits made sense when every request cost roughly the same. They stop making sense once one product bundles cheap text replies and expensive multi-step video generation under a single quota. Expect compute-based metering to spread across the industry as agentic features get baked into everyday tools -- which means heavy agentic workflows will hit real limits sooner than casual chat use ever did, even at the same nominal \"plan.\""
+          ]
+        }
+      ],
+      "market_signal": "All three stories today are really about who owns the layer underneath the AI everyone already uses. Nvidia isn't just buying a company; it's buying the model-hosting commons its own chip customers depend on -- the same commons a $399 open-source duck robot now ships from -- while Sony and Warner are testing whether \"we needed the data to build the model\" survives contact with a jury once it's a named founder standing behind that argument, not just a corporate logo. Google recalibrating usage limits down to the level of individual compute cost is the same pressure from a different angle: compute is the scarce resource, and every layer of the stack -- chips, hosting, training data, and now minutes of inference -- is being priced, litigated or metered accordingly.",
+      "practical_takeaway": [
+        {
+          "title": "If you build on Hugging Face, watch the acquisition's fine print, not just the headline.",
+          "body": "Huang has promised the platform stays open and vendor-neutral, but ownership changes incentives over time. If your pipeline depends on Hugging Face-hosted models or datasets, keep a fallback mirror or local cache for anything business-critical, and revisit that assumption again as the deal moves toward its H1 2027 close."
+        },
+        {
+          "title": "Treat training-data provenance as a live legal risk, not settled history.",
+          "body": "The Sony/Warner suit's decision to name Anthropic's founders personally is a preview of how aggressive copyright plaintiffs are willing to get. If you fine-tune or build products on any foundation model, know which training-data lawsuits are still open against that model's maker -- a future ruling could ripple into licensing costs or availability for you, even though you weren't a party to the case."
+        },
+        {
+          "title": "Budget agentic workflows in compute, not requests.",
+          "body": "Gemini Notebook's move away from flat daily limits is the shape of things to come across the industry. If your team runs heavy agentic tasks -- multi-step research, video or slide generation, long-context reasoning -- start tracking actual compute cost per workflow now, so a future usage-limit change doesn't blindside a process you already depend on."
+        }
+      ]
+    },
+    {
       "date": "2026-09-03",
       "display_date": "September 3, 2026",
       "issue": 159,
