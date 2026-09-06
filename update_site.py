@@ -750,6 +750,10 @@ def parse_pdf(pdf_path: Path) -> dict:
         return {}
 
     full_text = " ".join(all_flat_lines)
+    # Strip the per-page running footer ("Varun Singla · Daily AI Learning ·
+    # Day N · varunsingla.com Page M"), which survives the space-join and
+    # lands mid-sentence whenever a box's text spans a page break.
+    full_text = re.sub(r'\bvarun singla\b.*?\bpage\s*\d+\b', ' ', full_text, flags=re.I)
 
     # Collect all raw table data (for fallback searches)
     all_tables: list[list[list]] = [t['data'] for pd in page_data for t in pd['tables']]
