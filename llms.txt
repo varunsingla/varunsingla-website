@@ -1,13 +1,14 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 168 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 169 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 168 — "three stories about accountability trying to catch up with speed. On September 1, John" (September 6, 2026).
+Latest entry: Day 169 — "three stories about what happens when AI's capability outruns anyone's ability to check it. On" (September 7, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Journal entries
 
+- [Day 169: three stories about what happens when AI's capability outruns anyone's ability to check it. On](https://varunsingla.com/entries/2026-09-07.html): September 4, Anthropic revealed that Claude spent 11 days largely autonomously producing the first fully machine-verified proof of Fermat's Last…
 - [Day 168: three stories about accountability trying to catch up with speed. On September 1, John](https://varunsingla.com/entries/2026-09-06.html): Ternus became Apple's CEO, taking over the only major tech company without a frontier AI model of its own, in the same week rivals shipped models…
 - [Day 167: three stories about compute pulling in two directions at once. OpenAI shipped](https://varunsingla.com/entries/2026-09-05.html): GPT-6 Astra on September 3 -- its most capable model yet, and the first ever to earn a "Critical" rating on the company's own cybersecurity risk…
 - [Day 166: three stories about who controls the infrastructure AI actually runs on. Nvidia confirmed it will](https://varunsingla.com/entries/2026-09-04.html): buy Hugging Face -- the open-source hub for 3 million models -- for $12.9 billion, extending its grip from the chip layer up through the…
