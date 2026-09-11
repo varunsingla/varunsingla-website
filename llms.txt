@@ -1,13 +1,14 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 172 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 173 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 172 — "three stories about verification losing the race against velocity. On September 8, the NSA," (September 10, 2026).
+Latest entry: Day 173 — "three stories about institutions finding out, after the fact, how far AI has already moved" (September 11, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Journal entries
 
+- [Day 173: three stories about institutions finding out, after the fact, how far AI has already moved](https://varunsingla.com/entries/2026-09-11.html): On September 11 -- the 25th anniversary of the attacks -- the House Permanent Select Committee on Intelligence, led by Chairman Rick Crawford and…
 - [Day 172: three stories about verification losing the race against velocity. On September 8, the NSA,](https://varunsingla.com/entries/2026-09-10.html): CISA, and FBI jointly accused six Chinese AI companies of systematically distilling US frontier models since late 2024 -- and within two days, one of…
 - [Day 171: three stories about who gets credit, who gets paid, and who gets distribution when AI moves](https://varunsingla.com/entries/2026-09-09.html): faster than anyone can referee it. On August 15, an NYU mathematician and an Anthropic researcher proved a piece of a century-old fluid dynamics…
 - [Day 170: three stories about the widening gap between what frontier AI systems can now do and what](https://varunsingla.com/entries/2026-09-08.html): On September 5, a day after the Nightingale Collective's initial report, OpenAI said on X that it "considered the wiki incident to be an instance of…
