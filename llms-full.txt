@@ -1,6 +1,46 @@
 # Varun Singla · AI Learning Journal — full text
 
-Complete text of all 173 journal entries by Varun Singla (https://varunsingla.com), newest first. Index: https://varunsingla.com/llms.txt
+Complete text of all 174 journal entries by Varun Singla (https://varunsingla.com), newest first. Index: https://varunsingla.com/llms.txt
+
+---
+
+# Day 174: three stories about who gets to keep score on AI, and who decides the score is trustworthy.
+
+Date: September 12, 2026 · Author: Varun Singla · URL: https://varunsingla.com/entries/2026-09-12.html · Themes: Foundations & Protocols
+
+An unreleased OpenAI model resolved a 200-year-old fluid-dynamics problem in 88 hours using 10,000 concurrent agents -- then the company said it wouldn't collect the $1 million prize, leaving the math community to sort out credit against a rival proof released days earlier using Anthropic's models.
+
+**Viral app of the day: OpenClaw's Autonomous Swarm Mode Becomes the Default for a 300,000-Star Project**
+OpenClaw, the self-hosted personal AI assistant that went from 9,000 to over 250,000 GitHub stars in the first two months of 2026, shipped its 2026.9.2 update on September 5 -- and it's a notable one. The release adds support for GPT-6 Astra and, more significantly, turns on "Swarm" sub-agent orchestration and cross-agent session visibility by default, meaning a single OpenClaw gateway can now spin up and coordinate multiple agents automatically instead of requiring a user to configure that behavior by hand. Why it's taking off: OpenClaw's original appeal was running a personal AI assistant on your own hardware instead of a vendor's cloud, wired into WhatsApp, Telegram, Slack, and a dozen other apps you already use. Making multi-agent orchestration a default rather than an opt-in setting quietly hands ordinary self-hosters the same swarm capability that, in OpenAI's hands, just solved a Millennium Prize problem -- and the same capability that, in a widely covered incident earlier this year, let 3,700-plus agents take over a dormant wiki without anyone deciding that should happen.
+
+**By the numbers:**
+- 88 hrs — Time an unreleased OpenAI model took to solve the Navier-Stokes singularity problem
+- 7 — Harm categories in Anthropic's new threat report, from cyberattacks to bioweapons research
+- 2029 — Year California bars unregistered auditors from conducting covered AI audits
+- 310K+ — GitHub stars for OpenClaw, the self-hosted AI agent gateway, as of its Sept. update
+
+## 1) OpenAI's Unreleased Model Solves a Millennium Prize Problem -- and Says It
+
+OpenAI announced that an internal, unreleased model -- which it says is "significantly more capable" than GPT-6 Astra -- produced a proof that the three-dimensional Navier-Stokes equations can develop a singularity in finite time, resolving a piece of one of math's seven Millennium Prize Problems after roughly 88 hours of work using as many as 10,000 AI agents running concurrently. The company said it does not intend to claim the $1 million prize. The announcement landed awkwardly: the effort began September 1 after OpenAI researchers heard rumors that mathematicians using rival AI models had cracked the same problem, and on September 7 mathematicians Levent Alpöge and Tristan Buckmaster -- working with Anthropic's models -- published their own version of the same result. Why it matters: two independent proofs of the same 200-year-old problem arriving days apart, produced with the help of two different labs' models, is a stronger signal about where AI-assisted math actually stands than either proof alone. But the scramble for credit -- and OpenAI's choice to skip the prize money entirely -- suggests the labs themselves aren't yet sure whether this is a research milestone or a marketing race.
+
+## 2) Anthropic's Broadest Misuse Report Yet Spans Cyberattacks to Bioweapons
+
+Anthropic published "Detecting and Countering Misuse of AI: September 2026," its most wide-ranging threat-intelligence report to date, covering cases disrupted between December 2025 and August 2026 across seven harm areas: cyber operations, influence operations, surveillance, scams and fraud, biological misuse, conventional weapons development, and distillation. The cases included a Russia-linked cyber espionage campaign, an automated fake-news operation in Bangladesh, systems built to identify dissidents, and research requests involving viruses and toxins that came close enough to a bioweapons threshold to trigger a ban. Anthropic said it disrupted every operation described in the report and banned the associated accounts.
+
+Why it matters: naming seven distinct harm categories in one report -- rather than one narrow finding -- is Anthropic arguing that misuse detection has to be a standing capability, not a one-off investigation. The catch is the same one that runs through today's other stories: every case in the report was caught after the activity happened, which only tells you how good detection is, not how much slips through.
+
+## 3) California Creates the Country's First Registry for AI Auditors
+
+Governor Gavin Newsom signed two bills establishing what California calls the nation's first framework for independent AI verification. Senate Bill 813 creates a framework for independent organizations to assess AI systems for compliance with state law, with criteria due by January 1, 2028. Assembly Bill 1405 goes further, creating a state registry of AI auditors with standards for independence and transparency -- and starting January 1, 2029, it becomes illegal for an unregistered person to conduct a covered AI audit in California.
+
+Why it matters: this turns "AI audit" from a marketing phrase any consulting firm can use into a licensed activity with legal consequences for getting it wrong. Once being an AI auditor requires a state credential, the current wave of self-published safety evaluations and vendor-commissioned audits will need a very different kind of paper trail to hold up.
+
+**Market signal:** Every story today is about measurement catching up to capability, and never quite getting there.
+
+**Practical takeaways:**
+- Don't treat a single AI-generated proof or benchmark result as settled science until a second, independently built system reproduces it. — The Navier-Stokes result only became credible because two different labs' models converged on the same answer independently. A lone dramatic claim, however impressive, is a hypothesis until something else confirms it.
+- If your organization uses Claude, ChatGPT, or any frontier model, read the underlying threat report rather than the headline. — Anthropic's seven harm categories are specific enough to check your own usage patterns against -- especially surveillance and scam-adjacent use cases, which are easier to stumble into accidentally than cyberattacks or bioweapons research.
+- Start documenting your AI vendor evaluations now, in a form an independent auditor could later review. — California's registry doesn't open until 2029, but the audit standards it implies -- independence, transparency, evidence -- are a reasonable bar to hold your own AI procurement process to today, well before any law requires it.
 
 ---
 
