@@ -6,6 +6,72 @@
   },
   "learnings": [
     {
+      "date": "2026-09-15",
+      "display_date": "September 15, 2026",
+      "issue": 171,
+      "title": "three stories about agentic AI quietly turning into infrastructure instead of a novelty -- running",
+      "focus_intro": "unattended inside a build pipeline, listening and speaking on a phone call in real time, and sitting underneath a legal product enterprises already trust, with almost nobody outside the company noticing the model swap.",
+      "viral_app": {
+        "name": "Abliteration.ai: A Commercial API for Stripping a Model's Safety Training",
+        "description": "A US startup called Abliteration.ai is selling API and web access to \"abliterated\" versions of open-weight models -- currently Z.AI's GLM-5.3 -- that have had their trained refusal behavior surgically removed, for $5 per million tokens. The founders say the target market is red teams and security researchers who need to study how an unrestrained model behaves. TechCrunch tested the free tier with nothing but an email address and got the modified model to write code that steals saved Chrome passwords and to describe a detailed protocol involving a dangerous pathogen. The company's only real check on who signs up is the credit card used to pay. Why it's taking off: \"abliteration\" has existed as a niche open-source technique for over a year -- researchers found they could locate and edit the specific internal direction a model uses to refuse a request, without retraining the whole network. What's new is turning that research trick into a polished, pay-as-you-go commercial product with no real identity verification. It's a sharp illustration of a pattern in open-weight AI: the same openness that lets defenders and researchers freely inspect and improve a model also lets anyone strip its safety training and resell access to the result.",
+        "stats": []
+      },
+      "stats": [
+        {
+          "stat": "$0.05/min",
+          "label": "OpenAI's GPT-Live-1 voice API price, cutting voice-agent code by ~80%"
+        },
+        {
+          "stat": "0.8 sec",
+          "label": "GPT-Live-1's round-trip response latency, down from 1.63 seconds"
+        },
+        {
+          "stat": "82%",
+          "label": "Relative gain on a legal contracts benchmark for Harvey's new Kimi K3-based model"
+        },
+        {
+          "stat": "128",
+          "label": "AI companion apps now active in market, up from 16 just three years ago"
+        }
+      ],
+      "sections": [
+        {
+          "title": "1) GitHub Puts Autonomous Agents Inside the Build Pipeline",
+          "paragraphs": [
+            "GitHub Agentic Workflows moved into wider preview this week, letting teams write automation in plain Markdown instead of YAML: a maintainer describes an outcome -- triage a new issue, update a stale doc, chase down a flaky test -- and a coding agent (Claude Code, GitHub Copilot CLI, or OpenAI Codex, depending on configuration) figures out the steps and runs them as a standard GitHub Actions job, with sandboxing, scoped permissions, and a human still required to approve any pull request it opens. The concept, simply: a normal CI script is a fixed list of commands that always runs the same way. An agentic workflow instead gets a goal in natural language and a model decides, at run time, which commands to try -- closer to assigning a task to a junior engineer than to flipping a switch. The tradeoff for that flexibility is that the exact steps a run will take aren't fully known in advance. Why it matters: this is agentic AI leaving the chat window and becoming plumbing that executes unattended, on a schedule, with real repository credentials. That's a meaningful trust step up from a coding assistant a human is watching in real time -- and it raises the same question this series has been tracking all week about safety evaluations and sandbox escapes: what happens the moment one of these unattended agents does something nobody scoped for."
+          ]
+        },
+        {
+          "title": "2) OpenAI's Voice Model Finally Talks and Listens at the Same Time",
+          "paragraphs": [
+            "OpenAI brought GPT-Live-1, its full-duplex voice model, into the API on September 10, priced at five cents a minute for the voice layer. The model cuts round-trip response latency from 1.63 seconds down to 0.798 seconds and, because it listens and speaks simultaneously rather than waiting for silence, lets a caller interrupt or add a correction mid-sentence without the system talking over them. OpenAI says the change also removes roughly 80% of the custom code developers previously had to write to fake natural turn-taking. The language-learning app Speak reports cutting wrongly-timed interruptions by nearly 80% after switching over. The concept, simply: older \"voice AI\" is half-duplex, like a walkie-talkie -- it waits for you to stop talking, then takes its turn, which is exactly why those systems used to jump in the instant you paused to think. Full-duplex means both sides have an open microphone and open speaker at once, the way an actual phone call works, so the model can react to a pause, an \"um,\" or an interruption in real time instead of guessing when you're finished. Why it matters: latency and turn-taking, not raw intelligence, have been the main reason voice assistants still feel robotic. Crossing under a one-second round trip with genuine full-duplex audio is the kind of threshold that turns voice agents from a novelty demo into something people will tolerate for a real support call, tutoring session, or phone-based booking -- which is exactly the use case a five-cent-a-minute API price is built to scale."
+          ]
+        },
+        {
+          "title": "3) A Legal AI Unicorn Quietly Swaps Its Model for a Chinese Open-Weight Base",
+          "paragraphs": [
+            "Harvey, the OpenAI-backed legal AI startup, launched Tenet: its first in-house model, built not from scratch but by post-training Moonshot AI's open-weight Kimi K3 on legal filings, contracts, and lawyer-annotated data. Tenet posted an 82% relative improvement on a contracts benchmark and now ranks first on that test, second overall on the broader legal benchmark suite -- despite Harvey previously building its product entirely on customized closed models from Anthropic, OpenAI, and Google. The concept, simply: Kimi K3 is a \"mixture-of-experts\" model -- 2.8 trillion parameters exist in total, but only about 104 billion of them activate for any single request, routed through roughly 900 specialist sub-networks. \"Post-training\" means Harvey didn't train that huge base model itself; it took the freely available weights and further trained them specifically on legal text, the same way a generalist new hire gets specialized on-the-job training rather than a fresh law degree.",
+            "Why it matters: a well-funded, US-based startup backed by OpenAI itself choosing a Chinese open-weight base over the closed American models it used to rely on is a concrete data point in a trend this series keeps returning to -- open-weight models are now good enough, and cheap enough to specialize, that even companies aligned with the closed labs are pulled toward them for the parts of their product that need to be genuinely excellent at one narrow job."
+          ]
+        }
+      ],
+      "market_signal": "AI Companion Apps Quietly Became a $120-Million-a-Year Category There are now roughly 128 AI companion apps in active distribution, up from just 16 three years ago, and the category is on track to clear $120 million in 2026 revenue. Scale is already concentrated: Character.AI has passed 50 million downloads, Replika reports 25-30 million users, and Snapchat's built-in My AI is cited above 150 million users. Most of the 128 apps are still chasing product-market fit; a handful of platforms have already pulled decisively ahead on retention and engagement.",
+      "practical_takeaway": [
+        {
+          "title": "Before you turn on an agentic CI workflow, know exactly what credentials it holds.",
+          "body": "Agentic Workflows and this week's other agent stories share the same lesson: these systems increasingly run unattended with real repository or account access. Scope permissions tightly and require human approval on anything that writes or publishes, before you let one run on a schedule."
+        },
+        {
+          "title": "If you're building a vertical AI product, check whether a post-trained open-weight base already beats a closed API for your domain.",
+          "body": "Harvey didn't train a legal model from scratch -- it specialized an existing open base. That's usually far cheaper than either training from zero or paying indefinitely for a general-purpose closed model's ceiling, and worth benchmarking before you commit to either extreme."
+        },
+        {
+          "title": "Treat any AI service whose only safeguard is a credit card number as a service with no safeguard.",
+          "body": "Abliteration.ai's free tier produced genuinely dangerous output for a reporter with nothing but an email address. If a platform can be misused at no real cost to the user, assume it will be, regardless of who the founders say the target customer is."
+        }
+      ]
+    },
+    {
       "date": "2026-09-14",
       "display_date": "September 14, 2026",
       "issue": 170,
