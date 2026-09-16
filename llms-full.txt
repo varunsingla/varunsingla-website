@@ -1,6 +1,46 @@
 # Varun Singla · AI Learning Journal — full text
 
-Complete text of all 177 journal entries by Varun Singla (https://varunsingla.com), newest first. Index: https://varunsingla.com/llms.txt
+Complete text of all 178 journal entries by Varun Singla (https://varunsingla.com), newest first. Index: https://varunsingla.com/llms.txt
+
+---
+
+# Day 178: three stories about AI's power question being fought on three separate battlegrounds at once -- the
+
+Date: September 16, 2026 · Author: Varun Singla · URL: https://varunsingla.com/entries/2026-09-16.html · Themes: Governance & Safety
+
+White House publicly attacking the industry's most safety-vocal CEO, two of music's biggest publishers dragging that CEO's own company into a billion-dollar courtroom, and a state-backed Chinese lab handing away a frontier-class agent for free, no announcement required.
+
+**Viral app of the day: Higgsfield: The Camera-Preset App That Turned Into a $500M-a-Year Business**
+Higgsfield AI, a 15-month-old startup founded by an ex-Snap executive, has grown to roughly 25 million users and a $500 million annualized revenue run-rate, up from nothing, and now counts 390 Fortune 500 companies as customers of its agentic marketing suite. It just launched a 'Virality Predictor' that scores a generated video's odds of taking off before it's even posted. Why it's taking off: instead of asking users to write a good prompt, Higgsfield offers a menu of named camera moves -- crash zoom, bullet-time, FPV, 360 orbit -- that anyone can apply to a photo or clip in seconds and get a genuinely impressive result. Those clips are the marketing: viewers on TikTok and Instagram who ask 'how was that made' become the next batch of users, so the product's growth loop runs almost entirely on the content it produces rather than on advertising.
+
+**By the numbers:**
+- $150,000 — Max statutory damages per song Sony & Warner Chappell seek from Anthropic
+- 744B — Parameters in Shanghai AI Lab's free, MIT-licensed Atria Dawn Preview
+- $500M — Higgsfield's annualized revenue run-rate, up from zero 15 months ago
+- $750B — Hyperscaler AI capex committed for 2026, nearly double 2025's spend
+
+## 1) A Sitting President Publicly Attacks an AI CEO Over His Own Safety Warnings
+
+On September 14, President Trump used Truth Social to reject calls for AI regulation and mock Anthropic CEO Dario Amodei by name, writing that the only 'guardrail' AI needs is 'a STRONG AND SMART (High IQ!) PRESIDENT' and accusing Amodei of 'pretending to be a perfect little angel.' The post followed Amodei's essay 'We Must Pace the Frontier,' which argued AI labs should deliberately slow the release of more powerful models by a year or two so safety research and control measures can catch up -- a proposal Elon Musk and Sam Altman had both publicly backed. It is the latest round in an escalating fight: the Trump administration has already had the Pentagon flag Anthropic as a supply-chain risk and delayed release of its Mythos model. The concept, simply: there are two competing theories of how to handle a powerful, fast-moving technology. One says slow down deliberately so oversight keeps pace with capability -- the way a new drug goes through phased trials before wide release. The other says the real risk is falling behind a geopolitical rival, so speed itself is the safety strategy. Amodei is arguing the first; the administration's response argues the second, and is now treating public safety advocacy from a lab's own CEO as something close to disloyalty. Why it matters: this is no longer a technical disagreement happening in papers and Senate hearings -- it is a president personally attacking a named CEO on social media for saying AI might need to move slower. That raises the cost of any AI lab being candid about risk in public, right as the industry keeps shipping more capable and more autonomous systems with less external agreement on how carefully any of it should be checked first.
+
+## 2) Two of Music's Biggest Publishers Sue Anthropic Over How It Got Its Training
+
+Sony Music Publishing and Warner Chappell filed a joint lawsuit against Anthropic on August 29, calling it one of 'the largest and most blatant ongoing thefts of intellectual property in history.' The complaint alleges Anthropic ran a systematic campaign of torrenting and scraping lyrics and sheet music -- through pirate sources like Library Genesis and licensed lyric sites such as Musixmatch and LyricFind -- covering songs from 'Eye of the Tiger' to Taylor Swift's 'Paper Rings.' The publishers are seeking a jury trial and up to $150,000 per infringed song, plus $25,000 for every instance of stripped copyright metadata. It follows a separate case in which Anthropic already agreed to pay $1.5 billion after a judge ruled that training on copyrighted books was legal, but acquiring the copies through piracy was not.
+
+The concept, simply: US courts are increasingly splitting this issue into two separate questions. Question one -- can a model legally learn from copyrighted material at all -- has trended toward 'yes, that can be fair use.' Question two -- did the company have the right to possess that copy in the first place -- is a completely different, much older kind of case, no different from downloading a pirated movie. Winning the first argument does not protect a lab from losing the second.
+
+Why it matters: the exposure here isn't really about AI at all -- it's ordinary piracy law applied at industrial scale, and it can dwarf the eventual value of the fair-use debate. Every lab that built an early training corpus from convenient, unlicensed sources now has the same billion-dollar-shaped liability sitting in its history, whatever a court eventually decides about training itself.
+
+## 3) A Chinese State Lab Quietly Drops a Free, 744-Billion-Parameter Agent Model
+
+On September 11, a GitHub repository named Atria-Dawn-Preview simply appeared, credited to the Shanghai Artificial Intelligence Laboratory -- the state-backed institute behind the InternLM model family. Built on a 744-billion-parameter mixture-of-experts base and MIT-licensed with no fine print, it landed on Hugging Face three days before its own research paper and with no press release at all. Across 16 benchmarks measuring real research, engineering, and multi-step digital work, the paper reports it is competitive with frontier agents and posts the top score on five of them.
+
+The concept, simply: a 'mixture-of-experts' model splits its knowledge across many specialist sub-networks and only activates a fraction of them for any given request, which is how a model with 744 billion total parameters can still run at a fraction of that cost per query. An 'agentic' model is tuned specifically to work in a loop -- try a step, read the result, adjust, try again -- rather than just answering a single question well. Why it matters: this is the same pattern this series keeps returning to, just with the volume turned up further -- a frontier-class agent model, fully open-weight, released with zero monetization attached and barely an announcement. Every closed lab charging per-token API pricing for agentic capability now has to justify that price against a free, state-subsidized alternative that any GPU-rich team can simply download.
+
+**Practical takeaways:**
+- If your product trains on scraped internet text, audit provenance, not just licensing. — The Sony/Warner Chappell suit shows courts increasingly treat 'was training this fair use' and 'how did you obtain the copy' as two separate questions -- and the second one, ordinary piracy law, is where the biggest exposure sits regardless of how the first is eventually decided.
+- Don't assume a closed frontier lab's API pricing is safe from a free state-backed alternative. — Atria Dawn Preview is the latest in a run of frontier-class, open-weight releases from Chinese labs with no monetization plan attached. Before committing to an expensive closed API for an agentic workload, benchmark it against whatever the current free alternative can do.
+- If your growth depends on content spreading itself, invest in the preset, not the prompt box. — Higgsfield grew by making a great-looking result a menu click away, not by rewarding prompting skill. The easier a tool makes it to look impressive immediately, the more its own output does the marketing.
 
 ---
 
