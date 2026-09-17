@@ -6,6 +6,73 @@
   },
   "learnings": [
     {
+      "date": "2026-09-17",
+      "display_date": "September 17, 2026",
+      "issue": 173,
+      "title": "three stories about who gets to check AI companies' work -- OpenAI, Anthropic, and Google",
+      "focus_intro": "DeepMind confirm they've spent weeks negotiating a shared safety pact, a three-year-old China chip ban turns out to have a paperwork-sized hole in it days before the two countries' first AI summit, and investors price an autonomous coding startup as if it's already replacing engineers.",
+      "viral_app": {
+        "name": "Kling AI's Motion Control 3.0 Turns Any Photo Into a Viral Dance Video",
+        "description": "Kling AI's Motion Control 3.0 feature -- which lets anyone upload a single photo, pick a reference dance clip, and get back a video of that photo performing the exact choreography -- is powering the \"AI Baby Dance\" trend that has racked up more than 500 million views on TikTok this month. The tool's \"Element Binding\" captures the movement, rhythm, and gestures from a source video and reapplies them to any character a user uploads, turning a static photo into a shareable dance clip in under a minute.",
+        "stats": []
+      },
+      "stats": [
+        {
+          "stat": "$1.5T",
+          "label": "OpenAI's reported target valuation in a new private funding round, up from $730B"
+        },
+        {
+          "stat": "$5.6B",
+          "label": "Advanced Nvidia hardware Aivres exported via a gap in Washington's China chip ban"
+        },
+        {
+          "stat": "500M+",
+          "label": "TikTok views on the AI Baby Dance trend powered by Kling's Motion Control 3.0"
+        },
+        {
+          "stat": "$5B",
+          "label": "Factory's valuation after tripling in five months on its autonomous coding \"Droids\""
+        }
+      ],
+      "sections": [
+        {
+          "title": "1) OpenAI, Anthropic, and Google DeepMind Confirm Weeks of Safety Talks,",
+          "paragraphs": [
+            "On September 16, OpenAI's global policy chief Chris Lehane confirmed to reporters in Washington that OpenAI, Anthropic, and Google DeepMind have spent weeks quietly discussing a shared approach to AI safety -- talks that trace back to a July essay by DeepMind CEO Demis Hassabis proposing a FINRA-style, US-led standards body to test frontier models before release. The catalyst turned public on September 12, when Anthropic CEO Dario Amodei published \"We Must Pace the Frontier,\" urging labs to deliberately slow model releases by a year or two so safety research can catch up -- the same essay President Trump mocked him for by name two days later. Amodei and OpenAI's Sam Altman have now both said their companies will give independent evaluators like METR and Redwood Research unprecedented access to test systems before deployment; Meta and xAI haven't made the same commitment, and Google DeepMind itself, despite proposing the standards body, hasn't committed to embedding evaluators either. The concept, simply: an \"independent evaluator\" is an outside group with no stake in a lab's release timeline that gets to test a not-yet-released model and report what it finds -- the same relationship an outside auditor has to a company's books, instead of the company grading its own homework. A \"standards body\" would be a shared industry group, not a government agency, that decides what tests every major model has to pass before shipping.",
+            "Why it matters: three fierce competitors are agreeing to let outsiders slow them down together, at the exact moment a sitting president is publicly punishing the one CEO who said the quiet part out loud. Whether the pact means anything depends on whether Meta and xAI eventually join it -- a voluntary safety standard that only half the frontier labs follow doesn't actually raise the floor."
+          ]
+        },
+        {
+          "title": "2) A Paperwork Gap Let Banned Nvidia Chips Keep Flowing to China -- Days",
+          "paragraphs": [
+            "An investigation published this week found that Aivres, the US-based subsidiary of blacklisted Chinese server maker Inspur Group, exported at least $5.6 billion in advanced computing hardware to Southeast Asia between April 2024 and February 2026 -- including more than $3 billion in servers built around Nvidia's most advanced Blackwell chips. Because Aivres itself was never separately named on Washington's Entity List, even though parent company Inspur was blacklisted back in 2023, the shipments went through legally while ultimately serving Chinese customers including ByteDance and Alibaba. The finding surfaced days before a planned mid-September US-China AI summit -- the first official AI dialogue between Washington and Beijing since Trump's second term began -- that Treasury Secretary Scott Bessent is expected to lead. The concept, simply: an Entity List ban only restricts the specific legal entities named on it. If a blacklisted parent company has a US-based subsidiary that was never separately listed, that subsidiary can keep buying and re-exporting the same restricted chips completely legally, just one corporate address away from the ban. Why it matters: this is the second time in a year a paperwork gap, not an actual smuggling ring, turns out to be doing more to move restricted chips into China -- and it lands right as both governments are supposed to sit down and negotiate AI chip rules in good faith."
+          ]
+        },
+        {
+          "title": "3) Autonomous Coding Startup Factory Triples Its Valuation to $5 Billion in Five",
+          "paragraphs": [
+            "Factory, the startup behind a fleet of autonomous coding agents it calls \"Droids,\" raised $200 million this week at a $5 billion valuation -- its third raise in five months, up from $1.5 billion in April and $4 billion in July. Droids are built to handle full engineering workflows without a human in the loop: triaging an incident, refactoring a module, writing and running their own tests, and moving between those tasks the way a human engineer would context-switch across tools. The round, backed by Blackstone, Sequoia Capital, and Khosla Ventures among others, lands as companies including Coinbase and Block publicly restructure engineering teams around AI-agent productivity gains.",
+            "The concept, simply: most AI coding tools still wait for a person to ask a question and hand back a suggestion. An \"autonomous coding agent\" instead gets assigned a task the way a teammate would, and is trusted to plan the steps, edit across multiple files, run the test suite, and only come back once the job is done or it's stuck. Why it matters: a startup tripling its valuation every couple of months isn't just a funding story -- it's investors pricing in that autonomous engineering agents are close enough to replacing chunks of human engineering work that enterprises are already reorganizing teams around them, before the technology has finished proving itself on the benchmarks the industry uses to measure it."
+          ]
+        }
+      ],
+      "market_signal": "OpenAI in Talks for a $1.5 Trillion Valuation -- More Than Double Its Last Round OpenAI is discussing a private funding round that would value the company at roughly $1.5 trillion, according to reporting on September 16 -- more than double its most recent $730 billion valuation, and coming just days after Sam Altman ruled out a 2026 public listing, citing AI safety as the reason. The round is being framed as one more private stop on the way to an eventual IPO rather than a replacement for one.",
+      "practical_takeaway": [
+        {
+          "title": "Don't treat a lab's safety pledge as settled policy -- check who actually signed it.",
+          "body": "Only Anthropic and OpenAI have committed to embedding independent evaluators so far; Meta, xAI, and even Google DeepMind (which proposed the standards body) haven't. If you're choosing a model vendor partly on safety practices, ask which specific commitments a lab has made, not which industry statement it was quoted supporting."
+        },
+        {
+          "title": "When evaluating export-control or vendor-compliance exposure, check subsidiaries, not just the parent company's blacklist status.",
+          "body": "The Aivres/Inspur gap shows a sanctioned company's US-based subsidiary can legally keep shipping the same restricted hardware if it was never separately named. The same logic applies to any vendor risk review: a banned parent doesn't guarantee a banned subsidiary."
+        },
+        {
+          "title": "If you're evaluating autonomous coding agents, benchmark end-to-end tasks, not single-file completions.",
+          "body": "Factory's valuation jump reflects a bet on agents that can triage, refactor, and test without supervision -- a different and harder capability than autocomplete-style suggestions. Test any agent you're considering on a real multi-step task before trusting it with one."
+        }
+      ]
+    },
+    {
       "date": "2026-09-16",
       "display_date": "September 16, 2026",
       "issue": 172,
