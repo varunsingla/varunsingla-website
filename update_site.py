@@ -1141,15 +1141,25 @@ def parse_pdf(pdf_path: Path) -> dict:
     # Scan ALL tables across all pages for 'VIRAL APP OF THE DAY' header
     viral_app: dict | None = None
 
+    # Anchored: only matches when the ENTIRE line/cell is the header itself,
+    # not when the phrase merely appears inside a longer sentence (e.g. a
+    # stat label like "Downloads of EcoGPT, the viral app built on ..."
+    # would otherwise be mistaken for the section header on an earlier page).
+    _viral_hdr_line = re.compile(
+        r'^[n•]*\s*(viral app(\s+of\s+the\s+day)?|viral\s*/\s*open.source spotlight|'
+        r'open.source spotlight|viral spotlight|oss spotlight)\s*[:\s]*$', re.I
+    )
+
     for pi, pd in enumerate(page_data):
-        # Check BOTH table cells AND page lines for "viral app" signal
-        flat_cells = ' '.join(
-            str(cell) for tbl in pd['tables']
+        # Check BOTH table cells AND page lines for a standalone "viral app"
+        # header — never a substring match against a full line/sentence.
+        _has_hdr_cell = any(
+            _viral_hdr_line.match(str(cell).strip())
+            for tbl in pd['tables']
             for row in tbl['data'] for cell in (row or []) if cell
         )
-        flat_lines = ' '.join(pd['lines'])
-        _viral_hdr = r'viral app|viral\s*/\s*open.source|open.source spotlight|viral spotlight|oss spotlight'
-        if not re.search(_viral_hdr, flat_cells + ' ' + flat_lines, re.I):
+        _has_hdr_line = any(_viral_hdr_line.match(ln.strip()) for ln in pd['lines'])
+        if not (_has_hdr_cell or _has_hdr_line):
             continue
 
         # ── Extract viral app from this page (once, not per-table) ──────────
@@ -1162,7 +1172,7 @@ def parse_pdf(pdf_path: Path) -> dict:
 
         for ln in pd['lines']:
             ln_c = re.sub(r'^[n•]+\s+', '', ln).strip()
-            if re.search(_viral_hdr, ln_c, re.I):
+            if _viral_hdr_line.match(ln_c):
                 found_viral_header = True
                 continue
             if not found_viral_header:
@@ -1189,10 +1199,12 @@ def parse_pdf(pdf_path: Path) -> dict:
                     name_parts.append(ln_c)
                     combined = ' '.join(name_parts)
                     # A title line ending on an article/preposition ("...for a",
-                    # "...Default for") is mid-phrase, not a complete title —
-                    # keep collecting even though it ends in lowercase.
+                    # "...Default for") or a possessive ("...World's") is
+                    # mid-phrase, not a complete title — keep collecting even
+                    # though it ends in lowercase.
                     ends_midphrase = bool(re.search(
-                        r'\b(a|an|the|for|of|to|and|or|in|on|with|by)$', ln_c, re.I))
+                        r"\b(a|an|the|for|of|to|and|or|in|on|with|by)$", ln_c, re.I
+                    )) or ln_c.endswith("'s")
                     if (re.search(r'[a-z]$', ln_c) and not ends_midphrase) or len(combined) > 80:
                         app_name = combined
                 continue
