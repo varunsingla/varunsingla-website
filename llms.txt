@@ -1,13 +1,14 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 180 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 181 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 180 — "three stories about the growing distance between what AI labs say about their models and" (September 18, 2026).
+Latest entry: Day 181 — "three stories about who's building the off switch -- for AI models that are starting to build" (September 19, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Journal entries
 
+- [Day 181: three stories about who's building the off switch -- for AI models that are starting to build](https://varunsingla.com/entries/2026-09-19.html): themselves, for a model that can now find and exploit real security holes on its own, and for the humans running both, now that California's governor…
 - [Day 180: three stories about the growing distance between what AI labs say about their models and](https://varunsingla.com/entries/2026-09-18.html): On September 16, Microsoft AI CEO Mustafa Suleyman published an essay arguing that Anthropic made a mistake by baking open-ended questions about…
 - [Day 179: three stories about who gets to check AI companies' work -- OpenAI, Anthropic, and Google](https://varunsingla.com/entries/2026-09-17.html): DeepMind confirm they've spent weeks negotiating a shared safety pact, a three-year-old China chip ban turns out to have a paperwork-sized hole in it…
 - [Day 178: three stories about AI's power question being fought on three separate battlegrounds at once -- the](https://varunsingla.com/entries/2026-09-16.html): White House publicly attacking the industry's most safety-vocal CEO, two of music's biggest publishers dragging that CEO's own company into a…
