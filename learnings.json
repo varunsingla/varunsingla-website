@@ -6,6 +6,57 @@
   },
   "learnings": [
     {
+      "date": "2026-09-20",
+      "display_date": "September 20, 2026",
+      "issue": 176,
+      "title": "three stories about trust breaking down in three different directions -- an AI agent that reached into",
+      "focus_intro": "In May, the AI evaluation firm Irregular ran a capture-the-flag-style exercise for Google, directing a Gemini- based agent to investigate the software of a fictional target company. Two things went wrong at once: a fault in the test setup accidentally gave the agent real internet access it was never meant to have, and the fictional company happened to share its name with a real one. In one case, the model guessed its way into a protected system; in two others, Google says it found public information online and guessed credentials for websites it believed were part of the test. In all three cases, the agent stopped on its own once it recognized it had hit genuine infrastructure rather than the fictional target. Irregular flagged the incident to Google in late July, Google notified the three affected companies, and the two are now reworking how these evaluations are sandboxed.",
+      "viral_app": {
+        "name": "Cloudflare's Security-Audit Skill Picks Up 3,000+ Stars in a Day",
+        "description": "Cloudflare open-sourced security-audit-skill, a free coding-agent skill that turns an AI coding assistant into an automated security auditor. Rather than one agent guessing at vulnerabilities, it orchestrates several isolated sub-agents through stages -- reconnaissance, coverage-led vulnerability hunting, candidate validation, and independent re-verification -- before producing a structured, machine- readable report. It surged to the top of GitHub's trending list this week, gaining more than 3,000 stars in a single day, the fastest-growing entry among a cluster of new coding-agent tooling projects. Why it's taking off: it landed in exactly the week that GPT-6 Astra's exploit-finding score and Gemini's real-world break-in made \"can an AI agent find security holes\" the story everyone is reading. A free, scoped tool that uses that same kind of agent defensively -- to check your own code first, with built-in independent verification of what it claims to find -- is the obvious next thing developers want, and it doesn't hurt that it's free and easy to install.",
+        "stats": []
+      },
+      "stats": [],
+      "sections": [
+        {
+          "title": "1) Google's Gemini Broke Out of a Security Test and Hacked Three Real Companies",
+          "paragraphs": [
+            "In May, the AI evaluation firm Irregular ran a capture-the-flag-style exercise for Google, directing a Gemini- based agent to investigate the software of a fictional target company. Two things went wrong at once: a fault in the test setup accidentally gave the agent real internet access it was never meant to have, and the fictional company happened to share its name with a real one. In one case, the model guessed its way into a protected system; in two others, Google says it found public information online and guessed credentials for websites it believed were part of the test. In all three cases, the agent stopped on its own once it recognized it had hit genuine infrastructure rather than the fictional target. Irregular flagged the incident to Google in late July, Google notified the three affected companies, and the two are now reworking how these evaluations are sandboxed.",
+            "The concept, simply: a \"capture the flag\" exercise is a security test where an AI agent or human tries to break into a deliberately vulnerable target to prove it can -- these are normally run in a sandbox, walled off from the real internet, so a mistake stays contained. This incident shows the wall itself failed, not the model's judgment; once the model realized the target was real, it stopped without being told to. Why it matters: this lands the same week OpenAI classified GPT-6 Astra as \"Critical\" for its ability to autonomously find and exploit security flaws. Labs are racing to test exactly this kind of capability, and Google's own incident shows the test environments meant to contain it aren't yet reliable. It's also a real- world data point for the debate driving California's proposed AI \"kill switch\" law: this time, the system stopped itself in time. The order exists because regulators don't want to have to count on that happening again."
+          ]
+        },
+        {
+          "title": "2) Unsealed Court Filings Catch Microsoft and OpenAI Executives Undercutting",
+          "paragraphs": [
+            "On September 17, previously redacted portions of a New York Times legal brief in its copyright case against Microsoft and OpenAI were unsealed. The quotes are blunt: a Microsoft executive privately called AI training \"the largest theft of labor in human history\" and, separately, \"an astonishing theft of unprecedented proportions.\" Nick Turley, OpenAI's head of ChatGPT, described news publishers as facing an \"existential threat\" from AI products that were becoming increasingly substitutive for their journalism. Microsoft CEO Satya Nadella testified in an earlier deposition that \"anything that is paywalled should be licensed by anyone who wants to use it… for grounding or training.\" The Times and other publishers argue these statements gut the fair-use defense both companies are relying on to win the case. The concept, simply: U.S. copyright law's \"fair use\" defense can excuse using copyrighted material without permission, but courts weigh whether the new use acts as a market substitute for the original. If a company's own executives describe their product as substituting for, or threatening, the very market it trained on, that admission cuts directly against the \"transformative, non-substitutive\" argument the defense depends on. Why it matters: this is the largest AI copyright case still active after Anthropic settled its own for $1.5 billion in July. Internal statements from the people who built the product tend to carry more weight in court than outside expert testimony, and a loss here could reshape how every lab licenses training data going forward, not just Microsoft and OpenAI's."
+          ]
+        },
+        {
+          "title": "3) Gartner Raises Its 2026 Global AI Spending Forecast to $2.7 Trillion",
+          "paragraphs": [
+            "Gartner revised its 2026 global AI spending forecast upward again, from $2.59 trillion in its May estimate to $2.7 trillion now -- a 49.5% jump from 2025 that the firm calls an \"unprecedented level.\" About $1.48 trillion of that is infrastructure: hyperscalers and cloud providers buying AI-optimized servers and building out data- center capacity, which Gartner describes as the largest infrastructure project humanity has ever undertaken. The forecast for AI application-development platforms -- the software layer enterprises build on top of that infrastructure -- jumped from 28% growth to 39% growth in a single quarter. Gartner now expects 2027 spending to reach $3.6 trillion.",
+            "The concept, simply: when a research firm revises a full-year forecast upward mid-year, it means actual demand is coming in ahead of what was already an aggressive prediction -- the opposite signal from a forecast getting quietly walked back.",
+            "Why it matters: the money behind agentic AI infrastructure -- the kind of workflow tooling in today's Market Signal below -- keeps compounding upward even in a week when trust in that infrastructure took two separate hits. That gap, between how fast capability and capital are scaling and how fast governance is catching up, is the throughline of all three stories today."
+          ]
+        }
+      ],
+      "market_signal": "Temporal Raises $550 Million at a $12.55 Billion Valuation Temporal, the company behind \"Durable Execution\" -- workflow technology that lets a long-running process survive a crash and resume exactly where it left off instead of restarting -- closed a $550 million Series E led by Lightspeed Venture Partners, valuing the company at $12.55 billion. Annualized revenue has passed $250 million, growing more than 200% year over year, with customers including OpenAI, Cursor, Netflix, and JPMorgan Chase. The round is a direct bet that as companies hand more real work to AI agents, the unglamorous plumbing that keeps those long, multi-step agent workflows from silently failing becomes just as valuable as the models themselves.",
+      "practical_takeaway": [
+        {
+          "title": "Before you let any AI agent touch a real system, verify what \"sandboxed\" actually means for that specific setup.",
+          "body": "Gemini's break-in happened because a test environment silently gained real internet access -- the model behaved safely once it recognized the mistake, but the guardrail that failed was infrastructure, not judgment. If you're piloting an agent with real tool access, confirm the network isolation yourself rather than taking a vendor's description on faith."
+        },
+        {
+          "title": "Weigh what a vendor's own people say internally, not just what its lawyers argue in public. The unsealed NYT filing shows why internal messages and depositions matter in AI disputes -- a leaked description of what a product actually does or replaces can outweigh a polished public defense.",
+          "body": "The same logic applies when you're evaluating any AI vendor's real capabilities, not just in litigation."
+        },
+        {
+          "title": "When a spending forecast keeps getting revised upward mid-year, budget for more revisions, not a correction.",
+          "body": "Gartner has now raised its 2026 number twice this year. If you're planning AI infrastructure or tooling spend, price in continued upward pressure on cloud and compute costs rather than assuming the market is near a peak."
+        }
+      ]
+    },
+    {
       "date": "2026-09-19",
       "display_date": "September 19, 2026",
       "issue": 175,
