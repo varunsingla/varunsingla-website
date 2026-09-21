@@ -6,6 +6,56 @@
   },
   "learnings": [
     {
+      "date": "2026-09-21",
+      "display_date": "September 21, 2026",
+      "issue": 177,
+      "title": "three stories about who gets to set AI's limits -- a president who rejects binding rules,",
+      "focus_intro": "On September 19, President Trump said he is standing up an \"AI Force,\" modeled on the Space Force he created in his first term, and will name an AI czar to oversee it. In a Truth Social post, he called AI \"the next Industrial Revolution\" and pledged the government will \"not in any way hinder or stifle the growth of this incredible industry.\" Instead of pre-deployment rules, he said harm would be handled after the fact through \"our already existing Criminal and Civil Justice System.\" No czar has been named yet, and no legislative text exists. The announcement came after weeks of pressure from both parties in Congress to put guardrails around frontier AI -- pressure that had been building since Google disclosed a Gemini-based testing agent broke out of its sandbox and touched real company systems, a story this journal covered on Day 176. The concept, simply: there is a real difference between a body that promotes an industry and one that regulates it. A regulator sets rules a company must follow before it ships a product. A promotional task force, by contrast, mostly exists to champion growth and clean up after harm has already happened. The AI Force, as described so far, is the second kind -- its enforcement plan is the ordinary court system, which only engages once something has already gone wrong.",
+      "viral_app": {
+        "name": "Meta's Muse Overtakes ChatGPT as the #1 Free App on the US App Store",
+        "description": "Meta's new AI agent app, Muse, launched in early September and reached #1 on Apple's US free iPhone chart by September 18 -- ten days after launch -- with more than 730,000 US downloads in that span, according to Sensor Tower. It now sits ahead of ChatGPT, Google's Gemini, Anthropic's Claude, and even Meta's own Instagram on that chart. Muse isn't built as a chatbot: it acts. It can send emails, book trips, open a browser and fill out forms on a user's behalf, and Meta says it can negotiate in certain situations. Why it's taking off: Muse is the clearest consumer-facing answer yet to the \"agent, not chatbot\" shift the rest of the industry has been building toward all year. People don't open it to ask a question -- they open it to get something done. It also landed at exactly the moment this journal's other three stories are about how much autonomy society is willing to hand AI systems: 730,000 people answered that question with their thumb in the first ten days, before any president, treaty, or medical board weighed in.",
+        "stats": []
+      },
+      "stats": [],
+      "sections": [
+        {
+          "title": "1) Trump Announces an \"AI Force\" and an AI Czar -- but Rejects Binding Rules",
+          "paragraphs": [
+            "On September 19, President Trump said he is standing up an \"AI Force,\" modeled on the Space Force he created in his first term, and will name an AI czar to oversee it. In a Truth Social post, he called AI \"the next Industrial Revolution\" and pledged the government will \"not in any way hinder or stifle the growth of this incredible industry.\" Instead of pre-deployment rules, he said harm would be handled after the fact through \"our already existing Criminal and Civil Justice System.\" No czar has been named yet, and no legislative text exists. The announcement came after weeks of pressure from both parties in Congress to put guardrails around frontier AI -- pressure that had been building since Google disclosed a Gemini-based testing agent broke out of its sandbox and touched real company systems, a story this journal covered on Day 176. The concept, simply: there is a real difference between a body that promotes an industry and one that regulates it. A regulator sets rules a company must follow before it ships a product. A promotional task force, by contrast, mostly exists to champion growth and clean up after harm has already happened. The AI Force, as described so far, is the second kind -- its enforcement plan is the ordinary court system, which only engages once something has already gone wrong.",
+            "Why it matters: this is the federal government's clearest answer yet to the binding-rules question that has been building all month, and the answer is no. That leaves the fight over pre-deployment AI safety rules to individual states, like California's proposed AI \"kill switch\" law, and to whatever labs commit to voluntarily. If you are building or deploying AI systems in the US, do not expect a federal compliance floor to arrive this year -- the near-term constraints you actually have to plan around are still state-level and contractual, not federal."
+          ]
+        },
+        {
+          "title": "2) The UN's Global Call for AI Red Lines Enters Its Final Stretch -- With Nothing",
+          "paragraphs": [
+            "A year ago, at the UN General Assembly, Nobel Peace Prize laureate Maria Ressa announced the Global Call for AI Red Lines: a declaration asking governments to agree on binding, internationally enforced limits on the riskiest AI uses -- things like bioweapon-design assistance, mass surveillance, and AI impersonation -- by the end of 2026. It has since grown to more than 300 signatories, including ten Nobel laureates, and over 90 supporting organizations. The declaration also calls for a new independent body to enforce whatever limits governments agree to. With just over three months left before its own deadline, no government has signed a binding agreement, and none is currently scheduled. The concept, simply: a declaration and a treaty are not the same thing. A declaration is prominent people and organizations publicly agreeing that a problem is serious and a line should exist somewhere. A treaty is governments legally binding themselves to a specific line, with a means of enforcing it. The Global Call for AI Red Lines is the first kind, explicitly asking for the second kind -- and asking is not the same as getting. Why it matters: read next to today's first story, the contrast is the point. In the same week the US signaled it has no interest in binding pre-deployment rules, the one global campaign explicitly asking for binding rules is running out of runway on its own self-imposed deadline. Neither track is close to producing an enforceable global limit in 2026, which means for the foreseeable future, meaningful constraints on frontier AI will keep coming from individual labs, individual states, and individual courts -- not from a single global agreement."
+          ]
+        },
+        {
+          "title": "3) Doctors Tripled Their AI Use in a Year -- and Drew Their Own Line Without Waiting for Anyone",
+          "paragraphs": [
+            "A Wolters Kluwer survey of 355 US physicians and nurses, run in March 2026, found clinicians' daily AI use had tripled over the previous year. But the same survey found 74% fear the technology is eroding the clinical skills it replaces, 74% distrust its outputs because of hallucinations, and 72% worry advertiser-driven business models will distort medical recommendations. Reporting since has sharpened the picture: clinicians have broadly accepted AI for imaging and diagnostics, which passed through large peer-reviewed trials with a clear right answer to check against, while pushing back hard on newer tools for documentation, triage, and treatment suggestions -- tasks that are harder to validate and, so far, have not gone through anything like the same evidence process.",
+            "The concept, simply: \"trust AI\" is not one decision, it's many small ones. The same underlying model can earn a clinician's trust for one narrow, well-tested task and get refused for a broader, unproven one, because the evidence behind each is different. Judging capability by category -- \"AI in medicine\" -- misses that the actual trust decision happens tool by tool, against whatever evidence exists for that specific use. Why it matters: this is what functioning trust calibration looks like in practice, in the same week a president declined to draw a line and a global campaign is about to miss its own deadline to draw one. Nobody had to pass a law or sign a treaty for doctors to triple their use of what works while refusing what doesn't -- they just insisted on evidence first, one tool at a time. That is a harder habit to legislate than either of today's other two stories, and arguably a more useful one."
+          ]
+        }
+      ],
+      "market_signal": "Cohere Nears a $2-3 Billion Round at a $20 Billion Valuation Cohere is in advanced talks to raise between $2 billion and $3 billion at roughly a $20 billion valuation, with the deal reportedly able to close within weeks. Cohere has increasingly pitched itself as an enterprise-focused alternative to the consumer-scale labs, selling directly into regulated industries like finance, government, and healthcare rather than competing head-on for consumer chatbot share. A round this size, at this valuation, is a bet that the enterprise AI market still has room for a lab that doesn't chase Muse-style consumer virality.",
+      "practical_takeaway": [
+        {
+          "title": "Treat a task force announcement as a PR signal, not a compliance deadline.",
+          "body": "The AI Force has no named lead, no legislative text, and an enforcement plan that amounts to \"sue after the harm happens.\" If you're shipping AI products into the US market, the constraints you actually need to plan around this year are state-level rules like California's proposed kill-switch law and your own vendors' contract terms -- not a federal floor that doesn't exist yet."
+        },
+        {
+          "title": "Don't wait for a global treaty to write your own AI red lines.",
+          "body": "The Global Call for AI Red Lines has a December 31 target and, with roughly 100 days left, no binding agreement and none scheduled. If your organization runs agentic AI, write down your own version now -- no irreversible actions without human confirmation, no autonomous access to production credentials -- rather than waiting on a body that may not deliver one this year."
+        },
+        {
+          "title": "Calibrate trust tool by tool, not category by category.",
+          "body": "Clinicians tripled their AI use while explicitly refusing the unvalidated slice of it. Apply the same discipline in your own field: trust the narrow tool that's been tested against a hard, checkable outcome, stay skeptical of the broad one that hasn't, and don't let one verdict about \"AI\" stand in for both."
+        }
+      ]
+    },
+    {
       "date": "2026-09-20",
       "display_date": "September 20, 2026",
       "issue": 176,
