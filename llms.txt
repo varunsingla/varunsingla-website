@@ -1,13 +1,14 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 183 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 184 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 183 — "three stories about who gets to set AI's limits -- a president who rejects binding rules," (September 21, 2026).
+Latest entry: Day 184 — "three stories about the gap between what AI companies promise and what actually" (September 22, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Journal entries
 
+- [Day 184: three stories about the gap between what AI companies promise and what actually](https://varunsingla.com/entries/2026-09-22.html): On September 18, four paying subscribers to ChatGPT, Claude, Grok, and Gemini filed a proposed class-action antitrust lawsuit in the U.S.
 - [Day 183: three stories about who gets to set AI's limits -- a president who rejects binding rules,](https://varunsingla.com/entries/2026-09-21.html): On September 19, President Trump said he is standing up an "AI Force," modeled on the Space Force he created in his first term, and will name an AI…
 - [Day 182: three stories about trust breaking down in three different directions -- an AI agent that reached into](https://varunsingla.com/entries/2026-09-20.html): In May, the AI evaluation firm Irregular ran a capture-the-flag-style exercise for Google, directing a Gemini- based agent to investigate the…
 - [Day 181: three stories about who's building the off switch -- for AI models that are starting to build](https://varunsingla.com/entries/2026-09-19.html): themselves, for a model that can now find and exploit real security holes on its own, and for the humans running both, now that California's governor…
