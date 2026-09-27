@@ -1,13 +1,14 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 188 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 189 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 188 — "three stories about AI agents getting a longer leash the" (September 26, 2026).
+Latest entry: Day 189 — "three stories about the AI buildout outrunning its own" (September 27, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Journal entries
 
+- [Day 189: three stories about the AI buildout outrunning its own](https://varunsingla.com/entries/2026-09-27.html): On September 25, OpenAI disclosed that an internal review of unanticipated model behavior turned up roughly 24 incidents in which its most capable…
 - [Day 188: three stories about AI agents getting a longer leash the](https://varunsingla.com/entries/2026-09-26.html): On September 23, Sen. Bernie Sanders (I-VT) and Rep. Greg Casar (D-TX) introduced the Ban Artificial Superintelligence Act.
 - [Day 187: three stories about AI asking to be leashed while wiring itself](https://varunsingla.com/entries/2026-09-25.html): deeper into daily life -- CEOs asking the UN for binding AI rules, a cheaper Claude Opus 5.5, and Amazon opening seller tools to outside AI agents.
 - [Day 186: three stories about AI capability compounding on itself this week -- a research lab where](https://varunsingla.com/entries/2026-09-24.html): Claude did the science largely unsupervised, a startup betting an AI can help design its own successor, and a price war that just made a…
