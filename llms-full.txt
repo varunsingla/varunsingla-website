@@ -1,6 +1,48 @@
 # Varun Singla · AI Learning Journal — full text
 
-Complete text of all 191 journal entries by Varun Singla (https://varunsingla.com), newest first. Index: https://varunsingla.com/llms.txt
+Complete text of all 192 journal entries by Varun Singla (https://varunsingla.com), newest first. Index: https://varunsingla.com/llms.txt
+
+---
+
+# Day 192: AI Learning -- Day 186
+
+Date: September 30, 2026 · Author: Varun Singla · URL: https://varunsingla.com/entries/2026-09-30.html · Themes: Foundations & Protocols
+
+At its DevDay on September 29, OpenAI released GPT-6.1 Sol, one week after GPT-6 Sol. OpenAI says it nearly matches the flagship GPT-6 Astra on agentic coding, computer use and professional work, at one-fifth of Astra's standard token prices. Reported API prices: $2 per million input tokens, $10 per million output tokens, and $0.10 per million cached input tokens. It is available to Plus, Pro, Business, Enterprise and Edu users in ChatGPT and Codex, and to developers as gpt-6.1-sol.
+
+**Viral app of the day: Today's pick: OpenAI "dots", always-on agents inside ChatGPT. Announced at DevDay, each dot runs on**
+GPT-6 Astra, gets its own cloud computer and browser, and works toward goals you give it around the clock, rather than only when you type. Coverage compares it to Meta's Muse and SpaceXAI's Grok Bot. Why it is taking off: it shifts the chat model from ask-and-wait to delegate-and-check-back. You could tell a dot to watch a price, track a topic or keep a spreadsheet up to date, and it does so while you sleep. It launches with ChatGPT's reach behind it. Caution: an agent with its own browser that runs 24/7 is exactly where the Day 185 lesson applies: what may it touch, and does it stop at an access-denied? Start with narrow, low-stakes goals.
+
+## 1) OPENAI MAKES ITS NEAR-BEST MODEL FIVE TIMES CHEAPER
+
+At its DevDay on September 29, OpenAI released GPT-6.1 Sol, one week after GPT-6 Sol. OpenAI says it nearly matches the flagship GPT-6 Astra on agentic coding, computer use and professional work, at one-fifth of Astra's standard token prices. Reported API prices: $2 per million input tokens, $10 per million output tokens, and $0.10 per million cached input tokens. It is available to Plus, Pro, Business, Enterprise and Edu users in ChatGPT and Codex, and to developers as gpt-6.1-sol. The concept, explained simply: AI is billed in tokens, roughly word fragments. You pay for tokens going in (your prompt and documents) and tokens coming out (the answer). Cached input is a discount for text the model has already seen: an agent that re-sends the same instructions and files on every step pays 95% less for that repeated part. Agents loop dozens of times per task, so cached pricing matters more to them than headline price.
+
+Why it matters: when a model that is almost as good costs a fifth as much, tasks that were too expensive to automate (long-running agents, bulk document review) flip to worthwhile. Expect rivals to answer on price, and expect teams to route easy steps to a cheaper model and reserve the flagship for hard ones.
+
+## 2) SPEED BECOMES A PRODUCT TIER: ULTRAFAST AND PRO 500
+
+OpenAI also introduced Ultrafast, a premium speed tier that generates tokens up to 8x faster in Codex and up to 6x faster in the API. It is live for GPT-6 Astra on the new Pro 500 plan ($500 per month, described as 25x the usage allowance of Plus) and on Enterprise, with GPT-6.1 Sol Ultrafast promised in the coming days. Reports from the event also say OpenAI's annualized revenue run rate has grown more than 70% since the start of Q3, to nearly $70 billion; treat that figure as company-stated. The concept, explained simply: a model has two dials besides intelligence, cost and latency. Latency is how long you wait. For a chatbot a few seconds is fine; for a coding agent that makes 200 calls in a row, an 8x speed-up turns a lunch-break task into a coffee-break task. Selling speed separately, like priority shipping, lets a provider charge more to users whose time is the expensive part. Why it matters: pricing is fragmenting into cheap-and-good (Sol), best-and-slow (Astra) and best-and-fast (Astra Ultrafast). Choosing the right tier per task is becoming a real engineering skill.
+
+## 3) WASHINGTON: THE MEETING HAPPENED, THE OUTCOME IS STILL THIN
+
+As previewed yesterday, President Trump, Speaker Mike Johnson and tech CEOs met on AI on September 29. Johnson had said beforehand it would be a discussion about the companies' responsibility to maintain safety. In the sources I could reach, I found pre-meeting coverage but no detailed readout, so specific commitments are unconfirmed. Separately, a headline reports the administration launched America.gov, an AI front door to federal services powered by Gemini and Grok; I could only confirm that headline, not product details, so treat it as provisional. It builds on earlier GSA OneGov deals that put Gemini and Grok in federal agencies at token prices.
+
+The concept, explained simply: a front door is one chat box that routes your question to the right agency service. The hard parts are not the chat but the permissions behind it, which is the same access-control lesson as the Day 185 Medicare portal story.
+
+Why it matters: the first outcome to look for is whether any pledge has a reporting deadline attached, because a pledge without one is the kind of voluntary norm that failed in the Medicare case.
+
+## 4) VECTORLESS RETRIEVAL, AS PROMISED
+
+Most RAG systems cut documents into chunks, turn each into a vector (a list of numbers capturing meaning) and fetch the chunks most similar to the question. Vectorless approaches such as the open-source PageIndex instead build a table-of-contents tree of the document and let a reasoning model walk the tree to the relevant section, the way a person flips to a chapter. Reported benefit: answers point to exact pages, so they are easy to verify, and PageIndex claims 98.7% on the FinanceBench test (a vendor-reported number). Trade-offs: more model calls, a few extra seconds, and dependence on a strong reasoning model. Why it matters: for long, structured documents (filings, contracts, manuals) traceability often matters more than speed. For huge messy collections, vector search still wins on cost. Many teams will combine the two.
+
+**Market signal:** Two reads together. First, Anthropic reported elevated errors across claude.ai, the API and Claude Code from 14:21 UTC on September 29, then a second failure blocking sign-ins and new chats until 14:59 UTC: a reminder that every provider has outages, so critical workflows need a fallback model. Second, a report on Anthropic's confidential IPO filing says it plans to spend at least $518 billion over a decade on AI infrastructure with partners including Google, Amazon, Microsoft and Broadcom (single-source; verify before relying on it). Price cuts on one side and huge compute bills on the other is the tension to watch.
+
+**Practical takeaways:**
+- Route by task, not by brand. — Send routine agent steps to a near-flagship cheaper model like GPT-6.1 Sol and keep the top model for hard steps; measure quality before switching.
+- Design prompts for caching. — Put stable instructions and reference files first and keep them identical across calls, so cached-input pricing applies.
+- Pay for speed only where waiting costs you. — Ultrafast-style tiers make sense for interactive coding loops, not overnight batch jobs.
+- Give always-on agents narrow scopes and an audit log. — Limit sites, spending and write access, and review what a dot did each day.
+- Keep a fallback vendor for critical workflows. — Yesterday's outage window was under 40 minutes but blocked sign-ins entirely; test your backup path before you need it.
 
 ---
 
