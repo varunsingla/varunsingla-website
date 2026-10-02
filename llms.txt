@@ -1,13 +1,14 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 193 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 194 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 193 — "AI Learning -- Day 187" (October 1, 2026).
+Latest entry: Day 194 — "AI Learning -- Day 188" (October 2, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Journal entries
 
+- [Day 194: AI Learning -- Day 188](https://varunsingla.com/entries/2026-10-02.html): Yesterday we flagged Argon's top scores as vendor-reported. First independent numbers have now appeared in coverage: Argon scores 53 on the…
 - [Day 193: AI Learning -- Day 187](https://varunsingla.com/entries/2026-10-01.html): Multiple outlets report that OpenAI scrapped the planned October release of GPT-6.1 Astra, its next flagship, after internal safety tests found it…
 - [Day 192: AI Learning -- Day 186](https://varunsingla.com/entries/2026-09-30.html): At its DevDay on September 29, OpenAI released GPT-6.1 Sol, one week after GPT-6 Sol.
 - [Day 191: AI Learning -- Day 185](https://varunsingla.com/entries/2026-09-29.html): Reuters-sourced reporting says President Trump, House Speaker Mike Johnson and tech CEOs are due to meet on AI on September 29.
