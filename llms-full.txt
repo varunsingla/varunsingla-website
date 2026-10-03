@@ -1,6 +1,44 @@
 # Varun Singla · AI Learning Journal — full text
 
-Complete text of all 194 journal entries by Varun Singla (https://varunsingla.com), newest first. Index: https://varunsingla.com/llms.txt
+Complete text of all 195 journal entries by Varun Singla (https://varunsingla.com), newest first. Index: https://varunsingla.com/llms.txt
+
+---
+
+# Day 195: AI Learning -- Day 189
+
+Date: October 3, 2026 · Author: Varun Singla · URL: https://varunsingla.com/entries/2026-10-03.html · Themes: Foundations & Protocols
+
+OpenAI's GPT-6 family now has three tiers: Astra (top), Sol (middle) and Luna (low cost). Coverage of the Sol and Luna launch reports API pricing of $2.00 per million input tokens and $10.00 per million output tokens for Sol, about half the $4 / $20 of GPT-5.6 Sol, with cached input at $0.20 per million. Sources disagree on exact dates (one dates the launch to September 22, another mentions a 'GPT-6.1 Sol' on September 29), so treat the timeline as reported rather than confirmed. Separate coverage says OpenAI gave every paid ChatGPT account a usage reset on October 2 as an apology for a slow Sol start.
+
+**Viral app of the day: Today's pick: Ponytail by DietrichGebert, an open-source skill (JavaScript) that makes an AI coding agent behave**
+like 'the laziest senior developer in the room', someone who looks at fifty lines, says nothing, and replaces them with one. It was first published in June 2026, reportedly reached about 44,000 stars in nine days, and is now past 150,000, still the top daily gainer today (+1,429). Why it is taking off: agents tend to over-build: more files, more code, more tokens. Ponytail tells the agent to treat new code as the last resort and look for deletions or existing solutions first. In the author's test on a FastAPI + React repository it produced 54% less code while saving 22% of tokens, 20% of cost and 27% of time (single author-reported test, not independent). Less code is also less to review and fewer places for bugs. Caution: a skill is instructions the agent obeys, so read it before installing, and run agents with limited credentials.
+
+## 1) GPT-6 SOL AND LUNA: HALF-PRICE MODELS AND THE NEW 'TIER x EFFORT'
+
+OpenAI's GPT-6 family now has three tiers: Astra (top), Sol (middle) and Luna (low cost). Coverage of the Sol and Luna launch reports API pricing of $2.00 per million input tokens and $10.00 per million output tokens for Sol, about half the $4 / $20 of GPT-5.6 Sol, with cached input at $0.20 per million. Sources disagree on exact dates (one dates the launch to September 22, another mentions a 'GPT-6.1 Sol' on September 29), so treat the timeline as reported rather than confirmed. Separate coverage says OpenAI gave every paid ChatGPT account a usage reset on October 2 as an apology for a slow Sol start.
+
+The concept, explained simply: each tier also has several 'effort' settings that control how long the model thinks before answering. One independent comparison found Sol at its highest effort only narrowly beats Astra at its lowest, while Astra costs less per task and answers in seconds where Sol can take close to two minutes. So the real decision is no longer 'which model' but 'which tier and effort for each step'. Why it matters: an agent has easy steps (rename a file) and hard steps (design a migration). Sending every step to the top tier at max effort wastes money and time. Routing cheap steps to Luna and hard ones to Astra or Sol is now a core engineering skill.
+
+## 2) GOOGLE'S FIRST TPUs IN ORBIT: PROJECT SUNCATCHER'S TEST SATELLITE
+
+Google's prototype satellite, internally called MVP, carries four Trillium-generation TPUs. Reports say it was built with Planet and set to launch on October 1, 2026 on a SpaceX Falcon 9 (Transporter-18 shared mission); Google has since been reported to have confirmed contact with it. It runs on roughly 1 kW of solar power, handles simple AI queries, and the test is planned to last about a year. Two satellites are planned for 2027 to test laser links between them.
+
+The concept, explained simply: data centers are limited by electricity and cooling on Earth. In orbit, solar panels get near-constant sunlight. But chips must survive launch vibration, radiation that flips bits, and big temperature swings. This mission is not about speed; it is about whether the hardware survives. A future orbital cluster would only be useful if satellites talk to each other at close to rack-to-rack speeds, hence the 2027 laser-link tests. Why it matters: Day 188 covered custom inference chips and portability. This is the same pressure from another side: AI is constrained by power, and labs are exploring unusual places to get it. Expect this to be a multi-year experiment, not a product.
+
+## 3) THE SKILLS AND HARNESS LAYER: BEHAVIOR, NOT MODEL, IS THE NEW LEVER
+
+Today's GitHub AI trending list is dominated by agent tooling rather than models: mattpocock/skills (about 275k stars), obra/superpowers (about 294k), affaan-m/ECC (about 271k), DietrichGebert/ponytail (about 152k, +1,429 stars in a day), and NVIDIA/OpenShell (about 14k, a secure runtime for autonomous agents). Star counts are from a trending digest and move daily.
+
+The concept, explained simply: a 'skill' is a reusable instruction package an agent loads when needed, such as 'how to write tests here' or 'how to review a diff'. A harness runs the model in a loop with tools. Together they shape how a model works without changing the model itself, like giving the same engineer a better checklist. A runtime like OpenShell goes a step further and limits what the agent can touch. Why it matters: two agents on the same model can differ widely in cost and quality because of their skills and harness. That is why this layer is where developers are investing, and why sandboxing belongs in the same conversation.
+
+**Market signal:** Price and control are the competition now. OpenAI halves Sol pricing while multiplying tier and effort options, Google explores orbital compute for power, and developers pour attention into the skills layer that decides how cheaply an agent works. Expect buyers to compare cost per finished task rather than model scores.
+
+**Practical takeaways:**
+- Route by step difficulty. — Use the cheapest tier for simple steps and reserve top tier and high effort for the hard ones.
+- Measure cost per finished task. — Include latency, retries and cached input, not only the per-token price.
+- Check dates and sources on launches. — Reports on the same release can disagree; confirm in the vendor's own notes before acting.
+- Treat skills as code. — Read a skill before installing it, pin the version, and test it on a small repo first.
+- Reduce code, not just write it. — Ask your agent to look for existing solutions and deletions before adding new files.
 
 ---
 
