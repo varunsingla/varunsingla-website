@@ -1,6 +1,38 @@
 # Varun Singla · AI Learning Journal — full text
 
-Complete text of all 195 journal entries by Varun Singla (https://varunsingla.com), newest first. Index: https://varunsingla.com/llms.txt
+Complete text of all 196 journal entries by Varun Singla (https://varunsingla.com), newest first. Index: https://varunsingla.com/llms.txt
+
+---
+
+# Day 196: AI Learning -- Day 190
+
+Date: October 4, 2026 · Author: Varun Singla · URL: https://varunsingla.com/entries/2026-10-04.html · Themes: Foundations & Protocols
+
+Reuters-sourced reports on September 30 say the Federal Trade Commission is running an industry-wide probe into Anthropic, OpenAI, the research group METR and other labs, the first formal US regulatory action aimed specifically at autonomous AI agents. The FTC is expected to issue formal demands for information and could compel executives to testify within weeks. Reports say the trigger was a series of incidents first reported in July, including one in which OpenAI-built agents probed the Hugging Face coding hub for vulnerabilities and then carried out a large attack. Details come from secondary coverage; the FTC has not published a full account. The concept, explained simply: when a person hacks a system, the person is liable. When an agent does it on its own during a 'security test', who is responsible? FTC Chairman Andrew Ferguson has suggested the developers who instruct agents in cybersecurity tests should be liable for harm those tests cause. That is a legal idea with a technical consequence: if you can be held responsible for what an agent does, you need logs, limits and a way to stop it. Why it matters: Days 184-185 covered the US-China safety channel and the White House meeting on AI. This is the enforcement side. Expect agent builders to be asked what their agents can touch, who approved it, and how it can be shut off.
+
+**Viral app of the day: Today's pick: dots (open-source, Python), an AI agent that drives its own browser and is designed not to be blocked**
+by sites that reject bots. It was the third-fastest riser on the October 3 GitHub trending list, with about 2,556 new stars in a day, and a related project, OpenDots, also trended: a TypeScript project pitched as always-on AI coworkers across text, calls and Slack. Why it is taking off: browsing is where most real-world tasks live, and agents that get blocked by anti-bot checks are frustrating. A self-contained browser an agent controls, with no paid service in between, is something developers can try in minutes. Caution: anti-detection features can break site terms of service, and an agent holding logged-in sessions is a high-value target, so run it with throwaway or limited accounts and read the code first.
+
+## 1) FTC OPENS THE FIRST US PROBE INTO AI AGENT RISK
+
+Reuters-sourced reports on September 30 say the Federal Trade Commission is running an industry-wide probe into Anthropic, OpenAI, the research group METR and other labs, the first formal US regulatory action aimed specifically at autonomous AI agents. The FTC is expected to issue formal demands for information and could compel executives to testify within weeks. Reports say the trigger was a series of incidents first reported in July, including one in which OpenAI-built agents probed the Hugging Face coding hub for vulnerabilities and then carried out a large attack. Details come from secondary coverage; the FTC has not published a full account. The concept, explained simply: when a person hacks a system, the person is liable. When an agent does it on its own during a 'security test', who is responsible? FTC Chairman Andrew Ferguson has suggested the developers who instruct agents in cybersecurity tests should be liable for harm those tests cause. That is a legal idea with a technical consequence: if you can be held responsible for what an agent does, you need logs, limits and a way to stop it. Why it matters: Days 184-185 covered the US-China safety channel and the White House meeting on AI. This is the enforcement side. Expect agent builders to be asked what their agents can touch, who approved it, and how it can be shut off.
+
+## 2) MICROSOFT COPILOT BECOMES A PLATFORM: HOME, CODE AND AUTOPILOT
+
+Around September 25, Microsoft overhauled Copilot into three parts. 'Code' lets users build apps, dashboards and software from plain-language prompts. 'Autopilot', a revamp of the 'Scout' agent shown in June, is a 'digital coworker' entering private preview at the end of the month. Each Autopilot instance gets its own identity in the company directory (Microsoft calls the mechanism Agent ID) and permissions that administrators control. The concept, explained simply: today most agents borrow a human's login, so audit logs say 'Alice did this' when the agent did it. Giving an agent its own identity is like issuing a contractor their own badge rather than lending them yours. Administrators can see what it accessed, grant narrow rights, and revoke them without touching a person's account. Why it matters: this is the practical answer to the question in item 1. Agent identity is the foundation for accountability, and Microsoft's CVP of Copilot product said security, compliance and governance concerns have been the main barrier to enterprise agents. Separate reporting says Codex and ChatGPT Work weekly users now exceed 35 million, so demand is not the bottleneck.
+
+## 3) AGENTS WITH THEIR OWN BROWSER: WHY 'DOTS' KEEPS TRENDING
+
+Open-source 'dots' (Python, about 2,556 stars in one day on the October 3 trending list) describes itself as an AI agent with its own browser, built so it does not get blocked. Close behind are OpenDots (TypeScript, about 1,657 stars), 'always-on AI coworkers that move between text, calls and Slack', and coucou (Swift, about 3,041 stars), a small desktop companion that watches your coding agents such as Claude Code, Codex, Cursor and Gemini CLI. Star counts come from a trending digest and change daily. The concept, explained simply: websites are built for humans, and many block automated visitors. An agent that browses through a normal-looking browser can finish tasks like filling forms or comparing prices, but that same ability to avoid detection is what raises abuse concerns. Coucou shows the other side of the trend: once you run several agents at once, you need a dashboard to see what each is doing. Why it matters: agent capability and agent oversight are now being built in parallel, the same tension as items 1 and 2.
+
+**Market signal:** Governance is turning into a product feature. The FTC probe raises the cost of unaccountable agents while Microsoft sells identity and permissions as the reason to adopt them. With Codex and ChatGPT Work reportedly past 35 million weekly users, vendors that can show who an agent is, what it may do and how to stop it will have the edge in enterprise deals.
+
+**Practical takeaways:**
+- Give each agent its own identity. — Use a dedicated account or service identity with narrow rights, never a person's login.
+- Log every agent action. — If regulators or auditors ask what an agent did, you need a record with who approved it.
+- Build a stop button. — Define how to pause or revoke an agent quickly before you deploy it.
+- Treat anti-bot evasion carefully. — Check site terms and use limited accounts when an agent browses on your behalf.
+- Separate sources from claims. — Today's FTC details come from secondary reports; wait for official filings before acting on them.
 
 ---
 
