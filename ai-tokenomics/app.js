@@ -124,7 +124,7 @@ function calcCost() {
 
   if (modelRoute) {
     // 70% of calls routed to a model that's ~60% cheaper
-    const cheapFactor = 0.70 * 0.40; // 70% of traffic * 60% saving = 42% saving
+    const cheapFactor = 0.70 * 0.60; // 70% of traffic * 60% saving = 42% saving
     optInMult *= (1 - cheapFactor);
     optOutMult *= (1 - cheapFactor);
     appliedFactors.push('Model routing: −42% blended cost');
