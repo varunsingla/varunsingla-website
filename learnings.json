@@ -6,6 +6,66 @@
   },
   "learnings": [
     {
+      "date": "2026-10-05",
+      "display_date": "October 5, 2026",
+      "issue": 191,
+      "title": "AI Learning -- Day 191",
+      "focus_intro": "Search-based reports this week say Nvidia released an Open Agent Safety Platform to monitor and govern agentic AI. The reported design shift is away from prompt-based safeguards (telling the model 'please do not do X') toward controls that sit outside the model and independently limit what an agent can actually do. Details come from secondary coverage; check Nvidia's own documentation before relying on specifics. The concept, explained simply: a prompt rule is a sign on the door saying 'staff only'. An external control is a lock. A model can be tricked, confused or jailbroken into ignoring text instructions, but it cannot ignore a policy layer that refuses to execute a forbidden tool call. Good agent safety therefore means checking each action (read this file, send this email, spend this money) against a rulebook before it happens, and logging the result. Why it matters: Day 190 covered the FTC probe and Microsoft's Agent ID. Those create the demand for accountability; an open, vendor-neutral enforcement layer is the kind of building block that makes it practical, and open source means teams can inspect what the guardrail really does.",
+      "viral_app": {
+        "name": "Today's pick: Agent-Reach (open-source, Python, MIT licence), a free command-line toolkit that gives an AI agent",
+        "description": "access to the internet beyond plain web pages: web, YouTube, RSS and public GitHub with no setup, plus Twitter/X, Reddit, TikTok, LinkedIn and others once you log in, and full-web semantic search through Exa. The repository page shows 91,000+ stars and 8,000+ forks; it was also on the October 5 GitHub daily trending list with roughly 980 new stars that day. Close behind on the list: Ponytail (about 1,900 stars), Impeccable (about 1,170 stars, a design language to make AI harnesses better at design) and OpenMontage (an agentic video-production",
+        "stats": []
+      },
+      "stats": [],
+      "sections": [
+        {
+          "title": "1) NVIDIA OPEN AGENT SAFETY PLATFORM: GUARDRAILS OUTSIDE THE PROMPT",
+          "paragraphs": [
+            "Search-based reports this week say Nvidia released an Open Agent Safety Platform to monitor and govern agentic AI. The reported design shift is away from prompt-based safeguards (telling the model 'please do not do X') toward controls that sit outside the model and independently limit what an agent can actually do. Details come from secondary coverage; check Nvidia's own documentation before relying on specifics. The concept, explained simply: a prompt rule is a sign on the door saying 'staff only'. An external control is a lock. A model can be tricked, confused or jailbroken into ignoring text instructions, but it cannot ignore a policy layer that refuses to execute a forbidden tool call. Good agent safety therefore means checking each action (read this file, send this email, spend this money) against a rulebook before it happens, and logging the result. Why it matters: Day 190 covered the FTC probe and Microsoft's Agent ID. Those create the demand for accountability; an open, vendor-neutral enforcement layer is the kind of building block that makes it practical, and open source means teams can inspect what the guardrail really does."
+          ]
+        },
+        {
+          "title": "2) WHITE HOUSE 'SUPER INTELLIGENCE FORCE' AND THE SECURITY BILL FOR AGENTS",
+          "paragraphs": [
+            "Reports say the Trump administration named four officials to lead a new Super Intelligence Force: DNI Jay Clayton (chair), FTC Chair Andrew Ferguson, Pentagon technology official Emil Michael and OPM Director Scott Kupor. It reports to the President and Chief of Staff and is tasked with coordinating federal engagement with AI companies, infrastructure providers and the public. Note that the FTC chair, who is already running the agent-risk probe from Day 190, sits on it.",
+            "Separately, AWS is reported to have fixed four flaws in agent software, one rated CVSS 10.0, the top severity score, and Apple said it will tighten macOS 'Full Disk Access' so apps need very explicit user action before reading files, messages and browsing history.",
+            "The concept, explained simply: CVSS is a 0-10 severity scale for software vulnerabilities, and 10.0 means easy to exploit with maximum impact. Agent frameworks are now targets because an agent usually holds keys to many systems at once. Apple's change is the same lesson on the desktop: broad file access should be an explicit, rare grant, not a default.",
+            "Why it matters: policy, platform vendors and security patches are all converging on one idea, least privilege for agents."
+          ]
+        },
+        {
+          "title": "3) THE TOKEN BILL: WHY AMD SAYS TO SPLIT AGENT WORK ACROSS CLOUD AND LOCAL",
+          "paragraphs": [
+            "AMD is urging enterprises to divide agentic workloads across cloud, data center, edge and AI PCs because always-on agents burn tokens continuously. AMD's own estimate, which is vendor-sourced and should be read as marketing, is that a 500-unit AI PC fleet with a 50/50 local-cloud split could save 40-60% over three years versus cloud-only.",
+            "The concept, explained simply: a token is a small chunk of text the model reads or writes, and cloud models bill per token. A chatbot uses tokens when you ask it something. An agent that checks mail, watches dashboards and plans in loops uses them all day. Routine, privacy-sensitive or simple steps can run on a small local model, while hard reasoning is sent to a frontier model. This is the same tiering idea as the GPT-6 Sol/Luna and Claude Sonnet/Opus effort-and-price tiers covered earlier. Why it matters: the cost of agents is becoming a design constraint. Routing each step to the cheapest model that can do it is now a core engineering skill."
+          ]
+        }
+      ],
+      "market_signal": "Safety tooling, security patches and cost control are becoming the products around agents, not the model itself. Nvidia ships governance as open source, Microsoft sells agent identity, AMD sells local compute to cut token bills and the government is organising oversight. Winners will pair capability (like Agent-Reach's reach) with proof of control: least privilege, logs, a kill switch, and a predictable cost per task.",
+      "practical_takeaway": [
+        {
+          "title": "Enforce rules outside the prompt.",
+          "body": "Put permissions in tool and policy layers that block disallowed actions, rather than only instructing the model."
+        },
+        {
+          "title": "Grant least privilege.",
+          "body": "Give an agent only the folders, accounts and tools a task needs, with no blanket disk or inbox access."
+        },
+        {
+          "title": "Patch agent frameworks.",
+          "body": "Treat agent software like any internet-facing service and track security advisories, including top-severity ones."
+        },
+        {
+          "title": "Route work by difficulty.",
+          "body": "Send simple or private steps to a small local model and only hard reasoning to a frontier model, then measure cost per task."
+        },
+        {
+          "title": "Test open tools in a sandbox.",
+          "body": "Before running a viral repo such as Agent-Reach, use limited accounts, read the install script and review what it can reach."
+        }
+      ]
+    },
+    {
       "date": "2026-10-04",
       "display_date": "October 4, 2026",
       "issue": 190,
