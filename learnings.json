@@ -6,6 +6,65 @@
   },
   "learnings": [
     {
+      "date": "2026-10-06",
+      "display_date": "October 6, 2026",
+      "issue": 192,
+      "title": "AI Learning -- Day 192",
+      "focus_intro": "Search-based reports from OpenAI's DevDay (announced Tuesday, October 6) say OpenAI released GPT-6.1 Sol, which nearly matches its top model GPT-6 Astra on agentic coding, computer use and professional work. Reported API pricing is $2 per million input tokens and $10 per million output tokens, with cached input at $0.10 per million. On DeepSWE v1.1, a test built from real software bug fixes, it is reported to score 75.2% against Astra's 74.8%. It is reported as available in ChatGPT Work and Codex for paid tiers, and in the API as gpt-6.1-sol. These figures come from secondary coverage; confirm against OpenAI's own pricing page.",
+      "viral_app": {
+        "name": "Today's pick: claude-mem (open source, TypeScript, Apache 2.0), a plugin that gives coding agents",
+        "description": "persistent memory across sessions. GitHub's daily trending list shows it at roughly 96,600 total stars with about 530 new stars today. Other repos trending alongside it: text-to-cad (about 17,450 stars, 'give your agent CAD superpowers'), t3code (about 25,600) and OpenMontage (about 64,000). What it does: coding agents forget everything when a session ends. claude-mem hooks into five moments in the agent's life (session start, prompt submit, after each tool use, stop, session end), records what the agent did, compresses it into short summaries with AI, and stores it locally in SQLite plus a vector database for search. Next session, relevant memories are injected back. Retrieval is layered: first an index, then a timeline, then full detail only for what matters, which the project claims saves about 10x tokens. Why it is taking off: every developer has re-explained the same project to an agent for the tenth time. Memory is the most visible missing feature, it installs with one command (npx claude-mem install) and it works across several agent tools. Caution: memory stores what the agent saw, which can include secrets and private code, and the project mentions optional cloud sync and a sign-in trial. Review what is captured, keep it local if code is sensitive, and remember a poisoned memory can steer future sessions.",
+        "stats": []
+      },
+      "stats": [],
+      "sections": [
+        {
+          "title": "1) GPT-6.1 SOL: NEAR-FLAGSHIP AGENT CODING AT ONE-FIFTH THE PRICE",
+          "paragraphs": [
+            "Search-based reports from OpenAI's DevDay (announced Tuesday, October 6) say OpenAI released GPT-6.1 Sol, which nearly matches its top model GPT-6 Astra on agentic coding, computer use and professional work. Reported API pricing is $2 per million input tokens and $10 per million output tokens, with cached input at $0.10 per million. On DeepSWE v1.1, a test built from real software bug fixes, it is reported to score 75.2% against Astra's 74.8%. It is reported as available in ChatGPT Work and Codex for paid tiers, and in the API as gpt-6.1-sol. These figures come from secondary coverage; confirm against OpenAI's own pricing page.",
+            "The concept, explained simply: a frontier model is like a senior consultant, expensive per hour. A 'distilled' or tuned mid-tier model is a strong associate who handles 90% of the work for a fraction of the fee. Vendors get there by training the cheaper model on the stronger model's outputs and by tuning it specifically for agent loops (read code, run tests, fix, repeat). Cached input matters because an agent re-sends the same long context on every step; a cache discount of 95% makes long agent sessions affordable.",
+            "Why it matters: it continues the tiering story from earlier days (Sol/Luna/Astra, Sonnet/Opus). The practical lesson is that benchmark parity at one-fifth the cost changes which model you default to. Treat a single benchmark with caution: test on your own tasks."
+          ]
+        },
+        {
+          "title": "2) DEEPSEEK V4.1 FLASH: A HUGE MODEL THAT ONLY USES A SLICE OF ITSELF",
+          "paragraphs": [
+            "Reports say DeepSeek launched V4.1 Flash in September, replacing earlier Flash variants and, after September 14, routing V4 Pro requests to Flash at Flash's lower price until a V4.1 Pro arrives. Coverage lists roughly 748 billion total parameters (a 552B backbone plus 196B 'Engram' parameters), only about 8B active per token during prefill and 16B during decoding, a 1 million token context, up to 384K output tokens, and native image input. A newer DeepSeek-V4.1-Flash release item was also listed on October 4 by one tracker; details differ between sources, so treat version specifics as unconfirmed. The concept, explained simply: in a 'mixture of experts' model, the network is a large building of specialist rooms, but each word only walks through a few of them. You pay compute for the rooms you visit, not the whole building. Engram-style parameters can be thought of as a big lookup memory that is consulted cheaply rather than computed every time. A smaller KV-cache (the model's working notes about the conversation so far) means more users fit on the same GPU, which is how prices fall. Why it matters: together with item 1, cost per task is falling from two directions, better tuning by US labs and leaner architecture from Chinese labs. Cheap long context makes whole-codebase and whole-document agents realistic."
+          ]
+        },
+        {
+          "title": "3) MICROSOFT AUTOPILOT AND THE 'DIGITAL COWORKER' WITH CONFIGURABLE PERMISSIONS",
+          "paragraphs": [
+            "Reports say Microsoft unveiled new Copilot capabilities, including a Code feature that builds apps from natural-language prompts and Autopilot, an updated version of its Scout agent, which acts as a digital coworker with configurable permissions. This follows OpenAI's always-on 'dots' agents (Day 190-191 coverage) and shows every major vendor shipping agents that run continuously inside Slack, Teams and Office.",
+            "The concept, explained simply: 'configurable permissions' means an admin decides which apps, files and actions the agent may touch, the same way a new employee gets access badges. This is the least-privilege principle from Day 191 turned into a product setting. Why it matters: adoption will be decided less by raw intelligence and more by whether IT teams can scope, audit and switch off an agent."
+          ]
+        }
+      ],
+      "market_signal": "The competition is moving from 'who has the smartest model' to 'who delivers adequate intelligence cheapest, with memory and controls built in'. OpenAI cuts price per unit of agent capability, DeepSeek cuts serving cost, Microsoft packages permissions, and open-source projects fill the memory gap. Expect price pressure on premium tiers and more value in orchestration: routing, caching, memory and governance.",
+      "practical_takeaway": [
+        {
+          "title": "Re-benchmark your default model.",
+          "body": "Run your own ten real tasks on GPT-6.1 Sol versus your current model and compare quality and cost, not leaderboard scores."
+        },
+        {
+          "title": "Exploit caching.",
+          "body": "Keep the stable part of an agent's prompt identical and at the front so cached-input discounts apply."
+        },
+        {
+          "title": "Understand active versus total parameters.",
+          "body": "Mixture-of-experts models are priced and served by active parameters, so a huge headline size does not mean huge cost."
+        },
+        {
+          "title": "Add memory deliberately.",
+          "body": "Try a memory layer such as claude-mem on a non-sensitive project, inspect what it stores and know how to delete it."
+        },
+        {
+          "title": "Scope agent permissions per task.",
+          "body": "Whether Autopilot, dots or your own agent, grant the minimum apps and actions and keep an audit log."
+        }
+      ]
+    },
+    {
       "date": "2026-10-05",
       "display_date": "October 5, 2026",
       "issue": 191,
