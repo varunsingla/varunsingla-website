@@ -1,6 +1,44 @@
 # Varun Singla · AI Learning Journal — full text
 
-Complete text of all 198 journal entries by Varun Singla (https://varunsingla.com), newest first. Index: https://varunsingla.com/llms.txt
+Complete text of all 199 journal entries by Varun Singla (https://varunsingla.com), newest first. Index: https://varunsingla.com/llms.txt
+
+---
+
+# Day 199: AI Learning -- Day 193
+
+Date: October 7, 2026 · Author: Varun Singla · URL: https://varunsingla.com/entries/2026-10-07.html · Themes: Models & Frontier
+
+Search-based reports say Anthropic released Claude Opus 5.5 on September 22, two months after Opus 5. It is described as the first of a Claude 5.5 family, with Sonnet 5.5 and Haiku 5.5 to follow 'in the coming weeks'. Reported API pricing is $4 per million input tokens and $20 per million output tokens (about 20% below Opus 5), with cache reads at $0.50 per million (about 60% lower). Output is reported more than 30% faster, with a 1 million token context window, up to 128K output tokens, and adaptive thinking always on at a default 'medium' effort. Reported scores: 66.4% on Terminal-Bench 4.0, 81.8% on OSWorld 2.0 and 67.7% on Humanity's Last Exam with tools. These figures come from secondary coverage and Anthropic's own table; verify against official pricing and run your own tests.
+
+**Viral app of the day: Today's pick: OpenCode (anomalyco/opencode, MIT license), an open-source AI coding agent**
+that runs in the terminal, with an IDE extension and a beta desktop app. Reported at roughly 200,000 GitHub stars, with about 3,300 added in the last 28 days; it hit #1 on Hacker News on March 20, 2026. What it does: it is a full agent harness for software work, covering file edits, shell execution, language-server code intelligence, MCP tool servers, sub-agents and multiple parallel sessions, with shareable session links for review. It supports 75+ model providers through the Models.dev catalog (Claude, GPT, Gemini, GitHub Copilot, local models). The project says it does not store your code or prompts; an optional paid 'Zen' service offers tuned models. Why it is taking off: developers dislike being locked to one vendor's model, and prices change monthly. A free, model-agnostic harness lets them swap in the cheapest or best model without relearning the tool. Caution: an agent that runs shell commands is powerful; review permissions, run it on non-sensitive repos first, and check which provider receives your code.
+
+## 1) CLAUDE OPUS 5.5: A CHEAPER, FASTER FRONTIER MODEL
+
+Search-based reports say Anthropic released Claude Opus 5.5 on September 22, two months after Opus 5. It is described as the first of a Claude 5.5 family, with Sonnet 5.5 and Haiku 5.5 to follow 'in the coming weeks'. Reported API pricing is $4 per million input tokens and $20 per million output tokens (about 20% below Opus 5), with cache reads at $0.50 per million (about 60% lower). Output is reported more than 30% faster, with a 1 million token context window, up to 128K output tokens, and adaptive thinking always on at a default 'medium' effort. Reported scores: 66.4% on Terminal-Bench 4.0, 81.8% on OSWorld 2.0 and 67.7% on Humanity's Last Exam with tools. These figures come from secondary coverage and Anthropic's own table; verify against official pricing and run your own tests.
+
+The concept, explained simply: 'adaptive thinking with an effort setting' is like a dial for how long the model deliberates. Easy questions get a quick answer; hard ones get more reasoning tokens. Lowering the default from high to medium saves money on routine work, and you turn the dial up only when a task needs it. Cache reads are cheap because an agent re-sends the same long instructions and files every step, and the provider can reuse work it already did.
+
+Why it matters: a newer top-tier model that is cheaper than its predecessor continues the pattern from earlier days (Sol/Luna/Astra, Sonnet/Opus): capability per dollar keeps improving, so your default model choice should be revisited every few weeks, not every year.
+
+## 2) CALIFORNIA'S 'NO ROBO BOSSES' PACKAGE VS. WASHINGTON'S 'SUPER
+
+On September 30, California Gov. Gavin Newsom signed a package of AI-related bills reported at 13, aimed at protecting workers. Reported provisions: employers may not rely on AI alone to decide to fire or discipline a worker (the 'No Robo Bosses Act'), may not use biometric data to predict a worker's emotional state, and must send written notice when AI is responsible for mass layoffs. The reported effective date for the firing limit is July 1, 2027. Newsom also signed an executive order directing state agencies to keep saying 'artificial intelligence'. That is a response to President Trump, who has said the word 'artificial' is inaccurate, asked U.S. diplomats to use 'Super Intelligence', and announced an 'AI Force' (reported as renamed 'SI Force') under an 'AI Czar', with no structure published yet.
+
+The concept, explained simply: the 'human in the loop' idea moves from good practice to legal requirement. If software recommends and a person with real authority decides, you comply; if software decides alone, you may not. Meanwhile the federal side is mostly about promotion and naming rather than rules, so companies face a patchwork where states set the binding constraints. Why it matters: any team building HR, hiring or performance tools with agents needs a documented human decision point and audit trail, and should expect more state-level rules to follow California's.
+
+## 3) AGENT HARNESSES: THE LAYER AROUND THE MODEL
+
+Trackers show the 2026 GitHub momentum shifting to 'agent harnesses', skills, memory layers and gateways rather than new models. In the last 28 days, reported top movers include Anthropic's claude-code (+5.1k stars), OpenCode (+3.3k), block's agent project (+1.8k) and openai/codex (+1.4k). Another tracker credits a DeepSeek harness repo with adding roughly 191,000 stars in August alone. The concept, explained simply: the model is the engine; the harness is the car. It supplies the steering wheel and brakes: reading and editing files, running shell commands, calling tools through MCP, spawning sub-agents, asking permission, and remembering earlier sessions. Two harnesses running the same model can behave very differently, which is why the competition has moved here. Why it matters: when models are close in ability and falling in price, the harness decides reliability, safety and cost. It is also where portability lives: a harness that supports many models lets you switch as prices change.
+
+**Market signal:** Price per unit of capability keeps falling at the top tier (Opus 5.5 below Opus 5, GPT-6.1 Sol last week), while attention and developer stars move to the harness layer and open-source alternatives. Regulation is arriving state by state with human-decision requirements. Expect value to concentrate in orchestration: routing, caching, memory, permissions and audit logs, and expect Sonnet 5.5 and Haiku 5.5 to extend the price cuts down-tier. Other items in the news: SAP agreed to acquire work-intelligence firm TechWolf, and Waymo upsized its debut private loan to $5 billion for robotaxi growth.
+
+**Practical takeaways:**
+- Re-test your default model. — Run ten real tasks on Opus 5.5 at medium effort versus your current model; compare quality and cost, not leaderboards.
+- Use the effort dial. — Default to medium, raise it only for hard tasks, and keep stable prompt prefixes first so cache discounts apply.
+- Design a human decision point. — For any agent that affects hiring, discipline or firing, record who reviewed the output and why, before California's July 2027 date.
+- Pick a portable harness. — Try OpenCode or similar on a throwaway repo; note which model providers see your code.
+- Scope permissions. — Grant the harness the minimum folders and commands, and keep a log of what it ran.
 
 ---
 

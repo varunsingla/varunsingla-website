@@ -1,13 +1,14 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 198 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 199 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 198 — "AI Learning -- Day 192" (October 6, 2026).
+Latest entry: Day 199 — "AI Learning -- Day 193" (October 7, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Journal entries
 
+- [Day 199: AI Learning -- Day 193](https://varunsingla.com/entries/2026-10-07.html): Search-based reports say Anthropic released Claude Opus 5.5 on September 22, two months after Opus 5.
 - [Day 198: AI Learning -- Day 192](https://varunsingla.com/entries/2026-10-06.html): Search-based reports from OpenAI's DevDay (announced Tuesday, October 6) say OpenAI released GPT-6.1 Sol, which nearly matches its top model GPT-6…
 - [Day 197: AI Learning -- Day 191](https://varunsingla.com/entries/2026-10-05.html): Search-based reports this week say Nvidia released an Open Agent Safety Platform to monitor and govern agentic AI.
 - [Day 196: AI Learning -- Day 190](https://varunsingla.com/entries/2026-10-04.html): Reuters-sourced reports on September 30 say the Federal Trade Commission is running an industry-wide probe into Anthropic, OpenAI, the research group…
