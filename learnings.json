@@ -6,6 +6,69 @@
   },
   "learnings": [
     {
+      "date": "2026-10-10",
+      "display_date": "October 10, 2026",
+      "issue": 196,
+      "title": "AI Learning -- Day 196",
+      "focus_intro": "Per news coverage of OpenAI's announcement, GPT-6 began rolling out in ChatGPT on October 7, 2026. Paid tiers (Plus, Pro, Business, Enterprise) get GPT-6 Sol; Free and Go users, scheduled from October 8, get the smaller GPT-6 Luna. OpenAI's work and Codex models are not changing in this release. Alongside the model comes 'Intelligent UI': answers can mix text with tappable buttons, forms, charts and diagrams you can explore inside the chat. Simple questions still get plain text, and users can turn the visuals down. Model names and some details differ across secondary sources; I did not verify against OpenAI's own page. The concept, explained simply: 'generative UI'. Instead of the model only writing paragraphs, it also writes a small piece of interface (a slider, a chart, a form) and the app renders it. Ask how a wing generates lift and you get an interactive diagram; ask about savings and you get a calculator you can adjust. The model is choosing the best format for the question, not just the best words. Why it matters: chat is a poor interface for many tasks (comparing options, planning, tweaking numbers). If the interface adapts to the task, the chatbot starts to compete with apps and dashboards. Risks: more surface area for errors (a polished chart can look more trustworthy than it is) and for prompt-injection through rendered content.",
+      "viral_app": {
+        "name": "Today's pick: ChatGPT's Intelligent UI (with GPT-6). What it does: it turns answers into interactive mini-apps inside",
+        "description": "the chat -- buttons, forms, charts, diagrams, maps, calculators. Why it is taking off: it reaches ChatGPT's very large user base at once (a secondary source cites about 1.2 billion weekly users, unverified), and the examples are easy to share as screenshots and screen recordings. For an open-source angle, a weekly roundup lists trending repos such as OpenScreen (a free screen recorder), hermes-agent from Nous Research (a self-hosted agent) and Microsoft's VibeVoice (voice stack), but that roundup was undated and the star counts are unverified; check github.com/trending for live rankings. Safety tip: a nicely rendered chart is still the model's output -- check the numbers.",
+        "stats": []
+      },
+      "stats": [],
+      "sections": [
+        {
+          "title": "1) GPT-6 ARRIVES IN CHATGPT WITH 'INTELLIGENT UI'",
+          "paragraphs": [
+            "Per news coverage of OpenAI's announcement, GPT-6 began rolling out in ChatGPT on October 7, 2026. Paid tiers (Plus, Pro, Business, Enterprise) get GPT-6 Sol; Free and Go users, scheduled from October 8, get the smaller GPT-6 Luna. OpenAI's work and Codex models are not changing in this release. Alongside the model comes 'Intelligent UI': answers can mix text with tappable buttons, forms, charts and diagrams you can explore inside the chat. Simple questions still get plain text, and users can turn the visuals down. Model names and some details differ across secondary sources; I did not verify against OpenAI's own page. The concept, explained simply: 'generative UI'. Instead of the model only writing paragraphs, it also writes a small piece of interface (a slider, a chart, a form) and the app renders it. Ask how a wing generates lift and you get an interactive diagram; ask about savings and you get a calculator you can adjust. The model is choosing the best format for the question, not just the best words. Why it matters: chat is a poor interface for many tasks (comparing options, planning, tweaking numbers). If the interface adapts to the task, the chatbot starts to compete with apps and dashboards. Risks: more surface area for errors (a polished chart can look more trustworthy than it is) and for prompt-injection through rendered content."
+          ]
+        },
+        {
+          "title": "2) THE REPORTED OPENAI REVENUE GAP AND THE 'AI TRADE'",
+          "paragraphs": [
+            "A search-aggregator summary says the Nasdaq fell about 1% on October 8 after a Financial Times report that OpenAI's annualized revenue was roughly $20 billion below what it had signaled, and that Oracle fell more than 5%. I could not confirm this from a primary source. For context, earlier reporting (Axios/Reuters, late September) put OpenAI's annualized recurring revenue near $70 billion, and the Oracle contract is reported at about $300 billion of compute over five years from 2027. Treat the October 8 figures as unverified. The concept, explained simply: 'annualized run rate' is one month's (or week's) revenue multiplied up to a year, so it can differ a lot from revenue actually booked. A big compute commitment combined with revenue that lags the plan is how investors judge whether spending on AI infrastructure is sustainable. Oracle matters here because roughly half of its compute backlog is reported to be OpenAI. Why it matters: AI model quality and AI company finances are separate questions. Concentration (one customer funding a supplier's build-out) makes the whole chain sensitive to a single number. If you build on a vendor, watch pricing and terms, not just features."
+          ]
+        },
+        {
+          "title": "3) AI-WRITTEN MATH: THE DISPUTE OVER OPENAI'S MANUSCRIPTS",
+          "paragraphs": [
+            "Following Day 195's coverage of OpenAI's October 6 release of 700+ model-generated manuscripts, reports say mathematician Terence Tao criticized the release, and a group of mathematicians (named in the report as the AHM) said OpenAI disregarded guidance from its outside Advisory Group on Mathematics and AI and urged mathematicians not to spend time reviewing the output. OpenAI has not, in the sources I found, conceded the point. Details are from one aggregator and should be checked. The concept, explained simply: 'review load'. Generating a proof is now cheap, but a human expert must still read it. If a lab publishes hundreds of unvetted results, it shifts the verification cost onto volunteers. Lean-checked proofs reduce this cost because a machine verifies the logic; unformalized ones do not. Why it matters: the same asymmetry applies to AI-generated code, reports and research summaries. Cheap generation plus expensive checking requires you to budget for verification."
+          ]
+        },
+        {
+          "title": "4) AI FOR DEFENSIVE CODE SECURITY",
+          "paragraphs": [
+            "Search results this week show Anthropic's security work is in several forms: Claude Security (a paid public beta for Enterprise users), an MIT-licensed GitHub Action called Claude Code Security Reviewer that scans pull requests, and a reported open-source 'defending-code-reference-harness' for finding, verifying and patching vulnerabilities. A headline claiming a 'free scanner for open-source repos' could not be confirmed; using these tools still requires an API key or subscription.",
+            "The concept, explained simply: an AI reviewer reads a code change, flags likely vulnerabilities, and can propose a patch. The safe pattern is to let it read and comment, and only run code inside a sandbox. Always have a human or test suite confirm that a flagged issue is real before and after fixing it. Why it matters: defenders can use the same agent capabilities as attackers, but false positives waste time and over-trusting a patch can introduce new bugs."
+          ]
+        }
+      ],
+      "market_signal": "Three signals: assistants are competing on interface, not only raw intelligence; investors are scrutinizing the gap between AI spending commitments and revenue (reported, not independently confirmed); and labs are under pressure to prove claims, whether in math or in security, with checkable evidence.",
+      "practical_takeaway": [
+        {
+          "title": "Try interactive answers.",
+          "body": "Ask ChatGPT a number-heavy question and see whether Intelligent UI beats plain text; then verify the figures it shows."
+        },
+        {
+          "title": "Separate run rate from revenue.",
+          "body": "When you read a company's annualized figure, ask how it is measured and what is committed in spending."
+        },
+        {
+          "title": "Budget for verification.",
+          "body": "For any AI-generated output, plan who or what checks it: Lean, tests, citations or an expert."
+        },
+        {
+          "title": "Sandbox AI code tools.",
+          "body": "Let AI reviewers read and comment freely; only execute code in isolated environments."
+        },
+        {
+          "title": "Check primary sources.",
+          "body": "Confirm launches, pricing and tier names on the vendor's own pages; aggregators disagree on model names."
+        }
+      ]
+    },
+    {
       "date": "2026-10-09",
       "display_date": "October 9, 2026",
       "issue": 195,
