@@ -1,6 +1,46 @@
 # Varun Singla · AI Learning Journal — full text
 
-Complete text of all 204 journal entries by Varun Singla (https://varunsingla.com), newest first. Index: https://varunsingla.com/llms.txt
+Complete text of all 205 journal entries by Varun Singla (https://varunsingla.com), newest first. Index: https://varunsingla.com/llms.txt
+
+---
+
+# Day 205: AI Learning -- Day 199
+
+Date: October 13, 2026 · Author: Varun Singla · URL: https://varunsingla.com/entries/2026-10-13.html · Themes: Models & Frontier
+
+REA ("Reverse Engineer Anything"), an open-source TypeScript project by developer morluto, appeared on GitHub Trending around October 7-10, 2026. Per its README as relayed by trackers, it ships as one command-line tool and MCP server (npm package rea-agents) that gives an AI coding agent about 70 tools to inspect an application, including native binaries, Electron/JavaScript apps, .NET assemblies and websites, plus an 'investigation model' with evidence tracking. It is MIT licensed per third-party trackers. The concept, explained simply: reverse engineering means working out how a program behaves when you only have the finished product, not the source code. Normally a human uses a disassembler or decompiler and spends hours reading low-level code. REA hands those tools to an agent over MCP (the Model Context Protocol, covered earlier in this series), so the agent can plan a step, call a tool, record what it found as evidence, and continue. It is the same agent loop you already know, pointed at binaries. Why it matters: tasks that needed rare expertise are becoming something an agent can attempt, which helps defenders (malware analysis, auditing closed-source dependencies, recovering lost documentation) and also lowers the bar for misuse and raises software-IP questions. Star counts vary widely between sources (hundreds to tens of thousands), so treat popularity numbers cautiously, and I could not confirm the reported legal controversy from primary sources.
+
+**Viral app of the day: Today's pick: REA (morluto/rea). What it does: lets an AI agent take apart an app or binary, with tools for**
+decompiling, tracing and recording evidence, through one CLI/MCP server. Why it is taking off: the demo is instantly legible (point an agent at software, get an explanation of how it works), it plugs into agents people already use, and reports of games being ported to the browser made it shareable. Reported stars range from the thousands to 100,000 depending on the outlet, so the exact figure is unverified. Use it only on software you own or are licensed to analyze.
+
+## 1) REA: AN AGENT THAT REVERSE ENGINEERS ANY SOFTWARE
+
+REA ("Reverse Engineer Anything"), an open-source TypeScript project by developer morluto, appeared on GitHub Trending around October 7-10, 2026. Per its README as relayed by trackers, it ships as one command-line tool and MCP server (npm package rea-agents) that gives an AI coding agent about 70 tools to inspect an application, including native binaries, Electron/JavaScript apps, .NET assemblies and websites, plus an 'investigation model' with evidence tracking. It is MIT licensed per third-party trackers. The concept, explained simply: reverse engineering means working out how a program behaves when you only have the finished product, not the source code. Normally a human uses a disassembler or decompiler and spends hours reading low-level code. REA hands those tools to an agent over MCP (the Model Context Protocol, covered earlier in this series), so the agent can plan a step, call a tool, record what it found as evidence, and continue. It is the same agent loop you already know, pointed at binaries. Why it matters: tasks that needed rare expertise are becoming something an agent can attempt, which helps defenders (malware analysis, auditing closed-source dependencies, recovering lost documentation) and also lowers the bar for misuse and raises software-IP questions. Star counts vary widely between sources (hundreds to tens of thousands), so treat popularity numbers cautiously, and I could not confirm the reported legal controversy from primary sources.
+
+## 2) MISTRAL LARGE 4 AND THE OPEN-WEIGHT MIXTURE-OF-EXPERTS WAVE
+
+A German tech-news report and third-party model listings say Mistral AI opened a public preview of Mistral Large 4 on October 6 via Mistral Studio. Vendor-reported specs: roughly one trillion total parameters with about 49 billion active per token, image input, and a one-million-token context window. Open weights are planned for the end of October, but the license terms have not been published. One listing shows prices of about $0.68 per million input tokens and $2.09 per million output tokens; benchmark claims are vendor-reported and independent testing is pending.
+
+The concept, explained simply: mixture-of-experts (MoE). Instead of running every parameter for every word, the model contains many specialist sub-networks ('experts') and a small router picks a few for each token. That is why a 1-trillion-parameter model can have only 49 billion 'active' parameters: you store a lot of knowledge but pay compute for a fraction of it. Total parameters tell you memory needs; active parameters tell you speed and cost per token. Why it matters: if the weights do ship, a large MoE model you can host yourself changes the build-versus-buy math for companies with data-residency needs. The license is the deciding detail, because 'open weights' can still restrict commercial use.
+
+## 3) FOLLOW-UPS: GPT-6 AND CLAUDE HAIKU 5.5
+
+Yesterday's lessons stand, with the same caveat. Trackers list GPT-6 (with ChatGPT's Intelligent UI) and Claude Haiku 5.5 (October 7, adjustable effort, listed from $0.10/$0.50 per million tokens) among the most recent releases, alongside Google's Nano Banana 2.1 and Amazon's Nova 2.5 Sonic speech model, which I could not verify beyond one tracker. Microsoft's Work IQ preview, said to connect Copilot and agents to live business data, also could not be confirmed from a second source.
+
+The concept, explained simply: source hierarchy. A claim from the vendor's own page is a primary source; a tracker or newsletter repeating it is secondary; an aggregator repeating the tracker is tertiary. Each hop can drop caveats or change numbers, which is why the same release shows different star counts and prices across sites.
+
+## 4) POLICY AND PUBLIC OPINION SIGNALS
+
+Search coverage this week mentions a White House 'Science: A New Golden Age' event with about $6 billion in announced science initiatives including AI-powered research and computing facilities, a report that NSF grant wording will change 'AI' references to 'Super Intelligence' following an executive order, and an AP poll saying 64% of Americans think AI is developing too fast while 8 in 10 want government to keep it under human control. These are from search summaries and I did not read the primary articles. Funding note: Arena reportedly nearly doubled its valuation to $3.1B in ten months (TechCrunch).
+
+**Market signal:** Two signals: agent tooling is moving from 'chat with code' to 'operate specialist tools' via MCP, so value shifts to who builds the best tool servers; and frontier-scale open-weight MoE models (Mistral Large 4 pending) keep pressuring closed API pricing. Caveat: most figures today come from vendors or aggregators.
+
+**Practical takeaways:**
+- Read active, not total, parameters. — For MoE models, active parameters drive latency and cost; total parameters drive memory.
+- Wait for the license. — Open weights are only useful if the license allows your use; check it before planning a migration.
+- Scope agents that use powerful tools. — A reverse-engineering agent should run in a sandbox, on authorized targets, with logged actions.
+- Trace claims to the primary source. — Prefer vendor pages, READMEs and the repo itself over aggregator summaries; note the hop count.
+- Treat star counts as noise. — Compare issues, commits and independent users instead of a single popularity number.
 
 ---
 

@@ -1,13 +1,14 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 204 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 205 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 204 — "AI Learning -- Day 198" (October 12, 2026).
+Latest entry: Day 205 — "AI Learning -- Day 199" (October 13, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Journal entries
 
+- [Day 205: AI Learning -- Day 199](https://varunsingla.com/entries/2026-10-13.html): REA ("Reverse Engineer Anything"), an open-source TypeScript project by developer morluto, appeared on GitHub Trending around October 7-10, 2026.
 - [Day 204: AI Learning -- Day 198](https://varunsingla.com/entries/2026-10-12.html): Per secondary coverage of OpenAI's announcement, GPT-6 began rolling out in ChatGPT on October 7, 2026: paid tiers (Plus, Pro, Business, Enterprise)…
 - [Day 203: AI Learning -- Day 197](https://varunsingla.com/entries/2026-10-11.html): Per coverage of Anthropic's October 9 report, internal evaluation agents took real-world actions nobody intended.
 - [Day 202: AI Learning -- Day 196](https://varunsingla.com/entries/2026-10-10.html): Per news coverage of OpenAI's announcement, GPT-6 began rolling out in ChatGPT on October 7, 2026.

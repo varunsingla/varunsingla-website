@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Learning -- Day 199 — Day 205 | Varun Singla · AI Learning Journal</title>
+<meta name="description" content="REA (&quot;Reverse Engineer Anything&quot;), an open-source TypeScript project by developer morluto, appeared on GitHub Trending around October 7-10, 2026.">
+<meta name="author" content="Varun Singla">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://varunsingla.com/entries/2026-10-13.html">
+<link rel="prev" href="https://varunsingla.com/entries/2026-10-12.html">
+<link rel="alternate" type="application/rss+xml" title="Varun Singla · AI Learning Journal" href="https://varunsingla.com/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Varun Singla · AI Learning Journal">
+<meta property="og:title" content="AI Learning -- Day 199">
+<meta property="og:description" content="REA (&quot;Reverse Engineer Anything&quot;), an open-source TypeScript project by developer morluto, appeared on GitHub Trending around October 7-10, 2026.">
+<meta property="og:url" content="https://varunsingla.com/entries/2026-10-13.html">
+<meta property="og:image" content="https://varunsingla.com/og-image.png">
+<meta property="article:published_time" content="2026-10-13T21:00:00+08:00">
+<meta property="article:author" content="https://varunsingla.com/about/">
+<meta property="article:tag" content="Models &amp; Frontier">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Learning -- Day 199">
+<meta name="twitter:description" content="REA (&quot;Reverse Engineer Anything&quot;), an open-source TypeScript project by developer morluto, appeared on GitHub Trending around October 7-10, 2026.">
+<meta name="twitter:image" content="https://varunsingla.com/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "@id": "https://varunsingla.com/entries/2026-10-13.html#post", "headline": "AI Learning -- Day 199", "description": "REA (\"Reverse Engineer Anything\"), an open-source TypeScript project by developer morluto, appeared on GitHub Trending around October 7-10, 2026.", "datePublished": "2026-10-13T21:00:00+08:00", "dateModified": "2026-10-13T21:00:00+08:00", "url": "https://varunsingla.com/entries/2026-10-13.html", "mainEntityOfPage": "https://varunsingla.com/entries/2026-10-13.html", "wordCount": 976, "inLanguage": "en", "articleSection": ["Models & Frontier"], "keywords": ["Models & Frontier", "agentic AI", "AI learning journal", "Varun Singla"], "isPartOf": {"@type": "Blog", "@id": "https://varunsingla.com/#blog", "name": "Varun Singla · AI Learning Journal"}, "author": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla", "url": "https://varunsingla.com/about/"}, "publisher": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Journal", "item": "https://varunsingla.com/"}, {"@type": "ListItem", "position": 2, "name": "Archive", "item": "https://varunsingla.com/entries/"}, {"@type": "ListItem", "position": 3, "name": "AI Learning -- Day 199", "item": "https://varunsingla.com/entries/2026-10-13.html"}]}</script>
+<style>*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#F7F4ED;}
+body{font-family:'Hanken Grotesk',sans-serif;color:#1B1A17;-webkit-font-smoothing:antialiased;}
+::selection{background:#CC3F2A;color:#fff;}
+a{color:inherit;}
+.mast{position:sticky;top:0;z-index:50;background:rgba(247,244,237,.9);backdrop-filter:blur(12px);border-bottom:1px solid #E4DECF;}
+.mast-in{max-width:1120px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;}
+.brand-mark{width:30px;height:30px;border-radius:7px;background:#1B1A17;color:#F7F4ED;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;}
+.brand-name{font-family:'JetBrains Mono',monospace;font-size:13.5px;color:#1B1A17;}
+.nav-link{font-size:14.5px;font-weight:500;color:#6B6760;text-decoration:none;padding:7px 12px;border-radius:8px;}
+.nav-link:hover{color:#1B1A17;background:#EEE9DC;}
+.meta-row{display:flex;align-items:center;gap:13px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:13px;color:#8A857B;}
+.meta-row .day{color:#CC3F2A;font-weight:500;}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.04em;color:#6B6760;border:1px solid #E4DECF;border-radius:999px;padding:5px 12px;background:#FBF9F3;text-decoration:none;}
+article h1{font-family:'Newsreader',serif;font-weight:400;font-size:clamp(32px,5.5vw,52px);line-height:1.07;letter-spacing:-.018em;margin:0 0 22px;}
+article h2{font-family:'Newsreader',serif;font-weight:500;font-size:clamp(23px,3.4vw,30px);line-height:1.18;margin:0 0 18px;}
+article p{font-family:'Newsreader',serif;font-size:clamp(18px,2.3vw,20px);line-height:1.65;color:#2C2A24;margin:0 0 20px;}
+article ul{margin:4px 0 20px;padding-left:20px;}
+article li{font-family:'Newsreader',serif;font-size:clamp(17px,2.2vw,19px);line-height:1.6;color:#2C2A24;margin:0 0 10px;}
+.intro{font-size:clamp(20px,3vw,24px)!important;line-height:1.5!important;color:#3A372F!important;font-style:italic;margin:0 0 40px!important;}
+.callout{border:1px solid #E4DECF;border-left:3px solid #CC3F2A;border-radius:12px;background:#FBF9F3;padding:22px 24px;margin:0 0 40px;}
+.callout p{font-size:clamp(17px,2.2vw,19px);margin:0;}
+.kicker{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#CC3F2A;margin-bottom:14px;}
+.highlight{font-family:'Newsreader',serif;font-style:italic;font-size:clamp(18px,2.4vw,20px);line-height:1.55;color:#3A372F;border-left:3px solid #CC3F2A;padding:6px 0 6px 16px;margin:8px 0 20px;}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:#E4DECF;border:1px solid #E4DECF;border-radius:12px;overflow:hidden;margin:0 0 40px;}
+.stat-cell{background:#FBF9F3;padding:18px 20px;}
+.stat-big{font-family:'Newsreader',serif;font-size:clamp(24px,4vw,32px);line-height:1.05;color:#1B1A17;}
+.stat-small{font-size:13px;line-height:1.45;color:#56524B;margin-top:8px;}
+.table-wrap{overflow-x:auto;border:1px solid #E4DECF;border-radius:12px;background:#FBF9F3;margin:0 0 20px;}
+table{width:100%;border-collapse:collapse;}
+th{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#8A857B;text-align:left;padding:9px 12px;border-bottom:1px solid #CBB8A0;font-weight:500;}
+td{font-size:14.5px;color:#2C2A24;padding:9px 12px;border-bottom:1px solid #EEE9DC;vertical-align:top;line-height:1.45;font-family:'Hanken Grotesk',sans-serif;}
+tr:last-child td{border-bottom:none;}
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:680px;margin:0 auto;padding:20px 28px 90px;}
+.pn a{border:1px solid #E4DECF;border-radius:12px;padding:18px 20px;background:#FBF9F3;text-decoration:none;display:block;}
+.pn a:hover{border-color:#1B1A17;}
+.pn .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#A8A294;margin-bottom:9px;}
+.pn .ttl{font-family:'Newsreader',serif;font-size:18px;line-height:1.2;color:#1B1A17;}
+footer{border-top:1px solid #E4DECF;background:#FBF9F3;}
+.foot-in{max-width:1120px;margin:0 auto;padding:34px 28px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#6B6760;}</style>
+</head>
+<body>
+<header class="mast"><div class="mast-in">
+  <a class="brand" href="../"><span class="brand-mark">VS</span><span class="brand-name">varunsingla.com</span></a>
+  <nav style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+    <a class="nav-link" href="../">Journal</a>
+    <a class="nav-link" href="../entries/">Archive</a>
+    <a class="nav-link" href="../about/">About</a>
+    <a class="nav-link" href="../ai-tokenomics/">Tokenomics</a>
+    <a class="nav-link" href="../tools/model-team-evaluator.html">Model Evaluator</a>
+  </nav>
+</div></header>
+<article style="max-width:680px;margin:0 auto;padding:48px 28px 30px;">
+  <p style="margin:0 0 38px;"><a href="./" style="font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.04em;color:#6B6760;text-decoration:none;">← All entries</a></p>
+  <div class="meta-row" style="margin-bottom:22px;">
+    <span class="day">Day 205</span><span>·</span>
+    <time datetime="2026-10-13">October 13, 2026</time><span>·</span>
+    <span>5 min read</span>
+  </div>
+  <h1>AI Learning -- Day 199</h1>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:34px;padding-bottom:34px;border-bottom:1px solid #E4DECF;"><span class="tag">Models &amp; Frontier</span> </div>
+  <p class="intro">REA (&quot;Reverse Engineer Anything&quot;), an open-source TypeScript project by developer morluto, appeared on GitHub Trending around October 7-10, 2026. Per its README as relayed by trackers, it ships as one command-line tool and MCP server (npm package rea-agents) that gives an AI coding agent about 70 tools to inspect an application, including native binaries, Electron/JavaScript apps, .NET assemblies and websites, plus an &#x27;investigation model&#x27; with evidence tracking. It is MIT licensed per third-party trackers. The concept, explained simply: reverse engineering means working out how a program behaves when you only have the finished product, not the source code. Normally a human uses a disassembler or decompiler and spends hours reading low-level code. REA hands those tools to an agent over MCP (the Model Context Protocol, covered earlier in this series), so the agent can plan a step, call a tool, record what it found as evidence, and continue. It is the same agent loop you already know, pointed at binaries. Why it matters: tasks that needed rare expertise are becoming something an agent can attempt, which helps defenders (malware analysis, auditing closed-source dependencies, recovering lost documentation) and also lowers the bar for misuse and raises software-IP questions. Star counts vary widely between sources (hundreds to tens of thousands), so treat popularity numbers cautiously, and I could not confirm the reported legal controversy from primary sources.</p>
+<div class="callout"><div class="kicker">Viral app of the day</div><p style="font-family:'Newsreader',serif;font-size:22px;font-weight:500;margin:0 0 10px;">Today&#x27;s pick: REA (morluto/rea). What it does: lets an AI agent take apart an app or binary, with tools for</p><p>decompiling, tracing and recording evidence, through one CLI/MCP server. Why it is taking off: the demo is instantly legible (point an agent at software, get an explanation of how it works), it plugs into agents people already use, and reports of games being ported to the browser made it shareable. Reported stars range from the thousands to 100,000 depending on the outlet, so the exact figure is unverified. Use it only on software you own or are licensed to analyze.</p></div>
+<section><h2>1) REA: AN AGENT THAT REVERSE ENGINEERS ANY SOFTWARE</h2><p>REA (&quot;Reverse Engineer Anything&quot;), an open-source TypeScript project by developer morluto, appeared on GitHub Trending around October 7-10, 2026. Per its README as relayed by trackers, it ships as one command-line tool and MCP server (npm package rea-agents) that gives an AI coding agent about 70 tools to inspect an application, including native binaries, Electron/JavaScript apps, .NET assemblies and websites, plus an &#x27;investigation model&#x27; with evidence tracking. It is MIT licensed per third-party trackers. The concept, explained simply: reverse engineering means working out how a program behaves when you only have the finished product, not the source code. Normally a human uses a disassembler or decompiler and spends hours reading low-level code. REA hands those tools to an agent over MCP (the Model Context Protocol, covered earlier in this series), so the agent can plan a step, call a tool, record what it found as evidence, and continue. It is the same agent loop you already know, pointed at binaries. Why it matters: tasks that needed rare expertise are becoming something an agent can attempt, which helps defenders (malware analysis, auditing closed-source dependencies, recovering lost documentation) and also lowers the bar for misuse and raises software-IP questions. Star counts vary widely between sources (hundreds to tens of thousands), so treat popularity numbers cautiously, and I could not confirm the reported legal controversy from primary sources.</p></section>
+<section><h2>2) MISTRAL LARGE 4 AND THE OPEN-WEIGHT MIXTURE-OF-EXPERTS WAVE</h2><p>A German tech-news report and third-party model listings say Mistral AI opened a public preview of Mistral Large 4 on October 6 via Mistral Studio. Vendor-reported specs: roughly one trillion total parameters with about 49 billion active per token, image input, and a one-million-token context window. Open weights are planned for the end of October, but the license terms have not been published. One listing shows prices of about $0.68 per million input tokens and $2.09 per million output tokens; benchmark claims are vendor-reported and independent testing is pending.</p><p>The concept, explained simply: mixture-of-experts (MoE). Instead of running every parameter for every word, the model contains many specialist sub-networks (&#x27;experts&#x27;) and a small router picks a few for each token. That is why a 1-trillion-parameter model can have only 49 billion &#x27;active&#x27; parameters: you store a lot of knowledge but pay compute for a fraction of it. Total parameters tell you memory needs; active parameters tell you speed and cost per token. Why it matters: if the weights do ship, a large MoE model you can host yourself changes the build-versus-buy math for companies with data-residency needs. The license is the deciding detail, because &#x27;open weights&#x27; can still restrict commercial use.</p></section>
+<section><h2>3) FOLLOW-UPS: GPT-6 AND CLAUDE HAIKU 5.5</h2><p>Yesterday&#x27;s lessons stand, with the same caveat. Trackers list GPT-6 (with ChatGPT&#x27;s Intelligent UI) and Claude Haiku 5.5 (October 7, adjustable effort, listed from $0.10/$0.50 per million tokens) among the most recent releases, alongside Google&#x27;s Nano Banana 2.1 and Amazon&#x27;s Nova 2.5 Sonic speech model, which I could not verify beyond one tracker. Microsoft&#x27;s Work IQ preview, said to connect Copilot and agents to live business data, also could not be confirmed from a second source.</p><p>The concept, explained simply: source hierarchy. A claim from the vendor&#x27;s own page is a primary source; a tracker or newsletter repeating it is secondary; an aggregator repeating the tracker is tertiary. Each hop can drop caveats or change numbers, which is why the same release shows different star counts and prices across sites.</p></section>
+<section><h2>4) POLICY AND PUBLIC OPINION SIGNALS</h2><p>Search coverage this week mentions a White House &#x27;Science: A New Golden Age&#x27; event with about $6 billion in announced science initiatives including AI-powered research and computing facilities, a report that NSF grant wording will change &#x27;AI&#x27; references to &#x27;Super Intelligence&#x27; following an executive order, and an AP poll saying 64% of Americans think AI is developing too fast while 8 in 10 want government to keep it under human control. These are from search summaries and I did not read the primary articles. Funding note: Arena reportedly nearly doubled its valuation to $3.1B in ten months (TechCrunch).</p></section>
+<div class="callout"><div class="kicker">Market signal</div><p>Two signals: agent tooling is moving from &#x27;chat with code&#x27; to &#x27;operate specialist tools&#x27; via MCP, so value shifts to who builds the best tool servers; and frontier-scale open-weight MoE models (Mistral Large 4 pending) keep pressuring closed API pricing. Caveat: most figures today come from vendors or aggregators.</p></div>
+<div class="callout"><div class="kicker">Practical takeaways</div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">Read active, not total, parameters.</div><p style="font-size:17px;margin:3px 0 0;">For MoE models, active parameters drive latency and cost; total parameters drive memory.</p></div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">Wait for the license.</div><p style="font-size:17px;margin:3px 0 0;">Open weights are only useful if the license allows your use; check it before planning a migration.</p></div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">Scope agents that use powerful tools.</div><p style="font-size:17px;margin:3px 0 0;">A reverse-engineering agent should run in a sandbox, on authorized targets, with logged actions.</p></div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">Trace claims to the primary source.</div><p style="font-size:17px;margin:3px 0 0;">Prefer vendor pages, READMEs and the repo itself over aggregator summaries; note the hop count.</p></div><div style="margin:0 0 14px;"><div style="font-weight:600;font-size:15.5px;font-family:'Hanken Grotesk',sans-serif;">Treat star counts as noise.</div><p style="font-size:17px;margin:3px 0 0;">Compare issues, commits and independent users instead of a single popularity number.</p></div></div>
+  <div style="display:flex;align-items:center;gap:13px;margin:54px 0 10px;padding-top:30px;border-top:1px solid #E4DECF;">
+    <div class="brand-mark" style="width:40px;height:40px;font-size:14px;border-radius:9px;">VS</div>
+    <div><div style="font-size:14.5px;font-weight:600;">Varun Singla</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8A857B;">Singapore · <a href="../about/" style="color:#8A857B;">About</a> · Learning in public</div></div>
+  </div>
+</article>
+<nav class="pn" aria-label="Adjacent entries"><span></span><a href="2026-10-12.html" rel="prev" style="text-align:right;"><div class="lbl">Older · Day 204 →</div><div class="ttl">AI Learning -- Day 198</div></a></nav>
+<footer><div class="foot-in">
+  <span>Varun Singla · Singapore · Learning in public</span>
+  <span><a href="https://varunsingla.com/feed.xml" style="text-decoration:none;color:#6B6760;">RSS</a> · <a href="https://varunsingla.com/llms.txt" style="text-decoration:none;color:#6B6760;">llms.txt</a> · Updated daily</span>
+</div></footer>
+</body>
+</html>
