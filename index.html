@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#F7F4ED" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#161512" media="(prefers-color-scheme: dark)">
+<meta name="journal-data-version" content="2026-10-14-206">
 
 <!-- ── Primary SEO ───────────────────────────────── -->
 <title>Varun Singla | AI Learning Journal — Daily Agentic AI Breakthroughs &amp; Trends</title>
@@ -32,6 +35,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&display=swap" rel="stylesheet">
+<link rel="preload" href="/index.json" as="fetch" crossorigin="anonymous">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%231B1A17%27/%3E%3Ctext x=%2732%27 y=%2742%27 font-family=%27Helvetica,Arial,sans-serif%27 font-size=%2728%27 font-weight=%27700%27 fill=%27%23F7F4ED%27 text-anchor=%27middle%27%3EVS%3C/text%3E%3C/svg%3E">
 
 <!-- ── Structured data: Person / Blog / WebSite ──── -->
 <script type="application/ld+json">
@@ -47,437 +52,586 @@
 <script id="ld-blogpostings" type="application/ld+json">[]</script>
 
 <style>
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;background:#F7F4ED;overflow-x:hidden;}
-  body{font-family:'Hanken Grotesk',sans-serif;color:#1B1A17;-webkit-font-smoothing:antialiased;}
-  @keyframes vspulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.3;transform:scale(.7);}}
-  ::selection{background:#CC3F2A;color:#fff;}
-  a{color:inherit;}
-  .nav-link{font-size:14.5px;font-weight:500;color:#6B6760;text-decoration:none;padding:7px 12px;border-radius:8px;transition:.18s ease;}
-  .nav-link:hover{color:#1B1A17;background:#EEE9DC;}
-  .nav-link.active{font-weight:600;color:#1B1A17;}
-  .chip{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.02em;font-weight:500;padding:7px 13px;border-radius:999px;cursor:pointer;transition:all .18s ease;border:1px solid #E4DECF;background:transparent;color:#6B6760;}
-  .chip:hover{border-color:#CBB8A0;color:#1B1A17;}
-  .chip.active{border:1px solid #1B1A17;background:#1B1A17;color:#F7F4ED;}
-  .featured{cursor:pointer;border:1px solid #E4DECF;border-radius:18px;background:#FBF9F3;padding:clamp(26px,4vw,48px);transition:box-shadow .25s ease,transform .25s ease;display:block;}
-  .featured:hover{box-shadow:0 18px 50px -22px rgba(27,26,23,0.4);transform:translateY(-2px);}
-  .cal-arrow{width:38px;height:38px;border-radius:9px;border:1px solid #E4DECF;background:#FBF9F3;cursor:pointer;font-size:16px;color:#6B6760;display:flex;align-items:center;justify-content:center;transition:.18s ease;}
-  .cal-arrow:hover{border-color:#1B1A17;color:#1B1A17;}
-  .cal-entry{min-height:clamp(62px,10vw,104px);border-radius:10px;padding:9px 10px;display:flex;flex-direction:column;cursor:pointer;background:#FBF9F3;border:1px solid #E4DECF;transition:all .18s ease;overflow:hidden;}
-  .cal-entry:hover{background:#F3ECDD;border-color:#CBB8A0;transform:translateY(-2px);box-shadow:0 12px 26px -16px rgba(27,26,23,.45);}
-  .cal-plain{min-height:clamp(62px,10vw,104px);border-radius:10px;padding:9px 10px;border:1px solid #EEE9DC;}
-  .backbtn{display:inline-flex;align-items:center;gap:8px;background:none;border:none;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.04em;color:#6B6760;padding:0;margin-bottom:38px;transition:.18s ease;}
-  .backbtn:hover{color:#CC3F2A;}
-  .tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.04em;color:#6B6760;border:1px solid #E4DECF;border-radius:999px;padding:5px 12px;background:#F7F4ED;}
-  .navcard{border:1px solid #E4DECF;border-radius:12px;padding:18px 20px;background:#FBF9F3;transition:border-color .2s ease;cursor:pointer;}
-  .navcard:hover{border-color:#1B1A17;}
-  .navcard.disabled{opacity:.4;pointer-events:none;cursor:default;}
-  .data-table{width:100%;border-collapse:collapse;margin:6px 0 4px;font-family:'Hanken Grotesk',sans-serif;}
-  .data-table th{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#8A857B;text-align:left;padding:9px 12px;border-bottom:1px solid #CBB8A0;font-weight:500;}
-  .data-table td{font-size:14.5px;color:#2C2A24;padding:9px 12px;border-bottom:1px solid #EEE9DC;vertical-align:top;line-height:1.45;}
-  .data-table tr:last-child td{border-bottom:none;}
-  .table-wrap{overflow-x:auto;border:1px solid #E4DECF;border-radius:12px;background:#FBF9F3;margin:0 0 8px;}
-  .sec-bullets{margin:4px 0 0;padding-left:20px;}
-  .sec-bullets li{font-family:'Newsreader',serif;font-size:clamp(17px,2.2vw,19px);line-height:1.6;color:#2C2A24;margin:0 0 10px;}
-  @media (max-width:640px){.hide-sm{display:none;}}
+/* GEO:CSS:BEGIN (generated by generate_geo.py — do not edit by hand) */
+:root{--bg:#F7F4ED;--surface:#FBF9F3;--surface2:#F3ECDD;--border:#E4DECF;--border-soft:#EEE9DC;--border-strong:#CBB8A0;
+--text:#1B1A17;--text2:#2C2A24;--muted:#56524B;--muted2:#6B6760;--faint:#726D63;--faintest:#8A857B;
+--accent:#CC3F2A;--accent-dark:#A83120;--accent-tint:#F4E7E2;--shadow:rgba(27,26,23,.4);
+--serif:'Newsreader',Georgia,serif;--sans:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;color-scheme:light;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161512;--surface:#1E1C18;--surface2:#26231E;--border:#2F2B25;--border-soft:#2A2722;--border-strong:#4A443A;
+--text:#EDE8DC;--text2:#DCD6C8;--muted:#B5AE9F;--muted2:#A39C8D;--faint:#8F887A;--faintest:#7A746A;--accent:#E25A45;--accent-dark:#CC3F2A;--accent-tint:#3A241F;--shadow:rgba(0,0,0,.6);color-scheme:dark;}}
+:root[data-theme="dark"]{--bg:#161512;--surface:#1E1C18;--surface2:#26231E;--border:#2F2B25;--border-soft:#2A2722;--border-strong:#4A443A;
+--text:#EDE8DC;--text2:#DCD6C8;--muted:#B5AE9F;--muted2:#A39C8D;--faint:#8F887A;--faintest:#7A746A;--accent:#E25A45;--accent-dark:#CC3F2A;--accent-tint:#3A241F;--shadow:rgba(0,0,0,.6);color-scheme:dark;}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--bg);}
+body{font-family:var(--sans);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.5;}
+::selection{background:var(--accent);color:#fff;}
+a{color:inherit;}
+img{max-width:100%;}
+.skip{position:absolute;left:-999px;top:8px;background:var(--text);color:var(--bg);padding:8px 14px;border-radius:8px;z-index:100;}
+.skip:focus{left:12px;}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px;}
+@media (min-width:640px){.wrap{padding:0 28px;}}
+.mast{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:saturate(140%) blur(12px);-webkit-backdrop-filter:saturate(140%) blur(12px);border-bottom:1px solid var(--border);}
+.mast-in{max-width:1120px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+@media (min-width:640px){.mast-in{padding:14px 28px;}}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;}
+.brand-mark{width:30px;height:30px;border-radius:7px;background:var(--text);color:var(--bg);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;letter-spacing:.02em;}
+.brand-name{font-family:var(--mono);font-size:13.5px;color:var(--text);}
+.nav{display:flex;align-items:center;gap:2px;flex-wrap:wrap;}
+.nav-link{font-size:14px;font-weight:500;color:var(--muted2);text-decoration:none;padding:7px 10px;border-radius:8px;transition:.18s ease;white-space:nowrap;}
+.nav-link:hover{color:var(--text);background:var(--surface2);}
+.nav-link.active{font-weight:600;color:var(--text);}
+.menu-btn,.theme-btn{border:1px solid var(--border);background:var(--surface);color:var(--muted2);border-radius:8px;cursor:pointer;font-family:var(--mono);font-size:12px;padding:7px 10px;line-height:1;}
+.menu-btn:hover,.theme-btn:hover{color:var(--text);border-color:var(--border-strong);}
+.menu-btn{display:none;}
+.mast-right{display:flex;align-items:center;gap:8px;}
+@media (max-width:880px){
+  .menu-btn{display:inline-flex;align-items:center;gap:6px;}
+  .nav{display:none;position:absolute;left:0;right:0;top:100%;background:var(--bg);border-bottom:1px solid var(--border);padding:8px 12px 12px;flex-direction:column;align-items:stretch;gap:2px;box-shadow:0 20px 40px -24px var(--shadow);}
+  .nav.open{display:flex;}
+  .nav-link{padding:11px 10px;font-size:15px;}
+}
+.kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);}
+.tag{font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--muted2);border:1px solid var(--border);border-radius:999px;padding:5px 12px;background:var(--surface);text-decoration:none;display:inline-block;}
+.tag:hover{border-color:var(--text);color:var(--text);}
+.chip{font-family:var(--mono);font-size:12px;letter-spacing:.02em;font-weight:500;padding:7px 13px;border-radius:999px;cursor:pointer;transition:all .18s ease;border:1px solid var(--border);background:transparent;color:var(--muted2);}
+.chip:hover{border-color:var(--border-strong);color:var(--text);}
+.chip.active{border:1px solid var(--text);background:var(--text);color:var(--bg);}
+.chips{display:flex;gap:8px;flex-wrap:wrap;}
+.card{border:1px solid var(--border);border-radius:14px;background:var(--surface);padding:20px 22px;}
+.card-link{display:block;text-decoration:none;transition:border-color .2s ease,transform .2s ease,box-shadow .25s ease;}
+.card-link:hover{border-color:var(--border-strong);transform:translateY(-2px);box-shadow:0 18px 40px -28px var(--shadow);}
+.callout{border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:12px;background:var(--surface);padding:22px 24px;margin:0 0 40px;}
+.callout p{font-size:clamp(17px,2.2vw,19px);margin:0;}
+.meta-row{display:flex;align-items:center;gap:13px;flex-wrap:wrap;font-family:var(--mono);font-size:13px;color:var(--faint);}
+.meta-row .day{color:var(--accent);font-weight:500;}
+.page-h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,5vw,54px);letter-spacing:-.018em;line-height:1.05;margin:0 0 16px;}
+.lede{font-size:clamp(16px,2vw,18px);line-height:1.6;color:var(--muted);max-width:62ch;margin:0 0 36px;}
+.section-h2{font-family:var(--serif);font-weight:500;font-size:clamp(22px,3vw,28px);border-bottom:1px solid var(--border);padding-bottom:12px;margin:0 0 22px;}
+.filter-input{width:100%;max-width:420px;font-family:var(--sans);font-size:15px;padding:11px 14px;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--text);}
+.filter-input:focus{outline:2px solid var(--accent);outline-offset:1px;}
+article h1{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.5vw,52px);line-height:1.07;letter-spacing:-.018em;margin:0 0 16px;}
+article h2{font-family:var(--serif);font-weight:500;font-size:clamp(23px,3.4vw,30px);line-height:1.18;margin:0 0 18px;}
+article h2 .num{font-family:var(--mono);font-size:13px;letter-spacing:.1em;color:var(--accent);display:block;margin-bottom:6px;}
+article p{font-family:var(--serif);font-size:clamp(18px,2.3vw,20px);line-height:1.65;color:var(--text2);margin:0 0 20px;}
+article ul{margin:4px 0 20px;padding-left:20px;}
+article li{font-family:var(--serif);font-size:clamp(17px,2.2vw,19px);line-height:1.6;color:var(--text2);margin:0 0 10px;}
+.deck{font-family:var(--serif);font-size:clamp(19px,2.6vw,23px);line-height:1.45;color:var(--muted);margin:0 0 22px;letter-spacing:-.005em;}
+.intro{font-size:clamp(19px,2.6vw,22px)!important;line-height:1.55!important;color:var(--text2)!important;font-style:italic;margin:0 0 36px!important;}
+.highlight{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2.4vw,20px);line-height:1.55;color:var(--text2);border-left:3px solid var(--accent);padding:6px 0 6px 16px;margin:8px 0 20px;}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:0 0 40px;}
+.stat-cell{background:var(--surface);padding:18px 20px;}
+.stat-big{font-family:var(--serif);font-size:clamp(24px,4vw,32px);line-height:1.05;color:var(--text);}
+.stat-small{font-size:13px;line-height:1.45;color:var(--muted);margin-top:8px;}
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:12px;background:var(--surface);margin:0 0 20px;}
+table{width:100%;border-collapse:collapse;}
+th{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);text-align:left;padding:9px 12px;border-bottom:1px solid var(--border-strong);font-weight:500;}
+td{font-size:14.5px;color:var(--text2);padding:9px 12px;border-bottom:1px solid var(--border-soft);vertical-align:top;line-height:1.45;font-family:var(--sans);}
+tr:last-child td{border-bottom:none;}
+.tk-item{margin:0 0 14px;}
+.tk-title{font-weight:600;font-size:15.5px;font-family:var(--sans);color:var(--text);}
+.tk-body{font-family:var(--serif);font-size:17px;line-height:1.55;color:var(--text2);margin:3px 0 0;}
+details.quiz{border:1px solid var(--border);border-radius:10px;background:var(--surface);padding:12px 16px;margin:0 0 10px;}
+details.quiz summary{cursor:pointer;font-family:var(--sans);font-weight:600;font-size:15.5px;color:var(--text);}
+details.quiz p{font-size:16.5px;margin:10px 0 0;}
+.related{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:0 0 10px;}
+.related a{border:1px solid var(--border);border-radius:12px;padding:16px 18px;background:var(--surface);text-decoration:none;display:block;}
+.related a:hover{border-color:var(--text);}
+.related .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-bottom:8px;}
+.related .ttl{font-family:var(--serif);font-size:17px;line-height:1.25;color:var(--text);}
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:680px;margin:0 auto;padding:20px 20px 90px;}
+.pn a{border:1px solid var(--border);border-radius:12px;padding:18px 20px;background:var(--surface);text-decoration:none;display:block;}
+.pn a:hover{border-color:var(--text);}
+.pn .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-bottom:9px;}
+.pn .ttl{font-family:var(--serif);font-size:18px;line-height:1.2;color:var(--text);}
+.sources{font-size:14.5px;line-height:1.55;color:var(--muted);border-top:1px solid var(--border);padding-top:18px;margin:0 0 30px;}
+.sources a{color:var(--accent);}
+.entry-list{list-style:none;margin:0;padding:0;}
+.entry-list li{margin:0 0 18px;}
+.entry-list a{text-decoration:none;display:block;}
+.entry-list .d{font-family:var(--mono);font-size:12.5px;color:var(--accent);}
+.entry-list .t{display:block;font-family:var(--serif);font-size:clamp(19px,2.6vw,23px);line-height:1.25;color:var(--text);margin:4px 0 3px;}
+.entry-list .s{display:block;font-size:15px;line-height:1.5;color:var(--muted);}
+.entry-list a:hover .t{color:var(--accent);}
+footer.foot{border-top:1px solid var(--border);background:var(--surface);margin-top:40px;}
+.foot-in{max-width:1120px;margin:0 auto;padding:30px 20px;display:flex;align-items:flex-start;justify-content:space-between;gap:18px;flex-wrap:wrap;font-family:var(--mono);font-size:12.5px;color:var(--muted2);}
+@media (min-width:640px){.foot-in{padding:34px 28px;}}
+.foot-in a{text-decoration:none;color:var(--muted2);}
+.foot-in a:hover{color:var(--text);}
+.foot-links{display:flex;gap:14px;flex-wrap:wrap;}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+/* GEO:CSS:END */
+
+/* ── Home page ─────────────────────────────────────────────────────────── */
+@keyframes vspulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.3;transform:scale(.7);}}
+.hero{padding:40px 0 22px;}
+@media (min-width:640px){.hero{padding:52px 0 26px;}}
+.live{display:inline-flex;align-items:center;gap:9px;padding:6px 13px;border:1px solid var(--border);border-radius:999px;background:var(--surface);margin-bottom:22px;}
+.live .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:vspulse 1.8s ease-in-out infinite;}
+.live span:last-child{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted2);}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(36px,6vw,66px);line-height:1.02;letter-spacing:-.02em;margin:0 0 16px;max-width:16ch;}
+.hero h1 em{font-style:italic;color:var(--accent);}
+.hero p{font-size:clamp(16px,2vw,19px);line-height:1.55;color:var(--muted);max-width:56ch;margin:0;}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin:6px 0 0;}
+@media (min-width:640px){.stats{grid-template-columns:repeat(4,1fr);}}
+.stat{background:var(--surface);padding:16px 18px;}
+@media (min-width:640px){.stat{padding:20px 22px;}}
+.stat b{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(28px,4vw,40px);line-height:1;letter-spacing:-.02em;color:var(--text);}
+.stat span{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-top:9px;}
+.featured{display:block;text-decoration:none;color:inherit;border:1px solid var(--border);border-radius:18px;background:var(--surface);padding:clamp(22px,4vw,44px);transition:box-shadow .25s ease,transform .25s ease,border-color .2s ease;}
+.featured:hover{box-shadow:0 18px 50px -22px var(--shadow);transform:translateY(-2px);border-color:var(--border-strong);}
+.featured h2{font-family:var(--serif);font-weight:400;font-size:clamp(26px,4vw,44px);line-height:1.08;letter-spacing:-.015em;margin:0 0 14px;max-width:24ch;}
+.featured .deck{font-family:var(--serif);font-size:clamp(17px,2.2vw,21px);line-height:1.5;color:var(--muted);margin:0 0 18px;max-width:64ch;}
+.featured .excerpt{font-size:clamp(15px,1.8vw,17px);line-height:1.6;color:var(--muted);margin:0 0 22px;max-width:64ch;}
+.featured .cta{margin-left:auto;font-size:14.5px;font-weight:600;color:var(--accent);display:inline-flex;align-items:center;gap:7px;}
+.sec{padding:30px 0 0;}
+@media (min-width:640px){.sec{padding:40px 0 0;}}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px;border-bottom:1px solid var(--border);padding-bottom:14px;}
+.sec-head h2{font-family:var(--serif);font-weight:400;font-size:clamp(24px,3.2vw,34px);letter-spacing:-.015em;margin:0;}
+.sec-head a.more{font-family:var(--mono);font-size:12.5px;color:var(--muted2);text-decoration:none;}
+.sec-head a.more:hover{color:var(--accent);}
+.explore{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+@media (min-width:640px){.explore{grid-template-columns:repeat(3,1fr);}}
+@media (min-width:980px){.explore{grid-template-columns:repeat(6,1fr);}}
+.explore a{display:block;text-decoration:none;border:1px solid var(--border);border-radius:12px;background:var(--surface);padding:14px 15px;transition:border-color .2s ease;}
+.explore a:hover{border-color:var(--text);}
+.explore b{display:block;font-family:var(--serif);font-weight:500;font-size:17px;color:var(--text);margin-bottom:4px;}
+.explore span{display:block;font-size:12.5px;line-height:1.4;color:var(--muted);}
+.recent{list-style:none;margin:0;padding:0;}
+.recent li{border-bottom:1px solid var(--border-soft);}
+.recent a{display:grid;grid-template-columns:1fr;gap:4px 18px;padding:14px 0;text-decoration:none;}
+@media (min-width:700px){.recent a{grid-template-columns:190px 1fr;}}
+.recent .d{font-family:var(--mono);font-size:12.5px;color:var(--faint);padding-top:4px;}
+.recent .d b{color:var(--accent);font-weight:500;}
+.recent .t{font-family:var(--serif);font-size:clamp(18px,2.4vw,21px);line-height:1.25;color:var(--text);}
+.recent a:hover .t{color:var(--accent);}
+.recent .s{font-size:14.5px;line-height:1.5;color:var(--muted);margin-top:3px;}
+.recent .tags{margin-top:7px;display:flex;gap:6px;flex-wrap:wrap;}
+.recent .tags span{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--faint);border:1px solid var(--border);border-radius:999px;padding:3px 9px;}
+.search{position:relative;max-width:620px;}
+.search input{width:100%;font-family:var(--sans);font-size:16px;padding:13px 16px 13px 42px;border:1px solid var(--border);border-radius:12px;background:var(--surface);color:var(--text);}
+.search input:focus{outline:2px solid var(--accent);outline-offset:1px;}
+.search .ico{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--faint);font-size:16px;pointer-events:none;}
+.search-status{font-family:var(--mono);font-size:12px;color:var(--faint);margin:10px 0 0;min-height:1em;}
+.results{list-style:none;margin:10px 0 0;padding:0;}
+.results li{border-bottom:1px solid var(--border-soft);}
+.results a{display:block;padding:12px 0;text-decoration:none;}
+.results .t{font-family:var(--serif);font-size:19px;line-height:1.25;color:var(--text);}
+.results a:hover .t{color:var(--accent);}
+.results .d{font-family:var(--mono);font-size:12px;color:var(--faint);margin:3px 0;}
+.results .s{font-size:14px;line-height:1.5;color:var(--muted);}
+.results mark{background:var(--accent-tint);color:inherit;padding:0 2px;border-radius:3px;}
+.cal-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:18px 0 14px;}
+.cal-nav .ctl{display:flex;align-items:center;gap:10px;}
+.cal-arrow{width:38px;height:38px;border-radius:9px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-size:16px;color:var(--muted2);display:flex;align-items:center;justify-content:center;transition:.18s ease;}
+.cal-arrow:hover{border-color:var(--text);color:var(--text);}
+.cal-arrow:disabled{opacity:.35;cursor:default;}
+.cal-title{font-family:var(--serif);font-size:clamp(21px,3vw,28px);letter-spacing:-.01em;min-width:150px;}
+.cal-select{font-family:var(--mono);font-size:12.5px;padding:8px 10px;border:1px solid var(--border);border-radius:9px;background:var(--surface);color:var(--text);}
+.cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;}
+@media (min-width:640px){.cal-grid{gap:7px;}}
+.cal-wd{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);padding:0 4px 6px;}
+.cal-entry,.cal-plain,.cal-blank{border-radius:10px;min-height:40px;}
+@media (min-width:700px){.cal-entry,.cal-plain,.cal-blank{min-height:clamp(62px,9vw,100px);}}
+.cal-entry{display:flex;flex-direction:column;padding:7px 8px;text-decoration:none;background:var(--surface);border:1px solid var(--border);transition:all .18s ease;overflow:hidden;}
+.cal-entry:hover,.cal-entry:focus-visible{background:var(--surface2);border-color:var(--border-strong);transform:translateY(-2px);box-shadow:0 12px 26px -16px var(--shadow);outline:none;}
+.cal-entry .n{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--accent);}
+.cal-entry .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);margin-top:auto;}
+.cal-entry .lbl{display:none;margin-top:auto;}
+.cal-entry .lbl i{display:block;font-style:normal;font-family:var(--mono);font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--faint);margin-bottom:3px;}
+.cal-entry .lbl span{display:block;font-family:var(--serif);font-size:13px;line-height:1.18;color:var(--text);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+@media (min-width:700px){.cal-entry .dot{display:none;}.cal-entry .lbl{display:block;}}
+.cal-entry.dim{opacity:.35;}
+.cal-plain{padding:7px 8px;border:1px solid var(--border-soft);}
+.cal-plain span{font-family:var(--mono);font-size:12px;color:var(--faintest);}
+.month-list{list-style:none;margin:16px 0 0;padding:0;}
+.month-list li{border-top:1px solid var(--border-soft);}
+.month-list a{display:grid;grid-template-columns:52px 1fr;gap:12px;padding:12px 0;text-decoration:none;align-items:start;}
+.month-list .n{font-family:var(--mono);font-size:13px;color:var(--accent);padding-top:3px;}
+.month-list .t{display:block;font-family:var(--serif);font-size:18px;line-height:1.25;color:var(--text);}
+.month-list a:hover .t{color:var(--accent);}
+.month-list .s{display:block;font-size:13.5px;line-height:1.45;color:var(--muted);margin-top:2px;}
+.tools{display:grid;grid-template-columns:1fr;gap:10px;}
+@media (min-width:640px){.tools{grid-template-columns:repeat(3,1fr);}}
+.tools a{display:block;text-decoration:none;border:1px solid var(--border);border-radius:12px;background:var(--surface);padding:18px 20px;transition:border-color .2s ease;}
+.tools a:hover{border-color:var(--text);}
+.tools b{display:block;font-family:var(--serif);font-weight:500;font-size:19px;color:var(--text);margin-bottom:5px;}
+.tools span{display:block;font-size:13.5px;line-height:1.45;color:var(--muted);}
+.empty{font-family:var(--serif);font-size:19px;color:var(--muted);padding:20px 0;}
 </style>
 </head>
 <body>
-<div id="app" style="min-height:100vh;">
+<!-- GEO:MASTHEAD:BEGIN (generated by generate_geo.py — do not edit by hand) -->
+<a class="skip" href="#main">Skip to content</a>
+<header class="mast"><div class="mast-in">
+  <a class="brand" href="/"><span class="brand-mark" aria-hidden="true">VS</span><span class="brand-name">varunsingla.com</span></a>
+  <div class="mast-right">
+    <nav class="nav" aria-label="Site"><a class="nav-link active" href="/" aria-current="page">Journal</a><a class="nav-link" href="/entries/">Archive</a><a class="nav-link" href="/playbook/">Playbook</a><a class="nav-link" href="/concepts/">Concepts</a><a class="nav-link" href="/watching/">Watching</a><a class="nav-link" href="/review/">Review</a><a class="nav-link" href="/start/">Start Here</a><a class="nav-link" href="/about/">About</a></nav>
+    <button class="theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">◐</button>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open menu">Menu ☰</button>
+  </div>
+</div></header>
+<!-- GEO:MASTHEAD:END -->
+<main id="main">
+<div id="app" class="wrap" style="min-height:70vh;">
 <!-- GEO:STATIC:BEGIN (generated by generate_geo.py — do not edit by hand) -->
-<div style="max-width:760px;margin:0 auto;padding:56px 28px;font-family:'Hanken Grotesk',sans-serif;">
-  <h1 style="font-family:'Newsreader',serif;font-weight:400;">Varun Singla — AI Learning Journal</h1>
+<div style="max-width:760px;margin:0 auto;padding:56px 28px;font-family:var(--sans);">
+  <h1 style="font-family:var(--serif);font-weight:400;">Varun Singla — AI Learning Journal</h1>
   <p>Daily deep dives into agentic AI, the protocols that connect it (MCP, A2A), multi-agent systems,
   AI infrastructure economics, governance, and the industries AI is reshaping — written every evening
   by Varun Singla, a technology consultant and agentic AI researcher in Singapore.
   206 entries published since March 15, 2026; updated daily.</p>
-  <p><a href="/entries/">Browse the full archive</a> · <a href="/about/">About Varun Singla</a> ·
+  <p><a href="/start/">Start here</a> · <a href="/entries/">Browse the full archive</a> · <a href="/playbook/">Playbook</a> ·
+  <a href="/concepts/">Concepts</a> · <a href="/watching/">What we're watching</a> · <a href="/weekly/">Weekly digest</a> ·
+  <a href="/review/">Review</a> · <a href="/about/">About Varun Singla</a> ·
   <a href="/tokenizer.html">LLM Tokenizer &amp; Cost Calculator</a> · <a href="/ai-tokenomics/">AI Tokenomics</a> ·
   <a href="/tools/model-team-evaluator.html">Model Team Evaluator</a> · <a href="/feed.xml">RSS</a> · <a href="/llms.txt">llms.txt</a></p>
-  <h2 style="font-family:'Newsreader',serif;font-weight:500;">Latest entry — Day 206, October 14, 2026</h2>
-  <p><a href="/entries/2026-10-14.html"><strong>AI Learning -- Day 200</strong></a><br>Several outlets this week are circulating a story that AI models can copy themselves onto other computers, with some versions of the headline mentioning smart fridges and attributing a…</p>
-  <h2 style="font-family:'Newsreader',serif;font-weight:500;">Recent entries</h2>
-  <ul style="list-style:none;padding:0;"><li style="margin:0 0 16px;"><a href="/entries/2026-10-14.html"><strong>Day 206 · October 14, 2026: AI Learning -- Day 200</strong></a><br>Several outlets this week are circulating a story that AI models can copy themselves onto other computers, with some versions of the headline mentioning smart fridges and attributing a…</li><li style="margin:0 0 16px;"><a href="/entries/2026-10-13.html"><strong>Day 205 · October 13, 2026: AI Learning -- Day 199</strong></a><br>REA (&quot;Reverse Engineer Anything&quot;), an open-source TypeScript project by developer morluto, appeared on GitHub Trending around October 7-10, 2026.</li><li style="margin:0 0 16px;"><a href="/entries/2026-10-12.html"><strong>Day 204 · October 12, 2026: AI Learning -- Day 198</strong></a><br>Per secondary coverage of OpenAI&#x27;s announcement, GPT-6 began rolling out in ChatGPT on October 7, 2026: paid tiers (Plus, Pro, Business, Enterprise) first, then Free and Go on October 8.</li><li style="margin:0 0 16px;"><a href="/entries/2026-10-11.html"><strong>Day 203 · October 11, 2026: AI Learning -- Day 197</strong></a><br>Per coverage of Anthropic&#x27;s October 9 report, internal evaluation agents took real-world actions nobody intended.</li><li style="margin:0 0 16px;"><a href="/entries/2026-10-10.html"><strong>Day 202 · October 10, 2026: AI Learning -- Day 196</strong></a><br>Per news coverage of OpenAI&#x27;s announcement, GPT-6 began rolling out in ChatGPT on October 7, 2026.</li><li style="margin:0 0 16px;"><a href="/entries/2026-10-09.html"><strong>Day 201 · October 9, 2026: AI Learning -- Day 195</strong></a><br>On October 5, 2026 the Wikimedia Foundation (its chief product and technology officer, Selena Deckelmann) said its own investigation found activity it believes came from agents operated by…</li><li style="margin:0 0 16px;"><a href="/entries/2026-10-08.html"><strong>Day 200 · October 8, 2026: AI Learning -- Day 194</strong></a><br>Reflection AI, a U.S. startup founded in March 2024 by former Google DeepMind researchers, announced Beam on October 5, 2026.</li><li style="margin:0 0 16px;"><a href="/entries/2026-10-07.html"><strong>Day 199 · October 7, 2026: AI Learning -- Day 193</strong></a><br>Search-based reports say Anthropic released Claude Opus 5.5 on September 22, two months after Opus 5.</li><li style="margin:0 0 16px;"><a href="/entries/2026-10-06.html"><strong>Day 198 · October 6, 2026: AI Learning -- Day 192</strong></a><br>Search-based reports from OpenAI&#x27;s DevDay (announced Tuesday, October 6) say OpenAI released GPT-6.1 Sol, which nearly matches its top model GPT-6 Astra on agentic coding, computer use and…</li><li style="margin:0 0 16px;"><a href="/entries/2026-10-05.html"><strong>Day 197 · October 5, 2026: AI Learning -- Day 191</strong></a><br>Search-based reports this week say Nvidia released an Open Agent Safety Platform to monitor and govern agentic AI.</li></ul>
+  <h2 style="font-family:var(--serif);font-weight:500;">Latest entry — Day 206, October 14, 2026</h2>
+  <p><a href="/entries/2026-10-14.html"><strong>AI Self-Replication Research and What It Really Shows</strong></a><br>Meta&#x27;s Muse model family, China&#x27;s AI chip split, agent-harness open source, and a day-200 look back</p>
+  <h2 style="font-family:var(--serif);font-weight:500;">Recent entries</h2>
+  <ul style="list-style:none;padding:0;"><li style="margin:0 0 16px;"><a href="/entries/2026-10-14.html"><strong>Day 206 · October 14, 2026: AI Self-Replication Research and What It Really Shows</strong></a><br>Meta&#x27;s Muse model family, China&#x27;s AI chip split, agent-harness open source, and a day-200 look back</li><li style="margin:0 0 16px;"><a href="/entries/2026-10-13.html"><strong>Day 205 · October 13, 2026: REA and Agent-Driven Reverse Engineering</strong></a><br>Mistral Large 4 and open-weight mixture-of-experts, GPT-6 and Haiku 5.5 follow-ups, and why the primary source matters</li><li style="margin:0 0 16px;"><a href="/entries/2026-10-12.html"><strong>Day 204 · October 12, 2026: GPT-6 and ChatGPT&#x27;s Intelligent UI</strong></a><br>Claude Haiku 5.5 and the economics of cheap models, the US-China compute race, and teen-safety ratings for chatbots</li><li style="margin:0 0 16px;"><a href="/entries/2026-10-11.html"><strong>Day 203 · October 11, 2026: Anthropic&#x27;s Agent-Incident Disclosure and the Internet Cut-Off for Evals</strong></a><br>The White House response, Epoch&#x27;s test of whether agents can reinvent research, and agent action boundaries</li><li style="margin:0 0 16px;"><a href="/entries/2026-10-10.html"><strong>Day 202 · October 10, 2026: GPT-6 and ChatGPT&#x27;s Intelligent UI (Generative Interfaces)</strong></a><br>The OpenAI revenue-versus-spending debate, the dispute over AI-written math, and AI-assisted code security</li><li style="margin:0 0 16px;"><a href="/entries/2026-10-09.html"><strong>Day 201 · October 9, 2026: OpenAI Agents and Wikimedia&#x27;s Infrastructure Strain</strong></a><br>OpenAI&#x27;s 722 AI-written math manuscripts and how proofs get verified, and the unconfirmed Haiku 5.5 launch</li><li style="margin:0 0 16px;"><a href="/entries/2026-10-08.html"><strong>Day 200 · October 8, 2026: Reflection AI&#x27;s Beam and the Open-Weight Race</strong></a><br>Microsoft&#x27;s local-AI Surface hardware, why &#x27;self-reported&#x27; benchmarks need your own tests, and Sonnet 5.5 / Haiku 5.5 still pending</li><li style="margin:0 0 16px;"><a href="/entries/2026-10-07.html"><strong>Day 199 · October 7, 2026: Claude Opus 5.5 Cuts Frontier Pricing</strong></a><br>California bans AI-only firing while Washington rebrands AI as &#x27;Super Intelligence&#x27;, and agent harnesses like OpenCode become the layer that matters</li><li style="margin:0 0 16px;"><a href="/entries/2026-10-06.html"><strong>Day 198 · October 6, 2026: OpenAI&#x27;s GPT-6.1 Sol Brings Near-Flagship Agent Coding at a Fifth of the Price</strong></a><br>DeepSeek&#x27;s V4.1 Flash shows how sparse models cut cost, and a memory plugin for coding agents goes viral</li><li style="margin:0 0 16px;"><a href="/entries/2026-10-05.html"><strong>Day 197 · October 5, 2026: Nvidia Open-Sources an Agent Safety Platform</strong></a><br>The White House names a &#x27;Super Intelligence Force&#x27;, and a free tool that gives agents eyes on the whole internet goes viral</li></ul>
 </div>
 <!-- GEO:STATIC:END -->
 </div>
+</main>
+<!-- GEO:FOOTER:BEGIN (generated by generate_geo.py — do not edit by hand) -->
+<footer class="foot"><div class="foot-in">
+  <div><span class="brand-mark" style="display:inline-flex;width:26px;height:26px;font-size:11px;border-radius:6px;vertical-align:middle;margin-right:8px;">VS</span>Varun Singla · Singapore · Learning in public</div>
+  <div class="foot-links">
+    <a href="/weekly/">Weekly digest</a><a href="/tokenizer.html">Tokenizer</a><a href="/ai-tokenomics/">Tokenomics</a>
+    <a href="/tools/model-team-evaluator.html">Model Evaluator</a><a href="https://varunsingla.com/feed.xml">RSS</a><a href="https://varunsingla.com/llms.txt">llms.txt</a>
+  </div>
+  <div>Updated daily · © 2026</div>
+</div></footer>
+<script>
+(function(){
+  try{var t=localStorage.getItem('vs-theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}
+  function ready(fn){if(document.readyState!=='loading'){fn();}else{document.addEventListener('DOMContentLoaded',fn);}}
+  ready(function(){
+    var btn=document.querySelector('.menu-btn'),nav=document.querySelector('.nav');
+    if(btn&&nav){btn.addEventListener('click',function(){var open=nav.classList.toggle('open');btn.setAttribute('aria-expanded',open?'true':'false');});}
+    var tb=document.querySelector('.theme-btn');
+    if(tb){tb.addEventListener('click',function(){
+      var cur=document.documentElement.getAttribute('data-theme');
+      var sysDark=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var isDark=cur?cur==='dark':sysDark;
+      var next=isDark?'light':'dark';
+      document.documentElement.setAttribute('data-theme',next);
+      try{localStorage.setItem('vs-theme',next);}catch(e){}
+    });}
+  });
+})();
+</script>
+<!-- GEO:FOOTER:END -->
 
 <script>
 /* ============================================================
-   Varun Singla — AI Learning Journal
-   Content source: learnings.json (the live data file)
+   Varun Singla — AI Learning Journal · home page
+   Data: index.json (light index written by generate_geo.py) and
+   search.json (loaded only when you search). Entry pages are static.
    ============================================================ */
+(function () {
+  'use strict';
+  const META_VERSION = (document.querySelector('meta[name="journal-data-version"]') || {}).content || '';
+  const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const WD = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const app = document.getElementById('app');
 
-const ACCENT = '#CC3F2A';
-const THEMES = ['Foundations & Protocols','Industry Verticals','Enterprise & Strategy','Infrastructure & Economics','Models & Frontier','Governance & Safety'];
+  let DATA = null;            // index.json
+  let ENTRIES = [];           // newest first
+  let BY_DATE = {};
+  let MONTH_KEYS = [];        // 'YYYY-MM' with entries, ascending
+  let SEARCH = null;          // search.json (lazy)
+  let searchLoading = null;
+  const STATE = { filter: 'All', calKey: '', q: '' };
 
-/* ---- theme classifier (title + section headings only) ---- */
-const RULES = {
-  'Industry Verticals':['healthcare','life science','clinical','hospital','pharma','telecom','network','insurance','underwriting','financial service','fp&a',' finance','banking','wall street','manufacturing','industrial','supply chain','retail','e-commerce','ecommerce','legal','contract',' hr ','people operation','education','edtech','marketing','customer success',' customer','sales &','revenue operation',' media','entertainment','energy & climate','energy &','scientific research','public sector','govtech','real estate','proptech','in financial','vertical'],
-  'Infrastructure & Economics':['data centre','data center','data-centre','power wall','cooling','water wall','inference econom','compute map','sovereign ai','hyperscaler','capex','tokenomic','token economic',' gpu','chip','silicon','power &'],
-  'Governance & Safety':['safety','governance','eu ai act','ai act','regulat','compliance','agent identity','identity 3.0','identity 2.0','spiffe','know your agent',' kya','red team','red-team','fair-housing','liability'],
-  'Models & Frontier':['frontier','model wars','open weight','open-weight','open-source','open source','multimodal','multi-modal','voice stack','gemini','mythos','vla','humanoid','robot','model race','reasoning model','quantiz','google i/o','i/o 2026','physical ai'],
-  'Enterprise & Strategy':['enterprise','coe','center of excellence','centre of excellence',' roi','procurement','operating model','buyer','org chart','finops','valuation','moat','go-to-market','take rate','control plane','future of work','career','roles','cfo','cio','business case','adoption','scorecard','app store','skills economy','marketplace','agent economy','competitive'],
-  'Foundations & Protocols':['mcp','model context protocol','a2a','agent-to-agent','protocol','memory','orchestrat','agentic rag',' rag','observability','reliability','eval','testing','multi-agent','multi agent','communication','agent pattern','first agent','first ai agent','first production','tool optim','tool use','tool-use','interop','skill.md','building your','microservices','agent skill','data infrastructure','browser','debugging','routing'],
-};
-function classify(e){
-  const t = (e.title||'').toLowerCase();
-  const heads = (e.sections||[]).map(s=>s.title||'').join(' ').toLowerCase();
-  const score = {}; THEMES.forEach(k=>score[k]=0);
-  for (const th in RULES){
-    for (const k of RULES[th]){
-      if (t.includes(k)) score[th]+=3;
-      if (heads.includes(k)) score[th]+=1;
+  /* ---- helpers ---- */
+  const esc = s => s == null ? '' : String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  const parseISO = iso => { const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso || ''); return m ? new Date(+m[1], +m[2]-1, +m[3]) : null; };
+  const fmtLong = iso => { const d = parseISO(iso); return d ? d.toLocaleString('en-US', {month:'long', day:'numeric', year:'numeric'}) : iso; };
+  const fmtShort = iso => { const d = parseISO(iso); return d ? d.toLocaleString('en-US', {month:'short', day:'numeric'}) : iso; };
+  const monthKey = iso => (iso || '').slice(0, 7);
+  const monthLabel = key => { const [y, m] = key.split('-'); return MONTHS[+m - 1] + ' ' + y; };
+  const tagHtml = tags => (tags || []).map(t => `<span>${esc(t)}</span>`).join('');
+  const fmtK = n => n >= 1000 ? (n / 1000).toFixed(n >= 100000 ? 0 : 0) + 'k' : String(n);
+
+  /* ---- legacy hash links: #/entry/dN -> static entry page ---- */
+  function redirectLegacyHash() {
+    const m = /^#\/?entry\/d(\d+)/.exec(location.hash || '');
+    if (!m) return false;
+    const day = +m[1];
+    const e = ENTRIES.find(x => x.day === day);
+    if (e) { location.replace(e.url); return true; }
+    return false;
+  }
+  function readThemeHash() {
+    const m = /[#&]theme=([^&]+)/.exec(location.hash || '');
+    if (m) {
+      const t = decodeURIComponent(m[1]);
+      if (DATA.themes.indexOf(t) >= 0) STATE.filter = t;
     }
   }
-  let ranked = THEMES.slice().sort((a,b)=> (score[b]-score[a]) || (THEMES.indexOf(a)-THEMES.indexOf(b)));
-  let chosen = ranked.filter(k=>score[k]>0).slice(0,2);
-  if (!chosen.length) chosen = ['Foundations & Protocols'];
-  if (score['Industry Verticals']>=3){
-    chosen = ['Industry Verticals'].concat(chosen.filter(c=>c!=='Industry Verticals')).slice(0,2);
-  }
-  return chosen;
-}
 
-/* ---- helpers ---- */
-function esc(s){ if(s==null) return ''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-function parseISO(iso){ const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(iso||''); if(!m) return null; return new Date(+m[1], +m[2]-1, +m[3]); }
-function fmtLong(e){ const d=parseISO(e.date); return d ? d.toLocaleString('en-US',{month:'long',day:'numeric',year:'numeric'}) : (e.display_date||''); }
-function firstSentences(text, max){
-  if(!text) return '';
-  text = text.replace(/\s+/g,' ').trim();
-  if(text.length<=max) return text;
-  const slice = text.slice(0, max);
-  const lastStop = Math.max(slice.lastIndexOf('. '), slice.lastIndexOf('? '), slice.lastIndexOf('! '));
-  if(lastStop > max*0.5) return text.slice(0, lastStop+1);
-  const lastSpace = slice.lastIndexOf(' ');
-  return text.slice(0, lastSpace>0?lastSpace:max).trim() + '…';
-}
-function wordCount(e){
-  let n=(e.focus_intro||'').split(/\s+/).length;
-  (e.sections||[]).forEach(s=>{(s.paragraphs||[]).forEach(p=>n+=p.split(/\s+/).length);(s.bullets||[]).forEach(b=>n+=b.split(/\s+/).length);});
-  if(Array.isArray(e.practical_takeaway)) e.practical_takeaway.forEach(t=>{n+=((t.title||'')+' '+(t.body||'')).split(/\s+/).length;});
-  return n;
-}
-function readMins(e){ return Math.max(3, Math.round(wordCount(e)/210)); }
-
-/* ---- state ---- */
-let ENTRIES = [];
-let STATE = { view:'home', selectedId:null, filter:'All', calYear:2026, calMonth:5, progress:0 };
-
-/* ---- data load ---- */
-async function load(){
-  let data;
-  try {
-    const res = await fetch('learnings.json?v=' + Date.now());
-    data = await res.json();
-  } catch(e){
-    document.getElementById('app').innerHTML = '<div style="max-width:680px;margin:80px auto;padding:0 28px;font-family:\'Newsreader\',serif;font-size:20px;color:#56524B;">Could not load the journal data. Please check back soon.</div>';
-    return;
-  }
-  let raw = (data.learnings||[]).filter(e => e && e.title && String(e.title).trim());
-  raw.sort((a,b)=> String(a.date).localeCompare(String(b.date)));
-  raw.forEach((e,i)=>{ e._day = i+1; e._id = 'd'+(i+1); e._tags = classify(e); e._read = readMins(e); e._excerpt = firstSentences(e.focus_intro || (e.sections&&e.sections[0]&&(e.sections[0].paragraphs||[])[0]) || '', 190); });
-  ENTRIES = raw.slice().reverse();
-  // default the calendar to the month of the most recent entry
-  if(ENTRIES.length){ const d=parseISO(ENTRIES[0].date); if(d){ STATE.calYear=d.getFullYear(); STATE.calMonth=d.getMonth(); } }
-  injectBlogPostingSchema(raw);
-  route();
-  window.addEventListener('hashchange', route);
-  window.addEventListener('scroll', onScroll, {passive:true});
-}
-
-function injectBlogPostingSchema(entries){
-  try{
-    const posts = entries.slice().reverse().map(l => ({
-      "@type": "BlogPosting",
-      "@context": "https://schema.org",
-      "headline": l.title || ("AI Learning — " + l.display_date),
-      "description": l.focus_intro || l.title || "Daily AI learning entry by Varun Singla.",
-      "datePublished": l.date + "T21:00:00+08:00",
-      "dateModified":  l.date + "T21:00:00+08:00",
-      "author": { "@id": "https://varunsingla.com/#varun" },
-      "url": "https://varunsingla.com/entries/" + l.date + ".html"
-    }));
-    const el = document.getElementById('ld-blogpostings');
-    if(el) el.textContent = JSON.stringify(posts);
-  }catch(e){}
-}
-
-function onScroll(){
-  if(STATE.view!=='article') return;
-  const el = document.getElementById('article-root'); if(!el) return;
-  const top = el.offsetTop;
-  const h = el.offsetHeight - window.innerHeight;
-  const p = h>0 ? Math.min(100, Math.max(0, ((window.scrollY-top)/h)*100)) : 0;
-  const bar = document.getElementById('progress-fill'); if(bar) bar.style.width = p+'%';
-}
-
-/* ---- routing ---- */
-function route(){
-  const h = location.hash.replace(/^#\/?/,'');
-  if(h.startsWith('entry/')){
-    const id = h.slice(6);
-    if(ENTRIES.some(e=>e._id===id)){ STATE.view='article'; STATE.selectedId=id; render(); window.scrollTo(0,0); return; }
-  }
-  STATE.view='home'; STATE.selectedId=null; render();
-}
-function goEntry(id){ location.hash = '#/entry/'+id; }
-function goHome(){ location.hash = '#/'; }
-function setFilter(f){ STATE.filter=f; render(); }
-function shiftMonth(d){ let m=STATE.calMonth+d, y=STATE.calYear; if(m<0){m=11;y--;} if(m>11){m=0;y++;} STATE.calMonth=m; STATE.calYear=y; render(); }
-
-/* ---- shared chrome ---- */
-function masthead(){
-  return `<header style="position:sticky;top:0;z-index:50;background:rgba(247,244,237,0.86);backdrop-filter:saturate(140%) blur(12px);-webkit-backdrop-filter:saturate(140%) blur(12px);border-bottom:1px solid #E4DECF;">
-    <div style="max-width:1120px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
-      <a href="#/" style="display:flex;align-items:center;gap:11px;text-decoration:none;">
-        <div style="width:30px;height:30px;border-radius:7px;background:#1B1A17;color:#F7F4ED;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;letter-spacing:.02em;">VS</div>
-        <span style="font-family:'JetBrains Mono',monospace;font-size:13.5px;letter-spacing:-.01em;color:#1B1A17;">varunsingla.com</span>
-      </a>
-      <nav style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
-        <a class="nav-link active" href="#/">Journal</a>
-        <a class="nav-link" href="https://varunsingla.com/about/">About</a>
-        <a class="nav-link" href="https://varunsingla.com/ai-tokenomics/">Tokenomics</a>
-        <a class="nav-link" href="https://varunsingla.com/tools/model-team-evaluator.html">Model Evaluator</a>
-      </nav>
-    </div>
-  </header>`;
-}
-function footer(){
-  return `<footer style="border-top:1px solid #E4DECF;background:#FBF9F3;">
-    <div style="max-width:1120px;margin:0 auto;padding:34px 28px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;">
-      <div style="display:flex;align-items:center;gap:11px;">
-        <div style="width:26px;height:26px;border-radius:6px;background:#1B1A17;color:#F7F4ED;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;">VS</div>
-        <span style="font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#6B6760;">varunsingla.com · Singapore</span>
-      </div>
-      <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#A8A294;letter-spacing:.04em;">Updated daily · © 2026</span>
-    </div>
-  </footer>`;
-}
-
-/* ---- HOME ---- */
-function renderHome(){
-  const featured = ENTRIES[0];
-  const totalDays = ENTRIES.length;
-  const started = ENTRIES.length ? (function(){ const e=ENTRIES[ENTRIES.length-1]; const d=parseISO(e.date); return d? d.toLocaleString('en-US',{month:'short',day:'numeric'}) : ''; })() : '';
-
-  const stats = [
-    {value:String(totalDays), label:'Days Learning'},
-    {value:String(THEMES.length), label:'Themes Covered'},
-    {value:started, label:'Started Tracking'},
-  ];
-  const statHtml = stats.map(s=>`<div style="background:#FBF9F3;padding:26px;">
-      <div style="font-family:'Newsreader',serif;font-size:46px;line-height:1;font-weight:400;letter-spacing:-.02em;color:#1B1A17;">${esc(s.value)}</div>
-      <div style="font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:#8A857B;margin-top:11px;">${esc(s.label)}</div>
-    </div>`).join('');
-
-  const fTags = featured._tags.map(t=>`<span class="tag">${esc(t)}</span>`).join('');
-  const featuredHtml = featured ? `
-    <section style="max-width:1120px;margin:0 auto;padding:46px 28px 0;">
-      <div style="font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:${ACCENT};margin-bottom:18px;">Latest entry</div>
-      <a class="featured" href="#/entry/${featured._id}">
-        <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:22px;">
-          <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:${ACCENT};font-weight:500;">Day ${featured._day}</span>
-          <span style="width:4px;height:4px;border-radius:50%;background:#C9C2B2;"></span>
-          <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#8A857B;">${esc(fmtLong(featured))}</span>
-          <span style="width:4px;height:4px;border-radius:50%;background:#C9C2B2;"></span>
-          <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#8A857B;">${featured._read} min read</span>
-        </div>
-        <h2 style="font-family:'Newsreader',serif;font-weight:400;font-size:clamp(28px,4.4vw,48px);line-height:1.08;letter-spacing:-.015em;margin:0 0 18px;max-width:22ch;">${esc(featured.title)}</h2>
-        <p style="font-size:clamp(16px,2vw,19px);line-height:1.6;color:#56524B;margin:0 0 26px;max-width:60ch;">${esc(featured._excerpt)}</p>
-        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-          ${fTags}
-          <span style="margin-left:auto;font-size:14.5px;font-weight:600;color:${ACCENT};display:inline-flex;align-items:center;gap:7px;">Read entry <span style="font-size:17px;">→</span></span>
-        </div>
-      </a>
-    </section>` : '';
-
-  return masthead() + `
-    <section style="max-width:1120px;margin:0 auto;padding:64px 28px 40px;">
-      <div style="display:inline-flex;align-items:center;gap:9px;padding:6px 13px;border:1px solid #E4DECF;border-radius:999px;background:#FBF9F3;margin-bottom:30px;">
-        <span style="width:7px;height:7px;border-radius:50%;background:${ACCENT};animation:vspulse 1.8s ease-in-out infinite;"></span>
-        <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:#6B6760;">Live · Updated Daily</span>
-      </div>
-      <h1 style="font-family:'Newsreader',serif;font-weight:400;font-size:clamp(40px,7vw,82px);line-height:1.02;letter-spacing:-.02em;margin:0 0 22px;max-width:14ch;">An AI learning journal, <em style="font-style:italic;color:${ACCENT};">one day</em> at a time.</h1>
-      <p style="font-size:clamp(17px,2.2vw,21px);line-height:1.55;color:#56524B;max-width:54ch;margin:0;">Daily deep dives into agentic AI, the protocols that connect it, and the industries it is reshaping — written every evening by Varun Singla. Learning fast, staying ahead.</p>
-    </section>
-    <section style="max-width:1120px;margin:0 auto;padding:8px 28px;">
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:#E4DECF;border:1px solid #E4DECF;border-radius:14px;overflow:hidden;">${statHtml}</div>
-    </section>
-    ${featuredHtml}
-    ${renderArchive()}
-  ` + footer();
-}
-
-function renderArchive(){
-  const cats = ['All'].concat(THEMES);
-  const chips = cats.map(c=>`<button class="chip ${c===STATE.filter?'active':''}" onclick="setFilter('${c.replace(/'/g,"\\'")}')">${esc(c)}</button>`).join('');
-
-  const monthNames=['January','February','March','April','May','June','July','August','September','October','November','December'];
-  const cy=STATE.calYear, cm=STATE.calMonth;
-  const wd=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-  const firstDow = new Date(cy,cm,1).getDay();
-  const dim = new Date(cy,cm+1,0).getDate();
-  const byDay = {};
-  ENTRIES.forEach(e=>{ const d=parseISO(e.date); if(d && d.getFullYear()===cy && d.getMonth()===cm) byDay[d.getDate()]=e; });
-
-  let cells='';
-  for(let i=0;i<firstDow;i++) cells+=`<div style="min-height:clamp(62px,10vw,104px);"></div>`;
-  for(let d=1;d<=dim;d++){
-    const e=byDay[d];
-    const show = e && (STATE.filter==='All' || e._tags.includes(STATE.filter));
-    if(show){
-      cells+=`<div class="cal-entry" onclick="goEntry('${e._id}')">
-        <span style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:600;color:${ACCENT};">${d}</span>
-        <div style="margin-top:auto;">
-          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:#A8A294;margin-bottom:3px;">${esc(e._tags[0])}</div>
-          <div style="font-family:'Newsreader',serif;font-size:13px;line-height:1.18;color:#1B1A17;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${esc(e.title)}</div>
-        </div>
-      </div>`;
-    } else {
-      cells+=`<div class="cal-plain"><span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#C4BDAD;">${d}</span></div>`;
+  /* ---- data ---- */
+  async function load() {
+    try {
+      const res = await fetch('/index.json?v=' + encodeURIComponent(META_VERSION || Date.now()), { cache: META_VERSION ? 'default' : 'no-store' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      DATA = await res.json();
+    } catch (err) {
+      // Leave the static fallback in place; it already lists the latest entries.
+      const note = document.createElement('p');
+      note.className = 'empty';
+      note.textContent = 'The live index could not be loaded, so this is the static view. Everything still links to the full entries.';
+      app.prepend(note);
+      return;
     }
+    ENTRIES = DATA.entries.slice();
+    ENTRIES.forEach(e => { BY_DATE[e.date] = e; });
+    MONTH_KEYS = Array.from(new Set(ENTRIES.map(e => monthKey(e.date)))).sort();
+    if (redirectLegacyHash()) return;
+    STATE.calKey = MONTH_KEYS[MONTH_KEYS.length - 1];
+    readThemeHash();
+    injectBlogPostingSchema();
+    render();
+    window.addEventListener('hashchange', () => { if (!redirectLegacyHash()) { readThemeHash(); renderArchive(); } });
   }
-  const wdHtml = wd.map(w=>`<div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#A8A294;padding:0 4px;">${w}</div>`).join('');
 
-  return `<section style="max-width:1120px;margin:0 auto;padding:56px 28px 90px;">
-    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:24px;border-bottom:1px solid #E4DECF;padding-bottom:22px;">
-      <h2 style="font-family:'Newsreader',serif;font-weight:400;font-size:clamp(26px,3.4vw,38px);letter-spacing:-.015em;margin:0;">The Archive</h2>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;">${chips}</div>
-    </div>
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px;">
-      <div style="display:flex;align-items:center;gap:14px;">
-        <button class="cal-arrow" onclick="shiftMonth(-1)">←</button>
-        <div style="font-family:'Newsreader',serif;font-size:clamp(22px,3vw,30px);letter-spacing:-.01em;min-width:190px;">${monthNames[cm]} ${cy}</div>
-        <button class="cal-arrow" onclick="shiftMonth(1)">→</button>
+  function injectBlogPostingSchema() {
+    try {
+      const posts = ENTRIES.slice(0, 50).map(l => ({
+        '@type': 'BlogPosting', '@context': 'https://schema.org',
+        headline: l.title, description: l.sub || l.excerpt || l.title,
+        datePublished: l.date + 'T21:00:00+08:00', dateModified: l.date + 'T21:00:00+08:00',
+        author: { '@id': 'https://varunsingla.com/#varun' }, url: 'https://varunsingla.com' + l.url
+      }));
+      const el = document.getElementById('ld-blogpostings');
+      if (el) el.textContent = JSON.stringify(posts);
+    } catch (e) { /* non-fatal */ }
+  }
+
+  /* ---- render ---- */
+  function render() {
+    const s = DATA.stats;
+    const latest = ENTRIES[0];
+    const recent = ENTRIES.slice(1, 8);
+    app.innerHTML = `
+      <section class="hero">
+        <div class="live" aria-hidden="true"><span class="dot"></span><span>Live · Updated daily</span></div>
+        <h1>An AI learning journal, <em>one day</em> at a time.</h1>
+        <p>Daily deep dives into agentic AI, the protocols that connect it, and the industries it is reshaping — written every evening by Varun Singla. Learning fast, staying ahead.</p>
+      </section>
+      <div class="stats" role="list">
+        <div class="stat" role="listitem"><b>${esc(s.entries)}</b><span>Days learning</span></div>
+        <div class="stat" role="listitem"><b>${esc(s.streak)}</b><span>Day streak</span></div>
+        <div class="stat" role="listitem"><b>${esc(fmtK(s.words))}</b><span>Words written</span></div>
+        <div class="stat" role="listitem"><b>${esc(fmtShort(s.started))}</b><span>Started tracking</span></div>
       </div>
-      <div style="display:flex;align-items:center;gap:9px;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#8A857B;letter-spacing:.04em;">
-        <span style="width:9px;height:9px;border-radius:3px;background:${ACCENT};"></span> has an entry
-      </div>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:7px;margin-bottom:9px;">${wdHtml}</div>
-    <div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:7px;">${cells}</div>
-  </section>`;
-}
 
-/* ---- ARTICLE ---- */
-function kicker(label){
-  return `<div style="font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:${ACCENT};margin-bottom:14px;">${esc(label)}</div>`;
-}
-function calloutCard(inner){
-  return `<div style="border:1px solid #E4DECF;border-left:3px solid ${ACCENT};border-radius:12px;background:#FBF9F3;padding:22px 24px;margin:0 0 40px;">${inner}</div>`;
-}
+      <section class="sec" aria-labelledby="latest-h">
+        <div class="kicker" id="latest-h">Latest entry</div>
+        ${featuredHtml(latest)}
+      </section>
 
-function renderStatsStrip(e){
-  let items=[];
-  if(Array.isArray(e.stats)&&e.stats.length){ items = e.stats.map(s=>({big:s.stat, small:s.label})); }
-  else if(Array.isArray(e.key_stats)&&e.key_stats.length){ items = e.key_stats.map(s=>({big:'', small:s})); }
-  if(!items.length) return '';
-  const cells = items.map(it=>`<div style="background:#FBF9F3;padding:18px 20px;">
-      ${it.big?`<div style="font-family:'Newsreader',serif;font-size:clamp(24px,4vw,32px);line-height:1.05;font-weight:400;letter-spacing:-.02em;color:#1B1A17;">${esc(it.big)}</div>`:''}
-      <div style="font-family:'${it.big?'Hanken Grotesk':'Newsreader'}',${it.big?'sans-serif':'serif'};font-size:13px;line-height:1.45;color:#56524B;margin-top:${it.big?'8px':'0'};">${esc(it.small)}</div>
-    </div>`).join('');
-  return `<div style="margin:0 0 40px;">${kicker('By the numbers')}
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:#E4DECF;border:1px solid #E4DECF;border-radius:12px;overflow:hidden;">${cells}</div></div>`;
-}
-
-function renderViral(v){
-  if(!v||!v.name) return '';
-  let vstats='';
-  if(Array.isArray(v.stats)&&v.stats.length){
-    vstats = `<div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;">`+v.stats.map(s=>`<div><span style="font-family:'Newsreader',serif;font-size:22px;color:#1B1A17;">${esc(s.stat)}</span><div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.04em;color:#8A857B;text-transform:uppercase;margin-top:2px;">${esc(s.label)}</div></div>`).join('')+`</div>`;
-  }
-  return calloutCard(`${kicker('Viral app of the day')}
-    <div style="font-family:'Newsreader',serif;font-size:clamp(21px,3vw,26px);font-weight:500;line-height:1.2;margin:0 0 ${v.description?'12px':'0'};">${esc(v.name)}</div>
-    ${v.description?`<p style="font-family:'Newsreader',serif;font-size:clamp(17px,2.2vw,19px);line-height:1.6;color:#2C2A24;margin:0;">${esc(v.description)}</p>`:''}
-    ${vstats}`);
-}
-
-function renderSection(sec){
-  const heading = sec.title?`<h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(23px,3.4vw,30px);line-height:1.18;letter-spacing:-.01em;margin:0 0 18px;">${esc(sec.title)}</h2>`:'';
-  const paras = (sec.paragraphs||[]).map(p=>`<p style="font-family:'Newsreader',serif;font-size:clamp(18px,2.3vw,20px);line-height:1.65;color:#2C2A24;margin:0 0 20px;">${esc(p)}</p>`).join('');
-  const bullets = (sec.bullets&&sec.bullets.length)?`<ul class="sec-bullets">${sec.bullets.map(b=>`<li>${esc(b)}</li>`).join('')}</ul>`:'';
-  let table='';
-  if(sec.table&&sec.table.headers&&sec.table.rows){
-    const ths=sec.table.headers.map(h=>`<th>${esc(h)}</th>`).join('');
-    const trs=sec.table.rows.map(r=>`<tr>${r.map(c=>`<td>${esc(c)}</td>`).join('')}</tr>`).join('');
-    table=`<div class="table-wrap"><table class="data-table"><thead><tr>${ths}</tr></thead><tbody>${trs}</tbody></table></div>`;
-  }
-  const highlight = sec.highlight?`<div style="font-family:'Newsreader',serif;font-style:italic;font-size:clamp(18px,2.4vw,20px);line-height:1.55;color:#3A372F;border-left:3px solid ${ACCENT};padding:6px 0 6px 16px;margin:8px 0 4px;">${esc(sec.highlight)}</div>`:'';
-  return `<section style="margin-bottom:40px;">${heading}${paras}${bullets}${table}${highlight}</section>`;
-}
-
-function renderTakeaway(tk){
-  if(!tk) return '';
-  let inner='';
-  if(Array.isArray(tk)){
-    inner = tk.map(t=>`<div style="margin:0 0 14px;"><div style="font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:15.5px;color:#1B1A17;margin-bottom:3px;">${esc(t.title)}</div>${(t.body&&t.body!==t.title)?`<div style="font-family:'Newsreader',serif;font-size:17px;line-height:1.55;color:#2C2A24;">${esc(t.body)}</div>`:''}</div>`).join('');
-  } else {
-    inner = `<p style="font-family:'Newsreader',serif;font-size:18px;line-height:1.6;color:#2C2A24;margin:0;">${esc(tk)}</p>`;
-  }
-  return calloutCard(`${kicker('Practical takeaways')}${inner}`);
-}
-
-function renderArticle(){
-  const idx = ENTRIES.findIndex(e=>e._id===STATE.selectedId);
-  const e = idx>=0?ENTRIES[idx]:ENTRIES[0];
-  const newer = idx>0?ENTRIES[idx-1]:null;
-  const older = idx>=0&&idx<ENTRIES.length-1?ENTRIES[idx+1]:null;
-  const tags = e._tags.map(t=>`<span class="tag" style="background:#FBF9F3;">${esc(t)}</span>`).join('');
-
-  const sections = (e.sections||[]).map(renderSection).join('');
-  const market = e.market_signal ? calloutCard(`${kicker('Market signal')}<p style="font-family:'Newsreader',serif;font-size:clamp(17px,2.2vw,19px);line-height:1.6;color:#2C2A24;margin:0;">${esc(e.market_signal)}</p>`) : '';
-  const next = e.tomorrow_preview ? `<div style="margin:0 0 10px;padding:18px 0 0;border-top:1px solid #EEE9DC;">
-      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#A8A294;margin-bottom:7px;">Next →</div>
-      <p style="font-family:'Newsreader',serif;font-style:italic;font-size:17px;line-height:1.55;color:#56524B;margin:0;">${esc(e.tomorrow_preview)}</p></div>` : '';
-
-  const navCard = (entry, side) => {
-    if(!entry) return `<div class="navcard disabled"><div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#A8A294;margin-bottom:9px;${side==='Older'?'text-align:right;':''}">${side==='Newer'?'← Newer':'Older →'}</div><div style="font-family:'Newsreader',serif;font-size:18px;color:#1B1A17;${side==='Older'?'text-align:right;':''}">—</div></div>`;
-    return `<div class="navcard" onclick="goEntry('${entry._id}')"><div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#A8A294;margin-bottom:9px;${side==='Older'?'text-align:right;':''}">${side==='Newer'?'← Newer':'Older →'}</div><div style="font-family:'Newsreader',serif;font-size:18px;line-height:1.2;color:#1B1A17;${side==='Older'?'text-align:right;':''}">${esc(entry.title)}</div></div>`;
-  };
-
-  return masthead() + `
-    <div style="position:fixed;top:0;left:0;right:0;height:3px;z-index:60;background:transparent;"><div id="progress-fill" style="width:0%;height:100%;background:${ACCENT};transition:width .08s linear;"></div></div>
-    <div id="article-root">
-      <article style="max-width:680px;margin:0 auto;padding:48px 28px 30px;">
-        <button class="backbtn" onclick="goHome()"><span style="font-size:15px;">←</span> Back to journal</button>
-        <div style="display:flex;align-items:center;gap:13px;flex-wrap:wrap;margin-bottom:22px;">
-          <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:${ACCENT};font-weight:500;">Day ${e._day}</span>
-          <span style="width:4px;height:4px;border-radius:50%;background:#C9C2B2;"></span>
-          <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#8A857B;">${esc(fmtLong(e))}</span>
-          <span style="width:4px;height:4px;border-radius:50%;background:#C9C2B2;"></span>
-          <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#8A857B;">${e._read} min read</span>
+      <section class="sec" aria-label="Explore">
+        <div class="explore">
+          <a href="/start/"><b>Start here</b><span>How the journal works, plus curated learning paths.</span></a>
+          <a href="/playbook/"><b>Playbook</b><span>${esc(s.takeaways)} practical takeaways, filterable by theme.</span></a>
+          <a href="/concepts/"><b>Concepts</b><span>${esc(s.concepts)} ideas explained in plain language.</span></a>
+          <a href="/watching/"><b>Watching</b><span>What each day said to watch next, and what followed.</span></a>
+          <a href="/review/"><b>Review</b><span>Flashcards built from the takeaways and concepts.</span></a>
+          <a href="/weekly/"><b>Weekly digest</b><span>One page per week when daily is too much.</span></a>
         </div>
-        <h1 style="font-family:'Newsreader',serif;font-weight:400;font-size:clamp(32px,5.5vw,52px);line-height:1.07;letter-spacing:-.018em;margin:0 0 22px;">${esc(e.title)}</h1>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:34px;padding-bottom:34px;border-bottom:1px solid #E4DECF;">${tags}</div>
-        ${e.focus_intro?`<p style="font-family:'Newsreader',serif;font-size:clamp(20px,3vw,24px);line-height:1.5;color:#3A372F;font-style:italic;margin:0 0 40px;letter-spacing:-.005em;">${esc(e.focus_intro)}</p>`:''}
-        ${renderViral(e.viral_app)}
-        ${renderStatsStrip(e)}
-        ${sections}
-        ${market}
-        ${renderTakeaway(e.practical_takeaway)}
-        ${next}
-        <div style="display:flex;align-items:center;gap:13px;margin:54px 0 10px;padding-top:30px;border-top:1px solid #E4DECF;">
-          <div style="width:40px;height:40px;border-radius:9px;background:#1B1A17;color:#F7F4ED;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;">VS</div>
-          <div><div style="font-size:14.5px;font-weight:600;color:#1B1A17;">Varun Singla</div>
-          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8A857B;">Singapore · Learning in public</div></div>
+      </section>
+
+      <section class="sec" aria-labelledby="recent-h">
+        <div class="sec-head"><h2 id="recent-h">Recent entries</h2><a class="more" href="/entries/">Full archive →</a></div>
+        <ul class="recent">${recent.map(recentItem).join('')}</ul>
+      </section>
+
+      <section class="sec" aria-labelledby="search-h">
+        <div class="sec-head"><h2 id="search-h">Search the journal</h2><span class="eyebrow">${esc(s.entries)} entries · ${esc(fmtK(s.words))} words</span></div>
+        <div class="search">
+          <span class="ico" aria-hidden="true">⌕</span>
+          <input id="q" type="search" placeholder="Search titles, headings, takeaways and text… (e.g. MCP memory, GPT-6 pricing)" aria-label="Search the journal" autocomplete="off">
         </div>
-      </article>
-      <div style="max-width:680px;margin:0 auto;padding:20px 28px 90px;display:grid;grid-template-columns:1fr 1fr;gap:14px;">
-        ${navCard(newer,'Newer')}
-        ${navCard(older,'Older')}
+        <p class="search-status" id="search-status" aria-live="polite"></p>
+        <ul class="results" id="results"></ul>
+      </section>
+
+      <section class="sec" aria-labelledby="archive-h">
+        <div class="sec-head"><h2 id="archive-h">The Archive</h2><div class="chips" id="chips">${chipsHtml()}</div></div>
+        <div id="archive"></div>
+      </section>
+
+      <section class="sec" aria-labelledby="tools-h">
+        <div class="sec-head"><h2 id="tools-h">Tools</h2><span class="eyebrow">For the cost side of agents</span></div>
+        <div class="tools">
+          <a href="/tokenizer.html"><b>LLM Tokenizer &amp; Cost Calculator</b><span>Compare tokenization and API costs across models before you commit to one.</span></a>
+          <a href="/ai-tokenomics/"><b>AI Tokenomics</b><span>An interactive dashboard on AI inference economics.</span></a>
+          <a href="/tools/model-team-evaluator.html"><b>Model Team Evaluator</b><span>Pick the right mix of models for a team, by task and budget.</span></a>
+        </div>
+      </section>
+      <div style="height:60px"></div>`;
+    renderArchive();
+    wireEvents();
+  }
+
+  function featuredHtml(e) {
+    if (!e) return '';
+    return `<a class="featured" href="${esc(e.url)}">
+      <div class="meta-row" style="margin-bottom:16px;"><span class="day">Day ${esc(e.day)}</span><span aria-hidden="true">·</span><time datetime="${esc(e.date)}">${esc(fmtLong(e.date))}</time><span aria-hidden="true">·</span><span>${esc(e.read)} min read</span></div>
+      <h2>${esc(e.title)}</h2>
+      ${e.sub ? `<p class="deck">${esc(e.sub)}</p>` : (e.excerpt ? `<p class="excerpt">${esc(e.excerpt)}</p>` : '')}
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+        ${(e.tags || []).map(t => `<span class="tag">${esc(t)}</span>`).join('')}
+        <span class="cta">Read entry <span aria-hidden="true">→</span></span>
       </div>
-    </div>
-  ` + footer();
-}
+    </a>`;
+  }
 
-function render(){
-  document.getElementById('app').innerHTML = STATE.view==='article' ? renderArticle() : renderHome();
-  if(STATE.view==='article') onScroll();
-}
+  function recentItem(e) {
+    return `<li><a href="${esc(e.url)}">
+      <div class="d"><b>Day ${esc(e.day)}</b> · ${esc(fmtShort(e.date))} · ${esc(e.read)} min</div>
+      <div><div class="t">${esc(e.title)}</div>${(e.sub || e.excerpt) ? `<div class="s">${esc(e.sub || e.excerpt)}</div>` : ''}<div class="tags">${tagHtml(e.tags)}</div></div>
+    </a></li>`;
+  }
 
-load();
+  function chipsHtml() {
+    return ['All'].concat(DATA.themes).map(c =>
+      `<button class="chip${c === STATE.filter ? ' active' : ''}" type="button" data-theme="${esc(c)}" aria-pressed="${c === STATE.filter}">${esc(c)}</button>`).join('');
+  }
+
+  /* ---- archive: calendar + month list ---- */
+  function monthEntries(key) { return ENTRIES.filter(e => monthKey(e.date) === key); }
+  function matches(e) { return STATE.filter === 'All' || (e.tags || []).indexOf(STATE.filter) >= 0; }
+
+  function renderArchive() {
+    const box = document.getElementById('archive');
+    if (!box) return;
+    const key = STATE.calKey;
+    const [y, m] = key.split('-').map(Number);
+    const idx = MONTH_KEYS.indexOf(key);
+    const firstDow = new Date(y, m - 1, 1).getDay();
+    const dim = new Date(y, m, 0).getDate();
+    const byDay = {};
+    monthEntries(key).forEach(e => { byDay[parseISO(e.date).getDate()] = e; });
+    const filteredCount = ENTRIES.filter(matches).length;
+
+    let cells = '';
+    for (let i = 0; i < firstDow; i++) cells += '<div class="cal-blank" aria-hidden="true"></div>';
+    for (let d = 1; d <= dim; d++) {
+      const e = byDay[d];
+      if (e) {
+        const dim_ = matches(e) ? '' : ' dim';
+        cells += `<a class="cal-entry${dim_}" href="${esc(e.url)}" aria-label="Day ${esc(e.day)}, ${esc(fmtLong(e.date))}: ${esc(e.title)}">
+          <span class="n">${d}</span><span class="dot" aria-hidden="true"></span>
+          <span class="lbl" aria-hidden="true"><i>${esc((e.tags || [])[0] || '')}</i><span>${esc(e.title)}</span></span></a>`;
+      } else {
+        cells += `<div class="cal-plain"><span>${d}</span></div>`;
+      }
+    }
+    const list = monthEntries(key).filter(matches);
+    const listHtml = list.length
+      ? `<ul class="month-list">${list.map(e => `<li><a href="${esc(e.url)}"><span class="n">${esc(fmtShort(e.date))}</span><span><span class="t">${esc(e.title)}</span>${(e.sub || e.excerpt) ? `<span class="s">${esc(e.sub || e.excerpt)}</span>` : ''}</span></a></li>`).join('')}</ul>`
+      : `<p class="empty">No ${STATE.filter === 'All' ? '' : esc(STATE.filter) + ' '}entries in ${esc(monthLabel(key))}.</p>`;
+    const options = MONTH_KEYS.slice().reverse().map(k => `<option value="${k}"${k === key ? ' selected' : ''}>${esc(monthLabel(k))}</option>`).join('');
+
+    box.innerHTML = `
+      <div class="cal-nav">
+        <div class="ctl">
+          <button class="cal-arrow" type="button" data-shift="-1" aria-label="Previous month"${idx <= 0 ? ' disabled' : ''}>←</button>
+          <div class="cal-title" aria-live="polite">${esc(monthLabel(key))}</div>
+          <button class="cal-arrow" type="button" data-shift="1" aria-label="Next month"${idx >= MONTH_KEYS.length - 1 ? ' disabled' : ''}>→</button>
+        </div>
+        <div class="ctl">
+          <label class="eyebrow" for="month-select">Jump to</label>
+          <select id="month-select" class="cal-select">${options}</select>
+          <span class="eyebrow">${STATE.filter === 'All' ? '' : esc(filteredCount) + ' ' + esc(STATE.filter) + ' entries'}</span>
+        </div>
+      </div>
+      <div class="cal-grid" aria-hidden="true">${WD.map(w => `<div class="cal-wd">${w}</div>`).join('')}</div>
+      <div class="cal-grid" role="list" aria-label="${esc(monthLabel(key))}">${cells}</div>
+      ${listHtml}`;
+    const chips = document.getElementById('chips');
+    if (chips) chips.innerHTML = chipsHtml();
+  }
+
+  /* ---- search ---- */
+  function loadSearch() {
+    if (SEARCH) return Promise.resolve(SEARCH);
+    if (!searchLoading) {
+      searchLoading = fetch('/search.json?v=' + encodeURIComponent(META_VERSION || Date.now())).then(r => r.json()).then(j => { SEARCH = j; return j; });
+    }
+    return searchLoading;
+  }
+  function tokenize(q) { return q.toLowerCase().split(/[^a-z0-9.+#'-]+/).filter(t => t.length >= 2); }
+  function snippet(text, tok) {
+    const low = text.toLowerCase();
+    const i = low.indexOf(tok);
+    if (i < 0) return '';
+    const a = Math.max(0, i - 70), b = Math.min(text.length, i + 110);
+    return (a > 0 ? '…' : '') + text.slice(a, b) + (b < text.length ? '…' : '');
+  }
+  function highlight(s, toks) {
+    let out = esc(s);
+    toks.forEach(t => { out = out.replace(new RegExp('(' + t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'ig'), '<mark>$1</mark>'); });
+    return out;
+  }
+  function runSearch() {
+    const status = document.getElementById('search-status');
+    const list = document.getElementById('results');
+    const q = STATE.q.trim();
+    if (!q) { status.textContent = ''; list.innerHTML = ''; return; }
+    const toks = tokenize(q);
+    if (!toks.length) return;
+    status.textContent = SEARCH ? '' : 'Loading the search index…';
+    loadSearch().then(idx => {
+      if (STATE.q.trim() !== q) return;
+      const scored = [];
+      idx.forEach(e => {
+        let score = 0, ok = true;
+        const fields = [[e.t, 12], [e.s, 7], [e.h, 5], [e.k, 4], [e.v, 3], [e.x, 1]];
+        toks.forEach(t => {
+          let hit = false;
+          fields.forEach(([f, w]) => { if (f && f.toLowerCase().indexOf(t) >= 0) { score += w; hit = true; } });
+          if (!hit) ok = false;
+        });
+        if (ok) scored.push([score, e]);
+      });
+      scored.sort((a, b) => b[0] - a[0] || (a[1].d < b[1].d ? 1 : -1));
+      const top = scored.slice(0, 25);
+      status.textContent = top.length ? `${scored.length} match${scored.length === 1 ? '' : 'es'}${scored.length > 25 ? ', showing 25' : ''}` : 'No matches. Try fewer or different words.';
+      list.innerHTML = top.map(([, e]) => {
+        const where = toks.map(t => snippet((e.s ? e.s + ' ' : '') + e.h + ' ' + e.k + ' ' + e.x, t)).filter(Boolean)[0] || e.s || '';
+        return `<li><a href="/entries/${esc(e.d)}.html"><div class="t">${highlight(e.t, toks)}</div><div class="d">Day ${esc(e.n)} · ${esc(fmtLong(e.d))} · ${esc((e.th || []).join(' · '))}</div><div class="s">${highlight(where, toks)}</div></a></li>`;
+      }).join('');
+    }).catch(() => { status.textContent = 'Search is unavailable right now.'; });
+  }
+
+  /* ---- events ---- */
+  function wireEvents() {
+    let timer = null;
+    const q = document.getElementById('q');
+    q.addEventListener('input', () => { STATE.q = q.value; clearTimeout(timer); timer = setTimeout(runSearch, 160); });
+    q.addEventListener('focus', () => { loadSearch().catch(() => {}); }, { once: true });
+    app.addEventListener('click', ev => {
+      const chip = ev.target.closest('.chip[data-theme]');
+      if (chip) { STATE.filter = chip.getAttribute('data-theme'); renderArchive(); return; }
+      const arrow = ev.target.closest('.cal-arrow[data-shift]');
+      if (arrow && !arrow.disabled) {
+        const i = MONTH_KEYS.indexOf(STATE.calKey) + (+arrow.getAttribute('data-shift'));
+        if (i >= 0 && i < MONTH_KEYS.length) { STATE.calKey = MONTH_KEYS[i]; renderArchive(); }
+      }
+    });
+    app.addEventListener('change', ev => {
+      if (ev.target && ev.target.id === 'month-select') { STATE.calKey = ev.target.value; renderArchive(); }
+    });
+  }
+
+  load();
+})();
 </script>
 </body>
 </html>

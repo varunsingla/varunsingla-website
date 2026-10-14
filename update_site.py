@@ -659,6 +659,919 @@ def _extract_numbered_takeaways(all_flat_lines: list[str]) -> tuple[list[dict], 
     return [], None
 
 
+# ── v5 additions: front matter, sources, watch list, themes, quiz, repair ──────
+#
+# Everything below was added so that (a) new PDFs get a real headline, a deck
+# line ("subtitle"), sources, the TOMORROW watch list, explicit themes and an
+# optional SELF-TEST block, and (b) existing entries in learnings.json can be
+# repaired in place (repair_all) without losing any text: whenever a stored
+# value is replaced by something that is not a superset of it, the old value is
+# kept under <field>_original.
+
+SCHEMA_VERSION = 2          # bump when repair_entry learns a new, re-runnable fix
+
+THEMES = ['Foundations & Protocols', 'Industry Verticals', 'Enterprise & Strategy',
+          'Infrastructure & Economics', 'Models & Frontier', 'Governance & Safety']
+
+_THEME_ALIASES = {
+    'foundations': THEMES[0], 'protocols': THEMES[0], 'foundations & protocols': THEMES[0],
+    'foundations and protocols': THEMES[0], 'agent foundations': THEMES[0],
+    'industry': THEMES[1], 'industry verticals': THEMES[1], 'verticals': THEMES[1], 'industries': THEMES[1],
+    'enterprise': THEMES[2], 'strategy': THEMES[2], 'enterprise & strategy': THEMES[2],
+    'enterprise and strategy': THEMES[2], 'enterprise ai': THEMES[2], 'business': THEMES[2],
+    'infrastructure': THEMES[3], 'economics': THEMES[3], 'infrastructure & economics': THEMES[3],
+    'infrastructure and economics': THEMES[3], 'compute': THEMES[3], 'chips': THEMES[3],
+    'models': THEMES[4], 'frontier': THEMES[4], 'models & frontier': THEMES[4],
+    'models and frontier': THEMES[4], 'frontier models': THEMES[4], 'model race': THEMES[4],
+    'governance': THEMES[5], 'safety': THEMES[5], 'governance & safety': THEMES[5],
+    'governance and safety': THEMES[5], 'ai safety & governance': THEMES[5],
+    'ai safety and governance': THEMES[5], 'safety & governance': THEMES[5],
+    'ai safety': THEMES[5], 'regulation': THEMES[5], 'policy': THEMES[5], 'security': THEMES[5],
+}
+
+_RUNNING_HDR_RE = re.compile(
+    r"^(?:varun singla\b|varun's daily ai brief|ai daily learning\s*(?:[·•|\-—–]|$)|daily ai learning\s*(?:[·•|\-—–]|$)|"
+    r"agentic ai daily\b|day\s*\d+\s*[|·•]|.*\bpage\s*\d+\s*$|\w+ \d{1,2}, \d{4}\s*[·•|]\s*issue)", re.I)
+_GENERIC_TITLE_RE = re.compile(
+    r"^(?:ai learning(?:\s*[-—–:]+\s*day\s*\d+)?|ai daily learning|daily ai learning|agentic ai daily|"
+    r"agentic ai learning(?: series)?|ai learning journal|day\s*\d+)\s*[.:]?\s*$", re.I)
+_META_LINE_RE = re.compile(
+    r"^(?:day\s*\d+\s*[·•|]|(?:mon|tues|wednes|thurs|fri|satur|sun)day,?\s+\w+ \d|"
+    r"\w+ \d{1,2}, \d{4}\s*[·•|]|issue\s*#?\d+)", re.I)
+_DATE_PREFIX_RE = re.compile(
+    r"^(?:\w+day,?\s+)?(?:january|february|march|april|may|june|july|august|september|october|november|december)"
+    r"\s+\d{1,2},?\s+\d{4}\s*(?:[-—–:|·]+\s*)+", re.I)
+_FOCUS_PREFIX_RE = re.compile(r"^today.s\s+(?:focus|topic)\s*[:\-—–]\s*", re.I)
+_DAY_PREFIX_RE = re.compile(r"^day\s*\d+\s*(?:[-—–·|:]+\s*)+", re.I)
+_SHOUT_WORD_RE = re.compile(r"^[A-Z][A-Z0-9&'’.\-]*[A-Z]$")
+
+# Acronyms that stay upper-case even when the body text never mentions them.
+_ACRONYMS = {
+    'AI', 'US', 'U.S.', 'UK', 'EU', 'UN', 'FTC', 'NSA', 'FBI', 'CIA', 'CISA', 'SEC', 'DOJ', 'FDA', 'NHS',
+    'NIST', 'ISO', 'GPT', 'MCP', 'A2A', 'API', 'APIS', 'CEO', 'CFO', 'CIO', 'CTO', 'COO', 'CRM', 'UI', 'UX',
+    'GPU', 'GPUS', 'TPU', 'TPUS', 'CPU', 'IPO', 'DMA', 'ROI', 'LLM', 'LLMS', 'RAG', 'OSS', 'MIT', 'NYU',
+    'IDC', 'REA', 'IETF', 'AIMS', 'KYA', 'HR', 'SPIFFE', 'OS', 'SDK', 'AWS', 'IBM', 'AMD', 'VLA', 'WAIC',
+    'H1', 'H2', 'R&D', 'M&A', 'FP&A', 'B2B', 'B2C', 'VC', 'TV', 'PR', 'IOT', 'DEI', 'ML', 'NLP', 'MOE',
+    'RL', 'RLHF', 'OTEL', 'WORM', 'GPAI', 'CES', 'MVP', 'SLA', 'SOC', 'SOTA', 'OSS', 'GDP', 'ETF', 'PE',
+    'AGI', 'ASI', 'ARC', 'NFT', 'DAO', 'EV', 'EVS', 'ESG', 'IT', 'OT', 'KPI', 'KPIS', 'OKR', 'F-16', 'X',
+    'DMA', 'DSA', 'GDPR', 'HIPAA', 'FINRA', 'CPQ', 'BSS', 'OSS/BSS', 'ERP', 'SAP', 'MIT-LICENSED',
+}
+
+try:
+    import statistics as _statistics
+    from collections import Counter as _Counter
+except ImportError:  # pragma: no cover
+    _statistics = None
+    _Counter = None
+
+
+def _tokens(text: str) -> list[str]:
+    return [w.strip("\"'“”‘’()[]{}.,;:!?…") for w in (text or '').split()]
+
+
+def build_corpus(entry: dict | None = None, entries: list[dict] | None = None) -> dict:
+    """Count how each word is cased in the entry's own prose (and, optionally,
+    across all entries). Used to turn ALL-CAPS headlines back into the casing
+    the author actually uses ("PALISADE" -> "Palisade", "REA" stays "REA")."""
+    corpus: dict[str, _Counter] = {}
+
+    def feed(text: str):
+        for w in _tokens(text):
+            if len(w) < 2 or not any(ch.isalpha() for ch in w):
+                continue
+            corpus.setdefault(w.lower(), _Counter())[w] += 1
+
+    def feed_entry(e: dict):
+        feed(e.get('focus_intro') or '')
+        feed(e.get('market_signal') or '')
+        va = e.get('viral_app') or {}
+        feed(va.get('description') or '')
+        for s in e.get('sections') or []:
+            for p in s.get('paragraphs') or []:
+                feed(p)
+            for b in s.get('bullets') or []:
+                feed(b)
+        tk = e.get('practical_takeaway')
+        if isinstance(tk, list):
+            for t in tk:
+                feed((t.get('title') or '') + ' ' + (t.get('body') or ''))
+        elif isinstance(tk, str):
+            feed(tk)
+
+    for e in entries or []:
+        feed_entry(e)
+    if entry:
+        feed_entry(entry)
+    return corpus
+
+
+def _corpus_casing(word: str, corpus: dict | None) -> str | None:
+    """Most frequent casing of `word` seen in prose, or None if unseen.
+    Sentence-initial capitals are discounted so 'The' doesn't beat 'the'."""
+    if not corpus:
+        return None
+    c = corpus.get(word.lower())
+    if not c:
+        return None
+    best = c.most_common()
+    if len(best) >= 2 and best[0][0] == word.lower().capitalize() and best[1][0] == word.lower():
+        # "The" 40 vs "the" 30 — prefer the plain lowercase form unless it is rare
+        if best[1][1] * 2 >= best[0][1]:
+            return best[1][0]
+    return best[0][0]
+
+
+def _recase_word(w: str, corpus: dict | None, first: bool, last: bool) -> str:
+    """Title-case one token, keeping brand casing (OpenAI, GPT-6), acronyms and
+    small words. ALL-CAPS tokens are re-cased from the prose corpus."""
+    lead = re.match(r"^[\"'“‘(\[]*", w).group(0)
+    trail = re.search(r"[\"'”’)\].,;:!?…]*$", w).group(0)
+    core = w[len(lead):len(w) - len(trail)] if trail else w[len(lead):]
+    if not core:
+        return w
+    low = core.lower()
+    has_lower = any(ch.islower() for ch in core)
+    has_upper = any(ch.isupper() for ch in core)
+    small = (low in _SMALL_WORDS or low in {'yet', 'so'}) and not first and not last
+
+    def cap(s: str) -> str:
+        if '-' not in s:
+            return s[:1].upper() + s[1:]
+        parts = s.split('-')
+        return '-'.join(p if (i > 0 and p in _SMALL_WORDS) else p[:1].upper() + p[1:] for i, p in enumerate(parts))
+
+    seen = _corpus_casing(core, corpus)
+    brand = bool(seen and seen.lower() == low and any(ch.isupper() for ch in seen[1:]) and seen != core.upper())
+    if has_lower and has_upper:
+        out = core                                        # OpenAI, GPT-6, ChatGPT's, MIT-licensed
+    elif has_upper and not has_lower:                     # ALL CAPS (or a single capital letter)
+        if core.upper() in _ACRONYMS or (len(core) == 1 and core.isalpha()):
+            out = core
+        elif seen == core.upper():
+            out = core                                    # the prose writes it in caps too: an acronym
+        elif brand:
+            out = seen                                    # "OPENAI" -> "OpenAI"
+        elif not seen and len(core) <= 3 and core.isalpha():
+            out = core                                    # unknown short caps: assume acronym (NSA)
+        else:
+            out = low if small else cap(low)
+    else:                                                 # all lowercase
+        if small:
+            out = low
+        elif brand:
+            out = seen                                    # "openai" -> "OpenAI"
+        else:
+            out = cap(low)
+    if first and out[:1].islower():
+        out = out[:1].upper() + out[1:]
+    return lead + out + trail
+
+
+def to_title_case(text: str, corpus: dict | None = None) -> str:
+    """Headline casing with brand/acronym preservation."""
+    words = text.split()
+    n = len(words)
+    out = []
+    for i, w in enumerate(words):
+        out.append(_recase_word(w, corpus, i == 0, i == n - 1))
+    s = ' '.join(out)
+    # Capitalise the first word after a colon / dash ("...Wheel: enterprise" -> "...Wheel: Enterprise")
+    s = re.sub(r"([:–—]|--)\s+([a-z])", lambda m: f"{m.group(1)} {m.group(2).upper()}", s)
+    return s
+
+
+def is_shouting(text: str) -> bool:
+    """True for ALL-CAPS phrases (three or more words, >=70% of letters upper-case)."""
+    letters = [ch for ch in text if ch.isalpha()]
+    if len(letters) < 8 or len(text.split()) < 3:
+        return False
+    upper = sum(1 for ch in letters if ch.isupper())
+    return upper / len(letters) >= 0.7
+
+
+def recase_heading(text: str, corpus: dict | None = None) -> str:
+    """Turn 'AI SELF-REPLICATION: WHAT THE STUDY SHOWS' into title case, but
+    leave mixed-case headings untouched. Keeps a leading 'N)' / 'N.' marker."""
+    if not text or not is_shouting(text):
+        return text
+    m = re.match(r"^(\d{1,2}\s*[).:·\-—–]+\s*)(.*)$", text)
+    prefix, body = (m.group(1), m.group(2)) if m else ('', text)
+    return prefix + to_title_case(body, corpus)
+
+
+def sentence_case(text: str) -> str:
+    text = (text or '').strip()
+    if not text:
+        return text
+    if is_shouting(text):
+        text = text[:1].upper() + text[1:].lower()
+    return text[:1].upper() + text[1:]
+
+
+def tidy_deck(text: str, corpus: dict | None = None) -> str:
+    """Deck line for display: 'AGENT FLEETS TAKE THE WHEEL: Enterprise AI…'
+    becomes 'Agent Fleets Take the Wheel: Enterprise AI…'."""
+    text = (text or '').strip()
+    if not text:
+        return text
+    m = re.match(r"^([^:]{6,80}):\s+(.+)$", text)
+    if m and is_shouting(m.group(1)):
+        return to_title_case(m.group(1), corpus) + ': ' + m.group(2)
+    return sentence_case(text)
+
+
+def _join_headline(lines: list[str], hint: str = '') -> str:
+    """Join the wrapped lines of a headline. Many PDFs set a headline and its
+    sub-headline in the same font on consecutive lines; the stored title
+    (hint) or a conservative heuristic decides whether the first break is a
+    plain wrap (' ') or a headline/sub-headline break (' -- ')."""
+    lines = [clean(l) for l in lines if clean(l)]
+    if not lines:
+        return ''
+    if len(lines) == 1:
+        head = lines[0]
+    else:
+        l1, l2 = lines[0], lines[1]
+        sep = None
+        if hint:
+            m = re.search(re.escape(l1).replace(r'\ ', r'\s+'), hint, re.I)
+            if m:
+                after = hint[m.end():].lstrip()
+                if re.match(r'^(?:--|—|–|:)', after):
+                    sep = ' -- '
+                elif after and l2 and after.lower().startswith(l2.split()[0].lower()):
+                    sep = ' '
+        if sep is None:
+            sep = ' '                                     # a wrapped headline, by default
+        head = l1 + sep + ' '.join([l2] + lines[2:])
+    head = clean(head)
+    head = re.sub(r'(\S)--(\S)', r'\1 -- \2', head)
+    head = re.sub(r'\s*--\s*--\s*', ' -- ', head)
+    return head
+
+
+def extract_front_matter(pdf_path) -> dict:
+    """Headline / deck / lede from page 1, using font sizes rather than text
+    heuristics. Returns {'headline','generic','deck','lede','kicker'}; every
+    value is '' when not found. Works across all the PDF layouts used since
+    Day 61 (big headline + smaller deck, 'AI Learning — Day N' + deck line,
+    kicker + headline, headline + 'Plus:' deck + meta line + lede)."""
+    out = {'headline': '', 'generic': False, 'deck': '', 'lede': '', 'kicker': '', 'headline_lines': []}
+    if _statistics is None:
+        return out
+    try:
+        with pdfplumber.open(pdf_path) as pdf:
+            if not pdf.pages:
+                return out
+            page = pdf.pages[0]
+            raw = page.extract_text_lines(layout=False, strip=True, return_chars=True,
+                                          x_tolerance=1.5, y_tolerance=3)
+            ph = float(page.height)
+    except Exception as exc:  # pragma: no cover - corrupt PDF
+        print(f"   ⚠️  front matter extraction failed: {exc}")
+        return out
+
+    size_counter: _Counter = _Counter()
+    lines: list[dict] = []
+    for ln in raw:
+        chars = [c for c in ln.get('chars', []) if (c.get('text') or '').strip()]
+        if not chars:
+            continue
+        sizes = [round(float(c.get('size') or 0), 1) for c in chars]
+        text = clean(ln.get('text', ''))
+        if not text:
+            continue
+        size_counter.update(sizes)
+        lines.append({'size': round(_statistics.median(sizes), 1), 'top': float(ln.get('top', 0)),
+                      'bottom': float(ln.get('bottom', 0)), 'text': text})
+    if not lines:
+        return out
+    body = size_counter.most_common(1)[0][0]
+    lines.sort(key=lambda l: l['top'])
+
+    def is_noise(t: str) -> bool:
+        return bool(_RUNNING_HDR_RE.match(t) or _META_LINE_RE.match(t)
+                    or t.upper().rstrip(':') in ("TODAY'S FOCUS", "TODAY'S TOPIC", "WHAT'S INSIDE"))
+
+    def textish(t: str) -> bool:
+        letters = sum(ch.isalpha() for ch in t)
+        return letters >= 3 and letters >= len(t) * 0.4
+
+    top = [l for l in lines if l['top'] < ph * 0.6]
+    cands = [l for l in top if l['top'] < ph * 0.45 and not is_noise(l['text']) and textish(l['text'])]
+    if not cands:
+        return out
+    # Headline = first run of lines at the largest text size. Stat strips
+    # (big numbers) are not text-ish, so they never win.
+    max_size = max(l['size'] for l in cands)
+    if max_size < body * 1.15 and len(cands[0]['text']) > 120:
+        return out                                        # nothing looks like a headline
+    start = next(i for i, l in enumerate(top) if l in cands and l['size'] >= max_size - 0.3)
+    group, i = [], start
+    while i < len(top) and abs(top[i]['size'] - max_size) <= 0.6 and not is_noise(top[i]['text']):
+        group.append(top[i]['text'])
+        i += 1
+    headline = _join_headline(group)
+    generic = bool(_GENERIC_TITLE_RE.match(headline))
+    out['headline'] = '' if generic else headline
+    out['headline_lines'] = [] if generic else list(group)
+    out['generic'] = generic
+    out['kicker'] = clean(' '.join(l['text'] for l in top[:start]
+                                   if not is_noise(l['text']) and textish(l['text']) and l['size'] > body + 0.5))
+
+    # Deck = the run of lines right after the headline, until a meta line,
+    # a section heading, a stat strip, or a change of font size.
+    deck_lines: list[str] = []
+    deck_size = None
+    j = i
+    while j < len(top):
+        t, sz = top[j]['text'], top[j]['size']
+        if _RUNNING_HDR_RE.match(t):
+            j += 1
+            continue
+        if _META_LINE_RE.match(t) or t.upper().rstrip(':') in ("TODAY'S FOCUS", "TODAY'S TOPIC", "WHAT'S INSIDE"):
+            if deck_lines:
+                break
+            j += 1
+            continue
+        if is_section_heading(t) or re.match(r'^\d{1,2}\)\s', t) or _GENERIC_TITLE_RE.match(t):
+            break
+        if not textish(t):
+            break
+        if _FOCUS_PREFIX_RE.match(t) and deck_lines:
+            break
+        if deck_size is None:
+            deck_size = sz
+        elif abs(sz - deck_size) > 0.6:
+            break
+        if deck_lines and top[j]['top'] - top[j - 1]['bottom'] > 14:
+            break                                         # paragraph gap
+        deck_lines.append(t)
+        j += 1
+        if sum(len(x) for x in deck_lines) > 1500:
+            break
+    deck = clean(' '.join(deck_lines))
+    deck = _DATE_PREFIX_RE.sub('', deck)
+    deck = _FOCUS_PREFIX_RE.sub('', deck).strip()
+    deck = re.sub(r"^(?:--|—|–|-)\s*", '', deck).strip()
+    if deck and len(deck) <= 380:
+        out['deck'] = deck
+        # Lede = next paragraph at body size
+        lede_lines: list[str] = []
+        k = j
+        while k < len(top):
+            t = top[k]['text']
+            if _RUNNING_HDR_RE.match(t) or _META_LINE_RE.match(t) or t.upper().rstrip(':') in ("TODAY'S FOCUS", "TODAY'S TOPIC"):
+                k += 1
+                if lede_lines:
+                    break
+                continue
+            if is_section_heading(t) or re.match(r'^\d{1,2}\)\s', t) or not textish(t):
+                break
+            if abs(top[k]['size'] - body) > 0.8:
+                break
+            if lede_lines and top[k]['top'] - top[k - 1]['bottom'] > 10:
+                break
+            lede_lines.append(t)
+            k += 1
+            if sum(len(x) for x in lede_lines) > 1500:
+                break
+        if (not deck and len(lede_lines) >= 2 and len(lede_lines[0]) < 70
+                and not _ends_sentence(lede_lines[0]) and lede_lines[1][:1].isupper()):
+            out['deck'] = lede_lines[0]                   # e.g. "Getting better without retraining the base model"
+            lede_lines = lede_lines[1:]
+        lede = clean(' '.join(lede_lines))
+        out['lede'] = _FOCUS_PREFIX_RE.sub('', lede).strip()
+    elif deck:
+        out['lede'] = deck                                # too long for a deck: it is the lede
+    if out['lede'][:1].islower():
+        out['lede'] = out['lede'][:1].upper() + out['lede'][1:]
+    if not out['deck'] and out['lede'] and len(out['lede']) < 130 and not _ends_sentence(out['lede']):
+        out['deck'], out['lede'] = out['lede'], ''        # a short unpunctuated line under the headline is a deck
+    return out
+
+
+def headline_from_deck(deck: str) -> str:
+    """First clause of a deck line, trimmed to headline length."""
+    t = _DATE_PREFIX_RE.sub('', deck or '')
+    t = _FOCUS_PREFIX_RE.sub('', t).strip()
+    if not t:
+        return ''
+    cut = None
+    for m in re.finditer(r"(\.\s|\?\s|!\s|\s--\s|\s—\s|;\s|,\s)", t):
+        if m.start() >= 30:
+            cut = m.start()
+            break
+    cand = t[:cut] if cut else t
+    if len(cand) > 110:
+        c2 = max(cand.rfind(', ', 0, 110), cand.rfind(' -- ', 0, 110), cand.rfind(': ', 0, 110))
+        if c2 < 40:
+            c2 = cand.rfind(' ', 0, 110)
+        cand = cand[:c2]
+    cand = re.sub(r"[\s,;:\-—–]+$", '', cand).strip()
+    return cand
+
+
+def extract_sources(all_flat_lines: list[str]) -> str:
+    for i, ln in enumerate(all_flat_lines):
+        m = re.match(r'^(?:[n•]\s+)?sources?\s*[:\-—–]\s*(.*)$', ln.strip(), re.I)
+        if not m:
+            continue
+        parts = [m.group(1).strip()] if m.group(1).strip() else []
+        for l in all_flat_lines[i + 1:i + 10]:
+            l = l.strip()
+            if _PAGE_HEADER_RE.match(l):
+                continue
+            if (_FOOTER_RE.search(l) or is_section_heading(l) or len(l) < 3
+                    or re.match(r'^(topics covered|tomorrow|practical takeaway|market signal|self.test|quiz)', l, re.I)):
+                break
+            parts.append(l)
+        txt = clean(' '.join(parts))
+        if len(txt) > 20:
+            return txt[:1500]
+    return ''
+
+
+def extract_tomorrow_block(all_flat_lines: list[str]) -> str:
+    """The TOMORROW / 'What we're watching' box, as full sentences."""
+    for i, ln in enumerate(all_flat_lines):
+        t = ln.strip()
+        if not re.match(r"^(?:[n•]\s+)?tomorrow(?:['’]s)?(?:\s*[-—–:]+\s*day\s*\d+\s*(?:preview)?)?\s*[:.]?\s*$", t, re.I):
+            continue
+        parts: list[str] = []
+        for l in all_flat_lines[i + 1:i + 16]:
+            l = l.strip()
+            if _PAGE_HEADER_RE.match(l):
+                continue
+            if (_FOOTER_RE.search(l) or len(l) < 3
+                    or re.match(r'^(topics covered|sources?\b|practical takeaway|market signal|recap|self.test|quiz)', l, re.I)
+                    or (is_section_heading(l) and not re.match(r'^tomorrow', l, re.I))):
+                break
+            parts.append(l)
+        txt = clean(' '.join(parts))
+        txt = re.sub(r"^(?:what we.re watching|watching|next in the tech pipeline|tomorrow\s*[-—–:]+\s*day\s*\d+)\s*[:\-—–]*\s*",
+                     '', txt, flags=re.I)
+        txt = _trim_to_sentence(txt) or txt
+        if len(txt) > 15:
+            return txt[:1200]
+    return ''
+
+
+def extract_recap(all_flat_lines: list[str]) -> str:
+    """'Topics covered so far' recap paragraph (a running curriculum map)."""
+    for i, ln in enumerate(all_flat_lines):
+        m = re.match(r'^(?:[n•]\s+)?topics covered so far\s*(?:\([^)]*\))?\s*[:\-—–]?\s*(.*)$', ln.strip(), re.I)
+        if not m:
+            continue
+        parts = [m.group(1).strip()] if m.group(1).strip() else []
+        for l in all_flat_lines[i + 1:i + 24]:
+            l = l.strip()
+            if _PAGE_HEADER_RE.match(l):
+                continue
+            if (_FOOTER_RE.search(l) or len(l) < 3 or re.match(r'^(sources?\s*[:\-]|tomorrow|self.test|quiz)', l, re.I)
+                    or (is_section_heading(l) and not is_bullet(l))):
+                break
+            parts.append(l)
+        txt = clean(' '.join(parts))
+        if len(txt) > 40:
+            return txt[:2500]
+    return ''
+
+
+def match_themes(text: str) -> list[str]:
+    found: list[str] = []
+    for raw in re.split(r'[,;/|·•]+', text or ''):
+        key = re.sub(r'\s+', ' ', raw.strip().lower().strip('.'))
+        if not key:
+            continue
+        th = _THEME_ALIASES.get(key)
+        if not th:
+            for alias, theme in _THEME_ALIASES.items():
+                if alias in key:
+                    th = theme
+                    break
+        if th and th not in found:
+            found.append(th)
+    return sorted(found, key=THEMES.index)[:2]
+
+
+def extract_themes(all_flat_lines: list[str]) -> list[str]:
+    for ln in all_flat_lines[:120]:
+        m = re.match(r'^(?:[n•]\s+)?themes?\s*:\s*(.+)$', ln.strip(), re.I)
+        if m:
+            themes = match_themes(m.group(1))
+            if themes:
+                return themes
+    return []
+
+
+def extract_quiz(all_flat_lines: list[str]) -> list[dict]:
+    """SELF-TEST block: 'Q1. question' / 'A1. answer' pairs (answers may wrap)."""
+    for i, ln in enumerate(all_flat_lines):
+        if not re.match(r'^(?:[n•]\s+)?(self[- ]test|quiz|test yourself|check your understanding)\s*[:.]?\s*$', ln.strip(), re.I):
+            continue
+        items: list[dict] = []
+        cur: dict | None = None
+        for l in all_flat_lines[i + 1:i + 80]:
+            l = l.strip()
+            if _PAGE_HEADER_RE.match(l):
+                continue
+            if (_FOOTER_RE.search(l) or is_section_heading(l)
+                    or re.match(r'^(topics covered|sources?\b|tomorrow|practical takeaway|market signal)', l, re.I)):
+                break
+            mq = re.match(r'^(?:[n•]\s+)?Q(?:\d{1,2})?\s*[.):]\s*(.+)$', l, re.I)
+            ma = re.match(r'^(?:[n•]\s+)?A(?:\d{1,2})?\s*[.):]\s*(.+)$', l, re.I)
+            if mq:
+                cur = {'q': clean(mq.group(1)), 'a': ''}
+                items.append(cur)
+            elif ma and cur is not None:
+                cur['a'] = clean(ma.group(1))
+            elif cur is not None and len(l) > 2:
+                if cur['a']:
+                    cur['a'] = clean(cur['a'] + ' ' + l)
+                else:
+                    cur['q'] = clean(cur['q'] + ' ' + l)
+        items = [it for it in items if it['q'] and it['a']]
+        if items:
+            return items[:10]
+    return []
+
+
+_VIRAL_PREFIX_RE = re.compile(
+    r"^(?:viral app\s*)?(?:of the day\s*[:\-—–]*\s*)?(?:(?:today.s pick|spotlight|pick)\s*:\s*)?", re.I)
+
+
+def normalize_viral(v: dict | None) -> dict | None:
+    """Re-split a viral-app name that ran into its description at a PDF line
+    break. The concatenation name+description is preserved exactly; only the
+    split point (and a leading 'Today's pick:' label) changes."""
+    if not v or not isinstance(v, dict) or not v.get('name'):
+        return v
+    name = clean(v.get('name') or '')
+    desc = clean(v.get('description') or '')
+    stripped = _VIRAL_PREFIX_RE.sub('', name).strip() if len(name) > 12 else name
+    if stripped and len(stripped) >= 3:
+        name = stripped
+    if len(name) > 70 and desc and not desc.lower().startswith(name.lower()[:30]):
+        full = name + ' ' + desc
+        cut = None
+        for m in re.finditer(r"(\.\s(?=[A-Z\"'(])|\s--\s|\s—\s|:\s)", full):
+            if 20 <= m.start() <= 120:
+                cut = m.start()
+                break
+        if cut is None:
+            for m in re.finditer(r",\s", full):
+                if 25 <= m.start() <= 90:
+                    cut = m.start()
+                    break
+        if cut is None:
+            cut = full.rfind(' ', 0, 100)
+        if cut and cut > 10:
+            name, desc = full[:cut].strip(), full[cut:].strip()
+            desc = re.sub(r"^[.,:;\-—–\s]+", '', desc)
+    name = re.sub(r"[\s,:;\-—–]+$", '', name)
+    if name[:1].islower():
+        name = name[:1].upper() + name[1:]
+    out = dict(v)
+    out['name'] = name
+    out['description'] = desc
+    return out
+
+
+def _norm_text(s: str) -> str:
+    return re.sub(r'\W+', ' ', (s or '').lower()).strip()
+
+
+def dedupe_intro(entry: dict, lede: str = '') -> bool:
+    """If focus_intro repeats the first body paragraph, keep the text once.
+    Returns True when the entry changed. No text is dropped: the longer of
+    the two copies survives (as the body paragraph), the intro becomes the
+    PDF lede when one is available, else empty (the subtitle fills the slot)."""
+    intro = entry.get('focus_intro') or ''
+    secs = entry.get('sections') or []
+    paras = (secs[0].get('paragraphs') or []) if secs else []
+    first = paras[0] if paras else ''
+    ni, nf = _norm_text(intro), _norm_text(first)
+    if not ni or not nf:
+        return False
+    if not (ni == nf or nf.startswith(ni[:150]) or ni.startswith(nf[:150])):
+        return False
+    if len(ni) > len(nf):
+        paras[0] = intro                                   # longer copy wins, nothing lost
+    nl = _norm_text(lede)
+    if nl and nl != _norm_text(paras[0]) and not _norm_text(paras[0]).startswith(nl[:150]):
+        entry['focus_intro'] = lede
+    else:
+        entry['focus_intro'] = ''
+    return True
+
+
+_DANGLING_RE = re.compile(
+    r"(?:^|\s)(?:a|an|the|of|to|for|and|or|but|nor|so|with|without|in|on|at|by|from|into|onto|over|under|"
+    r"after|before|between|through|your|our|their|its|his|her|is|are|was|were|be|as|that|this|these|those|"
+    r"not|no|if|than|then|which|who|whom|how|why|what|when|where|while|vs\.?|&|--|—|-)$", re.I)
+
+
+def title_problem(title: str) -> str:
+    """Why a stored title is unusable ('' when it is fine)."""
+    t = (title or '').strip()
+    if not t:
+        return 'empty'
+    if _GENERIC_TITLE_RE.match(t) or re.match(r'^ai learning\s*[-—–]+\s*day\s*\d+', t, re.I):
+        return 'generic'
+    if re.search(r'varunsingla\.com|agentic ai series|learning series|agentic ai daily', t, re.I):
+        return 'header'
+    if re.match(r'^(day\s*\d+\s*[|•·]|\w+ \d{1,2}, \d{4}\s*[|•·])', t, re.I):
+        return 'header'
+    if re.match(r'^[a-z]', t):
+        return 'fragment'
+    if re.match(r'^(today we|if the last|yesterday|this week|just shipped)\b', t, re.I) and not re.search(r'[.!?]$', t):
+        return 'fragment'
+    if _DANGLING_RE.search(t) or t.endswith((',', ':', ';')):
+        return 'truncated'
+    if len(t) > 95 and not re.search(r"[.!?]$", t) and re.match(r'^(today we|if the|three stories|yesterday)', t, re.I):
+        return 'fragment'
+    if len(t) > 140:
+        return 'fragment'
+    return ''
+
+
+def _entry_text(entry: dict) -> str:
+    parts = [entry.get('focus_intro') or '', entry.get('market_signal') or '']
+    for s in entry.get('sections') or []:
+        parts.extend(s.get('paragraphs') or [])
+        parts.extend(s.get('bullets') or [])
+    return ' '.join(parts)
+
+
+_BOILERPLATE_HEADING_RE = re.compile(
+    r"(viral|takeaway|market signal|today.s focus|what.s inside|tomorrow|sources|recap|by the numbers|"
+    r"key stats|at a glance|what is it\??$)", re.I)
+
+
+def _heading_as_title(entry: dict, corpus: dict | None) -> str:
+    for s in entry.get('sections') or []:
+        h = (s.get('title') or '').strip()
+        h = re.sub(r"^\d{1,2}\s*[).:·\-—–]+\s*", '', h)
+        if 10 <= len(h) <= 100 and not _BOILERPLATE_HEADING_RE.search(h) and not _DANGLING_RE.search(h):
+            return to_title_case(h, corpus)
+    return ''
+
+
+def repair_title_from_json(entry: dict, corpus: dict | None) -> str:
+    """Best-effort headline for an entry whose PDF is not on disk."""
+    t = (entry.get('title') or '').strip()
+    problem = title_problem(t)
+    if not problem:
+        return ''
+    if problem == 'header':
+        segs = [s.strip() for s in re.split(r'\s*[|•·]\s*', t) if s.strip()]
+        segs = [s for s in segs
+                if not re.match(r'^(day\s*\d+|\w+ \d{1,2}, \d{4}|agentic ai.*series.*|.*varunsingla\.com.*)$', s, re.I)]
+        if segs and 10 <= len(segs[0]) <= 100:
+            seg = to_title_case(segs[0], corpus) if is_shouting(segs[0]) else segs[0]
+            if title_problem(seg) == 'truncated':
+                t, problem = seg, 'truncated'          # fall through to the truncation fix
+            else:
+                return seg
+        else:
+            return _heading_as_title(entry, corpus)
+    if problem == 'truncated':
+        stem = _DAY_PREFIX_RE.sub('', t)
+        words = stem.split()
+        if len(words) >= 4:
+            tail = ' '.join(words[-4:])
+            text = _entry_text(entry)
+            idx = text.lower().find(tail.lower())
+            if idx >= 0:
+                rest = text[idx + len(tail):]
+                m = re.match(r"^([^.!?;:\n]{1,80}?)(?=[.,;:!?]|\s--\s|\s—\s|$)", rest)
+                if m and m.group(1).strip():
+                    cand = clean(stem + m.group(1))
+                    cand = re.sub(r"[\s,;:\-—–&]+$", '', cand)
+                    if len(cand) <= 120 and not _DANGLING_RE.search(cand):
+                        return cand
+        cand = re.sub(r"[\s,;:]*(?:--|—|-|&|\b\w{1,5})$", '', stem).strip() if _DANGLING_RE.search(stem) else stem
+        cand = re.sub(r"[\s,;:\-—–&]+$", '', cand)
+        if len(cand) >= 25 and not _DANGLING_RE.search(cand):
+            return cand
+        return _heading_as_title(entry, corpus) or cand
+    # generic / fragment
+    return _heading_as_title(entry, corpus)
+
+
+# Hand-checked titles for early entries whose PDF is no longer on disk and
+# whose stored title was a header artifact or a cut-off lede. Each one reuses
+# the entry's own wording (lede, section headings, takeaways); the stored
+# title is kept under title_original.
+TITLE_OVERRIDES = {
+    '2026-03-25': 'Production Multi-Agent Systems',
+    '2026-04-06': 'Attie by Bluesky -- The First Agentic AI App to Go Viral',
+    '2026-04-14': 'Self-Healing Agents in Production: Circuit Breakers and Drift Detection',
+    '2026-04-20': 'The Future of Work in an Agentic Economy',
+    '2026-04-21': 'The Open-Source Agent Stack: Open Source vs Proprietary in 2026',
+    '2026-04-27': 'Agentic AI Crosses Into Hospital Wards, Pharma Pipelines, and Clinical Workflows',
+    '2026-04-28': 'The Agent Economy Meets Climate & Energy',
+    '2026-04-29': 'Which Roles Are Exploding in Demand -- and How to Position Yourself',
+    '2026-05-07': 'Beyond LLM-as-Judge: Trajectory Evals & Continuous Production Monitoring',
+    '2026-05-08': 'Anthropic Finance Agents',
+    '2026-05-14': 'From SPIFFE Workload Identity to Know Your Agent (KYA) and the IETF AIMS Framework',
+    '2026-05-19': 'Google I/O 2026 -- Gemini Spark & the Big Tech Agentic Pivot',
+    '2026-05-21': "The Agentic Enterprise Buyer's Checklist",
+    '2026-05-24': 'Head-to-Head Economics, Take Rates, and Discovery Across the Five Major Agent Channels',
+    '2026-05-28': 'Agentic AI in Manufacturing & Industrial Operations',
+    '2026-05-30': 'Agentic AI in Marketing & Customer Experience',
+    '2026-06-10': 'Agentic AI in Scientific Research & Discovery',
+}
+
+
+def _store_original(entry: dict, field: str, old_value) -> None:
+    key = f'{field}_original'
+    if old_value and key not in entry:
+        entry[key] = old_value
+
+
+def repair_entry(entry: dict, pdf_path=None, global_corpus: dict | None = None) -> list[str]:
+    """Idempotent in-place repair of one stored entry. Returns a list of what
+    changed. Nothing is ever deleted: replaced titles/intros go to
+    *_original, viral names are only re-split, headings only re-cased."""
+    changes: list[str] = []
+    corpus = build_corpus(entry)
+    if global_corpus:
+        for k, c in global_corpus.items():
+            corpus.setdefault(k, _Counter()).update(c)
+
+    old_title = (entry.get('title') or '').strip()
+    fm = extract_front_matter(pdf_path) if pdf_path else {}
+    new_title = ''
+    override = TITLE_OVERRIDES.get(entry.get('date', ''))
+    if override and not pdf_path:
+        new_title = override
+    subtitle = (entry.get('subtitle') or '').strip()
+    lede = fm.get('lede', '') if fm else ''
+
+    if fm and fm.get('headline'):
+        head = _join_headline(fm.get('headline_lines') or [fm['headline']], hint=old_title) or fm['headline']
+        head = to_title_case(head, corpus) if is_shouting(head) else head
+        head = re.sub(r"\s*--\s*$", '', head).strip()
+        deck = fm.get('deck', '')
+        problem = title_problem(old_title)
+        old_norm, head_norm = _norm_text(old_title), _norm_text(head)
+        if (problem or old_norm.startswith(head_norm[:40]) or head_norm.startswith(old_norm[:40])
+                or (deck and old_norm.startswith(_norm_text(deck)[:40]))):
+            new_title = head
+        if deck and not subtitle:
+            subtitle = tidy_deck(deck, corpus)
+        elif not deck and fm.get('kicker') and not subtitle and len(fm['kicker']) < 90:
+            subtitle = fm['kicker']
+    elif fm and (fm.get('deck') or lede):
+        deck = fm.get('deck') or ''
+        base = deck or (re.split(r'(?<=[.!?])\s', lede)[0] if lede else '')
+        cand = headline_from_deck(base)
+        if cand:
+            new_title = to_title_case(cand, corpus)
+        if deck and not subtitle:
+            subtitle = tidy_deck(deck, corpus)
+
+    if not new_title and not override and title_problem(old_title):
+        new_title = repair_title_from_json(entry, corpus)
+    if not new_title and old_title:
+        stripped = _DAY_PREFIX_RE.sub('', old_title).strip()
+        if stripped != old_title and len(stripped) >= 10:
+            new_title = stripped
+        elif is_shouting(old_title):
+            new_title = to_title_case(old_title, corpus)
+    if new_title:
+        new_title = re.sub(r'\s*--\s*--\s*', ' -- ', new_title)
+        new_title = _DAY_PREFIX_RE.sub('', new_title).strip()
+        new_title = re.sub(r"[\s,;:\-—–]+$", '', new_title)
+    if new_title and new_title != old_title and len(new_title) >= 8:
+        _store_original(entry, 'title', old_title)
+        entry['title'] = new_title
+        changes.append(f"title: {old_title[:60]!r} -> {new_title[:60]!r}")
+    if subtitle and subtitle != (entry.get('subtitle') or '') and _norm_text(subtitle) != _norm_text(entry['title']):
+        entry['subtitle'] = subtitle
+        changes.append('subtitle')
+
+    # Intro: fix a mid-sentence fragment using the PDF lede, then de-duplicate.
+    intro = entry.get('focus_intro') or ''
+    if lede and intro:
+        ni, nl = _norm_text(intro), _norm_text(lede)
+        if ni != nl and (intro[:1].islower() or ni[:60] in nl or nl.endswith(ni[-80:])):
+            if ni not in nl:
+                _store_original(entry, 'focus_intro', intro)
+            entry['focus_intro'] = lede
+            changes.append('focus_intro from lede')
+    elif lede and not intro:
+        entry['focus_intro'] = lede
+        changes.append('focus_intro from lede')
+    if dedupe_intro(entry, lede):
+        changes.append('intro de-duplicated')
+
+    # Section headings: ALL CAPS -> title case.
+    for s in entry.get('sections') or []:
+        h = s.get('title') or ''
+        nh = recase_heading(h, corpus)
+        if nh != h:
+            s['title'] = nh
+            changes.append('heading recased')
+
+    # Viral app: re-split a name that ran into its description.
+    v = entry.get('viral_app')
+    nv = normalize_viral(v)
+    if nv and nv != v:
+        entry['viral_app'] = nv
+        changes.append('viral app re-split')
+
+    # Sources / watch list / recap / themes / quiz from the PDF text.
+    if pdf_path:
+        try:
+            flat = _flat_lines_for_repair(pdf_path)
+        except Exception:
+            flat = []
+        if flat:
+            if not entry.get('sources'):
+                src = extract_sources(flat)
+                if src:
+                    entry['sources'] = src
+                    changes.append('sources')
+            tm = extract_tomorrow_block(flat)
+            old_tm = entry.get('tomorrow_preview') or ''
+            if tm and (not old_tm or (len(tm) > len(old_tm) and _norm_text(old_tm)[:40] in _norm_text(tm))):
+                if old_tm and _norm_text(old_tm) not in _norm_text(tm):
+                    _store_original(entry, 'tomorrow_preview', old_tm)
+                entry['tomorrow_preview'] = tm
+                changes.append('watch list')
+            if not entry.get('recap'):
+                rc = extract_recap(flat)
+                if rc:
+                    entry['recap'] = rc
+                    changes.append('recap')
+            if not entry.get('themes'):
+                th = extract_themes(flat)
+                if th:
+                    entry['themes'] = th
+                    changes.append('themes')
+            if not entry.get('quiz'):
+                qz = extract_quiz(flat)
+                if qz:
+                    entry['quiz'] = qz
+                    changes.append('quiz')
+    entry['schema'] = SCHEMA_VERSION
+    return changes
+
+
+def _flat_lines_for_repair(pdf_path) -> list[str]:
+    """Plain text lines of every page (no table exclusion) for the block extractors."""
+    lines: list[str] = []
+    with pdfplumber.open(pdf_path) as pdf:
+        for page in pdf.pages:
+            txt = page.extract_text(x_tolerance=1.5, y_tolerance=3) or ''
+            lines.extend(clean(l) for l in txt.split('\n') if clean(l) and len(clean(l)) > 1)
+    return lines
+
+
+def pdf_lookup(root: Path | None = None) -> dict[str, Path]:
+    """date -> PDF path for every daily PDF on disk (repo root + workspace)."""
+    found: dict[str, Path] = {}
+    roots = [root or SCRIPT_DIR]
+    if WORKSPACE_DIR.exists() and WORKSPACE_DIR != (root or SCRIPT_DIR):
+        roots.append(WORKSPACE_DIR)
+    for base in roots:
+        try:
+            paths = sorted(base.glob('**/*.pdf'))
+        except OSError:
+            continue
+        for p in paths:
+            stem = p.stem.lower()
+            if sum(1 for k in ('daily', 'learning', 'ai', 'trends') if k in stem) < 2:
+                continue
+            dt = extract_date_from_filename(p.stem)
+            if dt:
+                found.setdefault(dt.strftime('%Y-%m-%d'), p)
+    return found
+
+
+def repair_all(data: dict, root: Path | None = None, force: bool = False, verbose: bool = True) -> list[tuple[str, list[str]]]:
+    """Run repair_entry over every stored entry that has not been repaired at
+    the current SCHEMA_VERSION. Cheap when everything is already current."""
+    entries = [e for e in data.get('learnings', []) if e.get('title')]
+    todo = [e for e in entries if force or int(e.get('schema') or 0) < SCHEMA_VERSION]
+    if not todo:
+        return []
+    pdfs = pdf_lookup(root)
+    global_corpus = build_corpus(entries=entries)
+    report: list[tuple[str, list[str]]] = []
+    for e in todo:
+        changes = repair_entry(e, pdfs.get(e['date']), global_corpus)
+        if changes:
+            report.append((e['date'], changes))
+            if verbose:
+                print(f"   🔧 {e['date']}: {', '.join(changes)[:160]}")
+    return report
+
+
+
 def parse_pdf(pdf_path: Path) -> dict:
     """Parse a daily AI learning PDF into a rich structured dict.
 
@@ -786,13 +1699,32 @@ def parse_pdf(pdf_path: Path) -> dict:
         ).strip()
 
     title = ""
+    subtitle = ""
+    # Strategy 0 (v5): read the headline / deck straight off page 1 by font
+    # size. This is layout-independent and is what fixes the "AI Learning --
+    # Day N" and "three stories about…" titles of the older text heuristics.
+    fm = extract_front_matter(pdf_path)
+    fm_lede = fm.get('lede', '')
+    fm_used = False
+    if fm.get('headline'):
+        title = fm['headline']
+        subtitle = fm.get('deck', '') or (fm.get('kicker', '') if 0 < len(fm.get('kicker', '')) < 90 else '')
+        fm_used = True
+    elif fm.get('generic') and (fm.get('deck') or fm_lede):
+        base = fm.get('deck') or re.split(r'(?<=[.!?])\s', fm_lede)[0]
+        title = headline_from_deck(base)
+        subtitle = fm.get('deck', '')
+        fm_used = bool(title)
     # Strategy 1a: "TODAY'S DEEP DIVE: X" or "Today's Focus: X" — scan wider (up to 30 lines)
-    for line in all_flat_lines[:30]:
+    for line in ([] if title else all_flat_lines[:30]):
         low = line.lower()
         if re.search(r"today.s (focus|topic|deep dive)\s*:", low):
             m = re.match(r"today.s (?:focus|topic|deep dive)\s*:\s*(.+)", line, re.I)
             if m:
                 raw = m[1].strip()
+                if raw[:1].islower():
+                    # "Today's focus: three stories about…" is the lede, not a title
+                    continue
                 parts = re.split(r'\s*\+\s*', raw)
                 first = parts[0].strip()
                 if len(first) < 12 and len(parts) > 1:
@@ -849,7 +1781,7 @@ def parse_pdf(pdf_path: Path) -> dict:
     # Strategy 1c: append the deck/subtitle line that follows the title on
     # page 1 (Day ~100+ layout: "Self-Improving Agents 2.0" newline
     # "Getting better without retraining the base model").
-    if title and ' -- ' not in title and '—' not in title:
+    if title and not fm_used and ' -- ' not in title and '—' not in title:
         p1 = page_data[0]['lines']
         for k, ln in enumerate(p1):
             if ln.strip().startswith(title[:40]):
@@ -882,7 +1814,7 @@ def parse_pdf(pdf_path: Path) -> dict:
         if re.search(r"today.s (focus|topic)", low):
             inline_m = re.match(r"today.s (?:focus|topic)\s*:\s*(.+)", line, re.I)
             if inline_m:
-                intro_parts = []
+                intro_parts = [inline_m[1].strip()] if len(inline_m[1].strip()) > 20 else []
                 in_yesterday = False
                 for j in range(i + 1, min(i + 14, len(all_flat_lines))):
                     l = all_flat_lines[j]
@@ -1511,6 +2443,33 @@ def parse_pdf(pdf_path: Path) -> dict:
                     break
         focus_intro = trimmed
 
+    # ── v5: casing, de-duplication, sources, watch list, recap, themes, quiz ──
+    corpus = build_corpus({'focus_intro': focus_intro, 'sections': sections, 'market_signal': market_signal,
+                           'viral_app': viral_app, 'practical_takeaway': practical_takeaway})
+    if title:
+        if is_shouting(title) or (fm.get('generic') and fm_used):
+            title = to_title_case(title, corpus)
+        title = re.sub(r'\s*--\s*--\s*', ' -- ', title)
+        title = _DAY_PREFIX_RE.sub('', title).strip()
+        title = re.sub(r"[\s,;:\-—–]+$", '', title)
+    if subtitle:
+        subtitle = tidy_deck(subtitle, corpus)
+        if _norm_text(subtitle) == _norm_text(title):
+            subtitle = ''
+    for sec in sections:
+        sec['title'] = recase_heading(sec.get('title', ''), corpus)
+    viral_app = normalize_viral(viral_app)
+    if fm_lede and (not focus_intro or focus_intro[:1].islower()
+                    or _norm_text(focus_intro)[:60] in _norm_text(fm_lede)):
+        focus_intro = fm_lede
+    sources = extract_sources(all_flat_lines)
+    tm_block = extract_tomorrow_block(all_flat_lines)
+    if tm_block and (not tomorrow_preview or len(tm_block) > len(tomorrow_preview)):
+        tomorrow_preview = tm_block
+    recap = extract_recap(all_flat_lines)
+    themes = extract_themes(all_flat_lines)
+    quiz = extract_quiz(all_flat_lines)
+
     # ── Validation ────────────────────────────────────────────────────────────
     warnings = []
     if not issue:
@@ -1528,11 +2487,12 @@ def parse_pdf(pdf_path: Path) -> dict:
     else:
         print(f"   ✅  Validation passed — all required fields present")
 
-    return {
+    entry = {
         "date":               date_str,
         "display_date":       display_date,
         **({"issue": issue} if issue else {}),
         "title":              title,
+        **({"subtitle": subtitle} if subtitle else {}),
         "focus_intro":        focus_intro,
         **({"viral_app": viral_app} if viral_app else {}),
         "stats":              stats,
@@ -1540,7 +2500,14 @@ def parse_pdf(pdf_path: Path) -> dict:
         **({"market_signal": market_signal} if market_signal else {}),
         "practical_takeaway": practical_takeaway,
         **({"tomorrow_preview": tomorrow_preview} if tomorrow_preview else {}),
+        **({"sources": sources} if sources else {}),
+        **({"recap": recap} if recap else {}),
+        **({"themes": themes} if themes else {}),
+        **({"quiz": quiz} if quiz else {}),
+        "schema":             SCHEMA_VERSION,
     }
+    dedupe_intro(entry, fm_lede)
+    return entry
 
 
 # ── learnings.json ────────────────────────────────────────────────────────────
@@ -1577,6 +2544,9 @@ def _entry_richness(e: dict) -> int:
     score += min(len(e.get("market_signal") or ""), 800)
     score += 250 * len(e.get("practical_takeaway") or [])
     score += min(len(e.get("tomorrow_preview") or ""), 300)
+    score += min(len(e.get("subtitle") or ""), 200)
+    score += min(len(e.get("sources") or ""), 300)
+    score += 80 * len(e.get("quiz") or [])
     return score
 
 
@@ -1707,14 +2677,54 @@ def github_push(config: dict, data: dict, extra_files: list | None = None) -> bo
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 
+def _regenerate_geo() -> list:
+    try:
+        import generate_geo
+        changed = generate_geo.generate(SCRIPT_DIR)
+        print(f"   ✅  {len(changed)} generated file(s) changed")
+        return changed
+    except Exception as e:
+        print(f"   ⚠️  GEO generation failed (site still updates): {e}")
+        return []
+
+
 def main():
     now = datetime.now().strftime("%Y-%m-%d %H:%M")
     print(f"\n🤖  AI Learning Blog Updater — {now}")
     print("─" * 54)
 
+    args = sys.argv[1:]
+    if "--parse" in args:
+        # Debug: parse one PDF and print the entry as JSON (no writes).
+        pdf = Path(args[args.index("--parse") + 1])
+        print(json.dumps(parse_pdf(pdf), indent=2, ensure_ascii=False))
+        return
+
     config   = load_config()
     data     = load_learnings()
     learnings = data["learnings"]
+
+    # ── Repair / backfill stored entries (idempotent; no-op once current) ─────
+    # Fixes titles ("AI Learning -- Day N" → the deck line), adds subtitles,
+    # sources, the TOMORROW watch list, recaps and themes from the PDFs on disk,
+    # re-cases ALL-CAPS headings and de-duplicates intros. Originals are kept
+    # under *_original fields, so nothing is lost.
+    if "--repair" in args:
+        report = repair_all(data, SCRIPT_DIR, force="--force" in args)
+        print(f"🔧  Repair pass: {len(report)} entr{'y' if len(report) == 1 else 'ies'} changed")
+        if "--dry-run" in args:
+            print("   (dry run — nothing written)")
+            return
+        LEARNINGS_JSON.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+        print("🌐  Regenerating GEO files …")
+        _regenerate_geo()
+        print("✅  Done (not pushed — commit and push the repo as usual).\n")
+        return
+
+    repaired = repair_all(data, SCRIPT_DIR, verbose=False)
+    if repaired:
+        LEARNINGS_JSON.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+        print(f"🔧  Repaired {len(repaired)} stored entr{'y' if len(repaired) == 1 else 'ies'} (schema v{SCHEMA_VERSION})")
 
     # ── Find new PDF ──────────────────────────────────────────────────────────
     print("🔍  Looking for new daily PDF …")
@@ -1764,13 +2774,7 @@ def main():
     # this is what AI crawlers (GPTBot, ClaudeBot, PerplexityBot, …) and
     # search engines actually read, since they don't execute JavaScript.
     print("🌐  Regenerating GEO files (static entries, llms.txt, feed, sitemap) …")
-    geo_changed: list = []
-    try:
-        import generate_geo
-        geo_changed = generate_geo.generate(SCRIPT_DIR)
-        print(f"   ✅  {len(geo_changed)} generated file(s) changed")
-    except Exception as e:
-        print(f"   ⚠️  GEO generation failed (site still updates): {e}")
+    geo_changed: list = _regenerate_geo()
 
     # ── Push to GitHub ────────────────────────────────────────────────────────
     print("🚀  Pushing to GitHub …")
