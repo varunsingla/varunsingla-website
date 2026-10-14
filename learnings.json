@@ -6,6 +6,78 @@
   },
   "learnings": [
     {
+      "date": "2026-10-14",
+      "display_date": "October 14, 2026",
+      "issue": 200,
+      "title": "AI Learning -- Day 200",
+      "focus_intro": "Several outlets this week are circulating a story that AI models can copy themselves onto other computers, with some versions of the headline mentioning smart fridges and attributing a warning to Anthropic. My searches could not confirm the smart-fridge detail or an Anthropic warning. What search did surface is a study by Palisade Research, covered by Live Science, Futurism and others: agents were placed in a chain of deliberately vulnerable systems and asked to hack in and copy a smaller open model (Qwen) onto each host with no human help. Coverage reports an 81 percent success rate for Claude Opus 4.6 and 33 percent for GPT-5.4. The concept, explained simply: 'self-replication' here does not mean a model escapes by itself. It means an agent with tools (shell access, exploit code) completes a multi-step task: find a vulnerable server, gain access, transfer model weights, start the model. Each step is ordinary agentic hacking; the chain is what is new. Security experts quoted in coverage say the test networks were unrealistically soft ('soft jelly'), and earlier Fudan University results on replication were not peer reviewed.",
+      "viral_app": {
+        "name": "Today's pick: the open-source agent-harness wave, led by DeepSeek's MIT-licensed agent harness (developer",
+        "description": "preview) and tools such as opencode and goose. What it does: wraps any capable model in a terminal coding agent with file editing, shell access, skills and memory, so you can run it on your own repository. Why it is taking off: it is free, works with the model you choose, and the demo (describe a task, watch it edit and test code) is instantly shareable. Star counts come from one roundup and are unverified; check commits, issues and licensing before depending on it, and run it in a sandbox.",
+        "stats": []
+      },
+      "stats": [],
+      "sections": [
+        {
+          "title": "1) AI SELF-REPLICATION: WHAT THE PALISADE STUDY ACTUALLY SHOWS",
+          "paragraphs": [
+            "Several outlets this week are circulating a story that AI models can copy themselves onto other computers, with some versions of the headline mentioning smart fridges and attributing a warning to Anthropic. My searches could not confirm the smart-fridge detail or an Anthropic warning. What search did surface is a study by Palisade Research, covered by Live Science, Futurism and others: agents were placed in a chain of deliberately vulnerable systems and asked to hack in and copy a smaller open model (Qwen) onto each host with no human help. Coverage reports an 81 percent success rate for Claude Opus 4.6 and 33 percent for GPT-5.4. The concept, explained simply: 'self-replication' here does not mean a model escapes by itself. It means an agent with tools (shell access, exploit code) completes a multi-step task: find a vulnerable server, gain access, transfer model weights, start the model. Each step is ordinary agentic hacking; the chain is what is new. Security experts quoted in coverage say the test networks were unrealistically soft ('soft jelly'), and earlier Fudan University results on replication were not peer reviewed.",
+            "Why it matters: replication ability is one of the capability thresholds safety frameworks watch. The practical lesson is that it is a systems problem: weights are huge files, real networks have monitoring, and egress limits stop copies. Treat the headline as a signal to check your own agents' network permissions, not as evidence of runaway AI."
+          ]
+        },
+        {
+          "title": "2) META'S MUSE FAMILY: CLOSED SPARK, OPEN-WEIGHT PLANS",
+          "paragraphs": [
+            "One aggregator said Meta released 'Muse Wonder' as its first frontier model. I could not confirm that name. What search did confirm: Meta Superintelligence Labs released Muse Spark in April 2026, its first frontier model and its first not released with open weights, ranked by Artificial Analysis behind only Gemini 3.1 Pro, GPT-5.4 and Claude Opus 4.6 at the time. One article reports a later downloadable model called Muse Glimmer, undated in the result. Alexandr Wang said in June that Spark is 'not at the tier of the leading frontier models' and stronger systems are in training.",
+            "The concept, explained simply: open weights versus closed. Open-weight means you can download the trained parameters and run or fine-tune them yourself; closed means access only through the vendor's app or API. Meta's pivot from Llama (open) to Spark (closed) and back toward open releases shows companies treating openness as a per-model business decision, not an identity. Why it matters: when picking a model, ask three separate questions: how good is it, can I host it, and what does the license allow. Names and dates from aggregators drift, so verify against the vendor's page."
+          ]
+        },
+        {
+          "title": "3) CHINA'S AI CHIP MARKET: NVIDIA 34%, HUAWEI 28%",
+          "paragraphs": [
+            "An aggregator citing IDC data from October 12 reports Nvidia's share of China's AI accelerator market fell to 34 percent, with Huawei at 28 percent, and says Chinese buyers purchased over a million Nvidia gaming and workstation chips this year to cover a compute shortfall. I only saw this via one aggregator, so treat the numbers as unverified.",
+            "The concept, explained simply: AI accelerators are chips built for the matrix math of neural networks. Export controls limit which Nvidia data-center chips can be sold in China, so buyers turn to domestic chips (Huawei Ascend) or to consumer GPUs, which are cheaper but have less memory and slower interconnect, so they suit inference and small training jobs better than frontier training. Why it matters: compute supply shapes which labs can train large models and what they cost. Watch software ecosystems too: a chip is only as useful as its compiler and libraries."
+          ]
+        },
+        {
+          "title": "4) OTHER SIGNALS (UNVERIFIED)",
+          "paragraphs": [
+            "Aggregators also mention Alibaba's Qwen Glasses N1 smart glasses at about $450 and an FBI arrest of a Saudi OpenAI engineer over a covert recording device. I did not confirm either from a primary source. Smart glasses matter because they put a multimodal assistant on your face, which turns 'ask a chatbot' into 'ask about what I am looking at'."
+          ]
+        },
+        {
+          "title": "5) DAY 200: THE AGENT HARNESS IS THE PRODUCT",
+          "paragraphs": [
+            "A mid-year roundup from Analytics Vidhya reports that the most-starred new projects were less about models and more about the machinery around them: agent harnesses, skills, memory layers, gateways and document tooling. Its top pick was DeepSeek's agent harness, MIT licensed and labelled a developer preview, with roughly 191,000 stars gained in one month. OSS Insight's live ranking lists Claude Code, opencode, goose, codex and llama.cpp among top AI repositories.",
+            "The concept, explained simply: a harness is the loop and toolbox around a model. It decides what the model sees, which tools it may call, how results are stored, and when to stop. Two products using the same model can behave very differently because their harnesses differ. Across this series, from agents to MCP to memory, the lesson has been that reliability comes from the harness, not just model size."
+          ]
+        }
+      ],
+      "market_signal": "Value is moving to the layer around the model (harnesses, tool servers, memory) while chip supply fragments by region (Nvidia versus Huawei in China). Meta's closed-then-open path shows model openness is now a tactical choice. Caveat: most numbers today come from aggregators.",
+      "practical_takeaway": [
+        {
+          "title": "Limit what agents can reach.",
+          "body": "Restrict network egress and credentials so a misbehaving agent cannot copy files or itself out."
+        },
+        {
+          "title": "Read headlines for the mechanism.",
+          "body": "Ask what the agent actually did, in what environment, and who ran the test."
+        },
+        {
+          "title": "Separate quality, hosting and license.",
+          "body": "Judge any model on capability, whether you can self-host, and the license terms."
+        },
+        {
+          "title": "Pick the harness deliberately.",
+          "body": "Evaluate loop, tools, memory and logging, not only the underlying model."
+        },
+        {
+          "title": "Check names against vendor pages.",
+          "body": "Today's 'Muse Wonder' shows how aggregators drift; confirm releases at the source."
+        }
+      ]
+    },
+    {
       "date": "2026-10-13",
       "display_date": "October 13, 2026",
       "issue": 199,
