@@ -6,6 +6,91 @@
   },
   "learnings": [
     {
+      "date": "2026-10-15",
+      "display_date": "October 15, 2026",
+      "title": "Who Pays for the Data? Publisher Licensing, ASML's AI Signal and Meta's Ad Agents",
+      "subtitle": "The SPUR coalition and usage-based licensing, ASML as an AI-spending barometer, Meta's Advantage+ creative and business-AI tools, and a day of unverified headlines",
+      "focus_intro": "Themes: Infrastructure & Economics · Governance & Safety",
+      "viral_app": {
+        "name": "Meta's Advantage+ Creative video generation, now generally available",
+        "description": "What it does: turns a product image and a short brief into video ad variants and tests them automatically. Why it is taking off: small businesses without a studio can produce dozens of ads in minutes, and the results show up directly in sales metrics. Caveat: the adoption claims come from Meta's own announcements, so check results on your own spend.",
+        "stats": []
+      },
+      "stats": [],
+      "sections": [
+        {
+          "title": "1) Publishers VS. AI: The SPUR Coalition and Usage-Based Licensing",
+          "paragraphs": [
+            "Search coverage dated October 14 says the New York Times, AFP and The Economist joined SPUR, taking it past 80 members in 20+ countries. I could not confirm that: sources I found say SPUR (Standards for Publisher Usage Rights) was founded in March 2026 by the BBC, Financial Times, Guardian, Sky, The Times and Mediahuis, grew to about 36 members in June (Ringier, Globe and Mail, CBC/Radio Canada) and gained the Associated Press in July. Treat the October membership numbers as unverified. The concept, explained simply: usage-based licensing means an AI company pays a publisher according to how its content is used (for training, for retrieval at answer time, or for display), rather than a one-off lump sum for a scrape. Standards matter because both sides need shared definitions of 'use' before any meter can run. Why it matters: training data and fresh retrieval are an input cost for every model. How that cost is settled decides which labs can afford quality news and whether agents that browse the web must pay per page."
+          ]
+        },
+        {
+          "title": "2) ASML: The AI Build-Out Seen From the Chip-Making Machine",
+          "paragraphs": [
+            "Coverage on October 14 reports ASML raised its sales forecast and cited AI demand running to 2029-2030, while its shares slipped. I could only verify the earlier step: in July 2026 ASML lifted its full-year 2026 guidance to roughly 43 to 45 billion euros after a strong second quarter (Euronews). The October detail is a single-source report.",
+            "The concept, explained simply: ASML makes the extreme-ultraviolet lithography machines that print the finest circuits on AI chips. Because a customer orders them years ahead, ASML's order book works as a leading indicator of chip capacity two to four years out. Why it matters: when a supplier this far up the chain raises guidance, chip makers expect AI demand to persist. A share price that falls anyway shows markets pricing in expectations, not just results."
+          ]
+        },
+        {
+          "title": "3) Meta's AI Ad Tools: Agents for Small Businesses",
+          "paragraphs": [
+            "At Advertising Week on October 6, Meta announced AI tools for advertisers: a business AI assistant that draws on past campaign data, scheduled performance reports in testing, general availability of Advantage+ Creative video generation, and third-party AI tool integration for campaign management. A roundup also mentions an agent protocol with Meta, Stripe and Shopify, but it is a secondhand list and unconfirmed. Meta's own model behind these products is Muse Spark (April 2026). The concept, explained simply: an advertising agent reads your goal (for example, sell more shoes in Bangkok), generates creative, picks an audience, sets a budget and reports results, with you approving. It is the same agent loop covered earlier in this series, applied to a revenue workflow. Why it matters: advertising pays for much of Meta's AI spending, so ad automation is where model cost is turned into revenue. It also shifts the marketer's job from operating dashboards to setting goals and checking outputs."
+          ]
+        },
+        {
+          "title": "4) Other Signals (Unverified)",
+          "paragraphs": [
+            "Headlines also mention a judge ordering OpenAI to hand over hiring records in an Apple trade-secrets case, and Publicis saying AI will remove about 25 percent of manual tasks rather than jobs as its workforce nears 114,000. Both come from single search snippets. The Publicis framing (tasks, not jobs) is a useful way to read automation claims: ask which tasks, and who captures the time saved."
+          ]
+        }
+      ],
+      "market_signal": "Three pressures meet: content owners want per-use pay (SPUR), chip suppliers still report rising AI demand (ASML), and platforms monetise AI through ads (Meta). Cost of data, cost of compute and revenue per model call are the three numbers to watch. Caveat: October items today are mostly single-source.",
+      "practical_takeaway": [
+        {
+          "title": "Track where your content and data come from.",
+          "body": "Know the license of anything an agent retrieves, since per-use payment standards are emerging."
+        },
+        {
+          "title": "Use suppliers as leading indicators.",
+          "body": "ASML orders and guidance hint at chip capacity years ahead of product launches."
+        },
+        {
+          "title": "Verify membership and numbers at the source.",
+          "body": "Check SPUR's own member list before repeating headcounts."
+        },
+        {
+          "title": "Keep a human approval step in ad agents.",
+          "body": "Let the agent draft and test, but approve budget and claims yourself."
+        },
+        {
+          "title": "Read automation claims by task.",
+          "body": "Ask which tasks are removed and where the freed time goes, as in Publicis's 25 percent figure. SELF-TEST Q1. What does usage-based licensing mean? A1. The AI company pays according to how content is used (training, retrieval or display) rather than a lump sum. Q2. Why is ASML a leading indicator for AI? A2. Its EUV machines are ordered years ahead and are required to make advanced AI chips. Q3. What does an advertising agent do? A3. It generates creative, targets audiences, sets budgets and reports results toward a goal you set."
+        }
+      ],
+      "tomorrow_preview": "SPUR's official member list and licensing terms, ASML's third-quarter filing and order data, Meta's agent-protocol details with Stripe and Shopify, Mistral Large 4 license and weights, and independent evaluations of GPT-6.",
+      "sources": "web search reporting (Journalism.co.uk, Media Copilot, Arab News/AFP on SPUR; Euronews on ASML; Meta Advertising Week coverage via search aggregators; bestmediainfo and Schwab market summaries for October 14). Figures are reported, not independently verified.",
+      "recap": "201 days in: foundations of Agentic AI, Multi-Agent Systems, MCP and A2A; the frontier model race and tier pricing; AI safety, governance and regulation; agent security and least privilege; token economics, caching and routing; mixture-of-experts; agent memory and retrieval; data-center power and inference silicon; benchmark skepticism; agent harnesses; open-weight models and local AI hardware; generative UI and AI code security; agent action boundaries; GPT-6 and small-model economics; agent-driven reverse engineering and source hierarchy; self-replication research, Meta's Muse family, China's chip split (Day 200); and today's publisher licensing, ASML as a demand barometer and Meta's advertising agents.",
+      "themes": [
+        "Infrastructure & Economics",
+        "Governance & Safety"
+      ],
+      "quiz": [
+        {
+          "q": "What does usage-based licensing mean?",
+          "a": "The AI company pays according to how content is used (training, retrieval or display) rather than a lump sum."
+        },
+        {
+          "q": "Why is ASML a leading indicator for AI?",
+          "a": "Its EUV machines are ordered years ahead and are required to make advanced AI chips."
+        },
+        {
+          "q": "What does an advertising agent do?",
+          "a": "It generates creative, targets audiences, sets budgets and reports results toward a goal you set."
+        }
+      ],
+      "schema": 2
+    },
+    {
       "date": "2026-10-14",
       "display_date": "October 14, 2026",
       "issue": 200,
