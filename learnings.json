@@ -6,6 +6,87 @@
   },
   "learnings": [
     {
+      "date": "2026-10-18",
+      "display_date": "October 18, 2026",
+      "title": "Open Models Go Local: Nvidia Nemotron, Reflection Beam and DeepSeek Flash, Plus Google's Gemini 4 Argon and Meta AI's Video Feed Surge",
+      "subtitle": "Nvidia's open Nemotron agent models, open-weight MoE releases from Reflection AI and DeepSeek, Google's long-horizon Gemini 4 Argon, and the Meta AI app's viral AI video feed.",
+      "focus_intro": "Nvidia's open Nemotron agent models, open-weight MoE releases from Reflection AI and DeepSeek, Google's long-horizon Gemini 4 Argon, and the Meta AI app's viral AI video feed.",
+      "viral_app": {
+        "name": "Meta AI app and its AI video feed (consumer app)",
+        "description": "Meta introduced short-form, AI-generated videos directly inside the Meta AI mobile app in September. Similarweb data cited by an aggregator (hyper.ai) shows daily active users on iOS and Android reaching about 2.7 million as of Oct 17, up from roughly 775,000 four weeks earlier, with downloads near 300,000 a day. Why it is taking off: the feed turns AI from a tool you must prompt into entertainment you simply scroll, and it is promoted across Meta's huge audience. The honest caveat: these figures are a single secondary source, and a feed of synthetic video raises questions about labelling and misinformation.",
+        "stats": []
+      },
+      "stats": [],
+      "sections": [
+        {
+          "title": "1) Nvidia Nemotron: Open Agent Models You Can Run Yourself",
+          "paragraphs": [
+            "Per reports (Yahoo Finance, AI Agents Directory), Nvidia debuted three new open AI models under the Nemotron name, aimed at letting enterprises run AI agents on their own hardware. One aggregator describes a 74B model, called Bolt, built for general agentic tasks such as navigating a web browser and using apps. Details come from secondary summaries, so sizes and names should be checked against Nvidia's own release notes.",
+            "The concept, explained simply: Open-weight models are models whose trained parameters you can download and run on your own servers, instead of calling a vendor's API. Running locally means your data never leaves your network.",
+            "Why it matters: Companies in regulated industries want agents but cannot send sensitive data to outside clouds. Nvidia also sells the chips that run these models, so open models grow demand for its hardware."
+          ]
+        },
+        {
+          "title": "2) Mixture-of-Experts Goes Open: Reflection Beam and DeepSeek",
+          "paragraphs": [
+            "Reflection AI reportedly released Beam on Oct 16 under Apache 2.0: a mixture-of-experts (MoE) model with about 501B total and 23B active parameters, aimed at coding, agents, science and math. DeepSeek reportedly posted V4.1-Flash-1017 on Oct 17 under the MIT license, also a sparse MoE agent model. Both claims come from a single aggregator listing and are unconfirmed. The concept, explained simply: A mixture-of-experts model is like a hospital with many specialist doctors: each question is routed to only a few of them. The model has a huge total size but only a small 'active' slice does the work for each token, so it is cheaper and faster than a dense model of the same total size. Why it matters: MoE plus permissive licences means near-frontier capability at a fraction of the serving cost, which keeps price pressure on closed models and lets startups self-host."
+          ]
+        },
+        {
+          "title": "3) Google Gemini 4 Argon: Built for Long-Horizon Work",
+          "paragraphs": [
+            "Google reportedly released Gemini 4 Argon to developers and enterprises through the Gemini API, AI Studio and the Gemini platform. It is positioned for long-horizon workflows such as code migration, enterprise research and cybersecurity. The exact release date and benchmark claims were not confirmed from a primary source.",
+            "The concept, explained simply: A long-horizon task is one that needs many dependent steps over a long time, such as migrating a large codebase. The hard part is not any single step but staying on track, remembering earlier decisions and recovering from mistakes across hundreds of steps. Why it matters: Real business value sits in multi-hour jobs, not one-shot answers. Models that can sustain a plan are what turn a chatbot into a worker, which is why every lab now markets long-horizon reliability."
+          ]
+        }
+      ],
+      "market_signal": "Capability is being unbundled from the cloud. Open MoE models and local agent stacks let enterprises run agents privately, while consumer AI is moving from chat to feeds. Expect competition on price, deployment control and distribution rather than raw benchmark scores alone.",
+      "practical_takeaway": [
+        {
+          "title": "Pilot an open-weight model for sensitive data.",
+          "body": "Test a self-hosted open model on one private workflow to compare cost and quality against an API."
+        },
+        {
+          "title": "Read MoE specs as total versus active parameters.",
+          "body": "Judge serving cost by the active parameter count and quality by real tests on your tasks."
+        },
+        {
+          "title": "Test long-horizon models on a real multi-step job.",
+          "body": "Give it a task with dozens of dependent steps and check whether it stays on plan, not just whether step one works."
+        },
+        {
+          "title": "Verify aggregator claims before acting.",
+          "body": "Check model names, licences and prices against the vendor's own page before building on them. SELF-TEST Q1. What is an open-weight model? A1. A model whose trained parameters can be downloaded and run on your own hardware. Q2. What does mixture-of-experts mean? A2. Only a few specialist sub-networks run per token, so active parameters are far fewer than total. Q3. What is a long-horizon task? A3. A job needing many dependent steps over time, where staying on plan matters most. Q4. Why did the Meta AI app surge? A4. An AI-generated short video feed added in September, promoted to Meta's large audience."
+        }
+      ],
+      "tomorrow_preview": "primary confirmation of Nvidia Nemotron sizes and licences. What We're Watching: independent benchmarks of Reflection Beam and DeepSeek V4.1-Flash. What We're Watching: whether Meta AI's user growth holds and how AI video is labelled.",
+      "sources": "Yahoo Finance on Nvidia's Nemotron models (finance.yahoo.com); AI Agents Directory brief, Oct 17 2026 (aiagentsdirectory.com); AI Weekly (aiweekly.co/ai-news-today); AI Agents Store weekly news (aiagentstore.ai); hyper.ai citing Similarweb on Meta AI; Torii AI Breakout October 2026 (toriihq.com). AI Learning -- Day 204 | 2026-10-18 | Page 2",
+      "recap": "Recent days covered agent-evaluation safety and reward hacking, Meta's Muse Wonder models, agentic commerce, long-horizon models, on-device agents and agent protocols. Today added open local agent models from Nvidia, open mixture-of-experts releases, Google's Gemini 4 Argon and the Meta AI video-feed surge.",
+      "themes": [
+        "Infrastructure & Economics",
+        "Models & Frontier"
+      ],
+      "quiz": [
+        {
+          "q": "What is an open-weight model?",
+          "a": "A model whose trained parameters can be downloaded and run on your own hardware."
+        },
+        {
+          "q": "What does mixture-of-experts mean?",
+          "a": "Only a few specialist sub-networks run per token, so active parameters are far fewer than total."
+        },
+        {
+          "q": "What is a long-horizon task?",
+          "a": "A job needing many dependent steps over time, where staying on plan matters most."
+        },
+        {
+          "q": "Why did the Meta AI app surge?",
+          "a": "An AI-generated short video feed added in September, promoted to Meta's large audience."
+        }
+      ],
+      "schema": 2
+    },
+    {
       "date": "2026-10-17",
       "display_date": "October 17, 2026",
       "title": "When Agents Cheat the Test: Anthropic's Eval Lockdown, Meta's Muse Wonder and Google's Universal Cart",
