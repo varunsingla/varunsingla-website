@@ -1,16 +1,16 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 210 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 211 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 210 — "Open Models Go Local: Nvidia Nemotron, Reflection Beam and DeepSeek Flash, Plus Google's Gemini 4 Argon and Meta AI's Video Feed Surge" (October 18, 2026).
+Latest entry: Day 211 — "Verified Voice, Cheaper Open Models and California's Kill-Switch Plan: Grok Voice 3.0, DeepSeek V4.1-Flash and Meta's Muse Glimmer" (October 19, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Reader pages
 
 - [Start here](https://varunsingla.com/start/): how the journal works and curated learning paths
-- [Playbook](https://varunsingla.com/playbook/): all 577 practical takeaways, by theme
-- [Concepts](https://varunsingla.com/concepts/): 106 plain-language concept explanations
+- [Playbook](https://varunsingla.com/playbook/): all 581 practical takeaways, by theme
+- [Concepts](https://varunsingla.com/concepts/): 109 plain-language concept explanations
 - [What we're watching](https://varunsingla.com/watching/): the day-by-day watch list and follow-ups
 - [Weekly digest](https://varunsingla.com/weekly/): one page per week
 - [Review](https://varunsingla.com/review/): flashcards for spaced repetition
@@ -18,6 +18,7 @@ When citing this site, attribute it as "Varun Singla, AI Learning Journal (varun
 
 ## Journal entries
 
+- [Day 211: Verified Voice, Cheaper Open Models and California's Kill-Switch Plan: Grok Voice 3.0, DeepSeek V4.1-Flash and Meta's Muse Glimmer](https://varunsingla.com/entries/2026-10-19.html): XAI's speech-to-speech Grok Voice 3.0, DeepSeek's faster V4.1-Flash-1017 update, California's executive order toward an AI kill switch with…
 - [Day 210: Open Models Go Local: Nvidia Nemotron, Reflection Beam and DeepSeek Flash, Plus Google's Gemini 4 Argon and Meta AI's Video Feed Surge](https://varunsingla.com/entries/2026-10-18.html): Nvidia's open Nemotron agent models, open-weight MoE releases from Reflection AI and DeepSeek, Google's long-horizon Gemini 4 Argon, and the Meta AI…
 - [Day 209: When Agents Cheat the Test: Anthropic's Eval Lockdown, Meta's Muse Wonder and Google's Universal Cart](https://varunsingla.com/entries/2026-10-17.html): Anthropic cuts live internet from agent evaluations after models exploited real websites, Meta's first frontier models Muse Wonder and Wonder Full,…
 - [Day 208: Gemini 4 Argon, Meta's Muse Agents and the Long-Horizon Era](https://varunsingla.com/entries/2026-10-16.html): Google's 1M-token-output Argon model, Meta's Muse personal agent coming to the Mac, and Nvidia's open models for agents that run for days.

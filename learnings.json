@@ -6,6 +6,86 @@
   },
   "learnings": [
     {
+      "date": "2026-10-19",
+      "display_date": "October 19, 2026",
+      "title": "Verified Voice, Cheaper Open Models and California's Kill-Switch Plan: Grok Voice 3.0, DeepSeek V4.1-Flash and Meta's Muse Glimmer",
+      "focus_intro": "XAI's speech-to-speech Grok Voice 3.0, DeepSeek's faster V4.1-Flash-1017 update, California's executive order toward an AI kill switch with independent verifiers, and Meta's small open Muse Glimmer model. Themes: Models & Frontier · Governance & Safety Note: search results leaned on aggregators; primary pages could not be fetched this run. Vendor-reported numbers are flagged, and one circulating claim (an 816B open Meta model) could not be confirmed and is left out.",
+      "viral_app": {
+        "name": "Meta Muse Glimmer (open model on Hugging Face)",
+        "description": "Meta's flagship Muse Spark is closed and paid, but Glimmer is a much smaller model released free on Hugging Face, built to run on a laptop. Reported details: a 131,072-token context window, with BF16 weights for fine-tuning, GGUF quantised files for llama.cpp and ExecuTorch builds for on-device use. Why it is taking off: it is free, small enough to run privately, and ships in the formats hobbyists already use. Caveat: details come from a single secondary article, and a Meta developer page lists the model without a parameter count.",
+        "stats": []
+      },
+      "stats": [],
+      "sections": [
+        {
+          "title": "1) Grok Voice 3.0: Speech-to-Speech Without the Pipeline",
+          "paragraphs": [
+            "xAI released Grok Voice 3.0 on October 14 through its Voice Agent API (model ID grok-voice-3.0). It replaces Grok Voice 2.0 as the default, keeps the $0.08-per-minute price, and targets phone support, contact centres and in-app assistants. xAI reports a score of 86.9 on the Artificial Analysis Speech-to-Speech Index; this is vendor-reported and no independent audit page was found.",
+            "The concept, explained simply: A speech-to-speech model listens to audio and answers in audio directly. Older voice bots chained three steps: speech-to-text, a language model, then text-to-speech. Each hop adds delay and loses tone, hesitation and interruptions.",
+            "Why it matters: Natural-sounding, low-latency voice is what makes AI usable for phone calls, one of the largest customer-service cost centres. A flat per-minute price makes the economics easy to compare with human agents."
+          ]
+        },
+        {
+          "title": "2) DeepSeek V4.1-Flash-1017: Faster, Leaner Answers",
+          "paragraphs": [
+            "Bloomberg reported on October 17 that DeepSeek pushed out an updated V4.1-Flash model it says is faster and leaner, available on its web app, mobile app and developer platform. One roundup says it beats the prior V4.1-Flash on all 11 reported benchmarks by 2.0 to 11.1 points; that figure is from a secondary source. The concept, explained simply: Shorter outputs matter more than they sound. Models are billed per token, and agents loop many times, so a model that reaches the same answer in fewer tokens is cheaper and quicker even if its per-token price is unchanged.",
+            "Why it matters: Efficiency is now a competitive axis alongside raw intelligence. Frequent small updates from Chinese labs keep price pressure on US vendors and give builders a cheap option for high-volume agent work."
+          ]
+        },
+        {
+          "title": "3) California's Path to an AI Kill Switch",
+          "paragraphs": [
+            "Governor Newsom signed Executive Order N-9-26 on September 18. It does not create a kill switch. It directs agencies to speed up existing AI oversight laws (SB 813 on certifying independent verification organisations, AB 1405 on a registry of AI auditors) and to recommend rules, including a possible kill-switch requirement for frontier models. Recommendations are due by November 16, 2026; verifier criteria by May 1, 2027. The concept, explained simply: An independent verification organisation is a third party, accredited by the state, that checks whether an AI developer's safety claims are true, rather than trusting the developer's own report. A kill switch is a tested mechanism to halt a model or its deployment quickly. Why it matters: Governance is moving from voluntary pledges to auditable duties. If California adopts verified safety reports for large developers, it will likely become a template that other states and global vendors follow."
+          ]
+        }
+      ],
+      "market_signal": "AI Learning -- Day 205 | 2026-10-19 | Page 1 Competition is shifting to cost per task and trust. Voice agents compete on latency and per-minute price, open and Flash-class models on tokens used, and regulators on who verifies the safety claims. Expect buyers to ask for audited evidence, not just benchmark charts.",
+      "practical_takeaway": [
+        {
+          "title": "Pilot voice on one narrow call type.",
+          "body": "Try a speech-to-speech agent on a simple inbound use case and measure latency and handoff rate before scaling."
+        },
+        {
+          "title": "Measure cost per completed task.",
+          "body": "Compare models by tokens used and total cost to finish your task, not by price per token alone."
+        },
+        {
+          "title": "Pin model versions in production.",
+          "body": "Aliases such as grok-voice-latest silently upgrade you, so pin versions and re-test before moving."
+        },
+        {
+          "title": "Prepare evidence for AI audits.",
+          "body": "Keep logs of safety tests and shutdown procedures now; third-party verification is coming. SELF-TEST Q1. What does speech-to-speech mean? A1. The model takes audio in and produces audio out directly, with no text pipeline in between. Q2. Why do shorter outputs lower cost? A2. Billing is per token, and agents loop many times, so fewer tokens means cheaper and faster runs. Q3. What is an independent verification organisation? A3. A state-accredited third party that checks a developer's AI safety claims. Q4. Does California's order already require a kill switch? A4. No, it directs agencies to recommend rules, with recommendations due November 16, 2026."
+        }
+      ],
+      "tomorrow_preview": "independent benchmarks of Grok Voice 3.0 and DeepSeek V4.1-Flash-1017. What We're Watching: a Hugging Face model card confirming Muse Glimmer's size and licence. What We're Watching: agency drafts ahead of California's November 16 recommendations.",
+      "sources": "Bloomberg on DeepSeek, Oct 17 2026 (bloomberg.com); DevX on Grok Voice 3.0 (devx.com); AF.NET (af.net); Bloomberg Law and Unite.AI on California EO N-9-26 (news.bloomberglaw.com, unite.ai); CASRAI summary (casrai.org); Plain English on Muse Glimmer (ai.plainenglish.io); Rio Rundown, Oct 18 2026 (riorundown.substack.com). AI Learning -- Day 205 | 2026-10-19 | Page 2",
+      "recap": "Recent days covered open local agent models, open mixture-of-experts releases, Gemini 4 Argon, Meta's AI video feed, agent-evaluation safety, agentic commerce and agent protocols. Today added speech-to-speech voice agents, token-efficient Flash models and California's verified-safety and kill-switch plan.",
+      "themes": [
+        "Models & Frontier",
+        "Governance & Safety"
+      ],
+      "quiz": [
+        {
+          "q": "What does speech-to-speech mean?",
+          "a": "The model takes audio in and produces audio out directly, with no text pipeline in between."
+        },
+        {
+          "q": "Why do shorter outputs lower cost?",
+          "a": "Billing is per token, and agents loop many times, so fewer tokens means cheaper and faster runs."
+        },
+        {
+          "q": "What is an independent verification organisation?",
+          "a": "A state-accredited third party that checks a developer's AI safety claims."
+        },
+        {
+          "q": "Does California's order already require a kill switch?",
+          "a": "No, it directs agencies to recommend rules, with recommendations due November 16, 2026."
+        }
+      ],
+      "schema": 2
+    },
+    {
       "date": "2026-10-18",
       "display_date": "October 18, 2026",
       "title": "Open Models Go Local: Nvidia Nemotron, Reflection Beam and DeepSeek Flash, Plus Google's Gemini 4 Argon and Meta AI's Video Feed Surge",
