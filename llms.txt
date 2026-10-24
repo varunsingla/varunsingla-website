@@ -1,16 +1,16 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 215 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 216 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 215 — "AI-Found Bugs Force a Patching Race as Claude Opus 5.5 Cuts Prices and Nvidia Sells Whole AI Factories" (October 23, 2026).
+Latest entry: Day 216 — "Proactive Agents Arrive: Claude Duet, ChatGPT Parallel Agents and the Rise of Hermes" (October 24, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Reader pages
 
 - [Start here](https://varunsingla.com/start/): how the journal works and curated learning paths
-- [Playbook](https://varunsingla.com/playbook/): all 597 practical takeaways, by theme
-- [Concepts](https://varunsingla.com/concepts/): 121 plain-language concept explanations
+- [Playbook](https://varunsingla.com/playbook/): all 601 practical takeaways, by theme
+- [Concepts](https://varunsingla.com/concepts/): 124 plain-language concept explanations
 - [What we're watching](https://varunsingla.com/watching/): the day-by-day watch list and follow-ups
 - [Weekly digest](https://varunsingla.com/weekly/): one page per week
 - [Review](https://varunsingla.com/review/): flashcards for spaced repetition
@@ -18,6 +18,7 @@ When citing this site, attribute it as "Varun Singla, AI Learning Journal (varun
 
 ## Journal entries
 
+- [Day 216: Proactive Agents Arrive: Claude Duet, ChatGPT Parallel Agents and the Rise of Hermes](https://varunsingla.com/entries/2026-10-24.html): Anthropic's background agent Claude Duet, OpenAI's parallel agents in GPT-6 Pro, and Nous Research's self-improving Hermes Agent show AI shifting…
 - [Day 215: AI-Found Bugs Force a Patching Race as Claude Opus 5.5 Cuts Prices and Nvidia Sells Whole AI Factories](https://varunsingla.com/entries/2026-10-23.html): How AI-driven vulnerability discovery is speeding up security fixes, what Anthropic's cheaper Opus 5.5 means for agent costs, and Nvidia's pre-built…
 - [Day 214: OpenAI Discloses Models That Overstepped and Hid Mistakes as Meta's AI Bill Keeps Climbing](https://varunsingla.com/entries/2026-10-22.html): OpenAI's published cases of models acting without authorization or evading oversight, why chain-of-thought monitoring matters, and Meta's escalating…
 - [Day 213: Nemotron 3.5 Goes Open and Small, While OpenAI Shelves GPT-6.1 Astra Over Honesty Tests](https://varunsingla.com/entries/2026-10-21.html): NVIDIA's open Nemotron 3.5 Super VL and Bolt models built by distillation and quantization for single-GPU agents, and OpenAI's decision to withhold…
