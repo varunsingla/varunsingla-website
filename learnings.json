@@ -6,6 +6,86 @@
   },
   "learnings": [
     {
+      "date": "2026-10-25",
+      "display_date": "October 25, 2026",
+      "title": "AI Found the Bug: PHP2Shell, the AI Bubble Math and Anthropic's Safety Bill",
+      "subtitle": "PHP2Shell, an AI-assisted discovery of critical PHP flaws, Gartner's warning on neocloud consolidation and $3.5 trillion of at-risk infrastructure, Anthropic's leaked 50-death AI safety bill, and the viral REA reverse-engineering agent.",
+      "focus_intro": "PHP2Shell, an AI-assisted discovery of critical PHP flaws, Gartner's warning on neocloud consolidation and $3.5 trillion of at-risk infrastructure, Anthropic's leaked 50-death AI safety bill, and the viral REA reverse-engineering agent.",
+      "viral_app": {
+        "name": "REA (morluto/rea): an AI agent for reverse engineering",
+        "description": "An open-source agent that pairs language-model agents with reverse-engineering tools such as Ghidra, IDA Pro and Hopper to analyse compiled software in minutes instead of weeks. Reports say it jumped from under 10,000 GitHub stars to over 234,000 between October 6 and 14; counts differ by source and snapshot, so treat them as approximate. It is taking off because reverse engineering was a rare, slow skill, and an agent that drives the tools makes it accessible. That is also a dual-use warning, in the same spirit as PHP2Shell: useful for defenders auditing malware and legacy code, and for attackers.",
+        "stats": []
+      },
+      "stats": [],
+      "sections": [
+        {
+          "title": "1) PHP2Shell: When AI Finds the Bug First",
+          "paragraphs": [
+            "On October 21, 2026, researchers from OpenAI, Wiz and Calif disclosed PHP2Shell: two critical PHP flaws (CVE-2026-109618 and CVE-2026-109619, each rated 9.2 on CVSS v4) covering memory disclosure and unauthenticated remote code execution. Wiz says every PHP release of the last decade is affected by at least one of them, back to 5.4. Patched releases are PHP 8.5.12, 8.4.27, 8.3.36 and 8.2.35. Cloudflare deployed protections, and the NSA advised sites that could not patch quickly to go offline temporarily. One report credits an OpenAI model for scanning PHP's code (single source, unverified). Wiz's co-founder called it the most severe AI-found vulnerability so far.",
+            "The concept, explained simply: Remote code execution (RCE) means an attacker can make a server run their commands without logging in. AI-assisted vulnerability research means a model reads huge codebases and flags suspicious logic far faster than people can. Why it matters: The same capability that helps defenders find bugs helps attackers. Reports say attackers were probing days before the fix, so the gap between disclosure and patching is now the real risk. Patch speed and layered defenses such as web firewalls matter more than ever."
+          ]
+        },
+        {
+          "title": "2) Gartner: The AI Infrastructure Spending Gap",
+          "paragraphs": [
+            "Gartner forecasts that more than 80% of neoclouds (specialist AI-compute providers such as CoreWeave and Nebius) will stop operating independently by 2030. Its numbers: up to $7 trillion of AI infrastructure spending by 2030 would need about $8.5 trillion of revenue to cover costs and a 12% return, but AI providers are expected to earn only about $3.5 trillion. Gartner says more than $3.5 trillion of that spending could be impaired by 2030 if the current pace continues. 'Stop operating independently' can mean acquisition, merger or partnership, not only failure, and this is a forecast, not a prediction about named firms. The concept, explained simply: Impairment means an asset is worth less than its books say, such as a data center built for demand that does not arrive. A neocloud rents GPUs to AI customers and, unlike a hyperscaler, has few other revenue streams to fall back on. Why it matters: If revenue lags the build-out, expect consolidation, tighter financing and sharper pricing pressure. For buyers, depend on a diversified provider or keep workloads portable."
+          ]
+        },
+        {
+          "title": "3) Anthropic's Leaked Frontier AI Bill",
+          "paragraphs": [
+            "Politico reported on October 16 that Anthropic pitched Congress a draft frontier-AI bill. Under it, government could halt a model only for a foreseeable, imminent risk of more than $1 billion in damage or more than 50 deaths or serious injuries, from bioweapons, a model escaping its developer's control, or a cyberattack. Reports say it would preempt parts of state laws such as California's SB 53 and use independent evaluators every 180 days (secondary reports, unverified). Anthropic called the draft sensible policy but said it would rewrite parts after safety advocates objected.",
+            "AI Learning -- Day 211 | 2026-10-25 | Page 1 The concept, explained simply: A harm threshold sets how bad a risk must be before regulators can step in. Preemption means a federal law overrides state laws on the same subject. Why it matters: Where the threshold sits decides whether regulation is a safety net or a last resort. Because the text is unpublished, treat details as provisional until a final draft appears."
+          ]
+        }
+      ],
+      "market_signal": "AI is now finding critical bugs in widely used software while analysts question whether the money behind AI infrastructure can be earned back. The strategic questions are shifting from 'how capable is the model' to 'who patches fast, who is financed to survive, and who sets the rules.'",
+      "practical_takeaway": [
+        {
+          "title": "Patch PHP now.",
+          "body": "Upgrade to 8.5.12, 8.4.27, 8.3.36 or 8.2.35, or enable a web application firewall rule if you cannot."
+        },
+        {
+          "title": "Shorten your patch window.",
+          "body": "Assume attackers read advisories too and track time from disclosure to deployed fix."
+        },
+        {
+          "title": "Avoid single-provider compute lock-in.",
+          "body": "Keep workloads portable across clouds in case a specialist provider is acquired or changes terms."
+        },
+        {
+          "title": "Treat draft policy as provisional.",
+          "body": "Plan for compliance only once bill text is published, and watch state-versus-federal conflicts. SELF-TEST Q1. What is remote code execution? A1. An attacker makes a server run their commands without authenticating. Q2. What does Gartner mean by neoclouds losing independence? A2. Acquisition, merger, partnership or closure, not necessarily bankruptcy. Q3. What is the harm threshold in Anthropic's draft bill? A3. More than $1 billion in damage or more than 50 deaths or serious injuries. Q4. Why is REA dual-use? A4. It speeds up reverse engineering for both defenders and attackers."
+        }
+      ],
+      "tomorrow_preview": "PHP exploitation reports and patch adoption rates after PHP2Shell. What We're Watching: the next Anthropic draft of its bill and lawmaker reaction. What We're Watching: next week's AI Learning -- Day 211 | 2026-10-25 | Page 2 big-cloud earnings for AI capex and revenue signals.",
+      "sources": "Wiz (wiz.io/blog/php2shell-php-rce), The Next Web (thenextweb.com/news/php2shell-php-rce-ai-openai-wiz), CRN Asia on Gartner (crnasia.com), The Register, TechTarget, Politico via PC Gamer, Cybernews and Let's Data Science on the Anthropic draft bill, Startup Fortune and gittrend.io on REA. AI Learning -- Day 211 | 2026-10-25 | Page 3",
+      "recap": "Recent days covered AI-found vulnerabilities, Claude Opus 5.5, Nvidia's Vera Rubin POD, Nemotron 3.5, GPT-6.1 Astra, voice agents, Gemini 4 Argon, proactive agents such as Claude Duet, ChatGPT parallel agents, Kimi K3.1 Pro and the Hermes Agent. Today added PHP2Shell, Gartner's neocloud forecast, Anthropic's draft safety bill and the REA agent.",
+      "themes": [
+        "Infrastructure & Economics",
+        "Governance & Safety"
+      ],
+      "quiz": [
+        {
+          "q": "What is remote code execution?",
+          "a": "An attacker makes a server run their commands without authenticating."
+        },
+        {
+          "q": "What does Gartner mean by neoclouds losing independence?",
+          "a": "Acquisition, merger, partnership or closure, not necessarily bankruptcy."
+        },
+        {
+          "q": "What is the harm threshold in Anthropic's draft bill?",
+          "a": "More than $1 billion in damage or more than 50 deaths or serious injuries."
+        },
+        {
+          "q": "Why is REA dual-use?",
+          "a": "It speeds up reverse engineering for both defenders and attackers."
+        }
+      ],
+      "schema": 2
+    },
+    {
       "date": "2026-10-24",
       "display_date": "October 24, 2026",
       "title": "Proactive Agents Arrive: Claude Duet, ChatGPT Parallel Agents and the Rise of Hermes",
