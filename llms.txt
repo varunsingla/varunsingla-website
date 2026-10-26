@@ -1,16 +1,16 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 217 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 218 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 217 — "AI Found the Bug: PHP2Shell, the AI Bubble Math and Anthropic's Safety Bill" (October 25, 2026).
+Latest entry: Day 218 — "Meta's Muse Wonder, Open Coding Models and the Agent Runtime Race" (October 26, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Reader pages
 
 - [Start here](https://varunsingla.com/start/): how the journal works and curated learning paths
-- [Playbook](https://varunsingla.com/playbook/): all 605 practical takeaways, by theme
-- [Concepts](https://varunsingla.com/concepts/): 127 plain-language concept explanations
+- [Playbook](https://varunsingla.com/playbook/): all 609 practical takeaways, by theme
+- [Concepts](https://varunsingla.com/concepts/): 130 plain-language concept explanations
 - [What we're watching](https://varunsingla.com/watching/): the day-by-day watch list and follow-ups
 - [Weekly digest](https://varunsingla.com/weekly/): one page per week
 - [Review](https://varunsingla.com/review/): flashcards for spaced repetition
@@ -18,6 +18,7 @@ When citing this site, attribute it as "Varun Singla, AI Learning Journal (varun
 
 ## Journal entries
 
+- [Day 218: Meta's Muse Wonder, Open Coding Models and the Agent Runtime Race](https://varunsingla.com/entries/2026-10-26.html): Meta's Muse Wonder models built around memory and focus, a new open-weight coding model, how cloud runtimes keep long-running agents alive, and the…
 - [Day 217: AI Found the Bug: PHP2Shell, the AI Bubble Math and Anthropic's Safety Bill](https://varunsingla.com/entries/2026-10-25.html): PHP2Shell, an AI-assisted discovery of critical PHP flaws, Gartner's warning on neocloud consolidation and $3.5 trillion of at-risk infrastructure,…
 - [Day 216: Proactive Agents Arrive: Claude Duet, ChatGPT Parallel Agents and the Rise of Hermes](https://varunsingla.com/entries/2026-10-24.html): Anthropic's background agent Claude Duet, OpenAI's parallel agents in GPT-6 Pro, and Nous Research's self-improving Hermes Agent show AI shifting…
 - [Day 215: AI-Found Bugs Force a Patching Race as Claude Opus 5.5 Cuts Prices and Nvidia Sells Whole AI Factories](https://varunsingla.com/entries/2026-10-23.html): How AI-driven vulnerability discovery is speeding up security fixes, what Anthropic's cheaper Opus 5.5 means for agent costs, and Nvidia's pre-built…

@@ -6,6 +6,86 @@
   },
   "learnings": [
     {
+      "date": "2026-10-26",
+      "display_date": "October 26, 2026",
+      "title": "Meta's Muse Wonder, Open Coding Models and the Agent Runtime Race",
+      "subtitle": "Meta's Muse Wonder models built around memory and focus, a new open-weight coding model, how cloud runtimes keep long-running agents alive, and the viral octo-agent project.",
+      "focus_intro": "Meta's Muse Wonder models built around memory and focus, a new open-weight coding model, how cloud runtimes keep long-running agents alive, and the viral octo-agent project.",
+      "viral_app": {
+        "name": "An MIT-licensed coding agent and personal assistant that ships as a single Go binary with no Node",
+        "description": "Ruby or Python runtime. Per its own listing, seven of eight planned interfaces are live: a terminal UI, a local web server, a desktop app, chat bridges (Discord, Telegram, Feishu, DingTalk and others), a VS Code extension, an Obsidian plugin and a Go SDK, with mobile next. It works with any model. It is gaining attention because install is one file and you can talk to the same agent from your editor, your notes or your chat app. Evidence of popularity comes from trend trackers; I found no independent reviews, so check the licence and code before use.",
+        "stats": []
+      },
+      "stats": [],
+      "sections": [
+        {
+          "title": "1) Meta Muse Wonder: Memory and Focus for Agents",
+          "paragraphs": [
+            "On October 12, 2026 Meta announced Muse Wonder and Muse Wonder Full, which it calls its most capable models so far, aimed at personal and professional agents. Muse Wonder is available through Meta's Model API and Muse Code, and Vercel added it to its AI Gateway the same day; Muse Wonder Full is limited to Muse Code subscribers. Meta says Muse Wonder will also power its personal agent product, Muse, starting with subscribers. Meta's headline features are Active Memory, which carries relevant information across conversations, and Active Focus, which helps a model continue a multi-step task, recover from errors and ask for clarification before consequential actions. All benchmark results come from Meta's own evaluations. The concept, explained simply: Memory in an agent means saved facts it can recall in later sessions, instead of starting from a blank page each time. Focus means staying on the goal across many steps, noticing when a step failed and pausing to ask before doing something hard to undo. Why it matters: Agents fail less from lacking knowledge than from losing the thread or acting without checking. Models trained for memory and clarification make long tasks like insurance claims or lease review more practical, but persistent memory also raises privacy questions about what is stored and who can see it."
+          ]
+        },
+        {
+          "title": "2) Open-Weight Coding Models Keep Getting Smaller",
+          "paragraphs": [
+            "An October 26 roundup reports Nanbeige4.3-33B, a 33-billion-parameter coding model released on Hugging Face under the Apache 2.0 licence (single aggregator source, not independently verified). It follows a month of open releases, including Moonshot's Kimi K3.1 Pro on October 23 and Nvidia's open agent models reported by TechCrunch on October 19.",
+            "The concept, explained simply: Open-weight means the trained model files are published so anyone can download and run them. Apache 2.0 is a permissive licence that allows commercial use. Parameters are the numbers a model learns; fewer usually means cheaper to run. Why it matters: A capable 33B model can run on a single strong workstation or a modest server, so teams can keep code on their own hardware. Check the licence and test on your own codebase before trusting any leaderboard."
+          ]
+        },
+        {
+          "title": "3) Agent Runtimes: Keeping Long Tasks Alive",
+          "paragraphs": [
+            "Agents that work for minutes or hours need somewhere to run. AWS announced a reworked Amazon Bedrock AgentCore Runtime on September 18, 2026 that reclaims memory as sessions release it and targets steadier cold starts, with a reported P75 cold start near 2 seconds versus roughly 5.4 to nearly 30 seconds before. Each session runs in its own microVM, and tasks can run up to 8 hours. (A claim circulating that AWS open-sourced a runtime called 'Infinity' on October 23 could not be verified and is left out.) The concept, explained simply: A cold start is the delay when a fresh environment must boot before work begins. A microVM is a very small virtual machine that isolates one session from all others, so one agent's mistakes or secrets cannot leak into another's. Why it matters: As agents spend most of their time waiting on tools and people, the cost and safety of the runtime becomes as important as the model. Isolation, state storage and fast startup are now product features.",
+            "AI Learning -- Day 212 | 2026-10-26 | Page 1"
+          ]
+        }
+      ],
+      "market_signal": "The race is moving from raw model scores to the full agent stack: memory, clarification behaviour, open licences and the runtime underneath. Winners will be judged on reliability over hours, not a single answer.",
+      "practical_takeaway": [
+        {
+          "title": "Test agents on long tasks.",
+          "body": "Run a multi-step job and check whether the model recovers from an error and asks before risky actions."
+        },
+        {
+          "title": "Decide what an agent may remember.",
+          "body": "Write down which personal or company data persistent memory can store and how to delete it."
+        },
+        {
+          "title": "Pilot an open-weight coding model.",
+          "body": "Try a small Apache 2.0 model on your own repository and compare it with your current tool before switching."
+        },
+        {
+          "title": "Budget for runtime, not just tokens.",
+          "body": "Measure cold start, isolation and maximum session length when choosing where agents run. SELF-TEST Q1. What do Active Memory and Active Focus do in Muse Wonder? A1. Memory carries information across conversations; focus keeps multi-step tasks on track and asks before consequential actions. Q2. What does Apache 2.0 allow? A2. Commercial use and modification of the published model, under permissive terms. Q3. Why run each agent session in its own microVM? A3. It isolates sessions so one agent's errors or data cannot affect another. Q4. Why treat octo-agent's popularity cautiously? A4. The evidence is from trackers and its own listing, with no independent reviews found."
+        }
+      ],
+      "tomorrow_preview": "independent benchmarks of Muse Wonder against other frontier models. What We're Watching: whether the Nanbeige4.3 results hold up on real codebases. What We're Watching: any official AWS or GitHub confirmation of new open agent runtimes.",
+      "sources": "Meta Muse Wonder coverage (letsdatascience.com, vktr.com, androidauthority.com, yourstory.com), TechCrunch on Nvidia open models AI Learning -- Day 212 | 2026-10-26 | Page 2 (techcrunch.com/2026/10/19/nvidia-launches-new-open-models-to-run-agents-in-the-enterprise-and-on-pcs/), aiweekly.co/ai-news-today, unite.ai on AgentCore Runtime, pkg.go.dev/github.com/open-octo/octo-agent, OSS Insight and Trendshift. AI Learning -- Day 212 | 2026-10-26 | Page 3",
+      "recap": "Recent days covered AI-found vulnerabilities such as PHP2Shell, Gartner's neocloud forecast, Anthropic's draft safety bill, the REA reverse-engineering agent, Claude Opus 5.5, Nvidia's Vera Rubin POD, Nemotron 3.5, GPT-6.1 Astra, Gemini 4 Argon, Claude Duet, ChatGPT parallel agents, Kimi K3.1 Pro and the Hermes Agent. Today added Meta's Muse Wonder, open-weight coding models, agent runtimes and octo-agent.",
+      "themes": [
+        "Foundations & Protocols",
+        "Models & Frontier"
+      ],
+      "quiz": [
+        {
+          "q": "What do Active Memory and Active Focus do in Muse Wonder?",
+          "a": "Memory carries information across conversations; focus keeps multi-step tasks on track and asks before consequential actions."
+        },
+        {
+          "q": "What does Apache 2.0 allow?",
+          "a": "Commercial use and modification of the published model, under permissive terms."
+        },
+        {
+          "q": "Why run each agent session in its own microVM?",
+          "a": "It isolates sessions so one agent's errors or data cannot affect another."
+        },
+        {
+          "q": "Why treat octo-agent's popularity cautiously?",
+          "a": "The evidence is from trackers and its own listing, with no independent reviews found."
+        }
+      ],
+      "schema": 2
+    },
+    {
       "date": "2026-10-25",
       "display_date": "October 25, 2026",
       "title": "AI Found the Bug: PHP2Shell, the AI Bubble Math and Anthropic's Safety Bill",
