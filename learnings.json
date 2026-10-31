@@ -6,6 +6,91 @@
   },
   "learnings": [
     {
+      "date": "2026-10-31",
+      "display_date": "October 31, 2026",
+      "title": "Open Weights, Antitrust and an AI-Spending Reckoning",
+      "subtitle": "Mistral Large 4's open-weights moment, the Justice Department's questions about Nvidia's $12.93B Hugging Face deal, Texas suing OpenAI, and Big Tech's AI-capex anxiety.",
+      "focus_intro": "Mistral Large 4's open-weights moment, the Justice Department's questions about Nvidia's $12.93B Hugging Face deal, Texas suing OpenAI, and Big Tech's AI-capex anxiety.",
+      "viral_app": {
+        "name": "Agent Reach: an open-source project that has been trending on GitHub (by an October 5 roundup) with",
+        "description": "the goal of giving AI agents full internet visibility, so they can read the web, social platforms and other sources from one toolkit. It is taking off because agents are only as useful as the data they can reach, and a free, plug-in access layer saves every builder from writing scrapers. I found no verified star counts for today and the date of its peak is uncertain, so treat this as a candidate from press roundups. Because it widens what agents can touch, apply the same least-privilege habits discussed on Day 216.",
+        "stats": []
+      },
+      "stats": [],
+      "sections": [
+        {
+          "title": "1) Mistral Large 4: A Trillion-Parameter Model Heads Toward Open Weights",
+          "paragraphs": [
+            "Mistral launched Mistral Large 4 as a public API preview on October 6. Reports describe a sparse mixture-of-experts model with about 1.05 trillion total parameters and roughly 49 billion active per query, with open weights promised for the end of October (one source says October 27; I could not confirm whether they have shipped). Mistral says it is strong on cybersecurity benchmarks such as Artificial Analysis' Cyber index (company-reported) and is red-teaming it with security leaders and authorities before release. The concept, explained simply: Mixture-of-experts means the model contains many specialist sub-networks but only wakes a few for each token. So a trillion-parameter model costs about as much to run per answer as a much smaller one. Open weights means anyone can download the trained numbers and run or modify the model themselves.",
+            "Why it matters: Open weights let companies self-host and customise, but the same access lets others strip out safeguards. A frontier-size open model that is good at cyber tasks makes the staged, red-teamed release a real test of how to publish powerful models responsibly."
+          ]
+        },
+        {
+          "title": "2) DOJ Asks About Nvidia's $12.93B Hugging Face Deal",
+          "paragraphs": [
+            "Reuters reported on October 28 that the Justice Department asked how Nvidia's $12.93 billion acquisition of Hugging Face would affect competition, including whether it would give Nvidia a key distribution point for AI. The DOJ is also reportedly looking at earlier Nvidia deals (SchedMD, Run:ai) and conduct after a 2025 Groq licensing deal. Nvidia expects closing in the first half of 2027, subject to approvals; the probe may not lead to action.",
+            "The concept, explained simply: A distribution chokepoint is a place nearly everyone must pass through to get something. Hugging Face is where most open models, datasets and tools are shared. If one chip maker owned it, regulators worry it could quietly favour its own hardware and software. Why it matters: Antitrust is moving from the chips layer to the layers around it: model hubs, schedulers and inference software. For open-source builders, who controls the hub can matter as much as who controls the model."
+          ]
+        },
+        {
+          "title": "3) Texas Sues OpenAI Over ChatGPT and Children",
+          "paragraphs": [
+            "Texas Attorney General Ken Paxton sued OpenAI and CEO Sam Altman in Collin County on about October 23, per Texas press coverage. The 67-page petition cites the Deceptive Trade Practices Act and the SCOPE Act, alleges misleading safety claims and inadequate protection of minors, seeks civil penalties and asks for an order barring minors from the product. OpenAI says it has built safeguards and is willing to work with Texas. Coverage notes political context around Paxton's Senate run. The concept, explained simply: Consumer-protection law lets a state sue a company that makes misleading claims to the public. Applied to AI, the question is whether saying a chatbot is safe, while kids can still reach harmful outputs, counts as deception.",
+            "AI Learning -- Day 217 | 2026-10-31 | Page 1 Why it matters: State attorneys general are becoming AI regulators in the absence of federal rules. Expect age verification, safety disclosures and parental controls to become product requirements, and expect more suits shaped by politics as well as law."
+          ]
+        }
+      ],
+      "market_signal": "The AI trade is being re-priced on payback. Headlines around October 30 describe a sharp selloff in Alphabet and other hyperscalers on AI-spending fears (I could not verify the size of the move), Meta reportedly fell about 7% after earnings despite a beat, Microsoft reportedly trimmed its calendar-2026 capex figure to $175B from $190B, and Intel's data-centre and AI revenue rose 78% to $7.3B while the stock fell 17% on a weak outlook. CoreWeave debt is also reported as stressed. Investors want revenue that matches the capex.",
+      "practical_takeaway": [
+        {
+          "title": "Plan for open-weight models as an option.",
+          "body": "Test an open model like Mistral Large 4 for tasks where privacy or cost matters, and compare it with a hosted model on your own data."
+        },
+        {
+          "title": "Do not depend on a single model hub.",
+          "body": "Mirror critical models and keep your pipeline portable in case hub ownership or terms change."
+        },
+        {
+          "title": "Treat minors as a design requirement.",
+          "body": "Add age checks, safety disclosures and logging now if your AI product can reach young users."
+        },
+        {
+          "title": "Judge AI projects by payback, not hype.",
+          "body": "Track cost per task and revenue or time saved per task, since investors are demanding the same discipline from hyperscalers."
+        },
+        {
+          "title": "Give agents the least access they need.",
+          "body": "Before adopting an agent web-access toolkit, scope its credentials and log what it reads. SELF-TEST Q1. What does mixture-of-experts mean for cost? A1. Only a few specialist sub-networks run per token, so a huge model costs far less per answer than its total size suggests. Q2. What are open weights? A2. Downloadable trained parameters that anyone can run or modify, unlike an API-only model. Q3. Why is the DOJ asking about Nvidia and Hugging Face? A3. It may become a distribution chokepoint for open models and tools, raising competition concerns. Q4. What legal route is Texas using against OpenAI? A4. State consumer-protection law (the Deceptive Trade Practices Act) plus the SCOPE Act on minors."
+        }
+      ],
+      "tomorrow_preview": "AI Learning -- Day 217 | 2026-10-31 | Page 2 What We're Watching: whether Mistral Large 4's weights are actually published, and what independent testers find on its cyber claims. What We're Watching: any formal DOJ step on Nvidia and Hugging Face. What We're Watching: OpenAI's response in the Texas case and copycat state suits. What We're Watching: Amazon's and Microsoft's actual capex guidance and the follow-through on AI-spending fears. What We're Watching: confirmation of Anthropic's public S-1.",
+      "sources": "runtimewire.com, datacamp.com, betanews.com and forklog.com on Mistral Large 4; fourweekmba.com and Reuters coverage on Nvidia/Hugging Face; texastribune.org, kbtx.com and cybernews.com on Texas v. OpenAI; aiweekly.co, tomshardware.com and ground.news on market reaction; aitoolly.com on Agent Reach. AI Learning -- Day 217 | 2026-10-31 | Page 3",
+      "recap": "Recent days covered Claude Opus 5.5, Nvidia's Vera Rubin POD, GPT-6.1 Astra, Gemini 4 Argon, Kimi K3.1 Pro, Meta's Muse models, AI credit stress, Big Tech capex scrutiny, offensive use of autonomous agents (Cairn), the single versus multi-agent debate and Anthropic's IPO filing. Today added Mistral Large 4 and open weights, antitrust scrutiny of Nvidia's Hugging Face deal, Texas v. OpenAI and the AI-capex payback debate.",
+      "themes": [
+        "Models & Frontier",
+        "Governance & Safety"
+      ],
+      "quiz": [
+        {
+          "q": "What does mixture-of-experts mean for cost?",
+          "a": "Only a few specialist sub-networks run per token, so a huge model costs far less per answer than its total size suggests."
+        },
+        {
+          "q": "What are open weights?",
+          "a": "Downloadable trained parameters that anyone can run or modify, unlike an API-only model."
+        },
+        {
+          "q": "Why is the DOJ asking about Nvidia and Hugging Face?",
+          "a": "It may become a distribution chokepoint for open models and tools, raising competition concerns."
+        },
+        {
+          "q": "What legal route is Texas using against OpenAI?",
+          "a": "State consumer-protection law (the Deceptive Trade Practices Act) plus the SCOPE Act on minors."
+        }
+      ],
+      "schema": 2
+    },
+    {
       "date": "2026-10-30",
       "display_date": "October 30, 2026",
       "title": "Agents Go Offensive: $50-a-Breach Hacking, Single vs Multi-Agent Debate and Anthropic's IPO Filing",
