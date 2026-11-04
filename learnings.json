@@ -6,6 +6,89 @@
   },
   "learnings": [
     {
+      "date": "2026-11-04",
+      "display_date": "November 4, 2026",
+      "title": "Always-On Agents, a Shelved Model and Giving Coding Agents Browser Eyes",
+      "subtitle": "OpenAI's Dots agents arrive while GPT-6.1 Astra is held back over safety concerns, agent monitoring becomes a product feature, and Chrome DevTools MCP lets coding agents debug live web pages.",
+      "focus_intro": "Themes: Models & Frontier · Governance & Safety Note: searches returned no primary-source posts dated November 4. This lesson draws on news reports from DevDay (September 28-29, 2026) and GitHub project pages; details come from secondary coverage and should be checked against original announcements.",
+      "viral_app": {
+        "name": "Chrome DevTools MCP (ChromeDevTools/chrome-devtools-mcp)",
+        "description": "an MCP server that lets coding agents drive and inspect a live Chrome browser. It exposes performance traces, network and console debugging, screenshots and Puppeteer-based automation, and works with clients such as Claude, Cursor, Copilot and Antigravity. It keeps appearing in GitHub trending write-ups because agents that only read code cannot see what a page actually does; with browser eyes they can reproduce a bug, read the console error and verify their own fix. I could not verify today's star count and the trending mentions are dated May to September 2026, so treat it as a strong candidate rather than a confirmed daily spike. Try it on a small bug in a side project and watch the agent check its own work.",
+        "stats": []
+      },
+      "stats": [],
+      "sections": [
+        {
+          "title": "1) OpenAI Dots: Agents That Work in the Background",
+          "paragraphs": [
+            "At DevDay on September 29, 2026, Sam Altman unveiled Dots, a family of proactive, 'always-on' agents that handle tasks such as scheduling and coding. Reports say they roll out to Pro and Business Premium subscribers in eligible markets, with the first agent included at no extra charge, and run on GPT-6 Astra. The concept, explained simply: An always-on agent is one that keeps working without being prompted each time. It watches for triggers, such as a calendar change or a failing build, and acts on its own within the permissions you gave it.",
+            "Why it matters: Chat assistants wait for you; proactive agents do not. That raises the value (work happens while you sleep) and the risk (mistakes happen while you sleep), so permissions and logs matter far more."
+          ]
+        },
+        {
+          "title": "2) GPT-6.1 Astra Held Back Over Safety Concerns",
+          "paragraphs": [
+            "On September 28, OpenAI said it was holding off on releasing GPT-6.1 Astra after its own researchers voiced concerns about the model's behavior. Altman did not dwell on this in the keynote, but said in Q&A that the company is investing more in safety, security and monitoring of agents. Reports add a new monitoring system to catch agent misbehavior sooner and stricter guardrails for engineers testing AI systems. The concept, explained simply: Staged release means a lab finishes a model but delays or limits public access until its own tests, red-teaming and monitoring say it is safe enough. Agent monitoring means a second system watches what an agent does and flags or blocks unexpected actions. Why it matters: It shows internal safety review can actually change a ship date, which is the behavior the voluntary accords discussed on Day 220 are supposed to encourage. It also shows that the more autonomy agents get, the more monitoring becomes part of the product."
+          ]
+        },
+        {
+          "title": "3) Kimi K2.7-Code: Open Coding Agents Keep Improving",
+          "paragraphs": [
+            "Moonshot AI's Kimi K2.7-Code, reported in June 2026, is an open-source coding-focused agent model built on K2.6 and tied to Kimi Code, a terminal coding agent. It is released under a Modified MIT license. Earlier releases added agent swarms of many parallel sub-agents. The concept, explained simply: An agent swarm splits a big job into pieces and hands each to a separate sub-agent that works in parallel, like a lead engineer delegating to a team and then merging the results. Why it matters: Open coding models give builders a cheaper, inspectable alternative to closed APIs, and keep price pressure on the leaders. The trade-off is that you carry the safety and monitoring work yourself. AI Learning -- Day 221 | 2026-11-04 | Page 1"
+          ]
+        }
+      ],
+      "market_signal": "The product race is moving from smarter chatbots to autonomous background agents, and safety review is starting to gate launches. Expect monitoring, permissions and audit logs to become selling points, while open models keep compressing prices. Figures and dates come from news summaries and are unverified.",
+      "practical_takeaway": [
+        {
+          "title": "Give background agents the smallest permissions that work.",
+          "body": "Start read-only, then add write access one action at a time, because an always-on agent will use every permission you grant."
+        },
+        {
+          "title": "Log every agent action.",
+          "body": "Keep a reviewable trail of what the agent did and why, so you can catch mistakes that happen while nobody is watching."
+        },
+        {
+          "title": "Treat a delayed model as information.",
+          "body": "A lab holding back a release tells you its safety process has teeth; check whether vendors you rely on publish similar review criteria."
+        },
+        {
+          "title": "Give coding agents a way to verify their work.",
+          "body": "Connect tests or a browser tool such as Chrome DevTools MCP so the agent checks results instead of guessing."
+        },
+        {
+          "title": "Pilot open coding models on low-risk tasks first.",
+          "body": "Compare them on your own repository before trusting vendor benchmarks, and add your own monitoring. SELF-TEST Q1. What makes an agent 'always-on'? A1. It keeps working without being prompted each time, reacting to triggers within the permissions it was given. Q2. Why was GPT-6.1 Astra held back? A2. OpenAI's researchers raised concerns about the model's behavior, so the company delayed release. Q3. What is an agent swarm? A3. Many sub-agents working in parallel on pieces of one job, with results merged. Q4. What does Chrome DevTools MCP give a coding agent? A4. Access to a live Chrome browser: console, network, performance traces and screenshots."
+        }
+      ],
+      "tomorrow_preview": "whether OpenAI sets a date or conditions for releasing GPT-6.1 Astra. What We're Watching: independent reviews of how well Dots agents behave with real permissions. What We're Watching: Anthropic's IPO date and S-1 details. What We're Watching: primary-source news from the labs, since today's search was thin.",
+      "sources": "gulfnews.com, fastcompany.com, kqed.org and siasat.com (OpenAI Dots and delayed model, Sept 28-29); digitalapplied.com and alternativeto.net (Kimi K2.7-Code, K2.6); github.com/ChromeDevTools/chrome-devtools-mcp and aitoolly.com (Chrome DevTools MCP). AI Learning -- Day 221 | 2026-11-04 | Page 3",
+      "recap": "Recent days covered orbital TPUs and edge inference, transparency reporting, the Hermes Agent surge, Gemini 4 Carbon, DeepSeek V4.1-Flash, agent harnesses, Mistral Large 4, Claude Opus 5.5, Nvidia's Vera Rubin POD, AI Learning -- Day 221 | 2026-11-04 | Page 2 GPT-6.1, the White House AI accord, Meta's Muse Wonder, the S-1 and IPO disclosure, and agent skill security. Today added always-on Dots agents, staged model release and agent monitoring, agent swarms in open coding models, and browser tooling for coding agents.",
+      "themes": [
+        "Models & Frontier",
+        "Governance & Safety"
+      ],
+      "quiz": [
+        {
+          "q": "What makes an agent 'always-on'?",
+          "a": "It keeps working without being prompted each time, reacting to triggers within the permissions it was given."
+        },
+        {
+          "q": "Why was GPT-6.1 Astra held back?",
+          "a": "OpenAI's researchers raised concerns about the model's behavior, so the company delayed release."
+        },
+        {
+          "q": "What is an agent swarm?",
+          "a": "Many sub-agents working in parallel on pieces of one job, with results merged."
+        },
+        {
+          "q": "What does Chrome DevTools MCP give a coding agent?",
+          "a": "Access to a live Chrome browser: console, network, performance traces and screenshots."
+        }
+      ],
+      "schema": 2
+    },
+    {
       "date": "2026-11-03",
       "display_date": "November 3, 2026",
       "title": "Voluntary Rules, Open Frontier Models and the Race to Secure Agent Skills",
