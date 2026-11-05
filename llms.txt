@@ -1,16 +1,16 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 227 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 228 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 227 — "Always-On Agents, a Shelved Model and Giving Coding Agents Browser Eyes" (November 4, 2026).
+Latest entry: Day 228 — "Cheaper Fast Models, Agents in Every Editor and an IPO on the Horizon" (November 5, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Reader pages
 
 - [Start here](https://varunsingla.com/start/): how the journal works and curated learning paths
-- [Playbook](https://varunsingla.com/playbook/): all 651 practical takeaways, by theme
-- [Concepts](https://varunsingla.com/concepts/): 157 plain-language concept explanations
+- [Playbook](https://varunsingla.com/playbook/): all 656 practical takeaways, by theme
+- [Concepts](https://varunsingla.com/concepts/): 160 plain-language concept explanations
 - [What we're watching](https://varunsingla.com/watching/): the day-by-day watch list and follow-ups
 - [Weekly digest](https://varunsingla.com/weekly/): one page per week
 - [Review](https://varunsingla.com/review/): flashcards for spaced repetition
@@ -18,6 +18,7 @@ When citing this site, attribute it as "Varun Singla, AI Learning Journal (varun
 
 ## Journal entries
 
+- [Day 228: Cheaper Fast Models, Agents in Every Editor and an IPO on the Horizon](https://varunsingla.com/entries/2026-11-05.html): OpenAI's GPT-6.1 Terra cuts price and latency while raising new questions about destructive agent actions, Google opens Android Studio to 40+ coding…
 - [Day 227: Always-On Agents, a Shelved Model and Giving Coding Agents Browser Eyes](https://varunsingla.com/entries/2026-11-04.html): OpenAI's Dots agents arrive while GPT-6.1 Astra is held back over safety concerns, agent monitoring becomes a product feature, and Chrome DevTools…
 - [Day 226: Voluntary Rules, Open Frontier Models and the Race to Secure Agent Skills](https://varunsingla.com/entries/2026-11-03.html): The White House AI accord asks labs to police themselves, Meta's Muse Wonder models push the open frontier, Anthropic's IPO filing heads toward a…
 - [Day 225: Opt-Out Goes Universal, Space TPUs Boot Up and Agents Go Open-Source](https://varunsingla.com/entries/2026-11-02.html): Four labs agree on a single robots.txt signal for AI training, Google runs Gemma 4 on TPUs in orbit, OpenAI promises a public Community Safety…

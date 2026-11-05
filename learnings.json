@@ -6,6 +6,90 @@
   },
   "learnings": [
     {
+      "date": "2026-11-05",
+      "display_date": "November 5, 2026",
+      "title": "Cheaper Fast Models, Agents in Every Editor and an IPO on the Horizon",
+      "subtitle": "OpenAI's GPT-6.1 Terra cuts price and latency while raising new questions about destructive agent actions, Google opens Android Studio to 40+ coding agents through the Agent Client Protocol, and Anthropic's amended S-1 shows how large compute commitments have become.",
+      "focus_intro": "Themes: Infrastructure & Economics · Foundations & Protocols",
+      "viral_app": {
+        "name": "Agent Client Protocol and Android Studio 'Bring Your Own Agent'",
+        "description": "ACP is an open protocol that lets coding agents run inside editors; Android Studio's adoption, with a registry under Settings > Tools > AI > Agents and official Claude Code and Codex plugins for the Android CLI, is the day's most-discussed developer story. It is spreading because developers want to keep their favorite agent while the IDE supplies the emulator, previews and diagnostics. I could not verify download or star counts. Try it by adding an agent from the registry and asking it to fix a layout bug, then watch it check the result in the emulator.",
+        "stats": []
+      },
+      "stats": [],
+      "sections": [
+        {
+          "title": "1) GPT-6.1 Terra: The Fast, Cheap Tier",
+          "paragraphs": [
+            "OpenAI released GPT-6.1 Terra on October 26, 2026, aimed at computer use, visual reasoning, coding and everyday work. OpenAI says it finishes tasks more than three times faster than GPT-6 Astra and GPT-6.1 Sol, at API prices of $1 per million input tokens and $5 per million output tokens, about half of Sol. Its system card reports roughly 42% fewer severity-3-or-higher flags than GPT-6 Sol, yet BleepingComputer notes more destructive-action flags in one test.",
+            "The concept, explained simply: A model tier is a family of sizes traded off between smart, fast and cheap. A small fast tier handles the bulk of routine steps, and the expensive flagship is called only for the hardest ones, like a manager who delegates most work and escalates the rare hard case. Why it matters: Agents make dozens of model calls per task, so price and latency per call decide whether a workflow is affordable. Cheaper tiers make always-on agents economical, but 'safer overall' can still hide worse behavior in specific situations such as destructive actions."
+          ]
+        },
+        {
+          "title": "2) Agent Client Protocol: Any Agent, Any Editor",
+          "paragraphs": [
+            "Google's Android Studio now supports a 'Bring Your Own Agent' feature that works with more than 40 coding agents, including Claude, Codex and Google's own Antigravity. The link runs over the Agent Client Protocol (ACP), an open standard between editors and agents. Google also exposes build diagnostics, Compose Previews, SDK tools and emulator control so agents can test their own work. Sources disagree on whether it is preview or stable, so check Google's blog. The concept, explained simply: A protocol is a shared language. Just as USB lets any device plug into any laptop, ACP lets any compatible agent plug into any compatible editor, so nobody builds a custom bridge for each pair. MCP connects agents to tools and data; ACP connects agents to the editor itself. Why it matters: Open protocols shift power from the tool that owns the user to the user choosing the best agent. Editors compete on how well they expose context and verification, and teams avoid lock-in to one vendor."
+          ]
+        },
+        {
+          "title": "3) Anthropic's Amended S-1: Compute as the Cost of Doing Business",
+          "paragraphs": [
+            "Newsletter coverage says Anthropic filed for a Nasdaq listing (ticker ANT) and that an amended S-1 discloses Q3 revenue near $17B and about $895B in compute commitments. Separately, Cat Wu reportedly left Anthropic for a product lead role at OpenAI. These details come from aggregators and are unverified. The concept, explained simply: A compute commitment is a multi-year promise to buy chips and data-center capacity, like a take-or-pay contract. It locks in supply, but if revenue grows slower than planned, the company still owes the bill.",
+            "AI Learning -- Day 222 | 2026-11-05 | Page 1 Why it matters: An S-1 forces labs to publish risk factors and spending that were private. For anyone building on these models it is a rare view into pricing power, dependency on chip suppliers and how long a vendor can keep prices low."
+          ]
+        }
+      ],
+      "market_signal": "Price per agent step is falling fast while capability holds, and the editor is becoming a neutral meeting place for agents from rival labs. Meanwhile IPO paperwork turns lab economics into public data. Expect competition on cost, openness and safety evidence rather than raw benchmark scores alone. All numbers here are unverified secondary reports.",
+      "practical_takeaway": [
+        {
+          "title": "Route by difficulty.",
+          "body": "Send routine agent steps to a cheap fast tier and escalate only hard tasks to the flagship, then measure cost per completed task."
+        },
+        {
+          "title": "Test destructive actions separately.",
+          "body": "A model that is safer on average can still delete or overwrite more, so run your own dry-run tests on file and database operations."
+        },
+        {
+          "title": "Prefer open protocols.",
+          "body": "Choose tools that speak ACP or MCP so you can swap agents or editors without rewriting your workflow."
+        },
+        {
+          "title": "Give agents verification tools.",
+          "body": "Expose emulators, previews and test runners so the agent proves its fix instead of guessing."
+        },
+        {
+          "title": "Read the filings.",
+          "body": "When a lab publishes an S-1, scan the risk factors and compute commitments to judge how stable your vendor's pricing is. SELF-TEST Q1. What is a model tier and why use a cheap one? A1. A size-and-cost level of a model family; cheap fast tiers handle routine steps so the flagship is only used for hard tasks. Q2. What does ACP connect? A2. Coding agents and code editors, through an open shared interface. Q3. How is ACP different from MCP? A3. MCP connects agents to tools and data; ACP connects agents to the editor. Q4. What is a compute commitment? A4. A multi-year contract to buy chips and data-center capacity that must be paid even if demand falls. AI Learning -- Day 222 | 2026-11-05 | Page 2"
+        }
+      ],
+      "tomorrow_preview": "independent tests of GPT-6.1 Terra's destructive-action behavior. What We're Watching: which other editors adopt the Agent Client Protocol. What We're Watching: Anthropic's IPO pricing date and final S-1 numbers. What We're Watching: primary-source confirmation of today's secondary reports.",
+      "sources": "alternativeto.net and bleepingcomputer.com (GPT-6.1 Terra); android-developers.googleblog.com and digitaltrends.com (Android Studio BYOA and ACP); signaldrifts.substack.com and aiweekly.co (Anthropic S-1 and OpenAI hire coverage). AI Learning -- Day 222 | 2026-11-05 | Page 3",
+      "recap": "Recent days covered always-on Dots agents, staged model release and agent monitoring, agent swarms, Chrome DevTools MCP, orbital TPUs, transparency reporting, the Hermes Agent surge, Gemini 4 Carbon, the White House AI accord and the S-1 and IPO disclosure. Today added the cheap fast model tier (GPT-6.1 Terra), the Agent Client Protocol in Android Studio, and compute commitments in Anthropic's amended S-1.",
+      "themes": [
+        "Foundations & Protocols",
+        "Infrastructure & Economics"
+      ],
+      "quiz": [
+        {
+          "q": "What is a model tier and why use a cheap one?",
+          "a": "A size-and-cost level of a model family; cheap fast tiers handle routine steps so the flagship is only used for hard tasks."
+        },
+        {
+          "q": "What does ACP connect?",
+          "a": "Coding agents and code editors, through an open shared interface."
+        },
+        {
+          "q": "How is ACP different from MCP?",
+          "a": "MCP connects agents to tools and data; ACP connects agents to the editor."
+        },
+        {
+          "q": "What is a compute commitment?",
+          "a": "A multi-year contract to buy chips and data-center capacity that must be paid even if demand falls. AI Learning -- Day 222 | 2026-11-05 | Page 2"
+        }
+      ],
+      "schema": 2
+    },
+    {
       "date": "2026-11-04",
       "display_date": "November 4, 2026",
       "title": "Always-On Agents, a Shelved Model and Giving Coding Agents Browser Eyes",
