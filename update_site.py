@@ -217,6 +217,11 @@ def is_section_heading(line: str) -> bool:
     # switch…" mid-takeaway continuation text).
     if re.match(r"^(?:n\s+)?tomorrow['’]?s?\s*[:.]?$", line, re.I):
         return True
+    # Inline spotlight header ("VIRAL / OPEN-SOURCE SPOTLIGHT: Wirken (...)") —
+    # header and app name on one line, often longer than the generic 60-char cap.
+    if re.match(r"^(?:n\s+)?(viral\s*/\s*open.source spotlight|open.source spotlight|"
+                r"viral spotlight|oss spotlight|viral app(\s+of\s+the\s+day)?)\s*:", line, re.I):
+        return True
     headings = [
         "today's focus", "today's topic", "what's inside", "key announcements",
         "what is ", "core architecture", "how it works", "roadmap", "key concept",
@@ -2090,7 +2095,14 @@ def parse_pdf(pdf_path: Path) -> dict:
             for tbl in pd['tables']
             for row in tbl['data'] for cell in (row or []) if cell
         )
-        _has_hdr_line = any(_viral_hdr_line.match(ln.strip()) for ln in pd['lines'])
+        # Inline form: "VIRAL / OPEN-SOURCE SPOTLIGHT: Wirken (open-source ...)" —
+        # header and app name on one line, separated by a colon.
+        _viral_hdr_inline = re.compile(
+            r'^[n•]*\s*(viral app(\s+of\s+the\s+day)?|viral\s*/\s*open.source spotlight|'
+            r'open.source spotlight|viral spotlight|oss spotlight)\s*:\s*(?P<rest>\S.*)$', re.I
+        )
+        _has_hdr_line = any(_viral_hdr_line.match(ln.strip()) or _viral_hdr_inline.match(ln.strip())
+                            for ln in pd['lines'])
         if not (_has_hdr_cell or _has_hdr_line):
             continue
 
@@ -2106,6 +2118,11 @@ def parse_pdf(pdf_path: Path) -> dict:
             ln_c = re.sub(r'^[n•]+\s+', '', ln).strip()
             if _viral_hdr_line.match(ln_c):
                 found_viral_header = True
+                continue
+            m_inline = None if found_viral_header else _viral_hdr_inline.match(ln_c)
+            if m_inline:
+                found_viral_header = True
+                app_name = m_inline.group('rest').strip()
                 continue
             if not found_viral_header:
                 continue
