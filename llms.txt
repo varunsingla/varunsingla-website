@@ -1,16 +1,16 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 233 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 234 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 233 — "Claude Fable 5.2 and Mythos 5.2 Arrive, Gemini 4 Carbon Goes to Cyber Defenders First, and Anthropic Files to Go Public" (November 10, 2026).
+Latest entry: Day 234 — "Black October Hits AI Platforms, Australia Moves Toward Enforceable AI Rules, and the AI Layoff Boomerang" (November 11, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Reader pages
 
 - [Start here](https://varunsingla.com/start/): how the journal works and curated learning paths
-- [Playbook](https://varunsingla.com/playbook/): all 681 practical takeaways, by theme
-- [Concepts](https://varunsingla.com/concepts/): 176 plain-language concept explanations
+- [Playbook](https://varunsingla.com/playbook/): all 687 practical takeaways, by theme
+- [Concepts](https://varunsingla.com/concepts/): 180 plain-language concept explanations
 - [What we're watching](https://varunsingla.com/watching/): the day-by-day watch list and follow-ups
 - [Weekly digest](https://varunsingla.com/weekly/): one page per week
 - [Review](https://varunsingla.com/review/): flashcards for spaced repetition
@@ -18,6 +18,7 @@ When citing this site, attribute it as "Varun Singla, AI Learning Journal (varun
 
 ## Journal entries
 
+- [Day 234: Black October Hits AI Platforms, Australia Moves Toward Enforceable AI Rules, and the AI Layoff Boomerang](https://varunsingla.com/entries/2026-11-11.html): Fireworks AI's credential breach shows why AI developer platforms are now prime targets, Australia's Prime Minister reportedly promises an AI safety…
 - [Day 233: Claude Fable 5.2 and Mythos 5.2 Arrive, Gemini 4 Carbon Goes to Cyber Defenders First, and Anthropic Files to Go Public](https://varunsingla.com/entries/2026-11-10.html): Anthropic's reported Fable 5.2, Mythos 5.2 and Haiku 5.5 releases, Google's gated Gemini 4 Carbon preview, Antigravity becoming a multi-vendor coding…
 - [Day 232: Science Gets an AI Co-Researcher, ChatGPT Learns to Make GIFs, and the Compute Race Hits Wyoming](https://varunsingla.com/entries/2026-11-09.html): Anthropic's study of 207,049 research sessions shows how scientists really use AI, OpenAI's Images 2.6 adds animated GIFs and reusable reference…
 - [Day 231: Anthropic Goes Public and Sensitive Cyber Models Go Gated, While AI Labs Agree on One Robots.txt Opt-Out](https://varunsingla.com/entries/2026-11-08.html): Four labs back a single robots.txt signal to refuse AI training, OpenAI's GPT-6 Cyber is reportedly sold only by approval at double the price of its…

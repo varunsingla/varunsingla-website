@@ -6,6 +6,106 @@
   },
   "learnings": [
     {
+      "date": "2026-11-11",
+      "display_date": "November 11, 2026",
+      "issue": 228,
+      "title": "Black October Hits AI Platforms, Australia Moves Toward Enforceable AI Rules, and the AI Layoff Boomerang",
+      "subtitle": "Fireworks AI's credential breach shows why AI developer platforms are now prime targets, Australia's Prime Minister reportedly promises an AI safety regulator with penalties, AI reads heart scans earlier than doctors, and nearly one in five workers replaced by AI say they were asked to come back.",
+      "focus_intro": "Themes: Governance & Safety · Infrastructure & Economics",
+      "viral_app": {
+        "name": "Wirken (open-source AI agent gateway)",
+        "description": "Wirken, covered by Help Net Security on November 9, is an open-source gateway that sits between messaging apps (where people chat) and AI agents (which act). What it does: messages pass through one controlled doorway, and agents run inside a sandbox that requires Docker and is switched on by default, so an agent that is tricked by a malicious message has less it can touch. Why it is taking off: in the same week that AI platforms were being breached, teams want agents on Slack-style channels without handing them the keys to everything, and a sandbox-by-default gateway is an easy first step. Also trending: OpenMausBot (about 2,000 GitHub stars in 24 hours) for running a team of chat bots with their own memory, and anthropics/skills (about 1,700 stars in a day). Read each project's own page before deploying.",
+        "stats": []
+      },
+      "stats": [],
+      "sections": [
+        {
+          "title": "1) Black October: AI Developer Platforms Become the Target",
+          "paragraphs": [
+            "Fireworks AI, a company that hosts and serves open models for other businesses, published a security bulletin saying an intruder used internal Fireworks credentials to read environment variables in evaluation jobs for a limited number of customer accounts. Those variables held customers' third-party API keys and tokens. The intrusion was detected on October 6 and disclosed on October 9; Fireworks says it found no evidence that models, datasets or training data were accessed, and it revoked and rotated keys. Wiz counted at least nine AI developer platforms that disclosed incidents in October alone, and the Cloud Security Alliance describes a wider campaign aimed at inference providers. The concept, explained simply: An inference provider is like a commercial kitchen that many restaurants rent. If a burglar steals the kitchen's master key, they do not just get the kitchen, they can open every restaurant's fridge inside it. Secrets stored in environment variables are those fridges: handy for the program, but readable by anyone who gets inside the job. Why it matters: AI platforms concentrate valuable keys from thousands of customers, so one stolen internal credential can unlock many downstream accounts. Stolen AI keys are also used for 'LLMjacking', running expensive models on someone else's bill. Short-lived, tightly scoped credentials and fast rotation are now basic hygiene for any team that plugs keys into a hosted AI service."
+          ]
+        },
+        {
+          "title": "2) Australia Reportedly Promises an AI Safety Regulator With Teeth",
+          "paragraphs": [
+            "Prime Minister Anthony Albanese reportedly said on November 10 that Australia will create an AI safety regulator to enforce legislated AI standards for every frontier AI company that wants to operate in Australia, with financial penalties still to be detailed. That would be a shift: through mid-2026 the government favoured a whole-of-government approach led by a new Office of AI and an AI Safety Institute that has begun testing frontier systems, and it planned a 'Digital Duty of Care' that makes companies responsible for safety by design.",
+            "The concept, explained simply: Soft law is a code of conduct that companies sign up to; hard law is a rule written in legislation with a regulator who can fine you. A voluntary pledge is like a 'please drive carefully' sign; a regulator with penalties is the speed camera. Why it matters: Last week's story was a voluntary White House accord asking labs to police themselves. Australia's direction points the other way, and access rules ('if you want to operate here, meet our standards') are how mid-sized countries gain leverage over global labs. Teams shipping AI products into several countries should expect a patchwork of hard rules, not one voluntary standard."
+          ]
+        },
+        {
+          "title": "3) AI Reads Heart Scans: Earlier Warnings, Faster Reports",
+          "paragraphs": [
+            "An abstract at the American Heart Association's Scientific Sessions 2026 reported that an AI system reading echocardiograms (heart ultrasound videos) flagged cardiac amyloidosis, a hard-to-spot heart condition, a mean of 391 days before human reports. Separately, a news roundup said AI-drafted echo reports cut AI Learning -- Day 228 | 2026-11-11 | Page 2 cardiologists' finalisation time by 46%; the closest source found is a vendor's own small comparison, so that figure is unverified. Both lines of work keep a physician as the final sign-off. The concept, explained simply: There are two jobs here. A screener looks at every scan and raises a flag ('look closer at this one'), like a smoke detector. A drafter writes the first version of the report so the doctor edits rather than types from scratch, like autocomplete for a specialist. Neither replaces the doctor's signature.",
+            "Why it matters: Earlier detection can change treatment, and drafting can free scarce specialists' time. But conference abstracts are not peer-reviewed and vendor numbers are marketing until independently tested, so the right habit is to ask 'which study, how many patients, and who checked it?' before quoting a percentage."
+          ]
+        },
+        {
+          "title": "4) The AI Layoff Boomerang ('AI Rebounding')",
+          "paragraphs": [
+            "Talent-assessment firm SHL coined 'AI rebounding' for workers who are replaced by AI and later asked back by the same employer. In its survey, 19.1% of U.S. respondents said this had happened to them (16.0% across the U.S. and U.K. sample). A separate Careerminds employer survey reported that a third of organisations that made AI-led layoffs had already rehired 25-50% of the cut roles. There is no reliable national count, so treat these as survey signals, not census data. The concept, explained simply: Automation means the AI does the whole job; augmentation means the AI does part of it while a person handles judgement, exceptions and relationships. Many firms planned for automation, discovered the job was mostly the hard edge cases, and had to bring back the people who handled them.",
+            "Why it matters: Cutting staff before an AI system has proven it can handle real-world exceptions creates hidden costs: lost knowledge, worse customer outcomes and rehiring premiums. The safer pattern is to pilot, measure the share of cases the AI handles end to end, and redesign roles around what is left."
+          ]
+        }
+      ],
+      "market_signal": "The debt behind the AI build-out is being repriced. Reports say some lenders are selling AI data-centre and chip-backed loans at a discount, new financings are priced near 97-98 cents on the dollar at yields above 11%, and Bloomberg reported most data-centre securities issued since early 2025 trade at wider spreads than at issue. The core worry is depreciation: a GPU may run 5-8 years physically, but at the frontier its economic life may be 3-5 years before newer chips are 2-3x better per watt. The signal: capital is still flowing, but lenders now charge for the risk that today's chips lose value faster than the loans run.",
+      "practical_takeaway": [
+        {
+          "title": "Treat AI keys like passwords.",
+          "body": "Use short-lived, narrowly scoped API keys for hosted AI services and rotate them on any provider security bulletin."
+        },
+        {
+          "title": "Keep secrets out of job environments.",
+          "body": "Daily AI Learning for Varun AI Learning -- Day 228 | 2026-11-11 | Page 3 Pull secrets from a vault at run time instead of storing them in environment variables that any job reader can see."
+        },
+        {
+          "title": "Map your regulatory exposure by country.",
+          "body": "List where your AI product is used and track which places are moving from voluntary codes to enforceable rules."
+        },
+        {
+          "title": "Ask for the study behind the number.",
+          "body": "Before quoting an AI accuracy or time-saving figure, check whether it is peer-reviewed, a conference abstract or a vendor claim."
+        },
+        {
+          "title": "Pilot before you cut.",
+          "body": "Measure the share of cases an AI system handles end to end before redesigning or removing roles."
+        },
+        {
+          "title": "Sandbox your agents by default.",
+          "body": "Run chat-connected agents behind a gateway with a sandbox so a malicious message cannot reach your whole system. SELF-TEST Q1. Why are inference providers attractive targets for attackers? A1. They hold many customers' API keys and tokens, so one stolen internal credential can unlock many downstream accounts. Q2. What is the difference between soft law and hard law for AI? A2. Soft law is a voluntary code; hard law is legislation enforced by a regulator that can impose penalties. Q3. What is the difference between an AI screener and an AI drafter in medicine? A3. A screener flags cases for a closer look; a drafter writes a first report that the doctor edits and signs. Q4. What does 'AI rebounding' mean? A4. Workers replaced by AI who are later asked back by the same employer, often because the AI could not handle the exceptions. Q5. Why are lenders discounting GPU-backed loans? A5. Because GPUs may lose economic value in 3-5 years, faster than the loans that financed them."
+        }
+      ],
+      "tomorrow_preview": "whether Australia publishes the regulator's powers and penalty levels. What We're Watching: Fireworks AI's follow-up on how the internal credentials were obtained. What We're Watching: further AHA 2026 AI abstracts and whether any become peer-reviewed papers. What We're Watching: pricing and listing-date news for Anthropic's IPO.",
+      "sources": "fireworks.ai/security/bulletins (October 2026 security incident), labs.cloudsecurityalliance.org (inference-provider campaign note), aicybr.com (Wiz Black October roundup), theneuron.ai (November 10 digest), riorundown.substack.com (Nov 10 AI news), computerweekly.com and hsfkramer.com (Australia's Office of AI), newsroom.heart.org and consultant360.com (AHA 2026 abstracts), gehealthcare.com (EchoPilot workflow claim), hrdive.com and techspot.com (AI rebounding surveys), helpnetsecurity.com (Wirken), blockchain.news (GitHub trending), davefriedman.substack.com and letsdatascience.com Daily AI Learning for Varun AI Learning -- Day 228 | 2026-11-11 | Page 4 (data-centre debt). Figures are secondary reports and unverified. Daily AI Learning for Varun",
+      "recap": "Recent days covered the Fable/Mythos/Haiku 5.x model refresh, gated cyber releases from Google and OpenAI, Antigravity as a multi-vendor coding hub, Anthropic's S-1, the science-usage study, ChatGPT Images 2.6, the shared robots.txt training opt-out, conversational video editing, read-only guardrails for finance agents, the Agent Client Protocol, always-on agents and staged model release. Today added attacks on AI developer platforms and secrets hygiene, soft law versus hard law in Australia, AI screening and drafting in cardiology, AI rebounding in the workforce, agent gateways, and GPU-backed debt repricing.",
+      "themes": [
+        "Infrastructure & Economics",
+        "Governance & Safety"
+      ],
+      "quiz": [
+        {
+          "q": "Why are inference providers attractive targets for attackers?",
+          "a": "They hold many customers' API keys and tokens, so one stolen internal credential can unlock many downstream accounts."
+        },
+        {
+          "q": "What is the difference between soft law and hard law for AI?",
+          "a": "Soft law is a voluntary code; hard law is legislation enforced by a regulator that can impose penalties."
+        },
+        {
+          "q": "What is the difference between an AI screener and an AI drafter in medicine?",
+          "a": "A screener flags cases for a closer look; a drafter writes a first report that the doctor edits and signs."
+        },
+        {
+          "q": "What does 'AI rebounding' mean?",
+          "a": "Workers replaced by AI who are later asked back by the same employer, often because the AI could not handle the exceptions."
+        },
+        {
+          "q": "Why are lenders discounting GPU-backed loans?",
+          "a": "Because GPUs may lose economic value in 3-5 years, faster than the loans that financed them."
+        }
+      ],
+      "schema": 2
+    },
+    {
       "date": "2026-11-10",
       "display_date": "November 10, 2026",
       "issue": 227,
