@@ -6,6 +6,121 @@
   },
   "learnings": [
     {
+      "date": "2026-11-20",
+      "display_date": "November 20, 2026",
+      "issue": 237,
+      "title": "Anthropic Ends Its First Day Worth $1.76 Trillion, Google's Gemini 4 Neon Brings Top-Tier Smarts to the Middle, and Trump and Xi Split Over Who Governs AI",
+      "focus_intro": "Anthropic opens at $111.50 and closes at $97.17 in a record Nasdaq debut, Gemini 4 Neon ranks third on Artificial Analysis at $3/$15 per million tokens, Trump rejects 'globalist regulation' while Xi calls for AI under human control in Shenzhen, Palo Alto Networks pays $4.5 billion for Applied Compute, and Google Research's PaperOrchestra is the agent repo developers are starring.",
+      "viral_app": {
+        "name": "PaperOrchestra: a team of AI agents that turns research notes into a draft paper PaperOrchestra",
+        "description": "(github.com/google-research/paper-orchestra) is a multi-agent framework from Google Research that turns raw pre-writing material, an idea and an experiment log, into a LaTeX manuscript with a literature review and generated figures. It splits the job across specialist agents: an Outline agent plans the paper, a Literature Review agent finds and summarises related work (using the Semantic Scholar API), a Section Writing agent drafts each part, a Content Refinement agent critiques and rewrites, and an optional Plotting agent makes charts and diagrams. You give it a folder of notes and a conference LaTeX template (such as CVPR) and choose writer and reviewer models from OpenAI or Gemini. It is Apache-2.0 licensed, backed by the paper arXiv:2604.05018 (Song, Song, Pfister and Yoon), and has a Streamlit demo. A November 19 open-source digest reported it gaining about 1,524 stars in a day, the top AI gainer, to roughly 5,100 stars. Why it is taking off: It is a clear, reusable example of the 'orchestra' pattern behind most serious agent systems: break a long, messy job into roles, give each agent a narrow task, and add a critic that reviews the others (Days 19 and 25). Researchers and analysts also feel the pain it targets, since turning results into a well-cited draft takes days. The caveats are real: Google says it is not an officially supported product, its evaluati",
+        "stats": []
+      },
+      "stats": [],
+      "sections": [
+        {
+          "title": "1) Anthropic's First Trading Day: Open at $111.50, Close at $97.17",
+          "paragraphs": [
+            "Anthropic's shares began trading on the Nasdaq Global Select Market under the ticker ANT on November 19 US time, the day after pricing at $83 (Day 236). The first trade did not happen at the opening bell: it came at about 11:48 a.m. New York time, at $111.50, about 34% above the IPO price (one outlet reports a first print of $110). The stock touched roughly $115 intraday, then slid back and closed at $97.17, up about 17% on the day and almost exactly where pre-IPO futures on Hyperliquid had pointed ($97). CNN put Anthropic's market value at about $1.76 trillion at the close. Forbes reports the offering raised $81.3 billion from 980 million shares, the largest IPO on record. The debut came on a day when the main US indexes closed sharply lower, so it did not lift the wider market.",
+            "The concept, explained simply: A newly listed stock does not simply start at its IPO price. Before the first trade, the exchange collects buy and sell orders and the lead bank works out a single price where the most shares can change hands: the opening cross. With a huge, popular deal this can take hours, which is why ANT's first trade came near midday. The IPO price ($83) is what the first buyers paid the company; the opening price ($111.50) is what the market first said it was worth; the close ($97.17) is where buyers and sellers settled after a day of trading. The fall from open to close is common for hot listings: some early buyers take quick profits, and the people who could not get IPO shares stop chasing. Market value is the share price times all shares outstanding, which is how a $97 stock becomes a $1.76 trillion company. Why it matters: The close landing on the futures price shows that pre-IPO markets (new this year) priced the debut well. For the AI industry, Anthropic now has a public, daily price, so every product launch, outage, safety decision or price cut will be judged by the market in real time. Customers gain too: quarterly reports will show the real costs and margins of a frontier lab for the first time. And the gap between the open and the close is a reminder that first-day excitement is not the same as long-term value."
+          ]
+        },
+        {
+          "title": "2) Gemini 4 Neon: Near-Flagship Intelligence at a Mid-Tier Price",
+          "paragraphs": [
+            "Google released Gemini 4 Neon on November 18, a mid-tier model that sits between the flagship Gemini 4 Carbon (Day 227) and the fast, cheap Gemini 4 Hydrogen (Day 231). Google says Neon brings frontier-level intelligence with fast end-to-end task completion across software engineering, knowledge work and science. It has a 1-million-token context window and four thinking levels (low, medium, high and xhigh), and the API model ID is gemini-4-neon. API pricing is $3 per million input tokens and $15 per million output tokens; one source says this rises to $4 and $20 after a promotional period. It is rolling out in the Gemini API paid tier, Google AI Studio, the Gemini app for Pro and Ultra subscribers, Antigravity and Gemini for business. On the Artificial Analysis Intelligence Index, Neon at xhigh scores 61, one point ahead of Carbon at high and third overall, behind GPT-6.2 Astra (Day 236) and Claude Fable 5.2 (Day 227). Google also claims its lowest fabrication rate yet in internal Antigravity testing, and plans a cyber variant for vetted defenders through its Fairwind Program. AI Learning -- Day 237 | 2026-11-20 | Page 2 The concept, explained simply: Think of 'thinking levels' as a dial for how long the model works on an answer before replying. At low it answers almost at once and cheaply; at xhigh it reasons through many steps, checks its work and uses many more tokens, which costs more and takes longer but solves harder problems. This is called test-time compute: spending more computing power when the question is asked, rather than only when the model is trained. A mid-tier model with a high dial setting can match a bigger model at its default setting, which is how Neon at xhigh edges past Carbon at high. A 'fabrication rate' is how often a model states something false or invents a detail, such as a function that does not exist. Why it matters: Google has now shipped three Gemini 4 tiers in under two weeks (Carbon, Hydrogen, Neon), and each new middle model closes the gap with last month's flagship. For teams, the practical question is no longer 'which model is best' but 'which tier and which dial setting is cheapest for this task at the quality I need'. Neon at $3/$15 compares with GPT-6.2 Sol at $2/$10 and Astra at $8/$40, so routing work between tiers can cut bills sharply. The planned cyber variant also continues the gated-release pattern for dangerous capabilities seen on Days 227 and 236."
+          ]
+        },
+        {
+          "title": "3) Trump and Xi Split on AI Rules as an Incident Hotline Is Negotiated",
+          "paragraphs": [
+            "At the APEC summit in Shenzhen on November 18-19, President Trump and President Xi set out opposite views of AI governance. Euronews reports Trump said the United States opposes 'globalist regulation' of AI in any form, repeating the 'globalist scheme' line he used at the UN in September. Xi, according to Xinhua, told Trump the two countries should cooperate to keep AI 'under human control' and jointly prevent misuse. Behind the speeches sat a narrower project: in September, Treasury Secretary Bessent and Vice Premier He Lifeng agreed in principle to a US-proposed channel for urgent notification of serious AI incidents, with details to be worked out in Shenzhen. Analysts warned beforehand not to expect a breakthrough, and the final terms had not been reported when this was written. The talks come after California's lawsuit over an OpenAI agent's sandbox escape (Day 235) and the new US rule on remote access to AI chips (Day 236). The concept, explained simply: An AI incident hotline is a confidence-building measure, a tool borrowed from nuclear diplomacy. After the 1962 Cuban Missile Crisis, Washington and Moscow set up a direct line in 1963 so that leaders could explain an accident quickly instead of guessing at the other side's intent. An AI version would let each government warn the other about, say, a model that escaped its controls, a large AI-driven cyberattack or a dangerous model leak, before it is mistaken for a deliberate attack. It does not regulate anyone's AI; it only promises fast, trusted communication when something goes wrong. That is why two countries that disagree on regulation can still agree on it.",
+            "Why it matters: The split matters for companies working across both markets, including Southeast Asian firms that use US and Chinese models: there will be no single global rulebook soon, so compliance will stay country by country. But a working incident channel would be the first formal US-China safety mechanism for AI, and it reflects a growing view that the biggest risks now come from accidents and loss of control, not only from deliberate misuse. Watch for whether the channel covers private labs' incidents or only government ones."
+          ]
+        },
+        {
+          "title": "4) Palo Alto Networks Pays $4.5 Billion for Applied Compute",
+          "paragraphs": [
+            "Palo Alto Networks agreed on November 18 to buy Applied Compute in an all-stock deal valued at $4.5 billion, announced alongside its fiscal first-quarter 2027 results. Applied Compute runs a platform for post-training and inference of open-weight AI models: it lets companies adapt existing open models to their own data and run them in production. Palo Alto says the deal will help enterprises adopt AI securely whether they use open-weight models, closed frontier models or both, and BankInfoSecurity reports a goal of building AI security models that supervise the applications they protect. CEO Nikesh Arora said recent incidents show that predefined security policies cannot anticipate every possible agent behaviour. Applied Compute's co-founder and CEO Yash Patil will become Palo Alto's Co-Chief AI Officer. The deal is expected to close in Palo Alto's fiscal third quarter of 2027, subject to regulatory approval.",
+            "The concept, explained simply: Pre-training teaches a model general knowledge from huge amounts of text. Post-training is the second stage that shapes it for a job: fine-tuning on examples of good answers, and reinforcement learning, where the model tries tasks and is rewarded for doing them well. An open-weight model is one whose trained numbers (weights) are published, so a company can download it and post-train it privately on its own data. Palo Alto's bet is that a security company needs this skill to build its own 'guard' models: rather than a fixed rulebook listing banned actions, a trained model watches what an AI agent is doing and judges whether it looks wrong, the way an experienced security analyst would. AI Learning -- Day 237 | 2026-11-20 | Page 3 Why it matters: This joins CrowdStrike's kill switch (Day 228) and the run of agent-security deals as evidence that securing AI agents is becoming its own market. The shift from rules to models matters because agents act in open-ended ways no rule list can cover. For buyers, it means security vendors will increasingly ship their own models, and you should ask how those guard models are tested, how often they block legitimate work, and whether your data is used to train them."
+          ]
+        }
+      ],
+      "market_signal": "Investors paid a 17% first-day premium for Anthropic on a day the wider market fell, while Google released a mid-tier model that nearly matches its own flagship at a fraction of the price. Palo Alto paid $4.5 billion in stock for a team that post-trains open models, and banks such as Wells Fargo (new terms effective November 24) are writing customer liability for AI agents into their contracts. Microsoft's buyout offer to about 60,000 employees closes in early December. The signal: raw model intelligence is getting cheaper by the week, so the value is moving to whoever controls the platform, the security layer and the rules on who is responsible when an agent acts. Budget for cheaper tokens; invest in guardrails and accountability.",
+      "practical_takeaway": [
+        {
+          "title": "Benchmark Gemini 4 Neon against your current mid-tier model.",
+          "body": "Run the same ten real tasks on Neon, GPT-6.2 Sol and your current choice, and compare cost per correct answer, not price per token."
+        },
+        {
+          "title": "Treat the thinking level as a cost dial.",
+          "body": "Start each workflow at low or medium and raise it only for the steps where accuracy measurably improves."
+        },
+        {
+          "title": "Plan for promotional prices to end.",
+          "body": "Build business cases on the higher standard rate (reportedly $4/$20 for Neon) so a price change does not break your budget."
+        },
+        {
+          "title": "Separate the IPO pop from the business.",
+          "body": "Judge Anthropic, or any AI vendor you depend on, by its quarterly filings on revenue, costs and reliability, not by its first-day price."
+        },
+        {
+          "title": "Assume no global AI rulebook is coming soon.",
+          "body": "If you operate in several countries, map AI rules country by country and design for the strictest one you face."
+        },
+        {
+          "title": "Write your own AI incident plan.",
+          "body": "Decide now who is told, how fast, and what is shut down if one of your agents misbehaves, just as governments are doing with a hotline. AI Learning -- Day 237 | 2026-11-20 | Page 4"
+        },
+        {
+          "title": "Ask security vendors how their guard models work.",
+          "body": "Request false-positive rates, testing methods and data-use terms before you let a model decide which agent actions to block."
+        },
+        {
+          "title": "Read your bank's new agent terms.",
+          "body": "If you let an AI agent touch financial accounts, check who is liable for its mistakes and how to revoke its access."
+        },
+        {
+          "title": "Try a multi-agent writer with a human editor.",
+          "body": "Use PaperOrchestra or a similar pipeline for a first draft of a report, then verify every citation and number yourself. SELF-TEST Q1. Why did ANT's first trade come near midday rather than at the opening bell? A1. The exchange and lead bank had to gather a huge volume of buy and sell orders and find a single opening-cross price where the most shares could trade, which takes time for a very large, popular listing. Q2. What were Anthropic's IPO price, first trade and first-day close? A2. $83 IPO price, a first trade of about $111.50, and a close of $97.17, up about 17%, valuing it near $1.76 trillion. Q3. What is a 'thinking level' on a model like Gemini 4 Neon? A3. A setting for how much reasoning (test-time compute) the model spends before answering; higher levels cost more and take longer but solve harder problems. Q4. Where does Gemini 4 Neon rank on the Artificial Analysis Intelligence Index? A4. Third, at 61 on its xhigh setting, behind GPT-6.2 Astra and Claude Fable 5.2 and one point ahead of Gemini 4 Carbon at high. Q5. What is an AI incident hotline, and why can rivals agree on one? A5. A fast, trusted channel to warn each other about serious AI accidents; it regulates nothing, so countries that disagree on rules can still use it to avoid misreading an accident as an attack. Q6. What does Applied Compute do, and why did Palo Alto buy it? A6. It post-trains and runs open-weight models on companies' own data; Palo Alto wants that skill to build security models that supervise AI agents, because fixed rules cannot anticipate every agent behaviour."
+        }
+      ],
+      "tomorrow_preview": "Anthropic's second trading day and whether ANT holds above the $97 close or drifts toward its $83 IPO price. What We're Watching: Whether the US and China announce final terms for the AI incident notification channel agreed in principle in September. What We're Watching: Independent tests of Gemini 4 Neon, including Google's claim of its lowest fabrication rate yet. What We're Watching: Wells Fargo's AI-agent liability terms taking effect on November 24, and whether other banks follow. What We're Watching: Reaction from security vendors and investors to Palo Alto's Applied Compute deal and its plan for AI guard models.",
+      "sources": "cnn.com, cbsnews.com, forbes.com, fastcompany.com, stocktitan.net, wolf.financial, cryptoticker.io and nasdaqtrader.com (Anthropic debut); blog.google, docs.cloud.google.com, 9to5google.com, gsmarena.com, datacamp.com and artificialanalysis.ai (Gemini 4 Neon); euronews.com, thenextweb.com, oodaloop.com, aiweekly.co, france24.com, kuwaittimes.com and scmp.com (Trump-Xi AI talks); sec.gov, securityweek.com, csoonline.com, scworld.com and bankinfosecurity.com (Palo Alto and Applied Compute); github.com/google-research/paper-orchestra and github.com/HuggerHustle/ai-radar (PaperOrchestra); americanbanker.com, foxbusiness.com and fortune.com (bank agent terms, Microsoft buyouts); theneuron.ai and riorundown.substack.com (daily digests). Figures are secondary reports and unverified unless from the company's own page or filing.",
+      "recap": "Recent days covered preparedness-framework risk ratings and 'Critical for cyber' (GPT-6.2 Astra and Sol), remote-access export controls and compute know-your-customer rules (BIS rule), IPO book-building, upsizing and greenshoe options (Anthropic at $83), the AG-UI agent-to-interface protocol, loss of control and reward hacking (California v. OpenAI), long-running agents with their own identity (Microsoft Ignite), DNS-based agent identity, coding-agent supply-chain attacks, the Pax Silica accord, agent payments, kill switches, prompt-injection defences and the Fable/Mythos/Haiku 5.x refresh. Today added how a new listing's opening cross sets the first price and why hot IPOs fade from the open (Anthropic's debut), thinking levels, test-time compute and fabrication rates (Gemini 4 Neon), AI incident hotlines as confidence-building measures (Trump-Xi in Shenzhen), post-training of open-weight models and AI guard models for agent security (Palo Alto and Applied Compute), and the multi-agent 'orchestra' pattern for long writing tasks (PaperOrchestra). AI Learning -- Day 237 | 2026-11-20 | Page 5",
+      "themes": [
+        "Models & Frontier",
+        "Governance & Safety"
+      ],
+      "quiz": [
+        {
+          "q": "Why did ANT's first trade come near midday rather than at the opening bell?",
+          "a": "The exchange and lead bank had to gather a huge volume of buy and sell orders and find a single opening-cross price where the most shares could trade, which takes time for a very large, popular listing."
+        },
+        {
+          "q": "What were Anthropic's IPO price, first trade and first-day close?",
+          "a": "$83 IPO price, a first trade of about $111.50, and a close of $97.17, up about 17%, valuing it near $1.76 trillion."
+        },
+        {
+          "q": "What is a 'thinking level' on a model like Gemini 4 Neon?",
+          "a": "A setting for how much reasoning (test-time compute) the model spends before answering; higher levels cost more and take longer but solve harder problems."
+        },
+        {
+          "q": "Where does Gemini 4 Neon rank on the Artificial Analysis Intelligence Index?",
+          "a": "Third, at 61 on its xhigh setting, behind GPT-6.2 Astra and Claude Fable 5.2 and one point ahead of Gemini 4 Carbon at high."
+        },
+        {
+          "q": "What is an AI incident hotline, and why can rivals agree on one?",
+          "a": "A fast, trusted channel to warn each other about serious AI accidents; it regulates nothing, so countries that disagree on rules can still use it to avoid misreading an accident as an attack."
+        },
+        {
+          "q": "What does Applied Compute do, and why did Palo Alto buy it?",
+          "a": "It post-trains and runs open-weight models on companies' own data; Palo Alto wants that skill to build security models that supervise AI agents, because fixed rules cannot anticipate every agent behaviour."
+        }
+      ],
+      "schema": 2
+    },
+    {
       "date": "2026-11-19",
       "display_date": "November 19, 2026",
       "issue": 236,
