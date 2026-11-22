@@ -6123,8 +6123,6 @@ The second technique worth stealing: your agent does not need to BE a genomics m
 
 ## MARKET SIGNAL
 
-With frontier model performance compressed to a near-tie (Day 80), the AI-for-science race is not being won on raw benchmark points -- it is being won on the stack around the model: callable specialist models (BioNeMo), reproducible auditable artifacts, on-prem data boundaries, and reviewer agents that make outputs trustworthy. Claude Science, FutureHouse Kosmos and the BioNeMo toolkit all landed inside two weeks; the moat is the lab-in-the-loop harness plus governance evidence, not the base model. Anthropic, now past OpenAI on revenue (~$47B run-rate) and courting scientists with a 50-project AI-for-Science fund, is planting the same open-protocol flag in science that MCP planted in
-
 Claude Sonnet 5 went GA and, after US Commerce lifted export controls on Jun 30, Fable 5 was restored globally and Mythos 5 re-enabled for select US orgs -- capability gating now operating at the export-control layer. OpenAI unveiled a custom 'Jalapeno' inference chip and was reportedly in talks over a ~5% US government stake. Google DeepMind shipped Nano Banana 2 Lite (fastest, cheapest image model) plus Gemini Omni Flash. Blackstone committed $30B to AI data centres in Japan; Qualcomm acquired Modular for $4B. And Anthropic -- now past OpenAI on revenue (~$47B run-rate) -- opened its Claude Science AI-for-Science fund (up to 50 projects, $30K credits each + $2K Modal compute; applications close Jul 15).
 
 ## Viral App of the Week
@@ -6214,10 +6212,6 @@ One trail, three audiences. The OTEL gen_ai spans streamed into a WORM store for
 The pipeline, technology-first per the standing rule: AI-for-science architectures (Claude Science and lab-in-the-loop agents -- promoted to next issue by this week's launch); self-improving agents 2.0 (MemRL in production, skill-library evolution, Darwin-Godel updates); world models and simulation-first agents; MCP 2.x / A2A 1.x and the interop spec; context engineering at native 1M tokens; neuro-symbolic and 100x energy-efficient inference; on-device agent hardware and agent-first phones; frontier-safety tech; and the next
 
 The watchlist that decides H2: August 2 enforcement (T-27) and whether the Omnibus reaches the Official Journal in time; Anthropic's October Nasdaq debut and whether OpenAI holds 2026; the first Skills-marketplace supply-chain incident (this series' standing call for H2); GPT-5.6 reaching GA beyond the government preview; and whether the White House voluntary standards harden into rules. The method for the next hundred stays the same: learn the technology under the headline, wire the governance before the scale, and keep score in public.
-
-## Market signal: one hundred issues in, the scoreboard reads: models compressed (~3%), tokens collapsed
-
-(~1,000x), rails standardised (MCP/A2A/SKILL.md), and the frontier became government-mediated. The durable moats are exactly the ones the series kept finding -- distribution, proprietary data flywheels, governance evidence, and the lowest cost per successful, audited task. The next hundred days are about who operationalises that fastest: in public markets, under enforcement, at scale.
 
 ## Viral App of the Week: caveman (by JuliusBrussee)
 
@@ -6321,17 +6315,11 @@ Scoped per-machine identity, geofenced dig envelopes with grade and speed caps, 
 
 Let the procurement agent write the Digital Product Passport evidence per lot by construction: one OTELfiWORM trail doubles as CPR compliance, embodied-carbon ledger and defect defence -- and a human
 
-Day 99: Agentic AI in Gaming & Interactive Entertainment -- agent-driven NPCs, game-dev copilots and generative worlds, with content moderation and player safety as the binding constraint. Then Day 100: the
-
-## Market Signal
-
-Construction is the last $13T analogue industry, and the moat mirrors agriculture (Day 96): proprietary site-data flywheels (Buildots' imagery corpus, Bedrock's earthmoving telemetry, Trunk Tools' document graph) + an actuation trust layer + traceability evidence beat model choice. With frontier access itself now government-mediated -- GPT-5.6 in approved preview, Fable 5 credit-gated -- distribution, data and governance compound while models commoditise by the week.
-
 ## Viral App Spotlight: Bedrock Robotics
 
 The enterprise breakout of the construction wave. Founded in 2024 by Waymo veterans, Bedrock raised a $270M Series B in February 2026 and launched the industry's largest supervised-autonomy earthmoving deployment with Sundt Construction on a 130-acre manufacturing site. Its bet is retrofit-not-replace: the Operator kit (LiDAR, GPS, HD cameras, onboard compute) turns the excavators, dozers and loaders a contractor already owns into autonomous assets, with partners including Austin Bridge & Road, Zachry, Champion Site Prep and Capitol Aggregates -- and first fully operator-less excavator deployments targeted for
 
-**Market signal:** Construction is the last $13T analogue industry, and the moat mirrors agriculture (Day 96): proprietary site-data flywheels (Buildots imagery corpus, Bedrock earthmoving telemetry, Trunk Tools document graph) + an actuation trust layer + traceability evidence beat model choice. With frontier access now government-mediated -- GPT-5.6 in approved preview, Fable 5 credit-gated -- distribution, data and governance compound while models commoditise by the week.
+**Market signal:** Construction is the last $13T analogue industry, and the moat mirrors agriculture (Day 96): proprietary site-data flywheels (Buildots' imagery corpus, Bedrock's earthmoving telemetry, Trunk Tools' document graph) + an actuation trust layer + traceability evidence beat model choice. With frontier access itself now government-mediated -- GPT-5.6 in approved preview, Fable 5 credit-gated -- distribution, data and governance compound while models commoditise by the week.
 
 **Practical takeaways:**
 - Start with the document grind, not the excavator — RFIs, submittals and schedule review are observable and reversible -- Gilbane proves the scale. Measure on RFI turnaround, schedule slips caught and rework avoided. Ground every answer in the drawing set; hallucinated spec = poured in concrete.
@@ -6446,7 +6434,7 @@ The actuation layer went commercial in 2026. John Deere is rolling out fully aut
 
 ## 3. Make the trace the product.
 
-FSMA 204 lot codes and the EU's TraceMap mean every farm-to-fork step needs a machine-readable trail. Wire one OTELfiWORM log per lot and reuse it three ways: traceability compliance, recall defence in hours instead of weeks, and the ESG / carbon evidence buyers now price into contracts. Tomorrow (Day 97): Agentic AI in Logistics & Last-Mile Delivery -- agents that quote, route, dispatch and hand off freight across carriers, warehouses and the doorstep, with autonomous trucks and delivery robots as the actuation layer and delivery-promise liability as the binding constraint.
+FSMA 204 lot codes and the EU's TraceMap mean every farm-to-fork step needs a machine-readable trail. Wire one OTELfiWORM log per lot and reuse it three ways: traceability compliance, recall defence in hours instead of weeks, and the ESG / carbon evidence buyers now price into contracts.
 
 ## 4 · The food chain -- traceability becomes the audit trail
 
@@ -7616,11 +7604,7 @@ Studio by Spotify Labs -- Spotify's agentic desktop app, unveiled at its Investo
 
 Why it matters: whoever owns the personalisation agent owns the listening day. Studio turns Spotify from a catalogue into a generator -- and turns every publisher's question into: does my content feed
 
-## Market signal: the content industry's AI suppliers are about to be public companies with quarterly
-
-scrutiny. Expect aggressive monetisation of media verticals (ads, commerce, licensing) -- and expect provenance compliance to become a procurement checkbox in every studio deal.
-
-**Market signal:** the content industry's AI suppliers are about to be public companies with quarterly scrutiny. Expect aggressive monetisation of media verticals (ads, commerce, licensing) -- and expect provenance compliance to become a procurement checkbox in every studio deal. 9 · Viral AI app of the day Studio by Spotify Labs -- Spotify's agentic desktop app, unveiled at its Investor Day (May 21) and rolling out as a research preview in 20+ markets.
+**Market signal:** the content industry's AI suppliers are about to be public companies with quarterly scrutiny. Expect aggressive monetisation of media verticals (ads, commerce, licensing) -- and expect provenance compliance to become a procurement checkbox in every studio deal.
 
 **Practical takeaways:**
 - Wire provenance before you scale — C2PA-sign and SynthID-watermark every AI-touched output now — August 2 is the deadline, and the audit log doubles as your chain of custody and residuals ledger.
@@ -7714,10 +7698,6 @@ The infrastructure matured fast this quarter. ACP's 2026-04-17 release added Car
 
 ChatGPT Instant Checkout / Shopify Agentic Storefronts -- the clearest consumer-scale proof that the storefront has moved inside the chat window. A US shopper can now describe a product in ChatGPT and buy it from an Etsy seller (and soon a million-plus Shopify brands) without leaving the conversation, powered by ACP and Stripe; the matching Shopify Agentic Storefronts feature lets any merchant turn on that channel -- plus Google's UCP surface -- from the admin in minutes, no code. It is the commerce analogue of an app store: the catalogue becomes a callable, transactable endpoint, and discovery happens in the assistant, not on the website. (The longer-running OSS standout, OpenClaw, still tops the charts at 250K+ stars as the local-first self-extending agent -- the same autonomy lesson at personal scale, and a reminder that the most viral agents are also the ones that most need scoped identity and a kill switch.) Why it matters: Instant Checkout turns 'find a product' and 'buy a product' into a single agent action. For retailers that is either the biggest new channel of the decade or an existential disintermediation -- and which one depends entirely on whether your catalogue is agent-ready and your conversion
 
-## Market signal: For a retail or e-commerce leader, the relevance is presence, not leaderboards. The
-
-shelf is moving inside the assistant; the retailers who win publish to every agent surface via the open protocols and keep their conversion math honest enough that a third-party agent stays a channel, not
-
 **Market signal:** For a retail or e-commerce leader, the relevance is presence, not leaderboards. The shelf is moving inside the assistant; the retailers who win publish to every agent surface via the open protocols and keep their conversion math honest enough that a third-party agent stays a channel, not a disintermediator.
 
 **Practical takeaways:**
@@ -7797,11 +7777,7 @@ Two threads converged this week. First, the UN warned that AI's environmental co
 
 ChatNetZero 3.0 -- the climate-accountability chatbot that does the one thing almost no consumer AI does: it shows you the energy cost of your own query. Built by the Data-Driven EnviroLab on the Net Zero Tracker (the most comprehensive database of corporate and government net-zero pledges), version 3.0 displays each query's consumption in watt-hours alongside real-world equivalents, and was re-engineered around targeted retrieval instead of monolithic document processing -- so a focused climate query draws a fraction of the power a general-purpose model would. Its own headline figure: if a country the size of Ireland asked the same question on ChatNetZero rather than a general model, it could save ~1,410 kWh. It is the cleanest embodiment of today's thesis -- an AI tool that meters itself while it helps you scrutinise everyone else's climate claims. (The longer-running OSS standout, OpenClaw, still tops the charts at 210K+ stars as the local-first self-extending agent -- same autonomy lesson, consumer scale.) Why it matters: ChatNetZero turns AI's energy footprint from an invisible externality into a number on the screen. That is the consumer-facing version of the exact discipline the enterprise stack needs -- per-task metering as a first-class, visible feature, not a hidden cost.
 
-## Market signal: For an energy or sustainability leader, the relevance is instrumentation, not
-
-leaderboards. The data-centre boom is now the biggest grid story of the decade; the operators who win pair agentic optimisation with honest per-task metering -- and can prove both to a regulator.
-
-**Market signal:** For an energy or sustainability leader, the relevance is instrumentation, not leaderboards. The data-centre boom is now the biggest grid story of the decade; the operators who win pair agentic optimisation with honest per-task metering -- and can prove both to a regulator. 8 · Viral AI app of the day ChatNetZero 3.0 -- the climate-accountability chatbot that does the one thing almost no consumer AI does: it shows you the energy cost of your own query.
+**Market signal:** For an energy or sustainability leader, the relevance is instrumentation, not leaderboards. The data-centre boom is now the biggest grid story of the decade; the operators who win pair agentic optimisation with honest per-task metering -- and can prove both to a regulator.
 
 **Practical takeaways:**
 - Three moves this quarter for anyone in or near energy and cl — Three moves this quarter for anyone in or near energy and climate: (1) Start where the loop is observable and reversible -- carbon accounting, demand forecasting and renewable-ops analytics are high-volume and low-physical-risk, so pilot agents there first and measure them on emissions cut and forecast accuracy, not dashboards. (2) Meter the agent itself -- instrument watt-hours and grams-CO2 per task as first-class telemetry, route models to keep the agent's own footprint down, and treat that number as part of the optimisation, not an afterthought. (3) Gate every action that moves power or gets disclosed -- give each agent a scoped SPIFFE identity (read/forecast/propose, never breaker:trip or bid:commit without a human gate), hard grid-contingency limits, a <1s kill switch, and a WORM audit trail that doubles as carbon-disclosure evidence. Automate the sensing and the forecast; keep a human on anything that touches the wire. Tomorrow (Day 78): Agentic AI in Retail & E-commerce -- storefront agents selling inside chat assistants, autonomous merchandising and pricing, and the agent-readiness shift that is becoming
@@ -7879,10 +7855,6 @@ Claude Fable 5 -- the breakout of the week, and not just for engineers. Anthropi
 
 Why it matters: When the most capable model class becomes a public tool, the competitive edge stops being access and starts being how responsibly and verifiably you wield it -- provenance, dual-use limits, scoped identity and an audit trail around every experiment an agent touches.
 
-## Market signal: For a research leader, the relevance is governance, not leaderboards. A
-
-Mythos-class model going public means your lab can now wield frontier reasoning -- but it also means the dual-use and reproducibility guardrails the series keeps describing are no longer theoretical. Insist on provenance, scoped identity and a kill switch in any agent that touches a real
-
 **Market signal:** For a research leader, the relevance is governance, not leaderboards. A Mythos-class model going public means your lab can now wield frontier reasoning -- but it also means the dual-use and reproducibility guardrails the series keeps describing are no longer theoretical. Insist on provenance, scoped identity and a kill switch in any agent that touches a real experiment.
 
 **Practical takeaways:**
@@ -7954,10 +7926,6 @@ On June 1, 2026, Anthropic confirmed it had confidentially filed for a US IPO --
 OpenClaw -- the fastest-growing open-source project in GitHub history, racing from ~9,000 to 60,000+ stars in days in January and blowing past 302,000 by mid-May (the wider fork ecosystem sits higher still). Created by PSPDFKit founder Peter Steinberger (who joined OpenAI in February, with the project moving to an open-source foundation), it is a free, local-first personal AI assistant that runs entirely on your own devices and connects models to 50+ integrations (WhatsApp, Telegram, Slack, Discord, Signal, iMessage); its signature move is that it writes its own skills, extending itself without manual coding. For a public-sector leader it is section 5 in miniature: the most viral agents are the most autonomous, and these forks routinely ship with no kill switch, no audit trail and no scoped identity -- the exact opposite of what an agent deciding a citizen's benefit or
 
 Why it matters: Local-first, self-extending agents prove 'agents that act' have gone mainstream -- and that government staff will install them on their own (shadow AI). The govtech job is to give people a sanctioned, governed agent -- sovereign hosting, scoped identity, approval gates, reasoning logs and a WORM audit trail -- before an ungoverned fork touches citizen data.
-
-## Market signal: For an agency, the relevance is procurement and resilience, not benchmarks. Insist
-
-on FedRAMP (or local-sovereign) authorisation, multi-cloud / multi-model portability so a single political dispute can't strand a critical service, reason-giving and audit logging in every RFP, and a contractual kill switch. Don't lock a citizen-facing service to a stack that can't prove the official stayed
 
 **Market signal:** For an agency, the relevance is procurement and resilience, not benchmarks. Insist on FedRAMP (or local-sovereign) authorisation, multi-cloud / multi-model portability so a single political dispute can't strand a critical service, reason-giving and audit logging in every RFP, and a contractual kill switch. Don't lock a citizen-facing service to a stack that can't prove the official stayed in the loop.
 
@@ -8100,9 +8068,7 @@ It solved the #1 cold-start problem that's haunted agentic AI: 'How does an AI a
 | Physical AI Deployment | Humanoids in Mass Prod | Boston Dynamics Atlas Live |
 | Hyperscaler Capex | $570B+ on AI Infra | Chips + Software Wars |
 
-## Market Signal: Zero ARR today, but OpenHuman embodies the 'memory is the moat, not the model'
-
-thesis that will define 2026-2027. If I had to predict: (a) paid Stripe SaaS tier within 60 days, (b) A2A agent registry play (Linux Foundation) within 90 days, or (c) acquihire by Anthropic/OpenAI before EOY. Memoryless agents are becoming obsolete. Agents with episodic memory that write their own skills (MemRL) + route tasks via transactive memory (knowing who-knows-what) are 2027 baseline.
+## Market Signal
 
 By mid-June 2026, three vendors have crystallized the 'agentic control plane' pattern. Every enterprise will
 
@@ -8122,7 +8088,7 @@ Blog, NVIDIA GTC Taipei 2026, OpenAI Releases
 | Google Cloud Orchestration | $2/$12 per M tokens Gemini 3. | 5 CFloassth leadership + 3B Android reach. Mi | ssiBnegt aA n(GneAx eIIxIp deocctes du nJutiln He 230) |
 | Anthropic Cowork + Manage | dSkills free, Agents $20-200/mo | crSePdIiFtsFE/SVID native. RisingWave strea | minPgro MduVcst iaosn m(Feinmaonrcye. Sageelf-nhtso slitveed) |
 
-**Market signal:** Zero ARR today, but OpenHuman embodies the 'memory is the moat, not the model' thesis that will define 2026-
+**Market signal:** Zero ARR today, but OpenHuman embodies the 'memory is the moat, not the model' thesis that will define 2026-2027. If I had to predict: (a) paid Stripe SaaS tier within 60 days, (b) A2A agent registry play (Linux Foundation) within 90 days, or (c) acquihire by Anthropic/OpenAI before EOY. Memoryless agents are becoming obsolete. Agents with episodic memory that write their own skills (MemRL) + route tasks via transactive memory (knowing who-knows-what) are 2027 baseline.
 
 ---
 
@@ -8190,10 +8156,6 @@ On June 1, 2026, Anthropic confirmed it had confidentially filed for a US IPO --
 OpenClaw -- the fastest-growing open-source project in GitHub history, racing from ~9,000 to 60,000+ stars in days in January and blowing past 302,000 by mid-May (the wider fork ecosystem sits higher still). Created by PSPDFKit founder Peter Steinberger (who joined OpenAI in February, with the project moving to an open-source foundation), it is a free, local-first personal AI assistant that runs entirely on your own devices and connects models to 50+ integrations (WhatsApp, Telegram, Slack, Discord, Signal, iMessage); its signature move is that it writes its own skills, extending itself without manual coding. For a public-sector leader it is section 5 in miniature: the most viral agents are the most autonomous, and these forks routinely ship with no kill switch, no audit trail and no scoped identity -- the exact opposite of what an agent deciding a citizen's benefit or
 
 Why it matters: Local-first, self-extending agents prove 'agents that act' have gone mainstream -- and that government staff will install them on their own (shadow AI). The govtech job is to give people a sanctioned, governed agent -- sovereign hosting, scoped identity, approval gates, reasoning logs and a WORM audit trail -- before an ungoverned fork touches citizen data.
-
-## Market signal: For an agency, the relevance is procurement and resilience, not benchmarks. Insist
-
-on FedRAMP (or local-sovereign) authorisation, multi-cloud / multi-model portability so a single political dispute can't strand a critical service, reason-giving and audit logging in every RFP, and a contractual kill switch. Don't lock a citizen-facing service to a stack that can't prove the official stayed
 
 **Market signal:** For an agency, the relevance is procurement and resilience, not benchmarks. Insist on FedRAMP (or local-sovereign) authorisation, multi-cloud / multi-model portability so a single political dispute can't strand a critical service, reason-giving and audit logging in every RFP, and a contractual kill switch. Don't lock a citizen-facing service to a stack that can't prove the official stayed in the loop.
 
@@ -8272,11 +8234,7 @@ On June 1, 2026, Anthropic confirmed it had confidentially filed for a US IPO --
 
 OpenClaw -- the fastest-growing open-source project in GitHub history, having raced from ~9,000 to 60,000+ stars in days back in January and since blown past 210,000 (some trackers put the wider fork ecosystem in the mid-300Ks) in under five months. Created by PSPDFKit founder Peter Steinberger, it is a free, local-first personal AI assistant that runs entirely on your own devices and connects models to 50+ integrations (WhatsApp, Telegram, Slack, Discord, Signal, iMessage); its signature move is that it writes its own skills, extending itself without manual coding. For a legal leader it is section 5 in miniature: the most viral agents are the most autonomous, and these forks routinely ship with no kill switch, no audit trail and no scoped identity -- the exact opposite of what an agent touching a privileged document or a binding contract must have. Why it matters: Local-first, self-extending agents prove 'agents that act' have gone mainstream. The legal-ops job is to keep that autonomy inside a trust boundary -- privilege isolation, scoped identity, approval gates, reviewer-of-record logs and a WORM audit trail -- before it ever touches a client
 
-## Market signal: For a GC or legal-ops leader, the relevance is procurement, not benchmarks. The
-
-model under your legal-AI stack is being rebuilt monthly by a handful of extremely well-capitalised vendors heading to public markets -- insist on privilege-preserving data terms, named-subprocessor disclosure, citation trails and audit logging in every RFP, and don't lock into a stack that can't prove
-
-**Market signal:** For a GC or legal-ops leader, the relevance is procurement, not benchmarks. The model under your legal-AI stack is being rebuilt monthly by a handful of extremely well-capitalised vendors heading to public markets -- insist on privilege-preserving data terms, named-subprocessor disclosure, citation trails and audit logging in every RFP, and don't lock into a stack that can't prove the lawyer stayed in the loop. 8 · Viral AI app of the day OpenClaw -- the fastest-growing open-source project in GitHub history, having raced from ~9,000 to 60,000+ stars in days back in January and since blown past 210,000 (some trackers put the wider fork ecosystem in the mid-300Ks) in under five months.
+**Market signal:** For a GC or legal-ops leader, the relevance is procurement, not benchmarks. The model under your legal-AI stack is being rebuilt monthly by a handful of extremely well-capitalised vendors heading to public markets -- insist on privilege-preserving data terms, named-subprocessor disclosure, citation trails and audit logging in every RFP, and don't lock into a stack that can't prove the lawyer stayed in the loop.
 
 **Practical takeaways:**
 - Three moves this quarter for anyone in legal, contracts or l — Three moves this quarter for anyone in legal, contracts or legal-ops: (1) Start where the risk is contained -- first-pass contract review, playbook redlines and data-room organisation are high-volume and easy to verify, so pilot agents there (Microsoft's Word Legal Agent or a CLM-native tool is the lowest-friction start) and measure them on cycle time and reviewer hours saved. (2) Keep a named lawyer on every obligation -- let agents review, redline and draft, but route every binding clause, diligence call and filed document through a reviewer-of-record with a citation trail, because that review is your bar-supervision evidence and your EU AI Act Art. 12 log at once. (3) Lock the privilege boundary before you point an agent at a client document -- verify data-handling and subprocessor terms, give each agent a scoped SPIFFE identity (read/propose, never execute/file/bind), a <1s kill switch and a WORM audit trail (~T-58 days to Aug 2). Automate the reading, never
@@ -8352,11 +8310,7 @@ On June 1, 2026, Anthropic confirmed it had confidentially filed for a US IPO, t
 
 OpenClaw -- the fastest-growing open-source project in GitHub history, now well past 210,000 stars (and climbing toward the mid-300Ks by some trackers) in under five months. Created by PSPDFKit founder Peter Steinberger, it is a free, local-first personal AI assistant that runs entirely on your own devices and connects models to 50+ integrations (WhatsApp, Telegram, Slack, Discord, Signal, iMessage); its signature move is that it writes its own skills, extending itself without manual coding. For an HR leader the lesson is the governance section in miniature: the most viral agents are the most autonomous, and these forks routinely ship with no kill switch, no audit trail, and no scoped identity -- precisely the opposite of what an agent touching a candidate's application or an employee's record must have. Why it matters: Local-first, self-extending agents prove 'agents that act' have gone mainstream. The people-ops job is to keep that autonomy inside a trust boundary -- scoped identity, bias testing, approval gates, reasoning logs and a WORM audit trail -- before it ever touches a hiring or
 
-## Market signal: For an HR or people-ops leader the relevance is procurement, not benchmarks. The
-
-agent tooling underneath your HCM is being rebuilt monthly by a handful of extremely well-capitalised vendors heading for public markets -- plan for a fast-moving supplier set, insist on reasoning-log and audit features in every RFP, and don't lock into a stack that can't prove human
-
-**Market signal:** For an HR or people-ops leader the relevance is procurement, not benchmarks. The agent tooling underneath your HCM is being rebuilt monthly by a handful of extremely well-capitalised vendors heading for public markets -- plan for a fast-moving supplier set, insist on reasoning-log and audit features in every RFP, and don't lock into a stack that can't prove human oversight. 8 · Viral AI app of the day OpenClaw -- the fastest-growing open-source project in GitHub history, now well past 210,000 stars (and climbing toward the mid-300Ks by some trackers) in under five months.
+**Market signal:** For an HR or people-ops leader the relevance is procurement, not benchmarks. The agent tooling underneath your HCM is being rebuilt monthly by a handful of extremely well-capitalised vendors heading for public markets -- plan for a fast-moving supplier set, insist on reasoning-log and audit features in every RFP, and don't lock into a stack that can't prove human oversight.
 
 **Practical takeaways:**
 - Three moves this quarter for anyone in HR, talent or people- — Three moves this quarter for anyone in HR, talent or people-ops: (1) Start with coordination and onboarding, not screening -- interview scheduling, background-check logistics and cross-system provisioning are high-volume, low-legal-risk, and easy to verify, so pilot agents there first and measure them on time-to-fill and time-to-productivity. (2) Keep every adverse decision human -- let agents source, rank and coordinate, but route every screen-out, offer and termination through a human reviewer with a reasoning log, because that review is both your EEOC oversight and your EU AI Act evidence. (3) Wire governance before you point an agent at candidates -- bias-test before and during production, give each agent a scoped SPIFFE identity (read/propose, never decide/send), a <1s kill switch, and a WORM audit trail that ties every action to a human decision (~T-59 days to Aug 2). Automate the sourcing, never the judgement. Tomorrow (Day 73): Agentic AI in Legal & Contracts -- autonomous review, redlining and diligence agents, privilege and confidentiality as the trust boundary, and why the lawyer's sign-off stays on
@@ -8431,11 +8385,7 @@ On June 1, 2026, Anthropic confirmed it had confidentially filed for a US IPO, t
 
 OpenClaw -- the fastest-growing open-source project in GitHub history, now past 346,000 stars with roughly 38 million monthly visitors and 3.2 million active users in under five months. It is a free, local-first personal AI assistant that runs on your own machine and connects models to 50+ integrations (WhatsApp, Telegram, Slack, Discord, Signal, iMessage), and its signature trick is that it writes its own new skills, extending itself without manual coding. Its challenger, OpenHuman (by tinyhumansai), climbed GitHub Trending by pre-loading context about you before you type a single prompt. For a finance leader the lesson is the governance section in miniature: the most viral agents are the most autonomous, and these forks routinely ship with no kill switch, no audit trail, and no scoped identity -- precisely the opposite of what an agent touching the general ledger must Why it matters: Local-first, self-extending agents are the consumer-side proof that 'agents that act' have gone mainstream. The enterprise finance job is to keep that autonomy inside a trust boundary -- scoped identity, approval gates, and a WORM audit trail -- before it ever touches the books.
 
-## Market signal: A $965B private valuation on ~$47B run-rate prices in a future where most of that
-
-revenue is agents doing real work inside finance, healthcare, sales and customer success. For the CFO it cuts both ways: the tooling is improving monthly (Opus 4.7fi4.8 in five weeks), and the vendor landscape is about to be reshaped by public-market scrutiny -- plan procurement for a fast-moving, well-capitalised supplier set.
-
-**Market signal:** A $965B private valuation on ~$47B run-rate prices in a future where most of that revenue is agents doing real work inside finance, healthcare, sales and customer success. For the CFO it cuts both ways: the tooling is improving monthly (Opus 4.7fi4.8 in five weeks), and the vendor landscape is about to be reshaped by public-market scrutiny -- plan procurement for a fast-moving, well-capitalised supplier set. 8 · Viral AI app of the day OpenClaw -- the fastest-growing open-source project in GitHub history, now past 346,000 stars with roughly 38 million monthly visitors and 3.2 million active users in under five months.
+**Market signal:** A $965B private valuation on ~$47B run-rate prices in a future where most of that revenue is agents doing real work inside finance, healthcare, sales and customer success. For the CFO it cuts both ways: the tooling is improving monthly (Opus 4.7fi4.8 in five weeks), and the vendor landscape is about to be reshaped by public-market scrutiny -- plan procurement for a fast-moving, well-capitalised supplier set.
 
 **Practical takeaways:**
 - Three moves this quarter for anyone in finance, FP&A, or acc — Three moves this quarter for anyone in finance, FP&A, or accounting: (1) Start with reconciliation -- it is the highest-volume, most rules-driven, easiest-to-verify workflow, so pilot an agent there (BlackLine/FloQast-class or a Claude GL Reconciler template), let it match and draft clearing entries, and measure it on days-to-close and on the share of breaks it clears before a human looks. (2) Keep the controller's sign-off human -- let agents assemble the numbers and propose the entries, but route every material or unusual posting through a human approval gate, because that approval is your SOX evidence and your liability firewall. (3) Wire governance before you point an agent at the ledger -- give each agent a scoped SPIFFE identity (read/propose, never post/pay), a <1s kill switch, and a WORM audit trail that ties every action back to a human decision; the same trace satisfies SOX, the auditor, and the EU AI Act (~T-60 days to Aug 2). Automate the assembly, never the
@@ -8507,11 +8457,7 @@ On June 1, 2026, Anthropic confidentially filed for a US IPO, edging ahead of Op
 
 OpenClaw -- the fastest-growing open-source project in GitHub history, having blown past 302,000 stars by mid-May 2026 (from 9K to 60K in days back in January). It's a personal AI assistant that runs entirely on your own devices, acting as a local gateway that connects AI models to 50+ integrations -- WhatsApp, Telegram, Slack, Discord, Signal, iMessage -- and its signature trick is that it writes its own new skills, extending itself without manual coding. The 2026 GitHub trend it embodies is 'agentic execution': AI that doesn't just talk, but acts, locally and privately. For a CS leader the lesson is the same as the governance section: the most viral agents are the most autonomous, and OpenClaw forks routinely ship with no kill switch, no audit trail, and no scoped identity -- a vivid reminder of why retention agents touching customer data need the opposite. Why it matters: Local-first, self-extending agents are the consumer-side proof that 'agents that act' have crossed into the mainstream. The enterprise job is to keep that autonomy inside a trust boundary -- identity, approval gates, and an audit trail -- before it touches a customer.
 
-## Market signal: The IPO race ratifies that the value is in agentic enterprise workflows, not chat. A
-
-$965B private valuation on ~$47B run-rate prices in a future where most of that revenue is agents doing work inside finance, healthcare, sales, and customer success -- the exact verticals this series
-
-**Market signal:** The IPO race ratifies that the value is in agentic enterprise workflows, not chat. A $965B private valuation on ~$47B run-rate prices in a future where most of that revenue is agents doing work inside finance, healthcare, sales, and customer success -- the exact verticals this series has been walking through. 8 · Viral AI app of the day OpenClaw -- the fastest-growing open-source project in GitHub history, having blown past 302,000 stars by mid-May 2026 (from 9K to 60K in days back in January).
+**Market signal:** The IPO race ratifies that the value is in agentic enterprise workflows, not chat. A $965B private valuation on ~$47B run-rate prices in a future where most of that revenue is agents doing work inside finance, healthcare, sales, and customer success -- the exact verticals this series has been walking through.
 
 **Practical takeaways:**
 - Three moves this quarter for anyone in customer success, Rev — Three moves this quarter for anyone in customer success, RevOps, or post-sale growth: (1) Instrument the whole book -- deploy a health-scoring / churn agent (Gainsight Atlas, Totango, or an Agentforce flow) to continuously triage every account, and measure it on net revenue retention and on how many weeks earlier it surfaces risk, not on dashboards built. (2) Keep the human on the renewal -- let agents draft the play and assemble the narrative, but reserve the renewal and expansion conversations for the CSM, where the relationship (and the seven-figure decision) actually lives. (3) Wire governance before you point an agent at a customer -- SPIFFE identity scoped to read/propose-only, Article 50 disclosure on every customer-facing touch (T-61 days to Aug 2), per-customer Memory IDs for GDPR erasure, and a WORM log of every message and account write. Protect the audit trail and the relationship the way you'd protect the renewal -- because they now
@@ -9182,10 +9128,6 @@ Every skill ships an allowed-tools list -- that list IS the trust boundary. Trea
 
 Anthropic Legal Plugin Suite (May 12) -- 12 practice-area plugins + 20+ connectors, largest single vertical skill drop in 2026. Legal already the most engaged Cowork knowledge-work function. Google Gemini Spark + 3.5 Flash (May 19 I/O) -- Spark Skills inside the Gemini app, Android Halo UI surface coming later this year, Spark runs on dedicated Google Cloud VMs (24/7 background). Google Antigravity 2.0 -- community benchmarks claim 12× speed vs Claude Code on some workflows but Annex III compliance docs missing. xAI Grok Build (May 20) -- coding agent at $30/mo. Walmart Sparky AI assistant 40% smarter, weekly users 2×. Netflix hands ad-buying to AI agents. Klarna shopping engine inside ChatGPT (100M products wired). ChatGPT now connects to financial accounts via Plaid for Pro users. Anthropic in talks for $30-50B raise at ~$950B valuation (ARR $44B = 80× Q1 2025). EU AI Act T-71 days, 78% enterprises NOT on track per Secure Privacy survey.
 
-## MARKET SIGNAL
-
-Model performance is compressing (<3% across Opus 4.7 / GPT-5.5 / Gemini 3.1 Pro / Qwen3.6+). The next $50B+ in agentic value is captured by distribution and skills ecosystem and governance evidence -- not by another point on a benchmark. Anthropic plays the open-protocol / npm card. Google plays the OS-surface card via Gemini Spark + Android Halo. Microsoft plays the enterprise control-plane card via Agent 365. The asymmetry window closes in 2027 when revenue shares formalise. Build skills now while the marketplaces are still hungry for inventory.
-
 ## VIRAL APP -- Anthropic Legal Plugin Suite (May 12, 2026)
 
 12 practice-area plugins (Commercial, Corporate/M&A diligence, Employment, Privacy, Product, Regulatory, AI Governance, IP, Litigation) + 20+ MCP connectors (Harvey, Solve Intelligence, Definely, DocuSign, Ironclad, Thomson Reuters, Midpage, Trellis, Legal Data Hunter, Descrybe, Free Law Project) -- the largest single skill-plus-connector drop in
@@ -9196,7 +9138,7 @@ Model performance is compressing (<3% across Opus 4.7 / GPT-5.5 / Gemini 3.1 Pro
 | 2. Author SKILL.md (20 min) | YAML frontmatter: name, description (must read like a trigger), allowed-tools (the trust boundary), model preferences. Markdown body: do/dont examples + numbered steps + script refs. | VS Code |
 | 3. Test locally (15 min) | Drop folder into ~/.claude/skills/. Invoke via Claude Code. Build 20-pair golden set in Promptfoo. Block PR on >2% regression. | Claude Code CLI + Promptfoo |
 
-**Market signal:** Model performance is compressing (<3% across Opus 4.7 / GPT-5.5 / Gemini 3.1 Pro / Qwen3.6+). The next $50B+ in agentic value is captured by distribution and skills ecosystem and governance evidence -- not by another point on a benchmark. Anthropic plays the open-protocol / npm card.
+**Market signal:** Model performance is compressing (<3% across Opus 4.7 / GPT-5.5 / Gemini 3.1 Pro / Qwen3.6+). The next $50B+ in agentic value is captured by distribution and skills ecosystem and governance evidence -- not by another point on a benchmark. Anthropic plays the open-protocol / npm card. Google plays the OS-surface card via Gemini Spark + Android Halo. Microsoft plays the enterprise control-plane card via Agent 365. The asymmetry window closes in 2027 when revenue shares formalise. Build skills now while the marketplaces are still hungry for inventory.
 
 **Practical takeaways:**
 - <b>Ship one skill this weekend.</b> Pick a workflow you do 3 — <b>Ship one skill this weekend.</b> Pick a workflow you do 3+ times a week. SKILL.md it. Test on a 20-pair golden set in Promptfoo. Total time: 90 minutes. Repeat next weekend with workflow #2. <b>Frontmatter discipline = governance.</b> Treat the allowed-tools list as the trust boundary. Scope every OAuth token to exactly that list. Reject any tool call outside it at host level -- not at app level. <b>Wrap as MCP + register on A2A from day one.</b> Same SKILL.md body becomes the MCP server's system prompt (~60 lines FastMCP). DID-signed Agent Card on Linux Foundation a2a-registry is your supply-chain defence. <b>Publish to all four channels in parallel.</b> Anthropic Skills (free) + GPT Store (70/30) + Fluora (per-call x402) + Gemini Spark Skills (developer console). One artefact, four revenue surfaces. <b>Wire OTEL gen_ai spans before publishing.</b> Phoenix or Langfuse on day one. Galileo Signals or LangSmith Insights Agent finds new failure modes weekly and auto-promotes them into the golden set -- closed self-healing loop from <b>Tomorrow:</b> Day 62 (2026-05-24): The Agent Marketplace Wars -- economics, take rates, and discovery algorithms across Anthropic Skills / GPT Store / Fluora / Gemini Spark Skills / Microsoft Agent Store. Which channel actually pays out, which captures the long tail, and where to bet your second skill.
@@ -9259,8 +9201,6 @@ Skills are unbundling SaaS pricing. Four models now have proof-points in product
 
 ## Market Signal
 
-Skills are the protocol layer for the agent economy that MCP was for tool-use. The Stanford AI Index 2026 shows model performance compressing (frontier gap < 3% across Opus 4.7 / GPT-5.5 / Gemini 3.1 Pro / Qwen3.6+), which means the next $50B+ in agentic value is captured by whoever owns distribution + skills ecosystem + governance evidence. Anthropic chose the npm/open-protocol playbook (own the standard, monetise the runtime), Google chose the OS-surface playbook (Gemini Spark Skills inside 3B+ devices), Microsoft chose the enterprise control-plane playbook (Agent 365 as central skill registry). Indie skill-builders win on all three channels with one SKILL.md folder -- the asymmetry of this moment will not last past 2027 when revenue shares formalise and marketplace gatekeeping begins.
-
 | Headline | What shipped | Why it matters |
 |---|---|---|
 | Google Gemini Spark + 3.5 Flash | May 19 I/O: Spark agent with Skills system, Gemini 3.5 Flash at ~1/3 frontier cost, Ultra subscribers first | Brings SKILL.md format to 3B+ Android + Workspace users -- the consumer-scale channel |
@@ -9270,7 +9210,7 @@ Skills are the protocol layer for the agent economy that MCP was for tool-use. T
 | OutSystems agentic-AI survey | May 21: 96% enterprises using agents, 97% exploring system-wide, 94% concerned about sprawl | Validates need for central skills registry + governance (Microsoft Agent 365 pattern) |
 | EU AI Act T-72 days enforcement | Aug 2 2026 locked; 78% enterprises NOT on track per Secure Privacy | Skills marketplaces become Annex III evidence -- provenance + audit per skill load mandatory |
 
-**Market signal:** Skills are the protocol layer for the agent economy that MCP was for tool-use. The Stanford AI Index 2026 shows model performance compressing (frontier gap < 3% across Opus 4.7 / GPT-5.5 / Gemini 3.1 Pro / Qwen3.6+), which means the next $50B+ in agentic value is captured by whoever owns distribution + skills ecosystem + governance evidence. Anthropic chose the npm/open-protocol playbook (own the standard, monetise the runtime), Google chose the OS-surface playbook (Gemini Spark Skills inside 3B+ devices), Microsoft chose the enterprise control-plane playbook (Agent 365 as central skill registry).
+**Market signal:** Skills are the protocol layer for the agent economy that MCP was for tool-use. The Stanford AI Index 2026 shows model performance compressing (frontier gap < 3% across Opus 4.7 / GPT-5.5 / Gemini 3.1 Pro / Qwen3.6+), which means the next $50B+ in agentic value is captured by whoever owns distribution + skills ecosystem + governance evidence. Anthropic chose the npm/open-protocol playbook (own the standard, monetise the runtime), Google chose the OS-surface playbook (Gemini Spark Skills inside 3B+ devices), Microsoft chose the enterprise control-plane playbook (Agent 365 as central skill registry). Indie skill-builders win on all three channels with one SKILL.md folder -- the asymmetry of this moment will not last past 2027 when revenue shares formalise and marketplace gatekeeping begins.
 
 **Practical takeaways:**
 - 1 Pick one narrow workflow you already do weekly Skills win  — 1 Pick one narrow workflow you already do weekly Skills win on specificity. 'Reconcile vendor invoices to bank feed' ships in 50 lines; 'be a better assistant' never ships. Pick the tightest possible scope where you can write a 20-pair golden set in an 2 Write SKILL.md, then mirror to MCP + A2A -- one artefact, four channels Author once in SKILL.md format. Wrap as MCP server (FastMCP, ~60 lines). Register on A2A. Publish to Anthropic Skills repo, GPT Store, Fluora MCP marketplace, and Gemini Spark Skills. Same artefact reaches every agent runtime. 3 Price for outcomes, not seats -- per-call x402 on day one Wire Fluora + x402 USDC on Base. Sub-cent transactions, no signup friction, settles in ~200ms. Adds OTEL gen_ai cost telemetry by default and converts skill usage into provable revenue for the
@@ -9320,11 +9260,7 @@ Google Antigravity 2.0 (May 2026): Google detaches the agent from the IDE comple
 
 Two days after I/O 2026 Google quietly shipped Antigravity 2.0 -- and the AI dev community noticed instantly. Where the original Antigravity was an agent-first IDE built on VS Code, the 2.0 release detaches the agent from the editor completely: desktop app, CLI, SDK, Managed Agents in the Gemini API, and enterprise deployment through the Gemini Enterprise Agent Platform. The killer new primitive is dynamic subagents -- the primary agent spawns focused mini-agents for sub-tasks that operate independently in isolated context windows and report back. This is the Three-Agent Harness pattern (Day 23) made a first-class product feature, and a direct rival to Claude Code's Auto Mode + Routines + Agent View stack. Pricing: included in Google AI Pro, $100/mo Ultra (5× Pro), $200/mo Ultra Premium (20× Pro). Why it matters: Antigravity proves Google is willing to compete on the developer + skills layer too -- not just the consumer OS surface. Spark + Antigravity = Google playing offense on both sides of the agentic stack at once. One open question: no team pricing, no product-specific compliance docs, so Annex III evidence still has to be built on top.
 
-## MARKET SIGNAL
-
-The 2026 enterprise agentic buyer's market just split cleanly into four lanes: horizontal control plane (Microsoft Agent 365 wins by default for M365 shops), workflow + skills layer (Anthropic Cowork owns the open Skills standard and the regulated-vertical agent templates), regulated-industry on-prem (OpenAI + Dell AI Factory is now the only credible hyperscaler play for data-residency buyers), and CRM-resident vertical (Salesforce Agentforce 3.0 inside the Salesforce gravity well). Google Antigravity 2.0 is the wildcard -- credible on speed and feature breadth, but its lack of product-specific compliance documentation is a real Annex III blocker with 73 days left. The smart buyer's move is no longer 'pick one' -- it is 'pick the control plane, then pick the value layer, then pick the regulated-industry tier'. Per-seat pricing is collapsing into per-task and per-outcome at the same time.
-
-**Market signal:** The 2026 enterprise agentic buyer's market just split cleanly into four lanes: horizontal control plane (Microsoft Agent 365 wins by default for M365 shops), workflow + skills layer (Anthropic Cowork owns the open Skills standard and the regulated-vertical agent templates), regulated-industry on-prem (OpenAI + Dell AI Factory is now the only credible hyperscaler play for data-residency buyers), and CRM-resident vertical (Salesforce Agentforce 3.0 inside the Salesforce gravity well). Google Antigravity 2.0 is the wildcard -- credible on speed and feature breadth, but its lack of product-specific compliance documentation is a real Annex III blocker with 73 days left. The smart buyer's move is no longer 'pick one' -- it is 'pick the control plane, then pick the value layer, then pick the regulated-industry tier'.
+**Market signal:** The 2026 enterprise agentic buyer's market just split cleanly into four lanes: horizontal control plane (Microsoft Agent 365 wins by default for M365 shops), workflow + skills layer (Anthropic Cowork owns the open Skills standard and the regulated-vertical agent templates), regulated-industry on-prem (OpenAI + Dell AI Factory is now the only credible hyperscaler play for data-residency buyers), and CRM-resident vertical (Salesforce Agentforce 3.0 inside the Salesforce gravity well). Google Antigravity 2.0 is the wildcard -- credible on speed and feature breadth, but its lack of product-specific compliance documentation is a real Annex III blocker with 73 days left. The smart buyer's move is no longer 'pick one' -- it is 'pick the control plane, then pick the value layer, then pick the regulated-industry tier'. Per-seat pricing is collapsing into per-task and per-outcome at the same time.
 
 **Practical takeaways:**
 - Pick the control plane first -- Agent 365 vs Layer a regulat — Pick the control plane first -- Agent 365 vs Layer a regulated-industry tier if you have
@@ -9366,11 +9302,7 @@ OpenAI + Dell Codex on-prem (May 19): first explicit hybrid + on-premises distri
 
 Claude Code Auto Mode + Routines by Anthropic Anthropic's response to Gemini Spark didn't come as a single product launch -- it came as a layered stack landed in the two weeks leading up to I/O. Claude Code Auto Mode (the 'safer way to skip permissions') lets developers run multi-step coding workflows with reduced manual intervention while layered safety mechanisms (input filtering, action evaluation, two-stage classification) keep human approval gates for sensitive operations. Routines wires Claude Code to GitHub webhooks so sessions auto-launch on matching PRs and Claude follows the whole lifecycle (comments, CI failures, re-runs). Agent View lets you manage many parallel agents from one CLI. The new Advisor tool runs alongside existing tools so an agent can search the web, execute code and consult Opus inside the same loop. Why it's viral this week: it is the first credible developer-side answer to Spark's 'always-on agent' promise -- with the trust architecture (T1-T4 kill switch, OTEL spans, approval gates) baked in from day zero. Combined with Anthropic's open Agent Skills standard (adopted by Microsoft, OpenAI, Atlassian, Figma, Canva, Stripe, Notion, Zapier), this is Anthropic betting that distribution belongs to whoever owns the skills layer -- not whoever owns the OS surface.
 
-## MARKET SIGNAL
-
-The agentic AI war just split into four parallel races with different finish lines. Google is racing for the consumer OS surface (Spark + Intelligence + Aluminium OS). Anthropic is racing for the developer + skills layer (Code Auto Mode + Skills open standard). OpenAI is racing for the regulated enterprise (Codex + Dell + AI Factory). Apple is racing for the privacy-first iPhone moment (Siri 2.0 at WWDC June 8). Meta is racing for the social graph + AR glasses (Muse Spark + Hatch + Wang). The competitive moat has officially shifted from model performance (Gemini 3.x » GPT-5.5 » Claude Opus 4.7 » Mythos-restricted within ±5%) to distribution × skills ecosystem × governance evidence. For everyone else, the question becomes: which of the four channels do you ship into first, and how do you avoid
-
-**Market signal:** The agentic AI war just split into four parallel races with different finish lines. Google is racing for the consumer OS surface (Spark + Intelligence + Aluminium OS). Anthropic is racing for the developer + skills layer (Code Auto Mode + Skills open standard).
+**Market signal:** The agentic AI war just split into four parallel races with different finish lines. Google is racing for the consumer OS surface (Spark + Intelligence + Aluminium OS). Anthropic is racing for the developer + skills layer (Code Auto Mode + Skills open standard). OpenAI is racing for the regulated enterprise (Codex + Dell + AI Factory). Apple is racing for the privacy-first iPhone moment (Siri 2.0 at WWDC June 8). Meta is racing for the social graph + AR glasses (Muse Spark + Hatch + Wang). The competitive moat has officially shifted from model performance (Gemini 3.x » GPT-5.5 » Claude Opus 4.7 » Mythos-restricted within ±5%) to distribution × skills ecosystem × governance evidence. For everyone else, the question becomes: which of the four channels do you ship into first, and how do you avoid
 
 **Practical takeaways:**
 - Pick your distribution channel before you Ship the Article 5 — Pick your distribution channel before you Ship the Article 50 + Annex III evidence
@@ -9406,15 +9338,11 @@ Pattern map: Spark sits at L4 on the AG-UI maturity curve from Day 48 (generativ
 
 If you build for Android or web -- Gemini Intelligence is a discoverability surface. Apps that expose MCP entry points + AG-UI events become first-class citizens of the agentic Android layer. Apps that don't risk becoming invisible -- the same dynamic that hit websites that didn't index for Search in 2005. If you build for enterprise -- the Big Tech pivot accelerates buying decisions. CIOs evaluating agentic AI in Q1 will move to procurement now that Spark, Microsoft Agent 365, and Salesforce Agentforce 3.0 are all production-ready. The 90-day compliance sprint to August 2 (EU AI Act Annex III) is now critical. If you build OSS or work in agentic AI -- the OpenClaw + Hermes + Superpowers pattern is now validated at hyperscaler scale. Skills as portable, signed, auditable units are the lingua franca. The Agent SRE (Day 49) and AI Governance Lead (Day 37) roles just got more critical -- every Spark deployment in the enterprise needs identity, audit, kill switches, and EU AI Act evidence.
 
-## MARKET SIGNAL
-
-Google's Gemini Spark + Intelligence launch at I/O 2026 marks the formal start of the Big Tech agentic pivot -- agentic AI moves from developer tool to OS surface for 3B+ users. Combined with Microsoft Agent 365 GA (Day 39), Apple Intelligence multi-provider shift (Day 50), and Meta Hatch testing (Day 48), all four hyperscalers are now committed to agents as the default UX layer. The competitive moat shifts from model performance (plateauing around GPT-5.5 / Opus 4.7 / Mythos-restricted) to distribution + skills ecosystem + governance evidence. Anthropic and OpenAI counter-launches expected within 90 days. EU AI Act enforcement T-75 days (Aug 2) is no longer a regulatory burden -- it is the differentiator that decides which agent ships in regulated markets.
-
 ## Viral App of the Day
 
 Officially unveiled at I/O 2026, Spark is Google's everyday agentic assistant inside the Gemini app: an 'always-on' agent that clears your inbox, drafts meeting briefs, generates personalised news digests, and runs scheduled tasks proactively (not just on demand). Users can create reusable 'skills' (e.g. 'my weekly report format') that Spark applies across Gmail, Drive, Docs, Calendar, Maps, and Chrome. Unlike Claude Cowork or OpenClaw it does not get full computer access -- it operates inside the Google graph and the browser, which is its trust boundary. Spark is the consumer-scale answer to OpenClaw's 302K-star OSS wave and Claude Cowork's
 
-**Market signal:** Google's Gemini Spark + Intelligence launch at I/O 2026 marks the formal start of the Big Tech agentic pivot -- agentic AI moves from developer tool to OS surface for 3B+ users. Combined with Microsoft Agent 365 GA (Day 39), Apple Intelligence multi-provider shift (Day 50), and Meta Hatch testing (Day 48), all four hyperscalers are now committed to agents as the default UX layer. The competitive moat shifts from model performance (plateauing around GPT-5.5 / Opus 4.7 / Mythos-restricted) to distribution + skills ecosystem + governance evidence.
+**Market signal:** Google's Gemini Spark + Intelligence launch at I/O 2026 marks the formal start of the Big Tech agentic pivot -- agentic AI moves from developer tool to OS surface for 3B+ users. Combined with Microsoft Agent 365 GA (Day 39), Apple Intelligence multi-provider shift (Day 50), and Meta Hatch testing (Day 48), all four hyperscalers are now committed to agents as the default UX layer. The competitive moat shifts from model performance (plateauing around GPT-5.5 / Opus 4.7 / Mythos-restricted) to distribution + skills ecosystem + governance evidence. Anthropic and OpenAI counter-launches expected within 90 days. EU AI Act enforcement T-75 days (Aug 2) is no longer a regulatory burden -- it is the differentiator that decides which agent ships in regulated markets.
 
 **Practical takeaways:**
 - The keynote was at 10am PT today. The two-day event continue — The keynote was at 10am PT today. The two-day event continues May 20. Watch the Spark + Intelligence demos directly -- leaked screenshots are useful but the keynote defines the actual product surface, pricing
@@ -9424,7 +9352,7 @@ Officially unveiled at I/O 2026, Spark is Google's everyday agentic assistant in
 
 # Day 60: Agent Skills & the Skills Economy
 
-Date: May 18, 2026 · Author: Varun Singla · URL: https://varunsingla.com/entries/2026-05-18.html · Themes: Industry Verticals, Foundations & Protocols
+Date: May 18, 2026 · Author: Varun Singla · URL: https://varunsingla.com/entries/2026-05-18.html · Themes: Foundations & Protocols, Enterprise & Strategy
 
 Day 55 nailed down the data plane for agents (streaming MVs, MCP, vectors-in-SQL). Today we tackle the behaviour plane.
 
@@ -9469,8 +9397,6 @@ The standards body response is already moving. Three controls matter: EU AI Act 
 
 ## MARKET SIGNAL -- Skills become enterprise SKUs
 
-Anthropic's 10 Finance Agent templates (May 5) and Claude for Small Business (May 13) are Skills sold as products -- the first model-vendor SKUs where the IP is the behaviour, not the model. Notion's Developer Platform (May 13) lets you publish External Agents into 1M+ customer workspaces -- distribution is now a feature of the workspace. Fiserv agentOS (May 14) ships an agentic OS for banking with co-developed Skills from six financial institutions. Cognizant Secure AI Services (May 7) bundles Snyk Evo + SPIRE-style identity + NIST CAISI audit into a single SI deal -- the first "Skill-aware" SI service. Read together: the Skill is now the unit of agent IP, distribution and compliance. Model vendors who tried to sell raw model access in 2025 are now
-
 DeepSeek-TUI (github.com/Hmbown/DeepSeek-TUI) by Hunter Bown is the unexpected story of the week -- and the cleanest illustration of why Skills + cheap frontier models break the moat of every $20/mo coding agent. Bown isn't a professional developer (B.A. and M.Ed. in music education, currently a JD student at SMU). He wrote a Rust-native terminal coding agent that wraps DeepSeek V4's 1M-token context, reads files, edits code, runs shells, searches the web, spawns parallel sub-agents, and exposes Skills via SKILL.md -- at roughly one-tenth the cost of Claude Code. Why it matters: DeepSeek-TUI is GitHub Weekly Trending #1 with 24K+ stars, gained 2,434 stars in a single day (May 6), and is built entirely on the same SKILL.md spec as Claude Code. Bown went viral after a post on X explicitly inviting Chinese developers to collaborate. The lesson: the moment a behaviour package (Skill) is portable across runtimes, the moat moves from model → distribution fi cost. DeepSeek-TUI is what "frontier model + portable Skills + open Rust harness" looks like when one person with a music degree ships it. Expect 20 more of these by end of Q3 2026.
 
 Agent Marketplaces & the Skill Economy 2.0. If today was about the packaging unit, tomorrow is about the marketplace mechanics: monetisation (free vs paid Skills), discovery (semantic search vs leaderboards), trust scoring, vendor-neutral identity for Skill publishers, and where the next $1B company in this space actually lives. We'll cover the Vercel skills.sh roadmap, Anthropic's enterprise Skill SKU strategy, Microsoft APM as the "package-lock" layer, and what happens when Skills meet x402 payments (an agent buying a Skill from another agent at runtime).
@@ -9483,7 +9409,7 @@ Agent Marketplaces & the Skill Economy 2.0. If today was about the packaging uni
 | Day 6 -- Wire OTEL gen_ai spans. | Every Skill load + every tool call inside a Skill gets a span. Attributes: skill.name, skill.version, skill.content_hash, skill.publisher, tool.name. This is your Annex III audit trail and your Day-50 online eval substrate, free. |
 | Day 7 -- Ship a kill switch + revocation hook. | Day-54 identity work: each Skill executes under a scoped SPIFFE SVID. Revoking the SVID kills every running invocation of that Skill within £1s (T1-T2 kill switch). This is what "governable behaviour" actually means in production. |
 
-**Market signal:** -- Skills become enterprise SKUs Anthropic's 10 Finance Agent templates (May 5) and Claude for Small Business (May 13) are Skills sold as products -- the first model-vendor SKUs where the IP is the behaviour, not the model. Notion's Developer Platform (May 13) lets you publish External Agents into 1M+ customer workspaces -- distribution is now a feature of the workspace. Fiserv agentOS (May 14) ships an agentic OS for banking with co-developed Skills from six financial institutions.
+**Market signal:** -- Skills become enterprise SKUs Anthropic's 10 Finance Agent templates (May 5) and Claude for Small Business (May 13) are Skills sold as products -- the first model-vendor SKUs where the IP is the behaviour, not the model. Notion's Developer Platform (May 13) lets you publish External Agents into 1M+ customer workspaces -- distribution is now a feature of the workspace. Fiserv agentOS (May 14) ships an agentic OS for banking with co-developed Skills from six financial institutions. Cognizant Secure AI Services (May 7) bundles Snyk Evo + SPIRE-style identity + NIST CAISI audit into a single SI deal -- the first "Skill-aware" SI service. Read together: the Skill is now the unit of agent IP, distribution and compliance. Model vendors who tried to sell raw model access in 2025 are now
 
 **Practical takeaways:**
 - Practical takeaways -- a 7-day Skills playbook
@@ -9525,15 +9451,11 @@ Confluent Streaming Agents (GA in Confluent Cloud for Apache Flink) is the event
 
 EU AI Act Annex III enforces Aug 2 (T-77 days). The audit checklist mandates reconstructable reasoning: what the agent did, why, with what data, in what order. A streaming substrate makes this near-trivial -- every materialised view update, every MCP tool call, every vector lookup is already a logged event with timestamp + SVID + nonce. Compare to a batch-ETL world where evidence is reconstructed retroactively from logs in three different systems, often inconsistently. The streaming agent stack converts an audit nightmare into a Kafka topic. Mapping back to Day 54 (SPIFFE + KYA): each agent SVID becomes the natural scope key for its streaming materialised views and MCP server namespaces. Per-agent isolation at the data plane, not just the app plane. Combined with Microsoft Agent 365 (control plane), AWS Bedrock AgentCore Payments (commerce) and Confluent / RisingWave / Genie Code (data), the 2026 enterprise agent operating model is now complete. Expectation for Day 56+: data-plane primitives become the locus of competitive differentiation as model performance plateaus and the moat shifts to context freshness + retrieval
 
-## MARKET SIGNAL
-
-Anthropic in talks for a $30-50B raise at a ~$950B valuation; PwC announces firm-wide Claude deployment for client work; Anthropic + Gates Foundation form a $200M partnership. OpenAI grants EU access to GPT-5.5-Cyber in limited preview while Anthropic still withholds Mythos. US CAISI now pre-tests Microsoft, Google and xAI models before launch. Translation: data-plane and model-plane consolidation is happening at the same time -- pick your governance substrate before the regulator
-
 ## Viral App of the Week
 
 Open-source desktop AI agent (Rust + Tauri, MIT, github.com/tinyhumansai/openhuman, 5.6K+ GitHub stars in days, #1 GitHub Trending May 13-16). Inverts the playbook: instead of waiting for your first prompt, it pre-loads a 1B-token Memory Tree from 118+ services (Gmail, GitHub, Slack, Notion, Stripe, Calendar, Drive, Linear, Jira) via one-click OAuth. A 'subconscious loop' runs without user input -- reads your to-dos and recent memory, decides what to act on next. A desktop mascot can join Google Meet as a separate participant, transcribe into the Memory Tree, speak back. All local-first: SQLite + Markdown Obsidian wiki, no data egress. First credible consumer surface for the 'agent that knows you on day one' pattern.
 
-**Market signal:** Anthropic in talks for a $30-50B raise at a ~$950B valuation; PwC announces firm-wide Claude deployment for client work; Anthropic + Gates Foundation form a $200M partnership. OpenAI grants EU access to GPT-5.5-Cyber in limited preview while Anthropic still withholds Mythos. US CAISI now pre-tests Microsoft, Google and xAI models before launch.
+**Market signal:** Anthropic in talks for a $30-50B raise at a ~$950B valuation; PwC announces firm-wide Claude deployment for client work; Anthropic + Gates Foundation form a $200M partnership. OpenAI grants EU access to GPT-5.5-Cyber in limited preview while Anthropic still withholds Mythos. US CAISI now pre-tests Microsoft, Google and xAI models before launch. Translation: data-plane and model-plane consolidation is happening at the same time -- pick your governance substrate before the regulator
 
 **Practical takeaways:**
 - Day 56 (2026-05-18): Agent Skills & the Skills Economy -- ho — Day 56 (2026-05-18): Agent Skills & the Skills Economy -- how reusable skill packages (APM by Microsoft, Claude Skills, Superpowers, Hermes Agent skill docs, MMX-CLI command groups) are becoming the npm of the agent era, and what it means for vendor lock-in, governance, and IP.
@@ -9606,9 +9528,6 @@ OwlTing's OwlPay Agent Wallet launched May 4 and went viral across the agent-eco
 | Pilot SPIRE this weekend | Helm chart, 120s SVID TTL, one non-critical fleet. The hardest part is killing the static API key -- the tech itself is mature. |
 | Wire kill switch to identity revocation | If your kill switch is a button in a dashboard, it is not a kill switch. Wire it to revoke the SVID via SPIRE API and prove sub-second propagation in a chaos drill. |
 | Add the four KYA pillars to your OTEL spans | agent_identity (SVID hash), authority (OAuth scope), behavioural (anomaly score), audit (WORM log pointer). These are the Annex III evidence fields regulators will ask for. |
-
-**Practical takeaways:**
-- Tomorrow: Day 55: Agent-Native Data Infrastructure -- Conflu — Tomorrow: Day 55: Agent-Native Data Infrastructure -- Confluent, RisingWave, Databricks Genie, and event-driven agentic pipelines replacing batch ETL.
 
 **What we're watching:** Day 55: Agent-Native Data Infrastructure -- Confluent, RisingWave, Databricks Genie, and event-driven agentic pipelines replacing batch ETL.
 
@@ -9796,8 +9715,6 @@ Disclosure 1 - Brave: Unseeable prompt injections in screenshots Brave's securit
 | Take Treat this like the early 2010s mobile fork - native (A2UI) vs web (MCP Apps) vs framework-agnostic event protocol (AG-UI). CopilotKit's $27M Series A (Glilot Capital, NFX, SignalFire) is the strongest bet that AG-UI bridges all three: it already ships A2UI + MCP Apps + Open-JSON-UI as first-class examples. Default for new builds: AG-UI as the event substrate, A2UI for the component catalog, MCP Apps when you need to embed a partner web property inline. |  |
 |---|---|
 | 3 | Anatomy of an agentic browser |
-
-**Market signal:** Cursor + Claude Code already account for 95.6% of all developer AI agent traffic (Mintlify, Mar 26). Comet + Atlas + Remy + Hatch are the consumer-side version of that same lock-in race - whoever owns the default browsing surface owns the agent's eyes, hands and wallet for the next decade. On Day 48 we mapped the AG-UI maturity curve (L1 chat-only -> L5 multi-agent UX).
 
 **Practical takeaways:**
 - Practical takeaways for builders
@@ -10065,9 +9982,7 @@ Gartner now lists Agent SRE as the fastest-growing platform engineering role. Sa
 | Days 15-21 · Burn-rate alerts | Fast / slow / catastrophic policies with Argo Rollouts auto-rollback hooks. Wire to PagerDuty + Slack. | Add kill-switch T1-T4 hooks: app freeze → egress block → infra revoke → memory snapshot. |
 | Days 22-30 · Drills + governance | Run 2 chaos drills (prompt injection + MCP outage). Generate first EU AI Act Annex III audit pack from OTEL traces. | Promote findings into golden dataset (Day 45 pattern). Self-healing data loop established. |
 
-## Market signal: Microsoft Agent 365 (GA May 1) bundles agent SLOs, burn-rate alerts and kill-switches
-
-into M365 E7 -- the first new enterprise licence tier since E5 (2015). Salesforce Agentforce 3.0 ships Self-Healing Workflows. Galileo, Braintrust ($80M raise) and Arize Phoenix all shipped Agent SLO dashboards in the last 60 days. The AI governance market crossed $1B (Gartner). Reliability is officially
+## Market signal
 
 OpenClaw crosses 300K GitHub stars -- fastest-growing OSS project ever Peter Steinberger's OpenClaw -- the local-first personal AI assistant that runs entirely on your own devices and connects 50+ integrations (WhatsApp, Telegram, Slack, Discord, Signal, iMessage, Notion, Linear) -- blew past 302K GitHub stars in early May 2026, making it the fastest-growing open-source project in GitHub history. From 9K stars to 60K in four days in late January, then 210K by April, now 302K. Reliability lesson: at this growth rate, OpenClaw is a Day-49 case study in agent SRE for consumer-scale OSS. Forks routinely ship with no kill switch, no audit trail, no scoped SPIFFE-style identity. That is the production reliability crisis Microsoft Agent 365 + apm.yml + per-agent SLOs were designed to solve. If you fork it, ship it with the 4 SLO categories
 
@@ -10092,7 +10007,7 @@ context (extends Day 39 Context Engineering).
 | Days 15-21 · Burn-rate alerts | Fast / slow / catastrophic policies with Argo Rollouts auto-rollback hooks. Wire to PagerDuty + Slack. | Add kill-switch T1-T4 hooks: app freeze → egress block → infra revoke → memory snapshot. |
 | Days 22-30 · Drills + governance | Run 2 chaos drills (prompt injection + MCP outage). Generate first EU AI Act Annex III audit pack from OTEL traces. | Promote findings into golden dataset (Day 45 pattern). Self-healing data loop established. |
 
-**Market signal:** Market signal: Microsoft Agent 365 (GA May 1) bundles agent SLOs, burn-rate alerts and kill-switches into M365 E7 -- the first new enterprise licence tier since E5 (2015). Salesforce Agentforce 3.0 ships Self-Healing Workflows. Galileo, Braintrust ($80M raise) and Arize Phoenix all shipped Agent SLO dashboards in the last 60 days.
+**Market signal:** Market signal: Microsoft Agent 365 (GA May 1) bundles agent SLOs, burn-rate alerts and kill-switches into M365 E7 -- the first new enterprise licence tier since E5 (2015). Salesforce Agentforce 3.0 ships Self-Healing Workflows. Galileo, Braintrust ($80M raise) and Arize Phoenix all shipped Agent SLO dashboards in the last 60 days. The AI governance market crossed $1B (Gartner). Reliability is officially
 
 **Practical takeaways:**
 - Don't boil the ocean. Start with Cost-per-Task SLO for your  — Don't boil the ocean. Start with Cost-per-Task SLO for your highest-traffic agent -- easiest to measure, fastest payback. Wire OTEL gen_ai spans, set p95 baseline, fire an alert at 2× baseline. Add burn-rate alerts before adding capabilities Every new tool you give an agent is a new way the budget can burn. Ship the alert with the tool -- pre-commit hook in CI checks every PR touching the MCP allowlist also updates the SLO config. Treat error budgets as live policy, not quarterly review Microsoft Agent 365 and Salesforce Agentforce 3.0 auto-restrict capability when safety SLI drops. Implement the same pattern in-house with LangGraph circuit breakers + budget-burn hooks → read-only fallback mode.
@@ -10182,19 +10097,19 @@ Codename for Google's new agentic super-assistant (CNBC, May 8 2026). Runs nativ
 - Adopt AG-UI now even if you don't need generative UI yet. AG-UI is the de-facto standard as of this week (Microsoft + LangGraph speak it). Stay protocol-compliant so you can swap front-ends later
 - Pick CopilotKit for the React surface unless you have a 1.2M weekly downloads, native LangGraph + Microsoft Agent Framework out of the box. useCoAgent is the closest thing to a React-Query
 - Make Article 50 trust UX a hard launch gate. T-83 days. Disclosure + watermarking + memory ID surfacing + difference between shipping in Q3 and a €35M / 7% GTR fine.
-- Domain-tune your tool approval defaults. Cursor 3 backlash is the lesson. Auto-approve writes inside finance, legal, healthcare, or HR is malpractice. Set defaults per Tomorrow: Day 49 -- Agent Reliability Engineering: SLOs, Error
+- Domain-tune your tool approval defaults. Cursor 3 backlash is the lesson. Auto-approve writes inside finance, legal, healthcare, or HR is malpractice. Set defaults per
 
 **Practical takeaways:**
 - Most production agents in 2026 are stuck at L2 (tool transcr — Most production agents in 2026 are stuck at L2 (tool transcript). Wiring AG-UI TOOL_CALL_START gates to a one-line approval modal moves you to L3 and closes the Comet-style governance gap in an afternoon.
 - AG-UI is the de-facto standard as of this week (Microsoft +  — AG-UI is the de-facto standard as of this week (Microsoft + LangGraph + CrewAI + Mastra + ADK + CopilotKit all speak it). Stay protocol-compliant so you can swap front-ends later without rewriting the agent.
 - 1.2M weekly downloads, native LangGraph + Microsoft Agent Fr — 1.2M weekly downloads, native LangGraph + Microsoft Agent Framework integration, ships the L3 + L4 patterns out of the box. useCoAgent is the closest thing to a React-Query for agents.
 - T-83 days. Disclosure + watermarking + memory ID surfacing + — T-83 days. Disclosure + watermarking + memory ID surfacing + kill switch are not nice-to-haves -- they are the difference between shipping in Q3 and a €35M / 7% GTR fine.
-- Cursor 3 backlash is the lesson. Auto-approve writes inside  — Cursor 3 backlash is the lesson. Auto-approve writes inside a code worktree is fine. Auto-approve writes in finance, legal, healthcare, or HR is malpractice. Set defaults per agent role, not per framework. Tomorrow: Day 49 -- Agent Reliability Engineering: SLOs, Error Budgets & The Rise of the Agent SRE
+- Cursor 3 backlash is the lesson. Auto-approve writes inside  — Cursor 3 backlash is the lesson. Auto-approve writes inside a code worktree is fine. Auto-approve writes in finance, legal, healthcare, or HR is malpractice. Set defaults per agent role, not per framework.
 - Audit your agents against the L1-L5 maturity curve. Most pro — Audit your agents against the L1-L5 maturity curve. Most production agents in 2026 are stuck at L2 (tool transcript). one-line approval modal moves you to L3 and closes the Comet-style
 - Adopt AG-UI now even if you don't need generative UI yet. AG — Adopt AG-UI now even if you don't need generative UI yet. AG-UI is the de-facto standard as of this week (Microsoft + LangGraph speak it). Stay protocol-compliant so you can swap front-ends later
 - Pick CopilotKit for the React surface unless you have a 1.2M — Pick CopilotKit for the React surface unless you have a 1.2M weekly downloads, native LangGraph + Microsoft Agent Framework out of the box. useCoAgent is the closest thing to a React-Query
 - Make Article 50 trust UX a hard launch gate. T-83 days. Disc — Make Article 50 trust UX a hard launch gate. T-83 days. Disclosure + watermarking + memory ID surfacing + difference between shipping in Q3 and a €35M / 7% GTR fine.
-- Domain-tune your tool approval defaults. Cursor 3 backlash i — Domain-tune your tool approval defaults. Cursor 3 backlash is the lesson. Auto-approve writes inside finance, legal, healthcare, or HR is malpractice. Set defaults per Tomorrow: Day 49 -- Agent Reliability Engineering: SLOs, Error
+- Domain-tune your tool approval defaults. Cursor 3 backlash i — Domain-tune your tool approval defaults. Cursor 3 backlash is the lesson. Auto-approve writes inside finance, legal, healthcare, or HR is malpractice. Set defaults per
 
 **What we're watching:** Day 49 -- Agent Reliability Engineering: SLOs, Error Budgets & The Rise of the Agent SRE
 
@@ -10399,8 +10314,6 @@ of Annex III evidence for high-risk agent deployments.
 **Practical takeaways:**
 - PRACTICAL TAKEAWAYS Add trajectory evals this week. If you only score outputs to — PRACTICAL TAKEAWAYS Add trajectory evals this week. If you only score outputs today, you're missing 20-40% of failures. Pick LangSmith (LangGraph), Braintrust (eval-as-code) or Vertex AI (Gemini) and add trajectory_exact_match + trajectory_precision to your CI. Wire online evals on sampled prod traffic. Run a cheap LLM judge async on 5-10% of prod traces. This is your early-warning system for drift. Galileo, LangSmith and Braintrust all support this pattern with one config block. Build a golden dataset of 200-500 trajectories -- not outputs. Capture the full tool-call sequence, not just the final answer. Curate from real production traces, never synthetic. Promote new prod failures into it weekly -- the dataset self-heals. Treat Galileo Signals / LangSmith Insights Agent as your meta-eval. These auto-cluster failure modes from millions of traces. They find the bugs your evals miss. Even if you don't pay for them, the pattern (cluster traces by embedding → label clusters by LLM fi prescribe fixes) is easy to replicate in 200 lines of Python. Make every agent CI/CD pipeline a 5-stage gate. Lint → unit evals (trajectory + output) fi integration in Docker sandbox → shadow on prod traffic copy → canary with auto-rollback on online-eval drop. This is the standard for EU AI Act Annex III evidence by Aug 2 2026.
 - Tomorrow (Day 46): The Anthropic Finance Agents deep dive -- what each of the 10 — Tomorrow (Day 46): The Anthropic Finance Agents deep dive -- what each of the 10 agents actually does, the Moody's MCP integration, the Microsoft 365 architecture, and what it means for the Big 4 / consulting model.
-
-**What we're watching:** PRACTICAL TAKEAWAYS Add trajectory evals this week. If you only score outputs today, you're missing 20-40% of failures. Pick LangSmith (LangGraph), Braintrust (eval-as-code) or Vertex AI (Gemini) and add trajectory_exact_match + trajectory_precision to your CI. Wire online evals on sampled prod traf
 
 ---
 
@@ -10774,7 +10687,7 @@ Date: May 1, 2026 · Author: Varun Singla · URL: https://varunsingla.com/entrie
 As AI agents become production reality, prompt engineering alone is no longer enough.
 
 **Viral / open-source spotlight: Microsoft Agent 365 -- Enterprise's First Native Agent Control Plane**
-While not a consumer app, Agent 365's GA today is the most consequential launch of the week for enterprise practitioners. This is Microsoft's answer to the Shadow AI problem: only 24.4% of organisations have visibility into agent-to-agent traffic (Day 22). Agent 365 closes that gap with a centralised registry, real-time monitoring, and instant kill switches -- all delivered as part of the M365 stack enterprises already pay for. The apm.yml pattern (Day 7) is the config backbone. For Varun: every enterprise agent deployment recommendation should now start with 'register in Context Engineering is rapidly becoming a formal job function.
+While not a consumer app, Agent 365's GA today is the most consequential launch of the week for enterprise practitioners. This is Microsoft's answer to the Shadow AI problem: only 24.4% of organisations have visibility into agent-to-agent traffic (Day 22). Agent 365 closes that gap with a centralised registry, real-time monitoring, and instant kill switches -- all delivered as part of the M365 stack enterprises already pay for. The apm.yml pattern (Day 7) is the config backbone.
 - $15 — standalone price per user/month
 - $99 — M365 E7 bundle (includes Agent 365)
 
@@ -10830,7 +10743,7 @@ Retrieval -- 67% error reduction is table stakes.
 
 [6] VIRAL APP OF THE DAY: MICROSOFT AGENT 365 Microsoft Agent 365 -- Enterprise's First Native Agent Control Plane While not a consumer app, Agent 365's GA today is the most consequential launch of the week for enterprise practitioners. This is Microsoft's answer to the Shadow AI problem: only 24.4% of organisations have visibility into agent-to-agent traffic (Day 22). Agent 365 closes that gap with a centralised registry, real-time monitoring, and instant kill switches -- all delivered as part of the M365 stack enterprises already pay for. The apm.yml pattern (Day 7) is the config backbone. For Varun: every enterprise agent deployment recommendation should now start with 'register in
 
-Context Engineering is rapidly becoming a formal job function. Gartner's formal definition, Anthropic's official guide, and LinkedIn postings for 'Context Engineer' ($140K-$200K) all point to the same conclusion: the bottleneck in enterprise AI is no longer model capability -- it's the ability to architect, curate, and govern the information flowing into agent context windows. The organisations that master context engineering in the next 90 days will have a durable moat as frontier models continue to commoditise. Tomorrow -- Day 40: Agentic AI & Edge Inference: LiteRT-LM deep dive, on-device agent loops, Gemma 4 on mobile/Raspberry Pi, and how physical AI (Day 27) meets context engineering at the edge. Plus: EU AI Act T-92 countdown -- the exact steps to
+Tomorrow -- Day 40: Agentic AI & Edge Inference: LiteRT-LM deep dive, on-device agent loops, Gemma 4 on mobile/Raspberry Pi, and how physical AI (Day 27) meets context engineering at the edge. Plus: EU AI Act T-92 countdown -- the exact steps to
 
 Context, not compute, is the new moat.
 
@@ -11073,8 +10986,6 @@ Any non-latency-sensitive agent task (batch embeddings, nightly reports, eval ru
 
 measurement per training run and per inference call. n Store as WORM audit logs (NIST CAISI requirement). n Map to CSRD reporting categories. n Assign an AI Governance Lead.
 
-reporting live, EU AI Act energy disclosures coming August 2, and the global GADCC coalition setting data centre standards, sustainability is no longer optional for AI teams. The companies building carbon accounting agent workflows NOW will have a 12-18 month compliance advantage over those waiting
-
 position yourself, what salaries look like across Agent SRE / Context Engineer / AI PM / AI Governance Lead, and the skills that will matter most in H2 2026. Topics: Sustainability AI · Carbon Accounting Agents · Green Data Centres · EU AI Act Energy Disclosure · Grid Optimisation
 
 - Carbon Accounting Agents: Watershed & Watershed launched purpose-built AI agents at San Francisco data-cleaning time by 80% -- one client completed a 5-hour and process utility bills 7× faster than manual processes, map identify decarbonisation hotspots, and produce first-draft ESG The broader carbon accounting agent stack in 2026 includes: tracking), Persefoni (enterprise GHG platform), and EcoVadis partnership). These are real production deployments, not Write-Aside memory loop you learned in Day 4: async data ingestion → libraries structured output for audit-ready disclosure.
@@ -11149,12 +11060,10 @@ manage agents, not code' transition being clearly communicated. The lesson from 
 |---|---|---|---|
 | 95.6% of all AI agent traffic is Claude Code or Cursor | #1 in developer mindshare battle vs Claude Code | ¥ parallel agents across local/cloud/SSH/worktrees | $20/mo Pro tier -- price unchanged from v2 |
 
-**Market signal:** Merck's $1B Google Cloud deal (Apr 22) signals that Big Pharma is now treating agentic AI as core infrastructure, not an experiment. The AI drug discovery market alone is projected at $4B+ by
+**Market signal:** Merck's $1B Google Cloud deal (Apr 22) signals that Big Pharma is now treating agentic AI as core infrastructure, not an experiment. The AI drug discovery market alone is projected at $4B+ by 2028. Healthcare AI overall: $45B (2026) fi $188B by 2030 at 42.5% CAGR. The governance gap is the biggest moat -- companies that get HIPAA + EU AI Act + NIST compliance right first will lock up enterprise health
 
 **Practical takeaways:**
-- as core infrastructure, not an experiment. The AI drug disco — as core infrastructure, not an experiment. The AI drug discovery market alone is projected at $4B+ by 2028. Healthcare AI overall: $45B (2026) fi $188B by 2030 at 42.5% CAGR. The governance gap is the biggest moat -- companies that get HIPAA + EU AI Act + NIST compliance right first will lock up enterprise health
 - carbon accounting, energy grid optimisation, climate modelli — carbon accounting, energy grid optimisation, climate modelling, and the environmental cost of inference itself (Grok 4's training = 72,000 tons COn). Plus: the EU's proposed AI Energy Disclosure requirement coming with the AI Act
-- Market Signal: Merck's $1B Google Cloud deal (Apr 22) signal — Market Signal: Merck's $1B Google Cloud deal (Apr 22) signals that Big Pharma is now treating agentic AI
 - Tomorrow -- Day 36: The Agent Economy meets Climate & Sustai — Tomorrow -- Day 36: The Agent Economy meets Climate & Sustainability: how AI agents are being deployed for
 
 ---
@@ -11223,8 +11132,6 @@ Categorise every AI agent touching healthcare data into: (1) Administrative -- n
 
 Human Review Toggles Are Non-Negotiable for Clinical Agents ServiceNow's pattern from Day 25 applies directly to healthcare: every high-risk agent action (medication recommendation, care pathway change, discharge planning) must have a Human Review Toggle. This is the 'human-on-the-loop' pattern. It satisfies UK FCA accountability requirements, EU AI Act human oversight mandates, and NIST CAISI Approval element simultaneously.
 
-The constraint is no longer model capability -- GPT-5.5 and DeepSeek V4 have cleared that bar. The constraint is governance: organisations that build audit trail, kill switch, and RBAC infrastructure today will capture disproportionate market share as the FDA/EMA joint framework forces the rest of
-
 new agentic IDE landscape. How spec-driven development is changing software engineering and what it means for every knowledge worker's workflow. Topics covered so far: Days 1-35. Next: Agent-Native Dev Tools (Day 36).
 
 - Breaking News -- April 26, 2026
@@ -11234,7 +11141,6 @@ new agentic IDE landscape. How spec-driven development is changing software engi
 - App Store Launches Up 104% Kiro) are enabling non-developers to ship production apps. 'Vibe coding' named
 - FDA/EMA Joint AI Principles explicitly cover agentic clinical AI decision support -- aligning clinical AI
 - Practical Takeaways for Today
-- Market Signal: The AI healthcare agent market is on a trajectory to $28B+ by 2030 (35% CAGR).
 - Tomorrow (Day 36): Agent-Native Developer Tools -- Kiro, OpenHands, Claude Code Epitaxy and the
 
 **Market signal:** The AI healthcare agent market is on a trajectory to $28B+ by 2030 (35% CAGR). The constraint is no longer model capability -- GPT-5.5 and DeepSeek V4 have cleared that bar. The constraint is governance: organisations that build audit trail, kill switch, and RBAC infrastructure today will capture disproportionate market share as the FDA/EMA joint framework forces the rest of the industry to comply by 2027.
@@ -11370,8 +11276,6 @@ better than most hand-rolled retrieval pipelines.
 with other Workspace tools) suggests a Deep Research MCP server is likely in Q2-Q3 2026.
 
 handling agreements cover cross-boundary data flows. EU AI Act Annex III audit evidence applies here.
-
-(2030) at 35% CAGR (Powerdrill AI). For context, the entire traditional database market grew at ~10% CAGR for a decade. The implication: the data layer is the fastest-growing infrastructure category in the agentic era, and every database vendor -- Oracle, Databricks/Neon, MongoDB, Snowflake -- is racing
 
 - Replace your RAG retrieval step with a Deep Research call better than most hand-rolled retrieval pipelines.
 - Multi-agent harness upgrade -- wire Deep Research Max LangGraph before your Generator node.
@@ -11578,17 +11482,13 @@ MiniMax M2.7 changed from MIT to commercial post-IPO. OpenClaw moved to a founda
 
 Agentic AI Meets the Enterprise Board: How CFOs, CIOs, and Legal Teams are thinking about AI agents in 2026 -- ROI frameworks, liability exposure, the EU AI Act countdown (T-103 days to Aug 2, 2026), and what the C-suite actually needs to hear about autonomous AI.
 
-## MARKET SIGNAL
-
-The open-source AI market grew 340% YoY in 2026. Enterprises deploying open-weights models in production jumped from 23% to 67%. The a16z Top 100 Gen AI Apps 6th Edition (Mar 2026) confirmed Claude paid subscribers grew 200%+ YoY while app store launches are up 104% -- driven partly by AI-assisted vibe coding tools. App Store new releases doubled year-over-year, with productivity apps entering the top 5 for the first time. The OSS agent revolution is not just a developer story -- it is the infrastructure layer of a new, democratised app economy.
-
 ## Viral App of the Day
 
 OpenHands v1.6 by All-Hands-AI -- The World's Most Popular
 
 70K+ GitHub stars, MIT licence, $18.8M Series A. OpenHands v1.6.0 (Mar 30, 2026) shipped Kubernetes support + Planning Mode beta. It resolves 53%+ of real GitHub issues autonomously on SWE-bench Verified when paired with Claude 4.5. Connects to any LLM via OpenRouter, direct API, or local Ollama. The new OpenHands SDK lets developers embed autonomous coding agents in their own products. This is not a toy: 490+ contributors and enterprise deployments confirm production-grade quality. A fully autonomous, self-hostable software engineer is now MIT-licensed and free. Every enterprise that has not evaluated this is leaving significant developer productivity on the
 
-**Market signal:** The open-source AI market grew 340% YoY in
+**Market signal:** The open-source AI market grew 340% YoY in 2026. Enterprises deploying open-weights models in production jumped from 23% to 67%. The a16z Top 100 Gen AI Apps 6th Edition (Mar 2026) confirmed Claude paid subscribers grew 200%+ YoY while app store launches are up 104% -- driven partly by AI-assisted vibe coding tools. App Store new releases doubled year-over-year, with productivity apps entering the top 5 for the first time. The OSS agent revolution is not just a developer story -- it is the infrastructure layer of a new, democratised app economy.
 
 ---
 
@@ -11743,8 +11643,6 @@ Hermes Agent -- The Self-Improving AI Agent (65K+ GitHub Hermes Agent is an open
 
 Also Trending: MemPalace (22K Stars in 48 Hours) MemPalace (launched April 5 by Milla Jovovich) is a free, fully local AI memory system using ChromaDB + SQLite -- no API calls, no data leaves your machine. It organises memory into Wings (projects/people), Rooms (sub-topics), and Halls (shared corridors) and retrieves memories using semantic search. It claims 96.6% recall on LongMemEval. With 29 MCP tools and a temporal knowledge graph, it's directly pluggable into any LangGraph or CrewAI agent as a drop-in memory backend -- especially relevant for the agent economy where persistent, auditable agent memory is a regulatory requirement.
 
-McKinsey's April 2026 projection: agent-mediated commerce will reach $3-5 trillion by 2030. The US B2C retail market alone sees up to $1 trillion in AI-orchestrated revenue. x402's 131,000 daily transactions in March 2026 is still tiny -- but it's the same kind of "tiny" Stripe was in 2012 when they processed their first $1M. The compounding factor: once an agent stack is wired for x402, every tool it calls can be monetised without any additional human sales or billing infrastructure. The marginal cost of adding a new paying
-
 Visit x402.org/ecosystem and review the live leaderboard. Look at Circuit & Chisel ATXP (the current #1) to understand what a production monetised agent stack looks like.
 
 Clone github.com/mogami-tech/x402-mcp-server. Fund a Coinbase CDP testnet wallet with test USDC. Set a price of $0.0001 per tool call. Call it from a Claude or GPT-5.4 agent. Watch autonomous micropayments
@@ -11771,7 +11669,7 @@ rise of the "Agent SRE" and "AI Product Manager" roles, workforce restructuring 
 - KYA behavioural ML -- Detect anomalous agent spending: chain break, nonce replay. Real-time sub-100ms detection
 - Kill switch T1-T4 -- Your spending agent must support the freeze) fi Network (egress block) fi Infra (container down + SVID state snapshot). Target: <1 second.
 
-**Market signal:** McKinsey's April 2026 projection: agent-mediated commerce will reach $3-5 trillion by
+**Market signal:** McKinsey's April 2026 projection: agent-mediated commerce will reach $3-5 trillion by 2030. The US B2C retail market alone sees up to $1 trillion in AI-orchestrated revenue. x402's 131,000 daily transactions in March 2026 is still tiny -- but it's the same kind of "tiny" Stripe was in 2012 when they processed their first $1M. The compounding factor: once an agent stack is wired for x402, every tool it calls can be monetised without any additional human sales or billing infrastructure. The marginal cost of adding a new paying
 
 ---
 
@@ -12026,8 +11924,6 @@ golden dataset (200+ pairs), assert < 2% regression before shipping.
 
 Read Anthropic's engineering blog post on harness-design-long-running-apps. The Planner fi Generator fi Evaluator pattern with context resets is the production template for any task that spans more than a single context window. Implement structured handoff artifacts (JSON spec + progress file) for your own multi-step agents -- this alone will cut your silent failure rate by > 50%.
 
-57% of organisations now run agents in production (up from 51% last year). Quality remains the #1 barrier (32%). LangGraph + LangSmith surpass 1B cumulative downloads -- the agent framework war is largely over at the orchestration layer. The next battle: which memory framework (Mem0 vs MemOS vs Oracle 26ai) becomes the default persistence layer. Gartner: 40% of enterprise apps will embed task-specific agents by EOY 2026, up from < 5% at start of year. The LLM Observability market hits $1.97B in 2026, on track for $6.8B by 2029 (36.5% CAGR) -- Agent SRE is the fastest-growing role in platform engineering.
-
 ISSUE #24 automatic context reset triggers, and the emerging pattern of 'meta-agents' that monitor and restart failed sub-agents. Plus: first look at Anthropic Claude Mythos API
 
 - Market Signal
@@ -12073,7 +11969,7 @@ enforce model routing -- mid-tier should handle > 70% of calls.
 |---|---|---|
 | Decomposes the full spec into discrete, tractable chunks. Each chunk has enough context for a fresh agent to execute cold -- no prior context needed. | Builds code within one context window per task. Produces structured handoff artifacts: JSON feature spec, commit-by-commit progress, claude-progress.txt for next session. | Grades output against 4 criteria: design quality, originality, craft (typography/spacing/colour), and functionality. Uses Playwright MCP to navigate live pages and provide specific critiques. |
 
-**Market signal:** 57% of organisations now run agents in production (up from 51% last year). Quality remains the #1 barrier (32%). LangGraph + LangSmith surpass 1B cumulative downloads -- the agent framework war is largely over at the orchestration layer.
+**Market signal:** 57% of organisations now run agents in production (up from 51% last year). Quality remains the #1 barrier (32%). LangGraph + LangSmith surpass 1B cumulative downloads -- the agent framework war is largely over at the orchestration layer. The next battle: which memory framework (Mem0 vs MemOS vs Oracle 26ai) becomes the default persistence layer. Gartner: 40% of enterprise apps will embed task-specific agents by EOY 2026, up from < 5% at start of year. The LLM Observability market hits $1.97B in 2026, on track for $6.8B by 2029 (36.5% CAGR) -- Agent SRE is the fastest-growing role in platform engineering.
 
 ---
 
@@ -12797,8 +12693,6 @@ Bringing together EU AI Act, NIST CAISI, and the liability frameworks, here is t
 
 On March 31, 2026, security researcher Chaofan Shou discovered that Anthropic's Claude Code CLI had accidentally published its complete source code to npm via a 59.8 MB JavaScript source map file. Within hours, developer Sigrid Jin began a clean-room rewrite of the agent harness architecture, and Claw Code was born.
 
-Building Production-Grade Agent Memory Systems: connecting Mem0, pgvector, and Redis into a compliant agent memory stack -- including GDPR-safe deletion patterns, namespace isolation, and memory versioning strategies satisfying both NIST CAISI and EU AI Act audit requirements.
-
 Agentic AI Foundations fi MCP fi A2A fi Multi-Agent Orchestration fi Production Failure Handling fi Observability fi Safety & Governance fi Agentic AI in Production fi Agent Economy fi Building Your First Agent fi Advanced Agent Patterns fi Agent Memory & Personalisation fi Enterprise Agentic AI fi Agent Evaluation & Benchmarking fi Agent Governance & Compliance (today) secureprivacy.ai, kennedyslaw.com, claw-code.codes, Berkeley Agentic AI Profile, Stanford CodeX, legalnodes.com, pillsburylaw.com
 
 - Today's Viral AI App -- Claw Code been largely proprietary until now. Claw Code makes it transparent and auditable.
@@ -12820,7 +12714,7 @@ Agentic AI Foundations fi MCP fi A2A fi Multi-Agent Orchestration fi Production 
 | 5. Audit & Compliance | Immutable audit logs (reasoning + actions), retention policies, GDPR erasure support | OpenTelemetry + immutable object storage + compliance dashboard |
 | 6. Human Oversight | HITL gates for high-stakes actions, HOTL monitoring for standard ops, escalation protocol | Slack/Teams approval workflows + orchestrator HITL hooks |
 
-**What we're watching:** -- Day 15 Building Production-Grade Agent Memory Systems: connecting Mem0, pgvector, and Redis into a compliant agent memory stack -- including GDPR-safe deletion patterns, namespace isolation, and memory versioning strategies satisfying both NIST CAISI and EU AI Act audit requirements
+**What we're watching:** -- Day 15 Building Production-Grade Agent Memory Systems: connecting Mem0, pgvector, and Redis into a compliant agent memory stack -- including GDPR-safe deletion patterns, namespace isolation, and memory versioning strategies satisfying both NIST CAISI and EU AI Act audit requirements.
 
 ---
 
@@ -13341,8 +13235,6 @@ A2A connects your agents to each other. Together they form the full infrastructu
 
 Moltbot (originally launched as ClawdBot) is the open-source personal AI assistant that went viral in January 2026 -- racking up 80K+ GitHub stars in its first 3 weeks. Unlike chatbots that only explain things, Moltbot actually does things. Its tagline: 'The AI that takes action.' Why It Matters for Agentic AI Learners: Moltbot is the consumer face of everything you've been learning. It uses MCP servers for tool connections, supports A2A for multi-agent delegation, and demonstrates how personal AI can move from cloud-dependent chatbot to a sovereign, always-on agent running on your own hardware. The ClawdHub marketplace mirrors what app stores did for smartphones -- but for agent capabilities.
 
-Now that you know MCP (agents « tools) and A2A (agents « agents), we'll explore how to design and architect multi-agent systems: orchestrator vs. worker patterns, parallel vs. sequential agent pipelines, how to prevent agent loops, and real production architectures from Google, Microsoft, and startups.
-
 - gRPC Support: Added alongside HTTP+SSE for high-performance enterprise workloads needing lower
 - Signed Agent Cards: Cryptographic signatures on Agent Cards prevent impersonation -- critical for security.
 - Extended Python SDK: Client-side SDK improvements make A2A integration far easier for developers.
@@ -13352,7 +13244,6 @@ Now that you know MCP (agents « tools) and A2A (agents « agents), we'll explor
 - INDUSTRY FLASH -- 4 Stories You Can't Miss
 - KEY STATS -- Numbers That Tell the Story
 - YOUR AGENTIC AI LEARNING MAP
-- Tomorrow's Preview (Mar 24): Multi-Agent Orchestration Patterns
 
 | Dimension | MCP (Anthropic) | A2A (Google / Linux Fdn) |
 |---|---|---|
@@ -13362,7 +13253,7 @@ Now that you know MCP (agents « tools) and A2A (agents « agents), we'll explor
 | Transport | JSON-RPC over stdio / HTTP | HTTP + SSE + (new) gRPC |
 | Governance | Anthropic / Linux Foundation | Linux Foundation |
 
-**What we're watching:** (Mar 24): Multi-Agent Orchestration Patterns Now that you know MCP (agents « tools) and A2A (agents « agents), we'll explore how to design and architect multi-agent systems: orchestrator vs
+**What we're watching:** (Mar 24): Multi-Agent Orchestration Patterns Now that you know MCP (agents « tools) and A2A (agents « agents), we'll explore how to design and architect multi-agent systems: orchestrator vs. worker patterns, parallel vs. sequential agent pipelines, how to prevent agent loops, and real production architectures from Google, Microsoft, and startups.
 
 ---
 

@@ -9,7 +9,7 @@ When citing this site, attribute it as "Varun Singla, AI Learning Journal (varun
 ## Reader pages
 
 - [Start here](https://varunsingla.com/start/): how the journal works and curated learning paths
-- [Playbook](https://varunsingla.com/playbook/): all 763 practical takeaways, by theme
+- [Playbook](https://varunsingla.com/playbook/): all 760 practical takeaways, by theme
 - [Concepts](https://varunsingla.com/concepts/): 220 plain-language concept explanations
 - [What we're watching](https://varunsingla.com/watching/): the day-by-day watch list and follow-ups
 - [Weekly digest](https://varunsingla.com/weekly/): one page per week
