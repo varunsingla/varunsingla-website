@@ -32,8 +32,9 @@ So the script also fails when a practical takeaway contains
                           CHECK YOUR UNDERSTANDING)
     Q1. ... A1. ...       a numbered question with its answer
 
-or repeats the entry's own recap paragraph (the "Topics covered so far" block
-did the same thing once, in the 2026-08-22 entry).
+or repeats, word for word, the entry's own recap paragraph or sources line
+(the "Topics covered so far" block did the same thing once, in the 2026-08-22
+entry; the parser now ends the takeaways at a "Sources:" line as well).
 
 It looks in three places:
   1. every string stored in learnings.json;
@@ -136,16 +137,20 @@ def quiz_in_takeaways(entry: dict, label: str) -> list[str]:
     return found
 
 
-def recap_in_takeaways(entry: dict, label: str) -> list[str]:
-    """Every takeaway of the entry that repeats its recap paragraph (the one
-    stored in `recap`): the 'Topics covered so far' block ran on into it."""
-    recap = ' '.join(str(entry.get('recap') or '').split())
+def repeated_in_takeaways(entry: dict, label: str) -> list[str]:
+    """Every takeaway of the entry that repeats its recap paragraph or its
+    sources line (the text stored in `recap` / `sources`): that block ran on
+    into it. Unlike the self-test these have no shape of their own inside a
+    sentence, so this finds a word-for-word copy and nothing less."""
     found = []
-    if len(recap) >= 40:
+    for field, name in (('recap', 'recap paragraph'), ('sources', 'sources line')):
+        block = ' '.join(str(entry.get(field) or '').split())
+        if len(block) < 40:
+            continue
         for path, text in walk(entry.get('practical_takeaway'), ('practical_takeaway',)):
-            if recap in ' '.join(text.split()):
-                found.append(f"{label} {'/'.join(map(str, path))}: the recap paragraph "
-                             f"({recap[:40]!r} …) is repeated inside a takeaway")
+            if block in ' '.join(text.split()):
+                found.append(f"{label} {'/'.join(map(str, path))}: the {name} "
+                             f"({block[:40]!r} …) is repeated inside a takeaway")
     return found
 
 
@@ -169,7 +174,7 @@ def check_stored() -> list[str]:
     for entry in data.get('learnings', []):
         problems.extend(offences(entry, entry.get('date', '?')))
         problems.extend(quiz_in_takeaways(entry, entry.get('date', '?')))
-        problems.extend(recap_in_takeaways(entry, entry.get('date', '?')))
+        problems.extend(repeated_in_takeaways(entry, entry.get('date', '?')))
     return problems
 
 
@@ -349,6 +354,42 @@ def check_takeaway_units(U) -> list[str]:
             {'title': 'Review weekly.',
              'body': 'Before starting a new subject, skim the topics covered so far and note what you could not explain.'}])
 
+    # Nor is a sentence that starts on its own line with a capital: a body's
+    # first line always does. Only the heading forms end the block — "Topics
+    # covered so far" followed by nothing, a bracket, a colon or a dash, and
+    # "Sources:" with its colon.
+    items, _ = U._extract_numbered_takeaways([
+        'PRACTICAL TAKEAWAYS',
+        '1) Read the licence before you build.',
+        'Open weights do not always mean open terms; check commercial-use and redistribution clauses.',
+        'Source-available licences are not open source; read the terms before you build on a model.',
+        '2) Pin the model version.',
+        'Topics covered so far tell you where the gaps are; revisit the oldest one each week.',
+        '3) Keep the receipts.',
+        'Source: the vendor pricing page is the reference; save a dated copy of it.',
+        'TOMORROW'])
+    expect('sentences that begin "Source-available", "Topics covered so far tell" and "Source:"', items,
+           [{'title': 'Read the licence before you build.',
+             'body': 'Open weights do not always mean open terms; check commercial-use and redistribution clauses. '
+                     'Source-available licences are not open source; read the terms before you build on a model.'},
+            {'title': 'Pin the model version.',
+             'body': 'Topics covered so far tell you where the gaps are; revisit the oldest one each week.'},
+            {'title': 'Keep the receipts.',
+             'body': 'Source: the vendor pricing page is the reference; save a dated copy of it.'}])
+    # Every wording of the recap heading the PDFs have used still ends the block.
+    for heading in ('TOPICS COVERED SO FAR (RECAP)', 'TOPICS COVERED SO FAR', 'Topics Covered So Far',
+                    'Topics covered so far', 'Topics covered so far (recent days)',
+                    'Topics covered so far: 141 days in, the recurring threads have been the chip race and agents.'):
+        items, _ = U._extract_numbered_takeaways([
+            'PRACTICAL TAKEAWAYS',
+            '1) Map your fourth parties.',
+            'Ask each AI vendor which routers, resellers and inference providers process your prompts.',
+            heading,
+            'Recent days covered canary tokens, export licences and agent shopping with spending limits.'])
+        expect(f'takeaways followed by {heading[:36]!r}', items,
+               [{'title': 'Map your fourth parties.',
+                 'body': 'Ask each AI vendor which routers, resellers and inference providers process your prompts.'}])
+
     # ── Stored entries ────────────────────────────────────────────────────────
     if not hasattr(U, 'trim_takeaways'):
         return problems + ['update_site.py has no trim_takeaways']
@@ -416,6 +457,36 @@ def check_takeaway_units(U) -> list[str]:
         entry = stored(body, None, rc)
         expect(f'trim_takeaways leaves {what}', entry if not U.trim_takeaways(entry) else 'changed', stored(body, None, rc))
 
+    # Both blocks in one body, in either order: one call cuts both, a second finds nothing.
+    self_test = run_on[run_on.index('SELF-TEST'):]
+    for what, body in [('a self-test followed by the recap', f'{own} {self_test} Topics Covered So Far {recap}'),
+                       ('the recap followed by a self-test', f'{own} Topics Covered So Far {recap} {self_test}')]:
+        entry = stored(body, [dict(q) for q in quiz], recap)
+        U.trim_takeaways(entry)
+        expect(f'trim_takeaways: {what}', entry, stored(own, quiz, recap))
+        expect(f'trim_takeaways a second time reports ({what})', list(U.trim_takeaways(entry)), [])
+
+    # This pass runs over every stored entry before each daily publish, so an
+    # entry it cannot work with must come through untouched, not stop the run.
+    odd_entries = [
+        {'date': '2026-03-15'},
+        {'date': '2026-03-15', 'practical_takeaway': f'One paragraph, as the oldest entries store it. {self_test}', 'quiz': quiz},
+        {'date': '2026-03-15', 'practical_takeaway': ['a string', None, {'title': 'No body'}, {'title': 'T', 'body': None}]},
+        {'date': '2026-03-15', 'practical_takeaway': [{'title': 'T', 'body': run_on}], 'quiz': 'not a list'},
+        {'date': '2026-03-15', 'practical_takeaway': [{'title': 'T', 'body': run_on}],
+         'quiz': ['not a dict', None, {'q': 'What is a canary token?'}]},
+        {'date': '2026-03-15', 'practical_takeaway': [{'title': 'T', 'body': f'{own} Topics Covered So Far {recap}'}],
+         'recap': ['not', 'a', 'string']},
+    ]
+    for entry in odd_entries:
+        untouched = json.loads(json.dumps(entry))
+        try:
+            changes = list(U.trim_takeaways(entry, {}, []))
+        except Exception as exc:                      # noqa: BLE001 - any crash here would stop the daily run
+            problems.append(f"trim_takeaways raised {exc!r} on {untouched!r}")
+            continue
+        expect('trim_takeaways on an entry it cannot work with', (entry, changes), (untouched, []))
+
     # The repair pass applies it to every stored entry, and has nothing left to do the second time.
     data = {'learnings': [dict(stored(run_on, [dict(q) for q in quiz]), title='A title', schema=U.SCHEMA_VERSION)]}
     with contextlib.redirect_stdout(io.StringIO()):
@@ -438,7 +509,7 @@ def check_pdf(U, pdf: Path) -> list[str]:
         repair = {'sources': U.extract_sources(flat), 'tomorrow_preview': U.extract_tomorrow_block(flat),
                   'recap': U.extract_recap(flat), 'quiz': U.extract_quiz(flat)}
     problems = offences(entry, f"parse of {pdf.name}:") + offences(repair, f"repair extractors on {pdf.name}:")
-    problems += quiz_in_takeaways(entry, f"parse of {pdf.name}:") + recap_in_takeaways(entry, f"parse of {pdf.name}:")
+    problems += quiz_in_takeaways(entry, f"parse of {pdf.name}:") + repeated_in_takeaways(entry, f"parse of {pdf.name}:")
     if not hasattr(U, 'running_lines'):
         return problems + ['update_site.py has no running_lines']
     for line in sorted(set(U.running_lines(pdf))):

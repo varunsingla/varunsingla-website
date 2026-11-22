@@ -740,31 +740,39 @@ def running_lines(pdf_path) -> list[str]:
 
 # ── Where the takeaways end ───────────────────────────────────────────────────
 #
-# Three blocks can follow the last takeaway directly, and none of them is a
-# section heading for is_section_heading: the SELF-TEST (every PDF since
-# 2026-10-15), the "Topics covered so far" recap (the 2026-08-22 PDF) and the
-# sources line. Each has its own extractor further down (extract_quiz,
-# extract_recap, extract_sources), which finds its first line with the same
-# pattern. Until the takeaway extractor knew about them, the last takeaway's
-# body ran on through the whole block, so the quiz was published twice: once as
-# self-test cards and once as a 1,500-character paragraph in the Playbook.
+# Three blocks can follow the last takeaway directly: the SELF-TEST (every PDF
+# since 2026-10-15), the "Topics covered so far" recap (the 2026-08-22 PDF) and
+# the sources line. is_section_heading knows none of them (a "Sources" line
+# shorter than 60 characters aside), so until the takeaway extractor learned
+# about them the last takeaway's body ran on through the whole block, and the
+# quiz was published twice: once as self-test cards and once as a
+# 1,500-character paragraph in the Playbook.
+#
+# Each block has its own extractor further down (extract_quiz, extract_recap,
+# extract_sources). The SELF-TEST heading is the line extract_quiz looks for.
+# For the other two, ending the takeaways takes a stricter test than finding
+# the block does: an extractor that picks the wrong line stores a wrong
+# optional string, but a takeaway block that ends too early loses every
+# takeaway after that line. "Source-available licences are not open source; …"
+# and "Topics covered so far tell you where the gaps are; …" are sentences a
+# takeaway may well start with, so only the heading forms count: the recap
+# heading followed by nothing, a bracket, a colon or a dash, and "Sources:"
+# with its colon — every form the PDFs have used.
 _QUIZ_HEADING_RE = re.compile(
     r'^(?:[n•]\s+)?(self[- ]test|quiz|test yourself|check your understanding)\s*[:.]?\s*$', re.I)
-_RECAP_HEADING_RE = re.compile(
-    r'^(?:[n•]\s+)?topics covered so far\s*(?:\([^)]*\))?\s*[:\-—–]?\s*(.*)$', re.I)
-_SOURCES_LINE_RE = re.compile(r'^(?:[n•]\s+)?sources?\s*[:\-—–]\s*(.*)$', re.I)
+_RECAP_OR_SOURCES_HEADING_RE = re.compile(
+    r'^(?:topics covered so far\s*(?:\([^)]*\))?\s*(?:$|[:\-—–])|sources\s*:)', re.I)
 
 
 def _starts_end_matter(line: str) -> bool:
     """True when the line opens the SELF-TEST, the recap or the sources line.
-    A line that starts in lower case is not one of them: it is a sentence
-    wrapping over from the line above ("…against primary / sources: filings and
-    vendor pages", "…with a short / quiz."), and cutting the block there would
-    lose that takeaway's ending and every takeaway after it."""
+    A line that starts in lower case never does: it is a sentence wrapping
+    over from the line above ("…close each study session with a short /
+    quiz.")."""
     line = re.sub(r'^[n•]\s+', '', line.strip())
     if not line or line[0].islower():
         return False
-    return bool(_QUIZ_HEADING_RE.match(line) or _RECAP_HEADING_RE.match(line) or _SOURCES_LINE_RE.match(line))
+    return bool(_QUIZ_HEADING_RE.match(line) or _RECAP_OR_SOURCES_HEADING_RE.match(line))
 
 
 def _extract_numbered_takeaways(all_flat_lines: list[str]) -> tuple[list[dict], tuple[int, int] | None]:
@@ -1265,7 +1273,7 @@ def headline_from_deck(deck: str) -> str:
 
 def extract_sources(all_flat_lines: list[str]) -> str:
     for i, ln in enumerate(all_flat_lines):
-        m = _SOURCES_LINE_RE.match(ln.strip())
+        m = re.match(r'^(?:[n•]\s+)?sources?\s*[:\-—–]\s*(.*)$', ln.strip(), re.I)
         if not m:
             continue
         parts = [m.group(1).strip()] if m.group(1).strip() else []
@@ -1311,7 +1319,7 @@ def extract_tomorrow_block(all_flat_lines: list[str]) -> str:
 def extract_recap(all_flat_lines: list[str]) -> str:
     """'Topics covered so far' recap paragraph (a running curriculum map)."""
     for i, ln in enumerate(all_flat_lines):
-        m = _RECAP_HEADING_RE.match(ln.strip())
+        m = re.match(r'^(?:[n•]\s+)?topics covered so far\s*(?:\([^)]*\))?\s*[:\-—–]?\s*(.*)$', ln.strip(), re.I)
         if not m:
             continue
         parts = [m.group(1).strip()] if m.group(1).strip() else []
@@ -1734,30 +1742,33 @@ def trim_takeaways(entry: dict, totals: dict | None = None, unverified: list | N
     changes: list[str] = []
     takeaways = entry.get('practical_takeaway')
     for number, item in enumerate(takeaways if isinstance(takeaways, list) else [], 1):
-        body = item.get('body') if isinstance(item, dict) else None
-        if not isinstance(body, str):
+        if not isinstance(item, dict) or not isinstance(item.get('body'), str):
             continue
-        found = None       # (what ran on, the field it is stored in, where it begins, detail)
-        heading = _QUIZ_RUNON_RE.search(body)
-        if heading:
-            questions = _stored_quiz_items(body[heading.end():], entry.get('quiz'))
-            if questions:
-                found = ('self-test', 'quiz', heading.start(), f"{questions} question{'' if questions == 1 else 's'}, ")
-            elif unverified is not None:
-                unverified.append(f"takeaway {number} runs on into a self-test that is not word for word "
-                                  f"in quiz — left as it is")
-        else:
+        # Whichever block the body ends with goes first, then the one before
+        # it, should a body ever carry both; each cut is verified on its own.
+        while True:
+            body = item['body']
+            found = None       # (what ran on, the field it is stored in, where it begins, detail)
             start = _recap_run_on(body, entry.get('recap'))
             if start is not None:
                 found = ('recap', 'recap', start, '')
-        if not found:
-            continue
-        what, field, start, detail = found
-        item['body'] = body[:start].rstrip()
-        changes.append(f"{what} cut from takeaway {number} ({detail}{len(body) - len(item['body'])} characters, "
-                       f"all in {field})")
-        if totals is not None:
-            totals[f'{what} in a takeaway'] = totals.get(f'{what} in a takeaway', 0) + 1
+            else:
+                heading = _QUIZ_RUNON_RE.search(body)
+                questions = _stored_quiz_items(body[heading.end():], entry.get('quiz')) if heading else 0
+                if questions:
+                    found = ('self-test', 'quiz', heading.start(),
+                             f"{questions} question{'' if questions == 1 else 's'}, ")
+            if not found:
+                break
+            what, field, start, detail = found
+            item['body'] = body[:start].rstrip()
+            changes.append(f"{what} cut from takeaway {number} ({detail}{len(body) - len(item['body'])} characters, "
+                           f"all in {field})")
+            if totals is not None:
+                totals[f'{what} in a takeaway'] = totals.get(f'{what} in a takeaway', 0) + 1
+        if unverified is not None and _QUIZ_RUNON_RE.search(item['body']):
+            unverified.append(f"takeaway {number} runs on into a self-test that is not word for word "
+                              f"in quiz — left as it is")
     return changes
 
 

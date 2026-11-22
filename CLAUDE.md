@@ -30,11 +30,12 @@ Please keep writing the PDF this way, and include these lines — each one feeds
   Each becomes a Playbook item and a flashcard.
 - **`TOMORROW`** heading followed by "What We're Watching: …" sentences. Feeds the Watching tracker.
 - **`SELF-TEST`** (optional, recommended): three to five pairs in the form `Q1. question` / `A1. answer`. These
-  become self-test cards on the entry page and in Review. Keep the heading alone on its line: when the
-  self-test comes straight after the takeaways, that line is where the parser ends the last takeaway. (The
-  same goes for `TOPICS COVERED SO FAR` and `Sources:`. A new kind of block placed after the takeaways needs
-  its heading added to `_starts_end_matter` in `update_site.py` first, or it is read as part of the last
-  takeaway.)
+  become self-test cards on the entry page and in Review. Keep the heading alone on its line and starting
+  with a capital: when the self-test comes straight after the takeaways, that line is where the parser ends
+  the last takeaway. (`TOPICS COVERED SO FAR` and `Sources:` end the takeaways too, in their heading forms
+  only: the recap heading with nothing after it but a bracket, a colon or a dash, and `Sources` with its
+  colon. A new kind of block placed after the takeaways needs its heading added to `_starts_end_matter` in
+  `update_site.py` first, or it is read as part of the last takeaway.)
 - **`Sources:`** line at the end naming the outlets/pages used (URLs welcome; they are auto-linked).
 - **`TOPICS COVERED SO FAR (RECAP)`** paragraph (as on Day 199/200) — the latest one is shown on Start Here.
 - **Running header/footer: small print, in the page margin, the same on every page.** The current header is
@@ -62,11 +63,12 @@ day number when generating the PDF so the two stay aligned.
   that are fine), so use it only when that is what you want.
 - `python3 update_site.py --parse <pdf>` — print what the parser extracts from one PDF (debugging).
 - `python3 generate_geo.py` — regenerate the static site from `learnings.json` without touching the data.
-- `python3 check_learnings.py` — regression check, a few seconds. Exits 1 if a PDF page header/footer, a
-  mangled ampersand (`D&O;`) or self-test text inside a takeaway (the `SELF-TEST` heading, or a `Q1.` … `A1.`
-  pair) is found in `learnings.json`, in the generated pages, or in a fresh parse of the newest PDF; also if a
-  takeaway repeats its entry's `recap` paragraph. `--all-pdfs` re-parses every PDF on disk (about two minutes).
-  Run it after a publish or a repair.
+- `python3 check_learnings.py` — regression check, a few seconds. Exits 1 if a PDF page header/footer or a
+  mangled ampersand (`D&O;`) is found in `learnings.json`, in the generated pages, or in a fresh parse of the
+  newest PDF. It also exits 1 if a takeaway, stored or freshly parsed, carries self-test text (the `SELF-TEST`
+  heading in capitals, or a `Q1.` … `A1.` pair) or repeats its entry's `recap` or `sources` word for word, and
+  if `SELF-TEST Q1.` turns up in a generated page. `--all-pdfs` re-parses every PDF on disk (about two
+  minutes). Run it after a publish or a repair.
 
 Repairs never delete entry text: a replaced title or intro is kept under `title_original` /
 `focus_intro_original`, viral-app names are only re-split from their descriptions, headings are only re-cased.
@@ -85,9 +87,14 @@ every entry back through the older repair steps, which are not all idempotent).
    again with no `*_original`, and only where nothing is lost: everything after the heading has to be, question
    by question and answer by answer, the text stored in the same entry's `quiz` (the `Q1.` / `A1.` labels
    aside). If anything else follows the heading, the takeaway is left exactly as it is, `--repair` prints a
-   warning for it, and `check_learnings.py` fails until someone has looked at it. The recap did the same once
-   (2026-08-22, `… Topics Covered So Far 146 days in, …`) and is handled the same way: it is cut only where
-   what follows the heading is exactly that entry's `recap`.
+   warning for it, and `check_learnings.py` fails until someone has looked at it.
+
+   The recap did the same once (2026-08-22, `… Topics Covered So Far 146 days in, …`) and is cut under the
+   same condition: what follows the heading has to be exactly that entry's `recap`. There is no warning for a
+   recap that reads differently — it is simply left alone, and the check only catches a word-for-word copy.
+   Note what this means on the site: the quiz is still shown (as cards), but an entry page never shows its
+   recap; only Start Here shows the newest one. The 2026-08-22 recap is therefore in `learnings.json` only,
+   like every other day's.
 
 ### ALWAYS push the day's commit to `main`, not just a session feature branch
 
