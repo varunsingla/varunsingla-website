@@ -3,34 +3,45 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Multi-Agent Communication — Day 21 | Varun Singla · AI Learning Journal</title>
-<meta name="description" content="AWS Bedrock, AG2, CopilotKit, Microsoft, Oracle are all in production with AG-UI. Its 16 event types are the &quot;HTTP status codes&quot; of agent-UI communication.">
+<meta name="theme-color" content="#F7F4ED" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#161512" media="(prefers-color-scheme: dark)">
+<title>Multi-Agent Communication | Varun Singla</title>
+<meta name="description" content="AWS Bedrock, AG2, CopilotKit, Microsoft, Oracle are all in production with AG-UI. Its 16 event types are the &quot;HTTP status codes&quot; of agent-UI communication.…">
 <meta name="author" content="Varun Singla">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <link rel="canonical" href="https://varunsingla.com/entries/2026-04-08.html">
+<meta property="og:url" content="https://varunsingla.com/entries/2026-04-08.html">
 <link rel="alternate" type="application/rss+xml" title="Varun Singla · AI Learning Journal" href="https://varunsingla.com/feed.xml">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Varun Singla · AI Learning Journal">
-<meta property="og:title" content="Multi-Agent Communication — Day 21 | Varun Singla · AI Learning Journal">
-<meta property="og:description" content="AWS Bedrock, AG2, CopilotKit, Microsoft, Oracle are all in production with AG-UI. Its 16 event types are the &quot;HTTP status codes&quot; of agent-UI communication.">
-<meta property="og:url" content="https://varunsingla.com/entries/2026-04-08.html">
+<meta property="og:site_name" content="Varun Singla">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Multi-Agent Communication | Varun Singla">
+<meta property="og:description" content="AWS Bedrock, AG2, CopilotKit, Microsoft, Oracle are all in production with AG-UI. Its 16 event types are the &quot;HTTP status codes&quot; of agent-UI communication.…">
 <meta property="og:image" content="https://varunsingla.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Varun Singla — AI Learning Journal, one day at a time">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Multi-Agent Communication — Day 21 | Varun Singla · AI Learning Journal">
-<meta name="twitter:description" content="AWS Bedrock, AG2, CopilotKit, Microsoft, Oracle are all in production with AG-UI. Its 16 event types are the &quot;HTTP status codes&quot; of agent-UI communication.">
+<meta name="twitter:title" content="Multi-Agent Communication | Varun Singla">
+<meta name="twitter:description" content="AWS Bedrock, AG2, CopilotKit, Microsoft, Oracle are all in production with AG-UI. Its 16 event types are the &quot;HTTP status codes&quot; of agent-UI communication.…">
 <meta name="twitter:image" content="https://varunsingla.com/og-image.png">
+<meta name="twitter:image:alt" content="Varun Singla — AI Learning Journal, one day at a time">
 <link rel="next" href="https://varunsingla.com/entries/2026-04-09.html">
 <link rel="prev" href="https://varunsingla.com/entries/2026-04-06.html">
 <meta property="article:published_time" content="2026-04-08T21:00:00+08:00">
+<meta property="article:modified_time" content="2026-04-08T21:00:00+08:00">
 <meta property="article:author" content="https://varunsingla.com/about/">
+<meta property="article:section" content="Foundations &amp; Protocols">
 <meta property="article:tag" content="Foundations &amp; Protocols">
 <meta property="article:tag" content="Governance &amp; Safety">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%231B1A17%27/%3E%3Ctext x=%2732%27 y=%2742%27 font-family=%27Helvetica,Arial,sans-serif%27 font-size=%2728%27 font-weight=%27700%27 fill=%27%23F7F4ED%27 text-anchor=%27middle%27%3EVS%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&display=swap" rel="stylesheet">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "@id": "https://varunsingla.com/entries/2026-04-08.html#post", "headline": "Multi-Agent Communication", "description": "AWS Bedrock, AG2, CopilotKit, Microsoft, Oracle are all in production with AG-UI. Its 16 event types are the \"HTTP status codes\" of agent-UI communication.", "datePublished": "2026-04-08T21:00:00+08:00", "dateModified": "2026-04-08T21:00:00+08:00", "url": "https://varunsingla.com/entries/2026-04-08.html", "mainEntityOfPage": "https://varunsingla.com/entries/2026-04-08.html", "wordCount": 428, "inLanguage": "en", "articleSection": ["Foundations & Protocols", "Governance & Safety"], "keywords": ["Foundations & Protocols", "Governance & Safety", "agentic AI", "AI learning journal", "Varun Singla"], "isPartOf": {"@type": "Blog", "@id": "https://varunsingla.com/#blog", "name": "Varun Singla · AI Learning Journal"}, "author": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla", "url": "https://varunsingla.com/about/"}, "publisher": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla"}}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Journal", "item": "https://varunsingla.com/"}, {"@type": "ListItem", "position": 2, "name": "Archive", "item": "https://varunsingla.com/entries/"}, {"@type": "ListItem", "position": 3, "name": "Multi-Agent Communication", "item": "https://varunsingla.com/entries/2026-04-08.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BlogPosting", "@id": "https://varunsingla.com/entries/2026-04-08.html#post", "headline": "Multi-Agent Communication", "description": "AWS Bedrock, AG2, CopilotKit, Microsoft, Oracle are all in production with AG-UI. Its 16 event types are the \"HTTP status codes\" of agent-UI communication.…", "datePublished": "2026-04-08T21:00:00+08:00", "dateModified": "2026-04-08T21:00:00+08:00", "url": "https://varunsingla.com/entries/2026-04-08.html", "mainEntityOfPage": {"@id": "https://varunsingla.com/entries/2026-04-08.html#webpage"}, "image": {"@type": "ImageObject", "url": "https://varunsingla.com/og-image.png", "width": 1200, "height": 630}, "wordCount": 428, "timeRequired": "PT3M", "inLanguage": "en", "isAccessibleForFree": true, "articleSection": ["Foundations & Protocols", "Governance & Safety"], "keywords": ["Foundations & Protocols", "Governance & Safety", "agentic AI", "AI research", "AI learning journal", "Varun Singla"], "isPartOf": {"@id": "https://varunsingla.com/#blog"}, "author": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla", "url": "https://varunsingla.com/about/"}, "publisher": {"@id": "https://varunsingla.com/#varun"}}, {"@type": "WebPage", "@id": "https://varunsingla.com/entries/2026-04-08.html#webpage", "url": "https://varunsingla.com/entries/2026-04-08.html", "name": "Multi-Agent Communication", "inLanguage": "en", "isPartOf": {"@id": "https://varunsingla.com/#website"}, "breadcrumb": {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://varunsingla.com/"}, {"@type": "ListItem", "position": 2, "name": "Journal archive", "item": "https://varunsingla.com/entries/"}, {"@type": "ListItem", "position": 3, "name": "Multi-Agent Communication", "item": "https://varunsingla.com/entries/2026-04-08.html"}]}}, {"@type": "Blog", "@id": "https://varunsingla.com/#blog", "name": "Varun Singla · AI Learning Journal", "url": "https://varunsingla.com/"}, {"@type": "WebSite", "@id": "https://varunsingla.com/#website", "url": "https://varunsingla.com/", "name": "Varun Singla"}]}</script>
 <style>
 :root{--bg:#F7F4ED;--surface:#FBF9F3;--surface2:#F3ECDD;--border:#E4DECF;--border-soft:#EEE9DC;--border-strong:#CBB8A0;
 --text:#1B1A17;--text2:#2C2A24;--muted:#56524B;--muted2:#6B6760;--faint:#726D63;--faintest:#8A857B;
@@ -163,7 +174,7 @@ footer.foot{border-top:1px solid var(--border);background:var(--surface);margin-
 <header class="mast"><div class="mast-in">
   <a class="brand" href="/"><span class="brand-mark" aria-hidden="true">VS</span><span class="brand-name">varunsingla.com</span></a>
   <div class="mast-right">
-    <nav class="nav" aria-label="Site"><a class="nav-link" href="/">Home</a><a class="nav-link" href="/start/">Start Here</a><div class="nav-group"><button class="nav-link nav-drop" type="button" aria-expanded="false" aria-haspopup="true">Journal<span class="caret" aria-hidden="true">▾</span></button><div class="nav-menu"><a class="nav-sub" href="/entries/">Archive</a><a class="nav-sub" href="/weekly/">Weekly digest</a><a class="nav-sub" href="/watching/">Watching</a></div></div><div class="nav-group"><button class="nav-link nav-drop" type="button" aria-expanded="false" aria-haspopup="true">Learn<span class="caret" aria-hidden="true">▾</span></button><div class="nav-menu"><a class="nav-sub" href="/playbook/">Playbook</a><a class="nav-sub" href="/concepts/">Concepts</a><a class="nav-sub" href="/review/">Review</a></div></div><div class="nav-group"><button class="nav-link nav-drop" type="button" aria-expanded="false" aria-haspopup="true">Tools<span class="caret" aria-hidden="true">▾</span></button><div class="nav-menu"><a class="nav-sub" href="/ai-tokenomics/">AI Tokenomics</a><a class="nav-sub" href="/tools/model-team-evaluator.html">Model Evaluator</a></div></div><a class="nav-link" href="/about/">About</a></nav>
+    <nav class="nav" aria-label="Site"><a class="nav-link" href="/">Home</a><a class="nav-link" href="/start/">Start Here</a><div class="nav-group"><button class="nav-link nav-drop" type="button" aria-expanded="false" aria-haspopup="true">Journal<span class="caret" aria-hidden="true">▾</span></button><div class="nav-menu"><a class="nav-sub" href="/entries/">Archive</a><a class="nav-sub" href="/topics/">Topics</a><a class="nav-sub" href="/weekly/">Weekly digest</a><a class="nav-sub" href="/watching/">Watching</a></div></div><div class="nav-group"><button class="nav-link nav-drop" type="button" aria-expanded="false" aria-haspopup="true">Learn<span class="caret" aria-hidden="true">▾</span></button><div class="nav-menu"><a class="nav-sub" href="/playbook/">Playbook</a><a class="nav-sub" href="/concepts/">Concepts</a><a class="nav-sub" href="/review/">Review</a></div></div><div class="nav-group"><button class="nav-link nav-drop" type="button" aria-expanded="false" aria-haspopup="true">Tools<span class="caret" aria-hidden="true">▾</span></button><div class="nav-menu"><a class="nav-sub" href="/ai-tokenomics/">AI Tokenomics</a><a class="nav-sub" href="/tools/model-team-evaluator.html">Model Evaluator</a></div></div><a class="nav-link" href="/about/">About</a></nav>
     <button class="theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">◐</button>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open menu">Menu ☰</button>
   </div>
@@ -178,7 +189,7 @@ footer.foot{border-top:1px solid var(--border);background:var(--surface);margin-
   </div>
   <h1>Multi-Agent Communication</h1>
   
-  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:34px;padding-bottom:30px;border-bottom:1px solid var(--border);"><a class="tag" href="/entries/?theme=Foundations &amp; Protocols">Foundations &amp; Protocols</a> <a class="tag" href="/entries/?theme=Governance &amp; Safety">Governance &amp; Safety</a> </div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:34px;padding-bottom:30px;border-bottom:1px solid var(--border);"><a class="tag" href="/topics/foundations-protocols/" rel="tag">Foundations &amp; Protocols</a> <a class="tag" href="/topics/governance-safety/" rel="tag">Governance &amp; Safety</a> </div>
   <div class="callout"><div class="kicker">Viral / open-source spotlight</div><p style="font-family:var(--serif);font-size:22px;font-weight:500;margin:0 0 10px;">Oh-my-codex (OMX) github</p></div>
 <div style="margin:0 0 40px;"><div class="kicker">By the numbers</div><div class="stat-grid"><div class="stat-cell"><div class="stat-small" style="margin-top:0;font-family:var(--serif);font-size:15px;">97M+ MCP INSTALLS</div></div><div class="stat-cell"><div class="stat-small" style="margin-top:0;font-family:var(--serif);font-size:15px;">40% ENTERPRISE LLM SHARE (ANTHROPIC)</div></div><div class="stat-cell"><div class="stat-small" style="margin-top:0;font-family:var(--serif);font-size:15px;">18 ‹ TODAY</div></div><div class="stat-cell"><div class="stat-small" style="margin-top:0;font-family:var(--serif);font-size:15px;">19 fi NEXT</div></div></div></div>
 <section><h2><span class="num">Part 1</span>AG-UI is now infrastructure, not experiment</h2><p>AWS Bedrock, AG2, CopilotKit, Microsoft, Oracle are all in production with AG-UI. Its 16 event types are the &quot;HTTP status codes&quot; of agent-UI communication. Learn the event model -- you&#x27;ll encounter it in every frontend agent integration from</p><div class="table-wrap"><table><thead><tr><th>Dimension</th><th>ACP -- Agent Communication Protocol</th><th>ANP -- Agent Network Protocol</th></tr></thead><tbody><tr><td>Led by</td><td>IBM / BeeAI</td><td>agent-network-protocol.com (OSS community)</td></tr><tr><td>Philosophy</td><td>Federated enterprise network, structured messaging</td><td>Fully decentralised open internet, no central authority</td></tr><tr><td>Transport</td><td>RESTful HTTP, MIME multipart, sync + async</td><td>HTTPS + DNS reuse (did:wba), JSON-LD graphs</td></tr><tr><td>Identity</td><td>Enterprise PKI / OAuth 2.1 tokens</td><td>W3C DID (Decentralised Identifiers) -- self-sovereign</td></tr><tr><td>Message style</td><td>Performative verbs: inform, request, propose, accept</td><td>Agent Metadata Cards (JSON-LD), capability descriptions</td></tr><tr><td>Discovery</td><td>Internal registry / enterprise service mesh</td><td>Like search engines -- crawlable public agent pages</td></tr><tr><td>Security</td><td>Enterprise-grade, centrally managed</td><td>Cryptographic proof, but revocation harder than centralised</td></tr><tr><td>Best for</td><td>B2B agent-to-agent, enterprise cross-department</td><td>&quot;Internet of AI Agents&quot; -- anyone can publish &amp; discover</td></tr><tr><td>Maturity</td><td>IBM enterprise pilots, production use cases emerging</td><td>Vision / early OSS -- future infrastructure play</td></tr></tbody></table></div></section>
@@ -190,14 +201,14 @@ footer.foot{border-top:1px solid var(--border);background:var(--surface);margin-
   <div style="margin:44px 0 0;"><div class="kicker">Related entries</div><div class="related"><a href="/entries/2026-10-30.html"><div class="lbl">Day 222 · Oct 30</div><div class="ttl">Agents Go Offensive: $50-a-Breach Hacking, Single vs Multi-Agent Debate and Anthropic&#x27;s IPO Filing</div></a><a href="/entries/2026-05-10.html"><div class="lbl">Day 52 · May 10</div><div class="ttl">Why Agent UX Is the 2026 Inflection Layer</div></a><a href="/entries/2026-05-16.html"><div class="lbl">Day 58 · May 16</div><div class="ttl">Agent Identity 3.0 -- SPIFFE Hits Prod, KYA</div></a></div></div>
   <div style="display:flex;align-items:center;gap:13px;margin:54px 0 10px;padding-top:30px;border-top:1px solid var(--border);">
     <div class="brand-mark" style="width:40px;height:40px;font-size:14px;border-radius:9px;">VS</div>
-    <div><div style="font-size:14.5px;font-weight:600;">Varun Singla</div>
-    <div style="font-family:var(--mono);font-size:12px;color:var(--faint);">Singapore · <a href="/about/" style="color:var(--faint);">About</a> · Learning in public</div></div>
+    <div><div style="font-size:14.5px;font-weight:600;">By <a href="/about/" rel="author" style="color:inherit;">Varun Singla</a></div>
+    <div style="font-family:var(--mono);font-size:12px;color:var(--faint);">Singapore · <a href="/about/" style="color:var(--faint);">About the author</a> · Learning in public</div></div>
   </div>
 </article>
 <nav class="pn" aria-label="Adjacent entries"><a href="2026-04-09.html" rel="next"><div class="lbl">← Newer · Day 22</div><div class="ttl">The Agent Economy 2.0</div></a><a href="2026-04-06.html" rel="prev" style="text-align:right;"><div class="lbl">Older · Day 20 →</div><div class="ttl">Attie by Bluesky -- The First Agentic AI App to Go Viral</div></a></nav>
 </main>
 <footer class="foot"><div class="foot-in">
-  <div><span class="brand-mark" style="display:inline-flex;width:26px;height:26px;font-size:11px;border-radius:6px;vertical-align:middle;margin-right:8px;">VS</span>Varun Singla · Singapore · Learning in public</div>
+  <div><span class="brand-mark" style="display:inline-flex;width:26px;height:26px;font-size:11px;border-radius:6px;vertical-align:middle;margin-right:8px;">VS</span><a href="/about/" rel="author" style="color:inherit;text-decoration:none;">Varun Singla</a> · Singapore · Learning in public</div>
   <div class="foot-links">
     <a href="/weekly/">Weekly digest</a><a href="/ai-tokenomics/">Tokenomics</a>
     <a href="/tools/model-team-evaluator.html">Model Evaluator</a><a href="https://varunsingla.com/feed.xml">RSS</a><a href="https://varunsingla.com/llms.txt">llms.txt</a>

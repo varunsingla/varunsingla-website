@@ -15,12 +15,20 @@ be static is rendered from learnings.json by this script:
   start/index.html      start here: how the journal works + learning paths
   weekly/*.html         one digest per ISO week (+ index)
   review/index.html     flashcards built from takeaways, concepts and quizzes
+  topics/*              one page per theme (+ index): what it covers, every entry
+  404.html              the not-found page GitHub Pages serves
   index.json            light index the home page renders from (no 2 MB fetch)
   search.json           compact full-text index, loaded only when searching
   llms.txt / llms-full.txt / feed.xml / sitemap.xml
   index.html            refreshes the static-fallback block, the shared CSS,
-                        masthead/footer and the data-version meta tag between
-                        GEO markers (crawler/no-JS content + cache busting)
+                        masthead/footer, structured data and the data-version
+                        meta tag between GEO markers (crawler/no-JS content +
+                        cache busting)
+  about/, ai-tokenomics/, tools/   hand-written pages: only their structured
+                        data (GEO:SCHEMA) and the About entry count are refreshed
+
+Search metadata (titles, descriptions, canonical links, JSON-LD, the sitemap)
+is produced here too; `python3 check_seo.py` verifies it after a run.
 
 Run standalone (`python3 generate_geo.py`) or via update_site.py, which calls
 generate() after each daily content update and pushes whatever changed.
@@ -46,6 +54,39 @@ FEED_SIZE = 20
 
 SCRIPT_DIR = Path(__file__).parent
 
+# ── Identity (what search engines are told about the site and its author) ────
+# One definition, used by every page, so the name, the site and the journal are
+# described the same way everywhere. Google takes the site name shown in results
+# from WebSite.name / og:site_name on the home page, hence the short SITE_NAME.
+SITE_NAME = "Varun Singla"
+PERSON_ID = f"{SITE}/#varun"
+WEBSITE_ID = f"{SITE}/#website"
+BLOG_ID = f"{SITE}/#blog"
+OG_IMAGE = f"{SITE}/og-image.png"          # 1200 × 630
+OG_IMAGE_ALT = f"{AUTHOR} — AI Learning Journal, one day at a time"
+JOB_TITLE = "Technology Consultant & Agentic AI Researcher"
+PERSON_BIO = (f"{AUTHOR} is a technology consultant and agentic AI researcher based in Singapore. He writes a "
+              "daily AI research and learning journal covering agentic AI, large language models, the Model Context "
+              "Protocol (MCP), multi-agent orchestration, AI FinOps and agent governance.")
+SITE_BLURB = ("Daily AI research notes and plain-language deep dives into agentic AI, large language models, MCP, "
+              f"multi-agent systems, AI economics and governance, written every evening by {AUTHOR}.")
+KNOWS_ABOUT = [
+    "Agentic AI", "Large Language Models", "Multi-Agent Systems", "MCP Protocol",
+    "A2A Protocol", "AI FinOps", "Token Cost Optimisation", "Agent Governance",
+    "Agent Evaluation", "Multi-Agent Orchestration", "Salesforce Communications Cloud",
+    "Salesforce Agentforce", "Enterprise AI Transformation", "Telecommunications",
+    "OSS/BSS Systems", "Contact Center Solutions", "LangGraph", "CrewAI", "AutoGen",
+    "Digital Transformation", "AI Strategy", "Cloud Computing",
+]
+# Public profiles that belong to the author (LinkedIn, GitHub, X, Google Scholar …), full URLs.
+# This is the strongest on-page way to tell search engines WHICH Varun Singla this is, so list
+# only profiles that are really his and that he wants tied to this site. Empty means none are claimed.
+SAME_AS: list[str] = []
+
+# An entry with fewer words than this is published but kept out of search results and the
+# sitemap (noindex): a near-empty page counts against the whole site.
+THIN_WORDS = 120
+
 # ── Themes ────────────────────────────────────────────────────────────────────
 # An entry's themes come from an explicit "Themes:" line in the PDF when one
 # exists (entry['themes']); otherwise from keyword scoring over the title,
@@ -53,6 +94,32 @@ SCRIPT_DIR = Path(__file__).parent
 # so this is the single place the classification lives.
 THEMES = ['Foundations & Protocols', 'Industry Verticals', 'Enterprise & Strategy',
           'Infrastructure & Economics', 'Models & Frontier', 'Governance & Safety']
+# Each theme has its own page under /topics/<slug>/: (slug, what the theme covers).
+THEME_INFO = {
+    'Foundations & Protocols': ('foundations-protocols',
+        "How AI agents are built and wired together: the Model Context Protocol (MCP), agent-to-agent (A2A) "
+        "standards, memory, orchestration, agentic RAG, tool use, evals and reliability."),
+    'Industry Verticals': ('industry-verticals',
+        "Where AI agents are landing first, sector by sector: healthcare, financial services, telecoms, retail, "
+        "legal, education, energy, the public sector and more."),
+    'Enterprise & Strategy': ('enterprise-strategy',
+        "How organisations adopt agentic AI: operating models, centres of excellence, ROI and business cases, "
+        "procurement, platform choices and the future of work."),
+    'Infrastructure & Economics': ('infrastructure-economics',
+        "What AI costs and what it runs on: token pricing and inference economics, chips and data centres, "
+        "power limits, capital spending, valuations and sovereign compute."),
+    'Models & Frontier': ('models-frontier',
+        "The model race as it happens: frontier and open-weight releases, benchmarks, multimodal and voice "
+        "models, robotics and physical AI."),
+    'Governance & Safety': ('governance-safety',
+        "The rules and the risks: the EU AI Act and other regulation, agent identity and security, red-teaming, "
+        "incidents, liability and safety research."),
+}
+
+
+def theme_url(theme: str) -> str:
+    """Site-relative URL of a theme's topic page."""
+    return f"/topics/{THEME_INFO[theme][0]}/"
 RULES = {
     'Industry Verticals': ['healthcare', 'life science', 'clinical', 'hospital', 'pharma', 'telecom', 'network', 'insurance', 'underwriting', 'financial service', 'fp&a', ' finance', 'banking', 'wall street', 'manufacturing', 'industrial', 'supply chain', 'retail', 'e-commerce', 'ecommerce', 'legal', 'contract', ' hr ', 'people operation', 'education', 'edtech', 'marketing', 'customer success', ' customer', 'sales &', 'revenue operation', ' media', 'entertainment', 'energy & climate', 'energy &', 'scientific research', 'public sector', 'govtech', 'real estate', 'proptech', 'in financial', 'vertical', 'construction', 'automotive', 'robotaxi', 'agriculture', 'logistics', 'travel', 'hospitality', 'wet lab', 'math proof', 'theorem'],
     'Infrastructure & Economics': ['data centre', 'data center', 'data-centre', 'power wall', 'cooling', 'water wall', 'inference econom', 'compute map', 'sovereign ai', 'hyperscaler', 'capex', 'tokenomic', 'token economic', ' gpu', 'chip', 'silicon', 'power &', 'pricing', 'price war', 'half-price', 'cheaper', 'valuation', 'ipo', 'billion', 'revenue', 'tpu', 'nvidia', 'power grid', 'turbine', 'electricity', 'inference', 'cost'],
@@ -96,6 +163,78 @@ def esc(s) -> str:
     return html.escape(str(s), quote=True) if s is not None else ''
 
 
+# ── Structured data (JSON-LD) ─────────────────────────────────────────────────
+
+def ld(obj) -> str:
+    """One JSON-LD <script> block. '</' is escaped so no text can close the script element early."""
+    return ('<script type="application/ld+json">'
+            + json.dumps(obj, ensure_ascii=False).replace('</', '<\\/') + '</script>')
+
+
+def person_node() -> dict:
+    """The author, in full. Printed on the home page and the About page."""
+    node = {
+        "@type": "Person", "@id": PERSON_ID,
+        "name": AUTHOR, "givenName": "Varun", "familyName": "Singla",
+        "url": f"{SITE}/",
+        "jobTitle": JOB_TITLE,
+        "description": PERSON_BIO,
+        "address": {"@type": "PostalAddress", "addressLocality": "Singapore", "addressCountry": "SG"},
+        "mainEntityOfPage": {"@type": "ProfilePage", "@id": f"{SITE}/about/#webpage", "url": f"{SITE}/about/"},
+        "knowsAbout": KNOWS_ABOUT,
+        "award": ["AI FinOps Certification"],
+    }
+    if SAME_AS:
+        node["sameAs"] = list(SAME_AS)
+    return node
+
+
+def person_ref() -> dict:
+    """The author, in short, for pages that only need to say who wrote them."""
+    return {"@type": "Person", "@id": PERSON_ID, "name": AUTHOR, "url": f"{SITE}/about/"}
+
+
+def website_node(full: bool = False) -> dict:
+    node = {"@type": "WebSite", "@id": WEBSITE_ID, "url": f"{SITE}/", "name": SITE_NAME}
+    if full:
+        node.update({
+            "alternateName": [BLOG_NAME, "AI Learning Journal", "varunsingla.com"],
+            "description": SITE_BLURB, "inLanguage": "en",
+            "publisher": {"@id": PERSON_ID}, "author": {"@id": PERSON_ID}, "about": {"@id": PERSON_ID},
+        })
+    return node
+
+
+def blog_node() -> dict:
+    return {"@type": "Blog", "@id": BLOG_ID, "url": f"{SITE}/", "name": BLOG_NAME, "description": SITE_BLURB,
+            "inLanguage": "en", "isPartOf": {"@id": WEBSITE_ID},
+            "author": {"@id": PERSON_ID}, "publisher": {"@id": PERSON_ID}}
+
+
+def crumbs_node(*trail: tuple[str, str]) -> dict:
+    """BreadcrumbList from (name, absolute URL) pairs, home first."""
+    return {"@type": "BreadcrumbList",
+            "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": name, "item": url}
+                                for i, (name, url) in enumerate(trail)]}
+
+
+def page_ld(url: str, name: str, description: str, trail: list[tuple[str, str]],
+            page_type: str = "WebPage", **extra) -> str:
+    """JSON-LD for a hub page: what the page is, who wrote it, which site it belongs to, where it sits."""
+    page = {"@type": page_type, "@id": url + "#webpage", "url": url, "name": name, "description": description,
+            "inLanguage": "en", "isPartOf": {"@id": WEBSITE_ID}, "author": {"@id": PERSON_ID},
+            "breadcrumb": crumbs_node(("Home", f"{SITE}/"), *trail)}
+    page.update(extra)
+    return ld({"@context": "https://schema.org", "@graph": [page, website_node(), person_ref()]})
+
+
+def identity_ld(page: dict) -> str:
+    """JSON-LD for the two pages that define the identity in full (home, About): the page itself
+    plus the complete Person, WebSite and Blog records every other page points at."""
+    return ld({"@context": "https://schema.org",
+               "@graph": [page, person_node(), website_node(full=True), blog_node()]})
+
+
 def norm(s: str) -> str:
     return re.sub(r'\W+', ' ', (s or '').lower()).strip()
 
@@ -112,6 +251,50 @@ def first_sentences(text: str, max_len: int = 220) -> str:
         return text[:stop + 1]
     sp = cut.rfind(' ')
     return text[:sp if sp > 0 else max_len].strip() + '…'
+
+
+def clip(text: str, n: int = 158) -> str:
+    """Cut text to n characters on a word boundary, with an ellipsis when something was cut."""
+    text = re.sub(r'\s+', ' ', text or '').strip()
+    if len(text) <= n:
+        return text
+    cut = text[:n - 1]
+    sp = cut.rfind(' ')
+    return cut[:sp if sp > n * 0.6 else n - 1].rstrip(' ,;:—–-') + '…'
+
+
+def serp_text(s: str) -> str:
+    """Tidy a headline for search results and link previews: the PDFs write a dash as ' -- '."""
+    return re.sub(r'\s+--\s+', ' — ', s or '').strip()
+
+
+def meta_description(e: dict) -> str:
+    """The description search engines show under an entry's title, about 155 characters.
+    The deck when it says enough on its own; otherwise the deck plus the opening of the entry;
+    for entries with neither, the section headings."""
+    deck = serp_text(e.get('_sub') or '')
+    intro = serp_text(e.get('_intro') or '')
+    if len(intro) < 80 and not re.search(r'[.?!]', intro):
+        intro = ''                       # a row of stat labels, not a sentence
+    if intro and norm(intro) == norm(e.get('title') or ''):
+        intro = ''
+    if deck and intro and re.match(r'(?:And|While|But|Plus)\b', deck):
+        deck = ''                        # a deck that only continues the headline reads badly on its own
+    if len(deck) >= 110 or (deck and not intro):
+        text = deck
+    elif deck:
+        text = deck.rstrip(' .') + '. ' + intro
+    else:
+        text = intro
+    if len(text) < 110:
+        heads = [split_heading(s.get('title') or '')[1] for s in e.get('sections') or []]
+        heads = [serp_text(h).rstrip('.') for h in heads if h and norm(h) != norm(e.get('title') or '')][:4]
+        if text:
+            text = text.rstrip(' .') + '.' + (' Covers: ' + '; '.join(heads) + '.' if heads else '')
+        else:
+            text = (f"Day {e['_day']} of {AUTHOR}'s AI learning journal: "
+                    + ('; '.join(heads) if heads else serp_text(e.get('title') or '')) + '.')
+    return clip(text, 158)
 
 
 def word_count(e: dict) -> int:
@@ -317,6 +500,10 @@ def prepare(data: dict, root: Path | None = None) -> list[dict]:
             intro = paras[0] if paras else ''
         e['_intro'] = intro
         e['_excerpt'] = first_sentences(e['_sub'] or intro, 220) if (e['_sub'] or intro) else ''
+        e['_desc'] = meta_description(e)
+        e['_serp_title'] = serp_text(e['title'])
+        e['_thin'] = e['_words'] < THIN_WORDS
+        e['_dup_of'] = None
         e['_file'] = f"entries/{e['date']}.html"
         e['_url'] = f"{SITE}/entries/{e['date']}.html"
         e['_pdf'] = pdfs.get(e['date'], '')
@@ -327,6 +514,18 @@ def prepare(data: dict, root: Path | None = None) -> list[dict]:
         tk = e.get('practical_takeaway')
         e['_takeaways'] = [t for t in tk if isinstance(t, dict) and (t.get('title') or t.get('body'))] if isinstance(tk, list) \
             else ([{'title': '', 'body': tk}] if isinstance(tk, str) and tk.strip() else [])
+    # The same text published under two dates: the later page points search engines at the earlier one.
+    seen: dict[str, dict] = {}
+    for e in entries:
+        if e['_thin']:
+            continue
+        sig = norm(e['title']) + '|' + norm(body_text(e))[:4000]
+        if sig in seen:
+            e['_dup_of'] = seen[sig]
+        else:
+            seen[sig] = e
+    for e in entries:
+        e['_indexable'] = not e['_thin'] and e['_dup_of'] is None
     # Related entries: shared themes + shared title/heading keywords.
     for e in entries:
         scored = []
@@ -538,10 +737,11 @@ SITE_JS = """
 })();
 """
 
-FAVICON = ('<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E'
-           '%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%231B1A17%27/%3E%3Ctext x=%2732%27 y=%2742%27 '
-           'font-family=%27Helvetica,Arial,sans-serif%27 font-size=%2728%27 font-weight=%27700%27 fill=%27%23F7F4ED%27 '
-           'text-anchor=%27middle%27%3EVS%3C/text%3E%3C/svg%3E">')
+# Icons are real files at the site root: search engines only show a favicon they can fetch by URL.
+FAVICON = ('<link rel="icon" href="/favicon.ico" sizes="48x48">\n'
+           '<link rel="icon" href="/favicon.svg" type="image/svg+xml">\n'
+           '<link rel="apple-touch-icon" href="/apple-touch-icon.png">\n'
+           '<link rel="manifest" href="/site.webmanifest">')
 
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n'
          '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
@@ -554,7 +754,7 @@ FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n'
 NAV_ITEMS = [
     ('Home', '/'),
     ('Start Here', '/start/'),
-    ('Journal', [('Archive', '/entries/'), ('Weekly digest', '/weekly/'), ('Watching', '/watching/')]),
+    ('Journal', [('Archive', '/entries/'), ('Topics', '/topics/'), ('Weekly digest', '/weekly/'), ('Watching', '/watching/')]),
     ('Learn', [('Playbook', '/playbook/'), ('Concepts', '/concepts/'), ('Review', '/review/')]),
     ('Tools', [('AI Tokenomics', '/ai-tokenomics/'), ('Model Evaluator', '/tools/model-team-evaluator.html')]),
     ('About', '/about/'),
@@ -592,7 +792,7 @@ def masthead(active: str = '') -> str:
 
 def page_footer() -> str:
     return f"""<footer class="foot"><div class="foot-in">
-  <div><span class="brand-mark" style="display:inline-flex;width:26px;height:26px;font-size:11px;border-radius:6px;vertical-align:middle;margin-right:8px;">VS</span>{AUTHOR} · Singapore · Learning in public</div>
+  <div><span class="brand-mark" style="display:inline-flex;width:26px;height:26px;font-size:11px;border-radius:6px;vertical-align:middle;margin-right:8px;">VS</span><a href="/about/" rel="author" style="color:inherit;text-decoration:none;">{AUTHOR}</a> · Singapore · Learning in public</div>
   <div class="foot-links">
     <a href="/weekly/">Weekly digest</a><a href="/ai-tokenomics/">Tokenomics</a>
     <a href="/tools/model-team-evaluator.html">Model Evaluator</a><a href="{SITE}/feed.xml">RSS</a><a href="{SITE}/llms.txt">llms.txt</a>
@@ -602,29 +802,43 @@ def page_footer() -> str:
 <script>{SITE_JS}</script>"""
 
 
+ROBOTS_INDEX = 'index, follow, max-snippet:-1, max-image-preview:large'
+ROBOTS_NOINDEX = 'noindex, follow'
+
+
 def page_shell(*, title: str, description: str, canonical: str, body: str, active: str = '',
-               jsonld: str = '', extra_head: str = '', extra_css: str = '', og_type: str = 'website') -> str:
+               jsonld: str = '', extra_head: str = '', extra_css: str = '', og_type: str = 'website',
+               robots: str = ROBOTS_INDEX) -> str:
+    """The shared page: head (search and link-preview metadata), top bar, body, footer.
+    Pass canonical='' for a page that has no address of its own (the 404 page)."""
+    canon = (f'<link rel="canonical" href="{canonical}">\n'
+             f'<meta property="og:url" content="{canonical}">\n') if canonical else ''
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#F7F4ED" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#161512" media="(prefers-color-scheme: dark)">
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(description)}">
 <meta name="author" content="{AUTHOR}">
-<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
-<link rel="canonical" href="{canonical}">
-<link rel="alternate" type="application/rss+xml" title="{esc(BLOG_NAME)}" href="{SITE}/feed.xml">
+<meta name="robots" content="{robots}">
+{canon}<link rel="alternate" type="application/rss+xml" title="{esc(BLOG_NAME)}" href="{SITE}/feed.xml">
 <meta property="og:type" content="{og_type}">
-<meta property="og:site_name" content="{esc(BLOG_NAME)}">
+<meta property="og:site_name" content="{esc(SITE_NAME)}">
+<meta property="og:locale" content="en_US">
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{esc(description)}">
-<meta property="og:url" content="{canonical}">
-<meta property="og:image" content="{SITE}/og-image.png">
+<meta property="og:image" content="{OG_IMAGE}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{esc(OG_IMAGE_ALT)}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{esc(title)}">
 <meta name="twitter:description" content="{esc(description)}">
-<meta name="twitter:image" content="{SITE}/og-image.png">
+<meta name="twitter:image" content="{OG_IMAGE}">
+<meta name="twitter:image:alt" content="{esc(OG_IMAGE_ALT)}">
 {extra_head}{FAVICON}
 {FONTS}
 {jsonld}
@@ -736,41 +950,42 @@ def render_body_blocks(e: dict, for_feed: bool = False) -> str:
 
 
 def entry_jsonld(e: dict) -> str:
+    """BlogPosting + its WebPage and breadcrumb, with the author, journal and site it belongs to."""
+    url = e['_url']
     post = {
-        "@context": "https://schema.org",
         "@type": "BlogPosting",
-        "@id": e['_url'] + "#post",
-        "headline": e['title'],
-        **({"alternativeHeadline": e['subtitle']} if e.get('subtitle') else {}),
-        "description": e['_excerpt'],
+        "@id": url + "#post",
+        "headline": e['_serp_title'],
+        **({"alternativeHeadline": serp_text(e['subtitle'])} if e.get('subtitle') else {}),
+        "description": e['_desc'],
         "datePublished": f"{e['date']}T21:00:00+08:00",
         "dateModified": f"{e['date']}T21:00:00+08:00",
-        "url": e['_url'],
-        "mainEntityOfPage": e['_url'],
+        "url": url,
+        "mainEntityOfPage": {"@id": url + "#webpage"},
+        "image": {"@type": "ImageObject", "url": OG_IMAGE, "width": 1200, "height": 630},
         "wordCount": e['_words'],
+        "timeRequired": f"PT{e['_read']}M",
         "inLanguage": "en",
+        "isAccessibleForFree": True,
         "articleSection": e['_tags'],
-        "keywords": e['_tags'] + ["agentic AI", "AI learning journal", "Varun Singla"],
-        "isPartOf": {"@type": "Blog", "@id": f"{SITE}/#blog", "name": BLOG_NAME},
-        "author": {"@type": "Person", "@id": f"{SITE}/#varun", "name": AUTHOR, "url": f"{SITE}/about/"},
-        "publisher": {"@type": "Person", "@id": f"{SITE}/#varun", "name": AUTHOR},
+        "keywords": e['_tags'] + ["agentic AI", "AI research", "AI learning journal", AUTHOR],
+        "isPartOf": {"@id": BLOG_ID},
+        "author": person_ref(),
+        "publisher": {"@id": PERSON_ID},
     }
-    crumbs = {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-            {"@type": "ListItem", "position": 1, "name": "Journal", "item": SITE + "/"},
-            {"@type": "ListItem", "position": 2, "name": "Archive", "item": f"{SITE}/entries/"},
-            {"@type": "ListItem", "position": 3, "name": e['title'], "item": e['_url']},
-        ],
+    page = {
+        "@type": "WebPage", "@id": url + "#webpage", "url": url, "name": e['_serp_title'],
+        "inLanguage": "en", "isPartOf": {"@id": WEBSITE_ID},
+        "breadcrumb": crumbs_node(("Home", f"{SITE}/"), ("Journal archive", f"{SITE}/entries/"),
+                                  (e['_serp_title'], url)),
     }
-    return (f'<script type="application/ld+json">{json.dumps(post, ensure_ascii=False)}</script>\n'
-            f'<script type="application/ld+json">{json.dumps(crumbs, ensure_ascii=False)}</script>')
+    blog = {"@type": "Blog", "@id": BLOG_ID, "name": BLOG_NAME, "url": f"{SITE}/"}
+    return ld({"@context": "https://schema.org", "@graph": [post, page, blog, website_node()]})
 
 
 def render_entry_page(e: dict, prev_e: dict | None, next_e: dict | None) -> str:
-    title = f"{e['title']} — Day {e['_day']} | {BLOG_NAME}"
-    tags = ''.join(f'<a class="tag" href="/entries/?theme={esc(t)}">{esc(t)}</a> ' for t in e['_tags'])
+    title = f"{e['_serp_title']} | {AUTHOR}"
+    tags = ''.join(f'<a class="tag" href="{theme_url(t)}" rel="tag">{esc(t)}</a> ' for t in e['_tags'])
     pn = '<nav class="pn" aria-label="Adjacent entries">'
     if next_e:
         pn += f'<a href="{next_e["date"]}.html" rel="next"><div class="lbl">← Newer · Day {next_e["_day"]}</div><div class="ttl">{esc(next_e["title"])}</div></a>'
@@ -788,7 +1003,9 @@ def render_entry_page(e: dict, prev_e: dict | None, next_e: dict | None) -> str:
     if prev_e:
         head_links += f'<link rel="prev" href="{SITE}/entries/{prev_e["date"]}.html">\n'
     head_links += f'<meta property="article:published_time" content="{e["date"]}T21:00:00+08:00">\n'
+    head_links += f'<meta property="article:modified_time" content="{e["date"]}T21:00:00+08:00">\n'
     head_links += f'<meta property="article:author" content="{SITE}/about/">\n'
+    head_links += f'<meta property="article:section" content="{esc(e["_tags"][0])}">\n'
     head_links += ''.join(f'<meta property="article:tag" content="{esc(t)}">\n' for t in e['_tags'])
 
     deck = f'<p class="deck">{esc(e["_sub"])}</p>' if e['_sub'] else ''
@@ -814,14 +1031,16 @@ def render_entry_page(e: dict, prev_e: dict | None, next_e: dict | None) -> str:
   {related}
   <div style="display:flex;align-items:center;gap:13px;margin:54px 0 10px;padding-top:30px;border-top:1px solid var(--border);">
     <div class="brand-mark" style="width:40px;height:40px;font-size:14px;border-radius:9px;">VS</div>
-    <div><div style="font-size:14.5px;font-weight:600;">{AUTHOR}</div>
-    <div style="font-family:var(--mono);font-size:12px;color:var(--faint);">Singapore · <a href="/about/" style="color:var(--faint);">About</a> · Learning in public</div></div>
+    <div><div style="font-size:14.5px;font-weight:600;">By <a href="/about/" rel="author" style="color:inherit;">{AUTHOR}</a></div>
+    <div style="font-family:var(--mono);font-size:12px;color:var(--faint);">Singapore · <a href="/about/" style="color:var(--faint);">About the author</a> · Learning in public</div></div>
   </div>
 </article>
 {pn}
 </main>"""
-    return page_shell(title=title, description=e['_excerpt'] or e['title'], canonical=e['_url'], body=body,
-                      jsonld=entry_jsonld(e), extra_head=head_links, og_type='article')
+    # A near-empty entry stays readable but out of search results; a repeated one names the original.
+    return page_shell(title=title, description=e['_desc'], canonical=(e['_dup_of'] or e)['_url'], body=body,
+                      jsonld=entry_jsonld(e), extra_head=head_links, og_type='article',
+                      robots=ROBOTS_NOINDEX if e['_thin'] else ROBOTS_INDEX)
 
 
 # ── Archive ───────────────────────────────────────────────────────────────────
@@ -861,23 +1080,6 @@ def render_entries_index(entries: list[dict]) -> str:
 
     chips = ''.join(f'<button class="chip{" active" if t == "All" else ""}" type="button" data-theme="{esc(t)}" aria-pressed="{"true" if t == "All" else "false"}">{esc(t)}</button>'
                     for t in ['All'] + THEMES)
-    item_list = {
-        "@context": "https://schema.org",
-        "@type": "CollectionPage",
-        "@id": f"{SITE}/entries/",
-        "name": f"All entries — {BLOG_NAME}",
-        "url": f"{SITE}/entries/",
-        "isPartOf": {"@type": "Blog", "@id": f"{SITE}/#blog", "name": BLOG_NAME},
-        "author": {"@type": "Person", "@id": f"{SITE}/#varun", "name": AUTHOR},
-        "mainEntity": {
-            "@type": "ItemList",
-            "numberOfItems": len(entries),
-            "itemListElement": [
-                {"@type": "ListItem", "position": i + 1, "url": e['_url'], "name": e['title']}
-                for i, e in enumerate(reversed(entries))
-            ],
-        },
-    }
     desc = (f"Complete archive of {AUTHOR}'s AI learning journal — {len(entries)} daily entries on agentic AI, "
             f"MCP, multi-agent systems, AI economics and enterprise adoption, from {long_date(entries[0]['date'])} "
             f"to {long_date(newest['date'])}.")
@@ -889,8 +1091,15 @@ def render_entries_index(entries: list[dict]) -> str:
   {''.join(groups)}
 </main>
 <script>{ARCHIVE_JS}</script>"""
-    return page_shell(title=f"All Entries — {BLOG_NAME}", description=desc, canonical=f"{SITE}/entries/", body=body,
-                      active='Archive', jsonld=f'<script type="application/ld+json">{json.dumps(item_list, ensure_ascii=False)}</script>')
+    listing = {"@type": "ItemList", "numberOfItems": len(entries),
+               "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": e['_url'], "name": e['_serp_title']}
+                                   for i, e in enumerate(reversed(entries))]}
+    meta_desc = (f"Archive of {AUTHOR}'s daily AI research and learning journal: {len(entries)} entries on "
+                 "agentic AI, MCP, multi-agent systems, AI economics and enterprise adoption.")
+    return page_shell(title=f"Journal Archive — Daily AI Research Notes on Agentic AI | {AUTHOR}", description=meta_desc,
+                      canonical=f"{SITE}/entries/", body=body, active='Archive',
+                      jsonld=page_ld(f"{SITE}/entries/", f"Journal archive — {BLOG_NAME}", desc,
+                                     [("Journal archive", f"{SITE}/entries/")], "CollectionPage", mainEntity=listing))
 
 
 # ── Playbook ──────────────────────────────────────────────────────────────────
@@ -946,8 +1155,10 @@ def render_playbook(entries: list[dict], stats: dict) -> str:
 </main>
 <script>{FILTER_JS}</script>"""
     css = ".pb-list{margin:0;padding-left:18px;}.pb-list li{font-size:15.5px;line-height:1.5;color:var(--text2);margin:0 0 8px;}.pb-list strong{color:var(--text);}.pb-list span{color:var(--muted);}"
-    return page_shell(title=f"Playbook — {BLOG_NAME}", description=desc, canonical=f"{SITE}/playbook/", body=body,
-                      active='Playbook', extra_css=css)
+    return page_shell(title=f"AI Playbook — Practical Agentic AI Takeaways by Theme | {AUTHOR}", description=desc,
+                      canonical=f"{SITE}/playbook/", body=body, active='Playbook', extra_css=css,
+                      jsonld=page_ld(f"{SITE}/playbook/", f"The Playbook — {BLOG_NAME}", desc,
+                                     [("Playbook", f"{SITE}/playbook/")], "CollectionPage"))
 
 
 # ── Concepts ──────────────────────────────────────────────────────────────────
@@ -975,7 +1186,12 @@ def render_concepts(entries: list[dict], stats: dict) -> str:
   {''.join(cards)}
 </main>
 <script>{FILTER_JS}</script>"""
-    return page_shell(title=f"Concepts — {BLOG_NAME}", description=desc, canonical=f"{SITE}/concepts/", body=body, active='Concepts')
+    meta_desc = (f"{stats['concepts']} AI concepts explained in plain language, from agentic AI and MCP to inference "
+                 f"economics, drawn from {AUTHOR}'s daily AI learning journal.")
+    return page_shell(title=f"AI Concepts Explained Simply — An Agentic AI Glossary | {AUTHOR}", description=meta_desc,
+                      canonical=f"{SITE}/concepts/", body=body, active='Concepts',
+                      jsonld=page_ld(f"{SITE}/concepts/", f"Concepts, explained simply — {BLOG_NAME}", desc,
+                                     [("Concepts", f"{SITE}/concepts/")], "CollectionPage"))
 
 
 # ── Watching ──────────────────────────────────────────────────────────────────
@@ -1010,7 +1226,10 @@ def render_watching(entries: list[dict]) -> str:
   {''.join(items)}
 </main>
 <script>{FILTER_JS}</script>"""
-    return page_shell(title=f"What we're watching — {BLOG_NAME}", description=desc, canonical=f"{SITE}/watching/", body=body, active='Watching')
+    return page_shell(title=f"What We're Watching in AI — Daily Watch List | {AUTHOR}", description=desc,
+                      canonical=f"{SITE}/watching/", body=body, active='Watching',
+                      jsonld=page_ld(f"{SITE}/watching/", f"What we're watching — {BLOG_NAME}", desc,
+                                     [("Watching", f"{SITE}/watching/")], "CollectionPage"))
 
 
 # ── Start here ────────────────────────────────────────────────────────────────
@@ -1039,7 +1258,7 @@ def render_start(entries: list[dict], stats: dict) -> str:
   <p style="font-size:16.5px;line-height:1.65;color:var(--text2);margin:0 0 8px;">{esc(recap_entry['recap'])}</p>
   <p class="eyebrow" style="margin:0;">Recap as written on Day {recap_entry['_day']} · <a href="/entries/{recap_entry['date']}.html" style="color:var(--faint);">{esc(long_date(recap_entry['date']))}</a></p>
 </section>"""
-    theme_rows = ''.join(f'<li><a href="/entries/?theme={esc(t)}" style="text-decoration:none;color:var(--text);">{esc(t)}</a> <span style="font-family:var(--mono);font-size:12px;color:var(--faint);">{n}</span></li>'
+    theme_rows = ''.join(f'<li><a href="{theme_url(t)}" style="text-decoration:none;color:var(--text);">{esc(t)}</a> <span style="font-family:var(--mono);font-size:12px;color:var(--faint);">{n}</span></li>'
                          for t, n in stats['themes'].items())
     desc = (f"New here? How {AUTHOR}'s daily AI learning journal works, {len(paths)} curated learning paths through "
             f"{stats['entries']} entries, and where the series has been so far.")
@@ -1050,7 +1269,8 @@ def render_start(entries: list[dict], stats: dict) -> str:
   <section style="margin:0 0 50px;">
     <h2 class="section-h2">How to use this site</h2>
     <ul class="how-list">
-      <li><a href="/">Journal</a> — the latest entry, and the archive by month.</li>
+      <li><a href="/">Home</a> — the latest entry, and the archive by month.</li>
+      <li><a href="/topics/">Topics</a> — everything filed under each of the six themes.</li>
       <li><a href="/playbook/">Playbook</a> — every practical takeaway, filterable by theme. The fastest way to act on what the journal has learned.</li>
       <li><a href="/concepts/">Concepts</a> — the ideas behind the news, explained in plain language.</li>
       <li><a href="/watching/">Watching</a> — what each entry said to watch next, and which later entries followed up.</li>
@@ -1076,8 +1296,134 @@ def render_start(entries: list[dict], stats: dict) -> str:
 </main>"""
     css = (".how-list{list-style:none;margin:0;padding:0;}.how-list li{font-size:16.5px;line-height:1.6;color:var(--text2);margin:0 0 10px;}"
            ".how-list a{color:var(--text);font-weight:600;}.path-list{margin:0;padding-left:22px;}.path-list li{font-size:16px;line-height:1.4;margin:0 0 10px;color:var(--text2);}")
-    return page_shell(title=f"Start here — {BLOG_NAME}", description=desc, canonical=f"{SITE}/start/", body=body,
-                      active='Start Here', extra_css=css)
+    return page_shell(title=f"Start Here — Learning Paths Through Agentic AI | {AUTHOR}", description=desc,
+                      canonical=f"{SITE}/start/", body=body, active='Start Here', extra_css=css,
+                      jsonld=page_ld(f"{SITE}/start/", f"Start here — {BLOG_NAME}", desc,
+                                     [("Start here", f"{SITE}/start/")]))
+
+
+# ── Topics (one page per theme) ───────────────────────────────────────────────
+
+TOPIC_CSS = (
+    ".topic-grid{display:grid;grid-template-columns:1fr;gap:12px;}"
+    "@media (min-width:640px){.topic-grid{grid-template-columns:repeat(2,1fr);}}"
+    ".topic-grid a{display:block;text-decoration:none;border:1px solid var(--border);border-radius:14px;"
+    "background:var(--surface);padding:20px 22px;transition:border-color .2s ease;}"
+    ".topic-grid a:hover{border-color:var(--text);}"
+    ".topic-grid b{display:block;font-family:var(--serif);font-weight:500;font-size:clamp(20px,2.8vw,24px);color:var(--text);margin:0 0 6px;}"
+    ".topic-grid span{display:block;font-size:15px;line-height:1.5;color:var(--muted);}"
+    ".topic-grid em{display:block;font-style:normal;font-family:var(--mono);font-size:12px;color:var(--faint);margin-top:10px;}"
+    ".topic-nav{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 40px;}"
+    ".story-list{list-style:none;margin:0 0 44px;padding:0;}"
+    "@media (min-width:640px){.story-list{columns:2;column-gap:30px;}}"
+    ".story-list li{font-size:15.5px;line-height:1.45;margin:0 0 10px;break-inside:avoid;}"
+    ".story-list a{color:var(--text2);text-decoration:none;border-bottom:1px solid var(--border);}"
+    ".story-list a:hover{color:var(--accent);border-color:var(--accent);}"
+)
+
+
+def _theme_entries(theme: str, entries: list[dict]) -> list[dict]:
+    """Entries filed under a theme, newest first."""
+    return [e for e in reversed(entries) if theme in e['_tags']]
+
+
+def render_topic_page(theme: str, entries: list[dict]) -> str:
+    """Everything filed under one theme: what it covers, the stories explained most recently, every entry by month."""
+    slug, blurb = THEME_INFO[theme]
+    url = f"{SITE}/topics/{slug}/"
+    es = _theme_entries(theme, entries)
+
+    by_month: dict[str, list[dict]] = {}
+    for e in es:
+        d = datetime.strptime(e['date'], '%Y-%m-%d')
+        by_month.setdefault(d.strftime('%B %Y'), []).append(e)
+    groups = []
+    for month, mes in by_month.items():
+        items = ''.join(
+            f'<li><a href="/entries/{e["date"]}.html">'
+            f'<span class="d">Day {e["_day"]} · <time datetime="{e["date"]}">{long_date(e["date"])}</time></span>'
+            f'<span class="t">{esc(e["title"])}</span>'
+            f'<span class="s">{esc(e["_sub"] or e["_excerpt"])}</span></a></li>'
+            for e in mes)
+        groups.append(f'<section style="margin:0 0 44px;"><h2 class="section-h2">{month}</h2><ul class="entry-list">{items}</ul></section>')
+
+    # Stories whose concept was explained in plain language, newest first, one line each.
+    stories, seen = [], set()
+    for e in es:
+        for c in e['_concepts']:
+            key = norm(c['term'])
+            if key and key not in seen:
+                seen.add(key)
+                stories.append((c['term'], e))
+    story_html = ''
+    if stories:
+        story_html = ('<h2 class="section-h2">Recently explained</h2><ul class="story-list">'
+                      + ''.join(f'<li><a href="/entries/{e["date"]}.html">{esc(term)}</a></li>' for term, e in stories[:16])
+                      + '</ul>')
+
+    others = ''.join(f'<a class="tag" href="{theme_url(t)}">{esc(t)}</a>' for t in THEMES if t != theme)
+    span = (f"from {long_date(es[-1]['date'])} to {long_date(es[0]['date'])}" if len(es) > 1
+            else (f"on {long_date(es[0]['date'])}" if es else ''))
+    desc = clip(blurb, 158)
+    listing = {"@type": "ItemList", "numberOfItems": len(es),
+               "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": e['_url'], "name": e['_serp_title']}
+                                   for i, e in enumerate(es)]}
+    body = f"""<main id="main" class="wrap" style="max-width:760px;padding-top:48px;padding-bottom:60px;">
+  <p style="margin:0 0 26px;"><a href="/topics/" style="font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;color:var(--muted2);text-decoration:none;">← All topics</a></p>
+  <div class="kicker">AI research notes · Topic</div>
+  <h1 class="page-h1">{esc(theme)}</h1>
+  <p class="lede">{esc(blurb)} {len(es)} entries {span}, newest first.</p>
+  <nav class="topic-nav" aria-label="Other topics">{others}</nav>
+  {story_html}
+  {''.join(groups)}
+</main>"""
+    return page_shell(title=f"{theme} — AI Research Notes | {AUTHOR}", description=desc, canonical=url, body=body,
+                      active='Topics', extra_css=TOPIC_CSS,
+                      jsonld=page_ld(url, f"{theme} — {BLOG_NAME}", desc,
+                                     [("Topics", f"{SITE}/topics/"), (theme, url)], "CollectionPage",
+                                     about={"@type": "Thing", "name": theme}, mainEntity=listing))
+
+
+def render_topics_index(entries: list[dict]) -> str:
+    """The six themes the journal is filed under, each linking to its own page."""
+    cards = []
+    for theme in THEMES:
+        es = _theme_entries(theme, entries)
+        latest = (f'<em>{len(es)} entries · latest: {esc(first_sentences(es[0]["title"], 70))}</em>' if es
+                  else '<em>No entries yet</em>')
+        cards.append(f'<a href="{theme_url(theme)}"><b>{esc(theme)}</b><span>{esc(THEME_INFO[theme][1])}</span>{latest}</a>')
+    desc = (f"The six themes of {AUTHOR}'s AI research journal: agent foundations, industry verticals, "
+            "enterprise strategy, AI economics, frontier models and safety.")
+    body = f"""<main id="main" class="wrap" style="max-width:820px;padding-top:48px;padding-bottom:60px;">
+  <h1 class="page-h1">Topics</h1>
+  <p class="lede">Every entry in the journal is filed under one or two of six themes. Pick one to see everything written about it, newest first. For a guided route instead, see the <a href="/start/">learning paths</a>.</p>
+  <div class="topic-grid">{''.join(cards)}</div>
+</main>"""
+    url = f"{SITE}/topics/"
+    return page_shell(title=f"AI Research Topics — Agentic AI by Theme | {AUTHOR}", description=desc, canonical=url,
+                      body=body, active='Topics', extra_css=TOPIC_CSS,
+                      jsonld=page_ld(url, f"Topics — {BLOG_NAME}", desc, [("Topics", url)], "CollectionPage"))
+
+
+# ── Not found ─────────────────────────────────────────────────────────────────
+
+def render_404(entries: list[dict]) -> str:
+    """Served by GitHub Pages for any address that does not exist."""
+    newest = entries[-1]
+    body = f"""<main id="main" class="wrap" style="max-width:680px;padding-top:64px;padding-bottom:80px;">
+  <div class="kicker">404 · Page not found</div>
+  <h1 class="page-h1">That page isn't here.</h1>
+  <p class="lede">The address may have changed, or the link may be mistyped. These will get you back on track:</p>
+  <ul class="entry-list">
+    <li><a href="/"><span class="t">Home</span><span class="s">The latest entry and the journal by month.</span></a></li>
+    <li><a href="/entries/{newest['date']}.html"><span class="t">Today's entry</span><span class="s">{esc(newest['title'])}</span></a></li>
+    <li><a href="/entries/"><span class="t">The archive</span><span class="s">Every entry since {long_date(entries[0]['date'])}.</span></a></li>
+    <li><a href="/topics/"><span class="t">Topics</span><span class="s">Browse the journal by theme.</span></a></li>
+    <li><a href="/start/"><span class="t">Start here</span><span class="s">How the journal works, with curated learning paths.</span></a></li>
+  </ul>
+</main>"""
+    return page_shell(title=f"Page not found | {AUTHOR}", description=f"This page does not exist on {AUTHOR}'s AI learning journal.",
+                      canonical='', body=body, robots=ROBOTS_NOINDEX)
 
 
 # ── Weekly digests ────────────────────────────────────────────────────────────
@@ -1085,6 +1431,16 @@ def render_start(entries: list[dict], stats: dict) -> str:
 def _week_label(key: str) -> str:
     s, e = week_bounds(key)
     return f"{long_date(s)} – {long_date(e)}"
+
+
+def _week_short(key: str) -> str:
+    """'Nov 16–22, 2026', 'Aug 31 – Sep 6, 2026' or 'Dec 28, 2026 – Jan 3, 2027': the week, for a title."""
+    s, e = (datetime.strptime(d, '%Y-%m-%d') for d in week_bounds(key))
+    if s.year != e.year:
+        return f"{s.strftime('%b')} {s.day}, {s.year} – {e.strftime('%b')} {e.day}, {e.year}"
+    if s.month != e.month:
+        return f"{s.strftime('%b')} {s.day} – {e.strftime('%b')} {e.day}, {e.year}"
+    return f"{s.strftime('%b')} {s.day}–{e.day}, {e.year}"
 
 
 def _week_digest_html(key: str, es: list[dict]) -> str:
@@ -1134,7 +1490,11 @@ def render_week_page(key: str, es: list[dict], prev_key: str | None, next_key: s
   {_week_digest_html(key, es)}
   {nav}
 </main>"""
-    return page_shell(title=f"Week of {label} — {BLOG_NAME}", description=desc, canonical=f"{SITE}/weekly/{key}.html", body=body, active='Weekly digest', extra_css=WEEK_CSS)
+    url = f"{SITE}/weekly/{key}.html"
+    return page_shell(title=f"AI Weekly Digest: {_week_short(key)} | {AUTHOR}", description=desc, canonical=url, body=body,
+                      active='Weekly digest', extra_css=WEEK_CSS,
+                      jsonld=page_ld(url, f"Week of {label} — {BLOG_NAME}", desc,
+                                     [("Weekly digest", f"{SITE}/weekly/"), (f"Week of {label}", url)], "CollectionPage"))
 
 
 def render_weekly_index(weeks: list[tuple[str, list[dict]]]) -> str:
@@ -1157,7 +1517,10 @@ def render_weekly_index(weeks: list[tuple[str, list[dict]]]) -> str:
   <h2 class="section-h2">Earlier weeks</h2>
   <ul class="entry-list">{rows}</ul>
 </main>"""
-    return page_shell(title=f"Weekly digest — {BLOG_NAME}", description=desc, canonical=f"{SITE}/weekly/", body=body, active='Weekly digest', extra_css=WEEK_CSS)
+    return page_shell(title=f"Weekly AI Digest — Agentic AI Research, Week by Week | {AUTHOR}", description=desc,
+                      canonical=f"{SITE}/weekly/", body=body, active='Weekly digest', extra_css=WEEK_CSS,
+                      jsonld=page_ld(f"{SITE}/weekly/", f"Weekly digest — {BLOG_NAME}", desc,
+                                     [("Weekly digest", f"{SITE}/weekly/")], "CollectionPage"))
 
 
 # ── Review (flashcards) ───────────────────────────────────────────────────────
@@ -1259,7 +1622,11 @@ def render_review(entries: list[dict]) -> str:
            ".fc-actions{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 10px;}.fc-foot{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}"
            ".btn{font-family:var(--mono);font-size:13px;padding:10px 14px;border-radius:9px;border:1px solid var(--border);background:var(--surface);color:var(--text);cursor:pointer;}.btn:hover{border-color:var(--text);}"
            ".btn-primary{background:var(--text);color:var(--bg);border-color:var(--text);}.btn-sm{font-size:11.5px;padding:7px 10px;}")
-    return page_shell(title=f"Review — {BLOG_NAME}", description=desc, canonical=f"{SITE}/review/", body=body, active='Review', extra_css=css)
+    meta_desc = clip(desc.split(' Progress stays')[0], 158)
+    return page_shell(title=f"AI Flashcards — Review Agentic AI Concepts & Takeaways | {AUTHOR}", description=meta_desc,
+                      canonical=f"{SITE}/review/", body=body, active='Review', extra_css=css,
+                      jsonld=page_ld(f"{SITE}/review/", f"Review — {BLOG_NAME}", desc,
+                                     [("Review", f"{SITE}/review/")]))
 
 
 # ── Machine-readable artifacts ────────────────────────────────────────────────
@@ -1312,6 +1679,8 @@ def render_llms_txt(entries: list[dict], stats: dict) -> str:
         f"- [Weekly digest]({SITE}/weekly/): one page per week",
         f"- [Review]({SITE}/review/): flashcards for spaced repetition",
         f"- [Archive]({SITE}/entries/): browsable index of all entries",
+        f"- [Topics]({SITE}/topics/): the journal by theme — "
+        + ", ".join(f"[{t}]({SITE}{theme_url(t)})" for t in THEMES),
         "",
         "## Journal entries",
         "",
@@ -1439,21 +1808,34 @@ def render_feed(entries: list[dict]) -> str:
 """
 
 
-def render_sitemap(entries: list[dict], week_keys: list[str]) -> str:
+def render_sitemap(entries: list[dict], week_keys: list[str], root: Path | None = None) -> str:
+    """Every page worth indexing, with the date it last changed. Near-empty and repeated entries are
+    left out (they are noindex / canonicalised), and hand-maintained pages report their own date."""
+    root = Path(root) if root else SCRIPT_DIR
     newest = entries[-1]['date']
+
+    def own_date(rel: str) -> str:
+        return hand_page_meta(root / rel).get('modified') or newest
+
+    def theme_date(theme: str) -> str:
+        es = _theme_entries(theme, entries)
+        return es[0]['date'] if es else newest
+
     static_pages = [
         (f"{SITE}/", newest, 'daily', '1.0'),
+        (f"{SITE}/about/", own_date('about/index.html'), 'monthly', '0.9'),
         (f"{SITE}/entries/", newest, 'daily', '0.9'),
         (f"{SITE}/start/", newest, 'weekly', '0.9'),
+        (f"{SITE}/topics/", newest, 'weekly', '0.8'),
         (f"{SITE}/playbook/", newest, 'daily', '0.8'),
         (f"{SITE}/concepts/", newest, 'daily', '0.8'),
         (f"{SITE}/watching/", newest, 'daily', '0.7'),
         (f"{SITE}/weekly/", newest, 'weekly', '0.7'),
         (f"{SITE}/review/", newest, 'weekly', '0.6'),
-        (f"{SITE}/about/", newest, 'monthly', '0.8'),
-        (f"{SITE}/ai-tokenomics/", newest, 'monthly', '0.7'),
-        (f"{SITE}/tools/model-team-evaluator.html", newest, 'monthly', '0.7'),
+        (f"{SITE}/ai-tokenomics/", own_date('ai-tokenomics/index.html'), 'monthly', '0.8'),
+        (f"{SITE}/tools/model-team-evaluator.html", own_date('tools/model-team-evaluator.html'), 'monthly', '0.8'),
     ]
+    static_pages += [(f"{SITE}{theme_url(t)}", theme_date(t), 'daily', '0.7') for t in THEMES]
     urls = [f"""  <url>
     <loc>{loc}</loc>
     <lastmod>{lastmod}</lastmod>
@@ -1461,6 +1843,8 @@ def render_sitemap(entries: list[dict], week_keys: list[str]) -> str:
     <priority>{prio}</priority>
   </url>""" for loc, lastmod, freq, prio in static_pages]
     for e in reversed(entries):
+        if not e['_indexable']:
+            continue
         urls.append(f"""  <url>
     <loc>{e['_url']}</loc>
     <lastmod>{e['date']}</lastmod>
@@ -1492,6 +1876,93 @@ FOOT_END = '<!-- GEO:FOOTER:END -->'
 # Inline entry count on hand-written pages (about/index.html), kept current on every run.
 COUNT_BEGIN = '<!--GEO:ENTRY-COUNT-->'
 COUNT_END = '<!--/GEO:ENTRY-COUNT-->'
+# Structured data in the <head> of the hand-written pages (home, About, the two tools). The page
+# keeps its own title, description and <meta name="last-modified">; this block is built from them
+# and from the identity defined at the top of this file, so every page describes the author alike.
+SCHEMA_BEGIN = '<!-- GEO:SCHEMA:BEGIN (generated by generate_geo.py — do not edit by hand) -->'
+SCHEMA_END = '<!-- GEO:SCHEMA:END -->'
+
+
+def _meta_from(text: str, pattern: str) -> str:
+    m = re.search(pattern, text, re.S | re.I)
+    return html.unescape(re.sub(r'\s+', ' ', m.group(1)).strip()) if m else ''
+
+
+def hand_page_meta(path: Path, text: str | None = None) -> dict:
+    """What a hand-written page says about itself: title, description and the day it was last changed
+    (<meta name="last-modified" content="YYYY-MM-DD">, bumped by whoever edits the page)."""
+    if text is None:
+        if not path.exists():
+            return {}
+        text = path.read_text(encoding='utf-8')
+    modified = _meta_from(text, r'<meta\s+name="last-modified"\s+content="(\d{4}-\d{2}-\d{2})"')
+    return {
+        'title': _meta_from(text, r'<title>(.*?)</title>'),
+        'description': _meta_from(text, r'<meta\s+name="description"\s+content="([^"]*)"'),
+        'modified': modified,
+    }
+
+
+def hand_page_ld(rel: str, meta: dict, stats: dict) -> str:
+    """JSON-LD for one of the hand-written pages, built from the page's own title and description."""
+    title, desc = meta.get('title', ''), meta.get('description', '')
+    mod = {"dateModified": meta['modified']} if meta.get('modified') else {}
+    image = {"@type": "ImageObject", "url": OG_IMAGE, "width": 1200, "height": 630}
+    home = ("Home", f"{SITE}/")
+    if rel == 'index.html':
+        page = {"@type": "WebPage", "@id": f"{SITE}/#webpage", "url": f"{SITE}/", "name": title, "description": desc,
+                "inLanguage": "en", "isPartOf": {"@id": WEBSITE_ID}, "about": {"@id": PERSON_ID},
+                "author": {"@id": PERSON_ID}, "primaryImageOfPage": image,
+                "dateModified": f"{stats['latest']}T21:00:00+08:00"}
+        return identity_ld(page)
+    if rel == 'about/index.html':
+        url = f"{SITE}/about/"
+        page = {"@type": "ProfilePage", "@id": url + "#webpage", "url": url, "name": title, "description": desc,
+                "inLanguage": "en", "isPartOf": {"@id": WEBSITE_ID}, "mainEntity": {"@id": PERSON_ID},
+                "about": {"@id": PERSON_ID}, **mod, "breadcrumb": crumbs_node(home, ("About", url))}
+        return identity_ld(page)
+    if rel == 'ai-tokenomics/index.html':
+        url = f"{SITE}/ai-tokenomics/"
+        article = {"@type": "TechArticle", "@id": url + "#article", "headline": title, "description": desc, "url": url,
+                   "mainEntityOfPage": {"@id": url + "#webpage"}, **mod, "image": image, "inLanguage": "en",
+                   "isAccessibleForFree": True, "author": person_ref(), "publisher": {"@id": PERSON_ID},
+                   "about": ["AI tokenomics", "LLM API pricing", "token cost optimisation", "AI FinOps"]}
+        page = {"@type": "WebPage", "@id": url + "#webpage", "url": url, "name": title, "inLanguage": "en",
+                "isPartOf": {"@id": WEBSITE_ID}, "breadcrumb": crumbs_node(home, ("AI Tokenomics", url))}
+        return ld({"@context": "https://schema.org", "@graph": [article, page, website_node()]})
+    if rel == 'tools/model-team-evaluator.html':
+        url = f"{SITE}/tools/model-team-evaluator.html"
+        app = {"@type": "WebApplication", "@id": url + "#app", "name": "Model Team Evaluator", "url": url,
+               "description": desc, "applicationCategory": "BusinessApplication", "operatingSystem": "Any",
+               "browserRequirements": "Requires JavaScript", "isAccessibleForFree": True,
+               "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, **mod, "image": image,
+               "inLanguage": "en", "author": person_ref(), "publisher": {"@id": PERSON_ID}}
+        page = {"@type": "WebPage", "@id": url + "#webpage", "url": url, "name": title, "inLanguage": "en",
+                "isPartOf": {"@id": WEBSITE_ID}, "breadcrumb": crumbs_node(home, ("Model Team Evaluator", url))}
+        return ld({"@context": "https://schema.org", "@graph": [app, page, website_node()]})
+    return ''
+
+
+HAND_PAGES = ['about/index.html', 'ai-tokenomics/index.html', 'tools/model-team-evaluator.html']
+
+
+def update_hand_page(root: Path, rel: str, stats: dict) -> str | None:
+    """Refresh the generated regions of a hand-written page (its structured data and, on the About
+    page, the entry count). Returns the new text, or None when the page or its markers are absent.
+    Nothing outside the markers is touched."""
+    path = root / rel
+    if not path.exists():
+        return None
+    text = path.read_text(encoding='utf-8')
+    if SCHEMA_BEGIN not in text and COUNT_BEGIN not in text:
+        return None
+    if SCHEMA_BEGIN in text and SCHEMA_END in text:
+        block = hand_page_ld(rel, hand_page_meta(path, text), stats)
+        if block:
+            text = _splice(text, SCHEMA_BEGIN, SCHEMA_END, f"{SCHEMA_BEGIN}\n{block}\n{SCHEMA_END}")
+    if COUNT_BEGIN in text and COUNT_END in text:
+        text = _splice(text, COUNT_BEGIN, COUNT_END, f"{COUNT_BEGIN}{stats['entries']}{COUNT_END}")
+    return text
 
 
 def render_static_block(entries: list[dict], stats: dict) -> str:
@@ -1504,13 +1975,15 @@ def render_static_block(entries: list[dict], stats: dict) -> str:
         f'{esc(e["_sub"] or e["_excerpt"])}</li>'
         for e in latest)
     newest = entries[-1]
+    topics = ' · '.join(f'<a href="{theme_url(t)}">{esc(t)}</a>' for t in THEMES)
     return f"""{STATIC_BEGIN}
 <div style="max-width:760px;margin:0 auto;padding:56px 28px;font-family:var(--sans);">
   <h1 style="font-family:var(--serif);font-weight:400;">Varun Singla — AI Learning Journal</h1>
-  <p>Daily deep dives into agentic AI, the protocols that connect it (MCP, A2A), multi-agent systems,
-  AI infrastructure economics, governance, and the industries AI is reshaping — written every evening
-  by Varun Singla, a technology consultant and agentic AI researcher in Singapore.
+  <p>Daily AI research notes and deep dives into agentic AI, the protocols that connect it (MCP, A2A),
+  multi-agent systems, AI infrastructure economics, governance, and the industries AI is reshaping — written
+  every evening by <a href="/about/">Varun Singla</a>, a technology consultant and agentic AI researcher in Singapore.
   {len(entries)} entries published since {long_date(entries[0]['date'])}; updated daily.</p>
+  <p>Topics: {topics}</p>
   <p><a href="/start/">Start here</a> · <a href="/entries/">Browse the full archive</a> · <a href="/playbook/">Playbook</a> ·
   <a href="/concepts/">Concepts</a> · <a href="/watching/">What we're watching</a> · <a href="/weekly/">Weekly digest</a> ·
   <a href="/review/">Review</a> · <a href="/about/">About Varun Singla</a> ·
@@ -1541,6 +2014,9 @@ def update_index_html(root: Path, entries: list[dict], stats: dict) -> str | Non
     text = _splice(text, CSS_BEGIN, CSS_END, CSS_BEGIN + SITE_CSS + CSS_END)
     text = _splice(text, MAST_BEGIN, MAST_END, MAST_BEGIN + '\n' + masthead('Home') + '\n' + MAST_END)
     text = _splice(text, FOOT_BEGIN, FOOT_END, FOOT_BEGIN + '\n' + page_footer() + '\n' + FOOT_END)
+    if SCHEMA_BEGIN in text and SCHEMA_END in text:
+        block = hand_page_ld('index.html', hand_page_meta(path, text), stats)
+        text = _splice(text, SCHEMA_BEGIN, SCHEMA_END, f"{SCHEMA_BEGIN}\n{block}\n{SCHEMA_END}")
     version = f"{stats['latest']}-{stats['entries']}"
     text = re.sub(r'<meta name="journal-data-version" content="[^"]*">',
                   f'<meta name="journal-data-version" content="{version}">', text)
@@ -1548,15 +2024,8 @@ def update_index_html(root: Path, entries: list[dict], stats: dict) -> str | Non
 
 
 def update_about_html(root: Path, stats: dict) -> str | None:
-    """Refresh the entry count on the hand-written About page. Returns new text or None if
-    the page or its GEO:ENTRY-COUNT markers are absent (the rest of the page is never touched)."""
-    path = root / 'about' / 'index.html'
-    if not path.exists():
-        return None
-    text = path.read_text(encoding='utf-8')
-    if COUNT_BEGIN not in text or COUNT_END not in text:
-        return None
-    return _splice(text, COUNT_BEGIN, COUNT_END, f"{COUNT_BEGIN}{stats['entries']}{COUNT_END}")
+    """Kept for callers of the old name: refreshes the About page's generated regions."""
+    return update_hand_page(root, 'about/index.html', stats)
 
 
 # ── Driver ────────────────────────────────────────────────────────────────────
@@ -1590,6 +2059,10 @@ def generate(root: Path | str = SCRIPT_DIR) -> list[str]:
     _write_if_changed(root / 'watching' / 'index.html', render_watching(entries), changed, root)
     _write_if_changed(root / 'start' / 'index.html', render_start(entries, stats), changed, root)
     _write_if_changed(root / 'review' / 'index.html', render_review(entries), changed, root)
+    _write_if_changed(root / 'topics' / 'index.html', render_topics_index(entries), changed, root)
+    for theme in THEMES:
+        _write_if_changed(root / 'topics' / THEME_INFO[theme][0] / 'index.html', render_topic_page(theme, entries), changed, root)
+    _write_if_changed(root / '404.html', render_404(entries), changed, root)
 
     weeks: dict[str, list[dict]] = {}
     for e in entries:
@@ -1606,15 +2079,16 @@ def generate(root: Path | str = SCRIPT_DIR) -> list[str]:
     _write_if_changed(root / 'llms.txt', render_llms_txt(entries, stats), changed, root)
     _write_if_changed(root / 'llms-full.txt', render_llms_full(entries), changed, root)
     _write_if_changed(root / 'feed.xml', render_feed(entries), changed, root)
-    _write_if_changed(root / 'sitemap.xml', render_sitemap(entries, week_keys), changed, root)
+    _write_if_changed(root / 'sitemap.xml', render_sitemap(entries, week_keys, root), changed, root)
 
     new_index = update_index_html(root, entries, stats)
     if new_index is not None:
         _write_if_changed(root / 'index.html', new_index, changed, root)
 
-    new_about = update_about_html(root, stats)
-    if new_about is not None:
-        _write_if_changed(root / 'about' / 'index.html', new_about, changed, root)
+    for rel in HAND_PAGES:
+        new_text = update_hand_page(root, rel, stats)
+        if new_text is not None:
+            _write_if_changed(root / rel, new_text, changed, root)
 
     return changed
 

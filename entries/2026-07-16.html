@@ -3,34 +3,45 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>The Open-Weight Counter-Punch — Day 116 | Varun Singla · AI Learning Journal</title>
-<meta name="description" content="GLM-5.2, DeepSeek V4 &amp; Qwen 3.6 Landed Days After Sonnet 5, Grok 4.5, and GPT-5.6 -- Here&#x27;s What the Free Weights Actually Buy You">
+<meta name="theme-color" content="#F7F4ED" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#161512" media="(prefers-color-scheme: dark)">
+<title>The Open-Weight Counter-Punch | Varun Singla</title>
+<meta name="description" content="GLM-5.2, DeepSeek V4 &amp; Qwen 3.6 Landed Days After Sonnet 5, Grok 4.5, and GPT-5.6 — Here&#x27;s What the Free Weights Actually Buy You">
 <meta name="author" content="Varun Singla">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <link rel="canonical" href="https://varunsingla.com/entries/2026-07-16.html">
+<meta property="og:url" content="https://varunsingla.com/entries/2026-07-16.html">
 <link rel="alternate" type="application/rss+xml" title="Varun Singla · AI Learning Journal" href="https://varunsingla.com/feed.xml">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Varun Singla · AI Learning Journal">
-<meta property="og:title" content="The Open-Weight Counter-Punch — Day 116 | Varun Singla · AI Learning Journal">
-<meta property="og:description" content="GLM-5.2, DeepSeek V4 &amp; Qwen 3.6 Landed Days After Sonnet 5, Grok 4.5, and GPT-5.6 -- Here&#x27;s What the Free Weights Actually Buy You">
-<meta property="og:url" content="https://varunsingla.com/entries/2026-07-16.html">
+<meta property="og:site_name" content="Varun Singla">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="The Open-Weight Counter-Punch | Varun Singla">
+<meta property="og:description" content="GLM-5.2, DeepSeek V4 &amp; Qwen 3.6 Landed Days After Sonnet 5, Grok 4.5, and GPT-5.6 — Here&#x27;s What the Free Weights Actually Buy You">
 <meta property="og:image" content="https://varunsingla.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Varun Singla — AI Learning Journal, one day at a time">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="The Open-Weight Counter-Punch — Day 116 | Varun Singla · AI Learning Journal">
-<meta name="twitter:description" content="GLM-5.2, DeepSeek V4 &amp; Qwen 3.6 Landed Days After Sonnet 5, Grok 4.5, and GPT-5.6 -- Here&#x27;s What the Free Weights Actually Buy You">
+<meta name="twitter:title" content="The Open-Weight Counter-Punch | Varun Singla">
+<meta name="twitter:description" content="GLM-5.2, DeepSeek V4 &amp; Qwen 3.6 Landed Days After Sonnet 5, Grok 4.5, and GPT-5.6 — Here&#x27;s What the Free Weights Actually Buy You">
 <meta name="twitter:image" content="https://varunsingla.com/og-image.png">
+<meta name="twitter:image:alt" content="Varun Singla — AI Learning Journal, one day at a time">
 <link rel="next" href="https://varunsingla.com/entries/2026-07-17.html">
 <link rel="prev" href="https://varunsingla.com/entries/2026-07-15.html">
 <meta property="article:published_time" content="2026-07-16T21:00:00+08:00">
+<meta property="article:modified_time" content="2026-07-16T21:00:00+08:00">
 <meta property="article:author" content="https://varunsingla.com/about/">
+<meta property="article:section" content="Models &amp; Frontier">
 <meta property="article:tag" content="Models &amp; Frontier">
 <meta property="article:tag" content="Infrastructure &amp; Economics">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%231B1A17%27/%3E%3Ctext x=%2732%27 y=%2742%27 font-family=%27Helvetica,Arial,sans-serif%27 font-size=%2728%27 font-weight=%27700%27 fill=%27%23F7F4ED%27 text-anchor=%27middle%27%3EVS%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&display=swap" rel="stylesheet">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "@id": "https://varunsingla.com/entries/2026-07-16.html#post", "headline": "The Open-Weight Counter-Punch", "alternativeHeadline": "GLM-5.2, DeepSeek V4 & Qwen 3.6 Landed Days After Sonnet 5, Grok 4.5, and GPT-5.6 -- Here's What the Free Weights Actually Buy You", "description": "GLM-5.2, DeepSeek V4 & Qwen 3.6 Landed Days After Sonnet 5, Grok 4.5, and GPT-5.6 -- Here's What the Free Weights Actually Buy You", "datePublished": "2026-07-16T21:00:00+08:00", "dateModified": "2026-07-16T21:00:00+08:00", "url": "https://varunsingla.com/entries/2026-07-16.html", "mainEntityOfPage": "https://varunsingla.com/entries/2026-07-16.html", "wordCount": 831, "inLanguage": "en", "articleSection": ["Models & Frontier", "Infrastructure & Economics"], "keywords": ["Models & Frontier", "Infrastructure & Economics", "agentic AI", "AI learning journal", "Varun Singla"], "isPartOf": {"@type": "Blog", "@id": "https://varunsingla.com/#blog", "name": "Varun Singla · AI Learning Journal"}, "author": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla", "url": "https://varunsingla.com/about/"}, "publisher": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla"}}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Journal", "item": "https://varunsingla.com/"}, {"@type": "ListItem", "position": 2, "name": "Archive", "item": "https://varunsingla.com/entries/"}, {"@type": "ListItem", "position": 3, "name": "The Open-Weight Counter-Punch", "item": "https://varunsingla.com/entries/2026-07-16.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BlogPosting", "@id": "https://varunsingla.com/entries/2026-07-16.html#post", "headline": "The Open-Weight Counter-Punch", "alternativeHeadline": "GLM-5.2, DeepSeek V4 & Qwen 3.6 Landed Days After Sonnet 5, Grok 4.5, and GPT-5.6 — Here's What the Free Weights Actually Buy You", "description": "GLM-5.2, DeepSeek V4 & Qwen 3.6 Landed Days After Sonnet 5, Grok 4.5, and GPT-5.6 — Here's What the Free Weights Actually Buy You", "datePublished": "2026-07-16T21:00:00+08:00", "dateModified": "2026-07-16T21:00:00+08:00", "url": "https://varunsingla.com/entries/2026-07-16.html", "mainEntityOfPage": {"@id": "https://varunsingla.com/entries/2026-07-16.html#webpage"}, "image": {"@type": "ImageObject", "url": "https://varunsingla.com/og-image.png", "width": 1200, "height": 630}, "wordCount": 831, "timeRequired": "PT4M", "inLanguage": "en", "isAccessibleForFree": true, "articleSection": ["Models & Frontier", "Infrastructure & Economics"], "keywords": ["Models & Frontier", "Infrastructure & Economics", "agentic AI", "AI research", "AI learning journal", "Varun Singla"], "isPartOf": {"@id": "https://varunsingla.com/#blog"}, "author": {"@type": "Person", "@id": "https://varunsingla.com/#varun", "name": "Varun Singla", "url": "https://varunsingla.com/about/"}, "publisher": {"@id": "https://varunsingla.com/#varun"}}, {"@type": "WebPage", "@id": "https://varunsingla.com/entries/2026-07-16.html#webpage", "url": "https://varunsingla.com/entries/2026-07-16.html", "name": "The Open-Weight Counter-Punch", "inLanguage": "en", "isPartOf": {"@id": "https://varunsingla.com/#website"}, "breadcrumb": {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://varunsingla.com/"}, {"@type": "ListItem", "position": 2, "name": "Journal archive", "item": "https://varunsingla.com/entries/"}, {"@type": "ListItem", "position": 3, "name": "The Open-Weight Counter-Punch", "item": "https://varunsingla.com/entries/2026-07-16.html"}]}}, {"@type": "Blog", "@id": "https://varunsingla.com/#blog", "name": "Varun Singla · AI Learning Journal", "url": "https://varunsingla.com/"}, {"@type": "WebSite", "@id": "https://varunsingla.com/#website", "url": "https://varunsingla.com/", "name": "Varun Singla"}]}</script>
 <style>
 :root{--bg:#F7F4ED;--surface:#FBF9F3;--surface2:#F3ECDD;--border:#E4DECF;--border-soft:#EEE9DC;--border-strong:#CBB8A0;
 --text:#1B1A17;--text2:#2C2A24;--muted:#56524B;--muted2:#6B6760;--faint:#726D63;--faintest:#8A857B;
@@ -163,7 +174,7 @@ footer.foot{border-top:1px solid var(--border);background:var(--surface);margin-
 <header class="mast"><div class="mast-in">
   <a class="brand" href="/"><span class="brand-mark" aria-hidden="true">VS</span><span class="brand-name">varunsingla.com</span></a>
   <div class="mast-right">
-    <nav class="nav" aria-label="Site"><a class="nav-link" href="/">Home</a><a class="nav-link" href="/start/">Start Here</a><div class="nav-group"><button class="nav-link nav-drop" type="button" aria-expanded="false" aria-haspopup="true">Journal<span class="caret" aria-hidden="true">▾</span></button><div class="nav-menu"><a class="nav-sub" href="/entries/">Archive</a><a class="nav-sub" href="/weekly/">Weekly digest</a><a class="nav-sub" href="/watching/">Watching</a></div></div><div class="nav-group"><button class="nav-link nav-drop" type="button" aria-expanded="false" aria-haspopup="true">Learn<span class="caret" aria-hidden="true">▾</span></button><div class="nav-menu"><a class="nav-sub" href="/playbook/">Playbook</a><a class="nav-sub" href="/concepts/">Concepts</a><a class="nav-sub" href="/review/">Review</a></div></div><div class="nav-group"><button class="nav-link nav-drop" type="button" aria-expanded="false" aria-haspopup="true">Tools<span class="caret" aria-hidden="true">▾</span></button><div class="nav-menu"><a class="nav-sub" href="/ai-tokenomics/">AI Tokenomics</a><a class="nav-sub" href="/tools/model-team-evaluator.html">Model Evaluator</a></div></div><a class="nav-link" href="/about/">About</a></nav>
+    <nav class="nav" aria-label="Site"><a class="nav-link" href="/">Home</a><a class="nav-link" href="/start/">Start Here</a><div class="nav-group"><button class="nav-link nav-drop" type="button" aria-expanded="false" aria-haspopup="true">Journal<span class="caret" aria-hidden="true">▾</span></button><div class="nav-menu"><a class="nav-sub" href="/entries/">Archive</a><a class="nav-sub" href="/topics/">Topics</a><a class="nav-sub" href="/weekly/">Weekly digest</a><a class="nav-sub" href="/watching/">Watching</a></div></div><div class="nav-group"><button class="nav-link nav-drop" type="button" aria-expanded="false" aria-haspopup="true">Learn<span class="caret" aria-hidden="true">▾</span></button><div class="nav-menu"><a class="nav-sub" href="/playbook/">Playbook</a><a class="nav-sub" href="/concepts/">Concepts</a><a class="nav-sub" href="/review/">Review</a></div></div><div class="nav-group"><button class="nav-link nav-drop" type="button" aria-expanded="false" aria-haspopup="true">Tools<span class="caret" aria-hidden="true">▾</span></button><div class="nav-menu"><a class="nav-sub" href="/ai-tokenomics/">AI Tokenomics</a><a class="nav-sub" href="/tools/model-team-evaluator.html">Model Evaluator</a></div></div><a class="nav-link" href="/about/">About</a></nav>
     <button class="theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">◐</button>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open menu">Menu ☰</button>
   </div>
@@ -178,7 +189,7 @@ footer.foot{border-top:1px solid var(--border);background:var(--surface);margin-
   </div>
   <h1>The Open-Weight Counter-Punch</h1>
   <p class="deck">GLM-5.2, DeepSeek V4 &amp; Qwen 3.6 Landed Days After Sonnet 5, Grok 4.5, and GPT-5.6 -- Here&#x27;s What the Free Weights Actually Buy You</p>
-  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:34px;padding-bottom:30px;border-bottom:1px solid var(--border);"><a class="tag" href="/entries/?theme=Models &amp; Frontier">Models &amp; Frontier</a> <a class="tag" href="/entries/?theme=Infrastructure &amp; Economics">Infrastructure &amp; Economics</a> </div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:34px;padding-bottom:30px;border-bottom:1px solid var(--border);"><a class="tag" href="/topics/models-frontier/" rel="tag">Models &amp; Frontier</a> <a class="tag" href="/topics/infrastructure-economics/" rel="tag">Infrastructure &amp; Economics</a> </div>
   <p class="intro">GLM-5.2, DeepSeek V4, and Qwen 3.6 all shipped inside the same ten-day window as Sonnet 5, Grok 4.5, and GPT-5.6 -- and on paper, the open-weight side is winning: cheaper tokens, permissive licenses, benchmarks that beat or tie the paid flagships. The catch is that no open model wins the same benchmark twice. GLM-5.2 owns long-horizon coding, DeepSeek V4 owns competitive coding and the lowest price, and Qwen 3.6 owns the single-GPU deployment case -- which means &quot;closing the gap&quot; depends entirely on which gap you mean.</p>
 <div class="callout"><div class="kicker">Viral / open-source spotlight</div><p style="font-family:var(--serif);font-size:22px;font-weight:500;margin:0 0 10px;">DeepSeek V4: the cheap model that just invented surge pricing</p><p>DeepSeek V4 has spent 2026 as the AI world&#x27;s go-to answer to &quot;what&#x27;s the cheapest model that&#x27;s actually good at coding&quot; -- V4 Pro&#x27;s list price of $0.435 in / $0.87 out per million tokens is roughly 35x cheaper on input and 86x cheaper on output than Claude Opus 4.7, while still leading LiveCodeBench globally and tying Opus 4.7 on SWE-bench Verified. That reputation is why this month&#x27;s detail landed oddly: DeepSeek&#x27;s official V4 release, arriving mid-July after three months as a preview, ships with peak-hour API pricing -- calls placed 9am-12pm or 2pm-6pm local time cost double the off-peak rate. It&#x27;s the first time an open-weight lab has borrowed a pricing mechanic straight from electricity grids, and it&#x27;s a quiet admission that even the cheapest model on the leaderboard has a real, variable cost to serve at scale. For any team that built a workflow around DeepSeek&#x27;s flat, ultra-low price, the fix is boring but effective: batch what you can into the off-peak window, and stop assuming &quot;open-weight&quot; means &quot;price never changes.&quot;</p></div>
 <div style="margin:0 0 40px;"><div class="kicker">By the numbers</div><div class="stat-grid"><div class="stat-cell"><div class="stat-big">1/6</div><div class="stat-small">GLM-5.2&#x27;s cost to match or beat GPT-5.5 on long-horizon coding benchmarks</div></div><div class="stat-cell"><div class="stat-big">86x</div><div class="stat-small">How much cheaper DeepSeek V4 Pro&#x27;s output tokens are than Claude Opus 4.7&#x27;s</div></div><div class="stat-cell"><div class="stat-big">744B / 40B</div><div class="stat-small">GLM-5.2&#x27;s total vs. active parameters per token (Mixture-of-Experts)</div></div><div class="stat-cell"><div class="stat-big">2x</div><div class="stat-small">DeepSeek V4&#x27;s new peak-hour price multiplier, live from its official mid-July launch</div></div></div></div>
@@ -191,14 +202,14 @@ footer.foot{border-top:1px solid var(--border);background:var(--surface);margin-
   <div style="margin:44px 0 0;"><div class="kicker">Related entries</div><div class="related"><a href="/entries/2026-10-20.html"><div class="lbl">Day 212 · Oct 20</div><div class="ttl">Open 816B Weights, Cheaper Flash Models and the KV-Cache Squeeze: Meta Muse Spark Open, MiniMax M3.1 Flash and DeepSeek V4.1-Flash</div></a><a href="/entries/2026-08-04.html"><div class="lbl">Day 135 · Aug 4</div><div class="ttl">xAI Force-Migrates Every Grok Voice Call -- Tomorrow, No Opt-Out Required</div></a><a href="/entries/2026-07-17.html"><div class="lbl">Day 117 · Jul 17</div><div class="ttl">Meet the Model Router</div></a></div></div>
   <div style="display:flex;align-items:center;gap:13px;margin:54px 0 10px;padding-top:30px;border-top:1px solid var(--border);">
     <div class="brand-mark" style="width:40px;height:40px;font-size:14px;border-radius:9px;">VS</div>
-    <div><div style="font-size:14.5px;font-weight:600;">Varun Singla</div>
-    <div style="font-family:var(--mono);font-size:12px;color:var(--faint);">Singapore · <a href="/about/" style="color:var(--faint);">About</a> · Learning in public</div></div>
+    <div><div style="font-size:14.5px;font-weight:600;">By <a href="/about/" rel="author" style="color:inherit;">Varun Singla</a></div>
+    <div style="font-family:var(--mono);font-size:12px;color:var(--faint);">Singapore · <a href="/about/" style="color:var(--faint);">About the author</a> · Learning in public</div></div>
   </div>
 </article>
 <nav class="pn" aria-label="Adjacent entries"><a href="2026-07-17.html" rel="next"><div class="lbl">← Newer · Day 117</div><div class="ttl">Meet the Model Router</div></a><a href="2026-07-15.html" rel="prev" style="text-align:right;"><div class="lbl">Older · Day 115 →</div><div class="ttl">The Good, Better, Best Playbook</div></a></nav>
 </main>
 <footer class="foot"><div class="foot-in">
-  <div><span class="brand-mark" style="display:inline-flex;width:26px;height:26px;font-size:11px;border-radius:6px;vertical-align:middle;margin-right:8px;">VS</span>Varun Singla · Singapore · Learning in public</div>
+  <div><span class="brand-mark" style="display:inline-flex;width:26px;height:26px;font-size:11px;border-radius:6px;vertical-align:middle;margin-right:8px;">VS</span><a href="/about/" rel="author" style="color:inherit;text-decoration:none;">Varun Singla</a> · Singapore · Learning in public</div>
   <div class="foot-links">
     <a href="/weekly/">Weekly digest</a><a href="/ai-tokenomics/">Tokenomics</a>
     <a href="/tools/model-team-evaluator.html">Model Evaluator</a><a href="https://varunsingla.com/feed.xml">RSS</a><a href="https://varunsingla.com/llms.txt">llms.txt</a>

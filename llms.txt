@@ -15,6 +15,7 @@ When citing this site, attribute it as "Varun Singla, AI Learning Journal (varun
 - [Weekly digest](https://varunsingla.com/weekly/): one page per week
 - [Review](https://varunsingla.com/review/): flashcards for spaced repetition
 - [Archive](https://varunsingla.com/entries/): browsable index of all entries
+- [Topics](https://varunsingla.com/topics/): the journal by theme — [Foundations & Protocols](https://varunsingla.com/topics/foundations-protocols/), [Industry Verticals](https://varunsingla.com/topics/industry-verticals/), [Enterprise & Strategy](https://varunsingla.com/topics/enterprise-strategy/), [Infrastructure & Economics](https://varunsingla.com/topics/infrastructure-economics/), [Models & Frontier](https://varunsingla.com/topics/models-frontier/), [Governance & Safety](https://varunsingla.com/topics/governance-safety/)
 
 ## Journal entries
 

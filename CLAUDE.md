@@ -192,8 +192,36 @@ These carry model line-ups, prices and benchmark scores, so they go stale unless
 - `tokenizer.html` is only a redirect to `/ai-tokenomics/` (the two pages were duplicates; Tokenomics is the one kept).
 - `about/index.html` — hand-written, except the entry count between the `<!--GEO:ENTRY-COUNT-->` markers, which
   `generate_geo.py` rewrites on every run. Keep the markers.
+- All of these (and the home page) also carry a `<!-- GEO:SCHEMA:BEGIN -->` … `<!-- GEO:SCHEMA:END -->` block in
+  the `<head>`: their structured data, rewritten by `generate_geo.py` from the page's own `<title>`, meta
+  description and `<meta name="last-modified" content="YYYY-MM-DD">`. **Bump that `last-modified` date whenever
+  you change one of these pages** — the sitemap and the structured data both take the page's date from it.
 - `model-team-evaluator.html` in the site root is only a redirect to the `/tools/` page.
 
 When refreshing prices and scores: take list prices from each vendor's own pricing page and scores from the
 benchmark publisher's page, name the index version next to any score, and say on the page which numbers could
 only be cross-checked on aggregator listings.
+
+## Search metadata (SEO)
+
+Everything search engines and link previews read is produced in one place, `generate_geo.py`, and verified by
+`python3 check_seo.py` (exit code 1 on a problem; `--verbose` lists warnings). Run the check after any change to
+the generator or to a hand-written page; the daily routine can run it after `update_site.py` too.
+
+- **Identity.** The block at the top of `generate_geo.py` (`SITE_NAME`, `JOB_TITLE`, `PERSON_BIO`, `KNOWS_ABOUT`,
+  `SAME_AS`) is the single description of the author and the site. Every page's structured data is built from it,
+  so change it there, never in a page. `SAME_AS` holds the author's public profile URLs (LinkedIn, GitHub, X …);
+  it is empty until Varun says which profiles to claim — do not add one on your own.
+- **Site name vs journal name.** The site is "Varun Singla" (`SITE_NAME`: what Google shows as the site name);
+  the journal is "Varun Singla · AI Learning Journal" (`BLOG_NAME`). Page titles end in `| Varun Singla`.
+- **Entry pages.** Title = the day's headline + `| Varun Singla`; the description is built by
+  `meta_description()` (deck, then the opening of the entry, about 155 characters). Entries under `THIN_WORDS`
+  words are published but `noindex` and left out of the sitemap; an entry whose text repeats an earlier one
+  points its canonical link at the earlier page. Both rules lift on their own once the data is repaired.
+- **Topics.** Each of the six themes has a page under `/topics/<slug>/` (`THEME_INFO`). The theme tags on entry
+  pages link there. Adding a theme means adding it to `THEMES`, `RULES` and `THEME_INFO`.
+- **Icons.** `favicon.ico`, `favicon.svg`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png` and
+  `site.webmanifest` are real files in the site root (search engines will not show a `data:` favicon).
+- **robots.txt** keeps crawlers off the PDFs and the raw data files, which only repeat the pages. Never block
+  `/index.json` — the home page renders from it, and Google renders the page the same way.
+- **404.html** is generated, and is what GitHub Pages serves for any address that does not exist.

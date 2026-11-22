@@ -167,8 +167,8 @@ RUNON_RE = re.compile(r'SELF[- ]TEST\s+Q1[.):]|\bself test q1\b')
 
 GENERATED = ['entries/*.html', 'weekly/*.html', 'index.html', 'playbook/index.html',
              'concepts/index.html', 'watching/index.html', 'start/index.html',
-             'review/index.html', 'index.json', 'search.json', 'feed.xml',
-             'llms.txt', 'llms-full.txt']
+             'review/index.html', 'topics/index.html', 'topics/*/index.html',
+             'index.json', 'search.json', 'feed.xml', 'llms.txt', 'llms-full.txt']
 
 
 def mangled_amps(text: str, escaped: bool = False) -> list[str]:
