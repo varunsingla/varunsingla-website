@@ -743,11 +743,17 @@ FAVICON = ('<link rel="icon" href="/favicon.ico" sizes="48x48">\n'
            '<link rel="apple-touch-icon" href="/apple-touch-icon.png">\n'
            '<link rel="manifest" href="/site.webmanifest">')
 
+# The font stylesheet is loaded without blocking the first paint: text shows at once in the fallback
+# font and switches when the web fonts arrive (on a simulated slow phone, first paint went from about
+# 3.5 s to under 1 s). The <noscript> line keeps the fonts for readers without JavaScript.
+_FONT_CSS = ('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700'
+             '&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..600;'
+             '1,6..72,200..500&display=swap')
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n'
          '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
-         '<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700'
-         '&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..600;'
-         '1,6..72,200..500&display=swap" rel="stylesheet">')
+         f'<link rel="preload" as="style" href="{_FONT_CSS}">\n'
+         f'<link rel="stylesheet" href="{_FONT_CSS}" media="print" onload="this.media=&#39;all&#39;">\n'
+         f'<noscript><link rel="stylesheet" href="{_FONT_CSS}"></noscript>')
 
 # Top bar: a few direct links plus three small dropdowns, so the bar stays short.
 # A (label, list) pair is a dropdown; `active` may name a top-level link or a dropdown item.
@@ -1966,8 +1972,9 @@ def update_hand_page(root: Path, rel: str, stats: dict) -> str | None:
 
 
 def render_static_block(entries: list[dict], stats: dict) -> str:
-    """Static content inside #app so non-JS crawlers see the journal.
-    The home page script replaces it on load, so users never see this."""
+    """Static content inside #app: the hero exactly as the page script shows it (so the headline paints
+    at once and nothing jumps when the script takes over; the script reuses this markup), then a plain
+    summary and the latest entries for crawlers and readers without JavaScript."""
     latest = list(reversed(entries))[:10]
     items = ''.join(
         f'<li style="margin:0 0 16px;"><a href="/entries/{e["date"]}.html">'
@@ -1977,16 +1984,20 @@ def render_static_block(entries: list[dict], stats: dict) -> str:
     newest = entries[-1]
     topics = ' · '.join(f'<a href="{theme_url(t)}">{esc(t)}</a>' for t in THEMES)
     return f"""{STATIC_BEGIN}
-<div style="max-width:760px;margin:0 auto;padding:56px 28px;font-family:var(--sans);">
-  <h1 style="font-family:var(--serif);font-weight:400;">Varun Singla — AI Learning Journal</h1>
-  <p>Daily AI research notes and deep dives into agentic AI, the protocols that connect it (MCP, A2A),
-  multi-agent systems, AI infrastructure economics, governance, and the industries AI is reshaping — written
-  every evening by <a href="/about/">Varun Singla</a>, a technology consultant and agentic AI researcher in Singapore.
-  {len(entries)} entries published since {long_date(entries[0]['date'])}; updated daily.</p>
+<section class="hero">
+  <div class="live" aria-hidden="true"><span class="dot"></span><span>Live · Updated daily</span></div>
+  <h1>{AUTHOR}'s AI learning journal, <span class="nb"><em>one day</em> at a time.</span></h1>
+  <p>Daily AI research notes and deep dives into agentic AI, the protocols that connect it, and the industries it is reshaping — written every evening in Singapore. Learning fast, staying ahead.</p>
+</section>
+<div style="max-width:760px;padding:10px 0 56px;font-family:var(--sans);">
+  <p>This is the AI learning journal of <a href="/about/">{AUTHOR}</a>, a technology consultant and agentic AI
+  researcher in Singapore: {len(entries)} entries published since {long_date(entries[0]['date'])}, one every evening,
+  covering agentic AI, the protocols that connect it (MCP, A2A), multi-agent systems, AI infrastructure economics,
+  governance, and the industries AI is reshaping.</p>
   <p>Topics: {topics}</p>
   <p><a href="/start/">Start here</a> · <a href="/entries/">Browse the full archive</a> · <a href="/playbook/">Playbook</a> ·
   <a href="/concepts/">Concepts</a> · <a href="/watching/">What we're watching</a> · <a href="/weekly/">Weekly digest</a> ·
-  <a href="/review/">Review</a> · <a href="/about/">About Varun Singla</a> ·
+  <a href="/review/">Review</a> · <a href="/about/">About {AUTHOR}</a> ·
   <a href="/ai-tokenomics/">AI Tokenomics</a> ·
   <a href="/tools/model-team-evaluator.html">Model Team Evaluator</a> · <a href="/feed.xml">RSS</a> · <a href="/llms.txt">llms.txt</a></p>
   <h2 style="font-family:var(--serif);font-weight:500;">Latest entry — Day {newest['_day']}, {long_date(newest['date'])}</h2>
