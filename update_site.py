@@ -860,12 +860,14 @@ def _extract_numbered_takeaways(all_flat_lines: list[str]) -> tuple[list[dict], 
 # optional SELF-TEST block, and (b) existing entries in learnings.json can be
 # repaired in place (repair_all) without losing any text: whenever a stored
 # value is replaced by something that is not a superset of it, the old value is
-# kept under <field>_original. There are two exceptions, both removed outright:
+# kept under <field>_original. There are three exceptions, all removed outright:
 # page furniture — a running header/footer or sign-off line joined into the
 # text, the ';' of a mangled ampersand, a "&gt;" printed as text — which was
-# never entry content (scrub_entry), and the self-test (or recap) that ran on
+# never entry content (scrub_entry); the self-test (or recap) that ran on
 # into the last takeaway, which is removed only where it is word for word in
-# the entry's own `quiz` (`recap`) field (trim_takeaways).
+# the entry's own `quiz` (`recap`) field (trim_takeaways); and the second copy
+# of a market signal or watch list that the entry stores twice, which is
+# removed only where the copy that stays has all of it (dedupe_blocks).
 
 SCHEMA_VERSION = 3          # bump when repair_entry learns a new, re-runnable fix
                             # (scrub_entry and trim_takeaways are not tied to it: see repair_all)
@@ -1639,8 +1641,8 @@ def _store_original(entry: dict, field: str, old_value) -> None:
 # below), a few entries a mangled ampersand ("D&O;") and one a "&gt;" printed
 # as text. scrub_entry takes all of them out.
 #
-# This is one of the two repairs that delete text without keeping a *_original
-# copy (trim_takeaways, further down, is the other):
+# This is one of the three repairs that delete text without keeping a *_original
+# copy (trim_takeaways and dedupe_blocks, further down, are the others):
 # a page footer was never entry content, and a copy would keep the artefact in
 # learnings.json. What is removed is exactly the footer string (and the ';'
 # after a mangled ampersand); the words on either side are joined by the single
@@ -1920,6 +1922,400 @@ def trim_takeaways(entry: dict, totals: dict | None = None, unverified: list | N
         if unverified is not None and _QUIZ_RUNON_RE.search(item['body']):
             unverified.append(f"takeaway {number} runs on into a self-test that is not word for word "
                               f"in quiz — left as it is")
+    return changes
+
+
+# ── The market signal and the watch list, stored twice ────────────────────────
+#
+# The MARKET SIGNAL box and the TOMORROW line each have a field of their own
+# (`market_signal`, `tomorrow_preview`). The parsers of the layouts before
+# 2026-07-08 also left the text where they came across it, so 37 entries from
+# 2026-03-23 to 2026-07-07 stored it twice and their page printed it twice:
+#
+#   • as a section headed "MARKET SIGNAL", whose paragraph begins with the three
+#     sentences the old parser kept as market_signal and goes on to the end of
+#     the box (2026-04-21, 05-17 … 05-23);
+#   • under a heading that is its own first line -- "Market signal: For an
+#     agency, the relevance is procurement and resilience, not benchmarks.
+#     Insist" -- with the rest as that section's paragraph (2026-06-02 … 06-13);
+#   • as a paragraph or bullet of whatever section came before the box
+#     (2026-04-13, 04-19, 04-24 … 04-28), or as a "takeaway" (2026-04-27);
+#   • at the end of a takeaway, a paragraph or the spotlight description that
+#     ran on into it: "… not per framework. Tomorrow: Day 49 -- Agent
+#     Reliability Engineering: …" (2026-05-10, 05-16, 05-01).
+#
+# (CLAUDE.md, "Exception 3", lists every entry and what was left alone.)
+#
+# And the field itself ran on: in six June entries market_signal ends with the
+# heading of the next section and the first sentence under it ("… in the loop.
+# 8 · Viral AI app of the day OpenClaw -- the fastest-growing …").
+#
+# dedupe_blocks brings each of these back to one copy, the field. Like
+# scrub_entry and trim_takeaways it reads nothing but the stored entry, and it
+# is the third repair that removes text without keeping a *_original copy --
+# on the same condition as trim_takeaways: only what is still stored in the
+# same entry goes. Two texts are one text when they meet edge to edge, word for
+# word (a parser copies whole lines):
+#
+#   • a text that is, from its first character to its last, a part of the field
+#     -- its beginning (40 characters or more), a later part (100 or more), or
+#     any part behind the box's own heading ("Market Signal: The AI healthcare
+#     …") -- is removed;
+#   • a text that begins with the whole field and goes on, or begins with the
+#     last characters of a field that was cut off (40 or more, and at least half
+#     of the field) and goes on, is the fuller reading of the box: the field
+#     takes what it lacks, then the text is removed. Nothing is taken past the
+#     heading of the next box ("… to commoditise. Tomorrow -- Day 40: …"): what
+#     follows that stays where it is. And the opening paragraph of a section
+#     with a heading of its own never continues a field: there it is the field
+#     that ran on (next rule);
+#   • a text that ends with the field, or with its first 40 characters or more,
+#     ran on into the box: it is cut back to its own words, and the box's
+#     heading ("Tomorrow:") goes with the copy;
+#   • a field that ends with a section's heading and the beginning of that
+#     section's first paragraph is cut back to its own words.
+#
+# Two readings of one text that differ by a word (the July entries were written
+# apart from their PDF: "Buildots imagery corpus" / "Buildots' imagery corpus")
+# are held together by their words, the way the spotlight repair does it: they
+# begin with the same 60 characters, and one has every word of the other, in
+# order. That one stays as the field. A text that ends with every word of the
+# field in other punctuation ("Tomorrow (Day 97): Agentic AI in … -- agents"
+# for "Day 97 — Agentic AI in …: agents") is cut back like any other run-on.
+#
+# In two entries it is the field that goes, because the other copy is where
+# the text belongs:
+#   • the tomorrow_preview of 2026-05-07 is no watch list but the first 300
+#     characters of the takeaways, heading included ("PRACTICAL TAKEAWAYS Add
+#     trajectory evals this week. …"); the takeaway has all of it;
+#   • the only section of 2026-05-13 is headed "Market signal" and is the whole
+#     article -- no heading after the box was recognised, so its first paragraph
+#     begins with the field and runs on through the text of three sections.
+#     Moving that paragraph into the field would take the article apart; the
+#     section stays as it is. (The rule: the box's own section is all the
+#     entry has, and it begins with the field word for word.)
+#
+# What the pass leaves behind it: a section with nothing left but the box's
+# heading is dropped (one that holds anything else -- a table, another
+# paragraph -- stays, under the bare heading); a takeaway that was nothing but
+# the copy goes when its title is only the cut-off beginning of the same line,
+# as in scrub_entry; a spotlight description that breaks off once the copy is
+# gone is trimmed to its last full sentence by the rule that trims every other
+# cut-off description, the spotlight as it was (less the copy) kept under
+# viral_app_original -- so a forced repair has nothing left to do.
+#
+# Left alone: a phrase the author uses twice (in the middle of the market
+# signal and in the middle of a takeaway: no edge), one short sentence of the
+# box repeated as a bullet, the intro, and every *_original field -- the record
+# of what a repair replaced. A copy the rules cannot place (the whole field in
+# the middle of a paragraph, with other text on both sides) is left as it is
+# and reported; check_learnings.py then fails until someone has looked at it.
+_BLOCK_EDGE = 40            # characters two texts share where one runs into the other
+_BLOCK_PART = 100           # … where a text is a later part of the field
+_BLOCK_OPENING = 60         # characters two readings of one box begin with
+_BLOCK_WORDS = 8            # fewest words a field has for "ends with the same words" to mean anything
+_BLOCK_ROUNDS = 40          # safety net only: one copy is dealt with per round, and no entry has more than five
+
+_BLOCK_NAMES = {'market_signal': 'market signal', 'tomorrow_preview': 'watch list'}
+# The heading the box is printed under, recognised by its capital like the
+# SELF-TEST heading: "what tomorrow: brings" is a sentence.
+_BLOCK_HEADING = {
+    'market_signal': r"M(?i:arket\s+signal)",
+    'tomorrow_preview': r"(?:T(?i:omorrow)(?:['’]s)?(?:\s+P(?i:review))?(?:\s+W(?i:hat\s+we['’]re\s+watching))?"
+                        r"|W(?i:hat\s+we['’]re\s+watching))",
+}
+# … in front of a copy inside a text, and at the start of a section heading.
+_BLOCK_HEADING_END = {f: re.compile(r"(?:^|(?<=\s))(?:[n•]\s+)?" + h + r"\s*[:\-—–]*\s*$") for f, h in _BLOCK_HEADING.items()}
+_BLOCK_HEADING_START = {f: re.compile(r"^(?:[n•]\s+)?" + h + r"\s*[:\-—–]*\s*") for f, h in _BLOCK_HEADING.items()}
+_BLOCK_BARE_HEADING_RE = re.compile(r"^(?:[n•]\s+)?(?:" + '|'.join(_BLOCK_HEADING.values()) + r")\s*[:\-—–]*\s*$")
+# Where the next box begins in a text that carries on from a field: at a
+# sentence end, with the heading the PDFs print it under.
+_BLOCK_NEXT_RE = re.compile(
+    r"(?:^|(?<=[.!?…]\s)|(?<=[.!?…][\"'”’)\]]\s))"
+    r"(?:T(?i:omorrow)(?:['’]s)?(?:\s+P(?i:review))?\s*(?:\((?i:day)\s*\d+\)\s*)?(?:--|[:—–])|TOMORROW\b"
+    r"|PRACTICAL\s+TAKEAWAYS?\b|KEY\s+TAKEAWAYS?\b|P(?i:ractical\s+takeaways?)\s*[:\-—–]"
+    r"|MARKET\s+SIGNAL\b|M(?i:arket\s+signal)\s*[:\-—–]|VIRAL\b|V(?i:iral\s+app)\b"
+    r"|S(?i:ources)\s*:|SELF[- ]TEST\b|T(?i:opics\s+covered\s+so\s+far)\b)")
+_TAKEAWAYS_HEADING_RE = re.compile(r"(?:PRACTICAL|KEY)\s+TAKEAWAYS?\b")
+
+
+def _one_line(text: str) -> str:
+    return ' '.join(text.split())
+
+
+def _block_own_text(own: str, field: str) -> str:
+    """What a text keeps when a copy of the box is cut from its end: its own
+    words, without the box's heading or a bracket left open in front of the copy."""
+    own = re.sub(r"[\s(\[{“‘]+$", '', own)
+    return _BLOCK_HEADING_END[field].sub('', own).rstrip()
+
+
+def _block_extension(text: str, start: int) -> tuple[str, str]:
+    """text[start:] split into what still belongs to the box and what follows
+    the heading of the next one ('' when no other box begins in it)."""
+    nxt = _BLOCK_NEXT_RE.search(text, start)
+    if not nxt:
+        return text[start:], ''
+    return text[start:nxt.start()].rstrip(), text[nxt.start():]
+
+
+def _block_action(field: str, block: str, text: str, opens_section: bool = False) -> tuple | None:
+    """What a text of the entry is to the box stored in `field`. Both are taken
+    on one line. None when it is no copy; else one of
+        ('part',)                       the text is a part of the field: it goes
+        ('cut', own)                    the text ran on into the box: back to `own`
+        ('more', new_block, left)       the text is the fuller reading: the field becomes
+                                        new_block, the text keeps `left` ('' = goes)
+        ('unplaced', why)               a copy, but not one of the shapes above
+    'part' and 'cut' carry one more item when the copy was matched by its words
+    rather than letter for letter.
+    opens_section: the text is the first paragraph of a section with a heading
+    of its own. A field that ends with the beginning of such a paragraph ran on
+    into that section; the paragraph does not continue the box."""
+    if len(text) < _BLOCK_EDGE:
+        return None
+    at = text.find(block)
+    if at >= 0:                                           # the text holds the whole field
+        own = _block_own_text(text[:at], field)
+        if not text[at + len(block):].strip():
+            return ('cut', own)
+        if not own:
+            more, left = _block_extension(text, at + len(block))
+            return ('more', block + more, left)
+        return ('unplaced', 'it holds the whole field, with other text before and after it')
+    heading = _BLOCK_HEADING_START[field].match(text)
+    body = text[heading.end():] if heading else text
+    if len(body) >= _BLOCK_EDGE and body in block and (heading or block.startswith(body) or len(body) >= _BLOCK_PART):
+        return ('part',)
+    at = text.find(block[:_BLOCK_EDGE])
+    while at >= 0:                                        # the text ends with the beginning of the field
+        if block.startswith(text[at:]):
+            return ('cut', _block_own_text(text[:at], field))
+        at = text.find(block[:_BLOCK_EDGE], at + 1)
+    at = block.find(text[:_BLOCK_EDGE])
+    while at >= 0:                                        # the field ends with the beginning of the text
+        if text.startswith(block[at:]):
+            if opens_section or 2 * (len(block) - at) < len(block):
+                return ('unplaced', f'the field ends with its first {len(block) - at} characters')
+            more, left = _block_extension(text, len(block) - at)
+            return ('more', block + more, left)
+        at = block.find(text[:_BLOCK_EDGE], at + 1)
+    same = next((i for i, (x, y) in enumerate(zip(block, text)) if x != y), min(len(block), len(text)))
+    if same >= _BLOCK_OPENING:                            # two readings of one text
+        block_words, text_words = _norm_text(block).split(), _norm_text(text).split()
+        if _words_kept(block_words, text_words):
+            return ('more', text, '')
+        if _words_kept(text_words, block_words):
+            return ('part', 'by its words')
+        return ('unplaced', f'it begins with the same {same} characters as the field and then reads differently')
+    words = [(m.start(), m.group()) for m in re.finditer(r'\w+', text.lower())]
+    block_words = re.findall(r'\w+', block.lower())
+    if len(block_words) >= _BLOCK_WORDS and [w for _, w in words[-len(block_words):]] == block_words:
+        return ('cut', _block_own_text(text[:words[-len(block_words)][0]], field), 'by its words')
+    if block[:2 * _BLOCK_EDGE] in text:
+        return ('unplaced', f'it holds the first {2 * _BLOCK_EDGE} characters of the field')
+    return None
+
+
+def _block_texts(entry: dict, field: str):
+    """One handle for every section and takeaway text the page prints next to
+    the box: (kind, where, text, put). kind is 'takeaway', 'section', or
+    'opening' for the first paragraph of a section whose heading is not the
+    box's own. put(new) stores the text back; put('') removes it, and whatever
+    is left empty with it."""
+    sections = entry.get('sections')
+    for i, sec in enumerate(sections if isinstance(sections, list) else []):
+        if not isinstance(sec, dict):
+            continue
+        title = sec.get('title') if isinstance(sec.get('title'), str) else ''
+        own_heading = bool(title.strip()) and not _BLOCK_HEADING_START[field].match(title.strip())
+        for key in ('paragraphs', 'bullets'):
+            items = sec.get(key)
+            for j, item in enumerate(items if isinstance(items, list) else []):
+                if isinstance(item, str):
+                    def put(new, sec=sec, key=key, j=j):
+                        if new:
+                            sec[key][j] = new
+                        else:
+                            del sec[key][j]
+                            _tidy_block_section(entry, sec)
+                    yield ('opening' if own_heading and key == 'paragraphs' and j == 0 else 'section',
+                           f"section {i + 1} ({title[:40]!r}), {key[:-1]} {j + 1}", item, put)
+    takeaways = entry.get('practical_takeaway')
+    if isinstance(takeaways, str):
+        def put(new):
+            if new:
+                entry['practical_takeaway'] = new
+            else:
+                del entry['practical_takeaway']
+        yield 'takeaway', 'the takeaways', takeaways, put
+    for i, item in enumerate(takeaways if isinstance(takeaways, list) else []):
+        if isinstance(item, str):
+            def put(new, i=i):
+                if new:
+                    takeaways[i] = new
+                else:
+                    del takeaways[i]
+                    if not takeaways:
+                        del entry['practical_takeaway']
+            yield 'takeaway', f"takeaway {i + 1}", item, put
+        elif isinstance(item, dict) and isinstance(item.get('body'), str):
+            def put(new, item=item, i=i):
+                title = item.get('title')
+                if new or (isinstance(title, str) and title.strip() and not item['body'].startswith(title.strip())):
+                    item['body'] = new                    # a takeaway with a title of its own keeps the title
+                else:
+                    del takeaways[i]                      # its title was the cut-off beginning of the same line
+                    if not takeaways:
+                        del entry['practical_takeaway']
+            yield 'takeaway', f"takeaway {i + 1}", item['body'], put
+
+
+def _tidy_block_section(entry: dict, sec: dict) -> None:
+    """After a text was taken out of a section: a list left empty goes, and so
+    does the section when nothing is left of it but the heading of the box."""
+    for key in ('paragraphs', 'bullets'):
+        if isinstance(sec.get(key), list) and not sec[key]:
+            del sec[key]
+    title = sec.get('title') if isinstance(sec.get('title'), str) else ''
+    if not any(sec.get(k) for k in ('paragraphs', 'bullets', 'table', 'highlight')) \
+            and (not title.strip() or _BLOCK_BARE_HEADING_RE.match(title.strip())):
+        entry['sections'][:] = [s for s in entry['sections'] if s is not sec]
+
+
+def _dedupe_block_once(entry: dict, field: str, notes: list | None = None) -> str:
+    """Deal with one copy of the box stored in entry[field]: returns what was
+    done, '' when no copy is left. With `notes`, nothing is changed: the copies
+    the rules cannot place are listed there instead."""
+    name = _BLOCK_NAMES[field]
+    block = _one_line(entry[field])
+    sections = entry.get('sections')
+    sections = [(i, s) for i, s in enumerate(sections, 1) if isinstance(s, dict)] if isinstance(sections, list) else []
+
+    if notes is None:
+        # The field is not the box at all: it is the beginning of the takeaways, heading included.
+        if _TAKEAWAYS_HEADING_RE.match(block):
+            for kind, where, text, _ in _block_texts(entry, field):
+                if kind == 'takeaway' and _one_line(text).startswith(block):
+                    del entry[field]
+                    return f"{field} removed: not a {name} but the first {len(block)} characters of {where}"
+        # The box's own section is all the entry has: no heading after the box was recognised, and
+        # the paragraph that begins with the field runs on through the text that followed it. That
+        # section is the article; it stays as it is, and the field is the copy that goes.
+        if len(sections) == 1 and len(entry['sections']) == 1:
+            _, sec = sections[0]
+            title = _one_line(sec['title']) if isinstance(sec.get('title'), str) else ''
+            paras = sec.get('paragraphs')
+            if (_BLOCK_HEADING_START[field].fullmatch(title) and isinstance(paras, list) and paras
+                    and isinstance(paras[0], str) and _one_line(paras[0]).startswith(block)):
+                del entry[field]
+                return (f"{field} removed: {len(block)} characters, the beginning of section 1 ({title[:40]!r}), "
+                        f"which is the whole entry")
+        # The field ran on into the next section: its heading, and the beginning of its first paragraph.
+        for number, sec in sections:
+            title = _one_line(sec['title']) if isinstance(sec.get('title'), str) else ''
+            paras = sec.get('paragraphs')
+            under = ' '.join(_one_line(p) for p in paras if isinstance(p, str)) if isinstance(paras, list) else ''
+            at = block.rfind(title + ' ') if title and under else -1
+            ran_on = block[at + len(title) + 1:] if at > 0 else ''
+            if len(ran_on) >= _BLOCK_EDGE and under.startswith(ran_on) and block[:at].strip():
+                entry[field] = block[:at].rstrip()
+                return (f"{field} cut back where it ran on into section {number} ({title[:40]!r}): "
+                        f"{len(block) - len(entry[field])} characters, all in that section")
+
+    def done(action, where, text, put) -> str:
+        stored = f"every word in {field}" if len(action) > {'part': 1, 'cut': 2}.get(action[0], 9) else f"all in {field}"
+        if action[0] == 'part' or (action[0] == 'cut' and not action[1]):
+            put('')
+            return f"{where} removed: {len(text)} characters, {stored}"
+        if action[0] == 'cut':
+            put(action[1])
+            return f"{name} cut from the end of {where}: {len(text) - len(action[1])} characters, {stored}"
+        entry[field] = action[1]                          # 'more'
+        put(action[2])
+        gained = len(action[1]) - len(block)
+        if action[1] == block:                            # the next box began straight after the copy
+            return f"{name} cut from the beginning of {where}: {len(text) - len(action[2])} characters, all in {field}"
+        return (f"{field} completed from {where} (+{gained} characters)" if action[1].startswith(block)
+                else f"{field} replaced by the fuller reading in {where} ({gained:+d} characters, every word kept)")
+
+    def unplaced(action, where) -> None:
+        if notes is not None and action and action[0] == 'unplaced':
+            notes.append(f"{where} repeats the {name} in a way that could not be verified ({action[1]}) -- left as it is")
+
+    for number, sec in sections:
+        # A heading that carries the first line of the box, and the paragraph under it, are one text.
+        title = _one_line(sec['title']) if isinstance(sec.get('title'), str) else ''
+        heading = _BLOCK_HEADING_START[field].match(title)
+        first_line = title[heading.end():] if heading else ''
+        if len(first_line) < _BLOCK_EDGE:
+            continue
+        where = f"the heading of section {number} ({title[:40]!r})"
+        bare = re.sub(r"[\s:\-—–]+$", '', title[:heading.end()])
+        paras = sec.get('paragraphs')
+        under = _one_line(paras[0]) if isinstance(paras, list) and paras and isinstance(paras[0], str) else ''
+        action = _block_action(field, block, f"{first_line} {under}") if under else None
+        if action and action[0] == 'cut' and not action[1]:
+            action = ('part',)                            # heading and paragraph together are the field, to the letter
+        if action and action[0] in ('part', 'more') and notes is None:
+            def put(new, sec=sec, paras=paras, bare=bare):
+                sec['title'] = bare
+                if new:
+                    paras[0] = new
+                else:
+                    del paras[0]
+                _tidy_block_section(entry, sec)
+            return done(action, where + ' and the paragraph under it', f"{first_line} {under}", put)
+        action = _block_action(field, block, title)
+        if action and action[0] == 'part' and notes is None:
+            def put(new, sec=sec, bare=bare):
+                sec['title'] = bare
+                _tidy_block_section(entry, sec)
+            return done(action, where, first_line, put)
+        unplaced(action, where)
+
+    for kind, where, text, put in _block_texts(entry, field):
+        action = _block_action(field, block, _one_line(text), opens_section=kind == 'opening')
+        if action and action[0] != 'unplaced' and notes is None:
+            return done(action, where, _one_line(text), put)
+        unplaced(action, where)
+
+    # The spotlight only ever ran on into the box that follows it.
+    viral = entry.get('viral_app')
+    if isinstance(viral, dict) and isinstance(viral.get('description'), str):
+        action = _block_action(field, block, _one_line(viral['description']))
+        if action and action[0] == 'cut' and notes is None:
+            before = len(_one_line(viral['description']))
+            entry['viral_app'] = {**viral, 'description': action[1]}
+            trimmed = _trim_cut_spotlight(entry, entry['viral_app'])
+            return (f"{name} cut from the end of the spotlight: {before - len(action[1])} characters, all in {field}"
+                    + (f"; {trimmed}" if trimmed else ''))
+        if action and action[0] != 'cut':
+            unplaced(('unplaced', action[1] if action[0] == 'unplaced' else 'it is more than a run-on at its end'),
+                     'the spotlight')
+    return ''
+
+
+def dedupe_blocks(entry: dict, totals: dict | None = None, unverified: list | None = None) -> list[str]:
+    """Bring a market signal or watch list that the entry stores twice back to
+    one copy, in place: the field, completed where the other copy says more.
+    Returns what changed ([] when nothing is stored twice). Idempotent, and
+    needs no PDF. Only text that is still stored in the same entry is removed;
+    a copy that cannot be verified stays, and a line about it is added to
+    `unverified`."""
+    changes: list[str] = []
+    for field, name in _BLOCK_NAMES.items():
+        for _ in range(_BLOCK_ROUNDS):
+            if not isinstance(entry.get(field), str) or len(_one_line(entry[field])) < _BLOCK_EDGE:
+                break
+            change = _dedupe_block_once(entry, field)
+            if not change:
+                break
+            changes.append(change)
+            if totals is not None:
+                totals[f'{name} stored twice'] = totals.get(f'{name} stored twice', 0) + 1
+        if unverified is not None and isinstance(entry.get(field), str) and len(_one_line(entry[field])) >= _BLOCK_EDGE:
+            _dedupe_block_once(entry, field, unverified)
     return changes
 
 
@@ -2245,9 +2641,10 @@ def pdf_lookup(root: Path | None = None) -> dict[str, Path]:
 
 def repair_all(data: dict, root: Path | None = None, force: bool = False, verbose: bool = True) -> list[tuple[str, list[str]]]:
     """Run repair_entry over every stored entry that has not been repaired at
-    the current SCHEMA_VERSION, then the two text-only passes over every entry:
-    scrub_entry (page furniture) and trim_takeaways (a self-test or recap that
-    ran on into the last takeaway). Cheap when everything is already current.
+    the current SCHEMA_VERSION, then the three text-only passes over every
+    entry: scrub_entry (page furniture), trim_takeaways (a self-test or recap
+    that ran on into the last takeaway) and dedupe_blocks (a market signal or
+    watch list that is stored twice). Cheap when everything is already current.
     Returns [(date, changes), …]."""
     report: dict[str, list[str]] = {}
     entries = [e for e in data.get('learnings', []) if e.get('title')]
@@ -2264,23 +2661,26 @@ def repair_all(data: dict, root: Path | None = None, force: bool = False, verbos
 
     # Page furniture (header/footer strings of every layout, mangled ampersands,
     # entities printed as text), then a self-test or recap that ran on into a
-    # takeaway. These two passes are not tied to SCHEMA_VERSION: they only read
-    # the stored text, cost a few milliseconds and change nothing once an entry
-    # is clean, so they simply run over every entry on every call.
+    # takeaway, then a market signal or watch list that is stored twice. These
+    # three passes are not tied to SCHEMA_VERSION: they only read the stored
+    # text, cost a few milliseconds and change nothing once an entry is clean,
+    # so they simply run over every entry on every call.
     # (repair_entry is idempotent as well -- check_learnings.py holds it to
     # that -- but it opens the entry's PDF, so it stays behind the version check.)
-    # The scrub goes first: trim_takeaways compares a takeaway with `quiz`, and
-    # both must have lost their page footers by then.
+    # The scrub goes first: the other two compare one stored text with another
+    # (a takeaway with `quiz`, a section with `market_signal`), and both must
+    # have lost their page footers by then.
     totals: dict[str, int] = {}
     for e in data.get('learnings', []):
         if not isinstance(e, dict):
             continue
         unverified: list[str] = []
-        changes = scrub_entry(e, totals) + trim_takeaways(e, totals, unverified)
+        changes = scrub_entry(e, totals) + trim_takeaways(e, totals, unverified) + dedupe_blocks(e, totals, unverified)
         if changes:
             report.setdefault(str(e.get('date', '?')), []).extend(changes)
             if verbose:
-                print(f"   🧹 {e.get('date', '?')}: {', '.join(changes)[:160]}")
+                for change in changes:                    # one line each: a dry run is there to be read
+                    print(f"   🧹 {e.get('date', '?')}: {change}")
         if verbose:
             for note in unverified:
                 print(f"   ⚠️  {e.get('date', '?')}: {note}")
@@ -3641,11 +4041,12 @@ def main():
     # Fixes titles ("AI Learning -- Day N" → the deck line), adds subtitles,
     # sources, the TOMORROW watch list, recaps and themes from the PDFs on disk,
     # re-cases ALL-CAPS headings and de-duplicates intros. Originals are kept
-    # under *_original fields, so nothing is lost. Two things are deleted
+    # under *_original fields, so nothing is lost. Three things are deleted
     # without keeping a copy: page furniture (the PDF's header/footer lines in
     # every layout used so far, mangled ampersands, entities printed as text),
-    # and a self-test or recap that ran on into the last takeaway where all of
-    # it is also stored in `quiz` / `recap`.
+    # a self-test or recap that ran on into the last takeaway where all of it
+    # is also stored in `quiz` / `recap`, and the second copy of a market
+    # signal or watch list that is stored twice.
     if "--repair" in args:
         report = repair_all(data, SCRIPT_DIR, force="--force" in args)
         print(f"🔧  Repair pass: {len(report)} entr{'y' if len(report) == 1 else 'ies'} changed")
@@ -3691,6 +4092,12 @@ def main():
     leaked = scrub_entry(entry)
     if leaked:
         print(f"   ⚠️  Page furniture got past the parser and was removed: {', '.join(leaked)}")
+    # The same goes for a market signal or watch list the parser left in two
+    # places (a fresh parse of the 2026-07-03 layout still runs "Tomorrow's
+    # Preview" into the last takeaway): it is stored once, and the run says so.
+    repeated = dedupe_blocks(entry)
+    if repeated:
+        print(f"   ⚠️  The parser left a box in two places; it is stored once: {', '.join(repeated)}")
 
     # Always trust the filename date — it is authoritative.
     # parse_date_from_text() can pick up incidental dates in the PDF body

@@ -61,11 +61,12 @@ day number when generating the PDF so the two stay aligned.
 ### Publishing and repair
 
 - `python3 update_site.py` — normal daily run: repairs any stored entry that predates the current schema
-  (idempotent, no-op once current), removes page furniture and a self-test that ran on into a takeaway from the
-  stored text (see below), parses the newest unprocessed PDF, merges it (richer entry wins, nothing is
-  overwritten with less), regenerates everything, pushes via the GitHub API.
+  (idempotent, no-op once current), removes page furniture, a self-test that ran on into a takeaway and the
+  second copy of a market signal or watch list from the stored text (see below), parses the newest unprocessed
+  PDF, takes the same page furniture and second copies out of the fresh entry, merges it (richer entry wins,
+  nothing is overwritten with less), regenerates everything, pushes via the GitHub API.
 - `python3 update_site.py --repair [--dry-run] [--force]` — only the repair + regenerate pass, no push.
-  `--dry-run` prints what would change, entry by entry, and writes nothing. `--force` re-runs every repair step
+  `--dry-run` prints what would change, one line per change, and writes nothing. `--force` re-runs every repair step
   on entries that are already at the current schema (about a minute and a half: it opens every PDF). Every step
   is idempotent, so on repaired data `--repair --dry-run --force` reports 0 entries; if it ever reports more, a
   repair step is changing its own output, which is a bug -- `check_learnings.py` fails on it. A step that reads
@@ -85,17 +86,23 @@ day number when generating the PDF so the two stay aligned.
     in a generated page;
   - a spotlight description stops mid-sentence, in `learnings.json` (three known exceptions are listed in the
     script, with the reason for each) or in a fresh parse;
+  - a section (heading, paragraph or bullet), a takeaway or the spotlight description repeats the entry's
+    `market_signal` or `tomorrow_preview`, in `learnings.json` or in a fresh parse as it would be stored: one
+    text holds the other, runs on into its beginning or continues from its end, word for word over 40 characters
+    or more. The script states the test in full (`block_repeat`). A phrase the author uses twice in the middle
+    of two sentences is not a repeat, and neither is one short sentence of the box repeated as a bullet;
   - a forced repair would change stored data: `normalize_viral` over every stored spotlight, and the whole
-    repair over the five newest entries.
+    repair (the three text-only passes below included) over the five newest entries.
 
   `--all-pdfs` re-parses every PDF on disk and runs the forced repair over every entry (about four minutes).
   Run it after a publish or a repair.
 
 Repairs never delete entry text: a replaced title, intro or spotlight is kept under `title_original` /
 `focus_intro_original` / `viral_app_original`, and headings are only re-cased.
-There are two exceptions. Both are text-only passes that read nothing but the stored entry, so they run over
-every entry on every run, whatever the schema version (they need no `SCHEMA_VERSION` bump; that is for repair
-steps that open the entry's PDF).
+There are three exceptions. All three are text-only passes that read nothing but the stored entry, so they run
+over every entry on every run, whatever the schema version (they need no `SCHEMA_VERSION` bump; that is for
+repair steps that open the entry's PDF). They run in this order: the scrub first, because the other two compare
+one stored text with another and both must have lost their page footers by then.
 
 **Exception 1: page furniture, which was never entry content** (`scrub_entry`). It is removed outright with no
 `*_original` copy, because a copy would keep the artefact in `learnings.json`:
@@ -138,6 +145,87 @@ condition: what follows the heading has to be exactly that entry's `recap`. Ther
 reads differently — it is simply left alone, and the check only catches a word-for-word copy. Note what this
 means on the site: the quiz is still shown (as cards), but an entry page never shows its recap; only Start Here
 shows the newest one. The 2026-08-22 recap is therefore in `learnings.json` only, like every other day's.
+
+**Exception 3: a market signal or watch list that is stored twice** (`dedupe_blocks`). The MARKET SIGNAL box and
+the TOMORROW line have fields of their own (`market_signal`, `tomorrow_preview`). The parsers of the layouts
+before 2026-07-08 also left the text where they came across it, so 37 entries from 2026-03-23 to 2026-07-07
+stored it twice and their page printed it twice:
+
+- as a section headed `MARKET SIGNAL` (2026-04-21, 05-13, 05-17 … 05-23, 07-04, 07-07): in most of them the
+  paragraph is the whole box and the field its first three sentences, which is all the old parser kept;
+- under a heading that is the box's own first line, `Market signal: For an agency, the relevance is … Insist`,
+  with the rest as that section's paragraph (2026-05-11, eleven entries from 06-02 to 06-13, 07-06);
+- as a paragraph, bullet or "takeaway" of whatever stood next to the box (2026-03-23, 04-03, 04-13, 04-19,
+  04-24, 04-26, 04-27, 04-28, 05-01, 07-04);
+- at the end of a takeaway, a bullet, a paragraph or the spotlight that ran on into it, `… not per framework.
+  Tomorrow: Day 49 -- Agent Reliability Engineering: …` (2026-05-01, 05-10, 05-16, 07-02).
+
+The pass brings each back to one copy, the field, with no `*_original`, on the condition of exception 2: only
+text that is still stored in the same entry goes. Two texts are one text when they meet edge to edge, word for
+word (a parser copies whole lines):
+
+- a text that is, from its first character to its last, a part of the field -- its beginning (40 characters or
+  more), a later part (100 or more), or any part behind the box's own heading (`Market Signal: The AI
+  healthcare …`) -- is removed;
+- a text that begins with the whole field and goes on, or begins with the end of a field that was cut off (40
+  characters or more, and at least half of the field) and goes on, is the fuller reading of the box: the field
+  takes what it lacks, then the text is removed. Nothing is taken past the heading of the next box (`… to
+  commoditise. Tomorrow -- Day 40: …`, 2026-05-01); what follows that heading stays where it is;
+- a text that ends with the field, or with its first 40 characters or more, ran on into the box: it is cut back
+  to its own words, and the box's heading in front of the copy (`Tomorrow:`) goes with it;
+- a field that ends with the heading of a section and the beginning of that section's first paragraph ran on
+  itself (six June entries: `… in the loop. 8 · Viral AI app of the day OpenClaw -- …`) and is cut back.
+
+Two readings that differ by a word are matched by their words, the way the spotlight repair does it (the July
+entries were written apart from their PDF: `Buildots imagery corpus` / `Buildots' imagery corpus`): they begin
+with the same 60 characters and one has every word of the other, in order. That one stays as the field
+(2026-07-04). A text that ends with every word of the field in other punctuation (2026-07-02) is a run-on like
+any other.
+
+In two entries the field is the copy that goes, because the other copy is where the text belongs:
+`tomorrow_preview` of 2026-05-07 was no watch list but the first 300 characters of the takeaways, heading
+included (`PRACTICAL TAKEAWAYS Add trajectory evals …`); and `market_signal` of 2026-05-13, whose only section
+is headed `Market signal` and is the whole article (no heading after the box was recognised) -- moving its
+first paragraph into the field would have taken the article apart, so that section stays as it is.
+
+What the pass leaves behind it:
+
+- A section with nothing left but the box's heading is dropped (18 of them). One that holds anything else stays
+  under its heading (cut back to `Market signal` where the heading carried the first line), which says no more
+  about what is under it than it did before: 2026-05-11 and 06-07 (other parts of the page that the old parser
+  put there), 05-18 (the spotlight and the watch list), 05-22 (a table), 07-07 (the BREAKING THIS WEEK paragraph).
+- A takeaway that was nothing but the copy goes when its title is only the cut-off beginning of the same line,
+  as in `scrub_entry` (2026-04-27, 05-16; the 2026-05-16 entry has no takeaways left).
+- A spotlight description that breaks off once the copy is gone is trimmed to its last full sentence by the
+  rule that trims every other cut-off description, so that a forced repair has nothing left to do. The
+  spotlight as it was (less the copy) is kept under `viral_app_original`, unless an earlier repair already put
+  one there: the only case so far, 2026-05-01, kept the original it had from the spotlight repair.
+- The only words that are no longer stored anywhere in their entry are the box headings that stood in front of
+  a copy (`MARKET SIGNAL`, `Market signal:`, `Tomorrow:`, `Tomorrow's Preview`): 29 of them.
+
+Left alone on purpose:
+
+- Every `*_original` field. `viral_app_original.description` of 2026-04-20 and 2026-05-01 still ends with the
+  first 108 / 121 characters of the market signal: that field is the record of what the spotlight repair
+  replaced, and no page prints it. These two are all that a scan of every string (the first 80 characters of
+  `market_signal`, `tomorrow_preview`, `recap` or `sources` found in another field of the same entry) still
+  reports; before the repair it reported 29 (28 when only fields of 80 characters or more are looked at).
+- The same watch list in two wordings, where neither has every word of the other, so that removing either copy
+  would lose words: 2026-05-16 (the end of the spotlight section's paragraph, cut off), 2026-07-06 (takeaway 1)
+  and 2026-07-07 (the end of the first section's paragraph). The check does not object to these.
+- 2026-03-30: a bullet that ends, after a sentence of its own, with the later lines of the watch list (187
+  characters). The copy starts at an edge of neither text, so no rule places it; the check does not object.
+- A phrase the author uses twice (in the middle of the market signal and in the middle of a takeaway:
+  2026-06-17, 06-26), one short sentence of the box repeated as a bullet, and the intro.
+- A watch list that is filed as a takeaway (`Tomorrow (Day 46): …`; eighteen entries from 2026-04-12 to
+  2026-07-06, sixteen of them without a `tomorrow_preview`). Nothing is stored twice there, so this pass does
+  not touch it; moving that text to `tomorrow_preview` is a different repair, and has not been done.
+
+A copy the rules cannot place -- the whole field in the middle of a paragraph with other text on both sides, or
+a field that ends with the opening of a section without that section's heading in between -- is left as it is,
+`--repair` prints a warning for it, and `check_learnings.py` fails until someone has looked at it. `parse_pdf`
+has dropped sections headed "market signal" for some time; the pass also runs over a fresh entry before it is
+merged, because a fresh parse of the 2026-07-03 layout still runs `Tomorrow's Preview: …` into the last takeaway.
 
 The spotlight (`viral_app`), in the parser and in the repair:
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 check_learnings.py — regression check: no page furniture in the published text,
-and no self-test inside a takeaway.
+no self-test inside a takeaway, and no market signal or watch list stored twice.
 
 The daily PDF prints a running header/footer on every page. When the parser
 does not recognise one, it gets joined into whatever paragraph, takeaway, quiz
@@ -65,6 +65,23 @@ or repeats, word for word, the entry's own recap paragraph or sources line
 (the "Topics covered so far" block did the same thing once, in the 2026-08-22
 entry; the parser now ends the takeaways at a "Sources:" line as well).
 
+The older layouts did the same with the MARKET SIGNAL box and the TOMORROW
+line: the text is in the entry's `market_signal` / `tomorrow_preview` field and
+a second time in a section, a takeaway or the spotlight, so the entry page
+printed it twice:
+
+    section "MARKET SIGNAL"       its paragraph begins with all of market_signal
+    section "Market signal: For an agency, the relevance is … Insist"
+                                  the heading is the first line of the text
+    takeaway "… not per framework. Tomorrow: Day 49 -- Agent Reliability …"
+                                  the watch list ran on into the last takeaway
+
+So the script fails as well when a section (heading, paragraph, bullet), a
+takeaway or the spotlight description repeats one of those two fields: when one
+text holds the other, runs on into its beginning, or continues from its end,
+word for word over 40 characters or more (section 6 below states it exactly).
+A phrase the author uses twice in the middle of two sentences is not that.
+
 It looks in three places:
   1. every string stored in learnings.json;
   2. the generated pages (entries/*.html and the other derived files);
@@ -82,6 +99,8 @@ parse, and the box must be read whole -- across a page break, past the old
 
 And it checks that a repair of repaired data changes nothing (section 5):
 `update_site.py --repair --force` must report 0 entries.
+
+Section 6 is the check for a block that is stored twice, described above.
 
 Run:
     python3 check_learnings.py              all of the above; fresh parse of the newest PDF (and of the
@@ -242,6 +261,111 @@ def repeated_in_takeaways(entry: dict, label: str) -> list[str]:
     return found
 
 
+# ── 6. A block that is stored twice ───────────────────────────────────────────
+#
+# The MARKET SIGNAL box and the TOMORROW line have a field of their own
+# (`market_signal`, `tomorrow_preview`). The parsers of the layouts before
+# 2026-07-08 also left the text where they came across it: as a section headed
+# "Market Signal", under a heading that is its own first line ("Market signal:
+# For an agency, the relevance is …"), at the end of the last takeaway, or after
+# the spotlight. The entry page then prints it twice.
+#
+# A text of the entry *repeats* a block when, whitespace aside, word for word:
+#
+#   1. it holds the whole block;
+#   2. it ends with the beginning of the block (it ran on into the block and was
+#      cut off), or the block ends with its beginning (the block ran on into it,
+#      or it continues a block that was cut off) -- over 40 characters or more;
+#   3. it is, from its first character to its last, a part of the block: the
+#      block's beginning (40 characters or more) or a later part (100 or more);
+#   4. it holds the first 80 characters of the block, or begins with the same 60
+#      characters (two readings of one text that differ further on);
+#   5. it ends with every word of the block, in order (the same run-on, with
+#      other punctuation).
+#
+# Each of these has the two texts meet at an edge: a parser copies whole lines.
+# A phrase the author uses twice -- in the middle of the block and in the middle
+# of a takeaway -- touches no edge and is none of them, and neither is one short
+# sentence of the block repeated as a bullet. The texts looked at are the ones
+# the page prints next to the block: section headings, paragraphs and bullets,
+# takeaways, and the spotlight description. Not the intro, and not a
+# `*_original` field: that is the record of what a repair replaced.
+BLOCK_FIELDS = (('market_signal', 'market signal'), ('tomorrow_preview', 'watch list'))
+_EDGE = 40          # characters two texts share where one runs into the other
+_PART = 100         # … where a text is a later part of the block
+_SCAN = 80          # the block's first characters, found anywhere in a text
+_OPENING = 60       # characters two readings of one block begin with
+_WORDS = 8          # fewest words a block has for "ends with the same words" to mean anything
+
+
+def _squash(text) -> str:
+    return ' '.join(str(text).split())
+
+
+def block_repeat(block: str, text: str) -> str:
+    """How `text` repeats `block`, as a phrase for the report; '' when it does not."""
+    b, t = _squash(block), _squash(text)
+    if len(b) < _EDGE or len(t) < _EDGE:
+        return ''
+    if b in t:
+        return 'holds all of it'
+    if t in b and (b.startswith(t) or len(t) >= _PART):
+        return 'is a part of it, word for word'
+    at = t.find(b[:_EDGE])
+    while at >= 0:
+        if b.startswith(t[at:]):
+            return f'ends with its first {len(t) - at} characters'
+        at = t.find(b[:_EDGE], at + 1)
+    at = b.find(t[:_EDGE])
+    while at >= 0:
+        if t.startswith(b[at:]):
+            return f'begins with its last {len(b) - at} characters'
+        at = b.find(t[:_EDGE], at + 1)
+    if len(b) >= _SCAN and b[:_SCAN] in t:
+        return f'holds its first {_SCAN} characters'
+    same = next((i for i, (x, y) in enumerate(zip(b, t)) if x != y), min(len(b), len(t)))
+    if same >= _OPENING:
+        return f'begins with the same {same} characters'
+    block_words, text_words = re.findall(r'\w+', b.lower()), re.findall(r'\w+', t.lower())
+    if len(block_words) >= _WORDS and text_words[-len(block_words):] == block_words:
+        return 'ends with the same words'
+    return ''
+
+
+def block_hosts(entry: dict):
+    """(path, text) for every text of the entry that the page prints next to
+    the market signal and the watch list."""
+    sections = entry.get('sections')
+    for i, sec in enumerate(sections if isinstance(sections, list) else []):
+        if not isinstance(sec, dict):
+            continue
+        if isinstance(sec.get('title'), str):
+            yield ('sections', i, 'title'), sec['title']
+        for key in ('paragraphs', 'bullets'):
+            for j, item in enumerate(sec[key] if isinstance(sec.get(key), list) else []):
+                if isinstance(item, str):
+                    yield ('sections', i, key, j), item
+    yield from walk(entry.get('practical_takeaway'), ('practical_takeaway',))
+    viral = entry.get('viral_app')
+    if isinstance(viral, dict) and isinstance(viral.get('description'), str):
+        yield ('viral_app', 'description'), viral['description']
+
+
+def repeated_blocks(entry: dict, label: str) -> list[str]:
+    """Every section, takeaway or spotlight text of the entry that repeats its
+    market signal or its watch list."""
+    found = []
+    for field, name in BLOCK_FIELDS:
+        block = entry.get(field)
+        if not isinstance(block, str):
+            continue
+        for path, text in block_hosts(entry):
+            how = block_repeat(block, text)
+            if how:
+                found.append(f"{label} {'/'.join(map(str, path))}: repeats the {name} ({_squash(block)[:40]!r} …): {how}")
+    return found
+
+
 def report(name: str, problems: list[str]) -> bool:
     if not problems:
         print(f"  ok    {name}")
@@ -263,6 +387,7 @@ def check_stored() -> list[str]:
         problems.extend(offences(entry, entry.get('date', '?')))
         problems.extend(quiz_in_takeaways(entry, entry.get('date', '?')))
         problems.extend(repeated_in_takeaways(entry, entry.get('date', '?')))
+        problems.extend(repeated_blocks(entry, entry.get('date', '?')))
     return problems
 
 
@@ -717,6 +842,441 @@ def check_takeaway_units(U) -> list[str]:
     return problems
 
 
+def check_block_units(U) -> list[str]:
+    """Small fixed cases: a market signal or watch list that is stored twice
+    comes back to one copy, the fuller text is the one that stays, and text
+    that is not a copy is left alone -- by the repair pass (dedupe_blocks) and
+    by this check's own test (repeated_blocks)."""
+    problems = []
+    if not hasattr(U, 'dedupe_blocks'):
+        return ['update_site.py has no dedupe_blocks']
+
+    def expect(what, got, want):
+        if got != want:
+            problems.append(f"{what}: got {got!r}, expected {want!r}")
+
+    def run(what, before, after, objects=True):
+        """The pass turns `before` into `after` and finds nothing the second
+        time; the check objects to `before` (unless told otherwise) and never
+        to a repaired entry."""
+        entry = copy.deepcopy(before)
+        changes = U.dedupe_blocks(entry)
+        expect(f'{what}: entry', entry, after)
+        expect(f'{what}: reports a change', bool(changes), before != after)
+        again = copy.deepcopy(entry)
+        expect(f'{what}: a second run reports', list(U.dedupe_blocks(again)), [])
+        expect(f'{what}: a second run changes', again, entry)
+        expect(f'{what}: the check objects to the entry as it was', bool(repeated_blocks(before, '')), objects)
+        if before != after:
+            expect(f'{what}: the check objects to the repaired entry', repeated_blocks(after, ''), [])
+
+    # ── The market signal has a section of its own ────────────────────────────
+    # The old parser kept the first three sentences of the box as market_signal
+    # and the whole box as a section. The section's paragraph is the fuller
+    # text: it becomes the field, and the section, left with nothing, goes.
+    signal = ('Skills are the protocol layer for the agent economy. Model performance is compressing across the '
+              'frontier. Anthropic chose the open-protocol playbook.')
+    full = signal + ' Indie skill-builders win on all three channels with one SKILL.md folder.'
+    meaning = {'title': '4. What this means for you',
+               'paragraphs': ['Apps that expose MCP entry points become first-class citizens.']}
+    run('a section of its own that holds more than the field',
+        {'date': '2026-05-19', 'market_signal': signal,
+         'sections': [meaning, {'title': 'MARKET SIGNAL', 'paragraphs': [full]}]},
+        {'date': '2026-05-19', 'market_signal': full, 'sections': [meaning]})
+    # A table the old parser attached to that section stays where it is.
+    table = {'headers': ['Headline', 'Why it matters'], 'rows': [['Gemini Spark', 'Skills reach 3B devices']]}
+    run('a section of its own with a table',
+        {'date': '2026-05-22', 'market_signal': signal,
+         'sections': [meaning, {'title': 'Market Signal', 'paragraphs': [full], 'table': table}]},
+        {'date': '2026-05-22', 'market_signal': full, 'sections': [meaning, {'title': 'Market Signal', 'table': table}]})
+    # Where that section is all the entry has, it is not the box but the whole
+    # article: no heading after the box was recognised, and its first paragraph
+    # runs on through the text that followed (2026-05-13). Moving that paragraph
+    # into the field would take the article apart, so here the section stays as
+    # it is and the field -- its beginning, word for word -- is the copy that goes.
+    article = {'title': 'Market signal',
+               'paragraphs': [f'{signal} The browser is forcing generative UI to become the default. Two disclosures made it '
+                              'impossible to ship an agentic browser without a trust',
+                              'Disclosure 1 - Brave: unseeable prompt injections in screenshots.'],
+               'table': table}
+    run('a section of its own that is the whole entry',
+        {'date': '2026-05-13', 'market_signal': signal, 'sections': [article]},
+        {'date': '2026-05-13', 'sections': [article]})
+    # The other way round (2026-07-07): the field is complete, the paragraph is
+    # cut off. The paragraph goes; the paragraph after it is something else and stays.
+    news = 'Claude Sonnet 5 went GA, and Fable 5 was restored globally.'
+    run('a section of its own that holds less than the field',
+        {'date': '2026-07-07', 'market_signal': full,
+         'sections': [{'title': 'MARKET SIGNAL',
+                       'paragraphs': [signal + ' Indie skill-builders win on all three channels with one', news]}]},
+        {'date': '2026-07-07', 'market_signal': full, 'sections': [{'title': 'MARKET SIGNAL', 'paragraphs': [news]}]})
+
+    # ── The heading is the first line of the text ─────────────────────────────
+    # "Market signal: For an agency, …" was read as a heading and the rest of
+    # the paragraph as its text, less the last short line (2026-06-06).
+    agency = ('For an agency, the relevance is procurement and resilience, not benchmarks. Insist on FedRAMP authorisation, '
+              'multi-cloud portability and audit logging in every RFP, and a contractual kill switch.')
+    breaking = {'title': '7 · Breaking', 'paragraphs': ['Anthropic filed its S-1.']}
+    run('a heading that carries the first line',
+        {'date': '2026-06-06', 'market_signal': agency,
+         'sections': [breaking,
+                      {'title': 'Market signal: For an agency, the relevance is procurement and resilience, not benchmarks. Insist',
+                       'paragraphs': ['on FedRAMP authorisation, multi-cloud portability and audit logging in every RFP, and a '
+                                      'contractual kill']}]},
+        {'date': '2026-06-06', 'market_signal': agency, 'sections': [breaking]})
+    # Where heading and paragraph together say more than the field, the field
+    # takes the rest; what else the section holds stays under the bare heading (2026-06-07).
+    move = 'Your Move (Next 90 Days): pick one control plane and invest in skills.'
+    run('a heading that carries the first line, in a section that holds more than the field',
+        {'date': '2026-06-07',
+         'market_signal': "Zero ARR today, but OpenHuman embodies the 'memory is the moat, not the model' thesis that will define 2026-",
+         'sections': [{'title': "Market Signal: Zero ARR today, but OpenHuman embodies the 'memory is the moat, not the model'",
+                       'paragraphs': ['thesis that will define 2026-2027. Memoryless agents are becoming obsolete.', move]}]},
+        {'date': '2026-06-07',
+         'market_signal': "Zero ARR today, but OpenHuman embodies the 'memory is the moat, not the model' thesis that will "
+                          "define 2026-2027. Memoryless agents are becoming obsolete.",
+         'sections': [{'title': 'Market Signal', 'paragraphs': [move]}]})
+
+    # ── The field ran on into the next section ────────────────────────────────
+    # market_signal ends with the heading of the section that follows the box
+    # and the first sentence under it. The section has both; the field is cut back.
+    viral = {'title': '8 · Viral AI app of the day',
+             'paragraphs': ['OpenClaw -- the fastest-growing open-source project in GitHub history, now past 300,000 stars. '
+                            'It runs entirely on your own devices.']}
+    run('a field that ran on into the next section',
+        {'date': '2026-06-05',
+         'market_signal': 'For an agency, the relevance is procurement and resilience, not benchmarks. 8 · Viral AI app of the '
+                          'day OpenClaw -- the fastest-growing open-source project in GitHub history, now past 300,000 stars.',
+         'sections': [viral]},
+        {'date': '2026-06-05', 'market_signal': 'For an agency, the relevance is procurement and resilience, not benchmarks.',
+         'sections': [viral]})
+    # Both at once, as the June entries have it.
+    run('a heading that carries the first line and a field that ran on',
+        {'date': '2026-06-02',
+         'market_signal': 'The IPO race ratifies that the value is in agentic enterprise workflows, not chat. A $965B private '
+                          'valuation prices in a future where agents do the work. 8 · Viral AI app of the day OpenClaw -- the '
+                          'fastest-growing open-source project in GitHub history, now past 300,000 stars.',
+         'sections': [viral,
+                      {'title': 'Market signal: The IPO race ratifies that the value is in agentic enterprise workflows, not chat. A',
+                       'paragraphs': ['$965B private valuation prices in a future where agents do the']}]},
+        {'date': '2026-06-02',
+         'market_signal': 'The IPO race ratifies that the value is in agentic enterprise workflows, not chat. A $965B private '
+                          'valuation prices in a future where agents do the work.',
+         'sections': [viral]})
+
+    # ── The text sits in a section it does not belong to ──────────────────────
+    # A paragraph that begins with the whole field and goes on is the box as
+    # the PDF printed it (2026-04-13): the field takes the rest, the paragraph goes.
+    harness = {'title': "3. Study Anthropic's Three-Agent Harness",
+               'paragraphs': ['Read the engineering post on long-running apps.', full,
+                              'ISSUE #24 covers automatic context reset triggers.'],
+               'bullets': ['Planner', 'Generator']}
+    run('the box as a paragraph of another section',
+        {'date': '2026-04-13', 'market_signal': signal, 'sections': [harness]},
+        {'date': '2026-04-13', 'market_signal': full,
+         'sections': [dict(harness, paragraphs=['Read the engineering post on long-running apps.',
+                                                'ISSUE #24 covers automatic context reset triggers.'])]})
+    # … but only as far as the next box: what follows a "Tomorrow -- Day N:"
+    # heading is not market signal, and stays where it is (2026-05-01).
+    tomorrow = 'Tomorrow -- Day 40: Agentic AI at the edge, on-device agent loops and Gemma 4 on mobile.'
+    moat = 'Context, not compute, is the new moat.'
+    run('the box as a paragraph, followed by the next box',
+        {'date': '2026-05-01', 'market_signal': signal,
+         'sections': [{'title': 'What Is Context Engineering?', 'paragraphs': [f'{signal} {tomorrow}', moat]}]},
+        {'date': '2026-05-01', 'market_signal': signal,
+         'sections': [{'title': 'What Is Context Engineering?', 'paragraphs': [tomorrow, moat]}]})
+    # A later part of the box as a paragraph of its own (2026-04-24): all of it is in the field.
+    memory = ('The AI agent memory market is on a trajectory from $6.27B (2026) to $28.45B (2030) at 35% CAGR. For context, '
+              'the entire traditional database market grew at about 10% for a decade. Every database vendor is racing to '
+              'claim it.')
+    run('a later part of the box as a paragraph',
+        {'date': '2026-04-24', 'market_signal': memory,
+         'sections': [{'title': 'Viral App of the Day',
+                       'paragraphs': ['Deep Research Max turns research into an API.',
+                                      '(2030) at 35% CAGR. For context, the entire traditional database market grew at about '
+                                      '10% for a decade. Every database vendor is racing']}]},
+        {'date': '2026-04-24', 'market_signal': memory,
+         'sections': [{'title': 'Viral App of the Day', 'paragraphs': ['Deep Research Max turns research into an API.']}]})
+    # Its first line as a bullet, behind the label (2026-04-26).
+    health = ('The AI healthcare agent market is on a trajectory to $28B+ by 2030 (35% CAGR). The constraint is no longer '
+              'model capability; it is governance.')
+    run('the first line of the box as a bullet',
+        {'date': '2026-04-26', 'market_signal': health,
+         'sections': [{'title': 'Viral App of the Day',
+                       'bullets': ['GPT-5.5 released: Codex on NVIDIA infrastructure.',
+                                   'Market Signal: The AI healthcare agent market is on a trajectory to $28B+ by 2030 (35% CAGR).']}]},
+        {'date': '2026-04-26', 'market_signal': health,
+         'sections': [{'title': 'Viral App of the Day', 'bullets': ['GPT-5.5 released: Codex on NVIDIA infrastructure.']}]})
+    # The watch list, cut off in the field and continued in a paragraph, with
+    # its heading line among the bullets (2026-03-23).
+    run('a paragraph that continues the watch list',
+        {'date': '2026-03-23',
+         'tomorrow_preview': "(Mar 24): Multi-Agent Orchestration Patterns Now that you know MCP and A2A, we'll explore how to "
+                             "design multi-agent systems: orchestrator vs",
+         'sections': [{'title': 'What Is A2A?',
+                       'paragraphs': ['A2A lets agents talk to agents.',
+                                      "Now that you know MCP and A2A, we'll explore how to design multi-agent systems: "
+                                      "orchestrator vs. worker patterns, and how to prevent agent loops."],
+                       'bullets': ['Agent Cards describe capabilities.',
+                                   "Tomorrow's Preview (Mar 24): Multi-Agent Orchestration Patterns"]}]},
+        {'date': '2026-03-23',
+         'tomorrow_preview': "(Mar 24): Multi-Agent Orchestration Patterns Now that you know MCP and A2A, we'll explore how to "
+                             "design multi-agent systems: orchestrator vs. worker patterns, and how to prevent agent loops.",
+         'sections': [{'title': 'What Is A2A?', 'paragraphs': ['A2A lets agents talk to agents.'],
+                       'bullets': ['Agent Cards describe capabilities.']}]})
+
+    # ── Takeaways ─────────────────────────────────────────────────────────────
+    # The watch list ran on into the last takeaway: whole (behind "Tomorrow:"),
+    # and cut off where the old two-column reader stopped (2026-05-10).
+    watch = 'Day 49 -- Agent Reliability Engineering: SLOs, Error Budgets & The Rise of the Agent SRE'
+    run('the watch list at the end of a takeaway',
+        {'date': '2026-05-10', 'tomorrow_preview': watch,
+         'practical_takeaway': [
+             {'title': 'Cursor 3 backlash is the lesson. Auto-approve writes inside ',
+              'body': 'Cursor 3 backlash is the lesson. Auto-approve writes inside a code worktree is fine. Set defaults per '
+                      f'agent role, not per framework. Tomorrow: {watch}'},
+             {'title': 'Domain-tune your tool approval defaults. Cursor 3 backlash i',
+              'body': 'Domain-tune your tool approval defaults. Cursor 3 backlash is the lesson. Set defaults per Tomorrow: '
+                      'Day 49 -- Agent Reliability Engineering: SLOs, Error'}]},
+        {'date': '2026-05-10', 'tomorrow_preview': watch,
+         'practical_takeaway': [
+             {'title': 'Cursor 3 backlash is the lesson. Auto-approve writes inside ',
+              'body': 'Cursor 3 backlash is the lesson. Auto-approve writes inside a code worktree is fine. Set defaults per '
+                      'agent role, not per framework.'},
+             {'title': 'Domain-tune your tool approval defaults. Cursor 3 backlash i',
+              'body': 'Domain-tune your tool approval defaults. Cursor 3 backlash is the lesson. Set defaults per'}]})
+    # A "takeaway" that is the watch list and nothing else goes, title and all,
+    # when the title is only the cut-off beginning of the same line (2026-05-16) …
+    etl = ('Day 55: Agent-Native Data Infrastructure -- Confluent, RisingWave, Databricks Genie, and event-driven agentic '
+           'pipelines replacing batch ETL.')
+    run('a takeaway that is the watch list',
+        {'date': '2026-05-16', 'tomorrow_preview': etl,
+         'practical_takeaway': [{'title': 'Tomorrow: Day 55: Agent-Native Data Infrastructure -- Conflu', 'body': f'Tomorrow: {etl}'}]},
+        {'date': '2026-05-16', 'tomorrow_preview': etl})
+    # … and keeps a title of its own.
+    run('a takeaway with a title of its own whose body is the watch list',
+        {'date': '2026-05-16', 'tomorrow_preview': etl,
+         'practical_takeaway': [{'title': 'What comes next', 'body': f'Tomorrow: {etl}'}]},
+        {'date': '2026-05-16', 'tomorrow_preview': etl, 'practical_takeaway': [{'title': 'What comes next', 'body': ''}]})
+    # The market signal in two "takeaways" (2026-04-27): its first line behind the
+    # label, and the rest -- which goes on past the point where the field was cut.
+    baa = {'title': 'Sign a BAA before the pilot', 'body': 'No protected health data moves until the agreement is in place.'}
+    merck = ("Merck's $1B Google Cloud deal (Apr 22) signals that Big Pharma is now treating agentic AI as core infrastructure, "
+             "not an experiment. The AI drug discovery market alone is projected at $4B+ by")
+    run('the market signal in two takeaways',
+        {'date': '2026-04-27', 'market_signal': merck,
+         'practical_takeaway': [
+             {'title': 'as core infrastructure, not an experiment. The AI drug disco',
+              'body': 'as core infrastructure, not an experiment. The AI drug discovery market alone is projected at $4B+ by '
+                      '2028. Healthcare AI overall: $45B in 2026.'},
+             baa,
+             {'title': "Market Signal: Merck's $1B Google Cloud deal (Apr 22) signal",
+              'body': "Market Signal: Merck's $1B Google Cloud deal (Apr 22) signals that Big Pharma is now treating agentic AI"}]},
+        {'date': '2026-04-27', 'market_signal': merck + ' 2028. Healthcare AI overall: $45B in 2026.',
+         'practical_takeaway': [baa]})
+    # A "watch list" that is the first characters of the takeaways (it begins
+    # with their heading) is no watch list: the field goes, the takeaway is not touched (2026-05-07).
+    evals = ('PRACTICAL TAKEAWAYS Add trajectory evals this week. If you only score outputs today, you are missing failures. '
+             'Wire online evals on sampled prod traffic. Run a cheap judge on 5-10% of traces.')
+    finance = {'title': 'Tomorrow (Day 46): The Anthropic Finance Agents deep dive',
+               'body': 'Tomorrow (Day 46): The Anthropic Finance Agents deep dive -- what each agent does.'}
+    takeaways = [{'title': 'PRACTICAL TAKEAWAYS Add trajectory evals this week. If you only score outputs to', 'body': evals}, finance]
+    run('a watch list that is the beginning of the takeaways',
+        {'date': '2026-05-07', 'practical_takeaway': takeaways,
+         'tomorrow_preview': 'PRACTICAL TAKEAWAYS Add trajectory evals this week. If you only score outputs today, you are '
+                             'missing failures. Wire online evals on sampled prod traf'},
+        {'date': '2026-05-07', 'practical_takeaway': takeaways})
+
+    # ── The spotlight ─────────────────────────────────────────────────────────
+    # The description ran on into the first sentence of the market signal
+    # (2026-05-01). That sentence goes. What is left breaks off mid-sentence, so
+    # it is trimmed like any other cut-off description: back to its last full
+    # sentence, with the spotlight as it was (less the copy) kept.
+    context = ("Context Engineering is rapidly becoming a formal job function. Gartner's definition and LinkedIn postings "
+               "point the same way.")
+    stats = [{'stat': '$15', 'label': 'per user/month'}]
+    registry = 'Agent 365 closes the visibility gap with a centralised registry. The apm.yml pattern (Day 7) is the config backbone.'
+    entry = {'date': '2026-05-01', 'market_signal': context,
+             'viral_app': {'name': 'Microsoft Agent 365', 'stats': stats,
+                           'description': f"{registry} For Varun: every deployment should now start with 'register in Context "
+                                          "Engineering is rapidly becoming a formal job function."}}
+    run('a spotlight that ran on into the market signal', entry,
+        {'date': '2026-05-01', 'market_signal': context,
+         'viral_app': {'name': 'Microsoft Agent 365', 'stats': stats, 'description': registry},
+         'viral_app_original': {'name': 'Microsoft Agent 365', 'stats': stats,
+                                'description': f"{registry} For Varun: every deployment should now start with 'register in"}})
+    # … and the forced repair, which trims cut-off descriptions, has nothing left to do.
+    U.dedupe_blocks(entry)
+    expect('a spotlight that ran on: the spotlight repair afterwards reports', U.repair_spotlight(entry, None), '')
+    run('a spotlight that is complete without the run-on',
+        {'date': '2026-05-01', 'market_signal': context,
+         'viral_app': {'name': 'Microsoft Agent 365',
+                       'description': f'{registry} Context Engineering is rapidly becoming a formal job function.'}},
+        {'date': '2026-05-01', 'market_signal': context,
+         'viral_app': {'name': 'Microsoft Agent 365', 'description': registry}})
+
+    # ── Two readings of one text ──────────────────────────────────────────────
+    # The July entries were written apart from their PDF, so field and section
+    # differ by a word here and there. They begin the same; where one has every
+    # word of the other, in order, that one stays (2026-07-04: both ways round).
+    trail = {'title': '3. Make the material trail the product.',
+             'paragraphs': ['Let the procurement agent write the passport evidence.']}
+    printed = ("Construction is the last $13T analogue industry, and the moat mirrors agriculture (Day 96): proprietary "
+               "site-data flywheels (Buildots' imagery corpus, Bedrock's earthmoving telemetry) beat model choice. With "
+               "frontier access itself now government-mediated, governance compounds.")
+    run('a section that reads like the field, with a word more',
+        {'date': '2026-07-04',
+         'market_signal': 'Construction is the last $13T analogue industry, and the moat mirrors agriculture (Day 96): proprietary '
+                          'site-data flywheels (Buildots imagery corpus, Bedrock earthmoving telemetry) beat model choice. With '
+                          'frontier access now government-mediated, governance compounds.',
+         'sections': [trail, {'title': 'Market Signal', 'paragraphs': [printed]}]},
+        {'date': '2026-07-04', 'market_signal': printed, 'sections': [trail]})
+    gaming = ('Day 99: Agentic AI in Gaming & Interactive Entertainment -- agent-driven NPCs with persistent memory, AI game-dev '
+              'copilots, and generative worlds. Then Day 100: the 100-day milestone retrospective.')
+    run('a paragraph that reads like the field, with a word less',
+        {'date': '2026-07-04', 'tomorrow_preview': gaming,
+         'sections': [dict(trail, paragraphs=trail['paragraphs'] + [
+             'Day 99: Agentic AI in Gaming & Interactive Entertainment -- agent-driven NPCs, game-dev copilots and generative '
+             'worlds. Then Day 100: the'])]},
+        {'date': '2026-07-04', 'tomorrow_preview': gaming, 'sections': [trail]})
+    # The watch list at the end of a paragraph, in the PDF's punctuation (2026-07-02).
+    run('the watch list at the end of a paragraph, punctuated differently',
+        {'date': '2026-07-02',
+         'tomorrow_preview': 'Day 97 — Agentic AI in Logistics & Last-Mile Delivery: agents that quote, route, dispatch and hand '
+                             'off freight across carriers.',
+         'sections': [{'title': '3. Make the trace the product.',
+                       'paragraphs': ['Wire one log per lot and reuse it three ways. Tomorrow (Day 97): Agentic AI in Logistics '
+                                      '& Last-Mile Delivery -- agents that quote, route, dispatch and hand off freight across '
+                                      'carriers.']}]},
+        {'date': '2026-07-02',
+         'tomorrow_preview': 'Day 97 — Agentic AI in Logistics & Last-Mile Delivery: agents that quote, route, dispatch and hand '
+                             'off freight across carriers.',
+         'sections': [{'title': '3. Make the trace the product.', 'paragraphs': ['Wire one log per lot and reuse it three ways.']}]})
+
+    # ── Not a copy: left exactly as it is, and nothing for the check to object to ──
+    telco = ("Telecom is the clearest sign that agentic AI has crossed from pilot to production. But the moat is no longer the "
+             "model — with the Global Telco AI Alliance stepping back from a telco-specific LLM, value moves to telco-specific "
+             "agents, data and workflows. Distribution, data and governance compound while models commoditise. The decisive "
+             "capability is the secure-autonomy stack, by running the lowest cost per successful, audited outcome. Governance "
+             "evidence is becoming the telecom procurement question.")
+    for what, entry in [
+        # a clause the author uses in the middle of the market signal and at the start of a takeaway (2026-06-26)
+        ('a clause used twice',
+         {'market_signal': telco,
+          'practical_takeaway': [{'title': 'Own the orchestration layer',
+                                  'body': 'With the Global Telco AI Alliance stepping back from a telco-specific LLM, value sits in '
+                                          'telco-specific agents and in the AI-RAN dual-use play.'}]}),
+        # the same closing words in a takeaway and in a sentence of the market signal (2026-06-17)
+        ('two sentences that end alike',
+         {'market_signal': telco,
+          'practical_takeaway': [{'title': 'Meter the task, not the token',
+                                  'body': "You can't out-model a rival, but you can out-operate them by running the lowest cost "
+                                          "per successful, audited outcome."}]}),
+        # one short sentence of the market signal, repeated on purpose as a bullet
+        ('a short sentence repeated as a bullet',
+         {'market_signal': telco,
+          'sections': [{'title': '5. What compounds',
+                        'bullets': ['Distribution, data and governance compound while models commoditise.']}]}),
+        # a "Tomorrow" takeaway that words the watch list differently (2026-07-06)
+        ('a watch list worded differently in a takeaway',
+         {'tomorrow_preview': 'Day 101: Claude Science + the lab-in-the-loop stack -- agentic literature synthesis and the '
+                              'drug-discovery agent architecture under the hood.',
+          'practical_takeaway': [{'title': 'Tomorrow -- Day 101: Claude Science and the lab-in-the-loop stack',
+                                  'body': 'Tomorrow -- Day 101: Claude Science and the lab-in-the-loop stack: how AI-for-science '
+                                          'architectures actually work, and what a drug-discovery agent does under the hood.'}]}),
+        # the record of a spotlight an earlier repair trimmed: kept as it was (2026-04-20)
+        ('a kept original',
+         {'market_signal': telco,
+          'viral_app': {'name': 'Meta AI App', 'description': 'Agentic AI has crossed the mainstream chasm.'},
+          'viral_app_original': {'name': 'Meta AI App',
+                                 'description': 'Agentic AI has crossed the mainstream chasm. Telecom is the clearest sign that '
+                                                'agentic AI has crossed from pilot to prod'}}),
+        # the intro may open the way the market signal does
+        ('an intro that opens like the market signal',
+         {'market_signal': telco,
+          'focus_intro': 'Telecom is the clearest sign that agentic AI has crossed from pilot to production.'}),
+        # a field too short to tell a copy from a mention
+        ('a short watch list named in a paragraph',
+         {'tomorrow_preview': 'Day 12: agent memory in production',
+          'sections': [{'title': '1. Recap', 'paragraphs': ['Next up is Day 12: agent memory in production, then evaluation.']}]}),
+    ]:
+        entry = dict(entry, date='2026-06-26')
+        run(f'not a copy: {what}', entry, copy.deepcopy(entry), objects=False)
+
+    # The heading in front of a copy is known by its capital. "tomorrow:" at the
+    # end of a sentence is that sentence's own word: the copy goes, the word stays.
+    run('a copy behind a lower-case "tomorrow:"',
+        {'date': '2026-05-10', 'tomorrow_preview': watch,
+         'practical_takeaway': [{'title': 'Plan the next read', 'body': f'Block an hour for what comes tomorrow: {watch}'}]},
+        {'date': '2026-05-10', 'tomorrow_preview': watch,
+         'practical_takeaway': [{'title': 'Plan the next read', 'body': 'Block an hour for what comes tomorrow:'}]})
+
+    # A copy the pass cannot place is left alone, and said so; this check is
+    # what brings it to someone's attention. Two of them: the whole field in the
+    # middle of a paragraph, with other text on both sides; and a field that
+    # ends with the first sentences of a section's opening paragraph without
+    # that section's heading in between -- the field ran on, but nothing says
+    # where its own text ends, and the paragraph is not a continuation of the box.
+    opening = ('OpenClaw -- the fastest-growing open-source project in GitHub history, now past 300,000 stars. It runs entirely '
+               'on your own devices and connects to fifty services.')
+    for what, entry in [
+        ('a copy with other text on both sides',
+         {'date': '2026-05-10', 'tomorrow_preview': watch,
+          'sections': [{'title': '7. Breaking this week',
+                        'paragraphs': [f'Remy enters internal testing. Tomorrow: {watch} Sundar Pichai framed it on the earnings call.']}]}),
+        ('a field that ends with the opening of a section',
+         {'date': '2026-06-05',
+          'market_signal': 'Procurement, not benchmarks. OpenClaw -- the fastest-growing open-source project in GitHub history, '
+                           'now past 300,000 stars.',
+          'sections': [{'title': '8 · Viral AI app of the day', 'paragraphs': [opening]}]}),
+    ]:
+        unverified = []
+        untouched = copy.deepcopy(entry)
+        expect(f'{what}: reports', list(U.dedupe_blocks(entry, None, unverified)), [])
+        expect(f'{what}: entry', entry, untouched)
+        expect(f'{what}: notes', len(unverified), 1)
+        expect(f'{what}: the check objects', bool(repeated_blocks(entry, '')), True)
+
+    # This pass runs over every stored entry before each daily publish, so an
+    # entry it cannot work with must come through untouched, not stop the run.
+    odd_entries = [
+        {'date': '2026-03-15'},
+        {'date': '2026-03-15', 'market_signal': None, 'tomorrow_preview': '', 'sections': None, 'practical_takeaway': None},
+        {'date': '2026-03-15', 'market_signal': ['not', 'a', 'string'], 'tomorrow_preview': 7,
+         'sections': [None, 'a string', {'title': None, 'paragraphs': 'not a list', 'bullets': [None, 3]},
+                      {'paragraphs': [full], 'bullets': None}]},
+        {'date': '2026-03-15', 'market_signal': signal, 'sections': 'not a list', 'viral_app': 'not a dict',
+         'practical_takeaway': ['a string', None, {'title': 'No body'}, {'title': None, 'body': None}, {'body': 3}]},
+        {'date': '2026-03-15', 'market_signal': signal, 'viral_app': {'name': None, 'description': None},
+         'practical_takeaway': 'One paragraph, as the oldest entries store it.'},
+    ]
+    for entry in odd_entries:
+        untouched = json.loads(json.dumps(entry))
+        try:
+            changes = list(U.dedupe_blocks(entry, {}, []))
+        except Exception as exc:                      # noqa: BLE001 - any crash here would stop the daily run
+            problems.append(f"dedupe_blocks raised {exc!r} on {untouched!r}")
+            continue
+        expect('dedupe_blocks on an entry it cannot work with', (entry, changes), (untouched, []))
+    # The one-paragraph takeaways of the oldest entries are a text like any other.
+    entry = {'date': '2026-03-28', 'tomorrow_preview': watch,
+             'practical_takeaway': f'Start with high-volume, rule-bound tasks. Tomorrow: {watch}'}
+    U.dedupe_blocks(entry)
+    expect('takeaways stored as one paragraph', entry['practical_takeaway'], 'Start with high-volume, rule-bound tasks.')
+
+    # The repair pass applies it to every stored entry, and has nothing left to do the second time.
+    data = {'learnings': [{'date': '2026-05-19', 'title': 'A title', 'schema': U.SCHEMA_VERSION, 'market_signal': signal,
+                           'sections': [copy.deepcopy(meaning), {'title': 'MARKET SIGNAL', 'paragraphs': [full]}]}]}
+    with contextlib.redirect_stdout(io.StringIO()):
+        first = U.repair_all(data, ROOT, verbose=False)
+        second = U.repair_all(data, ROOT, verbose=False)
+    expect('repair_all: market_signal', data['learnings'][0]['market_signal'], full)
+    expect('repair_all: sections', data['learnings'][0]['sections'], [meaning])
+    expect('repair_all reports the entry it changed', [date for date, _ in first], ['2026-05-19'])
+    expect('repair_all a second time reports', list(second), [])
+    return problems
+
+
 def check_pdf(U, pdf: Path) -> list[str]:
     """A fresh parse of one PDF: none of the known shapes, and none of the
     lines the parser itself classifies as running header/footer. The wordings
@@ -733,6 +1293,13 @@ def check_pdf(U, pdf: Path) -> list[str]:
     stored = copy.deepcopy({'parse': entry, 'repair': repair})
     U.scrub_entry(stored)
     problems += offences(stored, f"{pdf.name} as it would be stored:")
+    # A market signal or watch list stored twice is the repair pass's to bring
+    # back to one copy as well (the 2026-07-03 PDF still parses with its
+    # "Tomorrow's Preview" at the end of the last takeaway), so that too is
+    # looked for in the entry as it would be stored.
+    if hasattr(U, 'dedupe_blocks'):
+        U.dedupe_blocks(stored['parse'])
+        problems += repeated_blocks(stored['parse'], f"{pdf.name} as it would be stored:")
     if not hasattr(U, 'running_lines'):
         return problems + ['update_site.py has no running_lines']
     for line in sorted(set(U.running_lines(pdf))):
@@ -1290,6 +1857,7 @@ def check_repair_fixed_point(U, everything: bool = False) -> list[str]:
         trial = copy.deepcopy(entry)
         with contextlib.redirect_stdout(io.StringIO()):
             changes = U.repair_entry(trial, pdfs.get(entry['date']), corpus) + U.scrub_entry(trial)
+            changes += U.trim_takeaways(trial) + (U.dedupe_blocks(trial) if hasattr(U, 'dedupe_blocks') else [])
         if changes:
             problems.append(f"{entry['date']}: a forced repair would change it: {', '.join(changes)[:140]}")
         elif trial != entry:
@@ -1302,7 +1870,8 @@ def check_repair_fixed_point(U, everything: bool = False) -> list[str]:
 
 def main() -> int:
     args = sys.argv[1:]
-    print("Checking for leaked page headers/footers, mangled ampersands and self-test text in takeaways …")
+    print("Checking for leaked page headers/footers, mangled ampersands, self-test text in takeaways "
+          "and boxes stored twice …")
     ok = report('learnings.json', check_stored())
     ok = report('generated pages', check_generated()) and ok
     ok = report('stored spotlights end on a sentence', check_stored_spotlights()) and ok
@@ -1312,6 +1881,7 @@ def main() -> int:
         import update_site as U
     ok = report('parser and repair pass (fixed cases)', check_units(U)) and ok
     ok = report('where the takeaways end (fixed cases)', check_takeaway_units(U)) and ok
+    ok = report('a block stored twice (fixed cases)', check_block_units(U)) and ok
     ok = report('spotlight box (fixed cases)', check_spotlight(U)) and ok
     ok = report('repair of stored entries (fixed cases)', check_spotlight_repair(U)) and ok
 
