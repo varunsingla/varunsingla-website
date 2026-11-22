@@ -30,7 +30,11 @@ Please keep writing the PDF this way, and include these lines — each one feeds
   Each becomes a Playbook item and a flashcard.
 - **`TOMORROW`** heading followed by "What We're Watching: …" sentences. Feeds the Watching tracker.
 - **`SELF-TEST`** (optional, recommended): three to five pairs in the form `Q1. question` / `A1. answer`. These
-  become self-test cards on the entry page and in Review.
+  become self-test cards on the entry page and in Review. Keep the heading alone on its line: when the
+  self-test comes straight after the takeaways, that line is where the parser ends the last takeaway. (The
+  same goes for `TOPICS COVERED SO FAR` and `Sources:`. A new kind of block placed after the takeaways needs
+  its heading added to `_starts_end_matter` in `update_site.py` first, or it is read as part of the last
+  takeaway.)
 - **`Sources:`** line at the end naming the outlets/pages used (URLs welcome; they are auto-linked).
 - **`TOPICS COVERED SO FAR (RECAP)`** paragraph (as on Day 199/200) — the latest one is shown on Start Here.
 - **Running header/footer: small print, in the page margin, the same on every page.** The current header is
@@ -49,27 +53,38 @@ day number when generating the PDF so the two stay aligned.
 ### Publishing and repair
 
 - `python3 update_site.py` — normal daily run: repairs any stored entry that predates the current schema
-  (idempotent, no-op once current), removes page furniture from the stored text (see below), parses the newest
-  unprocessed PDF, merges it (richer entry wins, nothing is overwritten with less), regenerates everything,
-  pushes via the GitHub API.
+  (idempotent, no-op once current), removes page furniture and a self-test that ran on into a takeaway from the
+  stored text (see below), parses the newest unprocessed PDF, merges it (richer entry wins, nothing is
+  overwritten with less), regenerates everything, pushes via the GitHub API.
 - `python3 update_site.py --repair [--dry-run] [--force]` — only the repair + regenerate pass, no push.
   `--dry-run` prints what would change, entry by entry, and writes nothing. `--force` also re-runs the older
   repair steps on entries that are already current; those are not all idempotent (it re-splits viral-app names
   that are fine), so use it only when that is what you want.
 - `python3 update_site.py --parse <pdf>` — print what the parser extracts from one PDF (debugging).
 - `python3 generate_geo.py` — regenerate the static site from `learnings.json` without touching the data.
-- `python3 check_learnings.py` — regression check, a few seconds. Exits 1 if a PDF page header/footer or a
-  mangled ampersand (`D&O;`) is found in `learnings.json`, in the generated pages, or in a fresh parse of the
-  newest PDF. `--all-pdfs` re-parses every PDF on disk (about two minutes). Run it after a publish or a repair.
+- `python3 check_learnings.py` — regression check, a few seconds. Exits 1 if a PDF page header/footer, a
+  mangled ampersand (`D&O;`) or self-test text inside a takeaway (the `SELF-TEST` heading, or a `Q1.` … `A1.`
+  pair) is found in `learnings.json`, in the generated pages, or in a fresh parse of the newest PDF.
+  `--all-pdfs` re-parses every PDF on disk (about two minutes). Run it after a publish or a repair.
 
 Repairs never delete entry text: a replaced title or intro is kept under `title_original` /
 `focus_intro_original`, viral-app names are only re-split from their descriptions, headings are only re-cased.
-The one exception is page furniture, which was never entry content: the PDF's running header/footer where it
-got joined into the text (`AI Learning -- Day N | YYYY-MM-DD | Page N`, `Daily AI Learning for Varun`) and the
-stray `;` of a mangled ampersand (`D&O;` → `D&O`) are removed outright, with no `*_original` copy, because a
-copy would keep the artefact in `learnings.json`. Exactly those strings go and the words on either side are
-joined; a paragraph that was nothing but a footer is dropped. This pass (`scrub_entry`) reads only the stored
-text, so it runs over every entry on every run, whatever the schema version.
+There are two exceptions. Both are text-only passes that read nothing but the stored entry, so they run over
+every entry on every run, whatever the schema version (`SCHEMA_VERSION` is not bumped for them: a bump sends
+every entry back through the older repair steps, which are not all idempotent).
+
+1. **Page furniture, which was never entry content** (`scrub_entry`): the PDF's running header/footer where it
+   got joined into the text (`AI Learning -- Day N | YYYY-MM-DD | Page N`, `Daily AI Learning for Varun`) and
+   the stray `;` of a mangled ampersand (`D&O;` → `D&O`) are removed outright, with no `*_original` copy,
+   because a copy would keep the artefact in `learnings.json`. Exactly those strings go and the words on either
+   side are joined; a paragraph that was nothing but a footer is dropped.
+2. **A self-test that ran on into the last takeaway** (`trim_takeaways`). Until 2026-11-22 the parser did not
+   end the takeaways at the `SELF-TEST` heading, so the entries from 2026-10-15 on stored the whole quiz twice:
+   in `quiz`, and as `… SELF-TEST Q1. … A1. …` at the end of the last takeaway's body. That copy is cut out,
+   again with no `*_original`, and only where nothing is lost: everything after the heading has to be, question
+   by question and answer by answer, the text stored in the same entry's `quiz` (the `Q1.` / `A1.` labels
+   aside). If anything else follows the heading, the takeaway is left exactly as it is, `--repair` prints a
+   warning for it, and `check_learnings.py` fails until someone has looked at it.
 
 ### ALWAYS push the day's commit to `main`, not just a session feature branch
 

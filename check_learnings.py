@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-check_learnings.py — regression check: no page furniture in the published text.
+check_learnings.py — regression check: no page furniture in the published text,
+and no self-test inside a takeaway.
 
 The daily PDF prints a running header/footer on every page. When the parser
 does not recognise one, it gets joined into whatever paragraph, takeaway, quiz
@@ -16,6 +17,20 @@ This script fails (exit code 1) when any of these is found:
     Daily AI Learning for Varun
     D&O;  R&D;  S&P;      an ampersand the PDF generator turned into a broken
                           HTML entity (should read D&O, R&D, S&P)
+
+The PDF also prints a SELF-TEST straight after the practical takeaways. When
+the parser does not end the takeaways at that heading, the last takeaway runs
+on through the whole quiz, which is then published twice (the same questions
+are in the entry's `quiz` field):
+
+    ...it is faster, cheaper and easier to audit. SELF-TEST Q1. What is a
+    canary token, and what did Dragos use it for? A1. A fake secret that ...
+
+So the script also fails when a practical takeaway contains
+
+    SELF-TEST             the heading as printed (also QUIZ, TEST YOURSELF,
+                          CHECK YOUR UNDERSTANDING)
+    Q1. ... A1. ...       a numbered question with its answer
 
 It looks in three places:
   1. every string stored in learnings.json;
@@ -57,6 +72,17 @@ FOOTER_RE = re.compile(
 _AMP_RE = re.compile(r'(?<=[A-Za-z0-9])&([A-Za-z][-.A-Za-z0-9]{0,23});')
 _AMP_ESCAPED_RE = re.compile(r'(?<=[A-Za-z0-9])&amp;([A-Za-z][-.A-Za-z0-9]{0,23});')
 
+# The SELF-TEST block inside a practical takeaway: its heading as the PDF
+# prints it (capitals — "run a self-test" in a sentence is fine), or a
+# "Q1. … A1. …" pair. "Q1." alone is not enough: it also means first quarter.
+QUIZ_HEADING_RE = re.compile(r'\b(?:SELF[- ]TEST|TEST YOURSELF|CHECK YOUR UNDERSTANDING|QUIZ)\b')
+QA_PAIR_RE = re.compile(r'\bQ1[.):]\s.*?\bA1[.):]\s', re.S)
+# The same run-on as it reaches the generated pages: in running text
+# ("…easier to audit. SELF-TEST Q1. What is…") and in the Playbook's lower-cased
+# filter text ("…easier to audit self test q1 what is…"). An entry page's own
+# self-test section prints the questions without the heading or the "Q1." label.
+RUNON_RE = re.compile(r'SELF[- ]TEST\s+Q1[.):]|\bself test q1\b')
+
 GENERATED = ['entries/*.html', 'weekly/*.html', 'index.html', 'playbook/index.html',
              'concepts/index.html', 'watching/index.html', 'start/index.html',
              'review/index.html', 'index.json', 'search.json', 'feed.xml',
@@ -93,6 +119,20 @@ def offences(obj, label: str) -> list[str]:
     return found
 
 
+def quiz_in_takeaways(entry: dict, label: str) -> list[str]:
+    """Every takeaway of the entry that carries the SELF-TEST block. Looks at
+    each string under practical_takeaway: the title and body of an item, or
+    the single string older entries store."""
+    found = []
+    for path, text in walk(entry.get('practical_takeaway'), ('practical_takeaway',)):
+        m = QUIZ_HEADING_RE.search(text) or QA_PAIR_RE.search(text)
+        if m:
+            before = text[max(0, m.start() - 40):m.start()]
+            found.append(f"{label} {'/'.join(map(str, path))}: self-test text {m.group(0)[:24]!r} "
+                         f"inside a takeaway, after {before!r}")
+    return found
+
+
 def report(name: str, problems: list[str]) -> bool:
     if not problems:
         print(f"  ok    {name}")
@@ -112,6 +152,7 @@ def check_stored() -> list[str]:
     problems = []
     for entry in data.get('learnings', []):
         problems.extend(offences(entry, entry.get('date', '?')))
+        problems.extend(quiz_in_takeaways(entry, entry.get('date', '?')))
     return problems
 
 
@@ -129,6 +170,9 @@ def check_generated() -> list[str]:
             amps = mangled_amps(text, escaped=path.suffix not in ('.txt', '.json'))
             if amps:
                 problems.append(f"{rel}: {len(amps)} mangled ampersand(s), e.g. {amps[0]!r}")
+            runons = RUNON_RE.findall(text)
+            if runons:
+                problems.append(f"{rel}: self-test text inside a takeaway, {len(runons)} time(s) ({runons[0]!r} …)")
     return problems
 
 
@@ -204,6 +248,148 @@ def check_units(U) -> list[str]:
     return problems
 
 
+def check_takeaway_units(U) -> list[str]:
+    """Small fixed cases: the takeaway block ends where the SELF-TEST (or the
+    recap, or the sources line) begins, and a stored takeaway that already
+    carries the self-test is cut back only when that text is in `quiz`."""
+    problems = []
+
+    def expect(what, got, want):
+        if got != want:
+            problems.append(f"{what}: got {got!r}, expected {want!r}")
+
+    # ── Parser ────────────────────────────────────────────────────────────────
+    # Lines as the Day 239 PDF gives them: the self-test follows the last
+    # takeaway directly, a page header falls inside it, TOMORROW comes after.
+    lines = ['PRACTICAL TAKEAWAYS',
+             '1) Keep secrets out of prompts.',
+             'Never paste API keys or passwords into an AI tool; use a secrets manager and',
+             'short-lived tokens that agents fetch when needed.',
+             '2) Prefer structured tools over screen-clicking.',
+             'Where an app has a CLI or API, give agents that instead of computer-use control; it is faster, cheaper',
+             'and easier to audit.',
+             'SELF-TEST',
+             'Q1. What is a canary token, and what did Dragos use it for?',
+             'A1. A fake secret that no honest process would use, so any use proves exposure; the study ran until',
+             '2026. The providers were not named.',
+             'Varun Singla · Daily AI Learning for Varun · AI Learning -- Day 239 · 2026-11-22 | Page 4',
+             'Q2. Why is a CLI often better for agents than screen-based computer use?',
+             'A2. Commands are exact, fast and cheap in tokens; in one test the gap was a factor of',
+             '10. Clicking on screens breaks when the layout changes.',
+             'TOMORROW',
+             "What We're Watching: Whether ANT holds above its $83 IPO price."]
+    items, region = U._extract_numbered_takeaways(lines)
+    expect('takeaways followed by SELF-TEST', items,
+           [{'title': 'Keep secrets out of prompts.',
+             'body': 'Never paste API keys or passwords into an AI tool; use a secrets manager and '
+                     'short-lived tokens that agents fetch when needed.'},
+            {'title': 'Prefer structured tools over screen-clicking.',
+             'body': 'Where an app has a CLI or API, give agents that instead of computer-use control; '
+                     'it is faster, cheaper and easier to audit.'}])
+    # The self-test lines still belong to the block section building skips: one
+    # of them ("2026. The providers …") would otherwise be read as a section heading.
+    expect('region of takeaways followed by SELF-TEST', region, (0, 15))
+
+    # The 2026-08-22 PDF: the recap follows the last takeaway directly.
+    items, _ = U._extract_numbered_takeaways([
+        'PRACTICAL TAKEAWAYS',
+        "1. Weigh a vendor's AI claim by who verified it, not just what it says",
+        'When a company claims an AI breakthrough, the first question worth asking is: who checked this?',
+        'Topics Covered So Far',
+        '146 days in, the recurring threads have been the chip race, model releases and agentic tools.',
+        'Tomorrow:',
+        "We'll watch whether Anthropic's IPO paperwork actually lands."])
+    expect('takeaways followed by the recap', items,
+           [{'title': "Weigh a vendor's AI claim by who verified it, not just what it says",
+             'body': 'When a company claims an AI breakthrough, the first question worth asking is: who checked this?'}])
+
+    items, _ = U._extract_numbered_takeaways([
+        'PRACTICAL TAKEAWAYS',
+        '1) Map your fourth parties.',
+        'Ask each AI vendor which routers, resellers and inference providers process your prompts.',
+        'Sources: dragos.com/blog/ai-supply-chain-security-canary-tokens, labs.cloudsecurityalliance.org and',
+        'unit42.paloaltonetworks.com (prompt leaks, inference-provider risk).'])
+    expect('takeaways followed by the sources line', items,
+           [{'title': 'Map your fourth parties.',
+             'body': 'Ask each AI vendor which routers, resellers and inference providers process your prompts.'}])
+
+    # A sentence that wraps onto a line beginning with one of those words is
+    # body text: nothing is cut, and the takeaways after it are still collected.
+    items, _ = U._extract_numbered_takeaways([
+        'PRACTICAL TAKEAWAYS',
+        '1) Check primary material.',
+        'Cross-check every number against primary',
+        'sources: filings, vendor pages and regulator notices, and close each study session with a short',
+        'quiz.',
+        '2) Review weekly.',
+        'Before starting a new subject, skim the',
+        'topics covered so far and note what you could not explain.',
+        'TOMORROW'])
+    expect('wrapped sentences that begin with "sources:", "quiz." and "topics covered so far"', items,
+           [{'title': 'Check primary material.',
+             'body': 'Cross-check every number against primary sources: filings, vendor pages and regulator '
+                     'notices, and close each study session with a short quiz.'},
+            {'title': 'Review weekly.',
+             'body': 'Before starting a new subject, skim the topics covered so far and note what you could not explain.'}])
+
+    # ── Stored entries ────────────────────────────────────────────────────────
+    if not hasattr(U, 'trim_takeaways'):
+        return problems + ['update_site.py has no trim_takeaways']
+
+    def stored(last_body: str, quiz) -> dict:
+        entry = {'date': '2026-11-22',
+                 'practical_takeaway': [
+                     {'title': 'Keep secrets out of prompts.', 'body': 'Use a secrets manager and short-lived tokens.'},
+                     {'title': 'Prefer structured tools over screen-clicking.', 'body': last_body}]}
+        if quiz is not None:
+            entry['quiz'] = quiz
+        return entry
+
+    run_on = ('Give agents a CLI or API; it is faster, cheaper and easier to audit. SELF-TEST '
+              'Q1. What is a canary token? A1. A fake secret; any use of it proves exposure. '
+              'Q2. Why is a CLI often better for agents? A2. Commands are exact, fast and cheap in tokens.')
+    quiz = [{'q': 'What is a canary token?', 'a': 'A fake secret; any use of it proves exposure.'},
+            {'q': 'Why is a CLI often better for agents?', 'a': 'Commands are exact, fast and cheap in tokens.'}]
+
+    entry = stored(run_on, [dict(q) for q in quiz])
+    changes = U.trim_takeaways(entry)
+    expect('trim_takeaways: the self-test that is also in quiz', entry,
+           stored('Give agents a CLI or API; it is faster, cheaper and easier to audit.', quiz))
+    expect('trim_takeaways reports the cut', bool(changes), True)
+    expect('trim_takeaways a second time reports', list(U.trim_takeaways(entry)), [])
+
+    # Left exactly as it is whenever a removed question or answer would not be in quiz.
+    left_alone = [
+        ('a question that quiz does not have', run_on, quiz[:1]),
+        ('an answer that differs from quiz', run_on,
+         [quiz[0], {'q': quiz[1]['q'], 'a': 'Commands are exact, slow and cheap in tokens.'}]),
+        ('an entry without quiz', run_on, None),
+        ('text after the last answer', run_on + ' Run the canary drill on Monday.', quiz),
+        ('"self-test" and "Q1." in a sentence',
+         'Run a self-test before the audit in Q1. The vendor was rated A1. Keep the logs.', quiz),
+    ]
+    for what, body, qz in left_alone:
+        entry = stored(body, [dict(q) for q in qz] if qz is not None else None)
+        unverified = []
+        changes = U.trim_takeaways(entry, None, unverified)
+        expect(f'trim_takeaways leaves {what}', entry, stored(body, qz))
+        expect(f'trim_takeaways reports no change for {what}', list(changes), [])
+        # … and says so when it is a self-test it would not cut, but not about an ordinary sentence
+        expect(f'trim_takeaways notes about {what}', len(unverified), 1 if 'SELF-TEST' in body else 0)
+
+    # The repair pass applies it to every stored entry, and has nothing left to do the second time.
+    data = {'learnings': [dict(stored(run_on, [dict(q) for q in quiz]), title='A title', schema=U.SCHEMA_VERSION)]}
+    with contextlib.redirect_stdout(io.StringIO()):
+        first = U.repair_all(data, ROOT, verbose=False)
+        second = U.repair_all(data, ROOT, verbose=False)
+    expect('repair_all: the last takeaway', data['learnings'][0]['practical_takeaway'][1]['body'],
+           'Give agents a CLI or API; it is faster, cheaper and easier to audit.')
+    expect('repair_all: quiz', data['learnings'][0]['quiz'], quiz)
+    expect('repair_all reports the entry it changed', [date for date, _ in first], ['2026-11-22'])
+    expect('repair_all a second time reports', list(second), [])
+    return problems
+
+
 def check_pdf(U, pdf: Path) -> list[str]:
     """A fresh parse of one PDF: none of the known shapes, and none of the
     lines the parser itself classifies as running header/footer."""
@@ -213,6 +399,7 @@ def check_pdf(U, pdf: Path) -> list[str]:
         repair = {'sources': U.extract_sources(flat), 'tomorrow_preview': U.extract_tomorrow_block(flat),
                   'recap': U.extract_recap(flat), 'quiz': U.extract_quiz(flat)}
     problems = offences(entry, f"parse of {pdf.name}:") + offences(repair, f"repair extractors on {pdf.name}:")
+    problems += quiz_in_takeaways(entry, f"parse of {pdf.name}:")
     if not hasattr(U, 'running_lines'):
         return problems + ['update_site.py has no running_lines']
     for line in sorted(set(U.running_lines(pdf))):
@@ -226,7 +413,7 @@ def check_pdf(U, pdf: Path) -> list[str]:
 
 def main() -> int:
     args = sys.argv[1:]
-    print("Checking for leaked page headers/footers and mangled ampersands …")
+    print("Checking for leaked page headers/footers, mangled ampersands and self-test text in takeaways …")
     ok = report('learnings.json', check_stored())
     ok = report('generated pages', check_generated()) and ok
 
@@ -234,6 +421,7 @@ def main() -> int:
     with contextlib.redirect_stdout(io.StringIO()):
         import update_site as U
     ok = report('parser and repair pass (fixed cases)', check_units(U)) and ok
+    ok = report('where the takeaways end (fixed cases)', check_takeaway_units(U)) and ok
 
     pdfs = sorted(U.pdf_lookup(ROOT).items())
     if '--all-pdfs' in args:
