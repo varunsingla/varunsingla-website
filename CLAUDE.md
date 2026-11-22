@@ -73,6 +73,9 @@ day number when generating the PDF so the two stay aligned.
   it puts back a footer that the scrub pass removes again, and reports the same change on every forced run.
 - `python3 update_site.py --parse <pdf>` — print what the parser extracts from one PDF (debugging).
 - `python3 generate_geo.py` — regenerate the static site from `learnings.json` without touching the data.
+- `python3 check_seo.py` — checks what search engines are told about every page (titles, descriptions,
+  canonical links, structured data, sitemap, internal links). Run it after `generate_geo.py`; see
+  "Search metadata (SEO)" below.
 - `python3 check_learnings.py` — regression check, a few seconds. Exits 1 if
   - page furniture (the current header/footer or a wording of the older layouts), a mangled ampersand (`D&O;`)
     or a `&gt;` / `&lt;` printed as text is found in `learnings.json`, in the generated pages, or in a fresh

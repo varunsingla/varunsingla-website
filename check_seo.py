@@ -173,8 +173,9 @@ def main(argv: list[str]) -> int:
                     errors.append(f"{rel}: missing {prop}")
             if meta(head, 'property', 'og:url') and meta(head, 'property', 'og:url') != canonical and 'noindex' not in robots:
                 errors.append(f"{rel}: og:url differs from the canonical link")
-            if not meta(head, 'name', 'twitter:card'):
-                errors.append(f"{rel}: missing twitter:card")
+            for name in ('twitter:card', 'twitter:image'):
+                if not meta(head, 'name', name):
+                    errors.append(f"{rel}: missing {name}")
         img = meta(head, 'property', 'og:image')
         if img.startswith(SITE) and not file_for(img[len(SITE):]):
             errors.append(f"{rel}: og:image {img} does not exist")
