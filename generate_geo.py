@@ -410,15 +410,15 @@ img{max-width:100%;}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;}
 .brand-mark{width:30px;height:30px;border-radius:7px;background:var(--text);color:var(--bg);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;letter-spacing:.02em;}
 .brand-name{font-family:var(--mono);font-size:13.5px;color:var(--text);}
-.nav{display:flex;align-items:center;gap:2px;flex-wrap:wrap;}
-.nav-link{font-size:14px;font-weight:500;color:var(--muted2);text-decoration:none;padding:7px 10px;border-radius:8px;transition:.18s ease;white-space:nowrap;}
+.nav{display:flex;align-items:center;gap:0;flex-wrap:nowrap;}
+.nav-link{font-size:13.5px;font-weight:500;color:var(--muted2);text-decoration:none;padding:7px 8px;border-radius:8px;transition:.18s ease;white-space:nowrap;}
 .nav-link:hover{color:var(--text);background:var(--surface2);}
 .nav-link.active{font-weight:600;color:var(--text);}
 .menu-btn,.theme-btn{border:1px solid var(--border);background:var(--surface);color:var(--muted2);border-radius:8px;cursor:pointer;font-family:var(--mono);font-size:12px;padding:7px 10px;line-height:1;}
 .menu-btn:hover,.theme-btn:hover{color:var(--text);border-color:var(--border-strong);}
 .menu-btn{display:none;}
 .mast-right{display:flex;align-items:center;gap:8px;}
-@media (max-width:880px){
+@media (max-width:1139px){
   .menu-btn{display:inline-flex;align-items:center;gap:6px;}
   .nav{display:none;position:absolute;left:0;right:0;top:100%;background:var(--bg);border-bottom:1px solid var(--border);padding:8px 12px 12px;flex-direction:column;align-items:stretch;gap:2px;box-shadow:0 20px 40px -24px var(--shadow);}
   .nav.open{display:flex;}
@@ -528,7 +528,9 @@ FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n'
          '1,6..72,200..500&display=swap" rel="stylesheet">')
 
 NAV_ITEMS = [('Journal', '/'), ('Archive', '/entries/'), ('Playbook', '/playbook/'), ('Concepts', '/concepts/'),
-             ('Watching', '/watching/'), ('Review', '/review/'), ('Start Here', '/start/'), ('About', '/about/')]
+             ('Watching', '/watching/'), ('Review', '/review/'), ('Start Here', '/start/'),
+             ('Tokenizer', '/tokenizer.html'), ('Tokenomics', '/ai-tokenomics/'),
+             ('Model Evaluator', '/tools/model-team-evaluator.html'), ('About', '/about/')]
 
 
 def masthead(active: str = '') -> str:
