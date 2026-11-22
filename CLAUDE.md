@@ -33,6 +33,14 @@ Please keep writing the PDF this way, and include these lines — each one feeds
   become self-test cards on the entry page and in Review.
 - **`Sources:`** line at the end naming the outlets/pages used (URLs welcome; they are auto-linked).
 - **`TOPICS COVERED SO FAR (RECAP)`** paragraph (as on Day 199/200) — the latest one is shown on Start Here.
+- **Running header/footer: small print, in the page margin, the same on every page.** The current header is
+  `AI Learning -- Day N | YYYY-MM-DD | Page N`. The parser takes these lines off each page before it reads the
+  text, so a sentence that continues on the next page joins up instead of having the header stuck in the middle
+  of it. It recognises the wordings used so far, and any small-print line in the top or bottom margin that
+  repeats on another page — so keep the header/footer smaller than body text, out of the body area, and never
+  put content there.
+- **Write `&` as `&amp;` in ReportLab `Paragraph` text.** A bare `D&O` or `R&D` is printed as `D&O;` / `R&D;`
+  (ReportLab closes what it takes for an entity). The parser undoes that shape, but it is better not to produce it.
 
 Also note: the PDF's own day counter has drifted from the site's count (the site numbers entries by position
 in `learnings.json`; the Day-200 PDF is site Day 206). Prefer `len(learnings.json["learnings"]) + 1` as the
@@ -41,14 +49,27 @@ day number when generating the PDF so the two stay aligned.
 ### Publishing and repair
 
 - `python3 update_site.py` — normal daily run: repairs any stored entry that predates the current schema
-  (idempotent, no-op once current), parses the newest unprocessed PDF, merges it (richer entry wins, nothing is
-  overwritten with less), regenerates everything, pushes via the GitHub API.
+  (idempotent, no-op once current), removes page furniture from the stored text (see below), parses the newest
+  unprocessed PDF, merges it (richer entry wins, nothing is overwritten with less), regenerates everything,
+  pushes via the GitHub API.
 - `python3 update_site.py --repair [--dry-run] [--force]` — only the repair + regenerate pass, no push.
+  `--dry-run` prints what would change, entry by entry, and writes nothing. `--force` also re-runs the older
+  repair steps on entries that are already current; those are not all idempotent (it re-splits viral-app names
+  that are fine), so use it only when that is what you want.
 - `python3 update_site.py --parse <pdf>` — print what the parser extracts from one PDF (debugging).
 - `python3 generate_geo.py` — regenerate the static site from `learnings.json` without touching the data.
+- `python3 check_learnings.py` — regression check, a few seconds. Exits 1 if a PDF page header/footer or a
+  mangled ampersand (`D&O;`) is found in `learnings.json`, in the generated pages, or in a fresh parse of the
+  newest PDF. `--all-pdfs` re-parses every PDF on disk (about two minutes). Run it after a publish or a repair.
 
-Repairs never delete text: a replaced title or intro is kept under `title_original` / `focus_intro_original`,
-viral-app names are only re-split from their descriptions, headings are only re-cased.
+Repairs never delete entry text: a replaced title or intro is kept under `title_original` /
+`focus_intro_original`, viral-app names are only re-split from their descriptions, headings are only re-cased.
+The one exception is page furniture, which was never entry content: the PDF's running header/footer where it
+got joined into the text (`AI Learning -- Day N | YYYY-MM-DD | Page N`, `Daily AI Learning for Varun`) and the
+stray `;` of a mangled ampersand (`D&O;` → `D&O`) are removed outright, with no `*_original` copy, because a
+copy would keep the artefact in `learnings.json`. Exactly those strings go and the words on either side are
+joined; a paragraph that was nothing but a footer is dropped. This pass (`scrub_entry`) reads only the stored
+text, so it runs over every entry on every run, whatever the schema version.
 
 ### ALWAYS push the day's commit to `main`, not just a session feature branch
 
