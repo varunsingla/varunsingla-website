@@ -435,6 +435,21 @@ code { font-family: var(--font-mono); font-size: 0.875em; background: var(--colo
 .provider.deepseek { background: rgba(139,92,246,0.12); color: #8b5cf6; }
 .provider.meta { background: rgba(24,119,242,0.12); color: #1877f2; }
 .provider.mistral { background: rgba(255,126,0,0.12); color: #ff7e00; }
+/* Providers added Nov 2026 — text colours meet 4.5:1 in both themes */
+.provider.xai { background: rgba(100,116,139,0.16); color: #475569; }
+.provider.zai { background: rgba(236,72,153,0.12); color: #b0185a; }
+.provider.moonshot { background: rgba(20,184,166,0.12); color: #0f6e66; }
+.provider.qwen { background: rgba(139,92,246,0.12); color: #6d3fd0; }
+.provider.xiaomi { background: rgba(249,115,22,0.12); color: #a53f0b; }
+.provider.minimax { background: rgba(244,63,94,0.12); color: #b3173b; }
+.provider.tml { background: rgba(132,204,22,0.14); color: #44700d; }
+[data-theme="dark"] .provider.xai { color: #a8b4c4; }
+[data-theme="dark"] .provider.zai { color: #f472b6; }
+[data-theme="dark"] .provider.moonshot { color: #2dd4bf; }
+[data-theme="dark"] .provider.qwen { color: #a78bfa; }
+[data-theme="dark"] .provider.xiaomi { color: #fb923c; }
+[data-theme="dark"] .provider.minimax { color: #fb7185; }
+[data-theme="dark"] .provider.tml { color: #a3e635; }
 .tier-badge {
   display: inline-block; font-size: var(--text-xs); font-weight: 600;
   padding: 2px 8px; border-radius: var(--radius-full); white-space: nowrap;
