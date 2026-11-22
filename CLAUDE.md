@@ -76,3 +76,27 @@ Don't let it happen again — the fast-forward push above is the fix, every sing
 If a merge conflict ever appears in `learnings.json` or a generated file, keep the version with the newest entry,
 then run `python3 update_site.py --repair` and `python3 generate_geo.py`; the generated files are fully derived
 from `learnings.json` + the PDFs, so regenerating resolves them.
+
+## Hand-maintained pages (not touched by the daily routine)
+
+These carry model line-ups, prices and benchmark scores, so they go stale unless someone refreshes them by hand
+(roughly monthly so far). The daily routine must leave them alone.
+
+- `tools/model-team-evaluator.html` — the line-up lives in the inline `sources`, `models` and `watchModels`
+  arrays. The quick-pick map (`recommendQuickPick`), `pickModelForStep`, the evaluator's synthesiser text and the
+  dated copy (title, meta description, header pill, "what's new" cards, footer "Last sync") name models too and
+  must change with them.
+- `ai-tokenomics/index.html` — the price table (`#pricingTable`), the four scenario cards and the calculator
+  `<select id="calcModel">` must agree with each other; recompute the scenario totals whenever a price changes.
+- `tokenizer.html` — never edit its sections by hand. After changing the tokenomics page run
+  `python3 sync_tokenizer.py` (`--check` reports whether it is out of date without writing). It copies everything
+  between the `01 FUNDAMENTALS` and `FOOTER` markers and re-stamps the month; the page's own head, hero, footer
+  and `style-tokenizer.css` stay as they are. A provider badge new to the table needs a `.provider.<name>` rule in
+  both `ai-tokenomics/style.css` and `style-tokenizer.css`.
+- `about/index.html` — hand-written, except the entry count between the `<!--GEO:ENTRY-COUNT-->` markers, which
+  `generate_geo.py` rewrites on every run. Keep the markers.
+- `model-team-evaluator.html` in the site root is only a redirect to the `/tools/` page.
+
+When refreshing prices and scores: take list prices from each vendor's own pricing page and scores from the
+benchmark publisher's page, name the index version next to any score, and say on the page which numbers could
+only be cross-checked on aggregator listings.
