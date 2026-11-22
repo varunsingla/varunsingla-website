@@ -854,8 +854,9 @@ def _extract_numbered_takeaways(all_flat_lines: list[str]) -> tuple[list[dict], 
 # kept under <field>_original. There are two exceptions, both removed outright:
 # page furniture — a running header/footer joined into the text, the ';' of a
 # mangled ampersand — which was never entry content (scrub_entry), and the
-# self-test that ran on into the last takeaway, which is removed only where it
-# is word for word in the entry's own `quiz` field (trim_takeaways).
+# self-test (or recap) that ran on into the last takeaway, which is removed
+# only where it is word for word in the entry's own `quiz` (`recap`) field
+# (trim_takeaways).
 
 SCHEMA_VERSION = 2          # bump when repair_entry learns a new, re-runnable fix
                             # (scrub_entry and trim_takeaways are not tied to it: see repair_all)
@@ -1688,6 +1689,11 @@ def scrub_entry(entry: dict, totals: dict | None = None) -> list[str]:
 _QUIZ_RUNON_RE = re.compile(
     r'(?:^|\s+)(?:S(?i:elf[- ]test)|Q(?i:uiz)|T(?i:est yourself)|C(?i:heck your understanding))'
     r'\s*[:.]?\s+(?=Q\d{0,2}\s*[.):])')
+# The recap did the same once (2026-08-22: "…make it look good? Topics Covered So
+# Far 146 days in, the recurring threads have been …"). It goes under the same
+# condition: what follows the heading has to be exactly the entry's `recap`.
+# A sentence that merely begins "Topics covered so far …" is not that.
+_RECAP_RUNON_RE = re.compile(r'(?:^|\s+)topics covered so far\s*(?:\([^)]*\))?\s*[:\-—–]?\s+', re.I)
 
 
 def _stored_quiz_items(text: str, quiz) -> int:
@@ -1709,30 +1715,49 @@ def _stored_quiz_items(text: str, quiz) -> int:
     return 0 if rest else done
 
 
+def _recap_run_on(body: str, recap) -> int | None:
+    """Where the recap begins in a takeaway body that ends with it, heading
+    included. None unless what follows the heading is exactly the stored recap."""
+    recap = ' '.join(recap.split()) if isinstance(recap, str) else ''
+    for heading in _RECAP_RUNON_RE.finditer(body) if recap else ():
+        if ' '.join(body[heading.end():].split()) == recap:
+            return heading.start()
+    return None
+
+
 def trim_takeaways(entry: dict, totals: dict | None = None, unverified: list | None = None) -> list[str]:
-    """Cut the self-test out of a takeaway body it ran on into, in place, when
-    every question and answer being removed is stored in entry['quiz'].
-    Returns what changed ([] when there is nothing to cut). Idempotent, and
-    needs no PDF. A self-test that is not word for word in quiz stays where it
-    is; a line about it is added to `unverified`."""
+    """Cut the self-test (or the recap) out of a takeaway body it ran on into,
+    in place, when all of the text being removed is stored in entry['quiz']
+    (entry['recap']). Returns what changed ([] when there is nothing to cut).
+    Idempotent, and needs no PDF. A self-test that is not word for word in quiz
+    stays where it is; a line about it is added to `unverified`."""
     changes: list[str] = []
     takeaways = entry.get('practical_takeaway')
     for number, item in enumerate(takeaways if isinstance(takeaways, list) else [], 1):
         body = item.get('body') if isinstance(item, dict) else None
-        heading = _QUIZ_RUNON_RE.search(body) if isinstance(body, str) else None
-        if not heading:
+        if not isinstance(body, str):
             continue
-        questions = _stored_quiz_items(body[heading.end():], entry.get('quiz'))
-        if not questions:
-            if unverified is not None:
+        found = None       # (what ran on, the field it is stored in, where it begins, detail)
+        heading = _QUIZ_RUNON_RE.search(body)
+        if heading:
+            questions = _stored_quiz_items(body[heading.end():], entry.get('quiz'))
+            if questions:
+                found = ('self-test', 'quiz', heading.start(), f"{questions} question{'' if questions == 1 else 's'}, ")
+            elif unverified is not None:
                 unverified.append(f"takeaway {number} runs on into a self-test that is not word for word "
                                   f"in quiz — left as it is")
+        else:
+            start = _recap_run_on(body, entry.get('recap'))
+            if start is not None:
+                found = ('recap', 'recap', start, '')
+        if not found:
             continue
-        item['body'] = body[:heading.start()].rstrip()
-        changes.append(f"self-test cut from takeaway {number} ({questions} question{'' if questions == 1 else 's'}, "
-                       f"{len(body) - len(item['body'])} characters, all in quiz)")
+        what, field, start, detail = found
+        item['body'] = body[:start].rstrip()
+        changes.append(f"{what} cut from takeaway {number} ({detail}{len(body) - len(item['body'])} characters, "
+                       f"all in {field})")
         if totals is not None:
-            totals['self-test in a takeaway'] = totals.get('self-test in a takeaway', 0) + 1
+            totals[f'{what} in a takeaway'] = totals.get(f'{what} in a takeaway', 0) + 1
     return changes
 
 
@@ -1903,8 +1928,8 @@ def pdf_lookup(root: Path | None = None) -> dict[str, Path]:
 def repair_all(data: dict, root: Path | None = None, force: bool = False, verbose: bool = True) -> list[tuple[str, list[str]]]:
     """Run repair_entry over every stored entry that has not been repaired at
     the current SCHEMA_VERSION, then the two text-only passes over every entry:
-    scrub_entry (page furniture) and trim_takeaways (a self-test that ran on
-    into the last takeaway). Cheap when everything is already current.
+    scrub_entry (page furniture) and trim_takeaways (a self-test or recap that
+    ran on into the last takeaway). Cheap when everything is already current.
     Returns [(date, changes), …]."""
     report: dict[str, list[str]] = {}
     entries = [e for e in data.get('learnings', []) if e.get('title')]
@@ -1920,7 +1945,7 @@ def repair_all(data: dict, root: Path | None = None, force: bool = False, verbos
                     print(f"   🔧 {e['date']}: {', '.join(changes)[:160]}")
 
     # Page furniture (running header/footer strings, mangled ampersands), then
-    # the self-test that ran on into a takeaway. These two passes are not tied
+    # a self-test or recap that ran on into a takeaway. These two passes are not tied
     # to SCHEMA_VERSION: they only read the stored text, cost a few milliseconds
     # and change nothing once an entry is clean, so they simply run over every
     # entry on every call. (Bumping the version instead would send every entry
@@ -3099,8 +3124,8 @@ def main():
     # re-cases ALL-CAPS headings and de-duplicates intros. Originals are kept
     # under *_original fields, so nothing is lost. Two things are deleted
     # without keeping a copy: page furniture (the PDF's running header/footer,
-    # mangled ampersands), and a self-test that ran on into the last takeaway
-    # where every question and answer of it is also stored in `quiz`.
+    # mangled ampersands), and a self-test or recap that ran on into the last
+    # takeaway where all of it is also stored in `quiz` / `recap`.
     if "--repair" in args:
         report = repair_all(data, SCRIPT_DIR, force="--force" in args)
         print(f"🔧  Repair pass: {len(report)} entr{'y' if len(report) == 1 else 'ies'} changed")

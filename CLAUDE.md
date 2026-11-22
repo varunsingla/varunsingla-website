@@ -64,8 +64,9 @@ day number when generating the PDF so the two stay aligned.
 - `python3 generate_geo.py` — regenerate the static site from `learnings.json` without touching the data.
 - `python3 check_learnings.py` — regression check, a few seconds. Exits 1 if a PDF page header/footer, a
   mangled ampersand (`D&O;`) or self-test text inside a takeaway (the `SELF-TEST` heading, or a `Q1.` … `A1.`
-  pair) is found in `learnings.json`, in the generated pages, or in a fresh parse of the newest PDF.
-  `--all-pdfs` re-parses every PDF on disk (about two minutes). Run it after a publish or a repair.
+  pair) is found in `learnings.json`, in the generated pages, or in a fresh parse of the newest PDF; also if a
+  takeaway repeats its entry's `recap` paragraph. `--all-pdfs` re-parses every PDF on disk (about two minutes).
+  Run it after a publish or a repair.
 
 Repairs never delete entry text: a replaced title or intro is kept under `title_original` /
 `focus_intro_original`, viral-app names are only re-split from their descriptions, headings are only re-cased.
@@ -84,7 +85,9 @@ every entry back through the older repair steps, which are not all idempotent).
    again with no `*_original`, and only where nothing is lost: everything after the heading has to be, question
    by question and answer by answer, the text stored in the same entry's `quiz` (the `Q1.` / `A1.` labels
    aside). If anything else follows the heading, the takeaway is left exactly as it is, `--repair` prints a
-   warning for it, and `check_learnings.py` fails until someone has looked at it.
+   warning for it, and `check_learnings.py` fails until someone has looked at it. The recap did the same once
+   (2026-08-22, `… Topics Covered So Far 146 days in, …`) and is handled the same way: it is cut only where
+   what follows the heading is exactly that entry's `recap`.
 
 ### ALWAYS push the day's commit to `main`, not just a session feature branch
 

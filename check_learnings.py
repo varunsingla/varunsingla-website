@@ -32,6 +32,9 @@ So the script also fails when a practical takeaway contains
                           CHECK YOUR UNDERSTANDING)
     Q1. ... A1. ...       a numbered question with its answer
 
+or repeats the entry's own recap paragraph (the "Topics covered so far" block
+did the same thing once, in the 2026-08-22 entry).
+
 It looks in three places:
   1. every string stored in learnings.json;
   2. the generated pages (entries/*.html and the other derived files);
@@ -133,6 +136,19 @@ def quiz_in_takeaways(entry: dict, label: str) -> list[str]:
     return found
 
 
+def recap_in_takeaways(entry: dict, label: str) -> list[str]:
+    """Every takeaway of the entry that repeats its recap paragraph (the one
+    stored in `recap`): the 'Topics covered so far' block ran on into it."""
+    recap = ' '.join(str(entry.get('recap') or '').split())
+    found = []
+    if len(recap) >= 40:
+        for path, text in walk(entry.get('practical_takeaway'), ('practical_takeaway',)):
+            if recap in ' '.join(text.split()):
+                found.append(f"{label} {'/'.join(map(str, path))}: the recap paragraph "
+                             f"({recap[:40]!r} …) is repeated inside a takeaway")
+    return found
+
+
 def report(name: str, problems: list[str]) -> bool:
     if not problems:
         print(f"  ok    {name}")
@@ -153,6 +169,7 @@ def check_stored() -> list[str]:
     for entry in data.get('learnings', []):
         problems.extend(offences(entry, entry.get('date', '?')))
         problems.extend(quiz_in_takeaways(entry, entry.get('date', '?')))
+        problems.extend(recap_in_takeaways(entry, entry.get('date', '?')))
     return problems
 
 
@@ -336,13 +353,15 @@ def check_takeaway_units(U) -> list[str]:
     if not hasattr(U, 'trim_takeaways'):
         return problems + ['update_site.py has no trim_takeaways']
 
-    def stored(last_body: str, quiz) -> dict:
+    def stored(last_body: str, quiz, recap=None) -> dict:
         entry = {'date': '2026-11-22',
                  'practical_takeaway': [
                      {'title': 'Keep secrets out of prompts.', 'body': 'Use a secrets manager and short-lived tokens.'},
                      {'title': 'Prefer structured tools over screen-clicking.', 'body': last_body}]}
         if quiz is not None:
             entry['quiz'] = quiz
+        if recap is not None:
+            entry['recap'] = recap
         return entry
 
     run_on = ('Give agents a CLI or API; it is faster, cheaper and easier to audit. SELF-TEST '
@@ -377,6 +396,26 @@ def check_takeaway_units(U) -> list[str]:
         # … and says so when it is a self-test it would not cut, but not about an ordinary sentence
         expect(f'trim_takeaways notes about {what}', len(unverified), 1 if 'SELF-TEST' in body else 0)
 
+    # The recap that ran on into the last takeaway (the 2026-08-22 entry) goes
+    # the same way, when what follows its heading is exactly the stored recap.
+    own = 'Ask who checked the result, and whether they had any reason to make it look good?'
+    recap = '146 days in, the recurring threads have been the chip race, model releases and agentic tools.'
+    entry = stored(f'{own} Topics Covered So Far {recap}', None, recap)
+    changes = U.trim_takeaways(entry)
+    expect('trim_takeaways: the recap that is also in recap', entry, stored(own, None, recap))
+    expect('trim_takeaways reports the recap it cut', bool(changes), True)
+    expect('trim_takeaways a second time reports (recap)', list(U.trim_takeaways(entry)), [])
+    for what, body, rc in [
+        ('a recap that reads differently from the stored one', f'{own} Topics Covered So Far {recap}',
+         '146 days in, the recurring threads have been the chip race and model releases.'),
+        ('a recap followed by more text', f'{own} Topics Covered So Far {recap} Start with the chip race.', recap),
+        ('a recap in an entry that stores none', f'{own} Topics Covered So Far {recap}', None),
+        ('a sentence that begins "Topics covered so far"',
+         'Review before moving on. Topics covered so far are a map of what to revisit.', recap),
+    ]:
+        entry = stored(body, None, rc)
+        expect(f'trim_takeaways leaves {what}', entry if not U.trim_takeaways(entry) else 'changed', stored(body, None, rc))
+
     # The repair pass applies it to every stored entry, and has nothing left to do the second time.
     data = {'learnings': [dict(stored(run_on, [dict(q) for q in quiz]), title='A title', schema=U.SCHEMA_VERSION)]}
     with contextlib.redirect_stdout(io.StringIO()):
@@ -399,7 +438,7 @@ def check_pdf(U, pdf: Path) -> list[str]:
         repair = {'sources': U.extract_sources(flat), 'tomorrow_preview': U.extract_tomorrow_block(flat),
                   'recap': U.extract_recap(flat), 'quiz': U.extract_quiz(flat)}
     problems = offences(entry, f"parse of {pdf.name}:") + offences(repair, f"repair extractors on {pdf.name}:")
-    problems += quiz_in_takeaways(entry, f"parse of {pdf.name}:")
+    problems += quiz_in_takeaways(entry, f"parse of {pdf.name}:") + recap_in_takeaways(entry, f"parse of {pdf.name}:")
     if not hasattr(U, 'running_lines'):
         return problems + ['update_site.py has no running_lines']
     for line in sorted(set(U.running_lines(pdf))):
