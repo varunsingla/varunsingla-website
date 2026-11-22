@@ -26,6 +26,13 @@ Please keep writing the PDF this way, and include these lines — each one feeds
   Without it the site guesses the themes from keywords.
 - **"The concept, explained simply:" and "Why it matters:"** inside each numbered section. These paragraphs are
   extracted into the Concepts glossary and the Review flashcards, so keep the exact phrasing.
+- **`VIRAL / OPEN-SOURCE SPOTLIGHT`** on a line of its own, then the title on its own line(s) in bold, then the
+  text in body type. The parser goes by the type: the bold line(s) under the header are the spotlight's name,
+  everything in body type after them is its description -- across a page break, past the footer -- and the next
+  bold line (`MARKET SIGNAL`, a numbered section, a stat strip) ends the box. So: no bold line inside the text
+  (bold lead-ins such as "Why it is taking off:" within a line are fine), nothing in small or large type, and do
+  not put the title on the header line (`VIRAL / OPEN-SOURCE SPOTLIGHT: FlickReels`) or the box in a bordered
+  table -- the parser reads neither, and that day gets no spotlight.
 - **`PRACTICAL TAKEAWAYS`** as numbered items with a short bold-style title line followed by a one-sentence body.
   Each becomes a Playbook item and a flashcard.
 - **`TOMORROW`** heading followed by "What We're Watching: …" sentences. Feeds the Watching tracker.
@@ -33,6 +40,14 @@ Please keep writing the PDF this way, and include these lines — each one feeds
   become self-test cards on the entry page and in Review.
 - **`Sources:`** line at the end naming the outlets/pages used (URLs welcome; they are auto-linked).
 - **`TOPICS COVERED SO FAR (RECAP)`** paragraph (as on Day 199/200) — the latest one is shown on Start Here.
+- **Running header/footer: small print, in the page margin, the same on every page.** The current header is
+  `AI Learning -- Day N | YYYY-MM-DD | Page N`. The parser takes these lines off each page before it reads the
+  text, so a sentence that continues on the next page joins up instead of having the header stuck in the middle
+  of it. It recognises the wordings used so far, and any small-print line in the top or bottom margin that
+  repeats on another page — so keep the header/footer smaller than body text, out of the body area, and never
+  put content there.
+- **Write `&` as `&amp;` in ReportLab `Paragraph` text.** A bare `D&O` or `R&D` is printed as `D&O;` / `R&D;`
+  (ReportLab closes what it takes for an entity). The parser undoes that shape, but it is better not to produce it.
 
 Also note: the PDF's own day counter has drifted from the site's count (the site numbers entries by position
 in `learnings.json`; the Day-200 PDF is site Day 206). Prefer `len(learnings.json["learnings"]) + 1` as the
@@ -41,14 +56,75 @@ day number when generating the PDF so the two stay aligned.
 ### Publishing and repair
 
 - `python3 update_site.py` — normal daily run: repairs any stored entry that predates the current schema
-  (idempotent, no-op once current), parses the newest unprocessed PDF, merges it (richer entry wins, nothing is
-  overwritten with less), regenerates everything, pushes via the GitHub API.
+  (idempotent, no-op once current), removes page furniture from the stored text (see below), parses the newest
+  unprocessed PDF, merges it (richer entry wins, nothing is overwritten with less), regenerates everything,
+  pushes via the GitHub API.
 - `python3 update_site.py --repair [--dry-run] [--force]` — only the repair + regenerate pass, no push.
+  `--dry-run` prints what would change, entry by entry, and writes nothing. `--force` re-runs every repair step
+  on entries that are already at the current schema (about a minute and a half: it opens every PDF). Every step
+  is idempotent, so on repaired data `--repair --dry-run --force` reports 0 entries; if it ever reports more, a
+  repair step is changing its own output, which is a bug -- `check_learnings.py` fails on it. A step that reads
+  from the PDF has to compare what it read as it would be stored (after `scrub_text` / `scrub_entry`); otherwise
+  it puts back a footer that the scrub pass removes again, and reports the same change on every forced run.
 - `python3 update_site.py --parse <pdf>` — print what the parser extracts from one PDF (debugging).
 - `python3 generate_geo.py` — regenerate the static site from `learnings.json` without touching the data.
+- `python3 check_learnings.py` — regression check, a few seconds. Exits 1 if
+  - page furniture (the current header/footer or a wording of the older layouts), a mangled ampersand (`D&O;`)
+    or a `&gt;` / `&lt;` printed as text is found in `learnings.json`, in the generated pages, or in a fresh
+    parse of the newest PDF;
+  - a spotlight description stops mid-sentence, in `learnings.json` (three known exceptions are listed in the
+    script, with the reason for each) or in a fresh parse;
+  - a forced repair would change stored data: `normalize_viral` over every stored spotlight, and the whole
+    repair over the five newest entries.
 
-Repairs never delete text: a replaced title or intro is kept under `title_original` / `focus_intro_original`,
-viral-app names are only re-split from their descriptions, headings are only re-cased.
+  `--all-pdfs` re-parses every PDF on disk and runs the forced repair over every entry (about four minutes).
+  Run it after a publish or a repair.
+
+Repairs never delete entry text: a replaced title, intro or spotlight is kept under `title_original` /
+`focus_intro_original` / `viral_app_original`, and headings are only re-cased.
+The one exception is page furniture, which was never entry content, and is removed outright with no
+`*_original` copy, because a copy would keep the artefact in `learnings.json`:
+
+- the PDF's running header/footer where it got joined into the text (`AI Learning -- Day N | YYYY-MM-DD | Page N`,
+  `Daily AI Learning for Varun`);
+- the footers, sign-off lines and page-1 mastheads of the layouts before 2026-10-16, found in March–August
+  entries: `Varun Singla · Daily AI Learning Page N`, `Generated by Varun Singla · varunsingla.com · Day N · <date>`,
+  `Varun's Daily AI Brief Day N · <date> · Issue #N`, `Generated for <e-mail address> · Issue #N · varunsingla.com`
+  and about twenty more. The list is `_OLD_FURNITURE` in `update_site.py`, one exact pattern per wording;
+- the stray `;` of a mangled ampersand (`D&O;` → `D&O`) and the entity around a `<` or `>` that was printed as
+  text (`&gt;threshold` → `>threshold`).
+
+Exactly those strings go and the words on either side are joined. A paragraph or bullet that was nothing but a
+footer is dropped, and so is a takeaway whose body was nothing but a footer when its title is only the cut-off
+start of that body; a takeaway with a title of its own keeps the title, and a table cell keeps its place. This
+pass (`scrub_entry`) reads only the stored text, so it runs over every entry on every run, whatever the schema
+version. It walks `*_original` fields too; the patterns are written so that an old page-1 title kept there
+(`AI Daily Learning -- Day 98`) does not match.
+
+Left alone on purpose, because removing them is a decision about content rather than furniture: the page-1
+dateline inside ten July/August intros (`Day 122 · July 28, 2026 · 6 min read · AI Safety & Governance / Enterprise
+AI`), whose category names are the only theme label those entries have, and a `Topics: …` list that stands without
+its footer (2026-04-28). A sentence that mentions the author, the site or the series is never furniture.
+
+To add a wording: an exact, case-sensitive pattern in `_OLD_FURNITURE`, a fixed case in `check_units`, and — if the
+loose shapes in `check_learnings.py` (`OLD_FURNITURE_RE`) do not already cover it — a shape there. The parser for
+the older layouts (`_PAGE_HEADER_RE`, `_FOOTER_RE`) is unchanged, so a fresh parse of a pre-October PDF still
+carries a footer in a few fields; `scrub_entry` runs before anything is stored.
+
+The spotlight (`viral_app`), in the parser and in the repair:
+
+- `name` + `sep` + `description` is the text of the box, exactly. `sep` is what stood between the two when it
+  was more than a space (`". "`, `", "`, `": "`, `" -- "` -- boxes with no title line, "Today's pick: X. Text")
+  and is left out otherwise. Pages print `name` and `description`; `sep` is there so that tidying a name never
+  drops a character. `normalize_viral` does that tidying and may be applied any number of times.
+- A name that ran into its description is cut once, when the PDF is parsed, and only for a box without a bold
+  title line. A stored name is never cut again -- that is what used to move on every forced repair.
+- Where the PDF is on disk, the repair (`repair_spotlight`) holds the stored spotlight against the box in the
+  PDF: if the box contains everything stored, the box is taken (a cut-off description is completed, the title
+  and the dropped comma/colon/full stop come back); if the stored text is cut off and runs past the end of the
+  box into the next section, the box is taken and the stored spotlight goes to `viral_app_original`; anything
+  else is left alone. With no box to complete it from, a description that breaks off is trimmed to its last full
+  sentence and the spotlight as it was goes to `viral_app_original`.
 
 ### ALWAYS push the day's commit to `main`, not just a session feature branch
 
