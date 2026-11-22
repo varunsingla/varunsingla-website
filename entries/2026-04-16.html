@@ -55,15 +55,31 @@ img{max-width:100%;}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;}
 .brand-mark{width:30px;height:30px;border-radius:7px;background:var(--text);color:var(--bg);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;letter-spacing:.02em;}
 .brand-name{font-family:var(--mono);font-size:13.5px;color:var(--text);}
-.nav{display:flex;align-items:center;gap:0;flex-wrap:nowrap;}
-.nav-link{font-size:13.5px;font-weight:500;color:var(--muted2);text-decoration:none;padding:7px 8px;border-radius:8px;transition:.18s ease;white-space:nowrap;}
+.nav{display:flex;align-items:center;gap:4px;flex-wrap:nowrap;}
+.nav-link{font-size:14px;font-weight:500;color:var(--muted2);text-decoration:none;padding:7px 11px;border-radius:8px;transition:.18s ease;white-space:nowrap;}
 .nav-link:hover{color:var(--text);background:var(--surface2);}
 .nav-link.active{font-weight:600;color:var(--text);}
 .menu-btn,.theme-btn{border:1px solid var(--border);background:var(--surface);color:var(--muted2);border-radius:8px;cursor:pointer;font-family:var(--mono);font-size:12px;padding:7px 10px;line-height:1;}
 .menu-btn:hover,.theme-btn:hover{color:var(--text);border-color:var(--border-strong);}
 .menu-btn{display:none;}
 .mast-right{display:flex;align-items:center;gap:8px;}
-@media (max-width:1139px){
+.nav-drop{border:0;background:none;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:5px;line-height:inherit;}
+.nav-drop .caret{font-size:10px;opacity:.6;transition:transform .18s ease;}
+.nav-group{position:relative;}
+.nav-menu{display:none;position:absolute;top:100%;left:0;min-width:190px;padding:6px;background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:0 18px 40px -20px var(--shadow);z-index:60;}
+.nav-menu::before{content:"";position:absolute;left:0;right:0;top:-8px;height:8px;}
+.nav-sub{display:block;font-size:14px;font-weight:500;color:var(--muted2);text-decoration:none;padding:9px 12px;border-radius:8px;white-space:nowrap;}
+.nav-sub:hover{color:var(--text);background:var(--surface2);}
+.nav-sub.active{color:var(--text);font-weight:600;}
+.nav-group.open .nav-menu{display:block;}
+.nav-group.open .caret{transform:rotate(180deg);}
+@media (min-width:881px) and (hover:hover){.nav-group:hover .nav-menu{display:block;}.nav-group:hover .nav-drop{color:var(--text);background:var(--surface2);}}
+@media (max-width:880px){
+  .nav-group{display:block;}
+  .nav-drop{width:100%;cursor:default;pointer-events:none;font-family:var(--mono);font-size:11px!important;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);padding:14px 10px 4px!important;}
+  .nav-drop .caret{display:none;}
+  .nav-menu{display:block;position:static;min-width:0;padding:0;background:none;border:0;box-shadow:none;}
+  .nav-sub{padding:11px 10px;font-size:15px;}
   .menu-btn{display:inline-flex;align-items:center;gap:6px;}
   .nav{display:none;position:absolute;left:0;right:0;top:100%;background:var(--bg);border-bottom:1px solid var(--border);padding:8px 12px 12px;flex-direction:column;align-items:stretch;gap:2px;box-shadow:0 20px 40px -24px var(--shadow);}
   .nav.open{display:flex;}
@@ -146,7 +162,7 @@ footer.foot{border-top:1px solid var(--border);background:var(--surface);margin-
 <header class="mast"><div class="mast-in">
   <a class="brand" href="/"><span class="brand-mark" aria-hidden="true">VS</span><span class="brand-name">varunsingla.com</span></a>
   <div class="mast-right">
-    <nav class="nav" aria-label="Site"><a class="nav-link" href="/">Home</a><a class="nav-link" href="/entries/">Archive</a><a class="nav-link" href="/playbook/">Playbook</a><a class="nav-link" href="/concepts/">Concepts</a><a class="nav-link" href="/watching/">Watching</a><a class="nav-link" href="/review/">Review</a><a class="nav-link" href="/start/">Start Here</a><a class="nav-link" href="/ai-tokenomics/">Tokenomics</a><a class="nav-link" href="/tools/model-team-evaluator.html">Model Evaluator</a><a class="nav-link" href="/about/">About</a></nav>
+    <nav class="nav" aria-label="Site"><a class="nav-link" href="/">Home</a><a class="nav-link" href="/start/">Start Here</a><div class="nav-group"><button class="nav-link nav-drop" type="button" aria-expanded="false" aria-haspopup="true">Journal<span class="caret" aria-hidden="true">▾</span></button><div class="nav-menu"><a class="nav-sub" href="/entries/">Archive</a><a class="nav-sub" href="/weekly/">Weekly digest</a><a class="nav-sub" href="/watching/">Watching</a></div></div><div class="nav-group"><button class="nav-link nav-drop" type="button" aria-expanded="false" aria-haspopup="true">Learn<span class="caret" aria-hidden="true">▾</span></button><div class="nav-menu"><a class="nav-sub" href="/playbook/">Playbook</a><a class="nav-sub" href="/concepts/">Concepts</a><a class="nav-sub" href="/review/">Review</a></div></div><div class="nav-group"><button class="nav-link nav-drop" type="button" aria-expanded="false" aria-haspopup="true">Tools<span class="caret" aria-hidden="true">▾</span></button><div class="nav-menu"><a class="nav-sub" href="/ai-tokenomics/">AI Tokenomics</a><a class="nav-sub" href="/tools/model-team-evaluator.html">Model Evaluator</a></div></div><a class="nav-link" href="/about/">About</a></nav>
     <button class="theme-btn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">◐</button>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open menu">Menu ☰</button>
   </div>
@@ -189,6 +205,12 @@ footer.foot{border-top:1px solid var(--border);background:var(--surface);margin-
   ready(function(){
     var btn=document.querySelector('.menu-btn'),nav=document.querySelector('.nav');
     if(btn&&nav){btn.addEventListener('click',function(){var open=nav.classList.toggle('open');btn.setAttribute('aria-expanded',open?'true':'false');});}
+    var groups=[].slice.call(document.querySelectorAll('.nav-group'));
+    function closeAll(except){groups.forEach(function(g){if(g!==except){g.classList.remove('open');var b=g.querySelector('.nav-drop');if(b){b.setAttribute('aria-expanded','false');}}});}
+    groups.forEach(function(g){var b=g.querySelector('.nav-drop');if(!b){return;}
+      b.addEventListener('click',function(e){e.stopPropagation();closeAll(g);var o=g.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});});
+    document.addEventListener('click',function(){closeAll(null);});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeAll(null);}});
     var tb=document.querySelector('.theme-btn');
     if(tb){tb.addEventListener('click',function(){
       var cur=document.documentElement.getAttribute('data-theme');

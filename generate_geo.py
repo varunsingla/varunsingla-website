@@ -410,15 +410,31 @@ img{max-width:100%;}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;}
 .brand-mark{width:30px;height:30px;border-radius:7px;background:var(--text);color:var(--bg);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;letter-spacing:.02em;}
 .brand-name{font-family:var(--mono);font-size:13.5px;color:var(--text);}
-.nav{display:flex;align-items:center;gap:0;flex-wrap:nowrap;}
-.nav-link{font-size:13.5px;font-weight:500;color:var(--muted2);text-decoration:none;padding:7px 8px;border-radius:8px;transition:.18s ease;white-space:nowrap;}
+.nav{display:flex;align-items:center;gap:4px;flex-wrap:nowrap;}
+.nav-link{font-size:14px;font-weight:500;color:var(--muted2);text-decoration:none;padding:7px 11px;border-radius:8px;transition:.18s ease;white-space:nowrap;}
 .nav-link:hover{color:var(--text);background:var(--surface2);}
 .nav-link.active{font-weight:600;color:var(--text);}
 .menu-btn,.theme-btn{border:1px solid var(--border);background:var(--surface);color:var(--muted2);border-radius:8px;cursor:pointer;font-family:var(--mono);font-size:12px;padding:7px 10px;line-height:1;}
 .menu-btn:hover,.theme-btn:hover{color:var(--text);border-color:var(--border-strong);}
 .menu-btn{display:none;}
 .mast-right{display:flex;align-items:center;gap:8px;}
-@media (max-width:1139px){
+.nav-drop{border:0;background:none;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:5px;line-height:inherit;}
+.nav-drop .caret{font-size:10px;opacity:.6;transition:transform .18s ease;}
+.nav-group{position:relative;}
+.nav-menu{display:none;position:absolute;top:100%;left:0;min-width:190px;padding:6px;background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:0 18px 40px -20px var(--shadow);z-index:60;}
+.nav-menu::before{content:"";position:absolute;left:0;right:0;top:-8px;height:8px;}
+.nav-sub{display:block;font-size:14px;font-weight:500;color:var(--muted2);text-decoration:none;padding:9px 12px;border-radius:8px;white-space:nowrap;}
+.nav-sub:hover{color:var(--text);background:var(--surface2);}
+.nav-sub.active{color:var(--text);font-weight:600;}
+.nav-group.open .nav-menu{display:block;}
+.nav-group.open .caret{transform:rotate(180deg);}
+@media (min-width:881px) and (hover:hover){.nav-group:hover .nav-menu{display:block;}.nav-group:hover .nav-drop{color:var(--text);background:var(--surface2);}}
+@media (max-width:880px){
+  .nav-group{display:block;}
+  .nav-drop{width:100%;cursor:default;pointer-events:none;font-family:var(--mono);font-size:11px!important;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);padding:14px 10px 4px!important;}
+  .nav-drop .caret{display:none;}
+  .nav-menu{display:block;position:static;min-width:0;padding:0;background:none;border:0;box-shadow:none;}
+  .nav-sub{padding:11px 10px;font-size:15px;}
   .menu-btn{display:inline-flex;align-items:center;gap:6px;}
   .nav{display:none;position:absolute;left:0;right:0;top:100%;background:var(--bg);border-bottom:1px solid var(--border);padding:8px 12px 12px;flex-direction:column;align-items:stretch;gap:2px;box-shadow:0 20px 40px -24px var(--shadow);}
   .nav.open{display:flex;}
@@ -503,6 +519,12 @@ SITE_JS = """
   ready(function(){
     var btn=document.querySelector('.menu-btn'),nav=document.querySelector('.nav');
     if(btn&&nav){btn.addEventListener('click',function(){var open=nav.classList.toggle('open');btn.setAttribute('aria-expanded',open?'true':'false');});}
+    var groups=[].slice.call(document.querySelectorAll('.nav-group'));
+    function closeAll(except){groups.forEach(function(g){if(g!==except){g.classList.remove('open');var b=g.querySelector('.nav-drop');if(b){b.setAttribute('aria-expanded','false');}}});}
+    groups.forEach(function(g){var b=g.querySelector('.nav-drop');if(!b){return;}
+      b.addEventListener('click',function(e){e.stopPropagation();closeAll(g);var o=g.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});});
+    document.addEventListener('click',function(){closeAll(null);});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeAll(null);}});
     var tb=document.querySelector('.theme-btn');
     if(tb){tb.addEventListener('click',function(){
       var cur=document.documentElement.getAttribute('data-theme');
@@ -527,18 +549,36 @@ FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n'
          '&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..600;'
          '1,6..72,200..500&display=swap" rel="stylesheet">')
 
-NAV_ITEMS = [('Home', '/'), ('Archive', '/entries/'), ('Playbook', '/playbook/'), ('Concepts', '/concepts/'),
-             ('Watching', '/watching/'), ('Review', '/review/'), ('Start Here', '/start/'),
-             ('Tokenomics', '/ai-tokenomics/'),
-             ('Model Evaluator', '/tools/model-team-evaluator.html'), ('About', '/about/')]
+# Top bar: a few direct links plus three small dropdowns, so the bar stays short.
+# A (label, list) pair is a dropdown; `active` may name a top-level link or a dropdown item.
+NAV_ITEMS = [
+    ('Home', '/'),
+    ('Start Here', '/start/'),
+    ('Journal', [('Archive', '/entries/'), ('Weekly digest', '/weekly/'), ('Watching', '/watching/')]),
+    ('Learn', [('Playbook', '/playbook/'), ('Concepts', '/concepts/'), ('Review', '/review/')]),
+    ('Tools', [('AI Tokenomics', '/ai-tokenomics/'), ('Model Evaluator', '/tools/model-team-evaluator.html')]),
+    ('About', '/about/'),
+]
 
 
 def masthead(active: str = '') -> str:
     links = ''
-    for label, href in NAV_ITEMS:
-        cls = ' active' if label == active else ''
-        cur = ' aria-current="page"' if label == active else ''
-        links += f'<a class="nav-link{cls}" href="{href}"{cur}>{label}</a>'
+    for label, target in NAV_ITEMS:
+        if isinstance(target, str):
+            cls = ' active' if label == active else ''
+            cur = ' aria-current="page"' if label == active else ''
+            links += f'<a class="nav-link{cls}" href="{target}"{cur}>{label}</a>'
+            continue
+        inside = any(sub == active for sub, _ in target)
+        items = ''
+        for sub, href in target:
+            cls = ' active' if sub == active else ''
+            cur = ' aria-current="page"' if sub == active else ''
+            items += f'<a class="nav-sub{cls}" href="{href}"{cur}>{sub}</a>'
+        drop_cls = ' active' if inside else ''
+        links += (f'<div class="nav-group"><button class="nav-link nav-drop{drop_cls}" type="button" '
+                  f'aria-expanded="false" aria-haspopup="true">{label}<span class="caret" aria-hidden="true">▾</span></button>'
+                  f'<div class="nav-menu">{items}</div></div>')
     return f"""<a class="skip" href="#main">Skip to content</a>
 <header class="mast"><div class="mast-in">
   <a class="brand" href="/"><span class="brand-mark" aria-hidden="true">VS</span><span class="brand-name">varunsingla.com</span></a>
@@ -1094,7 +1134,7 @@ def render_week_page(key: str, es: list[dict], prev_key: str | None, next_key: s
   {_week_digest_html(key, es)}
   {nav}
 </main>"""
-    return page_shell(title=f"Week of {label} — {BLOG_NAME}", description=desc, canonical=f"{SITE}/weekly/{key}.html", body=body, extra_css=WEEK_CSS)
+    return page_shell(title=f"Week of {label} — {BLOG_NAME}", description=desc, canonical=f"{SITE}/weekly/{key}.html", body=body, active='Weekly digest', extra_css=WEEK_CSS)
 
 
 def render_weekly_index(weeks: list[tuple[str, list[dict]]]) -> str:
@@ -1117,7 +1157,7 @@ def render_weekly_index(weeks: list[tuple[str, list[dict]]]) -> str:
   <h2 class="section-h2">Earlier weeks</h2>
   <ul class="entry-list">{rows}</ul>
 </main>"""
-    return page_shell(title=f"Weekly digest — {BLOG_NAME}", description=desc, canonical=f"{SITE}/weekly/", body=body, extra_css=WEEK_CSS)
+    return page_shell(title=f"Weekly digest — {BLOG_NAME}", description=desc, canonical=f"{SITE}/weekly/", body=body, active='Weekly digest', extra_css=WEEK_CSS)
 
 
 # ── Review (flashcards) ───────────────────────────────────────────────────────
