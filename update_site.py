@@ -12,6 +12,7 @@ Run:  python3 update_site.py
 """
 
 import base64
+import difflib
 import json
 import os
 import re
@@ -813,8 +814,10 @@ def _extract_numbered_takeaways(all_flat_lines: list[str]) -> tuple[list[dict], 
 # ampersand, a "&gt;" printed as text — which scrub_entry removes outright (it
 # was never entry content).
 
-SCHEMA_VERSION = 2          # bump when repair_entry learns a new, re-runnable fix
+SCHEMA_VERSION = 3          # bump when repair_entry learns a new, re-runnable fix
                             # (scrub_entry is not tied to it: see repair_all)
+                            #   2  titles, decks, intros, headings, sources, watch list, recap, themes, quiz
+                            #   3  spotlight completed from the box in the PDF (repair_spotlight)
 
 THEMES = ['Foundations & Protocols', 'Industry Verticals', 'Enterprise & Strategy',
           'Infrastructure & Economics', 'Models & Frontier', 'Governance & Safety']
@@ -1345,42 +1348,80 @@ def extract_quiz(all_flat_lines: list[str]) -> list[dict]:
 
 _VIRAL_PREFIX_RE = re.compile(
     r"^(?:viral app\s*)?(?:of the day\s*[:\-—–]*\s*)?(?:(?:today.s pick|spotlight|pick)\s*:\s*)?", re.I)
+# What stands between a spotlight name and its description, when it is more
+# than a space: punctuation left at the end of the name ("Kimi K3.1 Pro:") or
+# set off at the start of the description ("-- and the app becomes a habit").
+# Punctuation that belongs to a word (".NET-first") is not a separator.
+_NAME_TAIL_RE = re.compile(r"[\s,:;\-—–]+$")
+_DESC_HEAD_RE = re.compile(r"^(?:[.,:;\-—–]+\s+)+")
+# Where a name that ran into its description may be cut (see normalize_viral).
+_NAME_BREAK_RE = re.compile(r"(\.\s(?=[A-Z\"'(])|\s--\s|\s—\s|:\s)")
 
 
-def normalize_viral(v: dict | None) -> dict | None:
-    """Re-split a viral-app name that ran into its description at a PDF line
-    break. The concatenation name+description is preserved exactly; only the
-    split point (and a leading 'Today's pick:' label) changes."""
+def normalize_viral(v: dict | None, split: bool = False) -> dict | None:
+    """Tidy a spotlight's name and description without losing a character.
+
+    Always (and applying it twice changes nothing more -- a forced repair runs
+    this over entries that were normalised long ago):
+      • a label in front of the name goes ("Today's pick: X" -> "X");
+      • punctuation between the name and the description is neither left
+        dangling on the name nor dropped: it is kept under 'sep', so that
+        name + sep + description is the text of the box, exactly. 'sep' is
+        left out when it is a plain space;
+      • the name starts with a capital.
+
+    With split=True, a name that ran into its description is cut first: at
+    the first sentence end, dash or colon of the text; failing that at a comma
+    (not one inside brackets); failing that, for a name over 100 characters,
+    at a space. That is for names put together from the words alone -- boxes
+    without a title line, "Today's pick: X, a tool for Y. It ..." -- and is
+    done once, when the PDF is parsed. It is not a normalisation: run on its
+    own output it may find the next comma, so it is never re-applied to a
+    stored entry, and never applied to a title read off the PDF's bold type."""
     if not v or not isinstance(v, dict) or not v.get('name'):
         return v
     name = clean(v.get('name') or '')
     desc = clean(v.get('description') or '')
-    stripped = _VIRAL_PREFIX_RE.sub('', name).strip() if len(name) > 12 else name
-    if stripped and len(stripped) >= 3:
+    sep = v.get('sep') if isinstance(v.get('sep'), str) and v.get('sep') else ' '
+    for _ in range(3):                                    # "Viral app of the day: Today's pick: X"
+        stripped = _VIRAL_PREFIX_RE.sub('', name).strip() if len(name) > 12 else name
+        if not stripped or len(stripped) < 3 or stripped == name:
+            break
         name = stripped
-    if len(name) > 70 and desc and not desc.lower().startswith(name.lower()[:30]):
-        full = name + ' ' + desc
-        cut = None
-        for m in re.finditer(r"(\.\s(?=[A-Z\"'(])|\s--\s|\s—\s|:\s)", full):
+    if split and len(name) > 70 and desc and not desc.lower().startswith(name.lower()[:30]):
+        full = name + sep + desc
+        cut = end = None
+        for m in _NAME_BREAK_RE.finditer(full):
             if 20 <= m.start() <= 120:
-                cut = m.start()
+                cut, end = m.start(), m.end()
                 break
         if cut is None:
             for m in re.finditer(r",\s", full):
-                if 25 <= m.start() <= 90:
-                    cut = m.start()
+                if 25 <= m.start() <= 90 and full.count('(', 0, m.start()) <= full.count(')', 0, m.start()):
+                    cut, end = m.start(), m.end()
                     break
-        if cut is None:
-            cut = full.rfind(' ', 0, 100)
+        if cut is None and len(name) > 100:
+            cut = name.rfind(' ', 0, 100)
+            end = cut + 1
         if cut and cut > 10:
-            name, desc = full[:cut].strip(), full[cut:].strip()
-            desc = re.sub(r"^[.,:;\-—–\s]+", '', desc)
-    name = re.sub(r"[\s,:;\-—–]+$", '', name)
+            name, sep, desc = full[:cut], full[cut:end], full[end:]
+    tail = _NAME_TAIL_RE.search(name)
+    if tail:
+        name, sep = name[:tail.start()], tail.group(0) + sep
+    head = _DESC_HEAD_RE.match(desc)
+    if head:
+        sep, desc = sep + head.group(0), desc[head.end():]
+    sep = re.sub(r"\s+", ' ', sep)
     if name[:1].islower():
         name = name[:1].upper() + name[1:]
-    out = dict(v)
-    out['name'] = name
-    out['description'] = desc
+    out: dict = {}
+    for key, value in v.items():
+        if key == 'sep':
+            continue
+        out[key] = name if key == 'name' else desc if key == 'description' else value
+        if key == 'name' and sep.strip():
+            out['sep'] = sep
+    out.setdefault('description', desc)
     return out
 
 
@@ -1726,10 +1767,146 @@ def scrub_entry(entry: dict, totals: dict | None = None) -> list[str]:
     return [f"{kind} ×{n} ({', '.join(where[kind])})" for kind, n in found.items()]
 
 
+# ── The stored spotlight against the box in the PDF ───────────────────────────
+#
+# Stored spotlights were cut short in the ways _read_spotlight's notes list, and
+# an earlier repair dropped the punctuation where it cut a name. Where the PDF
+# is on disk the box can be read again, and repair_spotlight takes the PDF's
+# reading under the rule every repair follows -- the richer text wins and
+# nothing is overwritten with less:
+#   • the PDF's box contains every word of the stored text, in order (it may
+#     have more: the rest of a cut description, a title line, the comma between
+#     name and description): the box replaces the stored name/description;
+#   • the stored text is cut off and runs past the end of the box -- into the
+#     next section, up to the old cap -- while the box is complete: the box
+#     replaces it, and the stored spotlight is kept under viral_app_original;
+#   • anything else (an older layout the reader cannot follow, a text that was
+#     corrected by hand): the stored spotlight is left as it is.
+# Where the box has no title line, the end of its name is the reader's guess and
+# no better than the stored one: the stored name stands (unless it breaks off
+# inside a bracket) and only the text after it is taken from the PDF.
+# Where there is no box to complete it from (no PDF on disk, or none of the
+# above), a description that breaks off mid-sentence is cut back to its last
+# full sentence, and the spotlight as it was is kept under viral_app_original.
+# A stored text that *is* the PDF's box is never trimmed, whatever it ends on.
+
+def _box_words(v: dict, description_only: bool = False) -> list[str]:
+    text = (v.get('description') or '') if description_only else \
+        (v.get('name') or '') + ' ' + (v.get('description') or '')
+    return _norm_text(text).split()
+
+
+def _words_kept(old: list[str], new: list[str]) -> bool:
+    """True when every word of `old` is in `new`, in the same order -- whole,
+    or as what is left of a longer word: the last word of a text cut by the
+    old length cap ("acce" for "access"), or a word whose leading "n" an old
+    parser took for a bullet mark ("ot" for "not")."""
+    matcher = difflib.SequenceMatcher(None, old, new, autojunk=False)
+    for tag, i1, i2, j1, j2 in matcher.get_opcodes():
+        if tag in ('equal', 'insert'):
+            continue
+        if tag == 'delete':
+            return False
+        j = j1
+        for i in range(i1, i2):                           # 'replace': each old word must be found damaged, in order
+            while j < j2 and not (new[j].lstrip('n') == old[i]
+                                  or (i == len(old) - 1 and new[j].startswith(old[i]))):
+                j += 1
+            if j == j2:
+                return False
+            j += 1
+    return True
+
+
+def _last_full_sentence(text: str, min_len: int = 50) -> str:
+    """text cut back to its last complete sentence; '' when it has none of at
+    least min_len characters. The number of a list item the old reader ran
+    into ("... productivity on the 1. Pick Your Stack") is not a sentence end."""
+    text = text.strip()
+    end = None
+    for m in re.finditer(r"[.!?…][\"'”’)\]]*(?=\s)", text):
+        if text[m.start()] == '.' and re.search(r"(?:^|\s)\d{1,2}$", text[:m.start()]):
+            continue
+        end = m.end()
+    return text[:end] if end and end >= min_len else ''
+
+
+def _box_cut_at(box: dict, name: str) -> dict | None:
+    """The text of `box`, cut where `name` ends instead of where the reader cut
+    it; None when the box does not begin with that name."""
+    full = box['name'] + (box.get('sep') or ' ') + box['description']
+    if not name or not full.lower().startswith(name.lower()):
+        return None
+    between = re.match(r"(?:[.,:;\-—–]*\s+)+", full[len(name):])     # punctuation, if any, and the space after it
+    if not between or between.end() == len(full) - len(name):
+        return None                                       # the name ends inside a word, or nothing follows it
+    sep = re.sub(r"\s+", ' ', between.group(0))
+    return {'name': name, **({'sep': sep} if sep.strip() else {}),
+            'description': full[len(name) + between.end():]}
+
+
+def repair_spotlight(entry: dict, box: dict | None) -> str:
+    """Bring entry['viral_app'] in line with `box`, the spotlight as its PDF
+    prints it (pdf_spotlight; None when there is no PDF). Returns what was
+    done, '' when nothing was."""
+    stored = entry.get('viral_app')
+    stored = stored if isinstance(stored, dict) else {}
+    if not box or not box.get('name') or not box.get('description'):
+        return _trim_cut_spotlight(entry, stored)
+    old_name = stored.get('name') or ''
+    if not box.get('titled') and old_name.count('(') <= old_name.count(')'):
+        box = _box_cut_at(box, old_name) or box           # no title line: the stored name stands
+    if all(stored.get(k) == box.get(k) for k in ('name', 'sep', 'description')):
+        return ''
+    old_desc, new_desc = stored.get('description') or '', box['description']
+    old_words, new_words = _box_words(stored), _box_words(box)
+    what = original = None
+    if not old_words:
+        what = 'spotlight added from the PDF'
+    elif _words_kept(old_words, new_words):
+        gained = len(new_desc) + len(box['name']) - len(old_desc) - len(stored.get('name') or '')
+        what = ('spotlight name/description boundary from the PDF' if old_words == new_words
+                else f'spotlight completed from the PDF ({gained:+d} characters)')
+    elif not _ends_sentence(old_desc) and _ends_sentence(new_desc):
+        body = _box_words(box, description_only=True)
+        found = sum(block.size for block in
+                    difflib.SequenceMatcher(None, body, old_words, autojunk=False).get_matching_blocks())
+        if body and found >= 0.9 * len(body):
+            what = (f'spotlight cut back to the box in the PDF ({len(old_desc)} -> {len(new_desc)} characters, '
+                    f'original kept)')
+            original = stored
+    if not what:
+        return _trim_cut_spotlight(entry, stored)
+    merged = {'name': box['name'], **({'sep': box['sep']} if box.get('sep') else {}), 'description': new_desc}
+    merged.update({k: v for k, v in (stored or box).items() if k not in merged and k not in ('sep', 'titled')})
+    if not stored:
+        merged.setdefault('stats', [])
+    if original:
+        _store_original(entry, 'viral_app', original)
+    entry['viral_app'] = merged
+    return what
+
+
+def _trim_cut_spotlight(entry: dict, stored: dict) -> str:
+    """A description that breaks off, and no box to complete it from: back to
+    its last full sentence (the spotlight as it was goes to viral_app_original)."""
+    desc = stored.get('description') or ''
+    if not desc or _ends_sentence(desc):
+        return ''
+    kept = _last_full_sentence(desc)
+    if not kept:
+        return ''                                         # nothing to trim back to: a heading, a slogan, stat labels
+    _store_original(entry, 'viral_app', stored)
+    entry['viral_app'] = {**stored, 'description': kept}
+    return (f'spotlight trimmed to its last full sentence ({len(desc)} -> {len(kept)} characters, '
+            f'original kept)')
+
+
 def repair_entry(entry: dict, pdf_path=None, global_corpus: dict | None = None) -> list[str]:
     """Idempotent in-place repair of one stored entry. Returns a list of what
-    changed. Nothing is ever deleted: replaced titles/intros go to
-    *_original, viral names are only re-split, headings only re-cased."""
+    changed -- nothing, when run on an entry it has already repaired. Nothing
+    is ever deleted: replaced titles/intros/spotlights go to *_original, and
+    headings are only re-cased."""
     changes: list[str] = []
     corpus = build_corpus(entry)
     if global_corpus:
@@ -1811,12 +1988,25 @@ def repair_entry(entry: dict, pdf_path=None, global_corpus: dict | None = None) 
             s['title'] = nh
             changes.append('heading recased')
 
-    # Viral app: re-split a name that ran into its description.
+    # Spotlight: complete it from the box in the PDF, then tidy name and
+    # description. A name that ran into its description is only ever cut on an
+    # entry that has never been through this (see normalize_viral).
+    box = None
+    if pdf_path:
+        try:
+            box = pdf_spotlight(pdf_path)
+        except Exception:
+            box = None
+        if box:
+            scrub_entry(box)        # as it would be stored: without any page furniture the parser let through
+    what = repair_spotlight(entry, box)
     v = entry.get('viral_app')
-    nv = normalize_viral(v)
+    nv = normalize_viral(v, split=not what and int(entry.get('schema') or 0) < 2)
     if nv and nv != v:
         entry['viral_app'] = nv
-        changes.append('viral app re-split')
+        what = what or 'spotlight name/description tidied'
+    if what:
+        changes.append(what)
 
     # Sources / watch list / recap / themes / quiz from the PDF text.
     if pdf_path:
@@ -1830,9 +2020,16 @@ def repair_entry(entry: dict, pdf_path=None, global_corpus: dict | None = None) 
                 if src:
                     entry['sources'] = src
                     changes.append('sources')
-            tm = extract_tomorrow_block(flat)
+            # The PDF's watch list replaces the stored one when it says more.
+            # It is compared as it would be stored (page furniture the block
+            # extractor let through would be scrubbed off again, and the same
+            # "change" reported on every forced run), and a "Tomorrow:" label
+            # in front of the same text does not make it say more.
+            tm = scrub_text(extract_tomorrow_block(flat))[0]
             old_tm = entry.get('tomorrow_preview') or ''
-            if tm and (not old_tm or (len(tm) > len(old_tm) and _norm_text(old_tm)[:40] in _norm_text(tm))):
+            says_more = (len(tm) > len(old_tm) and _norm_text(old_tm)[:40] in _norm_text(tm)
+                         and _norm_text(tm) != 'tomorrow ' + _norm_text(old_tm))
+            if tm and (not old_tm or says_more):
                 if old_tm and _norm_text(old_tm) not in _norm_text(tm):
                     _store_original(entry, 'tomorrow_preview', old_tm)
                 entry['tomorrow_preview'] = tm
@@ -1911,9 +2108,8 @@ def repair_all(data: dict, root: Path | None = None, force: bool = False, verbos
     # entities printed as text). This pass is not tied to SCHEMA_VERSION: it
     # only reads the stored text, costs a few milliseconds and changes nothing
     # once an entry is clean, so it simply runs over every entry on every call.
-    # (Bumping the version instead would send every entry back through
-    # repair_entry, whose older steps are not all idempotent — a forced run
-    # re-splits viral-app names that are fine.)
+    # (repair_entry is idempotent as well -- check_learnings.py holds it to
+    # that -- but it opens the entry's PDF, so it stays behind the version check.)
     totals: dict[str, int] = {}
     for e in data.get('learnings', []):
         if not isinstance(e, dict):
@@ -1929,20 +2125,256 @@ def repair_all(data: dict, root: Path | None = None, force: bool = False, verbos
 
 
 
-def parse_pdf(pdf_path: Path) -> dict:
-    """Parse a daily AI learning PDF into a rich structured dict.
+# ── The VIRAL / OPEN-SOURCE SPOTLIGHT box ─────────────────────────────────────
+#
+# The box is set the same way in every layout since Day 102: the box header, a
+# title line or two in bold, then body text; it ends at the next line in bold
+# (MARKET SIGNAL, a stat strip, a numbered section). The text may run on to the
+# next page, past the running footer. Some layouts have no title line and open
+# with "Today's pick: X. Text" or "X: text" instead.
+#
+# The reader used to work from the words alone and from one page, which cut
+# descriptions short in five ways: at the page break; at 1,400 characters,
+# mid-word; at any line containing "tomorrow" or "generated by"; at a last line
+# shorter than five characters ("it."); and, where a section followed the box,
+# only after swallowing that section up to the cap. It also guessed the end of
+# the title, so a title ending in a capital, a digit or a bracket took the
+# first words of the text with it ("... on an ordinary PC Linger").
+#
+# Now the type decides: bold lines under the header are the title, lines in the
+# body type are the description, and anything else ends the box. The old rules
+# remain for a page that comes with no font information.
 
-    v4 — complete rewrite fixing:
-      1. 2-column layout: uses left-column word extraction for bullets, not flat text
-      2. Stat boxes: correctly splits number+label from multi-line cells
-      3. Viral app: scans all tables for 'VIRAL APP OF THE DAY' header
-      4. Takeaways: extracts from last-page 2-column table, not just section headings
-      5. Tables: assigned by proximity (same page, after section heading) not greedy pop
-      6. focus_intro: falls back to PDF subtitle / first section paragraph
-      7. Issue number: extracted from 'Day N' pattern as well as 'Issue #N'
-    """
-    print(f"   📄 Parsing: {pdf_path.name}")
+# Anchored: only matches when the ENTIRE line/cell is the header itself,
+# not when the phrase merely appears inside a longer sentence (e.g. a
+# stat label like "Downloads of EcoGPT, the viral app built on ..."
+# would otherwise be mistaken for the section header on an earlier page).
+_VIRAL_HDR_LINE_RE = re.compile(
+    r'^[n•]*\s*(viral app(\s+of\s+the\s+day)?|viral\s*/\s*open.source spotlight|'
+    r'open.source spotlight|viral spotlight|oss spotlight)\s*[:\s]*$', re.I
+)
+# A box heading standing on its own line, whatever type it is set in.
+_BOX_HEADING_RE = re.compile(
+    r'^(?:key takeaways?|practical takeaways?|market signal|self[- ]test|tomorrow(?:[\'’]s)?)\s*[:.]?$', re.I)
+# The older rules, used where the type of a line is not known.
+_BOX_END_WORDS_RE = re.compile(
+    r'key takeaway|practical takeaway|market signal|tomorrow|generated by|agentic ai daily', re.I)
+_STAT_LINE_RE = re.compile(r'^([\$£€]?[\d,\.]+[a-zA-Z%]{0,3}\s*)+$')
+_OLD_FOOTER_LINE_RE = re.compile(r'^varun singla.*page\s*\d+\s*$', re.I)
 
+_BOLD_LINE = 0.8            # share of bold characters that makes a line a title or a heading
+_TYPE_STEP = 0.75           # points of font size between body text and small print / display type
+_TITLE_LINES = 3            # a box title wraps over this many lines at most
+_SPOTLIGHT_PAGES = 3        # the box's own page and at most two more
+_SPOTLIGHT_CAP = 6000       # safety net only: the longest box so far is under 2,000 characters
+
+
+def _line_styles(page) -> dict[str, tuple[float, float]]:
+    """{line: (share of bold characters, font size)} for the text lines of a
+    page, keyed by the cleaned text parse_pdf keeps in page_data[…]['lines'].
+    A text that occurs twice in different type is left out (type unknown)."""
+    if _statistics is None:
+        return {}
+    try:
+        raw = page.extract_text_lines(layout=False, strip=True, return_chars=True,
+                                      x_tolerance=1.5, y_tolerance=3)
+    except Exception:  # pragma: no cover - odd page
+        return {}
+    styles: dict[str, tuple[float, float]] = {}
+    clash: set[str] = set()
+    for ln in raw:
+        chars = [c for c in ln.get('chars', []) if (c.get('text') or '').strip()]
+        text = clean(ln.get('text', ''))
+        if not chars or len(text) < 2:
+            continue
+        bold = sum(1 for c in chars if 'bold' in str(c.get('fontname') or '').lower()) / len(chars)
+        size = _statistics.median(round(float(c.get('size') or 0), 1) for c in chars)
+        seen = styles.setdefault(text, (round(bold, 2), size))
+        if abs(seen[0] - bold) > 0.3 or abs(seen[1] - size) > 0.3:
+            clash.add(text)
+    for text in clash:
+        del styles[text]
+    return styles
+
+
+def _cap_at_sentence(text: str, limit: int) -> str:
+    """text, or -- when it is longer than limit -- as many of its complete
+    sentences as fit. Never cuts inside a sentence or a word: with no sentence
+    end in reach it falls back to whole words."""
+    text = text.strip()
+    if len(text) <= limit:
+        return text
+    end = None
+    for m in re.finditer(r"[.!?…][\"'”’)\]]*(?=\s)", text[:limit + 1]):
+        end = m.end()
+    if end:
+        return text[:end]
+    head = text[:limit]
+    if not text[limit].isspace() and ' ' in head:
+        head = head[:head.rfind(' ')]
+    return head.rstrip()
+
+
+def _read_spotlight(pages: list[dict], start: int) -> tuple[str, str, bool]:
+    """The spotlight box whose header is on pages[start]: (name, description,
+    titled). `titled` says the name is the box's own bold title line, so its
+    end is known and must not be second-guessed (see normalize_viral).
+
+    pages[i] holds the page's text 'lines' and, where known, their 'styles'
+    ({line: (bold share, font size)}, see _line_styles)."""
+    app_name = ''
+    title_parts: list[str] = []
+    name_parts: list[str] = []
+    desc_parts: list[str] = []
+    titled = False
+    title_size = body_size = None
+    found_viral_header = False
+    closed = False
+    # The size most of the document's running text is set in. Until the box's
+    # own text has been seen, this is what a running footer is small against.
+    sizes: dict[float, int] = {}
+    for pd in pages:
+        for text, st in (pd.get('styles') or {}).items():
+            if st[0] < _BOLD_LINE:
+                sizes[st[1]] = sizes.get(st[1], 0) + len(text)
+    doc_size = max(sizes, key=sizes.get) if sizes else None
+
+    for off, pd in enumerate(pages[start:start + _SPOTLIGHT_PAGES]):
+        lines = pd['lines']
+        styles = pd.get('styles') or {}
+        if off and not styles:
+            break                       # no font information: box text cannot be told from what follows it
+
+        def small_print(i: int) -> bool:
+            """A running header/footer of the older layouts, or other small print."""
+            if _OLD_FOOTER_LINE_RE.match(re.sub(r'^[n•]+\s+', '', lines[i]).strip()):
+                return True
+            st, ref = styles.get(lines[i]), body_size or doc_size
+            return bool(st and ref and st[1] <= ref - _TYPE_STEP)
+
+        at_top = bool(off)              # still in the running header of a following page
+        for i, ln in enumerate(lines):
+            ln_c = re.sub(r'^[n•]+\s+', '', ln).strip()
+            if not found_viral_header:
+                if off == 0 and _VIRAL_HDR_LINE_RE.match(ln_c):
+                    found_viral_header = True
+                continue
+            st = styles.get(ln)
+
+            if not styles:
+                # ── No font information on this page: the older rules ────────
+                if _OLD_FOOTER_LINE_RE.match(ln_c):
+                    closed = True       # page footer: the box cannot be followed any further
+                    break
+            elif small_print(i):
+                if at_top:
+                    continue            # running header of this page
+                if all(small_print(j) for j in range(i, len(lines))):
+                    break               # running footer: the box may go on overleaf
+                if body_size is not None:
+                    closed = True       # stat labels, a caption: small print inside the page
+                    break
+                # (before the box's text has been seen, small type inside the
+                # page may be that text: a box set smaller than the rest)
+            at_top = False
+
+            if st is None:
+                if off:
+                    closed = True       # a line of unknown type on a following page
+                    break
+                if _STAT_LINE_RE.match(ln_c) or len(ln_c) < 5:
+                    # A stat-quad line ("10 $2K 96% 10.0", "0.70s 100K $0.14 $250M")
+                    # marks the end of the box's prose once we already have a name
+                    # and some description — everything after it is stat labels /
+                    # page footer, not body text.
+                    if app_name and desc_parts:
+                        closed = True
+                        break
+                    continue
+                if _BOX_END_WORDS_RE.search(ln_c):
+                    closed = True
+                    break
+            else:
+                if _BOX_HEADING_RE.match(ln_c):
+                    closed = True       # the next box
+                    break
+                if st[0] >= _BOLD_LINE:
+                    # Bold: the box title if it comes straight after the header,
+                    # otherwise the heading or stat strip that ends the box.
+                    in_title = not app_name and not name_parts and not desc_parts
+                    if (in_title and len(title_parts) < _TITLE_LINES
+                            and not _STAT_LINE_RE.match(ln_c) and not re.match(r'^\d{1,2}[).]\s', ln_c)
+                            and (title_size is None or abs(st[1] - title_size) <= 0.3)):
+                        title_parts.append(ln_c)
+                        title_size = st[1]
+                        continue
+                    closed = True
+                    break
+                if body_size is None:
+                    body_size = st[1]
+                elif abs(st[1] - body_size) >= _TYPE_STEP:
+                    closed = True       # display type, or small print inside the page
+                    break
+                if title_parts and not app_name:
+                    app_name, titled = ' '.join(title_parts), True
+                if titled or desc_parts:
+                    desc_parts.append(ln_c)     # body type under a title, or after the text has begun: text
+                    continue
+                if _STAT_LINE_RE.match(ln_c) or len(ln_c) < 5:
+                    continue
+
+            if not app_name:
+                # The first title line must look like a headline; once we're
+                # already mid-title (continuing a wrapped line), the next
+                # fragment can start lowercase (e.g. "solved problem").
+                starts_ok = bool(name_parts) or re.match(r'^[A-Z0-9]', ln_c)
+                if starts_ok and not re.search(r'agentic ai|daily (learning|brief)', ln_c, re.I):
+                    name_parts.append(ln_c)
+                    combined = ' '.join(name_parts)
+                    # A title line ending on an article/preposition ("...for a",
+                    # "...Default for") or a possessive ("...World's") is
+                    # mid-phrase, not a complete title — keep collecting even
+                    # though it ends in lowercase.
+                    ends_midphrase = bool(re.search(
+                        r"\b(a|an|the|for|of|to|and|or|in|on|with|by)$", ln_c, re.I
+                    )) or ln_c.endswith("'s")
+                    if (re.search(r'[a-z]$', ln_c) and not ends_midphrase) or len(combined) > 80:
+                        app_name = combined
+                continue
+            # A short trailing continuation line (the last wrapped fragment of
+            # a sentence, e.g. "on top of one.") is still real body text once
+            # we're already mid-description — only require the >30 length
+            # bar before we have any desc_parts yet, to avoid picking up
+            # stray short labels as the start of the description.
+            if len(ln_c) > 30 or (desc_parts and len(ln_c) > 3):
+                desc_parts.append(ln_c)
+        if closed or not found_viral_header:
+            break
+
+    if title_parts and not app_name:
+        app_name = ' '.join(title_parts)        # bold lines with no text under them: not known to be a title
+    if not app_name and name_parts:
+        app_name = ' '.join(name_parts)
+    return app_name, _cap_at_sentence(' '.join(desc_parts), _SPOTLIGHT_CAP), titled
+
+
+def spotlight_from_pages(pages: list[dict]) -> dict | None:
+    """The spotlight box of a document, given its pages (see _read_spotlight):
+    the first page that carries the box header, read and normalised. 'titled'
+    says whether the name is the box's own bold title line or the reader's
+    guess at where a name ends ("Today's pick: X. Text")."""
+    for pi, pd in enumerate(pages):
+        if any(_VIRAL_HDR_LINE_RE.match(ln.strip()) for ln in pd['lines']):
+            name, desc, titled = _read_spotlight(pages, pi)
+            box = normalize_viral({'name': name, 'description': desc}, split=not titled)
+            return {**box, 'titled': titled}
+    return None
+
+
+
+def _collect_pages(pdf_path) -> tuple[list[dict], list[str], list[str]]:
+    """Read a PDF page by page. Returns (page_data, all_flat_lines, meta_lines);
+    page_data[i] = {'lines': [...], 'tables': [...], 'left_lines': [...], 'styles': {...}}."""
     # ── Per-page data collection ───────────────────────────────────────────────
     # page_data[i] = {'lines': [...], 'tables': [...], 'left_lines': [...]}
     page_data: list[dict] = []
@@ -2023,7 +2455,33 @@ def parse_pdf(pdf_path: Path) -> dict:
             top_skip = page.height * 0.15
             left_lines = _left_col_lines(page, top_skip=top_skip)
 
-            page_data.append({'lines': lines, 'tables': tbls, 'left_lines': left_lines})
+            page_data.append({'lines': lines, 'tables': tbls, 'left_lines': left_lines,
+                              'styles': _line_styles(page)})
+    return page_data, all_flat_lines, meta_lines
+
+
+def pdf_spotlight(pdf_path) -> dict | None:
+    """The VIRAL / OPEN-SOURCE SPOTLIGHT box as this PDF prints it: {'name',
+    'description', 'titled'} (and 'sep'), or None when no page carries the box header.
+    This is the reader parse_pdf uses, without parse_pdf's guesses for PDFs
+    that have no such box -- so a repair can hold a stored spotlight against it."""
+    return spotlight_from_pages(_collect_pages(pdf_path)[0])
+
+
+def parse_pdf(pdf_path: Path) -> dict:
+    """Parse a daily AI learning PDF into a rich structured dict.
+
+    v4 — complete rewrite fixing:
+      1. 2-column layout: uses left-column word extraction for bullets, not flat text
+      2. Stat boxes: correctly splits number+label from multi-line cells
+      3. Viral app: scans all tables for 'VIRAL APP OF THE DAY' header
+      4. Takeaways: extracts from last-page 2-column table, not just section headings
+      5. Tables: assigned by proximity (same page, after section heading) not greedy pop
+      6. focus_intro: falls back to PDF subtitle / first section paragraph
+      7. Issue number: extracted from 'Day N' pattern as well as 'Issue #N'
+    """
+    print(f"   📄 Parsing: {pdf_path.name}")
+    page_data, all_flat_lines, meta_lines = _collect_pages(pdf_path)
 
     if not all_flat_lines:
         print(f"   ⚠️  No text extracted from {pdf_path.name}")
@@ -2443,86 +2901,23 @@ def parse_pdf(pdf_path: Path) -> dict:
     # ── Viral app ─────────────────────────────────────────────────────────────
     # Scan ALL tables across all pages for 'VIRAL APP OF THE DAY' header
     viral_app: dict | None = None
-
-    # Anchored: only matches when the ENTIRE line/cell is the header itself,
-    # not when the phrase merely appears inside a longer sentence (e.g. a
-    # stat label like "Downloads of EcoGPT, the viral app built on ..."
-    # would otherwise be mistaken for the section header on an earlier page).
-    _viral_hdr_line = re.compile(
-        r'^[n•]*\s*(viral app(\s+of\s+the\s+day)?|viral\s*/\s*open.source spotlight|'
-        r'open.source spotlight|viral spotlight|oss spotlight)\s*[:\s]*$', re.I
-    )
+    viral_titled = False            # the name is the box's own bold title line
 
     for pi, pd in enumerate(page_data):
         # Check BOTH table cells AND page lines for a standalone "viral app"
         # header — never a substring match against a full line/sentence.
         _has_hdr_cell = any(
-            _viral_hdr_line.match(str(cell).strip())
+            _VIRAL_HDR_LINE_RE.match(str(cell).strip())
             for tbl in pd['tables']
             for row in tbl['data'] for cell in (row or []) if cell
         )
-        _has_hdr_line = any(_viral_hdr_line.match(ln.strip()) for ln in pd['lines'])
+        _has_hdr_line = any(_VIRAL_HDR_LINE_RE.match(ln.strip()) for ln in pd['lines'])
         if not (_has_hdr_cell or _has_hdr_line):
             continue
 
         # ── Extract viral app from this page (once, not per-table) ──────────
-        app_name = ''
-        app_desc = ''
         app_stats: list[dict] = []
-        name_parts: list[str] = []
-        desc_parts: list[str] = []
-        found_viral_header = False
-
-        for ln in pd['lines']:
-            ln_c = re.sub(r'^[n•]+\s+', '', ln).strip()
-            if _viral_hdr_line.match(ln_c):
-                found_viral_header = True
-                continue
-            if not found_viral_header:
-                continue
-            if re.match(r'^varun singla.*page\s*\d+\s*$', ln_c, re.I):
-                # Page footer — never body text, always terminates the box.
-                break
-            if re.match(r'^([\$£€]?[\d,\.]+[a-zA-Z%]{0,3}\s*)+$', ln_c) or len(ln_c) < 5:
-                # A stat-quad line ("10 $2K 96% 10.0", "0.70s 100K $0.14 $250M")
-                # marks the end of the box's prose once we already have a name
-                # and some description — everything after it is stat labels /
-                # page footer, not body text.
-                if app_name and desc_parts:
-                    break
-                continue
-            if re.search(r'key takeaway|practical takeaway|market signal|tomorrow|generated by|agentic ai daily', ln_c, re.I):
-                break
-            if not app_name:
-                # The first title line must look like a headline; once we're
-                # already mid-title (continuing a wrapped line), the next
-                # fragment can start lowercase (e.g. "solved problem").
-                starts_ok = bool(name_parts) or re.match(r'^[A-Z0-9]', ln_c)
-                if starts_ok and not re.search(r'agentic ai|daily (learning|brief)', ln_c, re.I):
-                    name_parts.append(ln_c)
-                    combined = ' '.join(name_parts)
-                    # A title line ending on an article/preposition ("...for a",
-                    # "...Default for") or a possessive ("...World's") is
-                    # mid-phrase, not a complete title — keep collecting even
-                    # though it ends in lowercase.
-                    ends_midphrase = bool(re.search(
-                        r"\b(a|an|the|for|of|to|and|or|in|on|with|by)$", ln_c, re.I
-                    )) or ln_c.endswith("'s")
-                    if (re.search(r'[a-z]$', ln_c) and not ends_midphrase) or len(combined) > 80:
-                        app_name = combined
-                continue
-            # A short trailing continuation line (the last wrapped fragment of
-            # a sentence, e.g. "on top of one.") is still real body text once
-            # we're already mid-description — only require the >30 length
-            # bar before we have any desc_parts yet, to avoid picking up
-            # stray short labels as the start of the description.
-            if len(ln_c) > 30 or (desc_parts and len(ln_c) > 3):
-                desc_parts.append(ln_c)
-
-        if desc_parts:
-            app_desc = ' '.join(desc_parts)[:1400]
-        if not app_name and name_parts:
-            app_name = ' '.join(name_parts)
+        app_name, app_desc, viral_titled = _read_spotlight(page_data, pi)
 
         # Boxed-table fallback: pdfplumber sometimes merges the whole spotlight box
         # (header + title in row 0, body text in row 1) into its own bordered table,
@@ -2549,7 +2944,7 @@ def parse_pdf(pdf_path: Path) -> dict:
                     app_name = clean(title_raw)
                 desc_cells = [clean(str(c)) for row in tdata[1:] for c in (row or []) if c]
                 if desc_cells:
-                    app_desc = ' '.join(desc_cells)[:1400]
+                    app_desc = _cap_at_sentence(' '.join(desc_cells), _SPOTLIGHT_CAP)
                 break
 
         # Stat box tables on this page
@@ -2562,14 +2957,16 @@ def parse_pdf(pdf_path: Path) -> dict:
 
         # Prose description from tables if still empty
         if not app_desc:
+            longest = ''
             for tbl2 in pd['tables']:
                 for row in tbl2['data']:
                     for cell in (row or []):
                         cell_c = clean_table_cell(cell)
                         if (len(cell_c) > 80
                                 and not re.search(r'viral app of the day|zero.days found|partner network', cell_c, re.I)):
-                            if len(cell_c) > len(app_desc):
-                                app_desc = cell_c[:600]
+                            if len(cell_c) > min(len(longest), 600):
+                                longest = cell_c
+            app_desc = _cap_at_sentence(longest, 600)
 
         # If no stats found in tables, extract stat chips from consecutive short lines on this page
         # Format in text: "v1.1.5\nReleased Apr 29 2026\nMulti-platform\nWeChat/...\nMemory dream\n..."
@@ -2609,7 +3006,7 @@ def parse_pdf(pdf_path: Path) -> dict:
             desc_m = re.search(re.escape(vname) + r'\s+(?:is|was|went|launched).{5,400}', full_text, re.I)
             viral_app = {
                 'name': vname,
-                'description': clean(desc_m.group(0)[:400]) if desc_m else '',
+                'description': _cap_at_sentence(clean(desc_m.group(0)), 400) if desc_m else '',
                 'stats': [],
             }
 
@@ -2829,7 +3226,7 @@ def parse_pdf(pdf_path: Path) -> dict:
             subtitle = ''
     for sec in sections:
         sec['title'] = recase_heading(sec.get('title', ''), corpus)
-    viral_app = normalize_viral(viral_app)
+    viral_app = normalize_viral(viral_app, split=not viral_titled)
     if fm_lede and (not focus_intro or focus_intro[:1].islower()
                     or _norm_text(focus_intro)[:60] in _norm_text(fm_lede)):
         focus_intro = fm_lede

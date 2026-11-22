@@ -26,6 +26,13 @@ Please keep writing the PDF this way, and include these lines — each one feeds
   Without it the site guesses the themes from keywords.
 - **"The concept, explained simply:" and "Why it matters:"** inside each numbered section. These paragraphs are
   extracted into the Concepts glossary and the Review flashcards, so keep the exact phrasing.
+- **`VIRAL / OPEN-SOURCE SPOTLIGHT`** on a line of its own, then the title on its own line(s) in bold, then the
+  text in body type. The parser goes by the type: the bold line(s) under the header are the spotlight's name,
+  everything in body type after them is its description -- across a page break, past the footer -- and the next
+  bold line (`MARKET SIGNAL`, a numbered section, a stat strip) ends the box. So: no bold line inside the text
+  (bold lead-ins such as "Why it is taking off:" within a line are fine), nothing in small or large type, and do
+  not put the title on the header line (`VIRAL / OPEN-SOURCE SPOTLIGHT: FlickReels`) or the box in a bordered
+  table -- the parser reads neither, and that day gets no spotlight.
 - **`PRACTICAL TAKEAWAYS`** as numbered items with a short bold-style title line followed by a one-sentence body.
   Each becomes a Playbook item and a flashcard.
 - **`TOMORROW`** heading followed by "What We're Watching: …" sentences. Feeds the Watching tracker.
@@ -53,18 +60,28 @@ day number when generating the PDF so the two stay aligned.
   unprocessed PDF, merges it (richer entry wins, nothing is overwritten with less), regenerates everything,
   pushes via the GitHub API.
 - `python3 update_site.py --repair [--dry-run] [--force]` — only the repair + regenerate pass, no push.
-  `--dry-run` prints what would change, entry by entry, and writes nothing. `--force` also re-runs the older
-  repair steps on entries that are already current; those are not all idempotent (it re-splits viral-app names
-  that are fine), so use it only when that is what you want.
+  `--dry-run` prints what would change, entry by entry, and writes nothing. `--force` re-runs every repair step
+  on entries that are already at the current schema (about a minute and a half: it opens every PDF). Every step
+  is idempotent, so on repaired data `--repair --dry-run --force` reports 0 entries; if it ever reports more, a
+  repair step is changing its own output, which is a bug -- `check_learnings.py` fails on it. A step that reads
+  from the PDF has to compare what it read as it would be stored (after `scrub_text` / `scrub_entry`); otherwise
+  it puts back a footer that the scrub pass removes again, and reports the same change on every forced run.
 - `python3 update_site.py --parse <pdf>` — print what the parser extracts from one PDF (debugging).
 - `python3 generate_geo.py` — regenerate the static site from `learnings.json` without touching the data.
-- `python3 check_learnings.py` — regression check, a few seconds. Exits 1 if page furniture (the current
-  header/footer or a wording of the older layouts), a mangled ampersand (`D&O;`) or a `&gt;` / `&lt;` printed as
-  text is found in `learnings.json`, in the generated pages, or in a fresh parse of the newest PDF. `--all-pdfs`
-  re-parses every PDF on disk (about two minutes). Run it after a publish or a repair.
+- `python3 check_learnings.py` — regression check, a few seconds. Exits 1 if
+  - page furniture (the current header/footer or a wording of the older layouts), a mangled ampersand (`D&O;`)
+    or a `&gt;` / `&lt;` printed as text is found in `learnings.json`, in the generated pages, or in a fresh
+    parse of the newest PDF;
+  - a spotlight description stops mid-sentence, in `learnings.json` (three known exceptions are listed in the
+    script, with the reason for each) or in a fresh parse;
+  - a forced repair would change stored data: `normalize_viral` over every stored spotlight, and the whole
+    repair over the five newest entries.
 
-Repairs never delete entry text: a replaced title or intro is kept under `title_original` /
-`focus_intro_original`, viral-app names are only re-split from their descriptions, headings are only re-cased.
+  `--all-pdfs` re-parses every PDF on disk and runs the forced repair over every entry (about four minutes).
+  Run it after a publish or a repair.
+
+Repairs never delete entry text: a replaced title, intro or spotlight is kept under `title_original` /
+`focus_intro_original` / `viral_app_original`, and headings are only re-cased.
 The one exception is page furniture, which was never entry content, and is removed outright with no
 `*_original` copy, because a copy would keep the artefact in `learnings.json`:
 
@@ -93,6 +110,21 @@ To add a wording: an exact, case-sensitive pattern in `_OLD_FURNITURE`, a fixed 
 loose shapes in `check_learnings.py` (`OLD_FURNITURE_RE`) do not already cover it — a shape there. The parser for
 the older layouts (`_PAGE_HEADER_RE`, `_FOOTER_RE`) is unchanged, so a fresh parse of a pre-October PDF still
 carries a footer in a few fields; `scrub_entry` runs before anything is stored.
+
+The spotlight (`viral_app`), in the parser and in the repair:
+
+- `name` + `sep` + `description` is the text of the box, exactly. `sep` is what stood between the two when it
+  was more than a space (`". "`, `", "`, `": "`, `" -- "` -- boxes with no title line, "Today's pick: X. Text")
+  and is left out otherwise. Pages print `name` and `description`; `sep` is there so that tidying a name never
+  drops a character. `normalize_viral` does that tidying and may be applied any number of times.
+- A name that ran into its description is cut once, when the PDF is parsed, and only for a box without a bold
+  title line. A stored name is never cut again -- that is what used to move on every forced repair.
+- Where the PDF is on disk, the repair (`repair_spotlight`) holds the stored spotlight against the box in the
+  PDF: if the box contains everything stored, the box is taken (a cut-off description is completed, the title
+  and the dropped comma/colon/full stop come back); if the stored text is cut off and runs past the end of the
+  box into the next section, the box is taken and the stored spotlight goes to `viral_app_original`; anything
+  else is left alone. With no box to complete it from, a description that breaks off is trimmed to its last full
+  sentence and the spotlight as it was goes to `viral_app_original`.
 
 ### ALWAYS push the day's commit to `main`, not just a session feature branch
 
