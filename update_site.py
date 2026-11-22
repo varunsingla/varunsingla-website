@@ -739,6 +739,43 @@ def running_lines(pdf_path) -> list[str]:
         return [text for _, found in sorted(_running_line_bands(pdf).items()) for _, _, text in found]
 
 
+# ── Where the takeaways end ───────────────────────────────────────────────────
+#
+# Three blocks can follow the last takeaway directly: the SELF-TEST (every PDF
+# since 2026-10-15), the "Topics covered so far" recap (the 2026-08-22 PDF) and
+# the sources line. is_section_heading knows none of them (a "Sources" line
+# shorter than 60 characters aside), so until the takeaway extractor learned
+# about them the last takeaway's body ran on through the whole block, and the
+# quiz was published twice: once as self-test cards and once as a
+# 1,500-character paragraph in the Playbook.
+#
+# Each block has its own extractor further down (extract_quiz, extract_recap,
+# extract_sources). The SELF-TEST heading is the line extract_quiz looks for.
+# For the other two, ending the takeaways takes a stricter test than finding
+# the block does: an extractor that picks the wrong line stores a wrong
+# optional string, but a takeaway block that ends too early loses every
+# takeaway after that line. "Source-available licences are not open source; …"
+# and "Topics covered so far tell you where the gaps are; …" are sentences a
+# takeaway may well start with, so only the heading forms count: the recap
+# heading followed by nothing, a bracket, a colon or a dash, and "Sources:"
+# with its colon — every form the PDFs have used.
+_QUIZ_HEADING_RE = re.compile(
+    r'^(?:[n•]\s+)?(self[- ]test|quiz|test yourself|check your understanding)\s*[:.]?\s*$', re.I)
+_RECAP_OR_SOURCES_HEADING_RE = re.compile(
+    r'^(?:topics covered so far\s*(?:\([^)]*\))?\s*(?:$|[:\-—–])|sources\s*:)', re.I)
+
+
+def _starts_end_matter(line: str) -> bool:
+    """True when the line opens the SELF-TEST, the recap or the sources line.
+    A line that starts in lower case never does: it is a sentence wrapping
+    over from the line above ("…close each study session with a short /
+    quiz.")."""
+    line = re.sub(r'^[n•]\s+', '', line.strip())
+    if not line or line[0].islower():
+        return False
+    return bool(_QUIZ_HEADING_RE.match(line) or _RECAP_OR_SOURCES_HEADING_RE.match(line))
+
+
 def _extract_numbered_takeaways(all_flat_lines: list[str]) -> tuple[list[dict], tuple[int, int] | None]:
     """Extract takeaways from the Day ~100+ layout:
 
@@ -748,8 +785,13 @@ def _extract_numbered_takeaways(all_flat_lines: list[str]) -> tuple[list[dict], 
         2. Treat every learning write as a deploy
         <body lines…>
 
-    Returns (items, (start_idx, end_idx)) where the index range covers the
-    takeaway block in all_flat_lines, so section building can skip it.
+    The takeaways end at the next section heading or footer, or earlier at a
+    SELF-TEST / recap / sources line (_starts_end_matter).
+
+    Returns (items, (start_idx, end_idx)) where the index range runs from the
+    heading to that next section heading or footer, so section building can
+    skip it. A SELF-TEST that follows the takeaways is inside the range (its
+    lines are not sections either) but not in the items.
     Returns ([], None) if no such block exists.
     """
     for i, ln in enumerate(all_flat_lines):
@@ -757,19 +799,28 @@ def _extract_numbered_takeaways(all_flat_lines: list[str]) -> tuple[list[dict], 
             continue
         items: list[dict] = []
         current: dict | None = None
+        ended = False      # past the last takeaway, in the block that follows it
         j = i + 1
         while j < len(all_flat_lines):
             l = all_flat_lines[j].strip()
             m_num = re.match(r'^(\d{1,2})[.)]\s+(.+)$', l)
             if m_num:
-                if current:
-                    items.append(current)
-                current = {'title': clean(m_num.group(2)), 'body': []}
+                if not ended:      # "10. Clicking on screens…" in a quiz answer is not a takeaway
+                    if current:
+                        items.append(current)
+                    current = {'title': clean(m_num.group(2)), 'body': []}
             elif _PAGE_HEADER_RE.match(l):
                 j += 1
                 continue
             elif _FOOTER_RE.search(l) or (is_section_heading(l) and not re.match(r'^\d', l)):
                 break
+            elif ended or _starts_end_matter(l):
+                # Nothing from here on is a takeaway. The walk goes on to the
+                # next section heading or footer only so that the range
+                # returned stays what it always was: section building skips
+                # the SELF-TEST lines too, and a wrapped answer line such as
+                # "2026. The providers were not named." is not read as a heading.
+                ended = True
             elif current is not None:
                 # Wrapped title continuation starts lowercase before any body.
                 # extract_text() can wrap a long title mid-sentence onto a line
@@ -809,13 +860,15 @@ def _extract_numbered_takeaways(all_flat_lines: list[str]) -> tuple[list[dict], 
 # optional SELF-TEST block, and (b) existing entries in learnings.json can be
 # repaired in place (repair_all) without losing any text: whenever a stored
 # value is replaced by something that is not a superset of it, the old value is
-# kept under <field>_original. The one exception is page furniture — a running
-# header/footer or sign-off line joined into the text, the ';' of a mangled
-# ampersand, a "&gt;" printed as text — which scrub_entry removes outright (it
-# was never entry content).
+# kept under <field>_original. There are two exceptions, both removed outright:
+# page furniture — a running header/footer or sign-off line joined into the
+# text, the ';' of a mangled ampersand, a "&gt;" printed as text — which was
+# never entry content (scrub_entry), and the self-test (or recap) that ran on
+# into the last takeaway, which is removed only where it is word for word in
+# the entry's own `quiz` (`recap`) field (trim_takeaways).
 
 SCHEMA_VERSION = 3          # bump when repair_entry learns a new, re-runnable fix
-                            # (scrub_entry is not tied to it: see repair_all)
+                            # (scrub_entry and trim_takeaways are not tied to it: see repair_all)
                             #   2  titles, decks, intros, headings, sources, watch list, recap, themes, quiz
                             #   3  spotlight completed from the box in the PDF (repair_spotlight)
 
@@ -1317,7 +1370,7 @@ def extract_themes(all_flat_lines: list[str]) -> list[str]:
 def extract_quiz(all_flat_lines: list[str]) -> list[dict]:
     """SELF-TEST block: 'Q1. question' / 'A1. answer' pairs (answers may wrap)."""
     for i, ln in enumerate(all_flat_lines):
-        if not re.match(r'^(?:[n•]\s+)?(self[- ]test|quiz|test yourself|check your understanding)\s*[:.]?\s*$', ln.strip(), re.I):
+        if not _QUIZ_HEADING_RE.match(ln.strip()):
             continue
         items: list[dict] = []
         cur: dict | None = None
@@ -1586,7 +1639,8 @@ def _store_original(entry: dict, field: str, old_value) -> None:
 # below), a few entries a mangled ampersand ("D&O;") and one a "&gt;" printed
 # as text. scrub_entry takes all of them out.
 #
-# This is the one repair that deletes text without keeping a *_original copy:
+# This is one of the two repairs that delete text without keeping a *_original
+# copy (trim_takeaways, further down, is the other):
 # a page footer was never entry content, and a copy would keep the artefact in
 # learnings.json. What is removed is exactly the footer string (and the ';'
 # after a mangled ampersand); the words on either side are joined by the single
@@ -1765,6 +1819,108 @@ def scrub_entry(entry: dict, totals: dict | None = None) -> list[str]:
         for kind, n in found.items():
             totals[kind] = totals.get(kind, 0) + n
     return [f"{kind} ×{n} ({', '.join(where[kind])})" for kind, n in found.items()]
+
+
+# ── The self-test inside a stored takeaway ────────────────────────────────────
+#
+# Entries parsed between 2026-10-15 and 2026-11-22 carry the whole SELF-TEST in
+# the body of their last takeaway, because the takeaway extractor did not stop
+# at that heading (see _starts_end_matter):
+#
+#     "…it is faster, cheaper and easier to audit. SELF-TEST Q1. What is a
+#      canary token …? A1. A fake secret that … Q6. … A6. …"
+#
+# The same questions and answers are in the entry's `quiz` field, which is where
+# the site takes its self-test cards from. trim_takeaways cuts the body back to
+# the takeaway's own sentence.
+#
+# This is the second repair that deletes text without keeping a *_original copy
+# (scrub_entry is the first). That is acceptable only because nothing is lost:
+# the cut is made when, and only when, everything after the SELF-TEST heading is
+# the text stored in `quiz`, question by question and answer by answer, with
+# nothing but the "Q1." / "A1." labels in between. If anything else follows the
+# heading — a question quiz does not have, an answer that reads differently, a
+# sentence after the last answer — the takeaway is left exactly as it is and
+# reported; check_learnings.py then fails until someone has looked at it.
+#
+# In stored text the heading sits mid-string. It is recognised by its capital
+# and the "Q1." that follows, so "take the quiz in Q1." is not a candidate.
+_QUIZ_RUNON_RE = re.compile(
+    r'(?:^|\s+)(?:S(?i:elf[- ]test)|Q(?i:uiz)|T(?i:est yourself)|C(?i:heck your understanding))'
+    r'\s*[:.]?\s+(?=Q\d{0,2}\s*[.):])')
+# The recap did the same once (2026-08-22: "…make it look good? Topics Covered So
+# Far 146 days in, the recurring threads have been …"). It goes under the same
+# condition: what follows the heading has to be exactly the entry's `recap`.
+# A sentence that merely begins "Topics covered so far …" is not that.
+_RECAP_RUNON_RE = re.compile(r'(?:^|\s+)topics covered so far\s*(?:\([^)]*\))?\s*[:\-—–]?\s+', re.I)
+
+
+def _stored_quiz_items(text: str, quiz) -> int:
+    """How many leading items of `quiz` the text consists of: each question and
+    answer exactly as stored, each behind its 'Q1.' / 'A1.' label, and nothing
+    else. 0 when the text is anything other than that."""
+    rest = ' '.join(text.split())
+    done = 0
+    for item in quiz if isinstance(quiz, list) else []:
+        if not rest:
+            break
+        for letter, key in (('Q', 'q'), ('A', 'a')):
+            stored = ' '.join(str(item.get(key) or '').split()) if isinstance(item, dict) else ''
+            label = re.match(letter + r'\d{0,2}\s*[.):]\s*', rest)
+            if not stored or not label or not rest[label.end():].startswith(stored):
+                return 0
+            rest = rest[label.end() + len(stored):].lstrip()
+        done += 1
+    return 0 if rest else done
+
+
+def _recap_run_on(body: str, recap) -> int | None:
+    """Where the recap begins in a takeaway body that ends with it, heading
+    included. None unless what follows the heading is exactly the stored recap."""
+    recap = ' '.join(recap.split()) if isinstance(recap, str) else ''
+    for heading in _RECAP_RUNON_RE.finditer(body) if recap else ():
+        if ' '.join(body[heading.end():].split()) == recap:
+            return heading.start()
+    return None
+
+
+def trim_takeaways(entry: dict, totals: dict | None = None, unverified: list | None = None) -> list[str]:
+    """Cut the self-test (or the recap) out of a takeaway body it ran on into,
+    in place, when all of the text being removed is stored in entry['quiz']
+    (entry['recap']). Returns what changed ([] when there is nothing to cut).
+    Idempotent, and needs no PDF. A self-test that is not word for word in quiz
+    stays where it is; a line about it is added to `unverified`."""
+    changes: list[str] = []
+    takeaways = entry.get('practical_takeaway')
+    for number, item in enumerate(takeaways if isinstance(takeaways, list) else [], 1):
+        if not isinstance(item, dict) or not isinstance(item.get('body'), str):
+            continue
+        # Whichever block the body ends with goes first, then the one before
+        # it, should a body ever carry both; each cut is verified on its own.
+        while True:
+            body = item['body']
+            found = None       # (what ran on, the field it is stored in, where it begins, detail)
+            start = _recap_run_on(body, entry.get('recap'))
+            if start is not None:
+                found = ('recap', 'recap', start, '')
+            else:
+                heading = _QUIZ_RUNON_RE.search(body)
+                questions = _stored_quiz_items(body[heading.end():], entry.get('quiz')) if heading else 0
+                if questions:
+                    found = ('self-test', 'quiz', heading.start(),
+                             f"{questions} question{'' if questions == 1 else 's'}, ")
+            if not found:
+                break
+            what, field, start, detail = found
+            item['body'] = body[:start].rstrip()
+            changes.append(f"{what} cut from takeaway {number} ({detail}{len(body) - len(item['body'])} characters, "
+                           f"all in {field})")
+            if totals is not None:
+                totals[f'{what} in a takeaway'] = totals.get(f'{what} in a takeaway', 0) + 1
+        if unverified is not None and _QUIZ_RUNON_RE.search(item['body']):
+            unverified.append(f"takeaway {number} runs on into a self-test that is not word for word "
+                              f"in quiz — left as it is")
+    return changes
 
 
 # ── The stored spotlight against the box in the PDF ───────────────────────────
@@ -2089,8 +2245,10 @@ def pdf_lookup(root: Path | None = None) -> dict[str, Path]:
 
 def repair_all(data: dict, root: Path | None = None, force: bool = False, verbose: bool = True) -> list[tuple[str, list[str]]]:
     """Run repair_entry over every stored entry that has not been repaired at
-    the current SCHEMA_VERSION, then scrub page furniture from every entry.
-    Cheap when everything is already current. Returns [(date, changes), …]."""
+    the current SCHEMA_VERSION, then the two text-only passes over every entry:
+    scrub_entry (page furniture) and trim_takeaways (a self-test or recap that
+    ran on into the last takeaway). Cheap when everything is already current.
+    Returns [(date, changes), …]."""
     report: dict[str, list[str]] = {}
     entries = [e for e in data.get('learnings', []) if e.get('title')]
     todo = [e for e in entries if force or int(e.get('schema') or 0) < SCHEMA_VERSION]
@@ -2105,20 +2263,27 @@ def repair_all(data: dict, root: Path | None = None, force: bool = False, verbos
                     print(f"   🔧 {e['date']}: {', '.join(changes)[:160]}")
 
     # Page furniture (header/footer strings of every layout, mangled ampersands,
-    # entities printed as text). This pass is not tied to SCHEMA_VERSION: it
-    # only reads the stored text, costs a few milliseconds and changes nothing
-    # once an entry is clean, so it simply runs over every entry on every call.
+    # entities printed as text), then a self-test or recap that ran on into a
+    # takeaway. These two passes are not tied to SCHEMA_VERSION: they only read
+    # the stored text, cost a few milliseconds and change nothing once an entry
+    # is clean, so they simply run over every entry on every call.
     # (repair_entry is idempotent as well -- check_learnings.py holds it to
     # that -- but it opens the entry's PDF, so it stays behind the version check.)
+    # The scrub goes first: trim_takeaways compares a takeaway with `quiz`, and
+    # both must have lost their page footers by then.
     totals: dict[str, int] = {}
     for e in data.get('learnings', []):
         if not isinstance(e, dict):
             continue
-        changes = scrub_entry(e, totals)
+        unverified: list[str] = []
+        changes = scrub_entry(e, totals) + trim_takeaways(e, totals, unverified)
         if changes:
             report.setdefault(str(e.get('date', '?')), []).extend(changes)
             if verbose:
                 print(f"   🧹 {e.get('date', '?')}: {', '.join(changes)[:160]}")
+        if verbose:
+            for note in unverified:
+                print(f"   ⚠️  {e.get('date', '?')}: {note}")
     if totals and verbose:
         print("   🧹 total: " + ', '.join(f"{kind} ×{n}" for kind, n in totals.items()))
     return list(report.items())
@@ -3476,10 +3641,11 @@ def main():
     # Fixes titles ("AI Learning -- Day N" → the deck line), adds subtitles,
     # sources, the TOMORROW watch list, recaps and themes from the PDFs on disk,
     # re-cases ALL-CAPS headings and de-duplicates intros. Originals are kept
-    # under *_original fields, so nothing is lost. It also removes page
-    # furniture (the PDF's header/footer lines in every layout used so far,
-    # mangled ampersands, entities printed as text) from the stored text — the
-    # one thing that is deleted without keeping a copy.
+    # under *_original fields, so nothing is lost. Two things are deleted
+    # without keeping a copy: page furniture (the PDF's header/footer lines in
+    # every layout used so far, mangled ampersands, entities printed as text),
+    # and a self-test or recap that ran on into the last takeaway where all of
+    # it is also stored in `quiz` / `recap`.
     if "--repair" in args:
         report = repair_all(data, SCRIPT_DIR, force="--force" in args)
         print(f"🔧  Repair pass: {len(report)} entr{'y' if len(report) == 1 else 'ies'} changed")

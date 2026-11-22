@@ -37,7 +37,12 @@ Please keep writing the PDF this way, and include these lines — each one feeds
   Each becomes a Playbook item and a flashcard.
 - **`TOMORROW`** heading followed by "What We're Watching: …" sentences. Feeds the Watching tracker.
 - **`SELF-TEST`** (optional, recommended): three to five pairs in the form `Q1. question` / `A1. answer`. These
-  become self-test cards on the entry page and in Review.
+  become self-test cards on the entry page and in Review. Keep the heading alone on its line and starting
+  with a capital: when the self-test comes straight after the takeaways, that line is where the parser ends
+  the last takeaway. (`TOPICS COVERED SO FAR` and `Sources:` end the takeaways too, in their heading forms
+  only: the recap heading with nothing after it but a bracket, a colon or a dash, and `Sources` with its
+  colon. A new kind of block placed after the takeaways needs its heading added to `_starts_end_matter` in
+  `update_site.py` first, or it is read as part of the last takeaway.)
 - **`Sources:`** line at the end naming the outlets/pages used (URLs welcome; they are auto-linked).
 - **`TOPICS COVERED SO FAR (RECAP)`** paragraph (as on Day 199/200) — the latest one is shown on Start Here.
 - **Running header/footer: small print, in the page margin, the same on every page.** The current header is
@@ -56,9 +61,9 @@ day number when generating the PDF so the two stay aligned.
 ### Publishing and repair
 
 - `python3 update_site.py` — normal daily run: repairs any stored entry that predates the current schema
-  (idempotent, no-op once current), removes page furniture from the stored text (see below), parses the newest
-  unprocessed PDF, merges it (richer entry wins, nothing is overwritten with less), regenerates everything,
-  pushes via the GitHub API.
+  (idempotent, no-op once current), removes page furniture and a self-test that ran on into a takeaway from the
+  stored text (see below), parses the newest unprocessed PDF, merges it (richer entry wins, nothing is
+  overwritten with less), regenerates everything, pushes via the GitHub API.
 - `python3 update_site.py --repair [--dry-run] [--force]` — only the repair + regenerate pass, no push.
   `--dry-run` prints what would change, entry by entry, and writes nothing. `--force` re-runs every repair step
   on entries that are already at the current schema (about a minute and a half: it opens every PDF). Every step
@@ -72,6 +77,9 @@ day number when generating the PDF so the two stay aligned.
   - page furniture (the current header/footer or a wording of the older layouts), a mangled ampersand (`D&O;`)
     or a `&gt;` / `&lt;` printed as text is found in `learnings.json`, in the generated pages, or in a fresh
     parse of the newest PDF;
+  - a takeaway, stored or freshly parsed, carries self-test text (the `SELF-TEST` heading in capitals, or a
+    `Q1.` … `A1.` pair) or repeats its entry's `recap` or `sources` word for word, or `SELF-TEST Q1.` turns up
+    in a generated page;
   - a spotlight description stops mid-sentence, in `learnings.json` (three known exceptions are listed in the
     script, with the reason for each) or in a fresh parse;
   - a forced repair would change stored data: `normalize_viral` over every stored spotlight, and the whole
@@ -82,7 +90,11 @@ day number when generating the PDF so the two stay aligned.
 
 Repairs never delete entry text: a replaced title, intro or spotlight is kept under `title_original` /
 `focus_intro_original` / `viral_app_original`, and headings are only re-cased.
-The one exception is page furniture, which was never entry content, and is removed outright with no
+There are two exceptions. Both are text-only passes that read nothing but the stored entry, so they run over
+every entry on every run, whatever the schema version (they need no `SCHEMA_VERSION` bump; that is for repair
+steps that open the entry's PDF).
+
+**Exception 1: page furniture, which was never entry content** (`scrub_entry`). It is removed outright with no
 `*_original` copy, because a copy would keep the artefact in `learnings.json`:
 
 - the PDF's running header/footer where it got joined into the text (`AI Learning -- Day N | YYYY-MM-DD | Page N`,
@@ -96,9 +108,8 @@ The one exception is page furniture, which was never entry content, and is remov
 
 Exactly those strings go and the words on either side are joined. A paragraph or bullet that was nothing but a
 footer is dropped, and so is a takeaway whose body was nothing but a footer when its title is only the cut-off
-start of that body; a takeaway with a title of its own keeps the title, and a table cell keeps its place. This
-pass (`scrub_entry`) reads only the stored text, so it runs over every entry on every run, whatever the schema
-version. It walks `*_original` fields too; the patterns are written so that an old page-1 title kept there
+start of that body; a takeaway with a title of its own keeps the title, and a table cell keeps its place. The
+pass walks `*_original` fields too; the patterns are written so that an old page-1 title kept there
 (`AI Daily Learning -- Day 98`) does not match.
 
 Left alone on purpose, because removing them is a decision about content rather than furniture: the page-1
@@ -110,6 +121,20 @@ To add a wording: an exact, case-sensitive pattern in `_OLD_FURNITURE`, a fixed 
 loose shapes in `check_learnings.py` (`OLD_FURNITURE_RE`) do not already cover it — a shape there. The parser for
 the older layouts (`_PAGE_HEADER_RE`, `_FOOTER_RE`) is unchanged, so a fresh parse of a pre-October PDF still
 carries a footer in a few fields; `scrub_entry` runs before anything is stored.
+
+**Exception 2: a self-test that ran on into the last takeaway** (`trim_takeaways`). Until 2026-11-22 the parser
+did not end the takeaways at the `SELF-TEST` heading, so the entries from 2026-10-15 on stored the whole quiz
+twice: in `quiz`, and as `… SELF-TEST Q1. … A1. …` at the end of the last takeaway's body. That copy is cut out,
+again with no `*_original`, and only where nothing is lost: everything after the heading has to be, question by
+question and answer by answer, the text stored in the same entry's `quiz` (the `Q1.` / `A1.` labels aside). If
+anything else follows the heading, the takeaway is left exactly as it is, `--repair` prints a warning for it,
+and `check_learnings.py` fails until someone has looked at it.
+
+The recap did the same once (2026-08-22, `… Topics Covered So Far 146 days in, …`) and is cut under the same
+condition: what follows the heading has to be exactly that entry's `recap`. There is no warning for a recap that
+reads differently — it is simply left alone, and the check only catches a word-for-word copy. Note what this
+means on the site: the quiz is still shown (as cards), but an entry page never shows its recap; only Start Here
+shows the newest one. The 2026-08-22 recap is therefore in `learnings.json` only, like every other day's.
 
 The spotlight (`viral_app`), in the parser and in the repair:
 
