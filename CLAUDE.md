@@ -189,11 +189,7 @@ These carry model line-ups, prices and benchmark scores, so they go stale unless
   must change with them.
 - `ai-tokenomics/index.html` — the price table (`#pricingTable`), the four scenario cards and the calculator
   `<select id="calcModel">` must agree with each other; recompute the scenario totals whenever a price changes.
-- `tokenizer.html` — never edit its sections by hand. After changing the tokenomics page run
-  `python3 sync_tokenizer.py` (`--check` reports whether it is out of date without writing). It copies everything
-  between the `01 FUNDAMENTALS` and `FOOTER` markers and re-stamps the month; the page's own head, hero, footer
-  and `style-tokenizer.css` stay as they are. A provider badge new to the table needs a `.provider.<name>` rule in
-  both `ai-tokenomics/style.css` and `style-tokenizer.css`.
+- `tokenizer.html` is only a redirect to `/ai-tokenomics/` (the two pages were duplicates; Tokenomics is the one kept).
 - `about/index.html` — hand-written, except the entry count between the `<!--GEO:ENTRY-COUNT-->` markers, which
   `generate_geo.py` rewrites on every run. Keep the markers.
 - `model-team-evaluator.html` in the site root is only a redirect to the `/tools/` page.

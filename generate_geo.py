@@ -527,9 +527,9 @@ FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n'
          '&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..600;'
          '1,6..72,200..500&display=swap" rel="stylesheet">')
 
-NAV_ITEMS = [('Journal', '/'), ('Archive', '/entries/'), ('Playbook', '/playbook/'), ('Concepts', '/concepts/'),
+NAV_ITEMS = [('Home', '/'), ('Archive', '/entries/'), ('Playbook', '/playbook/'), ('Concepts', '/concepts/'),
              ('Watching', '/watching/'), ('Review', '/review/'), ('Start Here', '/start/'),
-             ('Tokenizer', '/tokenizer.html'), ('Tokenomics', '/ai-tokenomics/'),
+             ('Tokenomics', '/ai-tokenomics/'),
              ('Model Evaluator', '/tools/model-team-evaluator.html'), ('About', '/about/')]
 
 
@@ -554,7 +554,7 @@ def page_footer() -> str:
     return f"""<footer class="foot"><div class="foot-in">
   <div><span class="brand-mark" style="display:inline-flex;width:26px;height:26px;font-size:11px;border-radius:6px;vertical-align:middle;margin-right:8px;">VS</span>{AUTHOR} · Singapore · Learning in public</div>
   <div class="foot-links">
-    <a href="/weekly/">Weekly digest</a><a href="/tokenizer.html">Tokenizer</a><a href="/ai-tokenomics/">Tokenomics</a>
+    <a href="/weekly/">Weekly digest</a><a href="/ai-tokenomics/">Tokenomics</a>
     <a href="/tools/model-team-evaluator.html">Model Evaluator</a><a href="{SITE}/feed.xml">RSS</a><a href="{SITE}/llms.txt">llms.txt</a>
   </div>
   <div>Updated daily · © 2026</div>
@@ -1016,7 +1016,7 @@ def render_start(entries: list[dict], stats: dict) -> str:
       <li><a href="/watching/">Watching</a> — what each entry said to watch next, and which later entries followed up.</li>
       <li><a href="/review/">Review</a> — flashcards built from the takeaways, concepts and self-tests, for spaced repetition.</li>
       <li><a href="/weekly/">Weekly digest</a> — one page per week when daily is too much.</li>
-      <li><a href="/tokenizer.html">Tokenizer</a>, <a href="/ai-tokenomics/">Tokenomics</a> and the <a href="/tools/model-team-evaluator.html">Model Team Evaluator</a> — tools for the cost side of agents.</li>
+      <li><a href="/ai-tokenomics/">AI Tokenomics</a> (token costs, price table and calculator) and the <a href="/tools/model-team-evaluator.html">Model Team Evaluator</a> — tools for the cost side of agents.</li>
       <li><a href="{SITE}/feed.xml">RSS</a> and <a href="{SITE}/llms.txt">llms.txt</a> for readers and machines.</li>
     </ul>
   </section>
@@ -1284,8 +1284,7 @@ def render_llms_txt(entries: list[dict], stats: dict) -> str:
         "",
         "## Tools",
         "",
-        f"- [LLM Tokenizer & API Cost Calculator]({SITE}/tokenizer.html): compare tokenization and API costs across models",
-        f"- [AI Tokenomics]({SITE}/ai-tokenomics/): interactive dashboard on AI inference economics",
+        f"- [AI Tokenomics]({SITE}/ai-tokenomics/): token cost models, current provider pricing and an API cost calculator",
         f"- [Model Team Evaluator]({SITE}/tools/model-team-evaluator.html): pick the right mix of AI models for a team",
         "",
         "## Optional",
@@ -1412,7 +1411,6 @@ def render_sitemap(entries: list[dict], week_keys: list[str]) -> str:
         (f"{SITE}/weekly/", newest, 'weekly', '0.7'),
         (f"{SITE}/review/", newest, 'weekly', '0.6'),
         (f"{SITE}/about/", newest, 'monthly', '0.8'),
-        (f"{SITE}/tokenizer.html", newest, 'monthly', '0.8'),
         (f"{SITE}/ai-tokenomics/", newest, 'monthly', '0.7'),
         (f"{SITE}/tools/model-team-evaluator.html", newest, 'monthly', '0.7'),
     ]
@@ -1476,7 +1474,7 @@ def render_static_block(entries: list[dict], stats: dict) -> str:
   <p><a href="/start/">Start here</a> · <a href="/entries/">Browse the full archive</a> · <a href="/playbook/">Playbook</a> ·
   <a href="/concepts/">Concepts</a> · <a href="/watching/">What we're watching</a> · <a href="/weekly/">Weekly digest</a> ·
   <a href="/review/">Review</a> · <a href="/about/">About Varun Singla</a> ·
-  <a href="/tokenizer.html">LLM Tokenizer &amp; Cost Calculator</a> · <a href="/ai-tokenomics/">AI Tokenomics</a> ·
+  <a href="/ai-tokenomics/">AI Tokenomics</a> ·
   <a href="/tools/model-team-evaluator.html">Model Team Evaluator</a> · <a href="/feed.xml">RSS</a> · <a href="/llms.txt">llms.txt</a></p>
   <h2 style="font-family:var(--serif);font-weight:500;">Latest entry — Day {newest['_day']}, {long_date(newest['date'])}</h2>
   <p><a href="/entries/{newest['date']}.html"><strong>{esc(newest['title'])}</strong></a><br>{esc(newest['_sub'] or newest['_excerpt'])}</p>
@@ -1501,7 +1499,7 @@ def update_index_html(root: Path, entries: list[dict], stats: dict) -> str | Non
         return None
     text = _splice(text, STATIC_BEGIN, STATIC_END, render_static_block(entries, stats))
     text = _splice(text, CSS_BEGIN, CSS_END, CSS_BEGIN + SITE_CSS + CSS_END)
-    text = _splice(text, MAST_BEGIN, MAST_END, MAST_BEGIN + '\n' + masthead('Journal') + '\n' + MAST_END)
+    text = _splice(text, MAST_BEGIN, MAST_END, MAST_BEGIN + '\n' + masthead('Home') + '\n' + MAST_END)
     text = _splice(text, FOOT_BEGIN, FOOT_END, FOOT_BEGIN + '\n' + page_footer() + '\n' + FOOT_END)
     version = f"{stats['latest']}-{stats['entries']}"
     text = re.sub(r'<meta name="journal-data-version" content="[^"]*">',
