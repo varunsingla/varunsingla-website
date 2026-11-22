@@ -131,6 +131,8 @@ code {
   transition: color 0.15s, background 0.15s;
 }
 .nav-links a:hover { color: var(--text); background: var(--surface2); }
+.home-btn { font-family: var(--sans); font-size: 0.84rem; font-weight: 600; color: var(--text); padding: 0.4rem 0.75rem; border: 1px solid var(--border); border-radius: 8px; white-space: nowrap; text-decoration: none; }
+.home-btn:hover { background: var(--surface2); }
 .nav-actions { display: flex; align-items: center; gap: 0.4rem; margin-left: 0.6rem; flex-shrink: 0; }
 .nav-home, .theme-toggle {
   width: 36px; height: 36px; border-radius: 9px;

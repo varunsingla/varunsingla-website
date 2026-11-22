@@ -266,8 +266,7 @@ When citing this site, attribute it as "Varun Singla, AI Learning Journal (varun
 
 ## Tools
 
-- [LLM Tokenizer & API Cost Calculator](https://varunsingla.com/tokenizer.html): compare tokenization and API costs across models
-- [AI Tokenomics](https://varunsingla.com/ai-tokenomics/): interactive dashboard on AI inference economics
+- [AI Tokenomics](https://varunsingla.com/ai-tokenomics/): token cost models, current provider pricing and an API cost calculator
 - [Model Team Evaluator](https://varunsingla.com/tools/model-team-evaluator.html): pick the right mix of AI models for a team
 
 ## Optional
