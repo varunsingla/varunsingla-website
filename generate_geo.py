@@ -2031,6 +2031,10 @@ def update_index_html(root: Path, entries: list[dict], stats: dict) -> str | Non
     version = f"{stats['latest']}-{stats['entries']}"
     text = re.sub(r'<meta name="journal-data-version" content="[^"]*">',
                   f'<meta name="journal-data-version" content="{version}">', text)
+    # The page script fetches /index.json?v=<version>; the preload must name the same address or the
+    # browser downloads the index twice.
+    text = re.sub(r'<link rel="preload" href="/index\.json[^"]*" as="fetch"',
+                  f'<link rel="preload" href="/index.json?v={version}" as="fetch"', text)
     return text
 
 
