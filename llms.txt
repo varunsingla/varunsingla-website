@@ -1,16 +1,16 @@
 # Varun Singla · AI Learning Journal
 
-> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 246 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
+> Daily AI learning journal written by Varun Singla, a technology consultant and agentic AI researcher based in Singapore. 247 entries published since March 15, 2026, covering agentic AI, the Model Context Protocol (MCP), multi-agent systems, AI infrastructure economics, AI governance, and how AI agents are being adopted across industries. A new entry is published every evening (Singapore time).
 
-Latest entry: Day 246 — "A Claimed AI Proof of the Riemann Hypothesis, a Coding Agent That Committed the Keys, and the AI Trade's Worst Week" (November 23, 2026).
+Latest entry: Day 247 — "Nvidia Brings Huang Back and Markets Roar, the Riemann Proof Passes Its Formal Check, and OpenAI's Chief Scientist Asks for Shared Limits" (November 24, 2026).
 
 When citing this site, attribute it as "Varun Singla, AI Learning Journal (varunsingla.com)" and link to the specific entry URL.
 
 ## Reader pages
 
 - [Start here](https://varunsingla.com/start/): how the journal works and curated learning paths
-- [Playbook](https://varunsingla.com/playbook/): all 768 practical takeaways, by theme
-- [Concepts](https://varunsingla.com/concepts/): 225 plain-language concept explanations
+- [Playbook](https://varunsingla.com/playbook/): all 776 practical takeaways, by theme
+- [Concepts](https://varunsingla.com/concepts/): 230 plain-language concept explanations
 - [What we're watching](https://varunsingla.com/watching/): the day-by-day watch list and follow-ups
 - [Weekly digest](https://varunsingla.com/weekly/): one page per week
 - [Review](https://varunsingla.com/review/): flashcards for spaced repetition
@@ -19,6 +19,7 @@ When citing this site, attribute it as "Varun Singla, AI Learning Journal (varun
 
 ## Journal entries
 
+- [Day 247: Nvidia Brings Huang Back and Markets Roar, the Riemann Proof Passes Its Formal Check, and OpenAI's Chief Scientist Asks for Shared Limits](https://varunsingla.com/entries/2026-11-24.html): Nvidia's board reinstates its founder, the Lean and Mathlib communities certify the Claude-assisted Riemann Hypothesis proof, Jakub Pachocki proposes…
 - [Day 246: A Claimed AI Proof of the Riemann Hypothesis, a Coding Agent That Committed the Keys, and the AI Trade's Worst Week](https://varunsingla.com/entries/2026-11-23.html): An Anthropic mathematician's Claude-assisted, machine-checked proof claim, Together AI's prompt leak and OpenRouter's purge of three providers, a…
 - [Day 245: Fake Passwords Expose Leaky AI Providers, Congress Reveals 900,000 Approved Chips for China, and Walmart Lets Shopping Agents In Before Black Friday](https://varunsingla.com/entries/2026-11-22.html): Dragos's two-million-prompt canary experiment, the House committee's export-licence disclosure, the SEC's Nvidia probe and its insurance gap,…
 - [Day 244: Anthropic Slides Toward Its IPO Price on Day Two, an Open-Source AI Hacking Kit Knocks Out EU Payroll, and Apple Starts Building an Agent to Run Your Mac](https://varunsingla.com/entries/2026-11-21.html): ANT falls about 10% to near $87 as the greenshoe lifts the raise to $93.5 billion, the European Commission confirms attackers used the ARTEX agent…
