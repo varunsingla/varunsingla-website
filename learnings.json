@@ -6,6 +6,134 @@
   },
   "learnings": [
     {
+      "date": "2026-11-26",
+      "display_date": "November 26, 2026",
+      "issue": 243,
+      "title": "Google's AI Agents Post Six Maths Papers, Workspace Gets a Door for Agents, and 42 States Fight a Sale of Chatbot Chats",
+      "focus_intro": "Cogentic claims a proven speed limit for factoring that experts say leaves encryption untouched, DeepMind lets agents steer part of Gemini's experiment compute, Google tells agents to reach Gmail, Drive and Calendar through MCP by February, 42 attorneys general oppose Character.AI's bankruptcy auction, Anthropic's study of 58 firms finds review is the bottleneck, Tidal bans fully AI-made music, and diagram-design teaches agents to draw.",
+      "viral_app": {
+        "name": "Diagram-design: a skill that makes coding agents draw clean, consistent diagrams",
+        "description": "diagram-design (github.com/cathrynlavery/diagram-design) is an open-source skill, a folder of instructions and examples that a coding agent loads when a task calls for it. You describe a diagram in plain language, such as a system architecture, a flowchart, a timeline or a database layout, and the agent picks one of 52 diagram types, states its plan and writes a single web page with the drawing inside it. The file opens offline in any browser with no extra software, and can be exported as an image. The skill's value is its rules. It allows one accent colour used on one or two elements, three typefaces, thin borders, no shadows, and positions that all fall on a grid of four, so diagrams made on different days look like one set. It can redraw existing draw.io, Mermaid, Excalidraw and some PlantUML files in the same style, and can pick up a company's colours and fonts from its website. It installs into Claude Code as a plugin and works with Codex, GitHub Copilot, Cursor and others. The repository page showed about 73,100 stars and 4,900 forks when we read it, under the MIT licence, and one tracker counted 1,133 new stars on November 25. Why it is taking off: Agents write documents and plans all day, and their diagrams have been the weak part: cluttered, inconsistent and obviously machine-made. This skill shows that the fix is a tight set of design constraints and worked examples, not a bigger model. It is also another sign that skills, small packages of know-how such as Addy Osmani's agent-skills (Day 231), are how expertise is now shared between agent users. The caveats come from the project's own page: quality depends on the model, the same request can come out with a different layout each time, and the result is a finished picture, not an editable source, so the author recommends Mermaid for documents that live in a code repository and change often. Also trending: Alibaba's Open Code Review, which pairs fixed rule checks with an AI reviewer and trades some recall for fewer false alarms, and minimind (Day 239), which trains a 64-million-parameter language model from scratch in about two hours on one graphics card.",
+        "stats": []
+      },
+      "stats": [],
+      "sections": [
+        {
+          "title": "1) Google's Cogentic Posts Six AI-Written Maths Papers",
+          "paragraphs": [
+            "On November 25 Google Research added six mathematics papers to its public GitHub repository, each attributed to Cogentic, a system in which several AI agents work together on a proof, according to press reports. Most reports say it runs on Gemini 4; one says Gemini 3.1 Pro with an early Gemini 4 model, and Google has not said which model produced these papers. The lead paper claims that any whole number can be split into its prime factors within a stated time limit that is proven outright, with no unproven assumptions. Other papers claim a speed-up for the discrete logarithm problem in certain number systems, a fast method for finding near-stable strategies in two-player games (within one fifth of a Nash equilibrium), and results on the log-rank conjecture and edge reconstruction. None has been peer reviewed. Cogentic's own paper is reported to say that domain experts checked each result, which is human review; the machine-checkable versions in the Lean proof language are promised for later and are not yet public. Computer scientist Scott Aaronson is quoted as saying the papers contain \"nothing of practical relevance for cryptography\". The concept, explained simply: A proven bound and a practical speed are different things. Much online encryption rests on the fact that multiplying two large primes is easy and undoing it, factoring, is slow. The fastest factoring method in use works well, but its speed estimate leans on assumptions nobody has proved. Think of two couriers. One nearly always delivers in two days but promises nothing. The other gives a written guarantee of delivery within 105 days. The guarantee is new and real, but no parcel arrives sooner. That is the reported result: commentators say the proven limit carries a constant of 105 where the practical method's estimate has about 1.9, and because that number sits in an exponent, the guaranteed method would be far slower at real key sizes. Encryption is no weaker today than it was on Tuesday. Why it matters: On Day 241 one AI-assisted proof passed a formal check after days of work by the Lean community. Now six papers arrive in a day with no machine check attached. AI can produce candidate mathematics faster than people or proof checkers can confirm it, so the scarce step is verification. Treat headlines about AI and encryption with care, and treat an unchecked proof as a claim, whoever or whatever wrote it."
+          ]
+        },
+        {
+          "title": "2) DeepMind Lets Agents Steer Part of Gemini's Compute",
+          "paragraphs": [
+            "Koray Kavukcuoglu, who leads Gemini development at Google DeepMind, said on the company's podcast that AI agents now control part of the computing power used to run experiments for the next Gemini model, according to The Decoder and outlets citing it. He also said the lab is still far from recursive self-improvement. He did not say what share of compute the agents control or which kinds of experiment they run. The same coverage says DeepMind deliberately leaves the agents' written reasoning, their chain of thought, out of training so that people can review it. Most reports date the remarks to this week; one says the episode came out on November 19.",
+            "The concept, explained simply: Recursive self-improvement means an AI that improves its own successor, which improves the next one, in a loop that no longer needs people. What is described here is narrower: automated experimentation. Picture a lab assistant who is allowed to book the equipment and run tests overnight. That is different from an assistant who redesigns the lab and hires their own replacement. People still set the goals and decide what ships. The second idea is keeping reasoning readable. A model's chain of thought is the working notes it writes before acting. If you grade those notes during training, the model can learn to write notes that look good instead of notes that show what it is doing. Leaving them ungraded keeps them a more honest window.",
+            "Why it matters: Compute is the scarcest resource inside an AI lab, so letting agents spend some of it is real delegation, not a demo. It also explains why controls such as OpenAI's 35-second off switch for research workloads (Day 229) are being built now. The questions to ask of any lab making this claim are how much the agents control, what limits apply and who can stop a run. For your own organisation the lesson is the same at small scale: give an agent a budget only with a cap, a log and a person who reads it."
+          ]
+        },
+        {
+          "title": "3) Google Sets an MCP-Only Door for Workspace Agents",
+          "paragraphs": [
+            "On November 24 Google made its Workspace MCP servers and an official command-line tool generally available, according to press and developer coverage. With them came a rule: from February 1, 2027, AI agents must reach Workspace data through these servers or the command-line tool, not through the general programming interfaces (REST APIs) that other software uses, and Google says it will enforce this technically. An agent must identify itself with a setting called is_agentic when it asks for access, and the MCP servers are reported to refuse clients that are not marked as agents. A free Standard tier and a paid Scaled tier apply first to Gmail, Drive and Calendar, with billing for the Scaled tier starting April 1, 2027. The concept, explained simply: MCP, the Model Context Protocol, is a standard plug that lets an AI application use outside tools. The new part is a separate, labelled entrance. Think of an office building where couriers must use the loading dock, sign in as couriers and have their visits logged, while staff use the front door. Both get in, but the building now knows which visitors are couriers, can limit what they carry and can charge for heavy use. Declaring agent identity is the sign-in step: software says it is an agent acting for a person, so an administrator can see, restrict or switch off agent access without touching ordinary apps. Why it matters: This is the first large platform we have seen make MCP mandatory for agents and not just available. It fits the pattern of websites locking out unlabelled agents (Day 230) and Walmart's Agent Gateway (Day 239): platforms want agents on a channel they can meter and govern. Any team with scripts or agents that read mail or files through Google's older interfaces should check before February 1 whether those count as agents. The open question is the definition, since the label is self-declared."
+          ]
+        },
+        {
+          "title": "4) States Fight Character.AI's Bankruptcy Chat Auction",
+          "paragraphs": [
+            "A bipartisan group of 42 state attorneys general has asked a bankruptcy court to reject Character.AI's planned sale of its user data, according to press reports. The companion-chatbot company filed for Chapter 11 bankruptcy in October, and an auction is set for December 1. The states say the data covers chat histories from more than 21 million US accounts, more than 2.1 million of them belonging to minors, along with IP addresses and other metadata; reports add that profiles can carry risk scores the company gave to flagged users. The opening bidder, Smirks and Pangs Acquisition LLC, was formed one day before it was chosen and has not disclosed its funding. The states argue that a buyer would not be bound by Character.AI's privacy promises and that the company had told users their data would not be sold. California's attorney general said any sale must leave out children's chats and other sensitive data. The company has said it is not a data broker. We found no ruling yet. The concept, explained simply: When a company goes bankrupt, everything of value becomes an asset to be sold so that creditors are repaid, and customer data counts. A privacy policy is a promise made by the company. If the company is broken up, whether that promise travels with the data is for the court to decide. It is like a doctor's surgery that closes and sells its patient files along with the furniture: the new owner never made the patients any promise. Courts can attach conditions to such a sale or carve data out of it, which is what the states are asking for.",
+            "Why it matters: Conversations with a companion chatbot are among the most personal records a person creates, and here many belong to children. The wider point reaches every AI product. After the sell-off of Day 240, some AI vendors will fail or be bought, and what you typed into them is part of what gets sold. Before trusting a service with sensitive material, check what its terms say about a sale or insolvency, and delete what you can while the company still answers."
+          ]
+        },
+        {
+          "title": "5) Anthropic's Study of 58 Firms Finds Review Is the Bottleneck",
+          "paragraphs": [
+            "Anthropic published a report called Working with AI, based on 66 interviews across 58 US companies and covering nearly 300 uses of AI at work, according to press summaries. Interviewees said 55% of those uses raised output or quality, while 19% had delivered no business value so far. The obstacle mentioned most often was the volume of AI output that needs reviewing (49 mentions), ahead of employee resistance (43) and the need for expert review (42). Two thirds of the companies said they are hiring fewer people because of AI. Only two reported layoffs directly tied to AI, and five had dismissed workers who refused to use it. The companies were picked for variety and are not a representative sample, and the value ratings came from what interviewees said, not from measured tests. Anthropic also sells the tools in question.",
+            "The concept, explained simply: A process moves only as fast as its slowest step, which is called the bottleneck. Fit a kitchen with an oven twice as fast and the restaurant serves no more meals if there is still one waiter. AI makes drafts, code and analyses quickly, but someone must still check them, so the queue moves from making to checking. The firms that reported the most value were said to have reorganised the work around that fact, deciding what needs expert review and what does not, and not simply handing out tools. Why it matters: This is yesterday's Claude Ship story seen from the customer's side, and the same shape as today's maths papers: production is cheap and verification is scarce. It also refines the jobs picture from Day 228. The common effect in this sample is slower hiring, not layoffs, which is harder to see and falls on people who were never taken on. Read the percentages as testimony from a vendor's study, and measure your own use cases before quoting them."
+          ]
+        },
+        {
+          "title": "6) Tidal Bans Fully AI-Generated Music",
+          "paragraphs": [
+            "The music-streaming service Tidal said it will reject and remove tracks made wholly by AI from December 9, according to its own post as reported by the press. Tidal said that over the past 90 days 43% of all tracks delivered to it were detected as wholly AI-generated, and that about 27 million tracks in its catalogue carry that tag, 6.3% of everything on the service; some outlets give 29 million. Music that was made with help from AI but by a person stays allowed. Spotify and Apple Music label such tracks or keep them out of recommendations, but still accept them. The concept, explained simply: Streaming services mostly pay from a shared pot. Subscription money goes into one pool each month and is divided according to each track's share of all plays. So a flood of machine-made tracks does not need to be popular to matter: every play it gathers, sometimes from automated listeners, takes a slice that would have gone to working musicians. When making a track costs almost nothing, the service has to act as a filter. The filter is a detector, software that estimates whether audio was machine-made, and detectors make mistakes in both directions. Why it matters: Tidal is the first large music service we have seen ban this material where its bigger rivals label it. The same pressure applies wherever AI makes supply nearly free, including app stores, book shops and job applications. Two things deserve attention: how Tidal draws the line between generated and assisted, and how an artist who is wrongly flagged can appeal. A ban is only as fair as its error handling."
+          ]
+        }
+      ],
+      "market_signal": "The signal is that producing AI output is no longer the constraint, and the value is moving to whoever checks, labels and governs it. Google's agents produced six papers in a day and the world's mathematicians now have to verify them, while Anthropic's own customers name review as their main obstacle. Google is building a metered entrance for agents and will charge for heavy use from April, and Tidal is spending effort to keep machine-made supply out. A failed AI company's most valuable remaining asset turns out to be its users' private chats. One digest reports that Anthropic's shares closed below their $83 IPO price this week, and October reports put a second Nscale compute deal of about $45 billion in talks; we could confirm neither as of today. Expect platform owners to price agent access separately, more marketplaces to filter generated content, and buyers of AI services to ask what happens to their data if the vendor fails.",
+      "practical_takeaway": [
+        {
+          "title": "Separate a proven guarantee from a practical speed-up.",
+          "body": "When a headline says AI cracked a hard problem, ask whether anything now runs faster in practice or whether a limit was proved on paper, and wait for an independent check either way."
+        },
+        {
+          "title": "Give agents a budget only with a cap, a log and an owner.",
+          "body": "If agents may spend compute or money, set a hard limit, record every decision and name the person who reviews the record."
+        },
+        {
+          "title": "Keep an agent's reasoning readable.",
+          "body": "Store the reasoning trace of important agent runs and do not reward or tune the agent on how those notes look, so they stay useful for oversight."
+        },
+        {
+          "title": "Check your Google Workspace integrations before February 1, 2027.",
+          "body": "List every script, bot and agent that reads Gmail, Drive or Calendar, decide which count as agents, and plan their move to the MCP servers or the official command-line tool."
+        },
+        {
+          "title": "Ask every AI vendor what happens to your data if it is sold or fails.",
+          "body": "Look for a clause on bankruptcy and acquisition, prefer services that let you delete history, and keep sensitive material out of those that do not."
+        },
+        {
+          "title": "Find your review bottleneck before buying more AI.",
+          "body": "Measure how long AI output waits to be checked, and decide which kinds of work need an expert's eye and which can pass with a lighter test."
+        },
+        {
+          "title": "Plan for mistakes in any AI-content filter.",
+          "body": "If you run or rely on a detector for generated content, define the line between generated and assisted and give people a way to appeal."
+        },
+        {
+          "title": "Give agents design rules, not just a request.",
+          "body": "For diagrams and documents, a short list of constraints and a few good examples improves results more than a longer prompt."
+        }
+      ],
+      "tomorrow_preview": "Outside mathematicians' first verdicts on the Cogentic papers, the promised Lean versions, and whether OpenAI or Anthropic publish AI-written mathematics of their own. What We're Watching: Any figure from DeepMind on how much compute its agents control, and other labs' statements on agent-run experiments. What We're Watching: Developers' reaction to Google's Workspace MCP rule, the prices of the Scaled tier, and whether Microsoft sets a similar rule for Microsoft 365. What We're Watching: The bankruptcy court's response to the 42 attorneys general before Character.AI's December 1 auction, and who bids. What We're Watching: Attribution of the breach of an unclassified CIA and ODNI system, where reports say investigators suspect the Artex AI hacking tool, and of the separate incident at the Treasury's FinCEN; also AWS re:Invent from November 30 and Black Friday data on agent-driven shopping.",
+      "sources": "rdworldonline.com, digg.com, cellcog.ai, aiparabellum.com, fourweekmba.com and shattered.io (Cogentic); the-decoder.com, emergent.sh and explainx.ai (DeepMind agents); i10x.ai, nglobenews.com, chromegeek.com, developers.google.com and cloud.google.com as summarised in search results (Workspace MCP); engadget.com, gizmodo.com, mezha.net and androidpure.com (Character.AI); the-decoder.com, siliconreport.com and ai.info (Working with AI); hollywoodreporter.com, gsmarena.com, macobserver.com and Tidal's post on x.com (Tidal); cnn.com, washingtontimes.com, theregister.com, cyberscoop.com and ibtimes.co.uk (federal breaches); finance.yahoo.com and datacenterdynamics.com (Nscale); github.com/cathrynlavery/diagram-design, github.com/alibaba/open-code-review and github.com/jingyaogong/minimind (read directly); github.com/kouweizhu/agents-radar and blockchain.news (trending lists). Figures are secondary reports and unverified unless from a page read directly.",
+      "recap": "Recent days covered separation of duties, policy-based approval and shadow mode (Claude Ship), looped layers and weight sharing (GLM-5.4), eBPF and virtual patching (Shirudo), optimisation stacks (Amazon and Decart), deceptive-practices claims (the Grok lawsuits), record-and-replay verification (fast-anything), key-person risk (Huang's return to Nvidia), trusted kernels and statement matching (the Lean certification of the Riemann Hypothesis proof), perplexity as a shared limit (Pachocki's proposal), secret scanning and revoke-not-revert (Together AI and OpenRouter), circular financing (the AI sell-off), canary tokens (Dragos) and agent-to-agent commerce with spending limits (Walmart's Agent Gateway). Today added proven bounds versus practical speed (Cogentic), automated experimentation, recursive self-improvement and readable chains of thought (DeepMind), agent identity and a dedicated entrance for agents (Google Workspace MCP), customer data as a bankruptcy asset (Character.AI), bottlenecks and the review queue (Anthropic's Working with AI study), shared royalty pools and content detectors (Tidal), and design constraints packaged as an agent skill (diagram-design).",
+      "themes": [
+        "Models & Frontier",
+        "Governance & Safety"
+      ],
+      "quiz": [
+        {
+          "q": "Why does Cogentic's reported factoring result not weaken encryption?",
+          "a": "It proves a guaranteed time limit, but that limit is far slower than the methods already used in practice, so no key becomes easier to break."
+        },
+        {
+          "q": "What is the difference between automated experimentation and recursive self-improvement?",
+          "a": "In the first, agents run tests that people direct and judge; in the second, an AI improves its own successors in a loop without people."
+        },
+        {
+          "q": "Why would a lab leave its agents' chain of thought out of training?",
+          "a": "So the notes stay an honest record of what the agent is doing and are not shaped to look good to a grader."
+        },
+        {
+          "q": "What must an AI agent do to reach Gmail, Drive or Calendar from February 1, 2027?",
+          "a": "Go through Google's Workspace MCP servers or official command-line tool and identify itself as an agent with the is_agentic setting."
+        },
+        {
+          "q": "Why can a bankrupt company's buyer be free of its privacy promises?",
+          "a": "The policy was the old company's promise; user data is sold as an asset, and the promise follows only if the court makes it a condition of the sale."
+        },
+        {
+          "q": "In Anthropic's study, what obstacle was mentioned most often?",
+          "a": "The volume of AI output that people have to review, with 49 mentions."
+        },
+        {
+          "q": "How do fully AI-generated tracks reduce what human musicians earn?",
+          "a": "Royalties come from a shared pool split by share of plays, so every play of a generated track takes a slice from everyone else."
+        }
+      ],
+      "schema": 3
+    },
+    {
       "date": "2026-11-25",
       "display_date": "November 25, 2026",
       "issue": 242,
