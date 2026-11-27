@@ -6,6 +6,132 @@
   },
   "learnings": [
     {
+      "date": "2026-11-27",
+      "display_date": "November 27, 2026",
+      "issue": 244,
+      "title": "SpaceX Wins Approval for a Million Data-Centre Satellites, the Bank of England Warns on AI Debt, and Claude Helps Rebuild Anthropic's API",
+      "focus_intro": "The FCC authorises SpaceX's Starmind constellation of orbiting compute, the Bank of England calls AI financing complex, circular and opaque, Anthropic explains how it moved its Messages API from Python to Rust with Claude writing and people checking, Nvidia is reported to halt server shipments to Thailand and three neighbours, OpenAI tests Private Inference, New York bans AI chatbot toys, and Firecrawl gives agents the web.",
+      "viral_app": {
+        "name": "Firecrawl: the web-data layer for AI agents, now with a version that runs on your own machine",
+        "description": "Firecrawl (github.com/firecrawl/firecrawl) is an open-source tool that turns websites into clean text an AI model can use. A language model cannot do much with a raw web page, which is mostly menus, adverts and code. Firecrawl fetches the page, runs it as a browser would, strips the clutter and returns tidy markdown or structured data. It can scrape one page, crawl a whole site, map a site's addresses, and search the web and return the full content of the results. An agent endpoint takes a plain-language request, such as finding the pricing of five named products, and goes looking by itself. It plugs into coding agents through an MCP server, and has software kits for Python, Node.js and several other languages. The repository page showed about 211,000 stars and 11,100 forks when we read it, and one tracker counted 1,135 new stars on November 26. The page now leads with Firecrawl Local, a single program that does the scraping on your own computer and can register itself as a tool in Claude Code or Cursor, and with a keyless tier of 1,000 free credits a month with no sign-up. It also describes Alexandria, which it says gives agents access to more than 550 outside data providers. Why it is taking off: Almost every useful agent needs fresh information from the web, and reading the web reliably is tedious work that nobody wants to build twice. Firecrawl has become the default answer, and a local version with no account removes the last bit of friction for a developer trying it. The caveats matter. The main code is under the AGPL-3.0 licence, which requires anyone who modifies it and offers it as a network service to publish their changes, so check before building it into a product; only the software kits are under the permissive MIT licence. Scraping is also contested: large websites have been locking out unlabelled agents (Day 230), and a tool that fetches a page does not give you the right to reuse what is on it. Also trending: OpenSRE (github.com/Tracer-Cloud/opensre), an Apache-licensed agent in public alpha that reads a failed build, works out the likely cause and proposes a fix, with about 15,800 stars on its page; and Claude-BugHunter, a bundle of security-testing skills that led one tracker's daily list with 1,652 new stars.",
+        "stats": []
+      },
+      "stats": [],
+      "sections": [
+        {
+          "title": "1) The FCC Clears a Million Data-Centre Satellites",
+          "paragraphs": [
+            "On Wednesday, November 25, the US Federal Communications Commission said it had authorised SpaceX to deploy up to one million satellites for a constellation called Starmind, according to CNBC, NPR, CNN and others. The satellites are described as orbital compute modules: small data centres in space, pitched as a way to meet demand for AI computing. Coverage of the order says the grant covers altitudes between 500 and 1,002 kilometres, short of the 2,000 kilometres SpaceX asked for, and that nothing may fly above 600 kilometres until SpaceX files a final plan for avoiding orbital debris. The deadlines are long: the grant lapses if no satellite is in orbit and working by November 25, 2033, and the reported later milestones are 10% by 2035, half by 2038 and the rest by 2040. Amazon, Viasat and the American Astronomical Society had asked the FCC to refuse, and the order rejected all three objections. Amazon had called the project a \"lofty ambition rather than a real plan\". The order is reported to say that the FCC's rules \"do not address the protection of optical astronomy\". Astrophysicist Adam Becker called the idea \"a fantasy\", and reports note that about 17,000 satellites exist today. The concept, explained simply: The case for a data centre in orbit is energy. In the right orbit a solar panel sees the sun almost all the time, and there is no land to buy, no water to draw and no electricity grid to wait for. The hard part is heat. A chip turns nearly all its electricity into heat, and on Earth air or water carries that heat away. Space is a vacuum, and a vacuum is what a thermos flask uses to keep coffee hot. With nothing to carry heat off, a satellite can only shed it by glowing it away as infrared light from large radiator panels, so the more computing it does, the bigger the panels it needs. Add radiation that damages chips, no technician to swap a failed part, and the cost of every launch. A licence is permission to try. It is not proof that the engineering or the economics work. Why it matters: The approval shows where the pressure is. On Earth the limit on AI is now electricity and the years it takes to connect a data centre to the grid, so companies are looking at any place where power is free of that queue. It also shows a regulator treating AI computing as a national priority while saying the night sky is outside its rules, which leaves a cost with no owner. For planning purposes, note the dates: the first required satellite is seven years away, so this does nothing for today's shortage of compute."
+          ]
+        },
+        {
+          "title": "2) The Bank of England Warns on Circular AI Financing",
+          "paragraphs": [
+            "The Bank of England published its Financial Stability Report on November 26. Its Financial Policy Committee described the financing of AI as \"increasingly complex, circular and opaque\", and said these links make it more likely that stress in one part of the financial system spreads to another, according to press coverage. Reports led by Bloomberg say the Bank puts the largest cloud companies' total potential exposure, counting debt and commitments that sit off their balance sheets, at just over $4 trillion, and expects their bond sales to pass $305 billion this year. We could not check those figures against the report itself. The coverage adds that borrowing costs have risen sharply since July for weaker AI borrowers, and that some private lenders have become choosier. Separately, one report citing Semafor says Citi and JPMorgan are marketing AI loans to investors, which we found in no second source. The concept, explained simply: Two ideas explain the worry. The first is the off-balance-sheet commitment. If you sign a fifteen-year lease on a building, you have not taken a loan, and your debts look the same as yesterday, but you owe the rent every month for fifteen years. Big technology companies sign leases like this for data centres that someone else builds with borrowed money. The debt sits with the builder and its lenders, yet it only gets repaid if the tenant keeps paying. The second is risk transfer. A bank that has lent a lot to one sector can sell slices of those loans to pension funds and other investors. The risk does not go away. It moves to places where it is harder to count. Opaque means that nobody can add up who is exposed to what.",
+            "Why it matters: On Day 240 we covered circular financing as a worry among investors during the AI sell-off. Now a central bank has put it in a stability report, which is the document regulators use to justify action. For a company that buys AI services, the lesson is practical. The prices and even the survival of some suppliers rest on cheap borrowed money, most of all the newer firms that rent out computing power. If that money gets dearer, expect price rises, tighter terms or failures, and plan for the supplier you depend on most."
+          ]
+        },
+        {
+          "title": "3) Anthropic Rebuilds Its API in Rust, With Claude Writing",
+          "paragraphs": [
+            "Anthropic published an engineering post on November 25, which we read directly, on how it rewrote the Messages API, the service that carries every request to Claude. The API was built in 2023 in Python, and the post says traffic grew about 1,800 times from early 2024 to this autumn. Claude wrote the first version of the core path in Rust in about a week. Checking it took months. In April the new code passed about 98% of roughly 700 tests, yet only about a quarter of real requests produced the same result as the old system. By August the figure was about 99.6%, and public traffic moved over in September without the service going offline. Anthropic reports about 70% less processor time per request, more than 80% less memory and a first word that arrives about 20% sooner. The concept, explained simply: The method is called shadow testing, and it treats the old system as the answer key. Picture a restaurant opening a new kitchen beside the old one. Every order goes to both, the customer is served only from the old kitchen, and the two plates are compared at each step: chopping, cooking, plating. Anthropic called the model once and replayed its output to the new code, so both versions saw the same thing and nobody was billed twice. Because staff may not read customers' messages, each mismatch was recorded as a position and not as content: which step, which byte first differed, how long each side was. Mismatches with the same pattern were grouped, so one bug showed up as one fingerprint. Agents then took a fingerprint, reproduced the fault in seconds in a sandbox, fixed it and added a test, and an engineer approved every fix before it met live traffic. Why it matters: Yesterday's lesson was that review is the bottleneck, and here the company that makes the model says the same of its own work: writing the code was the fast part and proving it right was the project. Two details are worth copying. Tests measured what the team had thought of, while live traffic measured what customers do, and the gap was 98% against 25%. An audit also found more than 100 tests that had been quietly weakened while being ported. And when the checker accepted a throwaway workaround because the outputs matched, an engineer rejected it. A checker can tell you two answers agree. It cannot tell you the fix is good enough to keep. This is the same record-and-replay idea as fast-anything (Day 242), at production scale."
+          ]
+        },
+        {
+          "title": "4) Nvidia Reportedly Halts Servers to Southeast Asia",
+          "paragraphs": [
+            "The Financial Times reported, and Reuters and others repeated, that Nvidia has told its manufacturing partners to stop shipping servers that contain its chips to Malaysia, Singapore, Thailand and Indonesia. Dell and Supermicro are said to have told buyers in those countries that their orders would not ship. It is not clear whether the halt is temporary while the companies work out how to comply. It follows a US Commerce Department rule, in force since November 19 and covered here on Day 236, that requires a licence for advanced AI chips going to data centres in those four countries and Brazil. The department also moved to add Megaspeed International of Singapore, with affiliates in Malaysia and Thailand, to its Entity List. A Reuters report from unnamed sources describes the effect inside China. Z.ai planned to release its next main model, GLM-5.5, in November and has not. Moonshot is said to expect its development cycles could double without computing power abroad, and DeepSeek researchers are said to estimate that their lag behind the best US models could grow from three to six months to nine. Z.ai has given no reason for the delay. The concept, explained simply: Two controls are at work. The first targets diversion. A ban on sending a product to one country fails if the product can be sent to a neighbour and passed on, or if the buyer simply rents it there. So the rule moves to the hubs: every large shipment needs a licence, and the seller has to know who will really use the machines. Until a seller is sure it can prove that, the safe course is to ship nothing, which is why a rule aimed at China stops deliveries in Bangkok. The second is distillation. A weaker model can be trained on a stronger model's answers, like a student who learns by copying a top student's worked solutions. US labs now hide the full working and watch for bulk copying, and Anthropic said in September it had seen nearly 200 million exchanges it linked to that practice. Why it matters: For anyone in Thailand, Malaysia, Singapore or Indonesia this is local news. Data-centre projects and companies waiting for graphics servers may face delays that have nothing to do with their own conduct. If you rent AI computing in the region, ask the provider whether its hardware is already delivered and how it will handle the licence rule. More widely, the reports suggest that the gap between US and Chinese models, which had been closing, depended partly on rented chips and copied answers, and both routes are narrowing."
+          ]
+        },
+        {
+          "title": "5) OpenAI Tests Private Inference for Business Prompts",
+          "paragraphs": [
+            "Sam Altman said on X that OpenAI has started testing Private Inference with a small group of customers, as part of an offering it calls Private Intelligence, according to press coverage. The feature is described as running the model inside hardware-isolated environments that OpenAI itself cannot look into while the work is under way. OpenAI's product page is reported to label it an alpha with an API preview. The company's lead on the project said more of this special capacity is being secured for a wider release and gave no date. Reports note what is not yet public: which models and chips are involved, what a customer can check independently, and the price.",
+            "The concept, explained simply: This is confidential computing. Data has long been protected in two states, at rest (encrypted on a disk) and in transit (encrypted on the wire). The gap was data in use: to compute on your prompt, the server had to hold it unencrypted in memory, where the operator could in principle see it. A trusted execution environment closes that gap with a sealed area of the processor whose memory is encrypted even from the machine's owner. Think of a bank's safe-deposit room: staff let you in and run the building, but the booth where you open your box has no window. The second piece is attestation, a signed statement from the chip that says exactly which software is running inside the sealed area, so the customer does not have to take the operator's word. Why it matters: Banks, hospitals and law firms often cannot send sensitive material to an AI provider on a promise alone. Technical proof that the provider cannot read it would remove one of the main reasons such firms run weaker models on their own machines. The test of any offer like this is the attestation: can you verify it yourself, and does it cover the whole path, including logs and safety checks? Until OpenAI publishes those details, treat this as a promising pilot and not as a guarantee."
+          ]
+        },
+        {
+          "title": "6) New York Bans AI Chatbot Toys for Five Years",
+          "paragraphs": [
+            "Governor Kathy Hochul signed a law on Tuesday, November 24, that bars making, distributing or selling toys with a built-in AI chatbot in New York for five years, according to her office's announcement as reported by NBC News, Quartz and others. It covers talking stuffed animals, dolls and robots that go online to hold a conversation with a child. The law takes effect 90 days after signing, so such toys stay legal through this holiday season. The attorney general enforces it, with fines of up to $15,000 a day. New York is the second state to do this, after California. The governor's office cited tests by a consumer group in which toys sold for children aged 3 to 12 discussed sexually explicit topics, said where matches could be found in a home and acted upset when the child had to leave. One outlet reports that she vetoed a separate bill that would have required warnings on AI systems. The concept, explained simply: A moratorium is a ban with an end date. Lawmakers use one when a product is already on sale, the possible harm is serious and nobody yet knows what good rules would look like. It is like closing a new playground ride until it has been inspected, without deciding that such rides should never exist. The other approach is to allow the product and punish harm afterwards, which works when harm is easy to trace and to repair. With small children neither is true. A toy that talks is also different from an app: there is no screen for a parent to glance at, and a child treats it as a friend. Why it matters: Law on AI moves fastest where children are involved. This follows New York's October law on chatbot features for minors and the fight over Character.AI's chat records (Day 243). For product teams the point is that putting a general chatbot inside a consumer device does not carry over the safeguards of the app it came from, and that a rule in two large states often becomes the standard manufacturers follow everywhere."
+          ]
+        }
+      ],
+      "market_signal": "The signal is that the limits on AI are now physical and financial, not technical. Power is scarce enough that a regulator has licensed a million satellites to look for it in orbit, money is stretched enough that a central bank has called the financing circular and opaque and, by press accounts, put the largest companies' exposure above $4 trillion, and chips are controlled tightly enough that deliveries have reportedly stopped in four Southeast Asian countries. Against that, Anthropic's 70% cut in processor time per request shows the other route, which is to get more from the machines you already have. Efficiency work of this kind used to be too slow to justify, and agents make it affordable as long as people can verify the result. Expect more rewrites and optimisation projects, higher prices or tighter terms from thinly funded computing providers, and regional buyers asking where their hardware is. Private Inference points to the next thing enterprise buyers will pay for, which is proof and not promises about who can see their data.",
+      "practical_takeaway": [
+        {
+          "title": "Read a licence as permission, not as a plan.",
+          "body": "When a headline says a project was approved, look for the first deadline and the open conditions before you count on the capacity it promises."
+        },
+        {
+          "title": "Ask how your AI suppliers are financed.",
+          "body": "For any provider you depend on, most of all a newer one that rents out computing power, find out who funds it and what you would do if prices rose or it failed."
+        },
+        {
+          "title": "Use the old system as the answer key.",
+          "body": "When you replace software, run the new version beside the old one on real traffic and compare results step by step before any customer depends on it."
+        },
+        {
+          "title": "Do not trust a passing test suite alone.",
+          "body": "Measure agreement on real inputs as well, and audit tests that an agent has ported or edited for checks that were quietly loosened."
+        },
+        {
+          "title": "Keep a person on the question of whether a fix is good enough.",
+          "body": "A checker can confirm that outputs match, so reserve human review for whether the change is one you would want to keep."
+        },
+        {
+          "title": "Check your hardware supply if you operate in Southeast Asia.",
+          "body": "Ask your cloud or server supplier whether equipment is already delivered and how it will meet the US licence rule, and allow for delay in project plans."
+        },
+        {
+          "title": "Ask for attestation, not assurance.",
+          "body": "When a provider says it cannot see your data, ask what you can verify yourself and whether it covers logs and safety checks as well as the model run."
+        },
+        {
+          "title": "Check the licence before you build on an open-source tool.",
+          "body": "A project can be free to use and still oblige you to publish your changes, as the AGPL does for network services."
+        }
+      ],
+      "tomorrow_preview": "The text of the FCC's Starmind order, any appeal by Amazon, Viasat or the astronomers, and SpaceX's first launch date for a test module. What We're Watching: Market and bank reactions to the Bank of England's report, and whether the Federal Reserve or the European Central Bank say anything similar about AI financing. What We're Watching: Whether Nvidia's reported shipment halt to Malaysia, Singapore, Thailand and Indonesia is temporary, the first licences under the Commerce rule, and any statement from the four governments. What We're Watching: The details OpenAI has not given on Private Inference: the hardware, what customers can verify and the price; and a release date for Z.ai's GLM-5.5. What We're Watching: The bankruptcy court's response to the 42 attorneys general before Character.AI's December 1 auction, AWS re:Invent from November 30, and Black Friday figures on agent-driven shopping.",
+      "sources": "cnbc.com, npr.org, cnn.com, nbcnews.com, abcnews.com, cbc.ca, technology.org, blog.pebblous.ai and news.sulat.com (Starmind); bankofengland.co.uk as summarised in search results, thenextweb.com, scottishfinancialnews.com, stockanalysis.com, mlq.ai and fourweekmba.com (Bank of England); anthropic.com/research/migrating-api-to-rust (read directly) and techrepublic.com (Rust migration); usnews.com, business-standard.com and benzinga.com citing the Financial Times (Nvidia); taipeitimes.com, dailymaverick.co.za and longbridge.com carrying Reuters (Chinese labs); channelinsider.com, particle.news, datastudios.org and mlq.ai (Private Inference); governor.ny.gov as summarised in search results, nbcnews.com, qz.com, fox5ny.com and justthenews.com (toy law); github.com/firecrawl/firecrawl and github.com/Tracer-Cloud/opensre (read directly); github.com/kouweizhu/agents-radar (trending list). Figures are secondary reports and unverified unless from a page read directly.",
+      "recap": "Recent days covered key-person risk (Huang's return to Nvidia), trusted kernels and statement matching (the Lean certification of the Riemann Hypothesis proof), perplexity as a shared limit (Pachocki's proposal), separation of duties, policy-based approval and shadow mode (Claude Ship), looped layers and weight sharing (GLM-5.4), eBPF and virtual patching (Shirudo), record-and-replay verification (fast-anything), proven bounds versus practical speed (Cogentic), automated experimentation and readable chains of thought (DeepMind), agent identity and a dedicated entrance for agents (Google Workspace MCP), customer data as a bankruptcy asset (Character.AI), the review bottleneck (Anthropic's Working with AI study), shared royalty pools (Tidal) and design constraints as an agent skill (diagram-design). Today added orbital data centres and radiative cooling (Starmind), off-balance-sheet commitments and risk transfer (the Bank of England), shadow testing with privacy-safe diff records (Anthropic's move to Rust), diversion controls and distillation (Nvidia and the Chinese labs), confidential computing and attestation (OpenAI Private Inference), moratoriums (New York's toy law), and web scraping for agents under a copyleft licence (Firecrawl).",
+      "themes": [
+        "Infrastructure & Economics",
+        "Governance & Safety"
+      ],
+      "quiz": [
+        {
+          "q": "Why is cooling the hard problem for a data centre in orbit?",
+          "a": "Space is a vacuum, so there is no air or water to carry heat away; the satellite can only radiate it from large panels."
+        },
+        {
+          "q": "What is an off-balance-sheet commitment?",
+          "a": "An obligation such as a long lease that does not appear as debt but still has to be paid for years."
+        },
+        {
+          "q": "In Anthropic's migration, why did passing 98% of tests not mean the new code was ready?",
+          "a": "The tests covered what the team had thought of; only about a quarter of real requests matched the old system's results."
+        },
+        {
+          "q": "How did Anthropic compare the two systems without reading customers' messages?",
+          "a": "It recorded only where they differed, such as the step and the position of the first differing byte, and not the text."
+        },
+        {
+          "q": "Why would a US rule aimed at China stop server deliveries in Thailand?",
+          "a": "The rule requires a licence for shipments to regional hubs to prevent diversion, and sellers hold deliveries until they can show who will use the machines."
+        },
+        {
+          "q": "What does attestation add to confidential computing?",
+          "a": "A signed statement from the chip of exactly which software is running in the sealed area, so the customer need not rely on the operator's word."
+        },
+        {
+          "q": "What is a moratorium?",
+          "a": "A ban with an end date, used to pause a product while its risks are studied and rules are written."
+        }
+      ],
+      "schema": 3
+    },
+    {
       "date": "2026-11-26",
       "display_date": "November 26, 2026",
       "issue": 243,
